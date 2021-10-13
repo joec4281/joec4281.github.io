@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--saved from url=(0024)http://www.bauerapps.com--><html>
+<head>
+   <title>PSHELL</title>
+   <meta name=generator content="Help &amp; Manual">
+   <meta name=keywords content="PowerShell,PSHELL">
+   <meta name=description content=PSHELL>
+   <meta http-equiv=Content-Type content="text/html; charset=ISO-8859-1">
+   
+   <meta http-equiv=X-UA-Compatible content="IE=9"/>
+   <link type="text/css" href="resources/default.css" rel=stylesheet>
+   <link type="text/css" href="resources/custom.css" rel=stylesheet>
+   
+
+
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style type="text/css" media=screen> 
+html, body { 
+   margin:0; 
+   padding:0; 
+   overflow: hidden; 
+   background: #FFFFFF; 
+  }  
+
+div#printheader { 
+   display: none;
+   }
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   p.help-url { margin: 20px 0 5px 0; text-align: center; font-size: 80%; text-decoration: none }
+   .sync-toc { color: #ffffff; font-size: 8pt; font-weight: bold; display: none; }
+   .sync-toc a { color: #ffffff; text-decoration: none; font-weight: bold;}
+   .sync-toc a:visited { color: #ffffff; }
+   .sync-toc a:hover { text-decoration: underline; }
+   </style>
+<!--[if lt IE 7]>
+<style type="text/css">
+  #idcontent {padding: 0px;} 
+  #innerdiv {padding: 10px 5px 5px 10px ;} 
+</style> 
+<![endif]-->
+<noscript>
+<style type="text/css">
+html, body { overflow: auto; }
+</style> 
+</noscript>
+<style type="text/css" media=print>
+span.f_Heading1 { color: black; }
+#idheader, #printheader img { display:none; }
+#printheader { display: block; margin-top: 20px; }
+#idcontent { margin-top: 10px; }
+</style>  
+
+   
+   
+   
+
+
+</head>
+<body>
+<!--ZOOMSTOP-->
+
+
+<div id=printheader><h1 class=p_Heading1><span class=f_Heading1>PSHELL</span></h1>
+</div>
+<div id=idheader>
+<div id=idheaderbg>
+<table width="100%" border=0 cellspacing=0 cellpadding=0 style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign=bottom>
+    <td align=left valign=bottom class=topichead>
+   
+   <p class=crumbs id=idnav><b>Navigation:</b> 
+   
+   <a href="C:\utils\tcmd\tcc.htm">TCC</a> &gt; <a href="C:\utils\tcmd\commands.htm">Commands</a> &gt;</p>
+   <h1 class=p_Heading1><span class=f_Heading1>PSHELL</span></h1>
+
+    </td>
+    <td align=right width=120 valign=middle class=topichead id=idnav>
+    
+     <a href="C:\utils\tcmd\prompt.htm" onmouseover="document.images.prev.src='btn_prev_h.gif'" onmouseout="document.images.prev.src='btn_prev_n.gif'"><img name=prev src="resources/btn_prev_n.gif" border=0 alt="Previous page"></a><a href="C:\utils\tcmd\commands.htm" onmouseover="document.images.main.src='btn_home_h.gif'" onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="resources/btn_home_n.gif" border=0 alt="Return to chapter overview"></a><a href="C:\utils\tcmd\psubst.htm" onmouseover="document.images.next.src='btn_next_h.gif'" onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="resources/btn_next_n.gif" border=0 alt="Next page"></a>
+    </td>
+  </tr>
+  <tr><td colspan=2 style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+<div id=idcontent><div id=innerdiv> 
+<!--ZOOMRESTART-->
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table cellpadding=0 cellspacing=0 style="border:none;border-spacing:0;padding:0;line-height: normal;"><tr style=vertical-align:baseline><td style="border:none;padding:0;width:0.9479in"><span class=f_Arialtext style="font-style: italic; font-weight: bold;">Purpose:</span></td><td style="border:none;padding:0">Execute a PowerShell script or string</td></tr></table></div><p style="text-indent: -0.9479in; margin: 0px 0px 0px 0.9479in;"><span style="color: #000000;"> </span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table cellpadding=0 cellspacing=0 style="border:none;border-spacing:0;padding:0;line-height: normal;"><tr style=vertical-align:baseline><td style="border:none;padding:0;width:0.9479in"><span class=f_Arialtext style="font-style: italic; font-weight: bold;">Format:</span></td><td style="border:none;padding:0">PSHELL [/C /S <span style="font-style: italic;">script</span> ...]</td></tr></table></div><p style="text-indent: -1.0000in; margin: 0px 0px 0px 1.0000in;"><span style="color: #000000;"> </span></p>
+<p style="margin: 0px 0px 0px 0.9271in;"><a href="#c" class=topiclink>/C(lose)</a></p>
+<p style="margin: 0px 0px 0px 0.9271in;"><a href="#s" class=topiclink>/S(tring)</a></p>
+<p style="margin: 0px 0px 0px 1.0000in;"><span style="color: #000000;"> </span></p>
+<p>See also @PSHELL.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style="font-style: italic; font-weight: bold;">File Completion Syntax:</span></p>
+<p class=p_Normal style="margin: 0px 0px 0px 0.5000in;"> </p>
+<p class=p_Normal>The default <a href="C:\utils\tcmd\filecomp.htm" class=topiclink>filename completion</a> syntax is: <span style="font-weight: bold;">[1] dirs ps1 [2*] *</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span class=f_Arialtext style="font-style: italic; font-weight: bold;">Usage:</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal style="text-indent: -0.0104in; margin: 0px 0px 0px 0.0104in;">Note that you may need to enable PowerShell scripting on your system; on recent versions of Windows it is disabled by default (for security).</p>
+<p class=p_Normal style="text-indent: -0.0104in; margin: 0px 0px 0px 0.0104in;"> </p>
+<p class=p_Normal style="text-indent: -0.0104in; margin: 0px 0px 0px 0.0104in;">PSHELL supports multiple string or filename arguments. If a string or filename has embedded whitespace, you must enclose it with double quotes. For example:</p>
+<p class=p_Normal style="text-indent: -0.0104in; margin: 0px 0px 0px 0.0104in;"> </p>
+<p class=p_Normal style="text-indent: -0.0104in; margin: 0px 0px 0px 0.0104in;">pshell /s "type $Profile"</p>
+<p class=p_Normal style="text-indent: -0.0104in; margin: 0px 0px 0px 0.0104in;"> </p>
+<p class=p_Normal style="text-indent: -0.0104in; margin: 0px 0px 0px 0.0104in;">Without the double quotes PSHELL would interpret this as two commands.</p>
+<p style="margin: 0px 0px 0px 0.5000in;"><span style="color: #000000;"> </span></p>
+<p class=p_Normal><span class=f_Arialtext style="font-style: italic; font-weight: bold;">Option:</span></p>
+<p class=p_Normal style="text-indent: -0.0104in; margin: 0px 0px 0px 0.2708in;"> </p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0.2500in;"><table cellpadding=0 cellspacing=0 style="border:none;border-spacing:0;padding:0;line-height: normal;"><tr style=vertical-align:baseline><td style="border:none;padding:0;width:0.5521in"><a name=c class=hmanchor></a><span class=f_Arialtext style="font-weight: bold;">/C</span></td><td style="border:none;padding:0">Close the persistent PowerShell interpreter</td></tr></table></div><p style="text-indent: -0.5521in; margin: 0px 0px 0px 0.8021in;"><span style="color: #000000;"> </span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0.2500in;"><table cellpadding=0 cellspacing=0 style="border:none;border-spacing:0;padding:0;line-height: normal;"><tr style=vertical-align:baseline><td style="border:none;padding:0;width:0.5521in"><a name=s class=hmanchor></a><span class=f_Arialtext style="font-weight: bold;">/S</span></td><td style="border:none;padding:0">Execute a string (like @PSHELL)</td></tr></table></div><p style="text-indent: -0.5521in; margin: 0px 0px 0px 0.8021in;"><span style="color: #000000;"> </span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+
+</body>
+<!--saved from url=(0024)http://www.bauerapps.com--></html>
+
+
+
+
+
+
+
+

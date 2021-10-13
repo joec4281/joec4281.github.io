@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>wevtutil</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+  margin: 5px 5px 5px 5px;
+  background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body>
+<p><span class=rvts6>wevtutil qe jlc</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Windows Events Command Line Utility.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Enables you to retrieve information about event logs and publishers, install</span></p>
+<p><span class=rvts6>and uninstall event manifests, run queries, and export, archive, and clear logs.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Usage:</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>You can use either the short (for example, ep /uni) or long (for example, </span></p>
+<p><span class=rvts6>enum-publishers /unicode) version of the command and option names. Commands, </span></p>
+<p><span class=rvts6>options and option values are not case-sensitive.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Variables are noted in all upper-case.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>wevtutil COMMAND [ARGUMENT [ARGUMENT] ...] [/OPTION:VALUE [/OPTION:VALUE] ...]</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Commands:</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>el | enum-logs &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;List log names.</span></p>
+<p><span class=rvts6>gl | get-log &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Get log configuration information.</span></p>
+<p><span class=rvts6>sl | set-log &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Modify configuration of a log.</span></p>
+<p><span class=rvts6>ep | enum-publishers &nbsp; &nbsp;List event publishers.</span></p>
+<p><span class=rvts6>gp | get-publisher &nbsp; &nbsp; &nbsp;Get publisher configuration information.</span></p>
+<p><span class=rvts6>im | install-manifest &nbsp; Install event publishers and logs from manifest.</span></p>
+<p><span class=rvts6>um | uninstall-manifest Uninstall event publishers and logs from manifest.</span></p>
+<p><span class=rvts6>qe | query-events &nbsp; &nbsp; &nbsp; Query events from a log or log file.</span></p>
+<p><span class=rvts6>gli | get-log-info &nbsp; &nbsp; &nbsp;Get log status information.</span></p>
+<p><span class=rvts6>epl | export-log &nbsp; &nbsp; &nbsp; &nbsp;Export a log.</span></p>
+<p><span class=rvts6>al | archive-log &nbsp; &nbsp; &nbsp; &nbsp;Archive an exported log.</span></p>
+<p><span class=rvts6>cl | clear-log &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Clear a log.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Common options:</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/{r | remote}:VALUE</span></p>
+<p><span class=rvts6>If specified, run the command on a remote computer. VALUE is the remote computer </span></p>
+<p><span class=rvts6>name. Options /im and /um do not support remote operations.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/{u | username}:VALUE</span></p>
+<p><span class=rvts6>Specify a different user to log on to the remote computer. VALUE is a user name</span></p>
+<p><span class=rvts6>in the form domain\user or user. Only applicable when option /r is specified.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/{p | password}:VALUE</span></p>
+<p><span class=rvts6>Password for the specified user. If not specified, or if VALUE is "*", the user </span></p>
+<p><span class=rvts6>will be prompted to enter a password. Only applicable when the /u option is</span></p>
+<p><span class=rvts6>specified.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/{a | authentication}:[Default|Negotiate|Kerberos|NTLM]</span></p>
+<p><span class=rvts6>Authentication type for connecting to remote computer. The default is Negotiate.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/{uni | unicode}:[true|false]</span></p>
+<p><span class=rvts6>Display output in Unicode. If true, then output is in Unicode. </span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>To learn more about a specific command, type the following:</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>wevtutil COMMAND /?</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

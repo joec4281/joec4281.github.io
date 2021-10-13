@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Error launching COM</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+  margin: 5px 5px 5px 5px;
+  background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body>
+<p><span class=rvts6>I have in my TCSTART.BTM;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; pshell /s "$vfp = new-object -com myserver.myclass"</span></p>
+<p><span class=rvts6>&nbsp; pshell /s "$vfp | get-member"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>From a brand new start of TCMD/TCC (64-bit), the preceding returns;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>pshell &nbsp;/s "$vfp = new-object -com myserver.myclass"</span></p>
+<p><span class=rvts6>PSHELL: System.Management.Automation.CmdletInvocationException : Retrieving the COM class factory for component with CLSID {E2C2C43A-B6C4-4053-B4AC-9C697034A08A} failed due to the following error: 80070005 Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED)).</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>So, I start a TCMD/PowerShell (64-bit) tab, and try it from there;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Windows PowerShell</span></p>
+<p><span class=rvts6>Copyright (C) Microsoft Corporation. All rights reserved.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Try the new cross-platform PowerShell https://aka.ms/pscore6</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PS E:\utils&gt; $vfp = new-object -com myserver.myclass</span></p>
+<p><span class=rvts6>PS E:\utils&gt; $vfp | get-member</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;TypeName: System.__ComObject#{00078a50-5ad0-4ec6-aa59-976b47734989}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Name &nbsp; &nbsp;MemberType Definition</span></p>
+<p><span class=rvts6>---- &nbsp; &nbsp;---------- ----------</span></p>
+<p><span class=rvts6>MyDoCmd Method &nbsp; &nbsp; Variant MyDoCmd (string)</span></p>
+<p><span class=rvts6>MyEval &nbsp;Method &nbsp; &nbsp; Variant MyEval (string)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Works as it should.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>So, I start another new TCC (64-bit) tab in TCMD;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>pshell &nbsp;/s "$vfp = new-object -com myserver.myclass"</span></p>
+<p><span class=rvts6>pshell &nbsp;/s "$vfp | get-member"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;TypeName: System.__ComObject#{00078a50-5ad0-4ec6-aa59-976b47734989}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Name &nbsp; &nbsp;MemberType Definition</span></p>
+<p><span class=rvts6>---- &nbsp; &nbsp;---------- ----------</span></p>
+<p><span class=rvts6>MyDoCmd Method &nbsp; &nbsp; Variant MyDoCmd (string)</span></p>
+<p><span class=rvts6>MyEval &nbsp;Method &nbsp; &nbsp; Variant MyEval (string)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>This time, it works!</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>I close the PowerShell (64-bit) tab.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>I can start at many new TCC (64-bit) tabs in TCMD, and the two commands will work from TCSTART.BTM</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Close down TCMD, and start it again. Same problem.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>I have tried this with several 64-bit COM .dlls, and the same thing happens. It seems that I have to use an actual PowerShell (64-bit) session to initially load the COM .dll, before it can be recognized in TCC (64-bit)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>My solution to get this working via the TCSTART is to add a line preceeding the two PSHELL lines;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>powershell -command "$vfp = new-object -com myserver.myclass"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Now, starting a new TCMD/TCC (64-bit);</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>powershell -command "$vfp = new-object -com myserver.myclass"</span></p>
+<p><span class=rvts6>pshell &nbsp;/s "$vfp = new-object -com myserver.myclass"</span></p>
+<p><span class=rvts6>pshell &nbsp;/s "$vfp | get-member"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;TypeName: System.__ComObject#{00078a50-5ad0-4ec6-aa59-976b47734989}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Name &nbsp; &nbsp;MemberType Definition</span></p>
+<p><span class=rvts6>---- &nbsp; &nbsp;---------- ----------</span></p>
+<p><span class=rvts6>MyDoCmd Method &nbsp; &nbsp; Variant MyDoCmd (string)</span></p>
+<p><span class=rvts6>MyEval &nbsp;Method &nbsp; &nbsp; Variant MyEval (string)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>...and it works as it should.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Posting this work-around mainly for my future reference.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Joe</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>
