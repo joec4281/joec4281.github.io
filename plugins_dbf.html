@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>http://prospero.unm.edu/plugins/textutils.html</title>
+    <link rel="stylesheet" type="text/css"
+      href="resource://content-accessible/viewsource.css">
+  </head>
+  <body id="viewsource" class="highlight" style="tab-size: 4">
+    <div align="center">
+      <h1>dbf Plugin for Take Command / TCC / TCC/LE</h1>
+      <h2>Beta Version 2021.10 Build 8</h2>
+      <h2>Joe Caverly</h2>
+    </div>
+    <h3><u><b>Purpose:</b></u></h3>
+    <font size="+1">This plugin implements various functions to allow
+      the reading of a dBASE .dbf file.<br>
+      <br>
+    </font>
+    <h3><font size="+1"><u><b>Installation:</b></u></font></h3>
+    <font size="+1">To use this plugin, copy <font face="Cascadia Mono">dbf64.dll</font>
+      to some known location on your hard drive. Load the plugin with a
+      PLUGIN /L command, for example:<br>
+      <br>
+      <b><font size="+2"><code>plugin /l e:\utils\dbf64.dll</code></font></b><br>
+      <br>
+      If you copy these files to a subdirectory named </font><font
+      face="Cascadia Mono">PlugIns</font><font size="+1"> within your
+      Take Command program directory, the plugin will be loaded
+      automatically when TCC starts.<br>
+      <br>
+    </font>
+    <h3><font size="+1"><u><b>Plugin Features</b></u></font></h3>
+    <font size="+1"><u>Functions:</u><br>
+    </font>
+    <table width="100%" cellspacing="2" cellpadding="2" border="0">
+      <tbody>
+        <tr>
+          <td valign="top" nowrap="nowrap"><font size="+1">@BytesInHeader</font></td>
+          <td valign="top">Returns the number of bytes in the header of
+            the .dbf file.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@DBFVersion</font></td>
+          <td valign="top">Returns the version of the .dbf file.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@FieldCount</font></td>
+          <td valign="top">Returns the number of fields in the .dbf
+            file.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@FieldDecimal</font></td>
+          <td valign="top">Returns the number of decimal places of a
+            numeric field.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@FieldName</font></td>
+          <td valign="top">Returns the field name of a field, given the
+            field number.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@FieldType</font></td>
+          <td valign="top">Returns the field type of a field, given the
+            field number.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@FieldWidth</font></td>
+          <td valign="top">Returns the field width of a field, given the
+            field number.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@FirstRecOffset</font></td>
+          <td valign="top">Returns the byte in the file where the first
+            record begins.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@LUpdate</font></td>
+          <td valign="top">Returns the date that the .dbf file was last
+            updated.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@RecNum</font></td>
+          <td valign="top">Returns the record number, given the byte
+            position in the file.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@Record</font></td>
+          <td valign="top">Returns the contents of a record, given the
+            record number.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@RecCount</font></td>
+          <td valign="top">Returns the number of records in the .dbf
+            file.<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><font size="+1">@Recsize</font></td>
+          <td valign="top">Returns the size of a record in the .dbf
+            file.<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <font size="+1"><br>
+      jlc<br>
+      <br>
+    </font>
+  </body>
+</html>
