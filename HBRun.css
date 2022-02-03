@@ -114,3 +114,16 @@ input:focus, textarea:focus, select:focus
 {
    text-align: left;
 }
+#Line2
+{
+   border-color: #A0A0A0;
+   border-style: solid;
+   border-bottom-width: 9px;
+   border-top: 0px;
+   border-left: 0px;
+   border-right: 0px;
+   height: 0 !important;
+   line-height: 0px !important;
+   margin: 0;
+   padding: 0;
+}

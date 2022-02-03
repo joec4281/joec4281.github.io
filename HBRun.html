@@ -19,5 +19,6 @@
 <span style="background-color:#FFFFFF;color:#000000;font-family:'Courier New';font-size:21px;">Modify your .prg source file, to include the following, at the location in your .prg source file, at which you want to start debugging;<br><br>AltD( 1 )&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // activates debugger<br>AltD()&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // invokes debugger unconditionally<br><br>To begin debugging your .prg source file;<br><br>hbrun myfile.prg --hb:debug</span></div>
 <div id="wb_Text5" style="position:absolute;left:58px;top:468px;width:900px;height:387px;z-index:5;">
 <span style="background-color:#FFFFFF;color:#000000;font-family:'Courier New';font-size:21px;">I cannot get the screen size correct when doing this from a TCC window in TCMD.<br><br>Thus, I detach a TCC window from TCMD, and use MODE 80,25 to set the screen size, before starting hbrun.<br><br>@setlocal<br>@echo off<br>set lines=%@execstr[3,mode con:]<br>set lines=%@word[-0,%lines]<br>if %lines ne 25 mode 80,25<br>set columns=%@execstr[4,mode con:]<br>set columns=%@word[-0,%columns]<br>if %columns ne 80 mode 80,25<br>if %# gt 0 hbrun.exe %1 %2 %3 %4 --hb:debug<br>endlocal</span></div>
+<hr id="Line2" style="position:absolute;left:64px;top:448px;width:925px;z-index:6;">
 </body>
 </html>
