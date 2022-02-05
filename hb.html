@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Page</title>
+<meta name="generator" content="WYSIWYG Web Builder 17 - https://www.wysiwygwebbuilder.com">
+<link href="Debug_.NET_EXE.css" rel="stylesheet">
+<link href="hb.css" rel="stylesheet">
+</head>
+<body>
+<div id="wb_Text1" style="position:absolute;left:119px;top:40px;width:815px;height:24px;text-align:center;z-index:0;">
+<span style="background-color:#FFFFFF;color:#000000;font-family:'Courier New';font-size:21px;"><strong>hb.library for use with Take Command Console</strong></span></div>
+<div id="wb_Text2" style="position:absolute;left:119px;top:99px;width:989px;height:411px;z-index:1;">
+<span style="background-color:#FFFFFF;color:#000000;font-family:'Courier New';font-size:21px;">hb {<br>@setlocal<br>@echo off<br>:: Disable the Escape Character<br>setdos /X-8<br><br>if exist r:\ (set dest=r:\hb.prg) else (set dest=%temp\hb.prg)<br><br>echo Proc Main() &gt; %dest<br>echo %* &gt;&gt; %dest<br>echo Return &gt;&gt; %dest<br><br>set _hb=%@execstr[hbrun.exe %dest]<br><br>endlocal _hb<br>}<br></span></div>
+<div id="wb_Text3" style="position:absolute;left:122px;top:558px;width:988px;height:368px;z-index:2;">
+<span style="background-color:#FFFFFF;color:#000000;font-family:'Courier New';font-size:21px;">NOTES: Drive R: on my system is a RAMDrive<br><br>This library command uses the external hbmk2.exe, for which I have created the following Symlinks;<br><br>2022-02-05&nbsp;&nbsp; 9:50&nbsp;&nbsp;&nbsp;&nbsp; &lt;SYMLINK&gt;&nbsp;&nbsp;&nbsp; hbmk2.exe [e:\hb32\bin\hbmk2.exe]<br>2021-04-18&nbsp;&nbsp; 9:00&nbsp;&nbsp;&nbsp;&nbsp; &lt;SYMLINK&gt;&nbsp;&nbsp;&nbsp; hbrun.exe [e:\hb32\bin\hbmk2.exe]<br>2021-04-18&nbsp;&nbsp; 9:01&nbsp;&nbsp;&nbsp;&nbsp; &lt;SYMLINK&gt;&nbsp;&nbsp;&nbsp; hbrund.exe [e:\hb32\bin\hbmk2.exe]<br><br>This library command returns the result in the environment variable _hb<br><br>Thus, <strong>hb ?? 30*12 </strong>will store the result in _hb.<br><br>You can then <strong>echo %_vb </strong>to see the result.<br></span><span style="color:#000000;font-family:Arial;font-size:13px;"><br></span></div>
+</body>
+</html>
