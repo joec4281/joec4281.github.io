@@ -378,3 +378,17 @@ input:focus, textarea:focus, select:focus
 {
    z-index: 1111 !important;
 }
+#wb_Text1 
+{
+   background-color: transparent;
+   background-image: none;
+   border: 0px solid #000000;
+   border-radius: 0px;
+   padding: 0;
+   margin: 0;
+   text-align: center;
+}
+#wb_Text1 div
+{
+   text-align: center;
+}
