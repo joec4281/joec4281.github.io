@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>IsNetDir</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>FUNCTION IsNetDir</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Angus Scott-Fleming (CIS: 76711,617)</span></p>
+<p><span class=rvts6>*-- Date........: 07/14/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Tests for existence of a directory</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NOTE: on Novell Netware 3.11, FILE("Z:\DBASE\NUL")</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; always returns .T. even if disk volume Z: is not&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; MAPped by the user, or if \DBASE does NOT exist. This</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; is a quirk of the interaction between Netware and DOS</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV v1.5+</span></p>
+<p><span class=rvts6>*-- Rev. History: 07/14/1993 &nbsp;first draft</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; based on pseudocode by Pat Kennedy, Borland Tech&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Support</span></p>
+<p><span class=rvts6>*-- Calls.......: Net_Err &nbsp; &nbsp; &nbsp; &nbsp;Procedure in FILES3.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: IsNetDir(&lt;cTestDir&gt;)</span></p>
+<p><span class=rvts6>*-- Example.....: if IsNetDir("F:\DBASE\DATA")</span></p>
+<p><span class=rvts6>*-- Returns.....: logical .T. if directory is available, .F. if not</span></p>
+<p><span class=rvts6>*-- Parameters..: cTestDir = [disk:] and directory to check for</span></p>
+<p><span class=rvts6>*-- Side Effect.: Changes ON ERROR setting to nul.</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameter cTestDir</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if parameter is empty, return</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if isblank(m-&gt;cTestDir)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; return .F.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if lNetError does not exist, create it</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if type("lNetError")="U"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; public lNetError</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;lNetError = .F.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if there's an error, call routine below</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on error do Net_Err</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- save current directory settings</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cOldDir</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cOldDir = set("directory")</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- change to new directory -- if error, this is where it will</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- occur, and routine will be called ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set directory to &amp;cTestDir.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- cleanup and return to original directory setting</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on error</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set directory to &amp;cOldDir.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN .not. m-&gt;lNetError</span></p>
+<p><span class=rvts6>*-- EoF: IsNetDir()</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

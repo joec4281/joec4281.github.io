@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>FF</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>FUNCTION FF</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Oktay Amiry (Borland Technical Support)</span></p>
+<p><span class=rvts6>*-- Date........: 02/01/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: This routine will search a disk and find all</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; occurences of a specified file or files. It will then</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; allow you to select said file.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Originally printed in TechNotes, February, 1993</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *********************************</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **** USES DOS ATTRIB COMMAND ****</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *********************************</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/01/1993 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: FF(&lt;cFile&gt;[,&lt;cPath&gt;])</span></p>
+<p><span class=rvts6>*-- Example.....: ?ff("*.dbf","c:\temp")</span></p>
+<p><span class=rvts6>*-- Returns.....: Selected File</span></p>
+<p><span class=rvts6>*-- Parameters..: cFile &nbsp;= Filename, or wildcard specification, allows</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;use of standard ? and * wildcards in the way</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;DOS has always used them.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cPath &nbsp;= Optional -- specified drive and directory.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;If not used, this UDF will start the search</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;at the root of the default drive.</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cFile,cPath</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cCurDir = set("DIRECTORY")</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- deal with error messages</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case type("CFILE") # "C"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;RETURN "Invalid Parameter"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case pcount() &gt; 1 .and. type("CFILE") # "C"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;RETURN "Invalid Parameter"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case pcount() &gt; 1 .and. type("CFILE") = "C"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;lError = .f.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;on error lError = .t.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;set directory to &amp;cPath.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;on error</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;lError</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RETURN "Invalid Drive\Directory"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if file("TEMP.XXX")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; erase temp.xxx</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- save screen so we can restore it, and clear ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;save screen to sFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;clear</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- get the "message" color from the attributes ....</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMsgColor = substr(set("ATTRIBUTE"),at(chr(38),set("ATTRIBUTE"))+3)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMsgColor = substr(m-&gt;cMsgColor,at(",",m-&gt;cMsgColor)+1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMsgColor = substr(m-&gt;cMsgColor,at(",",m-&gt;cMsgColor)+1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMsgColor = left(m-&gt;cMsgColor,at(",",m-&gt;cMsgColor)-1)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- display message</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ 9,22 fill to 13,60 color n+/n &nbsp;&amp;&amp; shadow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ 8,20 fill to 12,58 color &amp;cMsgColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ 8,20 to 12,58 double color &amp;cMsgColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@10,22 say "The directories are being searched" color &amp;cMsgColor.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if no path was given, run the DOS Attrib command on whole drive</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if type("CPATH") = "L"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nDosF = run(.f.,"ATTRIB \&amp;cFile. /s &gt; temp.xxx | sort",.t.)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else &nbsp;&amp;&amp; run it on the path that was given ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nDosF = run(.f.,"ATTRIB &nbsp;&amp;cFile. /s &gt; temp.xxx | sort",.t.)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if there was an error ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nDosF # 0 .or. .not. file("TEMP.XXX")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; set directory to &amp;cCurDir.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; restore screen from sFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; release screen sFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; RETURN iif(m-&gt;nDosF # 0,m-&gt;nDosF,-1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- use LOWLEVEL routines to process the output of ATTRIB command</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nHandle = fopen("TEMP.XXX","R")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMove &nbsp; = fgets(m-&gt;nHandle,":")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if feof(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; lClose = fClose(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; erase temp.xxx</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; restore screen from sFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; release screen sFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; RETURN "File not found"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- ok. Now we create the popup ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMove = fseek(m-&gt;nHandle,0,0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nBar = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define popup pFile from 1,1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .not. feof(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cBar = trim(fgets(m-&gt;nHandle))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cBar = space(2)+substr(m-&gt;cBar,at(":",m-&gt;cBar)-1)+space(5)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; define bar nBar of pFile prompt m-&gt;cBar</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nBar = m-&gt;nBar + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- what do we do with it?</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;clear</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on selection popup pFile deactivate popup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate popup pFile</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cSelect = iif(.not. isblank(prompt()), ltrim(rtrim(prompt())),"")</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- cleanup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release popup pFile</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;lClose = fclose(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;erase temp.xxx</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set directory to &amp;cCurDir.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;restore screen from sFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release screen sFF</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;cSelect</span></p>
+<p><span class=rvts6>*-- EoF: FF()</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Radio Buttons</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>1996 June Page 4</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Radio buttons are used when you give the user a list of choices, only one of which is selectable.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION RadioBut</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Adam L. Menkes (BORLAND TECHNICAL SUPPORT)</span></p>
+<p><span class=rvts6>*-- Date........: 06/01/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: This is a Radio Button routine. &nbsp;NOTE that the array&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; called as cArray below must be a character array (i.e.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; all data must be character data ...).</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 06/01/1992 -- Original</span></p>
+<p><span class=rvts6>*-- Calls.......: ArrayRows() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Function in ARRAY.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TmpRadio &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Procedure in WINDOWS.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: None</span></p>
+<p><span class=rvts6>*-- Usage.......: RadioBut("&lt;cArray&gt;",&lt;nRow&gt;,&lt;nCol&gt;,&lt;nDefPad&gt;,&lt;nASCII&gt;)</span></p>
+<p><span class=rvts6>*-- Example.....: nReturn = &nbsp;RadioBut("aTest",5,10,1,15)</span></p>
+<p><span class=rvts6>*-- Returns.....: Numeric (Array Index of item selected)</span></p>
+<p><span class=rvts6>*-- Parameters..: cArray &nbsp;= Name of Array (Character data)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRow &nbsp; &nbsp;= Row for coordinates ... (start position)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nCol &nbsp; &nbsp;= Column for same</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nDefPad = Default Pad number</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nASCII &nbsp;= ASCII character to use as 'button'&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(Optional ...)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; try: 4 (Diamond), 9 (Circle), 15 (splot), 42 (*),</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;249 (∙), &nbsp;251 (√) or 254 (■) ...</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cArray, nRow, nCol, nDefPad, nASCII</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define menu mRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;public aTmpRadio, nARows, nPad</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- get number of items to display</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nARows = ArrayRows(m-&gt;cArray)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- set character for 'button'</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nASCII = iif(PCOUNT() &lt;= 4,4,m-&gt;nASCII) &amp;&amp; default is a 'diamond'</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- start definitions ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cPad = iif(pcount() =&gt; 4 .and. m-&gt;nDefPad # 0,;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ltrim(str(m-&gt;nDefPad)),"1")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nCol = iif(pcount() &lt;= 2,10,m-&gt;nCol)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRow = iif(pCount() &lt;= 1,5,m-&gt;nRow)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- here we get the largest item in the array ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nLongest = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nARows</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nLongest = max(m-&gt;nLongest,len(trim(&amp;cArray.[m-&gt;nX])))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- define a temporary array ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;declare aTmpRadio[m-&gt;nARows]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on key label ctrl-m keyboard "{27}" &nbsp;&amp;&amp; close down if &lt;Enter&gt; ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cX = "1"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .t.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- define menu pads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do while val(m-&gt;cX) &lt;= m-&gt;nARows</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;define pad button&amp;cX. of mRadio at m-&gt;nRow - 1 + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val(m-&gt;cX),m-&gt;nCol;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; prompt "("+ iif(aTmpRadio[val(m-&gt;cX)] .or. m-&gt;cPad = m-&gt;cX,;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; chr(m-&gt;nASCII)," ")+") "+trim(&amp;cArray[val(m-&gt;cX)])+;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; space(m-&gt;nLongest-len(trim(&amp;cArray[val(m-&gt;cX)])))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;on selection pad button&amp;cX. of mRadio deactivate menu</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;cX = ltrim(str(val(m-&gt;cX)+1))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- start 'er up</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; activate menu mRadio pad button&amp;nPad.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- if &lt;Esc&gt; (or &lt;Enter&gt;), we're done ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if lastkey() = 27</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nPad = substr(pad(),7)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*-- if not, perform routine below to reset the temp array ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do TmpRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- cleanup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on key label ctrl-m</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nY = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nY &lt;= m-&gt;nARows .and. .not. aTmpRadio[m-&gt;nY]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nY = m-&gt;nY + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release aTmpRadio, nPad</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release menu mRadio</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN iif(m-&gt;nY &gt; m-&gt;nARows, 0, m-&gt;nY)</span></p>
+<p><span class=rvts6>*-- EoF: RadioBut()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PROCEDURE TmpRadio</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Adam L. Menkes (BORLAND TECHNICAL SUPPORT)</span></p>
+<p><span class=rvts6>*-- Date........: 06/01/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: Used to set/reset the temporary array aTmpRadio[] for&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; use in the RadioBut() function above.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 06/01/1992 -- Original</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: RadioBut() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Function in WINDOWS.PRG</span></p>
+<p><span class=rvts6>*-- Usage.......: Do TmpRadio</span></p>
+<p><span class=rvts6>*-- Example.....: Do TmpRadio</span></p>
+<p><span class=rvts6>*-- Returns.....: None</span></p>
+<p><span class=rvts6>*-- Parameters..: None</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nPad = substr(pad(),7)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nY = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nY &lt;= m-&gt;nARows</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; aTmpRadio[m-&gt;nY] = .f.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nY = m-&gt;nY + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;aTmpRadio[val(m-&gt;nPad)] = .t.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cX = "1"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*-- EoP: TmpRadio</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

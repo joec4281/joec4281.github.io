@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       <meta name="viewport" content="initial-scale=1.1, maximum-scale=1.5, user-scalable=yes">
+       <link rel="stylesheet" href="notebooks/_codebase/skins/web.css" type="text/css" media="screen" charset="utf-8">
+       <script src="notebooks/_codebase/webix.js" type="text/javascript" charset="utf-8"></script>
+       <title>RightNote Mobile Loader</title>
+   </head>
+   <body>
+	<script type="text/javascript" charset="utf-8">
+
+		var list_data = [
+			{ id: 0, title: "dBase"},
+		];
+		
+	  var list = {
+		view: "list",
+		data: list_data,
+	   	type:{ height: "auto"},		 
+		template:"#title#",
+		on: {
+			onItemClick:function(id){
+				window.location.href = "notebooks/" + this.getItem(id).title + "/mobile.html";
+			}		 
+		}
+	   };
+
+	   webix.ready(function(){
+		   webix.ui({
+			id:"layout",
+			rows:[ 
+			  {type: "line",
+			  rows: [
+			  { template: "Select notebook", type: "header" },
+			  list
+			  ]}
+			]
+		   }).show();
+		});
+
+       webix.Touch.limit();
+
+	</script>
+   </body>
+</html>

@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>DirList</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>FUNCTION DirList</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Oktay Amiry (Borland Technical Support)</span></p>
+<p><span class=rvts6>*-- Date........: 02/01/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Used to display a popup of the hierarchical structure</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; of directories. With this you can select a directory</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; from the popup.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DirList() returns a DOS Error Number if it encounters</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; one, or a -1 if it fails to perform its task. It</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Originally Printed in TechNotes, February 1993</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ************************************************</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *** REQUIRES DOS TREE COMMAND BE IN DOS PATH ***</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ************************************************</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/01/1993 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: WhatDir &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Procedure in FILES3.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: DirList([&lt;cDrive&gt;])</span></p>
+<p><span class=rvts6>*-- Example.....: ?DirList() &nbsp; &nbsp;or</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?DirList("A:")</span></p>
+<p><span class=rvts6>*-- Returns.....: See above</span></p>
+<p><span class=rvts6>*-- Parameters..: cDrive = Optional Parameter to list a specific drive</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;instead of the default.</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cDrive</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- deal with possible errors</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case .not. "DOS" $ UPPER(OS()) &nbsp;&amp;&amp; gotta be DOS, not UNIX</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;RETURN "Incompatible operating system"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case pcount() # 0 .and. type("cDRIVE") # "C"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;RETURN "Invalid Parameter"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case type("cDrive") = "C" .and. .not. isalpha(left(m-&gt;cDrive,1))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;RETURN "Invalid Parameter"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- deal with file already being there</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if file("DIRECT.XXX")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; erase direct.xxx</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- save screen and then clear whatever's on it</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;save screen to sDirList</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;clear</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- get the "message" color from the attributes ....</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMsgColor = substr(set("ATTRIBUTE"),at(chr(38),set("ATTRIBUTE"))+3)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMsgColor = substr(m-&gt;cMsgColor,at(",",m-&gt;cMsgColor)+1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMsgColor = substr(m-&gt;cMsgColor,at(",",m-&gt;cMsgColor)+1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMsgColor = left(m-&gt;cMsgColor,at(",",m-&gt;cMsgColor)-1)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- display message (slightly modified by KJM)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ 9,22 fill to 13,60 color n+/n &nbsp;&amp;&amp; shadow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ 8,20 fill to 12,58 color &amp;cMsgColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ 8,20 to 12,58 double color &amp;cMsgColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@10,22 say "The directory tree is being created" color &amp;cMsgColor.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- execute DOS RUN command, putting output into a text file</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if type("CDRIVE") = "L"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * tree must be run in DOS directory or in DOS path</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nRun = run(.f.,"TREE \ &gt; direct.XXX",.t.)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cDrive = left(m-&gt;cDrive,1)+":\"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nRun = run(.f.,"TREE &amp;cDrive. &gt; direct.xxx",.t.)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- error has occured of some sort -- return error number OR -1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nRun # 0 .or. .not. file("DIRECT.XXX")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; RETURN iif(m-&gt;nRun # 0,m-&gt;nRun, -1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- use low-level routines to go in and deal with the file ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nHandle = fopen("DIRECT.XXX","R") &nbsp; &amp;&amp; open text file</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMove &nbsp; = fGets(m-&gt;nHandle,":")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if feof(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; lClose = fClose(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; erase direct.xxx</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; restore screen from sDirList</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; release screen sDirList</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; RETURN - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMove = fSeek(m-&gt;nHandle,len(m-&gt;cMove)-1)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- define the popup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define popup pTree from 1,20</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nBar = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .not. feof(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; define bar nBar of pTree prompt space(2) ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; + fGets(m-&gt;nHandle)+space(5)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nBar = m-&gt;nBar + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- store path (bar) &amp; location of ascii 195 (Ã) or 192 (À) to array</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;declare aTemp[m-&gt;nBar,2] &nbsp; &nbsp;&amp;&amp; temp array</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nBar = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMove = fSeek(m-&gt;nHandle,0,0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMove = fGets(m-&gt;nHandle,":")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cMove = fSeek(m-&gt;nHandle,len(m-&gt;cMove) - 1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .not. feof(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cBar = trim(fGets(m-&gt;nHandle))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store cBar to aTemp[m-&gt;nBar,1]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store iif(at(chr(195),m-&gt;cBar) # 0, at(chr(195),m-&gt;cBar),;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; at(chr(192),m-&gt;cBar)) to aTemp[m-&gt;nBar,2]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nBar = m-&gt;nBar + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- hokay ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;clear</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cUser = ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- when user selects something, execute routine WhatDir ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on selection popup pTree do whatdir with bar(),m-&gt;cUser</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate popup pTree</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release popup pTree</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;lClose = fClose(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;erase direct.xxx</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;restore screen from sDirList</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release screen sDirList</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;cUser</span></p>
+<p><span class=rvts6>*-- EoF: DirList()</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

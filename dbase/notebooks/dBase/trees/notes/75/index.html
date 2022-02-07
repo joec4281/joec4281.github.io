@@ -1,0 +1,825 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>How Low Can You Go?</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>How Low Can You Go?</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Using .bin files with dBASE IV</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The dBASE language can't do everything. But way back when, the</span></p>
+<p><span class=rvts6>creators of dBASE III had enough insight to allow for a means of</span></p>
+<p><span class=rvts6>accomplishing many of those tasks that the dBASE language could not do</span></p>
+<p><span class=rvts6>alone. Through the use of .bin files, system resources not directly</span></p>
+<p><span class=rvts6>available to the dBASE engine are now accessible.</span></p>
+<p><span class=rvts6>For the unfamiliar, .bin files are usually assembly language programs</span></p>
+<p><span class=rvts6>written with the express intent of being executed from inside of the</span></p>
+<p><span class=rvts6>dBASE environment. With the advent of dBASE III 1.2 (the Developer's</span></p>
+<p><span class=rvts6>Release), the LOAD and CALL commands made their appearance. These</span></p>
+<p><span class=rvts6>commands provided the basis for an access to low level routines</span></p>
+<p><span class=rvts6>written in assembly language. The LOAD command loaded a .bin file</span></p>
+<p><span class=rvts6>into dBASE memory, and the CALL command passed program control to the</span></p>
+<p><span class=rvts6>memory location where the .bin file was LOADed. When execution of the</span></p>
+<p><span class=rvts6>.bin program in memory is done, control is returned (if all went well)</span></p>
+<p><span class=rvts6>back to dBASE control. Having this access to low level functions in</span></p>
+<p><span class=rvts6>the PC can be a mixed blessing, particularly for the novice. If you</span></p>
+<p><span class=rvts6>don't know exactly what's going to happen when CALLing a .bin file,</span></p>
+<p><span class=rvts6>then it's usually wise not to even try running it.</span></p>
+<p><span class=rvts6>Changes In .bin Files</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Not long after the appearance of dBASE III PLUS came many products</span></p>
+<p><span class=rvts6>designed to take advantage of the new low level interface it</span></p>
+<p><span class=rvts6>incorporated. Most notably, these were the dBASE Tools for C, the</span></p>
+<p><span class=rvts6>Programmer's Library and the Graphics Library, the dBASE Tools: the</span></p>
+<p><span class=rvts6>Pascal Programmers Library, the dBASE Programmer's Utilities and the</span></p>
+<p><span class=rvts6>dBASE Programmer's Utilities Volume II. These products provided added</span></p>
+<p><span class=rvts6>functionality and features such as access to arrays, financial,</span></p>
+<p><span class=rvts6>statistical, and mathematical functions, graphics capability, some</span></p>
+<p><span class=rvts6>form of external language support and access to system resources such</span></p>
+<p><span class=rvts6>as screen, keyboard, cursor and mouse control. Having these new</span></p>
+<p><span class=rvts6>tools to expand the use of the dBASE programming language made the</span></p>
+<p><span class=rvts6>product an even more powerful tool for applications development.</span></p>
+<p><span class=rvts6>dBASE IV was released in the fall of 1988, with bigger, faster</span></p>
+<p><span class=rvts6>everything and sporting a richer programming language. This included</span></p>
+<p><span class=rvts6>the expanded use of low level interface. The LOAD command remained</span></p>
+<p><span class=rvts6>unchanged, but the CALL command was now able to accept up to seven</span></p>
+<p><span class=rvts6>parameters of various types as compared to the one optional parameter</span></p>
+<p><span class=rvts6>accessible to dBASE III PLUS programmers. Also, a new CALL() function</span></p>
+<p><span class=rvts6>was introduced, also allowing up to seven parameters. The CALL()</span></p>
+<p><span class=rvts6>function can be used to return a value, thus providing a means of</span></p>
+<p><span class=rvts6>creating assembly language User Defined Functions. This expanded</span></p>
+<p><span class=rvts6>functionality turned out to be a mixed blessing however. Changes in</span></p>
+<p><span class=rvts6>the way the dBASE engine managed parameters and memory variables</span></p>
+<p><span class=rvts6>rendered many of the low level tools designed for dBASE III PLUS</span></p>
+<p><span class=rvts6>unusable. The table shown below details the differences between the</span></p>
+<p><span class=rvts6>way the two products provide access to .bin routines.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dBASE III PLUS dBASE IV</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Maximum parameters 1 7</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Parameter addressing DS:BX points to optional parameter DS:BX points to first parameter</span></p>
+<p><span class=rvts6>ES:DI points to seven pointer block Parameter count</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Parameter count DS:BX are nil if no parameter present CX contains parameter count</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Pointers reference Parameter points to actual variable Pointers address copies of variables</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Numeric IEEE floating point format Null terminated, STR() representation</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Date IEEE floating point format Null terminated, DTOS() representation (YYYYMMDD)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Character string Null terminated character strings Null terminated character strings</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Logical One byte (0 = FALSE, 1 =TRUE) 'F' or 'T' followed by null byte</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Access to the parameters in dBASE IV is not only more extensive but</span></p>
+<p><span class=rvts6>more stable. If a dBASE III PLUS type .bin required no parameters or,</span></p>
+<p><span class=rvts6>at most, required one character parameter, then that .bin would likely</span></p>
+<p><span class=rvts6>work in dBASE IV. Otherwise, the unpredictable could occur.</span></p>
+<p><span class=rvts6>In addition to the differences in parameter passing conventions, dBASE</span></p>
+<p><span class=rvts6>IV does not manage memory variables in the same manner that dBASE III</span></p>
+<p><span class=rvts6>PLUS did. Many dBASE III PLUS-type .bin files expected memory</span></p>
+<p><span class=rvts6>variables to be located directly after the variable being passed as</span></p>
+<p><span class=rvts6>the parameter. However, In dBASE IV, the location of the first</span></p>
+<p><span class=rvts6>parameter has no bearing on the address of the related variable or</span></p>
+<p><span class=rvts6>variables. This difference (besides the severe memory deficit imposed</span></p>
+<p><span class=rvts6>by dBASE IV 1.0 requirements) is what rendered all of the dBASE Tools</span></p>
+<p><span class=rvts6>series unusable. Nearly all of the .bin files in the dBASE</span></p>
+<p><span class=rvts6>Programmers Utilites Volume II fail due to this same variable</span></p>
+<p><span class=rvts6>addressing phenomenon or to the fact that some of those utilities</span></p>
+<p><span class=rvts6>attempt to allocate memory from within dBASE IV. This practice was</span></p>
+<p><span class=rvts6>dubious in dBASE III PLUS and is deadly in dBASE IV. The following is</span></p>
+<p><span class=rvts6>a list of those .bin files from the dBASE Programmers Utilites Volume</span></p>
+<p><span class=rvts6>II that should work with dBASE IV.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Ffirst.bin</span></p>
+<p><span class=rvts6>Fnext.bin</span></p>
+<p><span class=rvts6>Chdir.bin</span></p>
+<p><span class=rvts6>Mkdir.bin</span></p>
+<p><span class=rvts6>Rmdir.bin</span></p>
+<p><span class=rvts6>Getkey.bin</span></p>
+<p><span class=rvts6>Prn2file.bin</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>With the exception of Addfiles.bin, all the .bin files from the</span></p>
+<p><span class=rvts6>original dBASE Programmer's Utilities (Volume 1) should work with</span></p>
+<p><span class=rvts6>dBASE IV.</span></p>
+<p><span class=rvts6>So, despite the travails of using dBASE III PLUS .bin files in dBASE</span></p>
+<p><span class=rvts6>IV, the expanded capability of dBASE IV .bin files can more than make</span></p>
+<p><span class=rvts6>up for the loss. Well, to be frank, there are a couple of problems</span></p>
+<p><span class=rvts6>still left to be ironed out with the CALL command and CALL() function</span></p>
+<p><span class=rvts6>in dBASE IV version 1.0. Both the CALL command and the CALL()</span></p>
+<p><span class=rvts6>function improperly process a date type parameter; both will yield</span></p>
+<p><span class=rvts6>strange results. The workaround to this, at least for the time being,</span></p>
+<p><span class=rvts6>is to send the date as a character string in either DTOS() or DTOC()</span></p>
+<p><span class=rvts6>format. The only other anomaly known is with the use of seven</span></p>
+<p><span class=rvts6>parameters in conjunction with the CALL() function. If all seven</span></p>
+<p><span class=rvts6>parameters are used, dBASE IV version 1.0 will hang before returning</span></p>
+<p><span class=rvts6>from the .bin routine.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>To better illustrate the flexibility of a dBASE IV type .bin file,</span></p>
+<p><span class=rvts6>I've included the source code to a useful .bin and a small library of</span></p>
+<p><span class=rvts6>UDFs and procedures to act as a front end for the .bin file. The</span></p>
+<p><span class=rvts6>assembler source code used here should be compatible with MASM 4.0 and</span></p>
+<p><span class=rvts6>above. The .bin file should be created using the following steps:</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>MASM Search;</span></p>
+<p><span class=rvts6>LINK Search;</span></p>
+<p><span class=rvts6>EXE2BIN Search</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>On the following pages you will find a handy utility that I've come up</span></p>
+<p><span class=rvts6>with which searches for files on disk and can return several of the</span></p>
+<p><span class=rvts6>file characteristics such as the date and time stamp and the file</span></p>
+<p><span class=rvts6>size. I then incorporate this functionality into a dBASE program</span></p>
+<p><span class=rvts6>that creates a popup that allows more elaborate filtering of files.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>For example, suppose you wish to show a popup picklist of files that</span></p>
+<p><span class=rvts6>had date time stamps for a specific month or day. This is not</span></p>
+<p><span class=rvts6>something dBASE IV by itself could accomplish. But by being able to</span></p>
+<p><span class=rvts6>access the low level interface, the possibilities become</span></p>
+<p><span class=rvts6>endless.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>For more information about the Microsoft compiler MASM, contact</span></p>
+<p><span class=rvts6>Microsoft Corporation, 1 Microsoft Way, Redmond, WA 98052-6399 or</span></p>
+<p><span class=rvts6>phone 206/882-8080</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>; Program:Search.asm Source for dBASE IV type .bin file that uses DOS'</span></p>
+<p><span class=rvts6>; find first and find next functions for getting info</span></p>
+<p><span class=rvts6>; about files matching a wildcard specification and</span></p>
+<p><span class=rvts6>; possibly an attribute mask. Can be called with up to</span></p>
+<p><span class=rvts6>; six parameters, or at least two. The first parameter</span></p>
+<p><span class=rvts6>; is necessary to indicate the search mode; either to</span></p>
+<p><span class=rvts6>; find the first file (indicated by a 1) or to find</span></p>
+<p><span class=rvts6>; subsequent files (indicated by anything other than a 1).</span></p>
+<p><span class=rvts6>; The second parameter is a filename or wild card string.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; parameter 1: Call type (1 for first call).</span></p>
+<p><span class=rvts6>; parameter 2: Wildcard specification.</span></p>
+<p><span class=rvts6>; parameter 3: Attribute mask. (Optional)</span></p>
+<p><span class=rvts6>; parameter 4: Receives file date.</span></p>
+<p><span class=rvts6>; parameter 5: Receives file time.</span></p>
+<p><span class=rvts6>; parameter 6: Receives file size.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Example: . LOAD Search</span></p>
+<p><span class=rvts6>; . ? CALL("Search",1,"*.dbf ") &amp;&amp; Two parms.</span></p>
+<p><span class=rvts6>; 0</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; . fspec = "SQLHOME\*.* "</span></p>
+<p><span class=rvts6>; . fattr = "D " &amp;&amp; Include directories!</span></p>
+<p><span class=rvts6>; . fdate = " / / " &amp;&amp; Avoid bug.</span></p>
+<p><span class=rvts6>; . ftime = " : : "</span></p>
+<p><span class=rvts6>; . fsize = 0</span></p>
+<p><span class=rvts6>; . CALL Search WITH 1,fspec,fattr,fdate,ftime,fsize</span></p>
+<p><span class=rvts6>; . ? fspec,fsize</span></p>
+<p><span class=rvts6>; SQLDBASE.STR 194</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Possible directory entry attributes.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RO = 00000001b</span></p>
+<p><span class=rvts6>HID = 00000010b</span></p>
+<p><span class=rvts6>SYS = 00000100b</span></p>
+<p><span class=rvts6>VOL = 00001000b</span></p>
+<p><span class=rvts6>DIR = 00010000b</span></p>
+<p><span class=rvts6>ARCH = 00100000b</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dgroup group code</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>code segment byte</span></p>
+<p><span class=rvts6>assume cs:code,ds:dgroup</span></p>
+<p><span class=rvts6>search proc far</span></p>
+<p><span class=rvts6>mov ax,cs ; Assert local</span></p>
+<p><span class=rvts6>data segment.</span></p>
+<p><span class=rvts6>mov ds,ax</span></p>
+<p><span class=rvts6>mov word ptr [argc],cx ; Save parameter count.</span></p>
+<p><span class=rvts6>cmp cx,2 ; Were at least two parameters sent?</span></p>
+<p><span class=rvts6>jge enough</span></p>
+<p><span class=rvts6>mov ax,-94 ; Return "Wrong number of parameters".</span></p>
+<p><span class=rvts6>jmp done</span></p>
+<p><span class=rvts6>enough:</span></p>
+<p><span class=rvts6>call getdta ; Save DTA locally.</span></p>
+<p><span class=rvts6>lea dx,mydta</span></p>
+<p><span class=rvts6>mov ah,1ah ; Set local DTA.</span></p>
+<p><span class=rvts6>int 21h ; Call DOS.</span></p>
+<p><span class=rvts6>lds si,es:[di] ; Address first parameter.</span></p>
+<p><span class=rvts6>call atoi</span></p>
+<p><span class=rvts6>cmp ax,1 ; Call for "find first"?</span></p>
+<p><span class=rvts6>mov ah,4fh ; Assume "find next".</span></p>
+<p><span class=rvts6>jne nextfile</span></p>
+<p><span class=rvts6>xor cx,cx</span></p>
+<p><span class=rvts6>cmp word ptr cs:[argc],3 ; Was an attribute mask specified?</span></p>
+<p><span class=rvts6>jl nomask</span></p>
+<p><span class=rvts6>lds si,es:[di + 8]</span></p>
+<p><span class=rvts6>call getmask</span></p>
+<p><span class=rvts6>nomask:</span></p>
+<p><span class=rvts6>lds dx,es:[di + 4] ; Point to wildcard.</span></p>
+<p><span class=rvts6>mov ah,4eh ; Finding first.</span></p>
+<p><span class=rvts6>nextfile:</span></p>
+<p><span class=rvts6>int 21h ; Make DOS request.</span></p>
+<p><span class=rvts6>push ax ; Save return value...</span></p>
+<p><span class=rvts6>pushf ; and flags</span></p>
+<p><span class=rvts6>mov ax,cs ; Reassert data segment.</span></p>
+<p><span class=rvts6>mov ds,ax</span></p>
+<p><span class=rvts6>call resetDTA ; Restore dBASE' orginal DTA.</span></p>
+<p><span class=rvts6>popf</span></p>
+<p><span class=rvts6>pop ax</span></p>
+<p><span class=rvts6>jc done ; Carry set indicates error.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>cmp word ptr [argc],2 ; Filename sent, at least?</span></p>
+<p><span class=rvts6>jb result</span></p>
+<p><span class=rvts6>push es</span></p>
+<p><span class=rvts6>push di</span></p>
+<p><span class=rvts6>les di,es:[di + 4]</span></p>
+<p><span class=rvts6>lea si,fname</span></p>
+<p><span class=rvts6>call strcpy ; Return file found to dBASE.</span></p>
+<p><span class=rvts6>pop di</span></p>
+<p><span class=rvts6>pop es</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>cmp word ptr [argc],3 ; Attribute string sent?</span></p>
+<p><span class=rvts6>jb result</span></p>
+<p><span class=rvts6>push es</span></p>
+<p><span class=rvts6>push di</span></p>
+<p><span class=rvts6>les di,es:[di + 8]</span></p>
+<p><span class=rvts6>call maskcpy ; Attributes to dBASE.</span></p>
+<p><span class=rvts6>pop di</span></p>
+<p><span class=rvts6>pop es</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>cmp word ptr [argc],4 ; Date parameter sent?</span></p>
+<p><span class=rvts6>jb result</span></p>
+<p><span class=rvts6>push es</span></p>
+<p><span class=rvts6>push di</span></p>
+<p><span class=rvts6>les di,es:[di + 12]</span></p>
+<p><span class=rvts6>call datecpy ; Return file date to dBASE.</span></p>
+<p><span class=rvts6>pop di</span></p>
+<p><span class=rvts6>pop es</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>cmp word ptr [argc],5 ; Time parameter sent?</span></p>
+<p><span class=rvts6>jb result</span></p>
+<p><span class=rvts6>push es</span></p>
+<p><span class=rvts6>push di</span></p>
+<p><span class=rvts6>les di,es:[di + 16]</span></p>
+<p><span class=rvts6>call timecpy ; Return file time.</span></p>
+<p><span class=rvts6>pop di</span></p>
+<p><span class=rvts6>pop es</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>cmp word ptr [argc],6 ; Parameter for file size?</span></p>
+<p><span class=rvts6>jb result</span></p>
+<p><span class=rvts6>mov ax,[fsize]</span></p>
+<p><span class=rvts6>mov dx,[fsize + 2]</span></p>
+<p><span class=rvts6>push es</span></p>
+<p><span class=rvts6>push di</span></p>
+<p><span class=rvts6>les di,es:[di + 20]</span></p>
+<p><span class=rvts6>call ltoa ; Return it.</span></p>
+<p><span class=rvts6>pop di</span></p>
+<p><span class=rvts6>pop es</span></p>
+<p><span class=rvts6>result:</span></p>
+<p><span class=rvts6>xor ax,ax ; A - O.K. Return "no error".</span></p>
+<p><span class=rvts6>done:</span></p>
+<p><span class=rvts6>cmp word ptr [argc],1 ; Call type specified?</span></p>
+<p><span class=rvts6>jb exit</span></p>
+<p><span class=rvts6>les di,es:[di]</span></p>
+<p><span class=rvts6>cwd</span></p>
+<p><span class=rvts6>call ltoa ; CALL() return value.</span></p>
+<p><span class=rvts6>exit:</span></p>
+<p><span class=rvts6>ret ; Back to dBASE we go!</span></p>
+<p><span class=rvts6>search endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>getdta proc near</span></p>
+<p><span class=rvts6>push es</span></p>
+<p><span class=rvts6>mov ah,2fh ; Get address of current DTA.</span></p>
+<p><span class=rvts6>int 21h ; Call DOS.</span></p>
+<p><span class=rvts6>mov word ptr [olddta],bx</span></p>
+<p><span class=rvts6>mov word ptr [olddta + 2],es</span></p>
+<p><span class=rvts6>pop es</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>getdta endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>resetDTA proc near</span></p>
+<p><span class=rvts6>push ds</span></p>
+<p><span class=rvts6>mov dx,word ptr [olddta] ; Reset original DTA.</span></p>
+<p><span class=rvts6>mov ds,word ptr [olddta + 2]</span></p>
+<p><span class=rvts6>mov ah,1ah</span></p>
+<p><span class=rvts6>int 21h ; Call DOS.</span></p>
+<p><span class=rvts6>pop ds</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>resetDTA endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>; Atoi: Converts a dBASE parameter to a signed integer (16-bit)</span></p>
+<p><span class=rvts6>; value with the result left in the AX register. Conversion of</span></p>
+<p><span class=rvts6>; the dBASE parameter continues until the first non-numeric</span></p>
+<p><span class=rvts6>; character is found.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Expects: DS:SI -&gt; dBASE parameter string.</span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>atoi proc near</span></p>
+<p><span class=rvts6>push di ; Save parameter address offset.</span></p>
+<p><span class=rvts6>xor ax,ax ; AX and BX are working accumulators.</span></p>
+<p><span class=rvts6>mov bx,ax</span></p>
+<p><span class=rvts6>mov cx,10 ; The divisor, ten.</span></p>
+<p><span class=rvts6>mov di,ax ; Sign flag, assume positive.</span></p>
+<p><span class=rvts6>cld ; Move forward.</span></p>
+<p><span class=rvts6>skipwhite:</span></p>
+<p><span class=rvts6>lodsb</span></p>
+<p><span class=rvts6>cmp al,' ' ; Skip leading spaces.</span></p>
+<p><span class=rvts6>je skipwhite</span></p>
+<p><span class=rvts6>skipzero:</span></p>
+<p><span class=rvts6>cmp al,'0' ; Skip leading zeros.</span></p>
+<p><span class=rvts6>jne chksign</span></p>
+<p><span class=rvts6>lodsb</span></p>
+<p><span class=rvts6>jmp skipzero</span></p>
+<p><span class=rvts6>chksign:</span></p>
+<p><span class=rvts6>cmp al,'+' ; Positive? (Not a likely character.)</span></p>
+<p><span class=rvts6>je next</span></p>
+<p><span class=rvts6>cmp al,'-' ; Negative?</span></p>
+<p><span class=rvts6>jne digits</span></p>
+<p><span class=rvts6>inc di ; Flag it.</span></p>
+<p><span class=rvts6>next:</span></p>
+<p><span class=rvts6>lodsb</span></p>
+<p><span class=rvts6>digits:</span></p>
+<p><span class=rvts6>cmp al,'0' ; Check for valid digits.</span></p>
+<p><span class=rvts6>jb atoidone ; Leave if nonnumeric.</span></p>
+<p><span class=rvts6>cmp al,'9'</span></p>
+<p><span class=rvts6>ja atoidone ; Ditto.</span></p>
+<p><span class=rvts6>sub al,'0'</span></p>
+<p><span class=rvts6>cbw ; Zero out high byte.</span></p>
+<p><span class=rvts6>xchg ax,bx</span></p>
+<p><span class=rvts6>imul cx ; Multiply by ten to shift place value.</span></p>
+<p><span class=rvts6>add bx,ax</span></p>
+<p><span class=rvts6>lodsb</span></p>
+<p><span class=rvts6>jmp digits</span></p>
+<p><span class=rvts6>atoidone:</span></p>
+<p><span class=rvts6>mov ax,bx</span></p>
+<p><span class=rvts6>or di,di ; DI holds sign flag.</span></p>
+<p><span class=rvts6>jz atoiexit</span></p>
+<p><span class=rvts6>neg ax ; Change sign.</span></p>
+<p><span class=rvts6>atoiexit:</span></p>
+<p><span class=rvts6>pop di ; Restore this.</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>atoi endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>; Getmask: Convert character string representing desired search</span></p>
+<p><span class=rvts6>; attribute to true numeric value. Result is left in AX.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Expects: DS:SI -&gt; Attribute string.</span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>getmask proc near</span></p>
+<p><span class=rvts6>xor cx,cx</span></p>
+<p><span class=rvts6>cld</span></p>
+<p><span class=rvts6>jmp getchar</span></p>
+<p><span class=rvts6>chkchar:</span></p>
+<p><span class=rvts6>and al,11011111b ; Capitalize.</span></p>
+<p><span class=rvts6>cmp al,'R' ; Check for read only.</span></p>
+<p><span class=rvts6>jne hidden</span></p>
+<p><span class=rvts6>or cx,RO</span></p>
+<p><span class=rvts6>jmp getchar</span></p>
+<p><span class=rvts6>hidden:</span></p>
+<p><span class=rvts6>cmp al,'H' ; Hidden?</span></p>
+<p><span class=rvts6>jne system</span></p>
+<p><span class=rvts6>or cx,HID</span></p>
+<p><span class=rvts6>jmp getchar</span></p>
+<p><span class=rvts6>system:</span></p>
+<p><span class=rvts6>cmp al,'S' ; System?</span></p>
+<p><span class=rvts6>jne volume</span></p>
+<p><span class=rvts6>or cx,SYS</span></p>
+<p><span class=rvts6>jmp getchar</span></p>
+<p><span class=rvts6>volume:</span></p>
+<p><span class=rvts6>cmp al,'V' ; Volume label?</span></p>
+<p><span class=rvts6>jne directory</span></p>
+<p><span class=rvts6>or cx,VOL</span></p>
+<p><span class=rvts6>jmp getchar</span></p>
+<p><span class=rvts6>directory:</span></p>
+<p><span class=rvts6>cmp al,'D' ; Directory?</span></p>
+<p><span class=rvts6>jne archive</span></p>
+<p><span class=rvts6>or cx,DIR</span></p>
+<p><span class=rvts6>jmp getchar</span></p>
+<p><span class=rvts6>archive:</span></p>
+<p><span class=rvts6>cmp al,'A' ; Archive?</span></p>
+<p><span class=rvts6>jne getchar</span></p>
+<p><span class=rvts6>or cx,ARCH</span></p>
+<p><span class=rvts6>getchar:</span></p>
+<p><span class=rvts6>lodsb</span></p>
+<p><span class=rvts6>or al,al</span></p>
+<p><span class=rvts6>jnz chkchar</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>getmask endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>; Maskcpy: Convert file attribute to null terminated character string.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Expects: ES:DI -&gt; dBASE parameter string.</span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>maskcpy proc near</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0 ; At end of string?</span></p>
+<p><span class=rvts6>je mcexit</span></p>
+<p><span class=rvts6>mov ah,byte ptr [attr]</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>test ah,RO ; Read only?</span></p>
+<p><span class=rvts6>jz chkHID</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'R'</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0</span></p>
+<p><span class=rvts6>je mcexit</span></p>
+<p><span class=rvts6>chkHID:</span></p>
+<p><span class=rvts6>test ah,HID ; Hidden?</span></p>
+<p><span class=rvts6>jz chkSYS</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'H'</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0</span></p>
+<p><span class=rvts6>je mcexit</span></p>
+<p><span class=rvts6>chkSYS:</span></p>
+<p><span class=rvts6>test ah,SYS ; System?</span></p>
+<p><span class=rvts6>jz chkVOL</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'S'</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0</span></p>
+<p><span class=rvts6>je mcexit</span></p>
+<p><span class=rvts6>chkVOL:</span></p>
+<p><span class=rvts6>test ah,VOL ; Volume label?</span></p>
+<p><span class=rvts6>jz chkDIR</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'V'</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0</span></p>
+<p><span class=rvts6>je mcexit</span></p>
+<p><span class=rvts6>chkDIR:</span></p>
+<p><span class=rvts6>test ah,DIR ; Directory?</span></p>
+<p><span class=rvts6>jz chkARCH</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'D'</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0</span></p>
+<p><span class=rvts6>je mcexit</span></p>
+<p><span class=rvts6>chkARCH:</span></p>
+<p><span class=rvts6>test ah,ARCH ; Archive?</span></p>
+<p><span class=rvts6>jz fill</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'A'</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0</span></p>
+<p><span class=rvts6>je mcexit</span></p>
+<p><span class=rvts6>fill:</span></p>
+<p><span class=rvts6>mov al,' ' ; Empty rest of string.</span></p>
+<p><span class=rvts6>call strset</span></p>
+<p><span class=rvts6>mcexit:</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>maskcpy endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>; Datecpy: Translates and copies a DOS format date word to a dBASE</span></p>
+<p><span class=rvts6>; type time string.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Expects: ES:DI -&gt; dBASE parameter string.</span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>datecpy proc near</span></p>
+<p><span class=rvts6>mov ax,[date]</span></p>
+<p><span class=rvts6>mov cl,5</span></p>
+<p><span class=rvts6>and ax,1e0h ; Mask off day and year.</span></p>
+<p><span class=rvts6>shr ax,cl ; Normalize.</span></p>
+<p><span class=rvts6>aam</span></p>
+<p><span class=rvts6>xchg ah,al</span></p>
+<p><span class=rvts6>add ax,3030h</span></p>
+<p><span class=rvts6>stosw</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'/' ; Copy date separator.</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>mov ax,[date]</span></p>
+<p><span class=rvts6>and ax,1fh ; Mask off month and year.</span></p>
+<p><span class=rvts6>aam</span></p>
+<p><span class=rvts6>xchg ah,al</span></p>
+<p><span class=rvts6>add ax,3030h</span></p>
+<p><span class=rvts6>stosw</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'/' ; Once again.</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>mov ax,[date]</span></p>
+<p><span class=rvts6>and ax,0fe00h ; Mask off month and day.</span></p>
+<p><span class=rvts6>mov cl,9</span></p>
+<p><span class=rvts6>shr ax,cl</span></p>
+<p><span class=rvts6>add ax,80</span></p>
+<p><span class=rvts6>cmp ax,100 ; Using only two digit year.</span></p>
+<p><span class=rvts6>jl century</span></p>
+<p><span class=rvts6>sub ax,100</span></p>
+<p><span class=rvts6>century:</span></p>
+<p><span class=rvts6>aam</span></p>
+<p><span class=rvts6>xchg ah,al</span></p>
+<p><span class=rvts6>add ax,3030h</span></p>
+<p><span class=rvts6>stosw</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>datecpy endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>; Timecpy: Translates and copies a DOS format time word to a dBASE</span></p>
+<p><span class=rvts6>; type time string.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Expects: ES:DI -&gt; dBASE parameter string.</span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>timecpy proc near</span></p>
+<p><span class=rvts6>mov ax,[time]</span></p>
+<p><span class=rvts6>mov cl,11</span></p>
+<p><span class=rvts6>and ax,0f800h ; Mask off minutes and seconds.</span></p>
+<p><span class=rvts6>shr ax,cl</span></p>
+<p><span class=rvts6>aam</span></p>
+<p><span class=rvts6>xchg ah,al</span></p>
+<p><span class=rvts6>add ax,3030h</span></p>
+<p><span class=rvts6>stosw</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],':' ; Time separator.</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>mov ax,[time]</span></p>
+<p><span class=rvts6>mov cl,5</span></p>
+<p><span class=rvts6>and ax,07e0h ; Mask off hours and seconds.</span></p>
+<p><span class=rvts6>shr ax,cl</span></p>
+<p><span class=rvts6>aam</span></p>
+<p><span class=rvts6>xchg ah,al</span></p>
+<p><span class=rvts6>add ax,3030h</span></p>
+<p><span class=rvts6>stosw</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],':' ; Copy second separator.</span></p>
+<p><span class=rvts6>inc di</span></p>
+<p><span class=rvts6>mov ax,[time]</span></p>
+<p><span class=rvts6>and ax,1fh ; Mask off hours and minutes.</span></p>
+<p><span class=rvts6>shl ax,1</span></p>
+<p><span class=rvts6>aam</span></p>
+<p><span class=rvts6>xchg ah,al</span></p>
+<p><span class=rvts6>add ax,3030h</span></p>
+<p><span class=rvts6>stosw</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>timecpy endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>; Ltoa: Converts a signed long integer (32-bit) value to a null</span></p>
+<p><span class=rvts6>; terminated string (dBASE parameter), padding unused characters</span></p>
+<p><span class=rvts6>; with spaces. If the dBASE parameter is not large enough to</span></p>
+<p><span class=rvts6>; represent the value, the parameter is filled with asterisks</span></p>
+<p><span class=rvts6>; ('*') to represent overflow.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Calls: Strset</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Expects: ES:DI -&gt; dBASE parameter string.</span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>ltoa proc near</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0 ; At end of dBASE parameter?</span></p>
+<p><span class=rvts6>je ltoaexit</span></p>
+<p><span class=rvts6>mov bp,di ; Save the parameter offset.</span></p>
+<p><span class=rvts6>xor si,si ; Assume non-negative or ".F."</span></p>
+<p><span class=rvts6>push ax ; Save the low word.</span></p>
+<p><span class=rvts6>mov al,' ' ; Fill with spaces and move past end.</span></p>
+<p><span class=rvts6>call strset</span></p>
+<p><span class=rvts6>pop ax ; Restore our low word.</span></p>
+<p><span class=rvts6>mov cx,10 ; The divisor.</span></p>
+<p><span class=rvts6>or dx,dx ; Negative number?</span></p>
+<p><span class=rvts6>jge positive</span></p>
+<p><span class=rvts6>inc si ; SI now holds ".T."</span></p>
+<p><span class=rvts6>not dx ; Make positive.</span></p>
+<p><span class=rvts6>neg ax</span></p>
+<p><span class=rvts6>sbb dx,-1</span></p>
+<p><span class=rvts6>positive:</span></p>
+<p><span class=rvts6>dec di ; Move to previous char.</span></p>
+<p><span class=rvts6>mov bx,ax</span></p>
+<p><span class=rvts6>mov ax,dx</span></p>
+<p><span class=rvts6>xor dx,dx</span></p>
+<p><span class=rvts6>div cx</span></p>
+<p><span class=rvts6>xchg bx,ax</span></p>
+<p><span class=rvts6>div cx</span></p>
+<p><span class=rvts6>xchg dx,bx</span></p>
+<p><span class=rvts6>add bl,'0' ; Make character.</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],bl ; Store the digit.</span></p>
+<p><span class=rvts6>cmp di,bp ; Are we at the front of the parameter?</span></p>
+<p><span class=rvts6>je atfront</span></p>
+<p><span class=rvts6>or ax,ax ; Anything left to work with?</span></p>
+<p><span class=rvts6>jnz positive</span></p>
+<p><span class=rvts6>or si,si ; Was the number negative?</span></p>
+<p><span class=rvts6>jz ltoaexit</span></p>
+<p><span class=rvts6>dec di ; Step back once again.</span></p>
+<p><span class=rvts6>mov byte ptr es:[di],'-' ; Put in our minus sign.</span></p>
+<p><span class=rvts6>jmp ltoaexit</span></p>
+<p><span class=rvts6>atfront:</span></p>
+<p><span class=rvts6>or dx,dx ; Still have stuff to write?</span></p>
+<p><span class=rvts6>jnz oflow</span></p>
+<p><span class=rvts6>or ax,ax</span></p>
+<p><span class=rvts6>jnz oflow</span></p>
+<p><span class=rvts6>or si,si ; Do we need to write a negative sign?</span></p>
+<p><span class=rvts6>jnz oflow</span></p>
+<p><span class=rvts6>jmp ltoaexit</span></p>
+<p><span class=rvts6>oflow:</span></p>
+<p><span class=rvts6>mov di,bp ; Start back at the beginning.</span></p>
+<p><span class=rvts6>mov al,'*' ; Fill with overflow character.</span></p>
+<p><span class=rvts6>call strset</span></p>
+<p><span class=rvts6>ltoaexit:</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>ltoa endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>; Strcpy: Copies a null terminated string to a dBASE parameter,</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>; padding unused characters with spaces.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Calls: Strset</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Expects: ES:DI -&gt; dBASE parameter string.</span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>strcpy proc near</span></p>
+<p><span class=rvts6>cld ; Move forward, just in case.</span></p>
+<p><span class=rvts6>getch:</span></p>
+<p><span class=rvts6>lodsb ; Get next character.</span></p>
+<p><span class=rvts6>or al,al ; End of source string?</span></p>
+<p><span class=rvts6>jz sourceend</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0 ; End of dBASE parameter?</span></p>
+<p><span class=rvts6>je scexit</span></p>
+<p><span class=rvts6>stosb ; Copy the character.</span></p>
+<p><span class=rvts6>jmp getch</span></p>
+<p><span class=rvts6>sourceend:</span></p>
+<p><span class=rvts6>mov al,' ' ; Fill with spaces.</span></p>
+<p><span class=rvts6>call strset</span></p>
+<p><span class=rvts6>scexit:</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>strcpy endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>; Strset: Fills a null terminated string with specified character.</span></p>
+<p><span class=rvts6>;</span></p>
+<p><span class=rvts6>; Expects: ES:DI Ä&gt; String to be filled.</span></p>
+<p><span class=rvts6>; AL Contains character to fill.</span></p>
+<p><span class=rvts6>;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ</span></p>
+<p><span class=rvts6>strset proc near</span></p>
+<p><span class=rvts6>cld</span></p>
+<p><span class=rvts6>jmp chknull ; Let's check for a null first.</span></p>
+<p><span class=rvts6>putch:</span></p>
+<p><span class=rvts6>stosb ; Put it where it belongs.</span></p>
+<p><span class=rvts6>chknull:</span></p>
+<p><span class=rvts6>cmp byte ptr es:[di],0 ; Have we reached the end?</span></p>
+<p><span class=rvts6>jne putch</span></p>
+<p><span class=rvts6>ret</span></p>
+<p><span class=rvts6>strset endp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>argc dw 0</span></p>
+<p><span class=rvts6>olddta dw 0,0</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>mydta db 21 dup (0)</span></p>
+<p><span class=rvts6>attr db 0</span></p>
+<p><span class=rvts6>time dw 0</span></p>
+<p><span class=rvts6>date dw 0</span></p>
+<p><span class=rvts6>fsize dw 0,0</span></p>
+<p><span class=rvts6>fname db 13 dup (0)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>code ends</span></p>
+<p><span class=rvts6>end search</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PROCEDURE picklist</span></p>
+<p><span class=rvts6>*</span></p>
+<p><span class=rvts6>* This procedure provides a way to create popups that contain the names</span></p>
+<p><span class=rvts6>* of all available .DBFs and .QBE files for user selection, thus</span></p>
+<p><span class=rvts6>* circumventing the limitation imposed by the PROMPT FILES LIKE clause</span></p>
+<p><span class=rvts6>* on a DEFINE POPUP command which only allows one file skeleton to be</span></p>
+<p><span class=rvts6>* used for the purposes of name filtering. Files.DBF is expected to</span></p>
+<p><span class=rvts6>* have the following structure.</span></p>
+<p><span class=rvts6>*</span></p>
+<p><span class=rvts6>* Field Field Name Type Width Dec</span></p>
+<p><span class=rvts6>* 1 NAME Character 12</span></p>
+<p><span class=rvts6>* 2 ATTRIBUTES Character 6</span></p>
+<p><span class=rvts6>* 3 DATE Date 8</span></p>
+<p><span class=rvts6>* 4 TIME Character 8</span></p>
+<p><span class=rvts6>* 5 SIZE Numeric 10</span></p>
+<p><span class=rvts6>*</span></p>
+<p><span class=rvts6>use FILES</span></p>
+<p><span class=rvts6>zap</span></p>
+<p><span class=rvts6>fname = "*.* "</span></p>
+<p><span class=rvts6>attr = "D "</span></p>
+<p><span class=rvts6>fdate = dtoc({}) &amp;&amp; Work-around bug.</span></p>
+<p><span class=rvts6>ftime = " "</span></p>
+<p><span class=rvts6>fsize = 0</span></p>
+<p><span class=rvts6>result = CALL("Search",1,fname,attr,fdate,ftime,fsize)</span></p>
+<p><span class=rvts6>DO while result = 0</span></p>
+<p><span class=rvts6>IF LIKE("*.DBF",fname) .or. LIKE("*.QBE",fname)</span></p>
+<p><span class=rvts6>APPEND BLANK</span></p>
+<p><span class=rvts6>REPLACE name with fname,;</span></p>
+<p><span class=rvts6>attributes with attr,;</span></p>
+<p><span class=rvts6>DATE with CTOD(fdate),;</span></p>
+<p><span class=rvts6>time with ftime,;</span></p>
+<p><span class=rvts6>size with fsize</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>result = CALL("Search",2,fname,attr,fdate,ftime,fsize)</span></p>
+<p><span class=rvts6>ENDDO</span></p>
+<p><span class=rvts6>DEFINE POPUP picklist FROM 10,10 TO 21,23 PROMPT FIELD name</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION fileattr</span></p>
+<p><span class=rvts6>PARAMETER fname_</span></p>
+<p><span class=rvts6>IF TYPE("fname_") = "C"</span></p>
+<p><span class=rvts6>IF .not. ("*" $ fname_) .and. .not. ("?" $ fname_)</span></p>
+<p><span class=rvts6>fattr_ = "HSD "</span></p>
+<p><span class=rvts6>IF CALL("Search",1,(fname_),fattr_) = 0</span></p>
+<p><span class=rvts6>RETURN TRIM(fattr_)</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>RETURN ""</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION filedate</span></p>
+<p><span class=rvts6>PARAMETER fname_</span></p>
+<p><span class=rvts6>IF TYPE("fname_") = "C"</span></p>
+<p><span class=rvts6>IF .not. ("*" $ fname_) .and. .not. ("?" $ fname_) fdate_ = " / / "</span></p>
+<p><span class=rvts6>IF CALL("Search",1,(fname_),"",fdate_) = 0</span></p>
+<p><span class=rvts6>RETURN CTOD(fdate_)</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>RETURN {}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION filetime</span></p>
+<p><span class=rvts6>PARAMETER fname_</span></p>
+<p><span class=rvts6>PRIVATE ftime_</span></p>
+<p><span class=rvts6>IF TYPE("fname_") = "C"</span></p>
+<p><span class=rvts6>IF .not. ("*" $ fname_) .and. .not. ("?" $ fname_)</span></p>
+<p><span class=rvts6>ftime_ = " : : "</span></p>
+<p><span class=rvts6>CALL search with 1,(fname_),"","",ftime_</span></p>
+<p><span class=rvts6>RETURN ftime_</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>RETURN "00:00:00"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION filesize</span></p>
+<p><span class=rvts6>PARAMETER fname_</span></p>
+<p><span class=rvts6>PRIVATE fsize_</span></p>
+<p><span class=rvts6>IF TYPE("fname_") = "C"</span></p>
+<p><span class=rvts6>IF .not. ("*" $ fname_) .and. .not. ("?" $ fname_)</span></p>
+<p><span class=rvts6>fsize_ = 0</span></p>
+<p><span class=rvts6>IF CALL("Search",1,(fname_),"","","",fsize_) = 0</span></p>
+<p><span class=rvts6>RETURN fsize_</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>RETURN 0</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION older</span></p>
+<p><span class=rvts6>* Use this UDF to determine if a program needs to be recompiled.</span></p>
+<p><span class=rvts6>* Example:</span></p>
+<p><span class=rvts6>*</span></p>
+<p><span class=rvts6>* IF Older("Myprog.DBO","Myprog.PRG")</span></p>
+<p><span class=rvts6>* ? "Please wait while MyProg re-compiles...."</span></p>
+<p><span class=rvts6>* COMPILE Myprog</span></p>
+<p><span class=rvts6>* ENDIF</span></p>
+<p><span class=rvts6>*</span></p>
+<p><span class=rvts6>PARAMETERS file1_,file2_</span></p>
+<p><span class=rvts6>RETURN dtos(filedate(file1_)) + filetime(file1_) &lt; ;</span></p>
+<p><span class=rvts6>dtos(filedate(file2_)) + filetime(file2_)</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

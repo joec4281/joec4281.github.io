@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>WhatDir</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>PROCEDURE WhatDir</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Oktay Amiry (Borland Technical Support)</span></p>
+<p><span class=rvts6>*-- Date........: 02/01/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Part of DIRLIST() above -- this is used to extract</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; out of the prompt from a popup, the directory a user</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; selected ... This routine should not be used on its</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; own ... it assumes too much (like array aTemp[] being</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; in existence, and such)</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/01/1993 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: GRAt() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Function in FILES3.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: DirList()</span></p>
+<p><span class=rvts6>*-- Usage.......: Do WhatDir with &lt;nBar&gt;,&lt;cDir&gt;</span></p>
+<p><span class=rvts6>*-- Example.....: Do WhatDir with bar(),cUser</span></p>
+<p><span class=rvts6>*-- Returns.....: Directory</span></p>
+<p><span class=rvts6>*-- Parameters..: nBar &nbsp;= bar number of popup</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cDir &nbsp;= prompt from popup to extract data ...</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters nBar, cDir</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nBar # 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cDir = substr(aTemp[m-&gt;nBar,1],GRAt(aTemp[m-&gt;nBar,1])+1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nLevel = aTemp[m-&gt;nBar,2]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nBar = m-&gt;nBar - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do while m-&gt;nBar # 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if aTemp[m-&gt;nBar,2] &lt; m-&gt;nLevel</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cDir = substr(aTemp[m-&gt;nBar,1],GRAt(aTemp[m-&gt;nBar,1])+1);</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+"\"+m-&gt;cDir</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nLevel = aTemp[m-&gt;nBar,2]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nBar = m-&gt;nBar - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cDir = aTemp[1,1] + m-&gt;cDir</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cDir = aTemp[1,1]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;deactivate popup</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*-- EoP: WhatDir</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>
