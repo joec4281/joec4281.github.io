@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SPSSWeekNo</title>
+<meta name="generator" content="WYSIWYG Web Builder 17 - https://www.wysiwygwebbuilder.com">
+<link href="JoeC4281.css" rel="stylesheet">
+<link href="SPSSWeekNo.css" rel="stylesheet">
+</head>
+<body>
+<div id="wb_Text1" style="position:absolute;left:17px;top:16px;width:953px;height:556px;z-index:0;">
+<span style="color:#000000;font-family:'Courier New';font-size:21px;">FUNCTION SPSSWeekNo<br>*-----------------------------------------------------------------------<br>*-- Programmer..: Frank A. Deviney, Jr. (xxxxx,xxxx)<br>*-- Date........: 05/26/1994<br>*-- Notes.......: Equivalent to the SPSS function XDATE.WEEK(), which<br>*--&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; returns the week number of a date where the first day <br>*--&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; of the year is also day #1 of week #1.<br>*-- Written for.: dBASE IV, v2.0<br>*-- Rev. History: 05/26/1994 -- Original<br>*-- Calls.......: WeekNo()&nbsp;&nbsp;&nbsp;&nbsp; in dates.prg<br>*--&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; FDoY()&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; in dates.prg<br>*-- Called by...: Any<br>*-- Usage.......: SPSSWeekNo(&lt;dDate&gt;)<br>*-- Example.....: ?SPSSWeekNo({05/26/94})<br>*-- Returns.....: numeric value in the range [1..53]<br>*-- Parameters..: dDate = date for which the week # is required<br>*-----------------------------------------------------------------------<br><br>&nbsp;&nbsp; parameters dDate<br><br>RETURN&nbsp; WeekNo(m-&gt;dDate, dow(FdoY(m-&gt;dDate)))<br>*-- EoF: SPSSWeekNo()<br></span></div>
+</body>
+</html>

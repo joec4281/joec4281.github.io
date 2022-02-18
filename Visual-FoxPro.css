@@ -31,15 +31,29 @@ input:focus, textarea:focus, select:focus
 {
    outline: none;
 }
+#wb_Text1 
+{
+   background-color: transparent;
+   background-image: none;
+   border: 0px solid #000000;
+   border-radius: 0px;
+   padding: 0;
+   margin: 0;
+   text-align: center;
+}
+#wb_Text1 div
+{
+   text-align: center;
+}
 #MenuBar1
 {
    background-color: transparent;
-   border: 0px solid #3168D5;
+   border: 0px solid #CCCCCC;
 }
 .MenuBar1SubMenu
 {
    background-color: transparent;
-   border: 0px solid #000000;
+   border: 0px solid #CCCCCC;
    position:	absolute;
    visibility: hidden;
    overflow: visible;
@@ -66,7 +80,7 @@ input:focus, textarea:focus, select:focus
 .MenuBar1MenuOuter
 {
    background-color: transparent;
-   border: 0px solid #3168D5;
+   border: 0px solid #CCCCCC;
 }
 .MenuBar1Menu tr
 {
@@ -95,10 +109,10 @@ input:focus, textarea:focus, select:focus
    background-image: linear-gradient(to bottom, #D3FBC8 0%, #D3FBC8 100%);
    color: #000000;
    font-size: 21px;
-   font-family: "Courier New";
+   font-family: Arial;
    font-weight: normal;
    font-style: normal;
-   line-height: 23px;
+   line-height: 24px;
    text-align: left;
    text-decoration: none;
    white-space: nowrap;
@@ -147,10 +161,10 @@ input:focus, textarea:focus, select:focus
    background-image: linear-gradient(to bottom, #FFFFFF 0%, #498686 100%);
    color: #000000;
    font-size: 21px;
-   font-family: "Courier New";
+   font-family: Arial;
    font-weight: normal;
    font-style: normal;
-   line-height: 23px;
+   line-height: 24px;
    text-align: left;
    text-decoration: none;
    white-space: nowrap;
@@ -178,7 +192,7 @@ input:focus, textarea:focus, select:focus
 .MenuBar1MenuItem .MenuBar1MenuFolderLeft
 {
    background-color: transparent;
-   background-image: url('images/dUFLP_MenuBar1_bkgrnd12.png');
+   background-image: url('images/Visual-FoxPro_MenuBar1_bkgrnd12.png');
    background-repeat: repeat-y;
    background-position: left top;
    background-size: 100% 100%;
@@ -198,7 +212,7 @@ input:focus, textarea:focus, select:focus
 .MenuBar1MenuItem .MenuBar1MenuFolderText a
 {
    background-color: transparent;
-   background-image: url('images/dUFLP_MenuBar1_bkgrnd11.png');
+   background-image: url('images/Visual-FoxPro_MenuBar1_bkgrnd11.png');
    background-repeat: repeat-x;
    background-position: left top;
    background-size: 100% 100%;
@@ -224,7 +238,7 @@ input:focus, textarea:focus, select:focus
 .MenuBar1MenuItem .MenuBar1MenuFolderRight
 {
    background-color: transparent;
-   background-image: url('images/dUFLP_MenuBar1_bkgrnd13.png');
+   background-image: url('images/Visual-FoxPro_MenuBar1_bkgrnd13.png');
    background-repeat: repeat-y;
    background-position: left top;
    background-size: 100% 100%;
@@ -243,7 +257,7 @@ input:focus, textarea:focus, select:focus
 .MenuBar1MenuItemActive .MenuBar1MenuFolderLeft
 {
    background-color: transparent;
-   background-image: url('images/dUFLP_MenuBar1_bkgrnd15.png');
+   background-image: url('images/Visual-FoxPro_MenuBar1_bkgrnd15.png');
    background-repeat: repeat-y;
    background-position: left top;
    background-size: 100% 100%;
@@ -266,7 +280,7 @@ input:focus, textarea:focus, select:focus
 .MenuBar1MenuItemActive .MenuBar1MenuFolderText a
 {
    background-color: transparent;
-   background-image: url('images/dUFLP_MenuBar1_bkgrnd14.png');
+   background-image: url('images/Visual-FoxPro_MenuBar1_bkgrnd14.png');
    background-repeat: repeat-x;
    background-position: left top;
    background-size: 100% 100%;
@@ -294,7 +308,7 @@ input:focus, textarea:focus, select:focus
 .MenuBar1MenuItemActive .MenuBar1MenuFolderRight
 {
    background-color: transparent;
-   background-image: url('images/dUFLP_MenuBar1_bkgrnd16.png');
+   background-image: url('images/Visual-FoxPro_MenuBar1_bkgrnd16.png');
    background-repeat: repeat-y;
    background-position: left top;
    background-size: 100% 100%;
@@ -309,14 +323,14 @@ input:focus, textarea:focus, select:focus
 }
 .MenuBar1MenuItem .MenuBar1MenuFolderRight
 {
-   background-image: url('images/dUFLP_MenuBar1_bkgrnd18.png');
+   background-image: url('images/Visual-FoxPro_MenuBar1_bkgrnd18.png');
    background-position: left center;
    background-repeat: no-repeat;
 }
 .MenuBar1MenuItemHover .MenuBar1MenuFolderRight,
 .MenuBar1MenuItemActive .MenuBar1MenuFolderRight
 {
-   background-image: url('images/dUFLP_MenuBar1_bkgrnd20.png');
+   background-image: url('images/Visual-FoxPro_MenuBar1_bkgrnd20.png');
    background-position: left center;
    background-repeat: no-repeat;
 }
@@ -391,7 +405,7 @@ input:focus, textarea:focus, select:focus
    text-decoration: none;
    color: #000000;
    font-size: 21px;
-   font-family: "Courier New";
+   font-family: Arial;
    font-style: normal;
 }
 .MenuBar1MainItem, .MenuBar1MainItemHover, .MenuBar1MainItemActive,
@@ -410,18 +424,4 @@ input:focus, textarea:focus, select:focus
 #wb_MenuBar1
 {
    z-index: 1111 !important;
-}
-#wb_Text1 
-{
-   background-color: transparent;
-   background-image: none;
-   border: 0px solid #000000;
-   border-radius: 0px;
-   padding: 0;
-   margin: 0;
-   text-align: center;
-}
-#wb_Text1 div
-{
-   text-align: center;
 }

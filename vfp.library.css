@@ -59,21 +59,3 @@ input:focus, textarea:focus, select:focus
 {
    text-align: left;
 }
-#wb_TextMenu1
-{
-   background-color: transparent;
-   background-image: none;
-   color: #000000;
-   font-family: Arial;
-   font-weight: normal;
-   font-style: normal;
-   font-size: 21px;
-   margin: 0;
-   text-align: center;
-}
-#wb_TextMenu1 span
-{
-   display: block;
-   margin: 0 0 4px 0;
-   line-height: 24px;
-}
