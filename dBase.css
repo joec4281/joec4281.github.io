@@ -80,7 +80,7 @@ input:focus, textarea:focus, select:focus
    cursor: pointer;
    border-width: 0;
    text-align: center;
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    font-size: 1px;
 }
 .MenuBar1MainItem .MenuBar1MainItemText, 
@@ -113,7 +113,7 @@ input:focus, textarea:focus, select:focus
    width: 0px;
    cursor: pointer;
    border-width: 0;
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    font-size: 1px;
 }
 .MenuBar1MainItemHover .MenuBar1MainItemLeft,
@@ -124,7 +124,7 @@ input:focus, textarea:focus, select:focus
    width: 0px;
    cursor: pointer;
    border-width: 0;
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    font-size: 1px;
 }
 .MenuBar1MainItemHover .MenuBar1MainItemText,
@@ -163,7 +163,7 @@ input:focus, textarea:focus, select:focus
    width: 0px;
    cursor: pointer;
    border-width: 0;
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    font-size: 1px;
 }
 .MenuBar1MenuItem .MenuBar1MenuItemLeft,
@@ -177,7 +177,7 @@ input:focus, textarea:focus, select:focus
    border-top: 0px solid #CCCCCC;
    border-right: 0;
    text-align: center;
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    font-size: 1px;
 }
 .MenuBar1MenuItem .MenuBar1MenuItemText, 
@@ -214,7 +214,7 @@ input:focus, textarea:focus, select:focus
    border-right: 0px solid #CCCCCC;
    border-top: 0px solid #CCCCCC;
    border-left: 0;
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    font-size: 1px;
 }
 .MenuBar1MenuItemHover .MenuBar1MenuItemLeft, 
@@ -229,7 +229,7 @@ input:focus, textarea:focus, select:focus
    border-left: 0px solid #CCCCCC;
    border-top: 0px solid #CCCCCC;
    border-right: 0;
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    font-size: 1px;
 }
 .MenuBar1MenuItemHover .MenuBar1MenuItemText,
@@ -272,7 +272,7 @@ input:focus, textarea:focus, select:focus
    border-right: 0px solid #CCCCCC;
    border-top: 0px solid #CCCCCC;
    border-left: 0;
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    font-size: 1px;
 }
 .MenuBar1MenuItem .MenuBar1MenuFolderRight
@@ -311,7 +311,7 @@ input:focus, textarea:focus, select:focus
 {
    background-color: #FFFFFF;
    height: 7px;
-   padding: 0px 6px 0px 6px;
+   padding: 0 6px 0 6px;
 }
 .MenuBar1MenuItem .MenuBar1MenuSplitRight
 {
@@ -352,7 +352,7 @@ input:focus, textarea:focus, select:focus
    border-left: 0 solid #8080FF;
    width: 17px;
    background-image: linear-gradient(to bottom, #3888E9 0%, #286ADD 14%, #245DD7 17%, #2561DE 86%, #1941A5 100%);
-   padding: 3px 0px 3px 0px;
+   padding: 3px 0 3px 0;
    vertical-align: middle;
    text-align: center;
    text-decoration: none;
