@@ -31,386 +31,6 @@ input:focus, textarea:focus, select:focus
 {
    outline: none;
 }
-#MenuBar1
-{
-   background-color: transparent;
-   border: 0px solid #3168D5;
-}
-.MenuBar1SubMenu
-{
-   background-color: transparent;
-   border: 0px solid #3A3A3A;
-   position:	absolute;
-   visibility: hidden;
-   overflow: visible;
-   z-index: 100;
-}
-.MenuBar1SubMenuTable
-{
-   cursor: default;
-   border: 0;
-   padding: 0;
-}
-.MenuBar1SubMenuTable tr
-{
-   margin: 0;
-   padding: 0;
-}
-.MenuBar1Menu
-{
-   background-color: transparent;
-   margin: 0 0px 0 0px;
-   border-spacing: 0 0px;
-   padding: 0;
-}
-.MenuBar1MenuOuter
-{
-   background-color: transparent;
-   border: 0px solid #3168D5;
-}
-.MenuBar1Menu tr
-{
-   margin: 0;
-   padding: 0;
-}
-.MenuBar1MainItem .MenuBar1MainItemLeft,
-.MenuBar1MainItem .MenuBar1MainFolderLeft
-{
-   background-image: linear-gradient(to bottom, #004080 0%, #004080 100%);
-   width: 20px;
-   cursor: pointer;
-   border-bottom: 0px solid #000000;
-   border-left: 0px solid #000000;
-   border-top: 0px solid #000000;
-   border-right: 0;
-   text-align: center;
-   padding: 4px 0 4px 1px;
-   font-size: 1px;
-}
-.MenuBar1MainItem .MenuBar1MainItemText, 
-.MenuBar1MainItem .MenuBar1MainItemText a,
-.MenuBar1MainItem .MenuBar1MainFolderText,
-.MenuBar1MainItem .MenuBar1MainFolderText a
-{
-   background-image: linear-gradient(to bottom, #D3FBC8 0%, #D3FBC8 100%);
-   color: #000000;
-   font-size: 21px;
-   font-family: Arial;
-   font-weight: normal;
-   font-style: normal;
-   line-height: 24px;
-   text-align: left;
-   text-decoration: none;
-   white-space: nowrap;
-   margin: 0;
-   cursor: pointer;
-   border-bottom: 0px solid #000000;
-   border-right: 0px solid #000000;
-   border-top: 0px solid #000000;
-   border-left: 0px solid #000000;
-   padding: 4px 6px 4px 5px;
-   vertical-align: middle;
-}
-.MenuBar1MainItem .MenuBar1MainItemRight,
-.MenuBar1MainItem .MenuBar1MainFolderRight
-{
-   width: 0px;
-   cursor: pointer;
-   border-width: 0;
-   padding: 3px 0 3px 0;
-   font-size: 1px;
-}
-.MenuBar1MainItemHover .MenuBar1MainItemLeft,
-.MenuBar1MainItemActive .MenuBar1MainItemLeft,
-.MenuBar1MainItemHover .MenuBar1MainFolderLeft,
-.MenuBar1MainItemActive .MenuBar1MainFolderLeft
-{
-   background-image: linear-gradient(to bottom, #FFFFFF 0%, #0F4B4B 100%);
-   width: 20px;
-   cursor: pointer;
-   border-bottom: 1px solid #000000;
-   border-left: 1px solid #000000;
-   border-top: 1px solid #000000;
-   border-right: 0;
-   padding: 3px 0 3px 0;
-   font-size: 1px;
-}
-.MenuBar1MainItemHover .MenuBar1MainItemText,
-.MenuBar1MainItemActive .MenuBar1MainItemText,
-.MenuBar1MainItemHover .MenuBar1MainItemText a,
-.MenuBar1MainItemActive .MenuBar1MainItemText a,
-.MenuBar1MainItemHover .MenuBar1MainFolderText,
-.MenuBar1MainItemActive .MenuBar1MainFolderText,
-.MenuBar1MainItemHover .MenuBar1MainFolderText a,
-.MenuBar1MainItemActive .MenuBar1MainFolderText a
-{
-   background-image: linear-gradient(to bottom, #FFFFFF 0%, #498686 100%);
-   color: #000000;
-   font-size: 21px;
-   font-family: Arial;
-   font-weight: normal;
-   font-style: normal;
-   line-height: 24px;
-   text-align: left;
-   text-decoration: none;
-   white-space: nowrap;
-   margin: 0;
-   cursor: pointer;
-   border-bottom: 1px solid #000000;
-   border-right: 1px solid #000000;
-   border-top: 1px solid #000000;
-   border-left: 0px solid #000000;
-   padding: 3px 5px 3px 5px;
-   vertical-align: middle;
-}
-.MenuBar1MainItemHover .MenuBar1MainItemRight,
-.MenuBar1MainItemActive .MenuBar1MainItemRight,
-.MenuBar1MainItemHover .MenuBar1MainFolderRight,
-.MenuBar1MainItemActive .MenuBar1MainFolderRight
-{
-   width: 0px;
-   cursor: pointer;
-   border-width: 0;
-   padding: 3px 0 3px 0;
-   font-size: 1px;
-}
-.MenuBar1MenuItem .MenuBar1MenuItemLeft,
-.MenuBar1MenuItem .MenuBar1MenuFolderLeft
-{
-   background-color: transparent;
-   background-image: url('images/index_MenuBar1_bkgrnd12.png');
-   background-repeat: repeat-y;
-   background-position: left top;
-   background-size: 100% 100%;
-   width: 16px;
-   cursor: pointer;
-   border-bottom: 1px solid #FFFFFF;
-   border-left: 0px solid #FFFFFF;
-   border-top: 0px solid #FFFFFF;
-   border-right: 0;
-   text-align: center;
-   padding: 4px 0 3px 1px;
-   font-size: 1px;
-}
-.MenuBar1MenuItem .MenuBar1MenuItemText, 
-.MenuBar1MenuItem .MenuBar1MenuItemText a,
-.MenuBar1MenuItem .MenuBar1MenuFolderText,
-.MenuBar1MenuItem .MenuBar1MenuFolderText a
-{
-   background-color: transparent;
-   background-image: url('images/index_MenuBar1_bkgrnd11.png');
-   background-repeat: repeat-x;
-   background-position: left top;
-   background-size: 100% 100%;
-   color: #FFFFFF;
-   font-size: 21px;
-   font-family: Arial;
-   font-weight: normal;
-   font-style: normal;
-   line-height: 24px;
-   text-align: left;
-   text-decoration: none;
-   white-space: nowrap;
-   margin: 0;
-   cursor: pointer;
-   border-bottom: 1px solid #FFFFFF;
-   border-top: 0px solid #FFFFFF;
-   border-right: 0px solid #FFFFFF;
-   border-left: 0px solid #FFFFFF;
-   padding: 4px 5px 3px 5px;
-   vertical-align: middle;
-}
-.MenuBar1MenuItem .MenuBar1MenuItemRight,
-.MenuBar1MenuItem .MenuBar1MenuFolderRight
-{
-   background-color: transparent;
-   background-image: url('images/index_MenuBar1_bkgrnd13.png');
-   background-repeat: repeat-y;
-   background-position: left top;
-   background-size: 100% 100%;
-   width: 16px;
-   cursor: pointer;
-   border-bottom: 1px solid #FFFFFF;
-   border-right: 0px solid #FFFFFF;
-   border-top: 0px solid #FFFFFF;
-   border-left: 0;
-   padding: 4px 1px 3px 0;
-   font-size: 1px;
-}
-.MenuBar1MenuItemHover .MenuBar1MenuItemLeft, 
-.MenuBar1MenuItemActive .MenuBar1MenuItemLeft,
-.MenuBar1MenuItemHover .MenuBar1MenuFolderLeft,
-.MenuBar1MenuItemActive .MenuBar1MenuFolderLeft
-{
-   background-color: transparent;
-   background-image: url('images/index_MenuBar1_bkgrnd15.png');
-   background-repeat: repeat-y;
-   background-position: left top;
-   background-size: 100% 100%;
-   width: 16px;
-   cursor: pointer;
-   border-bottom: 1px solid #FFFFFF;
-   border-left: 0px solid #FFFFFF;
-   border-top: 0px solid #FFFFFF;
-   border-right: 0;
-   padding: 4px 0 3px 1px;
-   font-size: 1px;
-}
-.MenuBar1MenuItemHover .MenuBar1MenuItemText,
-.MenuBar1MenuItemActive .MenuBar1MenuItemText,
-.MenuBar1MenuItemHover .MenuBar1MenuItemText a,
-.MenuBar1MenuItemActive .MenuBar1MenuItemText a,
-.MenuBar1MenuItemHover .MenuBar1MenuFolderText,
-.MenuBar1MenuItemActive .MenuBar1MenuFolderText,
-.MenuBar1MenuItemHover .MenuBar1MenuFolderText a,
-.MenuBar1MenuItemActive .MenuBar1MenuFolderText a
-{
-   background-color: transparent;
-   background-image: url('images/index_MenuBar1_bkgrnd14.png');
-   background-repeat: repeat-x;
-   background-position: left top;
-   background-size: 100% 100%;
-   color: #FFFF80;
-   font-size: 21px;
-   font-family: Arial;
-   font-weight: normal;
-   font-style: normal;
-   line-height: 24px;
-   text-align: left;
-   text-decoration: none;
-   white-space: nowrap;
-   margin: 0;
-   cursor: pointer;
-   border-bottom: 1px solid #FFFFFF;
-   border-top: 0px solid #FFFFFF;
-   border-right: 0px solid #FFFFFF;
-   border-left: 0px solid #FFFFFF;
-   padding: 4px 5px 3px 5px;
-   vertical-align: middle;
-}
-.MenuBar1MenuItemHover .MenuBar1MenuItemRight,
-.MenuBar1MenuItemActive .MenuBar1MenuItemRight,
-.MenuBar1MenuItemHover .MenuBar1MenuFolderRight,
-.MenuBar1MenuItemActive .MenuBar1MenuFolderRight
-{
-   background-color: transparent;
-   background-image: url('images/index_MenuBar1_bkgrnd16.png');
-   background-repeat: repeat-y;
-   background-position: left top;
-   background-size: 100% 100%;
-   width: 16px;
-   cursor: pointer;
-   border-bottom: 1px solid #FFFFFF;
-   border-right: 0px solid #FFFFFF;
-   border-top: 0px solid #FFFFFF;
-   border-left: 0;
-   padding: 4px 0 3px 0;
-   font-size: 1px;
-}
-.MenuBar1MenuItem .MenuBar1MenuFolderRight
-{
-   background-image: url('images/index_MenuBar1_bkgrnd18.png');
-   background-position: left center;
-   background-repeat: no-repeat;
-}
-.MenuBar1MenuItemHover .MenuBar1MenuFolderRight,
-.MenuBar1MenuItemActive .MenuBar1MenuFolderRight
-{
-   background-image: url('images/index_MenuBar1_bkgrnd20.png');
-   background-position: left center;
-   background-repeat: no-repeat;
-}
-.MenuBar1SubMenu td,
-.MenuBar1Menu td,
-.MenuBar1Menu tr
-{
-   vertical-align: middle;
-}
-.MenuBar1MenuSplitText div
-{
-   height: 1px;
-   padding: 0;
-   background-color: #000000;
-   overflow: hidden;
-}
-.MenuBar1MenuItem .MenuBar1MenuSplitLeft
-{
-   background-image: linear-gradient(to right, #0000A0 0%, #408080 100%);
-   height: 7px;
-   padding: 0;
-}
-.MenuBar1MenuItem .MenuBar1MenuSplitText
-{
-   background-image: linear-gradient(to bottom, #408080 0%, #408080 100%);
-   height: 7px;
-   padding: 0 6px 0 6px;
-}
-.MenuBar1MenuItem .MenuBar1MenuSplitRight
-{
-   background-image: linear-gradient(to right, #408080 0%, #D3FBC8 100%);
-   height: 7px;
-   padding: 0;
-}
-.MenuBar1MainSplitText div
-{
-   background-color: #000000;
-   height: 1px;
-   padding: 0;
-   overflow: hidden;
-}
-.MenuBar1MainItem .MenuBar1MainSplitLeft 
-{
-   background-image: linear-gradient(to bottom, #004080 0%, #004080 100%);
-   height: 9px;
-   padding: 0;
-}
-.MenuBar1MainItem .MenuBar1MainSplitText
-{
-   background-image: linear-gradient(to bottom, #D3FBC8 0%, #D3FBC8 100%);
-   height: 9px;
-   padding: 0;
-}
-.MenuBar1MainItem .MenuBar1MainSplitRight
-{
-   height: 9px;
-   padding: 0;
-}
-.MenuBar1MainItem
-{
-   vertical-align: middle;
-}
-.MenuBar1HorizontalSplit
-{
-   border-right: 0 solid #8080FF;
-   border-left: 0 solid #8080FF;
-   width: 17px;
-   background-image: linear-gradient(to bottom, #D3FBC8 0%, #D3FBC8 100%);
-   padding: 3px 0 3px 0;
-   vertical-align: middle;
-   text-align: center;
-   text-decoration: none;
-   color: #000000;
-   font-size: 21px;
-   font-family: Arial;
-   font-style: normal;
-}
-.MenuBar1MainItem, .MenuBar1MainItemHover, .MenuBar1MainItemActive,
-.MenuBar1MenuItem, .MenuBar1MenuItemHover, .MenuBar1MenuItemActive
-{
-   white-space: nowrap;
-}
-.MenuBar1SpacerDiv
-{
-   background: transparent;
-   margin: 0;
-   padding: 0;
-   border: 0;
-   font-size: 1px;
-}
-#wb_MenuBar1
-{
-   z-index: 1111 !important;
-}
 #wb_Text1 
 {
    background-color: transparent;
@@ -424,4 +44,44 @@ input:focus, textarea:focus, select:focus
 #wb_Text1 div
 {
    text-align: left;
+}
+#toc_container
+{
+   background-color: transparent;
+   background-image: none;
+   border: 1px solid transparent;
+   border-radius: 0px;
+   color: #000000;
+   font-family: "Courier New";
+   font-weight: normal;
+   font-style: normal;
+   font-size: 21px;
+   line-height: 1.12;
+   margin: 0;
+   text-align: left;
+}
+#toc_container ul
+{
+   list-style-type: disc;
+   list-style-position: inside;
+}
+#toc_container a
+{
+   color: inherit;
+    text-decoration: inherit
+}
+#toc_container > ul
+{
+   margin: 0;
+   padding: 0;
+}
+#toc_container > ul ul
+{
+   padding: 0 50px;
+}
+#toc_container .toc_title
+{
+   font-weight: bold;
+   font-size: 19px;
+   padding: 0 0 0.5em 0;
 }
