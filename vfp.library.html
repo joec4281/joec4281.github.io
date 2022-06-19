@@ -9,7 +9,7 @@
 <link href="vfp.library.css" rel="stylesheet">
 </head>
 <body>
-<div id="wb_Text1" style="position:absolute;left:185px;top:63px;width:914px;height:72px;text-align:center;z-index:0;">
+<div id="wb_Text1" style="position:absolute;left:185px;top:57px;width:914px;height:72px;text-align:center;z-index:0;">
 <span style="color:#000000;font-family:'Courier New';font-size:32px;"><strong>Utilize Visual FoxPro from the Command Line using the TCC <a href="./vfp.html">vfp.library</a></strong></span></div>
 <div id="wb_Text2" style="position:absolute;left:164px;top:204px;width:772px;height:290px;z-index:1;">
 <span style="color:#000000;font-family:'Courier New';font-size:21px;">@setlocal<br>@echo off<br>vfp.startserver<br>vfp.docmd use e:\utils\trans.dbf<br>vfp.eval reccount()<br>vfp.stopserver<br>do until %@pid[vfp9.exe] eq 0<br>enddo<br>if %@pid[vfp9.exe] ne 0 echo Visual FoxPro 9 is still active.<br>endlocal<br></span></div>
