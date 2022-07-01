@@ -8,9 +8,11 @@
 <link href="vfp.css" rel="stylesheet">
 </head>
 <body>
-<div id="wb_Text1" style="position:absolute;left:196px;top:59px;width:884px;height:36px;text-align:center;z-index:0;">
-<h1>vb.library for use with Take Command Console</h1></div>
-<div id="wb_Text2" style="position:absolute;left:142px;top:127px;width:990px;height:892px;z-index:1;">
+<div id="wb_Text1" style="position:absolute;left:98px;top:14px;width:605px;height:24px;text-align:center;z-index:0;">
+<span style="background-color:#FFFFFF;color:#000000;font-family:'Courier New';font-size:21px;"><strong>vfp.library for use with Take Command Console</strong></span></div>
+<div id="wb_Text2" style="position:absolute;left:98px;top:62px;width:990px;height:894px;z-index:1;">
 <span style="color:#000000;font-family:'Courier New';font-size:21px;">VFP {<br>&nbsp; library vfp.*<br>}<br><br>VFP.StartServer {<br>&nbsp; @setlocal<br>&nbsp; @echo off<br>&nbsp; pshell /s &quot;$vfp = CreateObject('VisualFoxPro.Application.9')&quot;<br>&nbsp; endlocal<br>}<br><br>VFP.DoCmd {<br>&nbsp; @echo off<br>	pshell /s &quot;$VFP.DoCmd('%$')&quot; &gt; nul<br>}<br><br>VFP.Eval {<br>&nbsp; @setlocal<br>&nbsp; @echo off<br>&nbsp; pshell /s &quot;$vfp.eval('%$')&quot;<br>&nbsp; endlocal<br>}<br><br>VFP.SetVar {<br>&nbsp; @setlocal<br>&nbsp; @echo off<br>&nbsp; pshell /s &quot;$vfp.SetVar('%1',%2)&quot;<br>&nbsp; endlocal<br>}<br><br>VFP.StopServer {<br>&nbsp; @setlocal<br>&nbsp; @echo off<br>&nbsp; pshell /s &quot;$vfp.Quit()&quot;<br>&nbsp; endlocal<br>}<br></span></div>
+<div id="wb_IconFont1" style="position:absolute;left:17px;top:1px;width:81px;height:69px;text-align:center;z-index:2;">
+<a href="./Libraries.html"><div id="IconFont1"><i class="IconFont1"></i></div></a></div>
 </body>
 </html>

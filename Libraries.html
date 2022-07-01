@@ -7,49 +7,21 @@
 <link href="font-awesome.min.css" rel="stylesheet">
 <link href="JoeC4281.css" rel="stylesheet">
 <link href="Libraries.css" rel="stylesheet">
-<script src="jscookmenu.min.js"></script>
-<script>
-var cmMenuBar1 =
-{
-   mainFolderLeft: '',
-   mainFolderRight: '',
-   mainItemLeft: '',
-   mainItemRight: '',
-   folderLeft: '<div style="width:25px;height:16px" class="MenuBar1SpacerDiv" />',
-   folderRight: '<div style="width:12px;height:16px" class="MenuBar1SpacerDiv" />',
-   itemLeft: '<div style="width:25px;height:16px" class="MenuBar1SpacerDiv" />',
-   itemRight: '<div style="width:12px;height:16px" class="MenuBar1SpacerDiv" />',
-   mainSpacing: 0,
-   subSpacing: 0,
-   delay: 100,
-   offsetVMainAdjust: [0, 0],
-   offsetSubAdjust: [0, 0]
-};
-var cmMenuBar1HSplit = [_cmNoClick, '<td class="MenuBar1MenuSplitLeft"><div></div></td>' +
-                                    '<td class="MenuBar1MenuSplitText"><div></div></td>' +
-                                    '<td class="MenuBar1MenuSplitRight"><div></div></td>'];
-var cmMenuBar1MainVSplit = [_cmNoClick, '<div><table width="17" cellspacing="0"><tr><td class="MenuBar1HorizontalSplit">|</td></tr></table></div>'];
-var cmMenuBar1MainHSplit = [_cmNoClick, '<td colspan="3" class="MenuBar1MainSplitText"><div></div></td>'];
-document.addEventListener('DOMContentLoaded', function(event)
-{
-   cmDrawFromText('MenuBar1', 'vbr', cmMenuBar1, 'MenuBar1');
-});
-</script>
 </head>
 <body>
-<div id="wb_MenuBar1" style="position:absolute;left:73px;top:92px;width:39px;height:144px;z-index:0;">
-<div id="MenuBar1">
-<ul style="display:none;">
-   <li><span></span><a href="./vb.html" target="_self">vb</a>
-</li>
-   <li><span></span><a href="./hb.html" target="_self">hb</a>
-</li>
-</ul>
-</div>
-</div>
-<div id="wb_Text1" style="position:absolute;left:170px;top:29px;width:714px;height:24px;text-align:center;z-index:1;">
+<div id="wb_Text1" style="position:absolute;left:170px;top:29px;width:626px;height:24px;text-align:center;z-index:0;">
 <span style="background-color:#FFFFFF;color:#000000;font-family:'Courier New';font-size:21px;"><strong>Libraries for use with Take Command Console</strong></span></div>
-<div id="wb_IconFont1" style="position:absolute;left:47px;top:27px;width:102px;height:40px;text-align:center;z-index:2;">
+<div id="wb_IconFont1" style="position:absolute;left:47px;top:27px;width:102px;height:40px;text-align:center;z-index:1;">
 <a href="./TCC.html"><div id="IconFont1"><i class="fa fa-backward"></i></div></a></div>
+<div id="wb_toc_container" style="position:absolute;left:210px;top:92px;width:344px;height:197px;z-index:2;">
+<div id="toc_container" aria-labelledby="toc_container_title">
+<div class="toc_title" id="toc_container_title">Table of contents</div>
+<ul class="toc_list">
+<li><a href="./hb.html" target="" title="Harbour library for use with Take Command Console">hb</a></li>
+<li><a href="./vb.html" target="" title="vbScript library for use with Take Command Console">vb</a></li>
+<li><a href="./vfp.html" target="" title="Visual FoxPro library for use with Take Command Console">vfp</a></li>
+<li><a href="./xb.html" target="" title="xHarbour library for use with Take Command Console">xb</a></li>
+</ul>
+</div></div>
 </body>
 </html>
