@@ -31,46 +31,24 @@ input:focus, textarea:focus, select:focus
 {
    outline: none;
 }
-#wb_Text1 
+#wb_Heading1
 {
    background-color: transparent;
    background-image: none;
    border: 0px solid #000000;
    border-radius: 0px;
-   padding: 0;
    margin: 0;
-   text-align: center;
-}
-#wb_Text1 div
-{
-   text-align: center;
-}
-#wb_Text2 
-{
-   background-color: transparent;
-   background-image: none;
-   border: 1px solid #000000;
-   border-radius: 1px;
    padding: 0;
-   margin: 0;
    text-align: left;
 }
-#wb_Text2 div
+#Heading1
 {
-   text-align: left;
-}
-#wb_Text3 
-{
-   background-color: transparent;
-   background-image: none;
-   border: 0px solid #000000;
-   border-radius: 0px;
-   padding: 0;
+   color: #000000;
+   font-family: Arial;
+   font-weight: bold;
+   font-style: normal;
+   font-size: 32px;
    margin: 0;
-   text-align: left;
-}
-#wb_Text3 div
-{
    text-align: left;
 }
 #wb_IconFont1
@@ -86,8 +64,8 @@ input:focus, textarea:focus, select:focus
 }
 #IconFont1
 {
-   height: 44px;
-   width: 82px;
+   height: 69px;
+   width: 92px;
 }
 .IconFont1
 {
@@ -108,12 +86,40 @@ input:focus, textarea:focus, select:focus
 {
    color: #0963AD;
    display: inline-block;
-   font-size: 44px;
-   line-height: 44px;
+   font-size: 69px;
+   line-height: 69px;
    vertical-align: middle;
-   width: 43px;
+   width: 68px;
 }
 #IconFont1:hover i
 {
    color: #337AB7;
+}
+#wb_Text1 
+{
+   background-color: transparent;
+   background-image: none;
+   border: 0px solid #000000;
+   border-radius: 0px;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+#wb_Text1 div
+{
+   text-align: left;
+}
+#wb_Text2 
+{
+   background-color: transparent;
+   background-image: none;
+   border: 0px solid #000000;
+   border-radius: 0px;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+#wb_Text2 div
+{
+   text-align: left;
 }
