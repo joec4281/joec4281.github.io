@@ -44,8 +44,8 @@ input:focus, textarea:focus, select:focus
 }
 #IconFont1
 {
-   height: 56px;
-   width: 93px;
+   height: 72px;
+   width: 72px;
 }
 .IconFont1
 {
@@ -66,52 +66,60 @@ input:focus, textarea:focus, select:focus
 {
    color: #0963AD;
    display: inline-block;
-   font-size: 56px;
-   line-height: 56px;
+   font-size: 72px;
+   line-height: 72px;
    vertical-align: middle;
-   width: 55px;
+   width: 71px;
 }
 #IconFont1:hover i
 {
    color: #337AB7;
 }
-#toc_container
+#wb_Heading1
 {
    background-color: transparent;
    background-image: none;
-   border: 1px solid transparent;
+   border: 0px solid #000000;
    border-radius: 0px;
+   margin: 0;
+   padding: 0;
+   text-align: left;
+}
+#Heading1
+{
    color: #000000;
-   font-family: "Courier New";
-   font-weight: normal;
+   font-family: Arial;
+   font-weight: bold;
    font-style: normal;
-   font-size: 21px;
-   line-height: 1.12;
+   font-size: 32px;
    margin: 0;
    text-align: left;
 }
-#toc_container ul
+#wb_Text1 
 {
-   list-style-type: disc;
-   list-style-position: inside;
-}
-#toc_container a
-{
-   color: inherit;
-    text-decoration: inherit
-}
-#toc_container > ul
-{
-   margin: 0;
+   background-color: transparent;
+   background-image: none;
+   border: 0px solid #000000;
+   border-radius: 0px;
    padding: 0;
+   margin: 0;
+   text-align: left;
 }
-#toc_container > ul ul
+#wb_Text1 div
 {
-   padding: 0 50px;
+   text-align: left;
 }
-#toc_container .toc_title
+#wb_Text2 
 {
-   font-weight: bold;
-   font-size: 19px;
-   padding: 0 0 0.5em 0;
+   background-color: transparent;
+   background-image: none;
+   border: 0px solid #000000;
+   border-radius: 0px;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+#wb_Text2 div
+{
+   text-align: left;
 }
