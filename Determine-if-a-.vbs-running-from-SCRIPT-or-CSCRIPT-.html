@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Is .vbs running from SCRIPT or CSCRIPT?</title>
+<meta name="generator" content="WYSIWYG Web Builder 17 - https://www.wysiwygwebbuilder.com">
+<link href="font-awesome.min.css" rel="stylesheet">
+<link href="JoeC4281.css" rel="stylesheet">
+<link href="Determine-if-a-.vbs-running-from-SCRIPT-or-CSCRIPT-.css" rel="stylesheet">
+</head>
+<body>
+<div id="wb_Heading1" style="position:absolute;left:104px;top:8px;width:1070px;height:48px;z-index:0;">
+<h1 id="Heading1">Determine if a .vbs is running from SCRIPT or CSCRIPT?</h1></div>
+<div id="wb_IconFont1" style="position:absolute;left:7px;top:8px;width:74px;height:69px;text-align:center;z-index:1;">
+<a href="./How-Do-I....html"><div id="IconFont1"><i class="fa fa-arrow-left"></i></div></a></div>
+<div id="wb_Text1" style="position:absolute;left:40px;top:102px;width:988px;height:483px;z-index:2;">
+<span style="background-color:#FFFFFF;color:#000000;font-family:'Courier New';font-size:21px;">' VbsEdit Toolkit is part of <a href="http:\\www.vbsedit.com" target="_blank">VBSEdit</a>.<br><br>Set tk = CreateObject( &quot;VbsEdit.Toolkit&quot; )<br><br>PID = tk.CurrentProcessID<br>PIDModule = tk.ModuleFilenameFromProcessId(PID)<br><br>if right(PIDModule,7) = &quot;tcc.exe&quot; then<br>&nbsp; with TakeCommand<br>&nbsp;&nbsp;&nbsp; .tcommand(&quot;echo The .vbs is running from SCRIPT in tcc.exe&quot;)<br>&nbsp; end With<br>else<br>&nbsp; with WScript<br>&nbsp;&nbsp;&nbsp; .StdOut.WriteLine &quot;The .vbs is running from CSCRIPT.EXE&quot;<br>&nbsp; end With<br>end if<br><br>Set tk = Nothing<br><br></span></div>
+</body>
+</html>
