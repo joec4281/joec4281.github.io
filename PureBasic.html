@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PureBasic</title>
+<meta name="generator" content="WYSIWYG Web Builder 17 - https://www.wysiwygwebbuilder.com">
+<link href="font-awesome.min.css" rel="stylesheet">
+<link href="JoeC4281.css" rel="stylesheet">
+<link href="PureBasic.css" rel="stylesheet">
+</head>
+<body>
+<div id="wb_IconFont1" style="position:absolute;left:6px;top:5px;width:96px;height:71px;text-align:center;z-index:0;">
+<a href="./index.html"><div id="IconFont1"><i class="fa fa-arrow-left"></i></div></a></div>
+<div id="wb_Heading1" style="position:absolute;left:102px;top:5px;width:533px;height:55px;z-index:1;">
+<h1 id="Heading1">PureBasic</h1></div>
+<div id="wb_Text1" style="position:absolute;left:112px;top:76px;width:1107px;height:1181px;z-index:2;">
+<span style="color:#000000;font-family:'Courier New';font-size:21px;line-height:29px;"><strong><u>C:\Program Files\PureBasic\SDK\CompilerInterface.txt</u></strong> contains information on how to control PureBasic from another program, via STDIN.<strong><u><br><br>Standby.ps1<br></u></strong>$psi = New-Object System.Diagnostics.ProcessStartInfo<br>$psi.FileName = &quot;C:\Program Files\PureBasic\Compilers\pbcompiler.exe&quot;<br>$psi.Arguments = &quot;/standby&quot;<br>$psi.UseShellExecute = $false<br>$psi.RedirectStandardInput = $true<br>$p = [System.Diagnostics.Process]::Start($psi)<br>Start-Sleep -s 2<br>#$p.StandardInput.WriteLine(&quot;END&quot;)<br><br>From TCC;<br></span><span style="color:#000000;font-family:Arial;font-size:8px;line-height:5px;"><br><br></span><span style="color:#000000;font-family:'Courier New';font-size:21px;line-height:29px;">[E:\Utils]pshell /s &quot;. .\Standby.ps1&quot;<br>STARTING&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 6.00&nbsp;&nbsp;&nbsp; PureBasic 6.00 LTS (Windows - x64)<br>READY<br></span><span style="color:#000000;font-family:Arial;font-size:8px;line-height:5px;"><br><br></span><span style="color:#000000;font-family:'Courier New';font-size:21px;line-height:29px;">[E:\Utils]tlm pbc*<br>10584&nbsp;&nbsp;&nbsp;&nbsp; 20996096&nbsp; pbcompiler&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &quot;C:\Program Files\PureBasic\Compilers\pbcompiler.exe&quot; /standby<br><br>&nbsp;&nbsp; Total of 1 processes<br></span><span style="color:#000000;font-family:Arial;font-size:8px;line-height:5px;"><br><br></span><span style="color:#000000;font-family:'Courier New';font-size:21px;line-height:24px;">[E:\Utils]pshell /s &quot;$p.StandardInput.WriteLine('END')&quot;<br></span><span style="color:#000000;font-family:Arial;font-size:8px;line-height:5px;"><br><br></span><span style="color:#000000;font-family:'Courier New';font-size:21px;line-height:24px;">[E:\Utils]tlm pbc*<br><br>&nbsp;&nbsp; Total of 0 processes<br><br>From <strong>CompilerInterface.txt,</strong> here are some (not all) of the other commands that can be sent via STDIN;<br><br>END<br>SOURCE&lt;T&gt;&lt;SourceFile&gt;<br>SOURCEALIAS&lt;T&gt;&lt;SouceFile Alias&gt;<br>INCLUDEPATH&lt;T&gt;&lt;Path&gt;<br>TARGET&lt;T&gt;&lt;TargetFile&gt;<br>LINKER&lt;T&gt;&lt;LinkerCommandFile&gt;<br>COMPILE&lt;T&gt;&lt;FlagsList&gt;<br>FUNCTIONLIST<br><br><br><br></span><span style="color:#000000;font-family:Arial;font-size:8px;line-height:5px;"><br><br></span><span style="color:#000000;font-family:'Courier New';font-size:21px;line-height:16px;"><br></span></div>
+</body>
+</html>
