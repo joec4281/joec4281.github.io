@@ -89,8 +89,8 @@ input:focus, textarea:focus, select:focus
    color: #000000;
    font-family: "Courier New";
    font-weight: normal;
-   font-size: 19px;
-   line-height: 19.5px;
+   font-size: 21px;
+   line-height: 23px;
 }
 #wb_Text2 p, #wb_Text2 ul
 {
