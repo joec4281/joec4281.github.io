@@ -79,12 +79,19 @@ h6, .h6
    padding: 0 0 0 0;
    display: inline;
 }
-.CustomStyle
+.CourierNew12
 {
    font-family: "Courier New";
    font-weight: bold;
    font-size: 16px;
    text-decoration: none;
    color: #2E74B5;
+   background-color: transparent;
+}
+.CourierNew16
+{
+   font-family: "Courier New";
+   font-size: 21px;
+   text-decoration: none;
    background-color: transparent;
 }
