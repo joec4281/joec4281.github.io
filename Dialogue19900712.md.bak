@@ -1,14 +1,26 @@
-# TechNotes - Dialogue
+<style>
+.boxBorder {
+  border-style: outset;
+  border-width: 7px;
+  border-color: lightgrey;
+  padding: 5px;
+   }
+</style>
+    
+<h1 class="boxBorder">
+TechNotes - Dialogue
+</h1>
+
 July 1990<br>
 Page 12
-### Questions and Answers
+
+### *Questions and Answers*
 
 ### Getting Carried Away
 Q: I was using the **Carry forward** option on some fields within my format file but then decided that I didn't want them to do so. So I modified the format file and turned off that option on the fields I had previousy set. After saving, I returned to the Control Center and proceeded to append. The fields were still carried foward. I had to exit dBASE IV and return before I could get the fields to stop carrying. What happened?
 
 A: The SET CARRY command is an *additive* command. So when the new format file issues the SET CARRY command for the new set of fields, it did not clear the previous ones from memory, only adding to the list. Exiting and returning to DBASE IV cleared this setting. However, closing the .dbf should do the trick. If you are at the dot prompt, you could enter the command SET CARRY TO at the dot prompt to clear the setting. Going to the ***Tools:Settings*** menu to turn the Carry setting OFF will not be sufficient.
 
-### Traceback Info
 Q: While in the Debugger, pressing a P will show the program traceback information. Is there a command to display the same information which can be typed at the dot prompt? (When this happens during the debug process, most of that information gets overlaid by any existing windows or popups.)
 
 A: Unfortunately, there is not a command to show the traceback info from the dot prompt and continue running the programs. The info is shown if you do a cancel, but as you mentioned, it can get overwritten depending upon elements affecting the current screen. Furthermore, attempts we made to route traceback information to a text file by triggering a SET PRINT TO FILE via an ON ESCAPE or ON ERROR command provided unsatisfactory results.
@@ -22,6 +34,7 @@ The first letter in the name of the variable is either g or l for global (public
 
 If you're designing your own application or modifying an existing .frg file, you might consider using other memory elements as well, such as a for array, w for window, and so on, keeping in form with the naming structures used.
 
+Further expounding on the specific purpose of .frg generated variables can be found in the April 1990 edition of TechNotes/dBASE IV in the article *Anatomy of a Report Form.*
 ### Pass the Variables, Please
 Q: Is it possible to pass a parameter to a program from the DOS level by entering
 
@@ -29,4 +42,33 @@ Q: Is it possible to pass a parameter to a program from the DOS level by enterin
 
 A: With the syntax you provided, the answer is no. However, there is a way of parameter passing from DOS into dBASE IV. By making use of DOS environment variables, a simple DOS batch file, and the GETENV() function in dBASE IV, you can easily pass parameters to a dBASE III PLUS or dBASE IV program.
 
+Create a batch file called DBPROG (a name used for this example but can be any valid DOS filename you choose) that contains the following statements:
 
+```
+@ECHO OFF
+SET VAR1=%1
+DBASE <prog name>/T
+SET VAR1=
+CLS
+```
+Include the following line in your dBASE program:
+
+`mvar1 = GETENV("VAR1")`
+
+Execute the batch file by typing the name of the file followed by the parameter you wish to pass at the DOS level:
+
+`DBPROG <parameter>`
+
+By using the replaceable parameter capabilities of DOS, one can pass multiple parameters (up to nine) to a program.
+
+### QBE Calculated Field Nesting
+
+Q: When designing a Query, I am getting the message **Variable not found** when I try to use a calculated field in another calculated field. Is there some limit on nested calculated fields?
+
+A: Unlike in a report design, one cannot use a calculated field in another calculated field in the QBE. It's still possible to get your results if you expand the entire expression of the first calculated field inside the second one. For those long-winded expressions that would be a chore to retype, make note of the answer to the next question below.
+
+### Getting "Snippy" About Cut and Paste
+
+Q: Please say I've overlooked something. I am knee deep in a massive design screen project that contains many calculated fields with complex and lengthy expressions. Is there no way to copy an expression from one field to another? If so, can you copy an expression tested at the dot prompt into an expression area like a cut and paste buffer could perform?
+
+A: Pressing **F8 COPY** will copy a field and it's contents to a new field. Copying a specific expression to another *existing* calculated field is not a feature presently available in dBASE IV. A new product called *Trading Places*, features a cut and paste capability. The software's main functionality is for swapping TSR (RAM resident) programs in and out of memory, another handy capability to have with dBASE IV. The software is now available for $99.95 and can be ordered through Customer Service. You may also obtain this product from your local software vendor.

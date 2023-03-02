@@ -716,12 +716,13 @@
 <h1 class="boxBorder">
 TechNotes - Dialogue
 </h1>
-<p data-sourcepos="14:1-15:7">July 1990<br>
-Page 12</p>
-<h3 data-sourcepos="17:1-17:27"><em>Questions and Answers</em></h3>
-<h3 data-sourcepos="19:1-19:24">Getting Carried Away</h3>
-<p data-sourcepos="20:1-20:430">Q: I was using the <strong>Carry forward</strong> option on some fields within my format file but then decided that I didn't want them to do so. So I modified the format file and turned off that option on the fields I had previousy set. After saving, I returned to the Control Center and proceeded to append. The fields were still carried foward. I had to exit dBASE IV and return before I could get the fields to stop carrying. What happened?</p>
-<p data-sourcepos="22:1-22:514">A: The SET CARRY command is an <em>additive</em> command. So when the new format file issues the SET CARRY command for the new set of fields, it did not clear the previous ones from memory, only adding to the list. Exiting and returning to DBASE IV cleared this setting. However, closing the .dbf should do the trick. If you are at the dot prompt, you could enter the command SET CARRY TO at the dot prompt to clear the setting. Going to the <em><strong>Tools:Settings</strong></em> menu to turn the Carry setting OFF will not be sufficient.</p>
+July 1990<br>
+Page 12
+<h3 data-sourcepos="16:1-16:27"><em>Questions and Answers</em></h3>
+<h3 data-sourcepos="18:1-18:24">Getting Carried Away</h3>
+<p data-sourcepos="19:1-19:430">Q: I was using the <strong>Carry forward</strong> option on some fields within my format file but then decided that I didn't want them to do so. So I modified the format file and turned off that option on the fields I had previousy set. After saving, I returned to the Control Center and proceeded to append. The fields were still carried foward. I had to exit dBASE IV and return before I could get the fields to stop carrying. What happened?</p>
+<p data-sourcepos="21:1-21:514">A: The SET CARRY command is an <em>additive</em> command. So when the new format file issues the SET CARRY command for the new set of fields, it did not clear the previous ones from memory, only adding to the list. Exiting and returning to DBASE IV cleared this setting. However, closing the .dbf should do the trick. If you are at the dot prompt, you could enter the command SET CARRY TO at the dot prompt to clear the setting. Going to the <em><strong>Tools:Settings</strong></em> menu to turn the Carry setting OFF will not be sufficient.</p>
+<h3 data-sourcepos="23:1-23:18">Traceback Info</h3>
 <p data-sourcepos="24:1-24:292">Q: While in the Debugger, pressing a P will show the program traceback information. Is there a command to display the same information which can be typed at the dot prompt? (When this happens during the debug process, most of that information gets overlaid by any existing windows or popups.)</p>
 <p data-sourcepos="26:1-26:439">A: Unfortunately, there is not a command to show the traceback info from the dot prompt and continue running the programs. The info is shown if you do a cancel, but as you mentioned, it can get overwritten depending upon elements affecting the current screen. Furthermore, attempts we made to route traceback information to a text file by triggering a SET PRINT TO FILE via an ON ESCAPE or ON ERROR command provided unsatisfactory results.</p>
 <h3 data-sourcepos="28:1-28:47">Variable Naming Conventions In an .FRG File</h3>
@@ -729,29 +730,24 @@ Page 12</p>
 <p data-sourcepos="31:1-31:193">A: The list is quite extensive and beyond the scope of this section. However, there is a methodology you should be familiar with when delving into the code files of labels, reports and formats.</p>
 <p data-sourcepos="33:1-33:305">The first letter in the name of the variable is either g or l for global (public) or local (private). The second letter is the data type of the variable: c,n,d,f,l. The third character is always an underscore. From there on, if you;re good with mnemonics, you might decipher the rest of the variable name.</p>
 <p data-sourcepos="35:1-35:227">If you're designing your own application or modifying an existing .frg file, you might consider using other memory elements as well, such as a for array, w for window, and so on, keeping in form with the naming structures used.</p>
-<p data-sourcepos="37:1-37:174">Further expounding on the specific purpose of .frg generated variables can be found in the April 1990 edition of TechNotes/dBASE IV in the article <em>Anatomy of a Report Form.</em></p>
-<h3 data-sourcepos="39:1-39:30">Pass the Variables, Please</h3>
-<p data-sourcepos="40:1-40:81">Q: Is it possible to pass a parameter to a program from the DOS level by entering</p>
-<p data-sourcepos="42:1-42:36"><code>DBASE &lt;prog name&gt; WITH &lt;parameter&gt;</code></p>
-<p data-sourcepos="44:1-44:299">A: With the syntax you provided, the answer is no. However, there is a way of parameter passing from DOS into dBASE IV. By making use of DOS environment variables, a simple DOS batch file, and the GETENV() function in dBASE IV, you can easily pass parameters to a dBASE III PLUS or dBASE IV program.</p>
-<p data-sourcepos="46:1-46:149">Create a batch file called DBPROG (a name used for this example but can be any valid DOS filename you choose) that contains the following statements:</p>
-<pre data-sourcepos="48:1-54:3"><code>@ECHO OFF
+<h3 data-sourcepos="37:1-37:30">Pass the Variables, Please</h3>
+<p data-sourcepos="38:1-38:81">Q: Is it possible to pass a parameter to a program from the DOS level by entering</p>
+<p data-sourcepos="40:1-40:36"><code>DBASE &lt;prog name&gt; WITH &lt;parameter&gt;</code></p>
+<p data-sourcepos="42:1-42:299">A: With the syntax you provided, the answer is no. However, there is a way of parameter passing from DOS into dBASE IV. By making use of DOS environment variables, a simple DOS batch file, and the GETENV() function in dBASE IV, you can easily pass parameters to a dBASE III PLUS or dBASE IV program.</p>
+<p data-sourcepos="44:1-44:149">Create a batch file called DBPROG (a name used for this example but can be any valid DOS filename you choose) that contains the following statements:</p>
+<pre data-sourcepos="46:1-52:3"><code>@ECHO OFF
 SET VAR1=%1
 DBASE &lt;prog name&gt;/T
 SET VAR1=
 CLS
 </code></pre>
-<p data-sourcepos="55:1-55:49">Include the following line in your dBASE program:</p>
-<p data-sourcepos="57:1-57:24"><code>mvar1 = GETENV(&quot;VAR1&quot;)</code></p>
-<p data-sourcepos="59:1-59:114">Execute the batch file by typing the name of the file followed by the parameter you wish to pass at the DOS level:</p>
-<p data-sourcepos="61:1-61:20"><code>DBPROG &lt;parameter&gt;</code></p>
-<p data-sourcepos="63:1-63:115">By using the replaceable parameter capabilities of DOS, one can pass multiple parameters (up to nine) to a program.</p>
-<h3 data-sourcepos="65:1-65:32">QBE Calculated Field Nesting</h3>
-<p data-sourcepos="67:1-67:189">Q: When designing a Query, I am getting the message <strong>Variable not found</strong> when I try to use a calculated field in another calculated field. Is there some limit on nested calculated fields?</p>
-<p data-sourcepos="69:1-69:351">A: Unlike in a report design, one cannot use a calculated field in another calculated field in the QBE. It's still possible to get your results if you expand the entire expression of the first calculated field inside the second one. For those long-winded expressions that would be a chore to retype, make note of the answer to the next question below.</p>
-<h3 data-sourcepos="71:1-71:40">Getting &quot;Snippy&quot; About Cut and Paste</h3>
-<p data-sourcepos="73:1-73:356">Q: Please say I've overlooked something. I am knee deep in a massive design screen project that contains many calculated fields with complex and lengthy expressions. Is there no way to copy an expression from one field to another? If so, can you copy an expression tested at the dot prompt into an expression area like a cut and paste buffer could perform?</p>
-<p data-sourcepos="75:1-75:570">A: Pressing <strong>F8 COPY</strong> will copy a field and it's contents to a new field. Copying a specific expression to another <em>existing</em> calculated field is not a feature presently available in dBASE IV. A new product called <em>Trading Places</em>, features a cut and paste capability. The software's main functionality is for swapping TSR (RAM resident) programs in and out of memory, another handy capability to have with dBASE IV. The software is now available for $99.95 and can be ordered through Customer Service. You may also obtain this product from your local software vendor.</p>
+<p data-sourcepos="53:1-53:49">Include the following line in your dBASE program:</p>
+<p data-sourcepos="55:1-55:24"><code>mvar1 = GETENV(&quot;VAR1&quot;)</code></p>
+<p data-sourcepos="57:1-57:114">Execute the batch file by typing the name of the file followed by the parameter you wish to pass at the DOS level:</p>
+<p data-sourcepos="59:1-59:20"><code>DBPROG &lt;parameter&gt;</code></p>
+<p data-sourcepos="61:1-61:115">By using the replaceable parameter capabilities of DOS, one can pass multiple parameters (up to nine) to a program.</p>
+<h3 data-sourcepos="63:1-63:32">QBE Calculated Field Nesting</h3>
+<p data-sourcepos="65:1-65:189">Q: When designing a Query, I am getting the message <strong>Variable not found</strong> when I try to use a calculated field in another calculated field. Is there some limit on nested calculated fields?</p>
 
     </article>
   </body>
