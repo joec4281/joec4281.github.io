@@ -16,10 +16,13 @@ Page 12
 
 ### *Questions and Answers*
 
-### Getting Carried Away
+<details>
+<summary>### Getting Carried Away</summary>
 Q: I was using the **Carry forward** option on some fields within my format file but then decided that I didn't want them to do so. So I modified the format file and turned off that option on the fields I had previousy set. After saving, I returned to the Control Center and proceeded to append. The fields were still carried foward. I had to exit dBASE IV and return before I could get the fields to stop carrying. What happened?
 
 A: The SET CARRY command is an *additive* command. So when the new format file issues the SET CARRY command for the new set of fields, it did not clear the previous ones from memory, only adding to the list. Exiting and returning to DBASE IV cleared this setting. However, closing the .dbf should do the trick. If you are at the dot prompt, you could enter the command SET CARRY TO at the dot prompt to clear the setting. Going to the ***Tools:Settings*** menu to turn the Carry setting OFF will not be sufficient.
+</details>
+### Traceback Info
 
 Q: While in the Debugger, pressing a P will show the program traceback information. Is there a command to display the same information which can be typed at the dot prompt? (When this happens during the debug process, most of that information gets overlaid by any existing windows or popups.)
 
@@ -35,6 +38,7 @@ The first letter in the name of the variable is either g or l for global (public
 If you're designing your own application or modifying an existing .frg file, you might consider using other memory elements as well, such as a for array, w for window, and so on, keeping in form with the naming structures used.
 
 Further expounding on the specific purpose of .frg generated variables can be found in the April 1990 edition of TechNotes/dBASE IV in the article *Anatomy of a Report Form.*
+
 ### Pass the Variables, Please
 Q: Is it possible to pass a parameter to a program from the DOS level by entering
 
