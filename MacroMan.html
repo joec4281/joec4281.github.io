@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="author" content="MarkdownViewer++" />
+        <title>MacroMan.md</title>
+        <style type="text/css">
+            
+/* Avoid page breaks inside the most common attributes, especially for exports (i.e. PDF) */
+td, h1, h2, h3, h4, h5, p, ul, ol, li {
+    page-break-inside: avoid; 
+}
+
+        </style>
+      </head>
+    <body>
+        <h1 id="technotes">TechNotes</h1>
+<p>July 1990<br>
+Page 20</p>
+<h1 id="macro-man">Macro Man!</h1>
+<p>Adam L. Menkes</p>
+<p>We have all, at one time or another, made changes to the structure of a database, only to find out later that the GET statements incorporated by our format files or programs are not working properly because either the lengths have changed or the field names have changed or both. You may have feared that there is no way around this; that you're stuck with going through all your code changing each memory variable in every program. &quot;This&quot;, you mutter to yourself, &quot;is the price I pay for power&quot;. You're tired of repetitive coding that results in hours of debugging just because some items were not consistently spelled correctly or data types mismatched.</p>
+<p>In the listing which starts on page 23, you'll find a set of procedures and functions strategically designed to simplify many of your future coding needs. You will be able to declare all your database memory variable fields public, set field memory variables to blanks or zero, and replace contents of your fields with memory variables that were changed while in full-screen edit mode.</p>
+<h3 id="what-have-we-here">&amp; What Have We Here?</h3>
+<p>These procedures make use of the ampersand &quot;&amp;&quot; for macro substitution or what is more and more being referred to as indirection. This is to distinguish the use of the &amp; from keyboard macros now availalbe in dBASE IV. The &amp; is also different than the double-ampersand &amp;&amp; which allows for comments on the same line as a dBASE command. For those not familiar with macro substitution/indirection, below is an example of how it works in a program:</p>
+<pre><code>*---   Initialize memory variables mtest, mvar1, mvar2, mvar3, mvar4,
+*      mvar5, mvar6, mvar7
+mtest=1234      &amp;&amp; Stores the number 1234 to variable 'mtest'.
+mvar1=&quot;mtest&quot;   &amp;&amp; Stores the string 'mtest' to variable 'mvar1'.
+mvar2=mvar1     &amp;&amp; Result is &quot;mtest&quot; (Character).
+mvar3=mtest     &amp;&amp; Result is 1234 (Numeric).
+
+*--- Results of storing these memory variables to others using
+*    macro substitution.
+mvar4=&amp;mtest    &amp;&amp; Result is SYNTAX ERROR since there is no
+                   variable 1234 defined.
+
+mvar5=&amp;mvar1    &amp;&amp; Result is 1234 (Numeric) since it sets mvar5
+*                   equal to the contents of variable mtest.
+
+mvar6=&quot;&amp;mtest&quot;  &amp;&amp; Resul t is the string &quot;&amp;mtest&quot;.
+mvar7=&quot;&amp;mvar1&quot;  &amp;&amp; Result is the string &quot;mtest&quot;.
+</code></pre>
+<h3 id="using-the-procedures">Using the Procedures</h3>
+<p>MacroMan.prg is an interdependent set of procedures and functions that performs a variety of tasks to allow shorter and more accurate code with less potential for error. The procedures and functions called by other procedures are denoted with ** in the in-line comment (&amp;&amp;) area. These are optional and can be removed from the code and replaced with explicitly named files and/or variables when these procedures need to be used independently (except where otherwise noted).</p>
+<h3 id="setapub-and-setamem">SetaPub and SetaMem</h3>
+<p>Procedures SetaPub and SetaMem require a database with one field called Dbf, which should be defined as a character field with a length of eight bytes. This field will contain the names of all the databases that will be used in these procedures, somewhat like a catalog.</p>
+
+    </body>
+</html>
+            
