@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Redirect Output from within a Batch file</title>
+<meta name="generator" content="WYSIWYG Web Builder 17 - https://www.wysiwygwebbuilder.com">
+<link href="JoeC4281.css" rel="stylesheet">
+<link href="Redirect-Output-from-within-a-Batch-file.css" rel="stylesheet">
+</head>
+<body>
+<div id="wb_IconFont1" style="position:absolute;left:7px;top:6px;width:87px;height:91px;text-align:center;z-index:0;">
+<a href="./How-Do-I....html"><div id="IconFont1"><i class="IconFont1"></i></div></a></div>
+<div id="wb_Heading1" style="position:absolute;left:143px;top:15px;width:882px;height:73px;z-index:1;">
+<h1 id="Heading1">Redirect Output from within a Batch file</h1></div>
+<div id="wb_Text1" style="position:absolute;left:144px;top:115px;width:973px;height:610px;z-index:2;">
+<span style="color:#000000;font-family:'Courier New';font-size:21px;"><strong><u>Method 1<br></u></strong></span><span class="CourierNew16"><br></span><span class="Source_Code">@echo off<br>&gt;output.txt (<br>&nbsp; command1<br>&nbsp; command2<br>&nbsp; ...<br>&nbsp; commandN<br>)<br></span><span class="CourierNew16"><br></span><span style="color:#000000;font-family:'Courier New';font-size:21px;"><strong><u>Method 2<br></u></strong></span><span class="CourierNew16"><br></span><span class="Source_Code">@echo off<br>call :sub &gt;output.txt<br>quit<br><br>:sub<br>command1<br>command2<br>...<br>commandN<br>Return<br></span><span class="CourierNew16"><br>Ref: <a href="https://stackoverflow.com/questions/20484151/redirecting-output-from-within-batch-file">Redirect Ouput from within a Batch file</a><br></span><span style="color:#000000;font-family:Arial;font-size:13px;"><br></span></div>
+</body>
+</html>
