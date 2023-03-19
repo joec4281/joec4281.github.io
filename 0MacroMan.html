@@ -11,7 +11,7 @@
   max-width: 980px;
   margin: 0 auto;
   padding: 45px;
-  background-color: black;
+  background-color: #313131;
   color: #c3c5c7;
 }
 
@@ -731,7 +731,25 @@ mvar7=&quot;&amp;mvar1&quot;  &amp;&amp; Result is the string &quot;mtest&quot;.
 <h3 data-sourcepos="35:1-35:24">Using the Procedures</h3>
 <p data-sourcepos="37:1-37:473">MacroMan.prg is an interdependent set of procedures and functions that performs a variety of tasks to allow shorter and more accurate code with less potential for error. The procedures and functions called by other procedures are denoted with ** in the in-line comment (&amp;&amp;) area. These are optional and can be removed from the code and replaced with explicitly named files and/or variables when these procedures need to be used independently (except where otherwise noted).</p>
 <h3 data-sourcepos="39:1-39:23">SetaPub and SetaMem</h3>
-<p data-sourcepos="41:1-41:270">Procedures SetaPub and SetaMem require a database with one field called Dbf, which should be defined as a character field with a length of eight bytes. This field will contain the names of all the databases that will be used in these procedures, somewhat like a catalog.</p>
+<p data-sourcepos="41:1-41:465">Procedures SetaPub and SetaMem require a database with one field called Dbf, which should be defined as a character field with a length of eight bytes. This field will contain the names of all the databases that will be used in these procedures, somewhat like a catalog. These procedures could also be modified to take advantage of the existing catalog if you so choose. Both of these procedures require the use of a secondary procedure which use only one database.</p>
+<p data-sourcepos="43:1-43:113">The procedure SetaPub is not necessary if each database is passed as a parameter to Procedure Set1pub as follows:</p>
+<pre data-sourcepos="45:1-52:3"><code>DO Set1Pub WITH &quot;Database1&quot;
+DO Set1Pub WITH &quot;Database2&quot;
+DO SEt1Pub WITH &quot;Database3&quot;
+.             .
+.             .
+DO Set1Pub WITH &quot;Databasen&quot;
+</code></pre>
+<p data-sourcepos="54:1-54:181">The preferred method is to have a database, MainDbf for example, with one field with the characteristics described previously. Each record would be the name of a different database.</p>
+<pre data-sourcepos="56:1-63:3"><code>Record 1    Database1
+Record 2    Database2
+Record 3    Database3
+.           .
+.           .
+Record n    Databasen
+</code></pre>
+<p data-sourcepos="65:1-65:38">This would require only one statement:</p>
+<p data-sourcepos="67:1-67:27"><code>DO SetaPub WITH &quot;Maindbf&quot;</code></p>
 
     </article>
   </body>

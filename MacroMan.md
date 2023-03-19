@@ -38,4 +38,30 @@ MacroMan.prg is an interdependent set of procedures and functions that performs 
 
 ### SetaPub and SetaMem
 
-Procedures SetaPub and SetaMem require a database with one field called Dbf, which should be defined as a character field with a length of eight bytes. This field will contain the names of all the databases that will be used in these procedures, somewhat like a catalog.
+Procedures SetaPub and SetaMem require a database with one field called Dbf, which should be defined as a character field with a length of eight bytes. This field will contain the names of all the databases that will be used in these procedures, somewhat like a catalog. These procedures could also be modified to take advantage of the existing catalog if you so choose. Both of these procedures require the use of a secondary procedure which use only one database.
+
+The procedure SetaPub is not necessary if each database is passed as a parameter to Procedure Set1pub as follows:
+
+```
+DO Set1Pub WITH "Database1"
+DO Set1Pub WITH "Database2"
+DO SEt1Pub WITH "Database3"
+.             .
+.             .
+DO Set1Pub WITH "Databasen"
+```
+
+The preferred method is to have a database, MainDbf for example, with one field with the characteristics described previously. Each record would be the name of a different database.
+
+```
+Record 1    Database1
+Record 2    Database2
+Record 3    Database3
+.           .
+.           .
+Record n    Databasen
+```
+
+This would require only one statement:
+
+`DO SetaPub WITH "Maindbf"`
