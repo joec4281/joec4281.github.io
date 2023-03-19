@@ -1,6 +1,4 @@
-#
-
- TechNotes - UDF Library
+# TechNotes - UDF Library
 April 1991<br>
 Page 16
 
