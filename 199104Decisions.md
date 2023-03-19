@@ -1,4 +1,6 @@
-# TechNotes - UDF Library
+#
+
+ TechNotes - UDF Library
 April 1991<br>
 Page 16
 
@@ -27,3 +29,16 @@ READ
 ```
 
 This UDF is a great foundation for you to become more creative. Perhaps you could include an array of logical operators such as +,-,*,<,>,#,.AND.,.OR.,.NOT. or $.
+
+```
+Function PickList
+  PARAMETER likefile
+  *-- Preserve screen
+  SET CONSOLE OFF
+  b4talk = SET("TALK")
+  SET TALK OFF
+  SAVE SCREEN TO B4pop
+  
+  *-- Assign "files", "fields" or "structure" macro substitution
+  DO CASE
+```

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=9">
-    <title>Markdown preview</title>
+    <title>Decisions, Decisionsn</title>
     <style>body {
   box-sizing: border-box;
   min-width: 200px;
@@ -701,24 +701,36 @@
   </head>
   <body>
     <article class="markdown-body">
-      <h1 data-sourcepos="1:1-1:25">TechNotes - UDF Library</h1>
-<p data-sourcepos="2:1-3:7">April 1991<br>
+      <h1 data-sourcepos="1:1-1:1"></h1>
+<p data-sourcepos="3:2-5:7">TechNotes - UDF Library
+April 1991<br>
 Page 16</p>
-<h3 data-sourcepos="5:1-5:24">Decisions, Decisions</h3>
-<p data-sourcepos="7:1-7:234">It would be useful to have a means of a pick-list capability in coding routines where you expect the user to build a dBASE expression, similar to the way dBASE IV does when you are building an index expression from the Control Center.</p>
-<p data-sourcepos="9:1-9:311">PickList() is a UDF that displays either the field names of the current database or the files of a certain extension in the current directory. After selecting from the popup, it then stuffs the selected choice into the active field or input area using the KEYBOARD command. The syntax of this UDF is as follows:</p>
-<p data-sourcepos="11:1-11:46"><code>PickList(&quot;&lt;[STRUCTURE]&gt;/&lt;.&lt;file extension&gt;&quot;)</code></p>
-<p data-sourcepos="13:1-13:232">As you can see, the UDF accepts one of two character string parameters. The string is either the word &quot;STRUCTURE&quot; (or the first four letters) in upper or lower case or an extension preceded by a period (such as .DBF, .PRG, or .BAK).</p>
-<p data-sourcepos="15:1-15:299">IF &quot;STRUCTURE&quot; is passed as the parameter, the fields for the currently active database are displayed in a popup. If no database is open at the time the UDF is called, a picklist of available .DBF files is first displayed. The file selected from the picklist is then opened in the current work area.</p>
-<p data-sourcepos="17:1-17:350">If a files list is needed, a file extension is entered. By beginning with a period, the logic of the UDF will construct a files list with the passed extension from qualifying files in the current directory. Entering a three letter extension without a preceding period returns a logical .F. as does anything other than the word (or partial) STRUCTURE.</p>
-<p data-sourcepos="19:1-19:193">As an example, consider the code segment below wherein the expression building Shift-F1 key, found in other design surfaces of dBASE IV is emulated to perform the same task in your own program.</p>
-<pre data-sourcepos="21:1-27:3"><code>ON KEY LABEL Shift-F1 ?? PickList()
+<h3 data-sourcepos="7:1-7:24">Decisions, Decisions</h3>
+<p data-sourcepos="9:1-9:234">It would be useful to have a means of a pick-list capability in coding routines where you expect the user to build a dBASE expression, similar to the way dBASE IV does when you are building an index expression from the Control Center.</p>
+<p data-sourcepos="11:1-11:311">PickList() is a UDF that displays either the field names of the current database or the files of a certain extension in the current directory. After selecting from the popup, it then stuffs the selected choice into the active field or input area using the KEYBOARD command. The syntax of this UDF is as follows:</p>
+<p data-sourcepos="13:1-13:46"><code>PickList(&quot;&lt;[STRUCTURE]&gt;/&lt;.&lt;file extension&gt;&quot;)</code></p>
+<p data-sourcepos="15:1-15:232">As you can see, the UDF accepts one of two character string parameters. The string is either the word &quot;STRUCTURE&quot; (or the first four letters) in upper or lower case or an extension preceded by a period (such as .DBF, .PRG, or .BAK).</p>
+<p data-sourcepos="17:1-17:299">IF &quot;STRUCTURE&quot; is passed as the parameter, the fields for the currently active database are displayed in a popup. If no database is open at the time the UDF is called, a picklist of available .DBF files is first displayed. The file selected from the picklist is then opened in the current work area.</p>
+<p data-sourcepos="19:1-19:350">If a files list is needed, a file extension is entered. By beginning with a period, the logic of the UDF will construct a files list with the passed extension from qualifying files in the current directory. Entering a three letter extension without a preceding period returns a logical .F. as does anything other than the word (or partial) STRUCTURE.</p>
+<p data-sourcepos="21:1-21:193">As an example, consider the code segment below wherein the expression building Shift-F1 key, found in other design surfaces of dBASE IV is emulated to perform the same task in your own program.</p>
+<pre data-sourcepos="23:1-29:3"><code>ON KEY LABEL Shift-F1 ?? PickList()
 
 Exp = SPACE(50)
 @ 5,5 SAY &quot;Enter dBASE expression:&quot; GET Exp
 READ
 </code></pre>
-<p data-sourcepos="29:1-29:162">This UDF is a great foundation for you to become more creative. Perhaps you could include an array of logical operators such as +,-,*,&lt;,&gt;,#,.AND.,.OR.,.NOT. or $.</p>
+<p data-sourcepos="31:1-31:162">This UDF is a great foundation for you to become more creative. Perhaps you could include an array of logical operators such as +,-,*,&lt;,&gt;,#,.AND.,.OR.,.NOT. or $.</p>
+<pre data-sourcepos="33:1-44:3"><code>Function PickList
+  PARAMETER likefile
+  *-- Preserve screen
+  SET CONSOLE OFF
+  b4talk = SET(&quot;TALK&quot;)
+  SET TALK OFF
+  SAVE SCREEN TO B4pop
+  
+  *-- Assign &quot;files&quot;, &quot;fields&quot; or &quot;structure&quot; macro substitution
+  DO CASE
+</code></pre>
 
     </article>
   </body>

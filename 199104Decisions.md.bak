@@ -1,4 +1,6 @@
-# TechNotes - UDF Library
+#
+
+ TechNotes - UDF Library
 April 1991<br>
 Page 16
 
@@ -27,3 +29,7 @@ READ
 ```
 
 This UDF is a great foundation for you to become more creative. Perhaps you could include an array of logical operators such as +,-,*,<,>,#,.AND.,.OR.,.NOT. or $.
+
+```
+Function PickList
+```
