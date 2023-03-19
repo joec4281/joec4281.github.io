@@ -720,7 +720,7 @@ Exp = SPACE(50)
 READ
 </code></pre>
 <p data-sourcepos="31:1-31:162">This UDF is a great foundation for you to become more creative. Perhaps you could include an array of logical operators such as +,-,*,&lt;,&gt;,#,.AND.,.OR.,.NOT. or $.</p>
-<pre data-sourcepos="33:1-44:3"><code>Function PickList
+<pre data-sourcepos="33:1-53:3"><code>Function PickList
   PARAMETER likefile
   *-- Preserve screen
   SET CONSOLE OFF
@@ -730,6 +730,15 @@ READ
   
   *-- Assign &quot;files&quot;, &quot;fields&quot; or &quot;structure&quot; macro substitution
   DO CASE
+    CASE AT(&quot;.&quot;, likefile) &lt;&gt; 0  &amp;&amp; &quot;.&quot; presumes a file extension
+      likefile = &quot;FILES LIKE *&quot; + likefile
+    CASE UPPER(SUBSTR(likefile,1,4)) = &quot;STRU&quot;
+      DO WHILE &quot;&quot; = ALIAS()
+        USE ?
+      ENDDO
+    OTHERWISE
+      RETURN .F.
+  ENDCASE
 </code></pre>
 
     </article>

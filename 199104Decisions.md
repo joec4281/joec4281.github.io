@@ -41,4 +41,13 @@ Function PickList
   
   *-- Assign "files", "fields" or "structure" macro substitution
   DO CASE
+    CASE AT(".", likefile) <> 0  && "." presumes a file extension
+      likefile = "FILES LIKE *" + likefile
+    CASE UPPER(SUBSTR(likefile,1,4)) = "STRU"
+      DO WHILE "" = ALIAS()
+        USE ?
+      ENDDO
+    OTHERWISE
+      RETURN .F.
+  ENDCASE
 ```
