@@ -65,3 +65,19 @@ Record n    Databasen
 This would require only one statement:
 
 `DO SetaPub WITH "Maindbf"`
+
+For the purposes of this article, it is important that all database files should be in the current directory. These procedures have not been tested for databases in other directories which could be specified by a path. If your files are in another directory, make sure the dBASE IV directory is in your DOS path and that you change to the desired directory before starting dBASE IV. Additionally, field names in the database should not use more than nine characters, as *m* will be added as a prefix to these field names to create matching memory variables. These memory variables may not behanve properly beyond ten characters.
+
+The accompanying procedure, Set1Pub, checks each field for a field name. Since a database can not contain a field length of 0, this procedure checks each field using the FIELD() function from FIELD(1) to FIELD(*n*) until FIELD(*n*) returns a null.
+
+The procedures SetaMem and Set1Mem are best used in conjunction with SetaPub or Set1Pub, as they do not check to see if a memory variable has already been declared, but assume it exists and is either public or private.
+
+### InUse(<expC>)
+
+This function checks all ten work areas to see if the database passed as a parameter is in use in any of these areas. If it is, the value returned is the number of the work area where the file is in use, otherwise, 0 is returned. For example:
+
+```
+. SELECT SELECT()    && Select next highest open work area
+. USE Client
+. SELECT SELECT()
+```
