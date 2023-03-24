@@ -72,7 +72,7 @@ The accompanying procedure, Set1Pub, checks each field for a field name. Since a
 
 The procedures SetaMem and Set1Mem are best used in conjunction with SetaPub or Set1Pub, as they do not check to see if a memory variable has already been declared, but assume it exists and is either public or private.
 
-### InUse(<expC>)
+### InUse(\<expC>\)
 
 This function checks all ten work areas to see if the database passed as a parameter is in use in any of these areas. If it is, the value returned is the number of the work area where the file is in use, otherwise, 0 is returned. For example:
 
@@ -80,4 +80,24 @@ This function checks all ten work areas to see if the database passed as a param
 . SELECT SELECT()    && Select next highest open work area
 . USE Client
 . SELECT SELECT()
+. USE SAMPLE
+. SELECT SELECT()
+. USE Checks
+. ? Inuse("Sample")
+9
 ```
+
+### FullDBF (\<expC>\)
+
+This function checks for a file extension, and if one does not exist, assumes a ".dbf" extension. For example:
+
+```
+. Test1 = FullDbf("Client")
+CLIENT.DBF
+. Test2 = FullDbf("Sample.dbf")
+SAMPLE.DBF
+. Test3 = FullDbf("Info.txt")
+INFO.TXT
+```
+
+There are those times when you cant to branch to a procedure that switches to an alternate work area. By calling your procedure as a parameter with this procedure, you are returned to the work area from which you began.
