@@ -51,7 +51,7 @@ set junk=%@winapi[user32.dll,CloseClipboard]
 return %rv
 ```
 
-More details on the JPSoft Forum:  
+More details on the JPSoft Forum:
 [Detect Clipboard Format](https://jpsoft.com/forums/threads/detect-clipboard-format.5227/)
 
 [Top Of Page](#top)
