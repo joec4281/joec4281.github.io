@@ -12,6 +12,7 @@
 [SetEnvironmentVariable](#SetEnvironmentVariable)    
 [StrFormatByteSize](#StrFormatByteSize)  
 
+---
 <a name="CloseClipboard">
 CloseClipboard
 </a>

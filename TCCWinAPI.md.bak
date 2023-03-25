@@ -194,7 +194,7 @@ If the function fails, the return value is zero.
 SetEnvironmentVariable
 </a>
 
-#### SetEnvironmentVariable=\`%@winapi[kernel32.dll,SetEnvironmentVariable,"A","10"]\`
+#### SetEnvironmentVariable=\`%@winapi[kernel32.dll,SetEnvironmentVariable,%1,%2]\`
 
 Examples:
 
