@@ -1,4 +1,4 @@
-# Take Command Console WinAPI Functions
+#   Take Command Console WinAPI Functions
 <a name="top"></a>
 [CloseClipboard](#CloseClipboard)  
 [EnumClipboardFormats](#EnumClipboardFormats)  
@@ -14,8 +14,9 @@
 
 ---
 <a name="CloseClipboard">
-CloseClipboard
 </a>
+
+## CloseClipboard
 
 #### CloseClipboard=\`%@winapi[user32.dll,CloseClipboard,0]\`
 
@@ -32,8 +33,9 @@ If the function fails, the return value is zero.
 
 ---
 <a name="EnumClipboardFormats">
-EnumClipboardFormats
 </a>
+
+## EnumClipboardFormats
 
 #### set uFormat=\`%@winapi[user32.dll,EnumClipboardFormats,%uFormat]\`
 
@@ -59,8 +61,9 @@ More details on the JPSoft Forum:
 
 ---
 <a name=FindWindowClass>
-FindWindowClass
 </a>
+
+## FindWindowClass
 
 #### FindWindowClass=\`%@winapi[user32,FindWindow,"%$",0]\`
 
@@ -81,8 +84,9 @@ echo %@FindWindowClass[Progman]
 
 ---
 <a name=FindWindowTitle>
-FindWindowTitle
 </a>
+
+## FindWindowTitle
 
 #### FindWindowTitle=\`%@winapi[user32,FindWindow,0,"%$"]\`
 
@@ -108,8 +112,9 @@ echo %@findwindowtitle[Start]
 
 ---
 <a name="GetCurrentProcessID">
-GetCurrentProcessID
 </a>
+
+## GetCurrentProcessID
 
 #### GetCurrentProcessID=\`%@winapi[kernel32.dll,GetCurrentProcessId]\`
 
@@ -126,8 +131,9 @@ echo %_pid
 
 ---
 <a name="GetForegroundWindow">
-GetForegroundWindow
 </a>
+
+## GetForegroundWindow
 
 #### GetForegroundWindow=\`%@winapi[user32.dll,GetForegroundWindow]\`
 
@@ -139,8 +145,9 @@ echo %@GetForegroundWindow[]
 
 ---
 <a name="GetSystemMenu">
-GetSystemMenu
 </a>
+
+## GetSystemMenu
 
 #### GetSystemMenu=\`%@winapi[user32.dll,GetSystemMenu,%1,0]\`
 
@@ -158,8 +165,9 @@ echo %@GetSystemMenu[%hwnd]
 
 ---
 <a name="IsWindow">
-IsWindow
 </a>
+
+## IsWindow
 
 #### IsWindow=\`%@winapi[user32.dll,IsWindow,%1]\`
 
@@ -174,8 +182,9 @@ echo %@IsWindow[%fgWnd]
 
 ---
 <a name="OpenClipboard">
-OpenClipboard
 </a>
+
+## OpenClipboard
 
 #### OpenClipboard=\`%@winapi[user32.dll,OpenClipboard,0]\`
 
@@ -192,8 +201,9 @@ If the function fails, the return value is zero.
 
 ---
 <a name="SetEnvironmentVariable">
-SetEnvironmentVariable
 </a>
+
+## SetEnvironmentVariable
 
 #### SetEnvironmentVariable=\`%@winapi[kernel32.dll,SetEnvironmentVariable,%1,%2]\`
 
@@ -211,8 +221,9 @@ set a
   
 ---
 <a name="StrFormatByteSize">
-StrFormatByteSize
 </a>
+
+## StrFormatByteSize
 
 #### StrFormatByteSize=\`%@winapi[shlwapi.dll,StrFormatByteSizeA,%1,aBUFFER,256]\`
 
