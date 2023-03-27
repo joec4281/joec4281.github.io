@@ -101,3 +101,30 @@ INFO.TXT
 ```
 
 There are those times when you want to branch to a procedure that switches to an alternate work area. By calling your procedure as a parameter with this procedure, you are returned to the work area from which you began.
+
+### Exceptions With Memo Fields
+
+Although you can not create a memory variable for a memo field, you can create a memory variable that references a text file of that name, creating a pseudo memory variable. This type of fuctionality is not included in this article as thorough testing has not been done. However, the concept is worth mentioning. As we are able to store all other data to memory variables and then, save or reject the entries we have made, it would be helpful if the same option were available for memo fields.
+
+For example, in a network, it is not desirable to retain a record in a locked mode while changes were being made (as it could be locked for a while), nor would you want the changes made to the file if the user decided that the information added or changed in the memo field was incorrect. In order to add the capability, remove the following clause in the procedure entitled Set1Pub.
+
+```
+IF mFld_Type <> "M"
+  PUBLIC m&mFld_Name    && Declares memory varaible
+      *                    'm' + the field name PUBLIC.
+ENDIF
+```
+
+and in procedure Set1Mem, add the following to the DO CASE clause:
+
+```
+CASE mFld_Type = "M"
+  SET ALTERNATE TO m&mFld_Type..VMO [ADDITIVE]
+  *--- Note the two periods. One denotes the end of the
+  *    macro, the second is for the file extension VMO
+  *    (Variable MEMO).
+  SET ALTERNATE TO
+```
+
+You may want to check first to see if InUse(m&mFld_Type..VMO), and either overwrite it or add to it with the ADDITIVE option. Remember to use SET SAFETY OFF so that you won't be continually prompted to overwrite the file. You may also want to COPY MEMO TO m&mFld_Name [ADDITIVE] fromm within the program if a SEEK is performed.
+

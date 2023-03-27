@@ -41,7 +41,7 @@ If the function fails, the return value is zero.
 
 Examples:
 
-```
+```cmd
 :clipistext
 if %@winapi[user32.dll,OpenClipboard,0] LE 0 return -1
 set rv=0

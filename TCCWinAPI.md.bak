@@ -221,8 +221,9 @@ set a
   
 ---
 <a name="StrFormatByteSize">
-StrFormatByteSize
 </a>
+
+## StrFormatByteSize
 
 #### StrFormatByteSize=\`%@winapi[shlwapi.dll,StrFormatByteSizeA,%1,aBUFFER,256]\`
 

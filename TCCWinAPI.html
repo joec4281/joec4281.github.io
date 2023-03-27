@@ -732,7 +732,7 @@ If the function fails, the return value is zero.</p>
 <h2 data-sourcepos="38:1-38:23">EnumClipboardFormats</h2>
 <h4 data-sourcepos="40:1-40:71">set uFormat=`%@winapi[user32.dll,EnumClipboardFormats,%uFormat]`</h4>
 <p data-sourcepos="42:1-42:9">Examples:</p>
-<pre data-sourcepos="44:1-55:3"><code>:clipistext
+<pre data-sourcepos="44:1-55:3"><code class="language-cmd">:clipistext
 if %@winapi[user32.dll,OpenClipboard,0] LE 0 return -1
 set rv=0
 set uFormat=0
