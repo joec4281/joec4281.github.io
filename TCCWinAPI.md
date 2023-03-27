@@ -21,7 +21,7 @@
 #### CloseClipboard=\`%@winapi[user32.dll,CloseClipboard,0]\`
 
 Example:
-```
+```cmd
 echo %@winapi[user32.dll,CloseClipboard,0]
 1
 ```
@@ -69,7 +69,7 @@ More details on the JPSoft Forum:
 
 Examples:
 
-```
+```cmd
 echo %@FindWindowClass[Shell_TrayWnd]
 65690
 
@@ -91,7 +91,7 @@ echo %@FindWindowClass[Progman]
 #### FindWindowTitle=\`%@winapi[user32,FindWindow,0,"%$"]\`
 
 Examples:
-```
+```cmd
 echo %@FindWindowTitle[Untitled - Notepad]
 1379358
 
@@ -119,7 +119,7 @@ echo %@findwindowtitle[Start]
 #### GetCurrentProcessID=\`%@winapi[kernel32.dll,GetCurrentProcessId]\`
 
 Example:
-```
+```cmd
 echo %@GetCurrentProcessID[]
 14640
 
@@ -138,7 +138,7 @@ echo %_pid
 #### GetForegroundWindow=\`%@winapi[user32.dll,GetForegroundWindow]\`
 
 Example:
-```
+```cmd
 echo %@GetForegroundWindow[]
 394834
 ```
@@ -152,7 +152,7 @@ echo %@GetForegroundWindow[]
 #### GetSystemMenu=\`%@winapi[user32.dll,GetSystemMenu,%1,0]\`
 
 Examples:
-```
+```cmd
 set hWnd=%@GetForegroundWindow[]
 echo %hwnd
 394834
@@ -172,7 +172,7 @@ echo %@GetSystemMenu[%hwnd]
 #### IsWindow=\`%@winapi[user32.dll,IsWindow,%1]\`
 
 Example:
-```
+```cmd
 set fgWnd=%@getforegroundwindow[]
 echo %@IsWindow[%fgWnd]
 1
@@ -189,7 +189,7 @@ echo %@IsWindow[%fgWnd]
 #### OpenClipboard=\`%@winapi[user32.dll,OpenClipboard,0]\`
 
 Example:
-```
+```cmd
 echo %@winapi[user32.dll,OpenClipboard,0]
 1
 ```
@@ -209,7 +209,7 @@ If the function fails, the return value is zero.
 
 Examples:
 
-```
+```cmd
 echo %@setenvironmentvariable["a","10"]
 1
 
@@ -228,7 +228,7 @@ set a
 #### StrFormatByteSize=\`%@winapi[shlwapi.dll,StrFormatByteSizeA,%1,aBUFFER,256]\`
 
 Examples:
-```
+```cmd
 echo %@StrFormatByteSize[1024]
 1.00 KB
 
