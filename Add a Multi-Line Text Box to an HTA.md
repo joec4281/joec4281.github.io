@@ -1,0 +1,41 @@
+# Creating Your Own HTAs
+<a name="top"></a>
+[Add a Multi-Line Text Box to an HTA](#MultiLineHTATextBox)  
+
+---
+<a name="MultiLineHTATextBox">
+</a>
+
+## Add a Multi-Line Text Box to an HTA
+
+```HTA
+<html>
+<head>
+<title>HTA Test</title>
+<HTA:APPLICATION 
+     ID="objTest" 
+     APPLICATIONNAME="HTA Test"
+     SCROLL="yes"
+     SINGLEINSTANCE="yes"
+>
+</head>
+
+<SCRIPT LANGUAGE="VBScript">
+
+    Sub TestSub
+        Msgbox ScriptArea.Value
+    End Sub
+
+</SCRIPT>
+
+<body>
+
+  <textarea name="ScriptArea" rows=5 cols=70></textarea><p>
+  <input id=runbutton  type="button" value="Run Script" name="run_button"  onClick="TestSub">
+
+</body>
+```
+
+Ref: [Add a Multi-Line Text Box to an HTA](https://learn.microsoft.com/en-us/previous-versions/tn-archive/ee692604(v=technet.10))
+
+[Top Of Page](#top)

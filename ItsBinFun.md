@@ -86,18 +86,21 @@ The filename reference would be either StrDct, StrRev, or StrFlp and you should 
 Now the real fun begins, we get to try out our .bin files in dBASE. We'll look at three different ways that we can use our .bin files with dBASE. All three ways can be mixed and matched with other .bin files.
 
 Let's first use our simplest .bin file, StrRev, since it is fairly easy to tell if a string has been reversed or not. From the dBASE IV dot prompt, type
-```
+
+```foxpro
 LOAD StrRev && loads StrRev into memory
 x="John" && test string
 CALL StrRev WITH x && call Strrev
 ? x && what is the value now?
 ```
+
 You should have seen "nhoJ" displayed if everything went ok. Repeat steps two through four with different values to make sure our STRing REVersal is working.
 
 We can go ahead and create a UDF that will CALL StrRev with whatever string we gave it and then return the reversed string, but let's not. Instead, let's create a UDF called Strflp() which calls our StrFlp.bin file. StrFlp is a .bin file which "flips" ASCII characters. Those characters which have an ASCII value of 127 and below will have the value of 128 added (the letter 'A' which has a value of 65 would end up with a value of 193) and those above 127 will have 128 subtracted (160 becomes 32 or the space character).
 
 Enter the dBASE IV text editor by typing MODIFY COMMAND from the dot prompt. The code for our UDF is shown below.
-```
+
+```foxpro
 FUNCTION StrFlp
 * Strflp should have already been LOADed.
 PARAMETER str
@@ -105,6 +108,7 @@ temp = str
 CALL Strflp WITH temp
 RETURN temp
 ```
+
 After compiling this function, from the dot prompt, type:
 
 `? StrFlp("flip")`
@@ -121,22 +125,27 @@ could not consistently deal with data in the BSS and would return bad values int
 The program is available on the Ashton-Tate BBS if you wish to download it.
 
 Now for our final example involving StrDct and putting database files in dictionary order. One of the advantages of .bin files is that they have the capability of being used for indexing via the CALL() function (as opposed to CALL command) in dBASE IV. If we have a database file that we decide we want in dictionary order, or StrRev order, or StrFlp order, all we need to do is the following:
-```
+
+```foxpro
 USE Datafile
 LOAD Strdct
 INDEX ON CALL("Strdct",fieldname + "") TO Indexfile
 ```
+
 dBASE IV will then call StrDct for each record so that it can place our data in dictionary order. It is important to remember that whenever we use this datafile and index in the future to LOAD StrDct first. This indexing feature works well with StrFlp also. Suppose you wanted to put your file in order by last name plus first name but the first names needed to be in descending order, you could try this:
-```
+
+```foxpro
 LOAD StrFlp
 USE Namefile
 INDEX ON lastname+CALL("StrFlp",firstname+"") TO Lfname
 ```
+
 This puts the last names in ascending order but the first names in descending order. You might be wondering why we need to add the + "" to the firstname field. This prevents dBASE IV from permanently changing the contents of the firstname field to whatever StrFlp would return.
 
 Well that about wraps up our journey into the world of C and dBASE .bin files. I hope you've seen that .bin files are really not that complicated once you understand a few of the guidelines and principles involved in their creation. .bin files provide for useful and powerful extensions to the dBASE language that in turn allow programmers to develop and code more extensive and powerful programs.
 
-```StrRev.C
+```foxpro
+StrRev.C
 /* Program ...: Strrev.C
 Author ....: Erik A McBeth
 Version ...: dBASE III Plus 1.0, 1.1
@@ -198,7 +207,9 @@ unsigned char *str;
     }
 }
 ```
-```StrDct.C
+
+```foxpro
+StrDct.C
 /* Program ...: Strdct.C
 Version ...: dBASE III Plus 1.0, 1.1
             dBASE IV 1.0, 1.1
@@ -318,7 +329,8 @@ unsigned char *str;
 
 }
 ```
-```
+
+```foxpro
 StrFlp.C
 /* Program ...: Strflp.C
 Version ...: dBASE III Plus 1.0, 1.1,
@@ -353,7 +365,8 @@ unsigned char *str;
 
 }
 ```
-```
+
+```foxpro
 StrLib.H
 /* Program ...: Strlib.H
 Version ...: Use with
@@ -388,7 +401,8 @@ unsigned DS, BX, ES, DI, CX;
 
 #endif
 ```
-```
+
+```foxpro
 ; Program ...: GetRegs.asm
 ; Version ...: dBASE III Plus 1.0, 1.1
 ;              dBASE IV 1.0, 1.1

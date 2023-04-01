@@ -128,3 +128,12 @@ CASE mFld_Type = "M"
 
 You may want to check first to see if InUse(m&mFld_Type..VMO), and either overwrite it or add to it with the ADDITIVE option. Remember to use SET SAFETY OFF so that you won't be continually prompted to overwrite the file. You may also want to COPY MEMO TO m&mFld_Name [ADDITIVE] fromm within the program if a SEEK is performed.
 
+Once changes were made from within the program: (using MODI COMM &mFld_Name, for example), you could not REPLACE Fld_Name WITH mFld_Name, since this field is a memo data type (as accounted for in the case statement above checking for mFld_Type="m") but you could APPEND MEMO FROM &mFld_Name [OVERWRITE]. This could be easily added to the ReplVar procedure as the ELSE condition for IF mFld_Type <> "M".
+
+Now that this article has got you started, try this concept with arrays, windows, and popups? Ah, yes, the wonders of macro substitution.
+
+### MacroMan.prg
+
+```prg
+PROCEDURE SetaPub
+```
