@@ -12,7 +12,8 @@ In the listing which starts on page 23, you'll find a set of procedures and func
 ### & What Have We Here?
 
 These procedures make use of the ampersand "&" for macro substitution or what is more and more being referred to as indirection. This is to distinguish the use of the & from keyboard macros now availalbe in dBASE IV. The & is also different than the double-ampersand && which allows for comments on the same line as a dBASE command. For those not familiar with macro substitution/indirection, below is an example of how it works in a program:
-```
+
+```foxpro
 *---   Initialize memory variables mtest, mvar1, mvar2, mvar3, mvar4,
 *      mvar5, mvar6, mvar7
 mtest=1234      && Stores the number 1234 to variable 'mtest'.
@@ -42,7 +43,7 @@ Procedures SetaPub and SetaMem require a database with one field called Dbf, whi
 
 The procedure SetaPub is not necessary if each database is passed as a parameter to Procedure Set1pub as follows:
 
-```
+```foxpro
 DO Set1Pub WITH "Database1"
 DO Set1Pub WITH "Database2"
 DO SEt1Pub WITH "Database3"
@@ -76,7 +77,7 @@ The procedures SetaMem and Set1Mem are best used in conjunction with SetaPub or 
 
 This function checks all ten work areas to see if the database passed as a parameter is in use in any of these areas. If it is, the value returned is the number of the work area where the file is in use, otherwise, 0 is returned. For example:
 
-```
+```foxpro
 . SELECT SELECT()    && Select next highest open work area
 . USE Client
 . SELECT SELECT()
@@ -91,7 +92,7 @@ This function checks all ten work areas to see if the database passed as a param
 
 This function checks for a file extension, and if one does not exist, assumes a ".dbf" extension. For example:
 
-```
+```foxpro
 . Test1 = FullDbf("Client")
 CLIENT.DBF
 . Test2 = FullDbf("Sample.dbf")
@@ -108,7 +109,7 @@ Although you can not create a memory variable for a memo field, you can create a
 
 For example, in a network, it is not desirable to retain a record in a locked mode while changes were being made (as it could be locked for a while), nor would you want the changes made to the file if the user decided that the information added or changed in the memo field was incorrect. In order to add the capability, remove the following clause in the procedure entitled Set1Pub.
 
-```
+```foxpro
 IF mFld_Type <> "M"
   PUBLIC m&mFld_Name    && Declares memory varaible
       *                    'm' + the field name PUBLIC.
@@ -117,7 +118,7 @@ ENDIF
 
 and in procedure Set1Mem, add the following to the DO CASE clause:
 
-```
+```foxpro
 CASE mFld_Type = "M"
   SET ALTERNATE TO m&mFld_Type..VMO [ADDITIVE]
   *--- Note the two periods. One denotes the end of the
@@ -134,6 +135,6 @@ Now that this article has got you started, try this concept with arrays, windows
 
 ### MacroMan.prg
 
-```prg
+```foxpro
 PROCEDURE SetaPub
 ```
