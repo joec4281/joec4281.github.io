@@ -3,10 +3,10 @@
 # These are my notes on how to do things in various programming languages.
 
 Table of Contents
-* [dBASE](./dbase.html)
-* [Harbour](./Harbour.html)
+* [dBASE III+/dBASE IV 2.0](dbase.html)
+* [Harbour 3.2/3.4](./Harbour.html)
 * [PureBasic](./PureBasic.html)
-* [TCC](./TCC.html)
+* [TCC (Take Command Console)](TCC.html)
 * [VB.NET](./VB.NET.html)
 * [VBScript](./VBScript.html)
 * [Visual Basic 6.0](./Visual-Basic-6.0.html)
