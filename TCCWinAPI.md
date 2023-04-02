@@ -1,3 +1,5 @@
+<title>Take Command Console WinAPI Functions</title>
+
 #   Take Command Console WinAPI Functions
 <a name="top"></a>
 [CloseClipboard](#CloseClipboard)  

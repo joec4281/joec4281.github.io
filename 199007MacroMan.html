@@ -461,7 +461,8 @@ xref {
 <body>
 <div id="MainContent">
     <!-- Markdown Monster Content -->
-    <h1 id="technotes">TechNotes</h1>
+    <title>Macro Man!</title>
+<h1 id="technotes">TechNotes</h1>
 <p>July 1990<br>
 Page 20</p>
 <h1 id="macro-man">Macro Man!</h1>
@@ -555,6 +556,15 @@ ENDIF
 <p>Now that this article has got you started, try this concept with arrays, windows, and popups? Ah, yes, the wonders of macro substitution.</p>
 <h3 id="macromanprg">MacroMan.prg</h3>
 <pre><code class="language-foxpro">PROCEDURE SetaPub
+    *-- Initializes PUBLIC memory variables defined as &quot;m&quot; + FIELDNAME
+    *    for FIELDS in a Database. This is used in conjunction with the
+    *    procedure Set1Pub.
+    *-- SYNTAX: DO Procedure WITH &lt;expC&gt;
+    *-- Example: DO SetaPub WITH &quot;Maindbf.DBF&quot;
+    
+    PARAMETER AllDbf          &amp;&amp;     DATABASE that contains a short catalog
+    *                                of DATABASEs with fields that will be
+    *                                used for declaring memory variables.
 </code></pre>
 
     <!-- End Markdown Monster Content -->

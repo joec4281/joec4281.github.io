@@ -1,3 +1,5 @@
+<title>Macro Man!</title>
+
 # TechNotes
 July 1990<br>
 Page 20
@@ -137,4 +139,13 @@ Now that this article has got you started, try this concept with arrays, windows
 
 ```foxpro
 PROCEDURE SetaPub
+    *-- Initializes PUBLIC memory variables defined as "m" + FIELDNAME
+    *    for FIELDS in a Database. This is used in conjunction with the
+    *    procedure Set1Pub.
+    *-- SYNTAX: DO Procedure WITH <expC>
+    *-- Example: DO SetaPub WITH "Maindbf.DBF"
+    
+    PARAMETER AllDbf          &&     DATABASE that contains a short catalog
+    *                                of DATABASEs with fields that will be
+    *                                used for declaring memory variables.
 ```
