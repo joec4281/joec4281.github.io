@@ -2,19 +2,22 @@
 
 #   Take Command Console WinAPI Functions
 <a name="top"></a>
-[CloseClipboard](#CloseClipboard)  
-[EnumClipboardFormats](#EnumClipboardFormats)  
-[FindWindowClass](#FindWindowClass)  
-[FindWindowTitle](#FindWindowTitle)  
-[GetCurrentProcessID](#GetCurrentProcessID)  
-[GetForegroundWindow](#GetForegroundWindow)  
-[GetSystemMenu](#GetSystemMenu)  
-[IsWindow](#IsWindow)  
-[OpenClipboard](#OpenClipboard)  
-[SetEnvironmentVariable](#SetEnvironmentVariable)    
-[StrFormatByteSize](#StrFormatByteSize)  
 
+[Back To TCC Table of Contents](https://joec4281.github.io/tcc.html)
 
+* [CloseClipboard](#CloseClipboard)  
+* [EnumClipboardFormats](#EnumClipboardFormats)  
+* [FindWindowClass](#FindWindowClass)  
+* [FindWindowTitle](#FindWindowTitle)  
+* [GetCurrentProcessID](#GetCurrentProcessID)  
+* [GetForegroundWindow](#GetForegroundWindow)  
+* [GetSystemMenu](#GetSystemMenu)  
+* [IsWindow](#IsWindow)  
+* [OpenClipboard](#OpenClipboard)  
+* [SetEnvironmentVariable](#SetEnvironmentVariable)    
+* [StrFormatByteSize](#StrFormatByteSize)  
+
+[Back To TCC Table of Contents](https://joec4281.github.io/tcc.html)
 
 ---
 <a name="CloseClipboard">
