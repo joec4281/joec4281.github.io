@@ -3,7 +3,7 @@
 #   Take Command Console WinAPI Functions
 <a name="top"></a>
 
-[Back To TCC Table of Contents](https://joec4281.github.io/tcc.html)
+[Back To TCC Table of Contents](https://joec4281.github.io/TCC.html)
 
 * [CloseClipboard](#CloseClipboard)  
 * [EnumClipboardFormats](#EnumClipboardFormats)  
@@ -17,7 +17,7 @@
 * [SetEnvironmentVariable](#SetEnvironmentVariable)    
 * [StrFormatByteSize](#StrFormatByteSize)  
 
-[Back To TCC Table of Contents](https://joec4281.github.io/tcc.html)
+[Back To TCC Table of Contents](https://joec4281.github.io/TCC.html)
 
 ---
 <a name="CloseClipboard">
