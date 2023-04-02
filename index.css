@@ -85,3 +85,12 @@ input:focus, textarea:focus, select:focus
    font-size: 19px;
    padding: 0 0 0.5em 0;
 }
+.darkmode-layer, .darkmode-toggle 
+{
+   z-index: 9999;
+}
+.darkmode--activated .isolate 
+{
+   mix-blend-mode: difference;
+}
+

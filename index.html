@@ -1,3 +1,4 @@
+<title>Joe's Notes</title>
 <!doctype html>
 <html>
 <head>
@@ -6,7 +7,32 @@
 <meta name="generator" content="WYSIWYG Web Builder 17 - https://www.wysiwygwebbuilder.com">
 <link href="JoeC4281.css" rel="stylesheet">
 <link href="index.css" rel="stylesheet">
-</head>
+<script src="darkmode/darkmode-js.min.js"></script>
+<script>
+  var darkmode;
+  var showWidget = true;
+  function addDarkmodeWidget() 
+  {
+      darkmode = new Darkmode( 
+      {
+         bottom: '32px',
+         right: '32px',
+         left: 'unset',
+         time: '0.3s',
+         mixColor: '#FFFFFF',
+         backgroundColor: '#FFFFFF',
+         buttonColorDark: '#100F2C',
+         buttonColorLight: '#FFFFFF',
+         saveInCookies: true,
+         autoMatchOsTheme: true
+      });
+      if (showWidget)
+      {
+         darkmode.showWidget();
+      }
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script></head>
 <body>
 <div id="wb_Text1" style="position:absolute;left:106px;top:27px;width:984px;height:21px;z-index:0;">
 <span style="background-color:#FFFFFF;color:#000000;font-family:'Lucida Console';font-size:21px;">These are my notes on how to do things in various programming languages.</span></div>
@@ -26,5 +52,6 @@
 <li><a href="https://twitter.com/JoeC4281/timelines/1612512033802518530" target="" title="My Twitter Collection of Technical Tips">TechTips</a></li>
 </ul>
 </div></div>
+
 </body>
 </html>

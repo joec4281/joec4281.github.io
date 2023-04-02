@@ -148,4 +148,10 @@ PROCEDURE SetaPub
     PARAMETER AllDbf          &&     DATABASE that contains a short catalog
     *                                of DATABASEs with fields that will be
     *                                used for declaring memory variables.
+    DO setArea1 WITH AllDbf   && **  Selects Area where DATABASE is in
+    *                                use or opens it in an unused area.
+    
+    SCAN
+       vDBF=DBF               &&     Variable 'vDbf' gets database name
+       *                             from database passed as a Parameter.
 ```

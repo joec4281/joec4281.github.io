@@ -7,7 +7,32 @@
 <link href="font-awesome.min.css" rel="stylesheet">
 <link href="JoeC4281.css" rel="stylesheet">
 <link href="TCC.css" rel="stylesheet">
-</head>
+<script src="darkmode/darkmode-js.min.js"></script>
+<script>
+  var darkmode;
+  var showWidget = true;
+  function addDarkmodeWidget() 
+  {
+      darkmode = new Darkmode( 
+      {
+         bottom: '32px',
+         right: '32px',
+         left: 'unset',
+         time: '0.3s',
+         mixColor: '#FFFFFF',
+         backgroundColor: '#FFFFFF',
+         buttonColorDark: '#100F2C',
+         buttonColorLight: '#FFFFFF',
+         saveInCookies: true,
+         autoMatchOsTheme: true
+      });
+      if (showWidget)
+      {
+         darkmode.showWidget();
+      }
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script></head>
 <body>
 <div id="wb_toc_container" style="position:absolute;left:104px;top:26px;width:570px;height:273px;z-index:0;">
 <div id="toc_container" aria-labelledby="toc_container_title">
@@ -24,5 +49,6 @@
 </div></div>
 <div id="wb_IconFont1" style="position:absolute;left:8px;top:6px;width:96px;height:71px;text-align:center;z-index:1;">
 <a href="./index.html"><div id="IconFont1"><i class="fa fa-arrow-left"></i></div></a></div>
+
 </body>
 </html>
