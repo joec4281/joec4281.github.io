@@ -5,6 +5,7 @@
 
 [Back To TCC Table of Contents](https://joec4281.github.io/TCC.html)
 
+---
 * [CloseClipboard](#CloseClipboard)  
 * [EnumClipboardFormats](#EnumClipboardFormats)  
 * [FindWindowClass](#FindWindowClass)  
@@ -17,6 +18,7 @@
 * [SetEnvironmentVariable](#SetEnvironmentVariable)    
 * [StrFormatByteSize](#StrFormatByteSize)  
 
+---
 [Back To TCC Table of Contents](https://joec4281.github.io/TCC.html)
 
 ---
