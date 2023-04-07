@@ -6,7 +6,7 @@ Table of Contents
 * [dBASE III+/dBASE IV 2.0](https://joec4281.github.io/dBase.html)
 * [Harbour 3.2/3.4](https://joec4281.github.io/Harbour.html)
 * [PureBasic](https://joec4281.github.io/PureBasic.html)
-* [TCC (Take Command Console)](https://joec4281.github.io/TCC.html)
+* [TCC (Take Command Console)](TCC.html)
 * [VB.NET](https://joec4281.github.io/VB.NET.html)
 * [VBScript](https://joec4281.github.io/VBScript.html)
 * [Visual Basic 6.0](https://joec4281.github.io/Visual-Basic-6.0.html)
