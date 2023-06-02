@@ -48,7 +48,7 @@ If the function fails, the return value is zero.
 
 #### set uFormat=\`%@winapi[user32.dll,EnumClipboardFormats,%uFormat]\`
 
-Examples:
+Example:
 
 ```cmd
 :clipistext

@@ -145,13 +145,22 @@ PROCEDURE SetaPub
     *-- SYNTAX: DO Procedure WITH <expC>
     *-- Example: DO SetaPub WITH "Maindbf.DBF"
     
-    PARAMETER AllDbf          &&     DATABASE that contains a short catalog
+    PARAMETER AllDbf           &&    DATABASE that contains a short catalog
     *                                of DATABASEs with fields that will be
     *                                used for declaring memory variables.
-    DO setArea1 WITH AllDbf   && **  Selects Area where DATABASE is in
+    DO setArea1 WITH AllDbf    && ** Selects Area where DATABASE is in
     *                                use or opens it in an unused area.
     
     SCAN
-       vDBF=DBF               &&     Variable 'vDbf' gets database name
+       vDBF=DBF                &&    Variable 'vDbf' gets database name
        *                             from database passed as a Parameter.
+       DO Set1Pub WITH vDbf    &&    Calls sub-procedure passing this
+       *                             variable as the parameter.
+       DO SelArea1 WITH Alldbf &&    Re-SELECTs Work Area of AllDbf.
+    ENDSCAN
+    
+    DO SelArea2                && ** Closes AllDbf if it was not in USE
+    *                                 before the current procedure
+RETURN
+
 ```
