@@ -1,0 +1,7595 @@
+<!DOCTYPE html>
+<!--saved from url=(0024)http://www.bauerapps.com--><html id=htmlTag xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en dir=ltr>
+<head>
+	
+	
+	<base/>
+	
+		<link rel="Shortcut Icon" href="resources/favicon_2021.ico" type="image/x-icon"/>
+	
+
+	
+	
+	
+		
+		
+	
+
+	
+
+	
+	<link rel=stylesheet type="text/css" href="resources/css6.css"/>
+<link rel=stylesheet type="text/css" href="resources/css4.css"/>
+
+
+
+	
+	
+		<meta property=og:site_name content="PowerBASIC Peer Support Community"/>
+		<meta property=og:description content="This might be of interest to those using or wanting to use PBCC. Source code is PBCC v. 6.x and PBWIN v 10.x
+
+The code shows one way for console to comunicate with"/>
+		<meta property=og:url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+		
+		<meta property=og:type content=website />
+	
+	
+
+	
+	
+	
+
+	
+	<meta name=viewport content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+
+	
+	
+	
+		
+		
+		
+			
+			
+		
+	
+
+	
+	
+	
+		
+
+	<title>PBCC Menu Dll - PowerBASIC Peer Support Community</title>
+
+	<meta name=description content="This might be of interest to those using or wanting to use PBCC. Source code is PBCC v. 6.x and PBWIN v 10.x
+
+The code shows one way for console to comunicate with"/>
+	<meta name=generator content="vBulletin 5.6.6"/>
+
+	
+	
+
+	<link rel=stylesheet type="text/css" href="resources/css1.css"/>
+<link rel=stylesheet type="text/css" href="resources/css3.css"/>
+<link rel=stylesheet type="text/css" href="resources/css5.css"/>
+<link rel=stylesheet type="text/css" href="resources/css.css"/>
+<link class=js-additional-css rel=stylesheet type="text/css" href="resources/css2.css"/>
+
+
+	
+	
+
+
+
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+
+	
+
+
+
+
+
+
+
+	
+
+<body id=vb-page-body class="l-desktop page81 vb-page view-mode logged-out" itemscope itemtype="http://schema.org/ItemPage" data-usergroupid=1 data-styleid=39>
+
+
+
+
+
+	
+
+
+<div class="b-top-menu__background b-top-menu__background--sitebuilder js-top-menu-sitebuilder h-hide-on-small h-hide">
+	<div class=b-top-menu__container>
+		<ul class="b-top-menu b-top-menu--sitebuilder js-top-menu-sitebuilder--list js-shrink-event-parent">
+			
+		</ul>
+	</div>
+</div>
+
+<nav class="b-top-menu__background js-top-menu-user">
+	<div class=b-top-menu__container>
+		<ul class="b-top-menu b-top-menu--user js-top-menu-user--list js-shrink-event-parent">
+			
+
+
+
+
+	
+
+
+
+	<li class="b-top-menu__item b-top-menu__item--no-left-divider b-top-menu__item--no-right-divider username-container js-shrink-event-child">
+
+		<div class="b-comp-menu-dropdown b-comp-menu-dropdown--headerbar js-comp-menu-dropdown b-comp-menu-dropdown--open-on-hover js-login-menu">
+			<div id=lnkLoginSignupMenu class="b-comp-menu-dropdown__trigger js-comp-menu-dropdown__trigger b-comp-menu-dropdown__trigger--arrow b-comp-menu-dropdown__trigger--headerbar js-button" tabindex=0>
+				Login or Sign Up
+			</div>
+
+			<ul class="b-comp-menu-dropdown__content js-comp-menu-dropdown__content b-comp-menu-dropdown__content--right">
+
+				<li class="b-comp-menu-dropdown__content-item js-comp-menu-dropdown__content-maintain-menu b-comp-menu-dropdown__content-item--no-hover">
+					
+
+<div class="js-login-form-main-container login-form-main-container">
+
+<div class="js-error-box error h-margin-bottom-l h-hide"></div>
+
+<div class="js-login-message-box login-message-box h-hide">
+	<div class=h-center-container><div class=h-center>Logging in...</div></div>
+</div>
+
+<form action method=post class="h-clearfix js-login-form-main ">
+	<div class="login-fieldset table">
+		<div class=tr>
+			
+				
+					
+				
+			
+			<span class=td>
+				<input type=text name=username value class="js-login-username b-form-input__input b-form-input__input--full" placeholder="User/Email"/>
+			</span>
+		</div>
+		<div class=tr>
+			<span class=td>
+				<input type=password autocomplete=off name=password class="js-login-password b-form-input__input b-form-input__input--full" placeholder=Password />
+			</span>
+		</div>
+	</div>
+
+	
+	
+		<div class="h-warning h-text-size--11">By logging into your account, you agree to our <a href="https://www.powerbasic.com/privacy-notice" target=_blank>Privacy Policy</a>, personal data processing and storage practices as described therein.</div>
+		<input type=hidden name=privacyconsent value=1 />
+	
+
+	<div class="secondary-controls h-left h-clear-left h-margin-top-s">
+		<label><input type=checkbox name=rememberme />Remember me</label>
+	</div>
+
+	<div class="primary-controls h-right h-clear-right h-margin-top-s">
+		<button type=button class="js-login-button b-button b-button--primary">Log in</button>
+	</div>
+
+	<div class="secondary-controls h-left h-clear-left">
+		<a href="https://forum.powerbasic.com/lostpw" class="b-link lost-password-link">Forgot password or user name?</a>
+	</div>
+
+	<div class="primary-controls h-right h-clear-right">
+		
+			
+			
+			
+		
+		or <a id=idLoginSignup href="https://forum.powerbasic.com/register?urlpath=aHR0cHM6Ly9mb3J1bS5wb3dlcmJhc2ljLmNvbS9mb3J1bS91c2VyLXRvLXVzZXItZGlzY3Vzc2lvbnMvcG93ZXJiYXNpYy1jb25zb2xlLWNvbXBpbGVyLzc2MDEzNC1wYmNjLW1lbnUtZGxs" target=_top>Sign Up</a>
+	</div>
+
+</form>
+</div>
+				</li>
+
+				
+				
+
+				<li id=externalLoginProviders class="b-comp-menu-dropdown__content-item js-comp-menu-dropdown__content-maintain-menu b-comp-menu-dropdown__content-item--no-hover js-external-login-providers h-clearfix h-hide-imp">
+					<span class="h-left h-margin-left-s h-margin-top-s">Log in with</span>
+					
+					
+					
+			
+
+			
+
+				</li>
+
+			</ul>
+
+		</div>
+
+	</li>
+
+	
+
+		</ul>
+	</div>
+</nav>
+
+<div id=sitebuilder-wrapper class="noselect h-clearfix h-hide-on-small">
+	
+</div>
+
+<div class=main-navbar-bottom-line></div>
+
+<div id=outer-wrapper>
+<div id=wrapper>
+
+	
+	<div id=header-axd class="header-edit-box axdnum_1 h-clearfix">
+		
+		<div class="axd-container axd-container_header">
+			<div class=admin-only>
+				
+			</div>
+			<div class="axd axd_header">
+				
+			</div>
+		</div>
+		<div class="axd-container axd-container_header2">
+			<div class=admin-only>
+				
+			</div>
+			<div class="axd axd_header2">
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<header class=b-top-background__header-mainnav-subnav>
+
+		
+		<div class=b-top-background__header-mainnav>
+
+			
+			<div id=header class=noselect>
+				<div class=header-cell>
+					
+					<div class="site-logo header-edit-box">
+						<a href="https://forum.powerbasic.com/"><img src="resources/forum.hdr.pb2016.912x96.png" data-orig-src="https://forum.powerbasic.com/core/css/0/0/3/1/8/7//images/forum.hdr.pb2016.912x96.png" alt=Logo title="Powered by vBulletin"/></a>
+					</div>
+				</div>
+				<div class=toolbar>
+					<ul class=h-right>
+						
+						
+						
+						<li class=search-container>
+							<form id=searchForm action="https://forum.powerbasic.com/search" class=h-left method=GET>
+								<div class=h-left>
+
+									
+									<div class="search-box h-clearfix">
+
+										<div class=search-term-container>
+
+											<input type=text name=q id=q placeholder=Search class="search-term b-form-input__input b-form-input__input--shadow" autocomplete=off />
+
+											<div class="search-menu-container h-clearfix">
+												<div class=vertical-divider-left></div>
+												<div class="b-comp-menu-dropdown js-comp-menu-dropdown b-comp-menu-dropdown--open-on-hover b-comp-menu-dropdown--header-search">
+													<div class="b-comp-menu-dropdown__trigger js-comp-menu-dropdown__trigger b-comp-menu-dropdown__trigger--arrow js-button" tabindex=0></div>
+													<ul class="b-comp-menu-dropdown__content js-comp-menu-dropdown__content">
+
+	<li class="b-comp-menu-dropdown__content-item b-comp-menu-dropdown__content-item--first b-comp-menu-dropdown__content-item--no-hover js-comp-menu-dropdown__content-maintain-menu">
+
+		<div class=searchPopupBody>
+
+			<label><input type=checkbox name="searchFields[title_only]" class=searchFields_title_only value=1 />Search in titles only</label>
+
+			
+
+			
+				
+				
+					<label><input type=checkbox name="searchFields[channel][]" class=searchFields_channel value=32 />Search in PowerBASIC Console Compiler only</label>
+				
+			
+
+			<div class="b-button-group h-margin-top-xs">
+				<button type=submit id=btnSearch-popup class="b-button b-button--primary">Search</button>
+			</div>
+
+		</div>
+
+		<input type=hidden name=searchJSON value />
+	</li>
+
+	<li class="b-comp-menu-dropdown__content-item js-comp-menu-dropdown__content-maintain-menu">
+		<a href="https://forum.powerbasic.com/#" id=btnAdvSearch class=adv-search-btn>Advanced Search</a>
+	</li>
+
+</ul>
+												</div>
+											</div>
+
+										</div>
+
+										<button type=submit id=btnSearch class=search-btn title=Search><span class="b-icon b-icon__search"></span></button>
+
+									</div>
+
+								</div>
+							</form>
+						</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<nav id=channel-tabbar class="h-clearfix noselect">
+				<ul class="channel-tabbar-list h-left b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-comp-menu-dropdown--inactive js-comp-menu-dropdown__content--main-menu h-hide-on-small js-shrink-event-parent">
+
+					
+						
+					
+
+					
+					
+					
+						
+						
+						
+						<li class="current section-item js-shrink-event-child">
+							<a href class="h-left navbar_home">Community</a>
+							
+								<span class=channel-tabbar-divider></span>
+							
+							<span class="mobile dropdown-icon"><span class="icon h-right"></span></span>
+						</li>
+					
+						
+						
+						
+						<li class=" section-item js-shrink-event-child">
+							<a href="https://forum.powerbasic.com/PowerBASICLinks" class="h-left navbar_powerbasic_home_page">PowerBASIC Links</a>
+							
+								<span class=channel-tabbar-divider></span>
+							
+							<span class="mobile dropdown-icon"><span class="icon h-right"></span></span>
+						</li>
+					
+						
+						
+						
+						<li class=" section-item js-shrink-event-child">
+							<a href="https://forum.powerbasic.com/RulesAndGuidelines" class="h-left navbar_forum_rules_ampamp_guidelines">Forum Rules & Guidelines</a>
+							
+							<span class="mobile dropdown-icon"><span class="icon h-right"></span></span>
+						</li>
+					
+					
+				</ul>
+			</nav>
+
+
+		</div>
+
+
+		
+		<nav id=channel-subtabbar class="h-clearfix  h-hide-on-small h-block js-channel-subtabbar">
+			<ul class="h-left channel-subtabbar-list js-channel-subtabbar-list js-shrink-event-parent">
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href="https://forum.powerbasic.com/search?searchJSON={%22view%22:%22topic%22,%22unread_only%22:1,%22sort%22:{%22lastcontent%22:%22desc%22},%22exclude%22:%2245%22,%22exclude_type%22:[%22vBForum_PrivateMessage%22],%22date%22:%22lastVisit%22}" class=navbar__>NEW POSTS</a>
+					</li>
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href="http://forum.powerbasic.com/search?searchJSON={%22date%22:{%22from%22:%222%22},%22sort%22:{%22created%22:%22desc%22},%22view%22:%22%22,%22exclude%22:%2245%22,%22exclude_type%22:[%22vBForum_PrivateMessage%22]}" class=navbar_.>Activity Stream</a>
+					</li>
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href="https://forum.powerbasic.com/search?searchJSON={%22view%22:%22topic%22,%22unread_only%22:1,%22sort%22:{%22lastcontent%22:%22desc%22},%22exclude%22:%2245%22,%22exclude_type%22:[%22vBForum_PrivateMessage%22]}" class=navbar_todays_posts>Today's Posts</a>
+					</li>
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href='https://forum.powerbasic.com/search?searchJSON={"view":"topic","unread_only":1,"sort":{"lastcontent":"desc"},"exclude":"45","exclude_type":["vBForum_PrivateMessage"],"date":"lastVisit"}' class=navbar_newtopics>New Topics</a>
+					</li>
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href="https://forum.powerbasic.com/search" class=navbar_advanced_search>ADVANCED SEARCH</a>
+					</li>
+				
+			</ul>
+		</nav>
+
+
+	</header>
+
+
+	
+		
+	
+
+	
+	
+		
+		<nav class=breadcrumbs-wrapper>
+		<ul id=breadcrumbs class=h-clearfix itemprop=breadcrumb>
+			<li class=crumb>
+				<a class="crumb-link h-flex-valign-center" href>
+					<span class="b-icon b-icon__home" title="Community Home"></span>
+				</a>
+			</li>
+			
+				
+					
+					
+				
+				<li class=crumb>
+					<span class="b-icon b-icon__chevron-right--gray separator"></span>
+					
+						<a class=crumb-link href="https://forum.powerbasic.com/forum">Community</a>
+					
+				</li>
+			
+				
+					
+					
+				
+				<li class=crumb>
+					<span class="b-icon b-icon__chevron-right--gray separator"></span>
+					
+						<a class=crumb-link href="https://forum.powerbasic.com/forum/user-to-user-discussions">User to User Discussions</a>
+					
+				</li>
+			
+				
+					
+					
+				
+				<li class=crumb>
+					<span class="b-icon b-icon__chevron-right--gray separator"></span>
+					
+						<a class=crumb-link href="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler">PowerBASIC Console Compiler</a>
+					
+				</li>
+			
+		</ul>
+		</nav>
+	
+
+	
+
+	
+	
+		
+			
+			
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+			
+		
+	
+
+	
+
+	
+
+<ul id=notices class=notices>
+	
+	
+		
+		<li class="notice restore" data-notice-id=5 data-notice-persistent=1><b>You are not logged in.</b>  You can browse in the PowerBASIC Community, but you must click Login <i>(top right)</i> before you can post.  If this is your first visit, check out the <a href="https://forum.powerbasic.com/help" target=_blank><b>FAQ</b></a> or <a href="https://forum.powerbasic.com/register" target=_blank><b>Sign Up</b></a>.</li>
+	
+</ul>
+
+
+	
+
+
+	
+	<main id=content>
+		<div class="canvas-layout-container js-canvas-layout-container">
+
+<div id=canvas-layout-full class=canvas-layout data-layout-id=1>
+
+	
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 200 -->
+
+
+
+<div class="canvas-widget-list section-200 js-sectiontype-global_after_breadcrumb h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 2 -->
+
+
+
+<div class="canvas-widget-list section-2 js-sectiontype-notice h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+	<!-- *** START WIDGET widgetid:28, widgetinstanceid:18, template:widget_announcement *** -->
+	
+	
+
+
+	
+	
+
+
+
+
+
+<div class="b-module canvas-widget default-widget announcement-widget empty" id=widget_18 data-widget-id=28 data-widget-instance-id=18>
+	
+	<div class="widget-header h-clearfix">
+		
+		
+			
+		
+
+		<div class="module-title h-left">
+			
+				<h1 class="main-title js-main-title hide-on-editmode">Announcement</h1>
+				
+				
+				
+			
+		</div>
+		
+			<div class=module-buttons>
+				
+					<span class="toggle-button module-button-item collapse" title=Collapse data-toggle-title=Expand><span class="b-icon b-icon__toggle-collapse">Collapse</span></span>
+				
+			</div>
+		
+	</div>
+	
+
+	<div class=widget-content>
+		
+			
+				No announcement yet.
+				
+			
+				
+	</div>
+</div>
+	<!-- *** END WIDGET widgetid:28, widgetinstanceid:18, template:widget_announcement *** -->
+
+	<!-- *** START WIDGET widgetid:51, widgetinstanceid:19, template:widget_pagetitle *** -->
+	
+	
+
+
+	
+	
+
+
+
+
+
+	
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+
+
+
+<div class="b-module canvas-widget default-widget page-title-widget widget-no-header-buttons widget-no-border" id=widget_19 data-widget-id=51 data-widget-instance-id=19>
+	
+	<div class="widget-header h-clearfix">
+		
+		
+
+		<div class="module-title h-left">
+			
+				<h1 class="main-title js-main-title hide-on-editmode">PBCC Menu Dll</h1>
+				
+				
+				
+			
+		</div>
+		
+			<div class=module-buttons>
+				
+					<span class="toggle-button module-button-item collapse" title=Collapse data-toggle-title=Expand><span class="b-icon b-icon__toggle-collapse">Collapse</span></span>
+				
+			</div>
+		
+	</div>
+	
+
+
+	
+	
+
+</div>
+	<!-- *** END WIDGET widgetid:51, widgetinstanceid:19, template:widget_pagetitle *** -->
+
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 0 -->
+
+
+
+<div class="canvas-widget-list section-0 js-sectiontype-primary js-sectiontype-secondary h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+	<!-- *** START WIDGET widgetid:6, widgetinstanceid:20, template:widget_conversationdisplay *** -->
+	
+
+
+
+	
+		
+	
+	
+		
+			
+		
+	
+
+	
+	
+	
+	
+		
+		
+		
+		
+		
+
+		
+			
+			
+			
+
+			
+			
+			
+			
+				
+			
+			
+			
+
+			
+				
+			
+			
+
+			
+
+			
+
+			
+				
+					
+				
+				
+				
+				
+				
+				
+			
+
+			
+
+			
+
+			
+
+			
+			
+			
+
+			
+			
+
+			
+				
+			
+
+			
+				
+				
+				
+			
+
+			
+			
+
+			
+				
+			
+
+
+			
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+
+			
+			
+			
+
+			
+				
+				
+					
+				
+
+				
+			
+
+			
+			
+			
+			
+			
+			
+
+		
+	
+
+	
+	
+	
+		
+		
+		 
+	
+
+	
+	
+	
+		
+		
+	
+
+	<div class="b-module canvas-widget default-widget conversation-content-widget  forum-conversation-content-widget widget-tabs widget-no-border widget-no-header-buttons  axd-container" id=widget_20 data-widget-id=6 data-widget-instance-id=20 data-widget-default-tab="#thread-view-tab">
+		
+			<div class=conversation-status-messages>
+				
+				
+				
+				
+				<div class="conversation-status-message notice h-hide"><span></span><div class=close>X</div></div>
+			</div>
+
+			<div class="widget-header h-clearfix">
+				<div class="module-title h-left main-header-title">
+					
+				</div>
+				<div class=module-buttons>
+					<span class="toggle-button module-button-item collapse" title=Collapse data-toggle-title=Expand><span class="b-icon b-icon__toggle-collapse">Collapse</span></span>
+				</div>
+				
+				
+				<div class="conversation-controls h-right h-clear hide-on-editmode b-button-group h-margin-bottom-l js-movable-toolbar-button-container">
+					
+				</div>
+				
+					<div class="widget-tabs-nav h-clear">
+						<a id=topic-module-top class="anchor js-module-top-anchor"></a>
+						
+						<ul class="ui-tabs-nav hide-on-editmode h-left b-comp-menu-horizontal js-module-tab-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive">
+							
+							
+							<li><a href="https://forum.powerbasic.com/#thread-view-tab" data-href="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?view=thread">Posts</a></li>
+							
+							<li><a href="https://forum.powerbasic.com/#stream-view-tab" data-href="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?view=stream">Latest Activity</a></li>
+							
+							<li><a href="https://forum.powerbasic.com/#media-view-tab" data-href="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?view=media">Photos</a></li>
+						</ul>
+					</div>
+				
+			</div>
+			<div class="widget-content tab widget-tabs-panel">
+				<input type=hidden name=canmoderate id=canmoderate value=0 />
+				
+					
+					
+					
+					
+				
+				<div id=thread-view-tab class="conversation-view conversation-thread-view">
+					
+						
+					
+					
+						
+							
+						
+					
+
+					
+
+
+	
+		
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+<div class="conversation-toolbar-wrapper  top h-clear hide-on-editmode
+	
+		scrolltofixed-floating
+		scrolltofixed-top
+	
+" data-allow-history=1>
+	<div class=conversation-toolbar>
+
+
+		
+
+		
+			
+			<div class=toolset-left>
+
+				
+				<div class="conversation-toolbar-height-shim js-shrink-event-child">
+					<div class=b-button> </div>
+				</div>
+
+			</div>
+		
+		
+
+		
+
+		<ul class="toolset-right js-shrink-event-parent">
+
+			
+				<li class="toolbar-search h-hide-on-small js-shrink-event-child">
+					<form name=toolbar-search-form action="activity/get" method=post class=toolbar-search-form>
+						<input type=hidden name=nodeid value=760134 />
+						<input type=hidden name=view value=thread />
+						
+							<input type=hidden name=per-page value=20 />
+							<input type=hidden name=pagenum value=1 />
+						
+
+						<div class="js-toolbar-search-inner b-form-input__input-with-button-container b-form-input__input-with-button-container--full">
+
+							<input type=text name=q value class="b-form-input__input b-form-input__input--with-button b-form-input__input--shadow js-filter-search" placeholder=Search data-filter-name=Search />
+
+							<button type=submit name=btnSearch id=btnSearch-top class=b-form-input__inside-button><span class="b-form-input__inside-button-icon b-icon b-icon__search-gray-s">Search</span></button>
+
+						</div>
+
+					</form>
+				</li>
+				<li class="h-hide-on-small js-shrink-event-child">
+					<div class=toolbar-divider>
+						<span class=toolbar-divider-inner></span>
+					</div>
+				</li>
+			
+
+			
+			
+				
+			
+
+			
+			
+				<li class="toolbar-pagenav js-toolbar-pagenav h-hide-on-xsmall js-shrink-event-child">
+					<div class=toolbar-pagenav-wrapper>
+						<!-- Page Nav controls -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="pagenav-controls ">
+	<form class="pagenav-form h-clearfix" action="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll">
+		<input type=hidden class=defaultpage value=1 />
+		
+		<div class="pagenav h-left">
+			Page <input type=text name=page class="js-pagenum textbox h-padding-horiz-none b-form-input__input--shadow" value=1 /> of <span class=pagetotal>1</span>
+		</div>
+
+		<div class="horizontal-arrows h-left">
+			<a class="arrow left-arrow h-disabled" title="Previous Page" rel=prev><span class="vb-icon vb-icon-arrow-left"></span></a>
+			<a class="arrow right-arrow h-disabled" title="Next Page" rel=next><span class="vb-icon vb-icon-arrow-right"></span></a>
+		</div>
+	</form>	
+</div>
+					</div>
+				</li>
+				
+					<li class="h-hide-on-xsmall js-shrink-event-child">
+						<div class=toolbar-divider>
+							<span class=toolbar-divider-inner></span>
+						</div>
+					</li>
+				
+			
+
+			
+				<li class="toolbar-filter toolbar-filter-top js-shrink-event-child">
+					<div class="filter-wrapper h-clearfix js-button" tabindex=0>
+						<div class="label h-left">Filter</div>
+						<div class="arrow vb-icon-wrapper h-left"><span class="vb-icon vb-icon-triangle-down-wide"></span></div>
+					</div>
+				</li>
+			
+
+			
+
+			
+		</ul>
+	</div>
+
+
+	
+
+	
+		
+			
+		
+		
+		<form action="activity/get" method=post class="toolbar-filter-overlay h-clearfix">
+			<input type=hidden name=nodeid value=760134 />
+			<input type=hidden name=view value=thread />
+			
+			
+			
+			
+				<input type=hidden name=nolimit value=1 />
+			
+			
+				<input type=hidden name=per-page value=20 />
+				<input type=hidden name=pagenum value=1 />
+			
+			
+			
+			
+				<input type=hidden name=userid value=0 />
+			
+			
+			
+			<input type=hidden name=showChannelInfo value=1 />
+			<ul class=filter-options-list>
+				
+				
+				<li>
+					<div class=filter-header>Time</div>
+					<div class=filter-options>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							
+						
+						
+						
+						
+
+						
+							<label><input type=radio name=filter_time value=time_all checked=checked class=js-default-checked /><span>All Time</span></label>
+						
+						<label><input type=radio name=filter_time value=time_today /><span>Today</span></label>
+						<label><input type=radio name=filter_time value=time_lastweek /><span>Last Week</span></label>
+						<label><input type=radio name=filter_time value=time_lastmonth /><span>Last Month</span></label>
+					</div>
+				</li>
+				
+
+				
+
+				
+				<li>
+					<div class=filter-header>Show</div>
+					<div class=filter-options>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							
+						
+						
+						
+						
+
+						<label><input type=radio name=filter_show value=show_all checked=checked class=js-default-checked /><span>All</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Text /><span>Discussions only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Gallery /><span>Photos only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Video /><span>Videos only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Link /><span>Links only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Poll /><span>Polls only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Event /><span>Events only</span></label>
+					</div>
+				</li>
+				
+				
+				
+				
+				
+				
+
+				
+
+				
+				<!-- end if prefixsets -->
+			</ul>
+		</form>
+
+		
+
+		<div class="filtered-by h-clearfix h-hide">
+			<label>Filtered by:</label>
+			<div class="filter-text-wrapper h-left">
+				
+				
+				
+			</div>
+			<a href="https://forum.powerbasic.com/#" class="clear-all h-hide">Clear All</a>
+		</div>
+		<div class=new-conversations-strip><span></span> new posts</div>
+	
+</div>
+
+
+
+	<div class="h-show-on-xsmall h-right h-margin-top-l js-under-toolbar-pagenav h-margin-bottom-m">
+		
+
+
+	
+
+
+
+	
+
+
+<div class="pagenav-container h-clearfix noselect h-hide pagenav-container--no-margin">
+	<div class="js-pagenav pagenav h-right js-shrink-event-parent" data-baseurl="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll">
+
+		
+
+		
+		
+			<a class="js-pagenav-button js-pagenav-prev-button b-button b-button--secondary h-hide-imp js-shrink-event-child" data-page=0 href tabindex=0>Previous</a>
+		
+
+		
+		
+		
+		
+		
+		<a class="js-pagenav-button b-button b-button--narrow js-shrink-event-child b-button--secondary js-pagenav-button--template h-hide-imp" data-page=0 href=index.html tabindex=0>template</a>
+
+		
+		
+			<a class="js-pagenav-button js-pagenav-next-button b-button b-button--secondary h-hide-imp js-shrink-event-child" data-page=0 href tabindex=0>Next</a>
+		
+
+	</div>
+</div>
+	</div>
+
+					<div class=conversation-content>
+						<ul class="conversation-list list-container h-clearfix   thread-view">
+							
+								
+								
+								
+
+								
+								
+								
+								
+									
+
+									
+
+									
+										
+									
+								
+									
+
+									
+
+									
+										
+									
+								
+									
+
+									
+
+									
+										
+									
+								
+									
+
+									
+
+									
+										
+									
+								
+									
+
+									
+
+									
+										
+									
+								
+									
+
+									
+
+									
+								
+									
+
+									
+
+									
+										
+									
+								
+									
+
+									
+
+									
+										
+									
+								
+
+								
+
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+							
+							
+							
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+
+							
+
+							
+							
+							
+								
+									
+									
+								
+								
+									
+									<!-- Starter Conversation -->
+									
+									
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+	
+
+
+
+
+
+<li data-node-id=760134 data-node-publishdate=1492213223 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text b-post--first js-conversation-starter h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/CreativeWork">
+
+	
+	
+	
+		<a id=post760134 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/218-walt-decker" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Walt Decker" title="Walt Decker"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=218>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/218-walt-decker" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Walt Decker" title="Walt Decker"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Walt Decker
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22218%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/218-walt-decker">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/218-walt-decker" class data-vbnamecard=218>Walt Decker</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Dec 1999</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>1117</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Walt Decker is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%23post760134" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll#post760134" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=PBCC+Menu+Dll&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%23post760134" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+								<a class="b-post__count js-show-post-link" href="#post760134">#1
+								</a>
+							
+
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+								<h2 class="b-post__title js-post-title b-post__hide-when-deleted">
+									
+									
+									PBCC Menu Dll
+								</h2>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2017-04-14T16:40:23>14 Apr 2017, 07:40 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+							<div class="axd axd_first-post">
+								
+								
+								
+							</div>
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								This might be of interest to those using or wanting to use PBCC. Source code is PBCC v. 6.x and PBWIN v 10.x<br/>
+<br/>
+The code shows one way for console to comunicate with a window and the window to communicate back to the console.<br/>
+<br/>
+DLL CODE:<br/>
+
+<div class=bbcode_container>
+	<div class=bbcode_description>Code:</div>
+	
+	<pre class=bbcode_code style="max-height:calc(40 * 1.4rem + 12px + 20px);">#COMPILE DLL "WINTOOLS"
+
+DEFLNG I - N
+
+'/======================================================================================/'
+'                           WINDOWS EQUATES
+'/======================================================================================/'
+'--------- REGISTER WINDOW ----------------'
+%CS_VREDRAW         = &H0001
+%CS_HREDRAW         = &H0002
+%CS_DBLCLKS         = &H0008
+%CS_OWNDC           = &H0020
+%CS_CLASSDC         = &H0040
+%CS_PARENTDC        = &H0080
+%CW_USEDEFAULT      = &H80000000& ' long
+
+'---------------- dll codes -------------------
+%DLL_PROCESS_ATTACH  = 1
+%DLL_THREAD_ATTACH   = 2
+%DLL_THREAD_DETACH   = 3
+%DLL_PROCESS_DETACH  = 0
+
+
+
+'--------- WINDOW MESSAGES --------
+%WM_INITDIALOG               = &H0110
+%WM_COMMAND                  = &H0111
+%WM_SYSCOMMAND               = &H0112
+%WM_TIMER                    = &H0113
+%WM_HSCROLL                  = &H0114
+%WM_VSCROLL                  = &H0115
+
+'------ PeekMessage() Options -------
+'
+%PM_NOREMOVE       = &H0000
+%PM_REMOVE         = &H0001
+%PM_NOYIELD        = &H0002
+
+'-------------- stock brushes ----------------
+%WHITE_BRUSH         = 0
+%LTGRAY_BRUSH        = 1
+%GRAY_BRUSH          = 2
+%DKGRAY_BRUSH        = 3
+%BLACK_BRUSH         = 4
+%NULL_BRUSH          = 5
+%HOLLOW_BRUSH        = %NULL_BRUSH
+%WHITE_PEN           = 6
+%BLACK_PEN           = 7
+%NULL_PEN            = 8
+
+'---- Standard Icon IDs -------------------------
+%IDI_APPLICATION    = 32512
+%IDI_HAND           = 32513
+%IDI_QUESTION       = 32514
+%IDI_EXCLAMATION    = 32515
+%IDI_ASTERISK       = 32516
+%IDI_WINLOGO        = 32517
+%IDI_SHIELD         = 32518
+%IDI_WARNING     = %IDI_EXCLAMATION
+%IDI_ERROR       = %IDI_HAND
+%IDI_INFORMATION = %IDI_ASTERISK
+
+'---- Standard Cursor IDs ----
+%IDC_ARROW           = 32512
+%IDC_IBEAM           = 32513
+%IDC_WAIT            = 32514
+%IDC_CROSS           = 32515
+%IDC_UPARROW         = 32516
+%IDC_SIZE            = 32640  ' OBSOLETE: use IDC_SIZEALL
+%IDC_ICON            = 32641  ' OBSOLETE: use IDC_ARROW
+%IDC_SIZENWSE        = 32642
+%IDC_SIZENESW        = 32643
+%IDC_SIZEWE          = 32644
+%IDC_SIZENS          = 32645
+%IDC_SIZEALL         = 32646
+%IDC_NO              = 32648 'not in win3.1
+%IDC_HAND            = 32649
+%IDC_APPSTARTING     = 32650 'not in win3.1
+%IDC_HELP            = 32651
+
+'---- MENU FLAGS -----
+%MF_INSERT           = &H00000000
+%MF_CHANGE           = &H00000080
+%MF_APPEND           = &H00000100
+%MF_DELETE           = &H00000200
+%MF_REMOVE           = &H00001000
+
+%MF_BYCOMMAND        = &H00000000
+%MF_BYPOSITION       = &H00000400
+
+%MF_SEPARATOR        = &H00000800
+
+%MF_ENABLED          = &H00000000
+%MF_GRAYED           = &H00000001
+%MF_DISABLED         = &H00000002
+
+%MF_UNCHECKED        = &H00000000
+%MF_CHECKED          = &H00000008
+%MF_USECHECKBITMAPS  = &H00000200
+
+%MF_STRING           = &H00000000
+%MF_BITMAP           = &H00000004
+%MF_OWNERDRAW        = &H00000100
+
+%MF_POPUP            = &H00000010
+%MF_MENUBARBREAK     = &H00000020
+%MF_MENUBREAK        = &H00000040
+
+%MF_UNHILITE         = &H00000000
+%MF_HILITE           = &H00000080
+
+%MF_DEFAULT          = &H00001000
+
+%MF_SYSMENU          = &H00002000
+%MF_HELP             = &H00004000
+
+%MF_RIGHTJUSTIFY     = &H00004000
+
+%MF_MOUSESELECT      = &H00008000
+
+%MF_END              = &H00000080  ' Obsolete -- only used by old RES files
+
+'/======================================================================================/'
+'                              DLL EQUATES
+'/======================================================================================/'
+%NULL   = 0
+%FALSE  = 0
+%TRUE   = 1
+
+%DLGMESS = %WM_USER + 500
+
+%MNU_SETMENU  = %DLGMESS + 1
+%MNU_SETCCMSG = %MNU_SETMENU + 1
+%MNU_SETHNDL  = %MNU_SETCCMSG + 1
+
+$NSP = $NUL + $SPC
+
+'/======================================================================================/'
+'                           WINDOWS STRUCTURES
+'/======================================================================================/'
+
+TYPE WNDCLASSEXA
+    cbSize        AS DWORD
+    ' Win 3.x
+    STYLE         AS DWORD
+    lpfnWndProc   AS DWORD
+    cbClsExtra    AS LONG
+    cbWndExtra    AS LONG
+    hInstance     AS DWORD
+    hIcon         AS DWORD
+    hCursor       AS DWORD
+    hbrBackground AS DWORD
+    lpszMenuName  AS ASCIIZ PTR
+    lpszClassName AS ASCIIZ PTR
+    ' Win 4.0
+    hIconSm       AS DWORD
+END TYPE
+
+TYPE WNDCLASSEXW
+    cbSize        AS DWORD
+    ' Win 3.x
+    STYLE         AS DWORD
+    lpfnWndProc   AS DWORD
+    cbClsExtra    AS LONG
+    cbWndExtra    AS LONG
+    hInstance     AS DWORD
+    hIcon         AS DWORD
+    hCursor       AS DWORD
+    hbrBackground AS DWORD
+    lpszMenuName  AS WSTRINGZ PTR
+    lpszClassName AS WSTRINGZ PTR
+    ' Win 4.0
+    hIconSm       AS DWORD
+END TYPE
+
+#IF %DEF(%UNICODE)
+TYPE WNDCLASSEX
+    WNDCLASSEXW
+END TYPE
+#ELSE
+TYPE WNDCLASSEX
+    WNDCLASSEXA
+END TYPE
+#ENDIF ' UNICODE
+
+#IF %DEF(%UNICODE)
+TYPE WNDCLASS
+    WNDCLASSEXW
+END TYPE
+#ELSE
+TYPE WNDCLASS
+    WNDCLASSEXA
+END TYPE
+#ENDIF ' UNICODE
+
+TYPE CREATESTRUCTA
+    lpCreateParams AS DWORD
+    hInstance      AS DWORD
+    hMenu          AS DWORD
+    hwndParent     AS DWORD
+    cy             AS LONG
+    cx             AS LONG
+    y              AS LONG
+    x              AS LONG
+    STYLE          AS LONG
+    lpszName       AS ASCIIZ PTR
+    lpszClass      AS ASCIIZ PTR
+    dwExStyle      AS DWORD
+END TYPE
+
+TYPE CREATESTRUCTW
+    lpCreateParams AS DWORD
+    hInstance      AS DWORD
+    hMenu          AS DWORD
+    hwndParent     AS DWORD
+    cy             AS LONG
+    cx             AS LONG
+    y              AS LONG
+    x              AS LONG
+    STYLE          AS LONG
+    lpszName       AS WSTRINGZ PTR
+    lpszClass      AS WSTRINGZ PTR
+    dwExStyle      AS DWORD
+END TYPE
+
+#IF %DEF(%UNICODE)
+TYPE CREATESTRUCT
+    CREATESTRUCTW
+END TYPE
+#ELSE
+TYPE CREATESTRUCT
+    CREATESTRUCTA
+END TYPE
+#ENDIF ' UNICODE
+
+TYPE Area_Struct
+  X            AS LONG
+  Y            AS LONG
+  X1           AS LONG
+  Y1           AS LONG
+END TYPE
+
+TYPE Points_Struct
+  X           AS LONG
+  Y           AS LONG
+END TYPE
+
+'
+' Message structure
+'
+TYPE MSG_type
+    hwnd     AS DWORD
+    message  AS DWORD
+    wParam   AS DWORD
+    lParam   AS LONG
+    time     AS DWORD
+    pt       AS POINT
+  #IF %DEF(%MAC)
+    lPrivate AS DWORD
+  #ENDIF
+END TYPE
+
+' [legacy]
+TYPE tagMSG
+    MSG_type
+END TYPE
+
+TYPE Header_Struct
+  HndlFrom           AS DWORD
+  IdFrom             AS DWORD
+  MsgCode            AS LONG
+END TYPE
+
+TYPE Menu_Struct
+  MainHndl          AS DWORD
+  SubItemHndl       AS DWORD
+  BarName           AS STRING * 64
+  SubItemName       AS STRING * 64
+  ItemId            AS DWORD
+END TYPE
+
+TYPE NmMenu_Struct
+  Header_Struct
+  NumItems          AS LONG
+  Mnu(20)           AS Menu_Struct
+END TYPE
+
+'/======================================================================================/'
+'                           WINDOWS DECLARES
+'/======================================================================================/'
+#IF %DEF(%UNICODE)
+  DECLARE FUNCTION GetClassInfoEx LIB "User32.dll" ALIAS "GetClassInfoExW" _
+      (BYVAL hInst AS DWORD, BYREF lpszClass AS ANY, lpWndClass AS WNDCLASSEXW) AS LONG
+  DECLARE FUNCTION RegisterClassEx LIB "User32.dll" ALIAS "RegisterClassExW" _
+      (pcWndClassEx AS WNDCLASSEXW) AS WORD
+  DECLARE FUNCTION CreateWindowEx LIB "User32.dll" ALIAS "CreateWindowExW" _
+         (BYVAL dwExStyle AS DWORD, lpClassName AS WSTRINGZ, _
+          lpWindowName AS WSTRINGZ, BYVAL dwStyle AS DWORD, BYVAL x AS LONG, _
+          BYVAL y AS LONG, BYVAL nWidth AS LONG, BYVAL nHeight AS LONG, _
+          BYVAL hWndParent AS DWORD, BYVAL hMenu AS DWORD, _
+          BYVAL hInstance AS DWORD, lpParam AS ANY) AS DWORD
+  DECLARE FUNCTION LoadIcon LIB "User32.dll" ALIAS "LoadIconW" _
+          (BYVAL hInstance AS DWORD, lpIconName AS WSTRINGZ) AS DWORD
+  DECLARE FUNCTION LoadCursor LIB "User32.dll" ALIAS "LoadCursorW" _
+          (BYVAL hInstance AS DWORD, lpCursorName AS WSTRINGZ) AS DWORD
+  DECLARE FUNCTION SendMessage LIB "User32.dll" ALIAS "SendMessageW" _
+          (BYVAL hWnd AS DWORD, BYVAL dwMsg AS DWORD, BYVAL wParam AS DWORD, _
+           BYVAL lParam AS LONG) AS LONG
+  DECLARE FUNCTION PostMessage LIB "User32.dll" ALIAS "PostMessageW" _
+          (BYVAL hWnd AS DWORD, BYVAL dwMsg AS DWORD, BYVAL wParam AS DWORD, _
+           BYVAL lParam AS LONG) AS LONG
+  DECLARE FUNCTION PeekMessage LIB "User32.dll" ALIAS "PeekMessageW" _
+          (lpMsg AS MSG_type, BYVAL hWnd AS DWORD, BYVAL dwMsgFilterMin AS DWORD, _
+          BYVAL dwMsgFilterMax AS DWORD, BYVAL dwRemoveMsg AS DWORD) AS LONG
+  DECLARE FUNCTION DispatchMessage LIB "User32.dll" ALIAS "DispatchMessageW" _
+          (lpMsg AS MSG_type) AS LONG
+  DECLARE FUNCTION DefWindowProc LIB "User32.dll" ALIAS "DefWindowProcW" _
+          (BYVAL hWnd AS DWORD, BYVAL uMsg AS DWORD, BYVAL wParam AS DWORD, _
+          BYVAL lParam AS LONG) AS LONG
+  DECLARE FUNCTION GetModuleHandle LIB "Kernel32.dll" ALIAS "GetModuleHandleW" _
+          (lpModuleName AS WSTRINGZ) AS DWORD
+  DECLARE FUNCTION AppendMenu LIB "User32.dll" ALIAS "AppendMenuW" _
+          (BYVAL hMenu AS DWORD, BYVAL uFlags AS DWORD, BYVAL uIDNewItem AS DWORD, _
+          BYVAL lpNewItem AS DWORD) AS LONG
+  DECLARE FUNCTION InsertMenu LIB "User32.dll" ALIAS "InsertMenuW" _
+         (BYVAL hMenu AS DWORD, BYVAL dwPosition AS DWORD, BYVAL dwFlags AS DWORD, _
+          BYVAL dwIDNewItem AS DWORD, lpNewItem AS WSTRINGZ) AS LONG
+
+
+#ELSE
+  DECLARE FUNCTION GetClassInfoEx LIB "User32.dll" ALIAS "GetClassInfoExA" _
+          (BYVAL hInst AS DWORD, BYREF lpszClass AS ANY, lpWndClass AS WNDCLASSEXA) AS LONG
+  DECLARE FUNCTION RegisterClassEx LIB "User32.dll" ALIAS "RegisterClassExA" _
+          (pcWndClassEx AS WNDCLASSEXA) AS WORD
+  DECLARE FUNCTION CreateWindowEx LIB "User32.dll" ALIAS "CreateWindowExA" _
+          (BYVAL dwExStyle AS DWORD, lpClassName AS ASCIIZ, _
+          lpWindowName AS ASCIIZ, BYVAL dwStyle AS DWORD, BYVAL x AS LONG, _
+          BYVAL y AS LONG, BYVAL nWidth AS LONG, BYVAL nHeight AS LONG, _
+          BYVAL hWndParent AS DWORD, BYVAL hMenu AS DWORD, _
+          BYVAL hInstance AS DWORD, lpParam AS ANY) AS DWORD
+  DECLARE FUNCTION LoadIcon LIB "User32.dll" ALIAS "LoadIconA" _
+          (BYVAL hInstance AS DWORD, lpIconName AS STRINGZ) AS DWORD
+  DECLARE FUNCTION LoadCursor LIB "User32.dll" ALIAS "LoadCursorA" _
+          (BYVAL hInstance AS DWORD, lpCursorName AS STRINGZ) AS DWORD
+  DECLARE FUNCTION SendMessage LIB "User32.dll" ALIAS "SendMessageA" _
+          (BYVAL hWnd AS DWORD, BYVAL dwMsg AS DWORD, BYVAL wParam AS DWORD, _
+           BYVAL lParam AS LONG) AS LONG
+  DECLARE FUNCTION PostMessage LIB "User32.dll" ALIAS "PostMessageA" _
+          (BYVAL hWnd AS DWORD, BYVAL dwMsg AS DWORD, BYVAL wParam AS DWORD, _
+           BYVAL lParam AS LONG) AS LONG
+  DECLARE FUNCTION PeekMessage LIB "User32.dll" ALIAS "PeekMessageA" _
+         (lpMsg AS MSG_type, BYVAL hWnd AS DWORD, BYVAL dwMsgFilterMin AS DWORD, _
+          BYVAL dwMsgFilterMax AS DWORD, BYVAL dwRemoveMsg AS DWORD) AS LONG
+  DECLARE FUNCTION DispatchMessage LIB "User32.dll" ALIAS "DispatchMessageA" _
+          (lpMsg AS MSG_type) AS LONG
+  DECLARE FUNCTION DefWindowProc LIB "User32.dll" ALIAS "DefWindowProcA" _
+          (BYVAL hWnd AS DWORD, BYVAL uMsg AS DWORD, BYVAL wParam AS DWORD, _
+          BYVAL lParam AS LONG) AS LONG
+  DECLARE FUNCTION GetModuleHandle LIB "Kernel32.dll" ALIAS "GetModuleHandleA" _
+          (lpModuleName AS ASCIIZ) AS DWORD
+  DECLARE FUNCTION AppendMenu LIB "User32.dll" ALIAS "AppendMenuA" _
+          (BYVAL hMenu AS DWORD, BYVAL uFlags AS DWORD, BYVAL uIDNewItem AS DWORD, _
+          BYVAL lpNewItem AS DWORD) AS LONG
+  DECLARE FUNCTION InsertMenu LIB "User32.dll" ALIAS "InsertMenuA" _
+          (BYVAL hMenu AS DWORD, BYVAL dwPosition AS DWORD, BYVAL dwFlags AS DWORD, _
+           BYVAL dwIDNewItem AS DWORD, lpNewItem AS ASCIIZ) AS LONG
+
+
+#ENDIF
+DECLARE FUNCTION CreateMenu LIB "User32.dll" ALIAS "CreateMenu" () AS DWORD
+DECLARE FUNCTION CreatePopupMenu LIB "User32.dll" ALIAS "CreatePopupMenu" () AS DWORD
+DECLARE FUNCTION SetMenu LIB "User32.dll" ALIAS "SetMenu"(BYVAL hWnd AS DWORD, _
+        OPTIONAL BYVAL hMenu AS DWORD) AS LONG
+DECLARE FUNCTION DrawMenuBar LIB "USER32.DLL" ALIAS "DrawMenuBar" (BYVAL hWnd AS DWORD) AS LONG
+
+DECLARE FUNCTION GetDC LIB "User32.dll" ALIAS "GetDC" (OPTIONAL BYVAL hWnd AS DWORD) AS DWORD
+DECLARE FUNCTION ReleaseDC LIB "User32.dll" ALIAS "ReleaseDC"(BYVAL hWnd AS DWORD, _
+        BYVAL hDC AS DWORD) AS LONG
+DECLARE FUNCTION GetClientRect LIB "User32.dll" ALIAS "GetClientRect"(BYVAL hwnd AS DWORD, _
+        BYVAL lpRect AS DWORD) AS LONG
+DECLARE FUNCTION GetWindowRect LIB "User32.dll" ALIAS "GetWindowRect"(BYVAL hWnd AS DWORD, _
+        BYVAL lpRect AS DWORD) AS LONG
+DECLARE FUNCTION ClientToScreen LIB "User32.dll" ALIAS "ClientToScreen"(BYVAL hWnd AS DWORD, _
+        BYVAL lpPoint AS DWORD) AS LONG
+DECLARE FUNCTION ScreenToClient LIB "User32.dll" ALIAS "ScreenToClient"(BYVAL hWnd AS DWORD, _
+        lpPoint AS DWORD) AS LONG
+DECLARE FUNCTION MapWindowPoints LIB "User32.dll" ALIAS "MapWindowPoints" _
+        (BYVAL hWndFrom AS DWORD, BYVAL hWndTo AS DWORD, BYVAL lppt AS DWORD, _
+         BYVAL cPoints AS DWORD) AS LONG
+DECLARE FUNCTION UpdateWindow LIB "USER32.DLL" ALIAS "UpdateWindow"(BYVAL hWnd AS DWORD) AS LONG
+DECLARE FUNCTION InvalidateRect LIB "USER32.DLL" ALIAS "InvalidateRect" (BYVAL hWnd AS DWORD, _
+        BYVAL lpRect AS DWORD, BYVAL bErase AS LONG) AS LONG
+DECLARE FUNCTION GetWindowDC LIB "User32.dll" ALIAS "GetWindowDC" _
+        (OPTIONAL BYVAL hWnd AS DWORD) AS DWORD
+DECLARE FUNCTION SetWindowPos LIB "User32.dll" ALIAS "SetWindowPos"(BYVAL hWnd AS DWORD, _
+        BYVAL hWndInsertAfter AS DWORD, BYVAL x AS LONG, BYVAL y AS LONG, _
+        BYVAL cx AS LONG, BYVAL cy AS LONG, BYVAL wFlags AS DWORD) AS LONG
+DECLARE FUNCTION ShowWindow LIB "USER32.DLL" ALIAS "ShowWindow" (BYVAL hWnd AS DWORD, _
+        BYVAL nCmdShow AS LONG) AS LONG
+DECLARE FUNCTION MoveWindow LIB "User32.dll" ALIAS "MoveWindow"(BYVAL hWnd AS DWORD, _
+        BYVAL x AS LONG, BYVAL y AS LONG, BYVAL nWidth AS LONG, BYVAL nHeight AS LONG, _
+        BYVAL bRepaint AS LONG) AS LONG
+DECLARE FUNCTION GetParent LIB "User32.dll" ALIAS "GetParent"(BYVAL hWnd AS DWORD) AS DWORD
+DECLARE FUNCTION DestroyWindow LIB "User32.dll" ALIAS "DestroyWindow" _
+        (BYVAL hWnd AS DWORD) AS LONG
+DECLARE FUNCTION EnableWindow LIB "User32.dll" ALIAS "EnableWindow"(BYVAL hWnd AS DWORD, _
+        BYVAL fEnable AS LONG) AS LONG
+DECLARE FUNCTION TranslateMessage LIB "User32.dll" ALIAS "TranslateMessage" _
+        (lpMsg AS MSG_type) AS LONG
+DECLARE FUNCTION GetMenuItemCount LIB "User32.dll" ALIAS "GetMenuItemCount" _
+       (OPTIONAL BYVAL hMenu AS DWORD) AS LONG
+DECLARE FUNCTION GetMenu LIB "User32.dll" ALIAS "GetMenu" _
+       (BYVAL hWnd AS DWORD) AS DWORD
+DECLARE FUNCTION GetFocus LIB "User32.dll" ALIAS "GetFocus" () AS DWORD
+DECLARE FUNCTION SetFocus LIB "User32.dll" ALIAS "SetFocus" _
+        (OPTIONAL BYVAL hWnd AS DWORD) AS DWORD
+
+'/=========================== WIDNOWS GDI32.DLL ========================================/'
+DECLARE FUNCTION GetStockObject LIB "GDI32.DLL" ALIAS "GetStockObject" _
+        (BYVAL nIndex AS LONG) AS DWORD
+DECLARE FUNCTION CreateSolidBrush LIB "GDI32.DLL" ALIAS "CreateSolidBrush" _
+        (BYVAL crColor AS DWORD) AS DWORD
+
+'/======================================================================================/'
+'                           DLL PROG DECLARES
+'/======================================================================================/'
+
+DECLARE FUNCTION FN_InitClass ALIAS "Fn_InitClass"(BYVAL ClassStyle AS DWORD, _
+        BYVAL CallBackPtr AS DWORD, BYVAL ClsExtra AS DWORD, BYVAL WndExtra AS DWORD, _
+        BYVAL AppInst AS DWORD, BYVAL BkgColor AS LONG, _
+        BYVAL ClassNamePtr AS STRING) EXPORT AS LONG
+DECLARE FUNCTION FN_InitWindow ALIAS "FN_InitWindow"(BYVAL ExtraStyle AS DWORD, _
+        WinClass AS STRING, WinTitle AS STRING, BYVAL DefStyle AS DWORD, BYVAL Xpos AS LONG, _
+        BYVAL Ypos AS LONG, BYVAL CtlWide AS LONG, BYVAL CtlHigh AS LONG, _
+        BYVAL Owner AS DWORD, BYVAL CtlId AS DWORD, BYVAL AppInst AS DWORD) EXPORT AS LONG
+DECLARE FUNCTION FN_CallCC(BYVAL Hndl AS DWORD, BYVAL Msg AS LONG, BYVAL wParam AS LONG, _
+        BYVAL lParam AS LONG) AS LONG
+
+'/======================================================================================/'
+'                           IMPORT DLL PROG DECLARES
+'/======================================================================================/'
+
+'/======================================================================================/'
+'                           GLOBALS
+'/======================================================================================/'
+
+'/======================================================================================/'
+'                           MAIN DLL entry POINT called by Windows...
+'/======================================================================================/'
+
+FUNCTION LIBMAIN (BYVAL hInstance   AS LONG, _
+                  BYVAL fwdReason   AS LONG, _
+                  BYVAL lpvReserved AS LONG) AS LONG
+
+    SELECT CASE fwdReason
+
+    CASE %DLL_PROCESS_ATTACH
+        'Indicates that the DLL is being loaded by another process (a DLL
+        'or EXE is loading the DLL).  DLLs can use this opportunity to
+        'initialize any instance or global data, such as arrays.
+
+        'ghInstance = hInstance
+
+        FUNCTION = 1   'success!
+
+        'FUNCTION = 0   'failure!  This will prevent the EXE from running.
+
+    CASE %DLL_PROCESS_DETACH
+        'Indicates that the DLL is being unloaded or detached from the
+        'calling application.  DLLs can take this opportunity to clean
+        'up all resources for all threads attached and known to the DLL.
+
+        FUNCTION = 1   'success!
+
+        'FUNCTION = 0   'failure!
+
+    CASE %DLL_THREAD_ATTACH
+        'Indicates that the DLL is being loaded by a new thread in the
+        'calling application.  DLLs can use this opportunity to
+        'initialize any thread local storage (TLS).
+
+        FUNCTION = 1   'success!
+
+        'FUNCTION = 0   'failure!
+
+    CASE %DLL_THREAD_DETACH
+        'Indicates that the thread is exiting cleanly.  If the DLL has
+        'allocated any thread local storage, it should be released.
+
+        FUNCTION = 1   'success!
+
+        'FUNCTION = 0   'failure!
+
+    END SELECT
+
+END FUNCTION
+
+'--------------------------------------------------------------------------------------
+'--------------------------------------------------------------------------------------
+
+FUNCTION FN_InitClass ALIAS "Fn_InitClass"(BYVAL ClassStyle AS DWORD, _
+         BYVAL CallBackPtr AS DWORD, BYVAL ClsExtra AS DWORD, BYVAL WndExtra AS DWORD, _
+         BYVAL AppInst AS DWORD, BYVAL BkgColor AS LONG, _
+         BYVAL ClassNamePtr AS STRING) EXPORT AS LONG
+
+LOCAL BrushHndl, _
+           Init     AS LONG
+
+LOCAL WinClassz     AS ASCIIZ * 80
+
+LOCAL tClass        AS WNDCLASSEX
+
+WinClassz$ = ClassNamePtr$
+
+tClass.cbSize = SIZEOF(WNDCLASSEX)
+
+Init = GetClassInfoEx(AppInst, WinClassz$, tClass)
+
+IF Init THEN
+  FN_InitClass = -Init
+  EXIT FUNCTION
+END IF
+
+IF BkgColor = 0 THEN
+  BrushHndl = getstockobject(%BLACK_BRUSH)
+ELSEIF BkgColor &lt; 0 THEN
+  BrushHndl = getstockobject(%HOLLOW_BRUSH)
+ELSE
+  BrushHndl = createsolidbrush(BkgColor)
+END IF
+
+tClass.STYLE         = ClassStyle
+tClass.lpfnWndProc   = CallBackPtr
+tClass.cbClsExtra    = ClsExtra
+tClass.cbWndExtra    = WndExtra
+tClass.hInstance     = AppInst
+tClass.hIcon         = LoadIcon(AppInst, BYVAL %IDI_APPLICATION)
+tClass.hCursor       = LoadCursor(%NULL, BYVAL %IDC_ARROW)
+tClass.hbrBackground = BrushHndl
+tClass.lpszMenuName  = 0
+tClass.lpszClassName = VARPTR(WinClassz$)
+tClass.hIconSm       = LoadIcon(AppInst, BYVAL %IDI_APPLICATION)
+
+FN_InitClass = RegisterClassEx(tClass)
+END FUNCTION
+
+'------------------------------------------------------------------------------
+'------------------------------------------------------------------------------
+
+FUNCTION FN_DoEvents ALIAS "FN_DoEvents"() EXPORT AS LONG
+
+LOCAL tMsg AS TAGMSG
+
+peekmessage(tMsg, 0, 0, 0, %PM_REMOVE)
+
+translatemessage(tMsg)
+dispatchmessage(tMsg)
+
+END FUNCTION
+
+'-----------------------------------------------------------------------------------
+'-----------------------------------------------------------------------------------
+
+FUNCTION FN_InitWindow ALIAS "FN_InitWindow"(BYVAL ExtraStyle AS DWORD, WinClass AS STRING, _
+         WinTitle AS STRING, BYVAL DefStyle AS DWORD, BYVAL Xpos AS LONG, BYVAL Ypos AS LONG, _
+         BYVAL CtlWide AS LONG, BYVAL CtlHigh AS LONG, BYVAL Owner AS DWORD, _
+         BYVAL CtlId AS DWORD, BYVAL AppInst AS DWORD) EXPORT AS LONG
+
+LOCAL WinHndl       AS DWORD
+
+LOCAL WinClassz, _
+      WinTitlez     AS ASCIIZ * 80
+
+WinClassz$ = WinClass$
+WinTitlez$ = WinTitle$
+
+WinHndl =  CreateWindowEx(ExtraStyle, _        'Extended style
+                          WinClassz$, _        'windows class name
+                          WinTitlez$, _        'title of window
+                            DefStyle, _        'window style
+                                Xpos, _        'X position on monitor
+                                Ypos, _        'Y position on monitor
+                             Ctlwide, _        'width of window
+                             Ctlhigh, _        'hight of window
+                               Owner, _        'window parent or owner
+                               CtlId, _        'menu ID in resource or control ID
+                             AppInst, _        'window instance or app instance
+                            BYVAL 0)          'extra info
+
+FN_InitWindow = WinHndl
+END FUNCTION
+
+'------------------------------------------------------------------------------
+'------------------------------------------------------------------------------
+
+CALLBACK FUNCTION Menu_CB()
+
+LOCAL MnuHndl       AS DWORD
+
+LOCAL MnuStr        AS STRING
+
+STATIC MenuMin, _
+       MenuMax, _
+        CallCC, _
+     ParntHndl      AS DWORD
+
+
+LOCAL MsgPtr        AS NmMenu_Struct POINTER
+
+SELECT CASE CBMSG
+
+  CASE %WM_NCACTIVATE
+    STATIC hWndSaveFocus AS DWORD
+    IF ISFALSE CBWPARAM THEN
+      ' Save control focus
+      hWndSaveFocus = GetFocus()
+    ELSEIF hWndSaveFocus THEN
+      ' Restore control focus
+      SetFocus(hWndSaveFocus)
+      hWndSaveFocus = 0
+    END IF
+
+  CASE %WM_COMMAND
+    SELECT CASE CBCTLMSG
+      CASE %BN_CLICKED
+        SELECT CASE CBCTL
+          CASE MenuMin TO MenuMax
+            MnuHndl = getmenu(CBHNDL)
+            MENU GET TEXT MnuHndl, BYCMD CBCTL TO MnuStr$
+            MSGBOX "You clicked menu item" + STR$(CBCTL) + " = " + MnuStr$
+            MnuHndl = MAK(LONG, CBCTL, %BN_CLICKED)
+            CALL DWORD CallCC USING FN_CallCC(ParntHndl, %WM_COMMAND, MnuHndl, 0)
+            FUNCTION = 1
+            EXIT FUNCTION
+        END SELECT
+    END SELECT
+
+  CASE %WM_NOTIFY
+    MsgPtr = CBLPARAM
+    IF @MsgPtr.MsgCode = %MNU_SETMENU THEN
+      CALL ParseMsg(CBHNDL, MsgPtr, MenuMin, MenuMax)
+      EXIT FUNCTION
+    END IF
+
+    IF @MsgPtr.MsgCode = %MNU_SETHNDL THEN
+      ParntHndl = @MsgPtr.HndlFrom
+      CallCC = @MsgPtr.IdFrom
+    END IF
+  CASE %DLGMESS
+
+END SELECT
+
+END FUNCTION
+
+'-----------------------------------------------------------------------------------
+'-----------------------------------------------------------------------------------
+
+FUNCTION FN_Menu_Dlg ALIAS "FN_Menu_Dlg"(BYVAL ParHndl AS DWORD, BYVAL Xwide AS LONG, _
+         Hndl AS DWORD) EXPORT AS LONG
+
+Ix = Xwide  - (METRICS(FRAME.FIXED.Y) * 6) - METRICS(SCROLL.VERT)
+Iy = METRICS(MENUBAR) 'METRICS(CAPTION) + METRICS(FRAME.FIXED.X)' + metrics(Caption)
+
+DIALOG NEW PIXELS, ParHndl, "Menu", 0, 0, Ix, Iy, %WS_POPUP OR %WS_SYSMENU OR _
+    %WS_CAPTION OR %WS_VISIBLE OR %WS_MAXIMIZEBOX OR %WS_MINIMIZEBOX, %WS_EX_APPWINDOW TO Hndl
+
+DIALOG SHOW MODELESS Hndl, CALL Menu_CB
+FN_Menu_Dlg = Hndl
+END FUNCTION
+
+'-----------------------------------------------------------------------------------
+'-----------------------------------------------------------------------------------
+
+FUNCTION FN_SendToDlg ALIAS "FN_SendToDlg"(BYVAL DlgHndl AS DWORD, BYVAL Msg AS LONG, _
+         BYVAL wParam AS LONG, BYVAL lParam AS LONG) EXPORT AS LONG
+
+LOCAL Result  AS LONG
+
+Result = sendmessage(DlgHndl, Msg, wParam, lParam)
+
+FN_SendToDlg = Result
+END FUNCTION
+
+'-----------------------------------------------------------------------------------
+'-----------------------------------------------------------------------------------
+
+FUNCTION FN_TrimSpc(BYVAL TxtStr AS STRING) AS STRING
+
+LOCAL TmpStr  AS STRING
+
+TmpStr$ = RTRIM$(TxtStr$, ANY $NSP)
+
+FN_TrimSpc = TmpStr$
+END FUNCTION
+
+'-----------------------------------------------------------------------------
+'-----------------------------------------------------------------------------
+
+SUB ParseMsg(BYVAL DlgHndl AS DWORD, BYVAL NmMsgPtr AS DWORD, MenuMin AS DWORD, MenuMax AS DWORD)
+
+LOCAL NumItems, _
+             I      AS LONG
+
+LOCAL LstBarName    AS STRING
+
+LOCAL tMnu()        AS Menu_Struct
+
+LOCAL MsgPtr        AS NmMenu_Struct POINTER
+
+MsgPtr = NmMsgPtr
+
+NumItems = @MsgPtr.NumItems
+DIM tMnu(1 TO NumItems)
+
+FOR I = 1 TO NumItems
+  tMnu(I) = @MsgPtr.Mnu(I - 1)
+NEXT I
+
+tMnu(1).MainHndl = FN_InitMenuBar
+LstBarName$ = tMnu(1).BarName
+tMnu(1).SubItemHndl = FN_AddItemToMenuBar(tMnu(1).MainHndl, tMnu(1).BarName)
+FN_AddMenuSubItem(tMnu(1).SubItemHndl, tMnu(1).SubItemName, tMnu(1).ItemId)
+
+MenuMin = MAX(0, tMnu(1).ItemId)
+MenuMax = MAX(0, tMnu(1).ItemId)
+
+FOR I = 2 TO NumItems
+  IF LstBarName$ = tMnu(I).BarName THEN
+    tMnu(I).SubItemHndl = tMnu(I - 1).SubItemHndl
+    tMnu(I).MainHndl = tMnu(1).MainHndl
+    FN_AddMenuSubItem(tMnu(I).SubItemHndl, tMnu(I).SubItemName, tMnu(I).ItemId)
+    MenuMin = MIN(MenuMin, tMnu(I).ItemId)
+    MenuMax = MAX(MenuMax, tMnu(I).ItemId)
+
+  ELSE
+    tMnu(I).MainHndl = tMnu(1).MainHndl
+    tMnu(I).SubItemHndl = FN_AddItemToMenuBar(tMnu(1).MainHndl, tMnu(I).BarName)
+    FN_AddMenuSubItem(tMnu(I).SubItemHndl, tMnu(I).SubItemName, tMnu(I).ItemId)
+    MenuMin = MIN(MenuMin, tMnu(I).ItemId)
+    menuMax = MAX(MenuMax, tMnu(I).ItemId)
+    LstBarName$ = tMnu(I).BarName
+  END IF
+NEXT I
+
+FN_SetMenuBar(tMnu(1).MainHndl, DlgHndl)
+'tMnu = @MsgPtr.Mnu(0)
+'msgbox tMnu.BarName + str$(@MsgPtr.NumItems)
+'TYPE Header_Struct
+'  HndlFrom           AS DWORD
+'  IdFrom             AS DWORD
+'  MsgCode            AS LONG
+'END TYPE
+'
+'TYPE Menu_Struct
+'  MainHndl          AS DWORD
+'  SubItemHndl       AS DWORD
+'  BarName           AS STRING * 64
+'  SubItemName       AS STRING * 64
+'  ItemId            AS DWORD
+'END TYPE
+'
+'TYPE NmMenu_Struct
+'  Header_Struct
+'  NumItems          AS LONG
+'  Mnu(20)           AS Menu_Struct
+'END TYPE
+
+END SUB
+
+'-----------------------------------------------------------------------------
+'-----------------------------------------------------------------------------
+
+FUNCTION FN_InitMenuBar() AS DWORD
+
+LOCAL hMenu AS DWORD
+
+MENU NEW BAR TO hMenu
+
+FN_InitMenuBar = hMenu
+END FUNCTION
+
+'-----------------------------------------------------------------------------
+'-----------------------------------------------------------------------------
+
+FUNCTION FN_AddItemToMenuBar(BYVAL MenuHndl AS DWORD, BYVAL ItemName AS STRING) AS DWORD
+
+LOCAL PopUp1    AS DWORD
+
+LOCAL MenuItem  AS STRING
+
+MenuItem$ = FN_TrimSpc(ItemName$)
+
+MENU NEW POPUP TO PopUp1
+MENU ADD POPUP, MenuHndl, MenuItem$, PopUp1, %MF_ENABLED
+
+FN_AddItemToMenuBar = PopUp1
+END FUNCTION
+
+'-----------------------------------------------------------------------------
+'-----------------------------------------------------------------------------
+
+FUNCTION FN_AddMenuSubItem(BYVAL SubHndl AS DWORD, BYVAL ItemName AS STRING, _
+         BYVAL ItemId AS DWORD) AS DWORD
+
+LOCAL MenuItem  AS STRING
+
+MenuItem$ = FN_TrimSpc(ItemName$)
+
+MENU ADD STRING, SubHndl, MenuItem$, ItemId, %MF_ENABLED
+
+FN_AddMenuSubItem = 1
+END FUNCTION
+
+'-----------------------------------------------------------------------------
+'-----------------------------------------------------------------------------
+
+FUNCTION FN_SetMenuBar(BYVAL MnuHndl AS DWORD, BYVAL WinHndl AS DWORD) AS DWORD
+
+MENU ATTACH MnuHndl, WinHndl
+
+FN_SetMenuBar = 1
+END FUNCTION
+
+'-----------------------------------------------------------------------------
+'-----------------------------------------------------------------------------
+
+'-----------------------------------------------------------------------------
+'-----------------------------------------------------------------------------</pre>
+</div>PBCC DEMO CODE:<br/>
+
+<div class=bbcode_container>
+	<div class=bbcode_description>Code:</div>
+	
+	<pre class=bbcode_code style="max-height:calc(40 * 1.4rem + 12px + 20px);">#COMPILE EXE
+#DEBUG ERROR ON
+#DEBUG DISPLAY ON
+#BREAK ON
+DEFLNG I - N
+
+%DLGMESS = %WM_USER + 500
+
+%MNU_SETMENU  = %DLGMESS + 1
+%MNU_SETCCMSG = %MNU_SETMENU + 1
+%MNU_SETHNDL  = %MNU_SETCCMSG + 1
+
+$NSP = $NUL + $SPC
+
+TYPE Header_Struct
+  HndlFrom           AS DWORD
+  IdFrom             AS DWORD
+  MsgCode            AS LONG
+END TYPE
+
+TYPE Menu_Struct
+  MainHndl          AS DWORD
+  SubItemHndl       AS DWORD
+  BarName           AS STRING * 64
+  SubItemName       AS STRING * 64
+  ItemId            AS DWORD
+END TYPE
+
+TYPE NmMenu_Struct
+  Header_Struct
+  NumItems          AS LONG
+  Mnu(20)           AS Menu_Struct
+END TYPE
+
+DECLARE FUNCTION FN_DoEvents LIB "WINTOOLS.DLL" ALIAS "FN_DoEvents"() AS LONG
+DECLARE FUNCTION FN_Menu_Dlg LIB "WINTOOLS.DLL" ALIAS "FN_Menu_Dlg"(BYVAL ParHndl AS DWORD, _
+        BYVAL Xwide AS LONG, Hndl AS DWORD) AS LONG
+DECLARE FUNCTION FN_SendToDlg LIB "WINTOOLS.DLL" ALIAS "FN_SendToDlg"(BYVAL DlgHndl AS DWORD, _
+        BYVAL Msg AS LONG, BYVAL wParam AS LONG, BYVAL lParam AS LONG) AS LONG
+
+
+'/========================================================================================/'
+'/========================================================================================/'
+
+FUNCTION PBMAIN () AS LONG
+
+LOCAL Iwide, _
+      Ihigh       AS LONG
+
+LOCAL MnuHndl, _
+       CCHndl     AS DWORD
+
+LOCAL tMnu        AS NmMenu_Struct
+
+CON.SIZE TO Iwide, Ihigh
+
+tMnu.MsgCode = %MNU_SETMENU
+tMnu.NumItems = 7
+tMnu.Mnu(0).BarName = "FILES"
+tMnu.Mnu(0).SubItemName = "New"
+tMnu.Mnu(0).ItemId = 100
+
+tMnu.Mnu(1).BarName = "FILES"
+tMnu.Mnu(1).SubItemName = "Open"
+tMnu.Mnu(1).ItemId = 101
+
+tMnu.Mnu(2).BarName = "FILES"
+tMnu.Mnu(2).SubItemName = "Save"
+tMnu.Mnu(2).ItemId = 102
+
+tMnu.Mnu(3).BarName = "EDIT"
+tMnu.Mnu(3).SubItemName = "Cut"
+tMnu.Mnu(3).ItemId = 103
+
+tMnu.Mnu(4).BarName = "EDIT"
+tMnu.Mnu(4).SubItemName = "Copy"
+tMnu.Mnu(4).ItemId = 104
+
+tMnu.Mnu(5).BarName = "EDIT"
+tMnu.Mnu(5).SubItemName = "Paste"
+tMnu.Mnu(5).ItemId = 105
+
+tMnu.Mnu(6).BarName = "OPTIONS"
+tMnu.Mnu(6).SubItemName = "Save"
+tMnu.Mnu(6).ItemId = 106
+
+
+
+CCHndl = CONSHNDL
+FN_Menu_Dlg(CCHndl, Iwide, MnuHndl)
+
+FN_SendToDlg(MnuHndl, %WM_NOTIFY, 0, VARPTR(tMnu))
+
+tMnu.HndlFrom = Ihndl
+tMnu.IdFrom   = CODEPTR(FN_CC_Callback)
+tMnu.MsgCode  = %MNU_SETHNDL
+
+FN_SendToDlg(MnuHndl, %WM_NOTIFY, 0, VARPTR(tMnu))
+
+DO
+  FN_DoEvents
+  IF CON.INSTAT THEN EXIT DO
+LOOP
+END FUNCTION
+
+'-------------------------------------------------------------------------------------
+'-------------------------------------------------------------------------------------
+
+FUNCTION FN_CC_Callback(BYVAL Hndl AS DWORD, BYVAL Msg AS LONG, BYVAL wParam AS LONG, _
+  BYVAL lParam AS LONG) AS LONG
+
+LOCAL CbCtrl    AS DWORD
+
+LOCAL CtlMsg  AS LONG
+
+SELECT CASE Msg
+  CASE %WM_COMMAND
+    CbCtrl = LO(WORD, wParam)
+    CtlMsg = HI(WORD, wParam)
+    SELECT CASE CtlMsg
+      CASE %BN_CLICKED
+        SELECT CASE CbCtrl
+          CASE 100 TO 106
+            PRINT "you clicked menu item " + FORMAT$(CbCtrl)
+            FN_CC_Callback = CbCtrl
+        END SELECT
+    END SELECT
+END SELECT
+
+END FUNCTION</pre>
+</div><br/>
+<br/>
+
+							
+						</div>
+					</div>
+
+
+	
+	
+	
+	
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=218>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/218-walt-decker" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Walt Decker" title="Walt Decker"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Walt Decker
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22218%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/218-walt-decker">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+	
+	<div class="b-post__edit h-margin-vert-l">
+		
+		
+			Last edited by <a href="https://forum.powerbasic.com/member/218-walt-decker" data-vbnamecard=218>Walt Decker</a>; <span class=time>15 Apr 2017, 12:03 AM</span>.
+		
+		
+
+	</div>
+
+	
+	
+		
+			<div class="post-signature restore">Walt Decker</div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+
+
+		
+			
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+			<div class="h-margin-bottom-xl h-margin-top-none h-text-size--11" id=content-tags-760134>
+
+	
+	
+	
+	
+	
+	
+		
+	
+
+	
+		<strong>Tags:</strong>
+	
+
+	
+		
+		
+		
+
+		
+		
+			
+			
+			
+			
+			<span class=js-content-tag>
+				<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22tag%22%3A%5B%22call+dword%22%5D%7D">call dword</a>, 
+			</span>
+		
+			
+			
+			
+			
+			<span class=js-content-tag>
+				<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22tag%22%3A%5B%22dll%22%5D%7D">dll</a>, 
+			</span>
+		
+			
+			
+			
+			
+			<span class=js-content-tag>
+				<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22tag%22%3A%5B%22pbcc%22%5D%7D">pbcc</a>, 
+			</span>
+		
+			
+			
+			
+			
+			<span class=js-content-tag>
+				<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22tag%22%3A%5B%22pbwin%22%5D%7D">pbwin</a>
+			</span>
+		
+
+		
+		<meta itemprop=keywords content="call dword dll pbcc pbwin "/>
+	
+</div>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=760134 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class=edit-conversation-container></div>
+		
+
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+									
+									
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=760171 data-node-publishdate=1492296831 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post760171 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/123-michael-mattias" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/image.png" alt="Michael Mattias" title="Michael Mattias"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=123>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/123-michael-mattias" class="avatar medium h-left">
+		<img src="resources/image1.png" alt="Michael Mattias" title="Michael Mattias"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Michael Mattias
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22123%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/123-michael-mattias">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/123-michael-mattias" class data-vbnamecard=123>Michael Mattias</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m off" title="has disabled reputation">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Aug 1998</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>42720</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Michael Mattias is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760171%23post760171" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?p=760171#post760171" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760171%23post760171" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post760171">#2</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2017-04-15T15:53:51>15 Apr 2017, 06:53 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								You got something against '#INCLUDE "Win32API.INC"?'<br/>
+<br/>
+I do realize there are differences in that file <i>as supplied by PowerBASIC Inc</i> across compiler versions, but it really shouldn't be all that hard to change the code for that. ... as I mentioned a little while ago... <a href="http://www.powerbasic.com/support/pbforums/showthread.php?t=21066" target=_blank>This whine's time has come June 2002</a>
+							
+						</div>
+					</div>
+
+
+
+	
+	
+		
+			<div class="post-signature restore">Michael Mattias<br/>
+Tal Systems (retired)<br/>
+Port Washington WI USA<br/>
+<a href="https://forum.powerbasic.com/cdn-cgi/l/email-protection#680505091c1c01091b281c09041b111b1c0d051b460b0705"><span class=__cf_email__ data-cfemail=e18c8c809595888092a195808d92989295848c92cf828e8c>[email protected]</span></a><br/>
+<a href="http://www.talsystems.com" target=_blank rel=nofollow>http://www.talsystems.com</a></div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=760171 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-760171 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-760171 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=760197 data-node-publishdate=1492377029 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post760197 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/218-walt-decker" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Walt Decker" title="Walt Decker"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=218>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/218-walt-decker" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Walt Decker" title="Walt Decker"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Walt Decker
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22218%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/218-walt-decker">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/218-walt-decker" class data-vbnamecard=218>Walt Decker</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Dec 1999</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>1117</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Walt Decker is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760197%23post760197" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?p=760197#post760197" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760197%23post760197" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post760197">#3</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2017-04-16T14:10:29>16 Apr 2017, 05:10 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								<div class=bbcode_container>
+	<div class=bbcode_quote>
+		<div class=quote_container>
+			<div class="bbcode_quote_container b-icon b-icon__ldquo-l--gray"></div>
+			
+				You got something against '#INCLUDE "Win32API.INC"?'
+			
+		</div>
+	</div>
+</div>No.<br/>
+<br/>
+But why include all that overhead when it's not needed?
+							
+						</div>
+					</div>
+
+
+
+	
+	
+		
+			<div class="post-signature restore">Walt Decker</div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=760197 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-760197 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-760197 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=760198 data-node-publishdate=1492382220 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post760198 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/1493-dale-yarker" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Dale Yarker" title="Dale Yarker"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=1493>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/1493-dale-yarker" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Dale Yarker" title="Dale Yarker"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Dale Yarker
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%221493%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/1493-dale-yarker">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/1493-dale-yarker" class data-vbnamecard=1493>Dale Yarker</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m off" title="has disabled reputation">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Mar 2004</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>4046</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Dale Yarker is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760198%23post760198" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?p=760198#post760198" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760198%23post760198" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post760198">#4</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2017-04-16T15:37:00>16 Apr 2017, 06:37 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								Overhead? Maybe 1 or 2 seconds at compile time. See Remarks in Help for #OPTIMIZE regarding unused code in compiled program, dll or sll. Refering  to other overhead?<br/>
+<br/>
+Cheers,<br/>
+
+							
+						</div>
+					</div>
+
+
+
+	
+	
+		
+			<div class="post-signature restore">Dale</div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=760198 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-760198 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-760198 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=760199 data-node-publishdate=1492394479 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post760199 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/2667-laurence-jackson" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/image1.jpg" alt="Laurence Jackson" title="Laurence Jackson"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=2667>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/2667-laurence-jackson" class="avatar medium h-left">
+		<img src="resources/image.jpg" alt="Laurence Jackson" title="Laurence Jackson"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Laurence Jackson
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%222667%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/2667-laurence-jackson">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/2667-laurence-jackson" class data-vbnamecard=2667>Laurence Jackson</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Feb 2006</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>395</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Laurence Jackson is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760199%23post760199" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?p=760199#post760199" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760199%23post760199" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post760199">#5</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2017-04-16T19:01:19>16 Apr 2017, 10:01 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								I agree with Walt. I always extract the relevant declarations from Win32API.INC for all my programs, mainly so I can see at a glance what APIs they are using, but also because the Win32API includes are getting bigger and bigger. Bob Zale's compilers are miraculously fast, but it's still compile-time overhead.
+							
+						</div>
+					</div>
+
+
+
+	
+	
+		
+			<div class="post-signature restore">- LJ</div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=760199 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-760199 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-760199 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=760203 data-node-publishdate=1492421365 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post760203 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/1762-dean-gwilliam" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/image3.jpg" alt="Dean Gwilliam" title="Dean Gwilliam"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=1762>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/1762-dean-gwilliam" class="avatar medium h-left">
+		<img src="resources/image2.jpg" alt="Dean Gwilliam" title="Dean Gwilliam"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Dean Gwilliam
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%221762%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/1762-dean-gwilliam">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/1762-dean-gwilliam" class data-vbnamecard=1762>Dean Gwilliam</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Aug 2004</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>1745</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Dean Gwilliam is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760203%23post760203" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?p=760203#post760203" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760203%23post760203" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post760203">#6</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2017-04-17T02:29:25>17 Apr 2017, 05:29 AM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								IMHO...The smaller and faster...the better. Thanks for your work Walt.
+							
+						</div>
+					</div>
+
+
+
+	
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=760203 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-760203 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-760203 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=760204 data-node-publishdate=1492423101 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post760204 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/218-walt-decker" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Walt Decker" title="Walt Decker"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=218>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/218-walt-decker" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Walt Decker" title="Walt Decker"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Walt Decker
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22218%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/218-walt-decker">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/218-walt-decker" class data-vbnamecard=218>Walt Decker</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Dec 1999</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>1117</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Walt Decker is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760204%23post760204" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?p=760204#post760204" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760204%23post760204" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post760204">#7</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2017-04-17T02:58:21>17 Apr 2017, 05:58 AM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								<div class=bbcode_container>
+	<div class=bbcode_quote>
+		<div class=quote_container>
+			<div class="bbcode_quote_container b-icon b-icon__ldquo-l--gray"></div>
+			
+				Overhead? Maybe 1 or 2 seconds at compile time. See Remarks in Help for #OPTIMIZE regarding unused code in compiled program, dll or sll. Refering to other overhead?
+			
+		</div>
+	</div>
+</div>#OPTIMIZE<br/>
+<br/>
+Hmmmmm.<br/>
+<br/>
+Yep, right at the bottom of page -10 in small print it states that all unreferenced equates and declared/imported api/dll functions are removed. Oh, wait. That's dust at the bottom of my monitor.<br/>
+<br/>
+Thanks Laurence, Dean. FWIW, some api declarations in the inc files do not conform to the ms description, Those I change to allow the functions' flexibility.
+							
+						</div>
+					</div>
+
+
+
+	
+	
+	
+	
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=218>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/218-walt-decker" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Walt Decker" title="Walt Decker"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Walt Decker
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22218%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/218-walt-decker">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+	
+	<div class="b-post__edit h-margin-vert-l">
+		
+		
+			Last edited by <a href="https://forum.powerbasic.com/member/218-walt-decker" data-vbnamecard=218>Walt Decker</a>; <span class=time>17 Apr 2017, 06:37 AM</span>.
+		
+		
+
+	</div>
+
+	
+	
+		
+			<div class="post-signature restore">Walt Decker</div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=760204 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-760204 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-760204 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=760205 data-node-publishdate=1492427827 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post760205 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/1493-dale-yarker" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Dale Yarker" title="Dale Yarker"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=1493>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/1493-dale-yarker" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Dale Yarker" title="Dale Yarker"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Dale Yarker
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%221493%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/1493-dale-yarker">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/1493-dale-yarker" class data-vbnamecard=1493>Dale Yarker</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m off" title="has disabled reputation">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Mar 2004</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>4046</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Dale Yarker is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760205%23post760205" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll?p=760205#post760205" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fpowerbasic-console-compiler%2F760134-pbcc-menu-dll%3Fp%3D760205%23post760205" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post760205">#8</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2017-04-17T04:17:07>17 Apr 2017, 07:17 AM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+							<div class="axd axd_last-post">
+								
+								
+								
+							</div>
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								Equate definitions never get into the compiled code. Where an equate name is used in source code the compiler replaces it with the value at compile time.
+							
+						</div>
+					</div>
+
+
+
+	
+	
+		
+			<div class="post-signature restore">Dale</div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=760205 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-760205 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-760205 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+						</ul>
+					</div>
+				</div>
+				
+					
+
+
+	
+
+
+
+	
+
+
+<div class="pagenav-container h-clearfix noselect h-hide">
+	<div class="js-pagenav pagenav h-right js-shrink-event-parent" data-baseurl="https://forum.powerbasic.com/forum/user-to-user-discussions/powerbasic-console-compiler/760134-pbcc-menu-dll">
+
+		
+
+		
+		
+			<a class="js-pagenav-button js-pagenav-prev-button b-button b-button--secondary h-hide-imp js-shrink-event-child" data-page=0 tabindex=0>Previous</a>
+		
+
+		
+		
+		
+		
+		
+		<a class="js-pagenav-button b-button b-button--narrow js-shrink-event-child b-button--secondary js-pagenav-button--template h-hide-imp" data-page=0 tabindex=0>template</a>
+
+		
+		
+			<a class="js-pagenav-button js-pagenav-next-button b-button b-button--secondary h-hide-imp js-shrink-event-child" data-page=0 tabindex=0>Next</a>
+		
+
+	</div>
+</div>
+					
+						<div class=h-margin-top-xl></div>
+					
+				
+
+				
+			</div>
+		
+		
+	</div>
+	
+
+
+
+
+
+	<!-- *** END WIDGET widgetid:6, widgetinstanceid:20, template:widget_conversationdisplay *** -->
+
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 3 -->
+
+
+
+<div class="canvas-widget-list section-3 js-sectiontype-extra h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 201 -->
+
+
+
+<div class="canvas-widget-list section-201 js-sectiontype-global_before_footer h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+</div>
+
+</div>
+	<div class=h-clear></div>
+</main>
+
+	<footer id=footer>
+		
+		
+		<nav id=footer-tabbar class="h-clearfix js-shrink-event-parent">
+			
+			
+			
+			
+			
+				
+			
+			
+			<ul class="h-left js-footer-chooser-list h-margin-left-xxl js-shrink-event-child">
+				
+				
+					<li>
+
+						<div class="b-comp-menu-dropdown js-comp-menu-dropdown b-comp-menu-dropdown--open-on-hover b-comp-menu-dropdown--direction-up js-languagechooser js-select-on-xsmall h-margin-right-l">
+							<div class="b-comp-menu-dropdown__trigger js-comp-menu-dropdown__trigger b-comp-menu-dropdown__trigger--arrow">
+								
+									
+								
+									
+										English (US)
+									
+								
+									
+								
+									
+								
+							</div>
+							<ul class="b-comp-menu-dropdown__content js-comp-menu-dropdown__content b-comp-menu-dropdown__content--left">
+								
+									<li class=b-comp-menu-dropdown__content-item>
+										<a href="https://forum.powerbasic.com/#" data-languageid=3>Deutsch (Du)</a>
+									</li>
+								
+									<li class="b-comp-menu-dropdown__content-item b-comp-menu-dropdown__content-item--current">
+										<a href="https://forum.powerbasic.com/#" data-languageid=1>English (US)</a>
+									</li>
+								
+									<li class=b-comp-menu-dropdown__content-item>
+										<a href="https://forum.powerbasic.com/#" data-languageid=2>French</a>
+									</li>
+								
+									<li class=b-comp-menu-dropdown__content-item>
+										<a href="https://forum.powerbasic.com/#" data-languageid=4>Spanish</a>
+									</li>
+								
+							</ul>
+						</div>
+
+					</li>
+				
+				
+			</ul>
+
+			<ul class="nav-list h-right js-footer-nav-list h-margin-right-xxl b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive js-shrink-event-child" data-dropdown-trigger-phrase=go_to_ellipsis data-dropdown-menu-classes="h-margin-vert-l b-comp-menu-dropdown--direction-up" data-dropdown-trigger-classes=b-comp-menu-dropdown__trigger--arrow>
+				
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+					<li class>
+						<a target=_blank href="http://www.powerbasic.com/">PowerBASIC Web Site</a>
+					</li>
+
+				
+					
+					
+					
+						
+						
+					
+					
+					
+					
+					
+					
+					
+					
+
+					<li class>
+						<a rel=nofollow href="https://forum.powerbasic.com/help">Site Help</a>
+					</li>
+
+				
+					
+					
+					
+						
+						
+					
+					
+					
+					
+					
+					
+					
+					
+
+					<li class>
+						<a rel=nofollow href="https://forum.powerbasic.com/contact-us">Contact Us</a>
+					</li>
+
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+					<li class>
+						<a href="https://forum.powerbasic.com/">Community Main Page</a>
+					</li>
+
+				
+				<li><a href="https://forum.powerbasic.com/#" class=js-footer-go-to-top>Top of Page</a></li>
+			</ul>
+		</nav>
+		
+      
+      
+      
+      
+
+      
+    
+
+	</footer>
+</div>
+<div id=footer-copyright>
+	<div id=footer-user-copyright>Copyright © 1998-2020 PowerBASIC Tools, LLC - All Rights Reserved.</div>
+	<div id=footer-vb-copyright>Powered by <a href="https://www.vbulletin.com" id=vbulletinlink>vBulletin®</a> Version 5.6.6 <br/>Copyright © 2022 vBulletin Solutions, Inc. All rights reserved. </div>
+	<div id=footer-current-datetime>All times are GMT-5. This page was generated at 07:39 AM.</div>
+</div>
+</div>
+
+<div id=loading-indicator class="js-loading-indicator b-ajax-loading-indicator h-hide">
+	<span>Working...</span>
+</div>
+<div class="js-flash-message b-ajax-loading-indicator b-ajax-loading-indicator--medium h-hide">
+	<span class=js-flash-message-content></span>
+</div>
+<div id=confirm-dialog class=sb-dialog>
+	<div class="dialog-content h-clearfix">
+		<div class="icon h-left"></div>
+		<div class=message></div>
+	</div>
+	<div class=b-button-group>
+		<button id=btnConfirmDialogYes type=button class="b-button b-button--primary js-button">Yes</button>
+		<button id=btnConfirmDialogNo type=button class="b-button b-button--secondary js-button">No</button>
+	</div>
+</div>
+<div id=alert-dialog class=sb-dialog>
+	<div class="dialog-content h-clearfix">
+		<div class="icon h-left"></div>
+		<div class=message></div>
+	</div>
+	<div class=b-button-group>
+		<button id=btnAlertDialogOK type=button class="b-button b-button--primary js-button">OK</button>
+	</div>
+</div>
+<div id=prompt-dialog class=sb-dialog>
+	<div class="dialog-content table h-clearfix">
+		<div class="message td"></div>
+		<div class="input-box-container td">
+			<input type=text class="input-box textbox"/>
+			<textarea class="input-box textbox h-hide" rows=3></textarea>
+		</div>
+	</div>
+	<div class="js-prompt-error h-hide"></div>
+	<div class=b-button-group>
+		<button id=btnPromptDialogOK type=button class="b-button b-button--primary js-button">OK</button>
+		<button id=btnPromptDialogCancel type=button class="b-button b-button--secondary js-button">Cancel</button>
+	</div>
+</div>
+<div id=slideshow-dialog class="sb-dialog slideshow">
+	<div class="b-icon b-icon__x-square--gray close-btn">X</div>
+	<div class=slideshow-wrapper></div>
+	<div class=caption></div>
+	<div class=thumbnails-wrapper>
+		<div class=thumbnails></div>
+	</div>
+
+</div>
+
+<div class=unsubscribe-overlay-container></div>
+
+<div id=fb-root data-facebook-language=en_US></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="b-modal-banner__banner js-privacy-consent-banner__banner h-hide-imp b-modal-banner__banner--center">
+	
+		<p class=b-modal-banner__paragraph>We process personal data about users of our site, through the use of cookies and other technologies, to deliver our services, and to analyze site activity. For additional details, refer to our <a href="https://www.powerbasic.com/privacy-notice" target=_blank class=b-modal-banner__clickable>Privacy Policy</a>.</p>
+
+<p class=b-modal-banner__paragraph>By clicking "<b>I AGREE</b>" below, you agree to our <a href="https://www.powerbasic.com/privacy-notice" target=_blank class=b-modal-banner__clickable>Privacy Policy</a> and our personal data processing and cookie practices as described therein. You also acknowledge that this forum may be hosted outside your country and you consent to the collection, storage, and processing of your data in the country where this forum is hosted.</p>
+		<p class=b-modal-banner__paragraph>
+			<a href="https://forum.powerbasic.com/#" class="b-button b-button--primary b-modal-banner__clickable js-privacy-consent-banner__button">I Agree</a>
+		</p>
+	
+</div>
+<div class="b-modal-banner__overlay js-privacy-consent-banner__overlay h-hide-imp"></div>
+	
+
+
+
+
+
+
+
+</body>
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

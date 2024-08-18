@@ -1,0 +1,6134 @@
+<!DOCTYPE html>
+<!--saved from url=(0024)http://www.bauerapps.com--><html id=htmlTag xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en dir=ltr>
+<head>
+	
+	
+	<base/>
+	
+		<link rel="Shortcut Icon" href="resources/favicon_2021.ico" type="image/x-icon"/>
+	
+
+	
+	
+	
+		
+		
+	
+
+	
+
+	
+	<link rel=stylesheet type="text/css" href="resources/css5.css"/>
+<link rel=stylesheet type="text/css" href="resources/css6.css"/>
+
+
+
+	
+	
+		<meta property=og:site_name content="PowerBASIC Peer Support Community"/>
+		<meta property=og:description content="User to user discussions about programming with objects, including COM objects."/>
+		<meta property=og:url content="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions"/>
+		
+		<meta property=og:type content=website />
+	
+	
+
+	
+	
+	
+
+	
+	<meta name=viewport content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+
+	
+	
+	
+		
+		
+		
+			
+			
+		
+	
+
+	
+	
+	
+		
+
+	<title>This VB6 COM DLL works from PBCC, but a few questions... - PowerBASIC Peer Support Community</title>
+
+	<meta name=description content="User to user discussions about programming with objects, including COM objects."/>
+	<meta name=generator content="vBulletin 5.6.6"/>
+
+	
+	
+
+	<link rel=stylesheet type="text/css" href="resources/css4.css"/>
+<link rel=stylesheet type="text/css" href="resources/css3.css"/>
+<link rel=stylesheet type="text/css" href="resources/css2.css"/>
+<link rel=stylesheet type="text/css" href="resources/css.css"/>
+<link class=js-additional-css rel=stylesheet type="text/css" href="resources/css1.css"/>
+
+
+	
+	
+
+
+
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+
+	
+
+
+
+
+
+
+
+	
+
+<body id=vb-page-body class="l-desktop page115 vb-page view-mode logged-out" itemscope itemtype="http://schema.org/ItemPage" data-usergroupid=1 data-styleid=39>
+
+
+
+
+
+	
+
+
+<div class="b-top-menu__background b-top-menu__background--sitebuilder js-top-menu-sitebuilder h-hide-on-small h-hide">
+	<div class=b-top-menu__container>
+		<ul class="b-top-menu b-top-menu--sitebuilder js-top-menu-sitebuilder--list js-shrink-event-parent">
+			
+		</ul>
+	</div>
+</div>
+
+<nav class="b-top-menu__background js-top-menu-user">
+	<div class=b-top-menu__container>
+		<ul class="b-top-menu b-top-menu--user js-top-menu-user--list js-shrink-event-parent">
+			
+
+
+
+
+	
+
+
+
+	<li class="b-top-menu__item b-top-menu__item--no-left-divider b-top-menu__item--no-right-divider username-container js-shrink-event-child">
+
+		<div class="b-comp-menu-dropdown b-comp-menu-dropdown--headerbar js-comp-menu-dropdown b-comp-menu-dropdown--open-on-hover js-login-menu">
+			<div id=lnkLoginSignupMenu class="b-comp-menu-dropdown__trigger js-comp-menu-dropdown__trigger b-comp-menu-dropdown__trigger--arrow b-comp-menu-dropdown__trigger--headerbar js-button" tabindex=0>
+				Login or Sign Up
+			</div>
+
+			<ul class="b-comp-menu-dropdown__content js-comp-menu-dropdown__content b-comp-menu-dropdown__content--right">
+
+				<li class="b-comp-menu-dropdown__content-item js-comp-menu-dropdown__content-maintain-menu b-comp-menu-dropdown__content-item--no-hover">
+					
+
+<div class="js-login-form-main-container login-form-main-container">
+
+<div class="js-error-box error h-margin-bottom-l h-hide"></div>
+
+<div class="js-login-message-box login-message-box h-hide">
+	<div class=h-center-container><div class=h-center>Logging in...</div></div>
+</div>
+
+<form action method=post class="h-clearfix js-login-form-main ">
+	<div class="login-fieldset table">
+		<div class=tr>
+			
+				
+					
+				
+			
+			<span class=td>
+				<input type=text name=username value class="js-login-username b-form-input__input b-form-input__input--full" placeholder="User/Email"/>
+			</span>
+		</div>
+		<div class=tr>
+			<span class=td>
+				<input type=password autocomplete=off name=password class="js-login-password b-form-input__input b-form-input__input--full" placeholder=Password />
+			</span>
+		</div>
+	</div>
+
+	
+	
+		<div class="h-warning h-text-size--11">By logging into your account, you agree to our <a href="https://www.powerbasic.com/privacy-notice" target=_blank>Privacy Policy</a>, personal data processing and storage practices as described therein.</div>
+		<input type=hidden name=privacyconsent value=1 />
+	
+
+	<div class="secondary-controls h-left h-clear-left h-margin-top-s">
+		<label><input type=checkbox name=rememberme />Remember me</label>
+	</div>
+
+	<div class="primary-controls h-right h-clear-right h-margin-top-s">
+		<button type=button class="js-login-button b-button b-button--primary">Log in</button>
+	</div>
+
+	<div class="secondary-controls h-left h-clear-left">
+		<a href="https://forum.powerbasic.com/lostpw" class="b-link lost-password-link">Forgot password or user name?</a>
+	</div>
+
+	<div class="primary-controls h-right h-clear-right">
+		
+			
+			
+			
+		
+		or <a id=idLoginSignup href="https://forum.powerbasic.com/register?urlpath=aHR0cHM6Ly9mb3J1bS5wb3dlcmJhc2ljLmNvbS9mb3J1bS91c2VyLXRvLXVzZXItZGlzY3Vzc2lvbnMvcHJvZ3JhbW1pbmctd2l0aC1vYmplY3RzLzUzMTc4LXRoaXMtdmI2LWNvbS1kbGwtd29ya3MtZnJvbS1wYmNjLWJ1dC1hLWZldy1xdWVzdGlvbnM%3D" target=_top>Sign Up</a>
+	</div>
+
+</form>
+</div>
+				</li>
+
+				
+				
+
+				<li id=externalLoginProviders class="b-comp-menu-dropdown__content-item js-comp-menu-dropdown__content-maintain-menu b-comp-menu-dropdown__content-item--no-hover js-external-login-providers h-clearfix h-hide-imp">
+					<span class="h-left h-margin-left-s h-margin-top-s">Log in with</span>
+					
+					
+					
+			
+
+			
+
+				</li>
+
+			</ul>
+
+		</div>
+
+	</li>
+
+	
+
+		</ul>
+	</div>
+</nav>
+
+<div id=sitebuilder-wrapper class="noselect h-clearfix h-hide-on-small">
+	
+</div>
+
+<div class=main-navbar-bottom-line></div>
+
+<div id=outer-wrapper>
+<div id=wrapper>
+
+	
+	<div id=header-axd class="header-edit-box axdnum_1 h-clearfix">
+		
+		<div class="axd-container axd-container_header">
+			<div class=admin-only>
+				
+			</div>
+			<div class="axd axd_header">
+				
+			</div>
+		</div>
+		<div class="axd-container axd-container_header2">
+			<div class=admin-only>
+				
+			</div>
+			<div class="axd axd_header2">
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<header class=b-top-background__header-mainnav-subnav>
+
+		
+		<div class=b-top-background__header-mainnav>
+
+			
+			<div id=header class=noselect>
+				<div class=header-cell>
+					
+					<div class="site-logo header-edit-box">
+						<a href="https://forum.powerbasic.com/"><img src="resources/forum.hdr.pb2016.912x96.png" data-orig-src="https://forum.powerbasic.com/core/css/0/0/3/1/8/7//images/forum.hdr.pb2016.912x96.png" alt=Logo title="Powered by vBulletin"/></a>
+					</div>
+				</div>
+				<div class=toolbar>
+					<ul class=h-right>
+						
+						
+						
+						<li class=search-container>
+							<form id=searchForm action="https://forum.powerbasic.com/search" class=h-left method=GET>
+								<div class=h-left>
+
+									
+									<div class="search-box h-clearfix">
+
+										<div class=search-term-container>
+
+											<input type=text name=q id=q placeholder=Search class="search-term b-form-input__input b-form-input__input--shadow" autocomplete=off />
+
+											<div class="search-menu-container h-clearfix">
+												<div class=vertical-divider-left></div>
+												<div class="b-comp-menu-dropdown js-comp-menu-dropdown b-comp-menu-dropdown--open-on-hover b-comp-menu-dropdown--header-search">
+													<div class="b-comp-menu-dropdown__trigger js-comp-menu-dropdown__trigger b-comp-menu-dropdown__trigger--arrow js-button" tabindex=0></div>
+													<ul class="b-comp-menu-dropdown__content js-comp-menu-dropdown__content">
+
+	<li class="b-comp-menu-dropdown__content-item b-comp-menu-dropdown__content-item--first b-comp-menu-dropdown__content-item--no-hover js-comp-menu-dropdown__content-maintain-menu">
+
+		<div class=searchPopupBody>
+
+			<label><input type=checkbox name="searchFields[title_only]" class=searchFields_title_only value=1 />Search in titles only</label>
+
+			
+
+			
+				
+				
+					<label><input type=checkbox name="searchFields[channel][]" class=searchFields_channel value=49 />Search in Working with Objects only</label>
+				
+			
+
+			<div class="b-button-group h-margin-top-xs">
+				<button type=submit id=btnSearch-popup class="b-button b-button--primary">Search</button>
+			</div>
+
+		</div>
+
+		<input type=hidden name=searchJSON value />
+	</li>
+
+	<li class="b-comp-menu-dropdown__content-item js-comp-menu-dropdown__content-maintain-menu">
+		<a href="https://forum.powerbasic.com/#" id=btnAdvSearch class=adv-search-btn>Advanced Search</a>
+	</li>
+
+</ul>
+												</div>
+											</div>
+
+										</div>
+
+										<button type=submit id=btnSearch class=search-btn title=Search><span class="b-icon b-icon__search"></span></button>
+
+									</div>
+
+								</div>
+							</form>
+						</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<nav id=channel-tabbar class="h-clearfix noselect">
+				<ul class="channel-tabbar-list h-left b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-comp-menu-dropdown--inactive js-comp-menu-dropdown__content--main-menu h-hide-on-small js-shrink-event-parent">
+
+					
+						
+					
+
+					
+					
+					
+						
+						
+						
+						<li class="current section-item js-shrink-event-child">
+							<a href class="h-left navbar_home">Community</a>
+							
+								<span class=channel-tabbar-divider></span>
+							
+							<span class="mobile dropdown-icon"><span class="icon h-right"></span></span>
+						</li>
+					
+						
+						
+						
+						<li class=" section-item js-shrink-event-child">
+							<a href="https://forum.powerbasic.com/PowerBASICLinks" class="h-left navbar_powerbasic_home_page">PowerBASIC Links</a>
+							
+								<span class=channel-tabbar-divider></span>
+							
+							<span class="mobile dropdown-icon"><span class="icon h-right"></span></span>
+						</li>
+					
+						
+						
+						
+						<li class=" section-item js-shrink-event-child">
+							<a href="https://forum.powerbasic.com/RulesAndGuidelines" class="h-left navbar_forum_rules_ampamp_guidelines">Forum Rules & Guidelines</a>
+							
+							<span class="mobile dropdown-icon"><span class="icon h-right"></span></span>
+						</li>
+					
+					
+				</ul>
+			</nav>
+
+
+		</div>
+
+
+		
+		<nav id=channel-subtabbar class="h-clearfix  h-hide-on-small h-block js-channel-subtabbar">
+			<ul class="h-left channel-subtabbar-list js-channel-subtabbar-list js-shrink-event-parent">
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href="https://forum.powerbasic.com/search?searchJSON={%22view%22:%22topic%22,%22unread_only%22:1,%22sort%22:{%22lastcontent%22:%22desc%22},%22exclude%22:%2245%22,%22exclude_type%22:[%22vBForum_PrivateMessage%22],%22date%22:%22lastVisit%22}" class=navbar__>NEW POSTS</a>
+					</li>
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href="http://forum.powerbasic.com/search?searchJSON={%22date%22:{%22from%22:%222%22},%22sort%22:{%22created%22:%22desc%22},%22view%22:%22%22,%22exclude%22:%2245%22,%22exclude_type%22:[%22vBForum_PrivateMessage%22]}" class=navbar_.>Activity Stream</a>
+					</li>
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href="https://forum.powerbasic.com/search?searchJSON={%22view%22:%22topic%22,%22unread_only%22:1,%22sort%22:{%22lastcontent%22:%22desc%22},%22exclude%22:%2245%22,%22exclude_type%22:[%22vBForum_PrivateMessage%22]}" class=navbar_todays_posts>Today's Posts</a>
+					</li>
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href='https://forum.powerbasic.com/search?searchJSON={"view":"topic","unread_only":1,"sort":{"lastcontent":"desc"},"exclude":"45","exclude_type":["vBForum_PrivateMessage"],"date":"lastVisit"}' class=navbar_newtopics>New Topics</a>
+					</li>
+				
+					
+					
+					<li class=" js-shrink-event-child">
+						<a href="https://forum.powerbasic.com/search" class=navbar_advanced_search>ADVANCED SEARCH</a>
+					</li>
+				
+			</ul>
+		</nav>
+
+
+	</header>
+
+
+	
+		
+	
+
+	
+	
+		
+		<nav class=breadcrumbs-wrapper>
+		<ul id=breadcrumbs class=h-clearfix itemprop=breadcrumb>
+			<li class=crumb>
+				<a class="crumb-link h-flex-valign-center" href>
+					<span class="b-icon b-icon__home" title="Community Home"></span>
+				</a>
+			</li>
+			
+				
+					
+					
+				
+				<li class=crumb>
+					<span class="b-icon b-icon__chevron-right--gray separator"></span>
+					
+						<a class=crumb-link href="https://forum.powerbasic.com/forum">Community</a>
+					
+				</li>
+			
+				
+					
+					
+				
+				<li class=crumb>
+					<span class="b-icon b-icon__chevron-right--gray separator"></span>
+					
+						<a class=crumb-link href="https://forum.powerbasic.com/forum/user-to-user-discussions">User to User Discussions</a>
+					
+				</li>
+			
+				
+					
+					
+				
+				<li class=crumb>
+					<span class="b-icon b-icon__chevron-right--gray separator"></span>
+					
+						<a class=crumb-link href="https://forum.powerbasic.com/forum/user-to-user-discussions/special-interest-groups">Special Interest Groups</a>
+					
+				</li>
+			
+				
+					
+					
+				
+				<li class=crumb>
+					<span class="b-icon b-icon__chevron-right--gray separator"></span>
+					
+						<a class=crumb-link href="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects">Working with Objects</a>
+					
+				</li>
+			
+		</ul>
+		</nav>
+	
+
+	
+
+	
+	
+		
+			
+			
+				
+				
+				
+			
+		
+			
+			
+				
+				
+				
+			
+		
+	
+
+	
+
+	
+
+<ul id=notices class=notices>
+	
+	
+		
+		<li class="notice restore" data-notice-id=5 data-notice-persistent=1><b>You are not logged in.</b>  You can browse in the PowerBASIC Community, but you must click Login <i>(top right)</i> before you can post.  If this is your first visit, check out the <a href="https://forum.powerbasic.com/help" target=_blank><b>FAQ</b></a> or <a href="https://forum.powerbasic.com/register" target=_blank><b>Sign Up</b></a>.</li>
+	
+</ul>
+
+
+	
+
+
+	
+	<main id=content>
+		<div class="canvas-layout-container js-canvas-layout-container">
+
+<div id=canvas-layout-full class=canvas-layout data-layout-id=1>
+
+	
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 200 -->
+
+
+
+<div class="canvas-widget-list section-200 js-sectiontype-global_after_breadcrumb h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 2 -->
+
+
+
+<div class="canvas-widget-list section-2 js-sectiontype-notice h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+	<!-- *** START WIDGET widgetid:28, widgetinstanceid:18, template:widget_announcement *** -->
+	
+	
+
+
+	
+	
+
+
+
+
+
+<div class="b-module canvas-widget default-widget announcement-widget empty" id=widget_18 data-widget-id=28 data-widget-instance-id=18>
+	
+	<div class="widget-header h-clearfix">
+		
+		
+			
+		
+
+		<div class="module-title h-left">
+			
+				<h1 class="main-title js-main-title hide-on-editmode">Announcement</h1>
+				
+				
+				
+			
+		</div>
+		
+			<div class=module-buttons>
+				
+					<span class="toggle-button module-button-item collapse" title=Collapse data-toggle-title=Expand><span class="b-icon b-icon__toggle-collapse">Collapse</span></span>
+				
+			</div>
+		
+	</div>
+	
+
+	<div class=widget-content>
+		
+			
+				No announcement yet.
+				
+			
+				
+	</div>
+</div>
+	<!-- *** END WIDGET widgetid:28, widgetinstanceid:18, template:widget_announcement *** -->
+
+	<!-- *** START WIDGET widgetid:51, widgetinstanceid:19, template:widget_pagetitle *** -->
+	
+	
+
+
+	
+	
+
+
+
+
+
+	
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+
+
+
+<div class="b-module canvas-widget default-widget page-title-widget widget-no-header-buttons widget-no-border" id=widget_19 data-widget-id=51 data-widget-instance-id=19>
+	
+	<div class="widget-header h-clearfix">
+		
+		
+
+		<div class="module-title h-left">
+			
+				<h1 class="main-title js-main-title hide-on-editmode">This VB6 COM DLL works from PBCC, but a few questions...</h1>
+				
+				
+				
+			
+		</div>
+		
+			<div class=module-buttons>
+				
+					<span class="toggle-button module-button-item collapse" title=Collapse data-toggle-title=Expand><span class="b-icon b-icon__toggle-collapse">Collapse</span></span>
+				
+			</div>
+		
+	</div>
+	
+
+
+	
+	
+
+</div>
+	<!-- *** END WIDGET widgetid:51, widgetinstanceid:19, template:widget_pagetitle *** -->
+
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 0 -->
+
+
+
+<div class="canvas-widget-list section-0 js-sectiontype-primary js-sectiontype-secondary h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+	<!-- *** START WIDGET widgetid:6, widgetinstanceid:20, template:widget_conversationdisplay *** -->
+	
+
+
+
+	
+		
+	
+	
+		
+			
+		
+	
+
+	
+	
+	
+	
+		
+		
+		
+		
+		
+
+		
+			
+			
+			
+
+			
+			
+			
+			
+				
+			
+			
+			
+
+			
+				
+			
+			
+
+			
+
+			
+
+			
+				
+					
+				
+				
+				
+				
+				
+				
+			
+
+			
+
+			
+
+			
+
+			
+			
+			
+
+			
+			
+
+			
+				
+			
+
+			
+				
+				
+				
+			
+
+			
+			
+
+			
+				
+			
+
+
+			
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+				
+					
+					
+					
+				
+				
+					
+				
+			
+
+			
+			
+			
+
+			
+				
+				
+					
+				
+
+				
+			
+
+			
+			
+			
+			
+			
+			
+
+		
+	
+
+	
+	
+	
+		
+		
+		 
+	
+
+	
+	
+	
+		
+		
+	
+
+	<div class="b-module canvas-widget default-widget conversation-content-widget  forum-conversation-content-widget widget-tabs widget-no-border widget-no-header-buttons  axd-container" id=widget_20 data-widget-id=6 data-widget-instance-id=20 data-widget-default-tab="#thread-view-tab">
+		
+			<div class=conversation-status-messages>
+				
+				
+				
+				
+				<div class="conversation-status-message notice h-hide"><span></span><div class=close>X</div></div>
+			</div>
+
+			<div class="widget-header h-clearfix">
+				<div class="module-title h-left main-header-title">
+					
+				</div>
+				<div class=module-buttons>
+					<span class="toggle-button module-button-item collapse" title=Collapse data-toggle-title=Expand><span class="b-icon b-icon__toggle-collapse">Collapse</span></span>
+				</div>
+				
+				
+				<div class="conversation-controls h-right h-clear hide-on-editmode b-button-group h-margin-bottom-l js-movable-toolbar-button-container">
+					
+				</div>
+				
+					<div class="widget-tabs-nav h-clear">
+						<a id=topic-module-top class="anchor js-module-top-anchor"></a>
+						
+						<ul class="ui-tabs-nav hide-on-editmode h-left b-comp-menu-horizontal js-module-tab-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive">
+							
+							
+							<li><a href="https://forum.powerbasic.com/#thread-view-tab" data-href="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?view=thread">Posts</a></li>
+							
+							<li><a href="https://forum.powerbasic.com/#stream-view-tab" data-href="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?view=stream">Latest Activity</a></li>
+							
+							<li><a href="https://forum.powerbasic.com/#media-view-tab" data-href="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?view=media">Photos</a></li>
+						</ul>
+					</div>
+				
+			</div>
+			<div class="widget-content tab widget-tabs-panel">
+				<input type=hidden name=canmoderate id=canmoderate value=0 />
+				
+					
+					
+					
+					
+				
+				<div id=thread-view-tab class="conversation-view conversation-thread-view">
+					
+						
+					
+					
+						
+							
+						
+					
+
+					
+
+
+	
+		
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+<div class="conversation-toolbar-wrapper  top h-clear hide-on-editmode
+	
+		scrolltofixed-floating
+		scrolltofixed-top
+	
+" data-allow-history=1>
+	<div class=conversation-toolbar>
+
+
+		
+
+		
+			
+			<div class=toolset-left>
+
+				
+				<div class="conversation-toolbar-height-shim js-shrink-event-child">
+					<div class=b-button> </div>
+				</div>
+
+			</div>
+		
+		
+
+		
+
+		<ul class="toolset-right js-shrink-event-parent">
+
+			
+				<li class="toolbar-search h-hide-on-small js-shrink-event-child">
+					<form name=toolbar-search-form action="activity/get" method=post class=toolbar-search-form>
+						<input type=hidden name=nodeid value=53178 />
+						<input type=hidden name=view value=thread />
+						
+							<input type=hidden name=per-page value=20 />
+							<input type=hidden name=pagenum value=1 />
+						
+
+						<div class="js-toolbar-search-inner b-form-input__input-with-button-container b-form-input__input-with-button-container--full">
+
+							<input type=text name=q value class="b-form-input__input b-form-input__input--with-button b-form-input__input--shadow js-filter-search" placeholder=Search data-filter-name=Search />
+
+							<button type=submit name=btnSearch id=btnSearch-top class=b-form-input__inside-button><span class="b-form-input__inside-button-icon b-icon b-icon__search-gray-s">Search</span></button>
+
+						</div>
+
+					</form>
+				</li>
+				<li class="h-hide-on-small js-shrink-event-child">
+					<div class=toolbar-divider>
+						<span class=toolbar-divider-inner></span>
+					</div>
+				</li>
+			
+
+			
+			
+				
+			
+
+			
+			
+				<li class="toolbar-pagenav js-toolbar-pagenav h-hide-on-xsmall js-shrink-event-child">
+					<div class=toolbar-pagenav-wrapper>
+						<!-- Page Nav controls -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="pagenav-controls ">
+	<form class="pagenav-form h-clearfix" action="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions">
+		<input type=hidden class=defaultpage value=1 />
+		
+		<div class="pagenav h-left">
+			Page <input type=text name=page class="js-pagenum textbox h-padding-horiz-none b-form-input__input--shadow" value=1 /> of <span class=pagetotal>1</span>
+		</div>
+
+		<div class="horizontal-arrows h-left">
+			<a class="arrow left-arrow h-disabled" title="Previous Page" rel=prev><span class="vb-icon vb-icon-arrow-left"></span></a>
+			<a class="arrow right-arrow h-disabled" title="Next Page" rel=next><span class="vb-icon vb-icon-arrow-right"></span></a>
+		</div>
+	</form>	
+</div>
+					</div>
+				</li>
+				
+					<li class="h-hide-on-xsmall js-shrink-event-child">
+						<div class=toolbar-divider>
+							<span class=toolbar-divider-inner></span>
+						</div>
+					</li>
+				
+			
+
+			
+				<li class="toolbar-filter toolbar-filter-top js-shrink-event-child">
+					<div class="filter-wrapper h-clearfix js-button" tabindex=0>
+						<div class="label h-left">Filter</div>
+						<div class="arrow vb-icon-wrapper h-left"><span class="vb-icon vb-icon-triangle-down-wide"></span></div>
+					</div>
+				</li>
+			
+
+			
+
+			
+		</ul>
+	</div>
+
+
+	
+
+	
+		
+			
+		
+		
+		<form action="activity/get" method=post class="toolbar-filter-overlay h-clearfix">
+			<input type=hidden name=nodeid value=53178 />
+			<input type=hidden name=view value=thread />
+			
+			
+			
+			
+				<input type=hidden name=nolimit value=1 />
+			
+			
+				<input type=hidden name=per-page value=20 />
+				<input type=hidden name=pagenum value=1 />
+			
+			
+			
+			
+				<input type=hidden name=userid value=0 />
+			
+			
+			
+			<input type=hidden name=showChannelInfo value=1 />
+			<ul class=filter-options-list>
+				
+				
+				<li>
+					<div class=filter-header>Time</div>
+					<div class=filter-options>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							
+						
+						
+						
+						
+
+						
+							<label><input type=radio name=filter_time value=time_all checked=checked class=js-default-checked /><span>All Time</span></label>
+						
+						<label><input type=radio name=filter_time value=time_today /><span>Today</span></label>
+						<label><input type=radio name=filter_time value=time_lastweek /><span>Last Week</span></label>
+						<label><input type=radio name=filter_time value=time_lastmonth /><span>Last Month</span></label>
+					</div>
+				</li>
+				
+
+				
+
+				
+				<li>
+					<div class=filter-header>Show</div>
+					<div class=filter-options>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							
+						
+						
+						
+						
+
+						<label><input type=radio name=filter_show value=show_all checked=checked class=js-default-checked /><span>All</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Text /><span>Discussions only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Gallery /><span>Photos only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Video /><span>Videos only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Link /><span>Links only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Poll /><span>Polls only</span></label>
+						<label><input type=radio name=filter_show value=vBForum_Event /><span>Events only</span></label>
+					</div>
+				</li>
+				
+				
+				
+				
+				
+				
+
+				
+
+				
+				<!-- end if prefixsets -->
+			</ul>
+		</form>
+
+		
+
+		<div class="filtered-by h-clearfix h-hide">
+			<label>Filtered by:</label>
+			<div class="filter-text-wrapper h-left">
+				
+				
+				
+			</div>
+			<a href="https://forum.powerbasic.com/#" class="clear-all h-hide">Clear All</a>
+		</div>
+		<div class=new-conversations-strip><span></span> new posts</div>
+	
+</div>
+
+
+
+	<div class="h-show-on-xsmall h-right h-margin-top-l js-under-toolbar-pagenav h-margin-bottom-m">
+		
+
+
+	
+
+
+
+	
+
+
+<div class="pagenav-container h-clearfix noselect h-hide pagenav-container--no-margin">
+	<div class="js-pagenav pagenav h-right js-shrink-event-parent" data-baseurl="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions">
+
+		
+
+		
+		
+			<a class="js-pagenav-button js-pagenav-prev-button b-button b-button--secondary h-hide-imp js-shrink-event-child" data-page=0 href tabindex=0>Previous</a>
+		
+
+		
+		
+		
+		
+		
+		<a class="js-pagenav-button b-button b-button--narrow js-shrink-event-child b-button--secondary js-pagenav-button--template h-hide-imp" data-page=0 href=index.html tabindex=0>template</a>
+
+		
+		
+			<a class="js-pagenav-button js-pagenav-next-button b-button b-button--secondary h-hide-imp js-shrink-event-child" data-page=0 href tabindex=0>Next</a>
+		
+
+	</div>
+</div>
+	</div>
+
+					<div class=conversation-content>
+						<ul class="conversation-list list-container h-clearfix   thread-view">
+							
+								
+								
+								
+
+								
+								
+								
+								
+									
+
+									
+
+									
+								
+									
+
+									
+
+									
+								
+									
+
+									
+
+									
+								
+									
+
+									
+
+									
+										
+									
+								
+									
+
+									
+
+									
+								
+									
+
+									
+
+									
+								
+									
+
+									
+
+									
+										
+									
+								
+
+								
+
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+									
+
+									
+										
+									
+								
+							
+							
+							
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+
+							
+
+							
+							
+							
+								
+									
+									
+								
+								
+									
+									<!-- Starter Conversation -->
+									
+									
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+	
+
+
+
+
+
+<li data-node-id=53178 data-node-publishdate=1353775362 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text b-post--first js-conversation-starter h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/CreativeWork">
+
+	
+	
+	
+		<a id=post53178 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Joe Caverly" title="Joe Caverly"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=1815>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Joe Caverly" title="Joe Caverly"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Joe Caverly
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%221815%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/1815-joe-caverly">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class data-vbnamecard=1815>Joe Caverly</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Sep 2004</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>260</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Joe Caverly is online now"><span class="b-icon b-icon__status--green"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%23post53178" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions#post53178" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=This+VB6+COM+DLL+works+from+PBCC%2C+but+a+few+questions...&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%23post53178" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+								<a class="b-post__count js-show-post-link" href="#post53178">#1
+								</a>
+							
+
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+								<h2 class="b-post__title js-post-title b-post__hide-when-deleted">
+									
+									
+									This VB6 COM DLL works from PBCC, but a few questions...
+								</h2>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2012-11-24T08:42:42>24 Nov 2012, 11:42 AM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+							<div class="axd axd_first-post">
+								
+								
+								
+							</div>
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								Hi,<br/>
+  This is a simple COM DLL which I created using VB6;<br/>
+<br/>
+
+<div class=bbcode_container>
+	<div class=bbcode_description>Code:</div>
+	
+	<pre class=bbcode_code style="max-height:calc(40 * 1.4rem + 12px + 20px);">VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+  Persistable = 0  'NotPersistable
+  DataBindingBehavior = 0  'vbNone
+  DataSourceBehavior  = 1  'vbDataSource
+  MTSTransactionMode  = 0  'NotAnMTSObject
+END
+Attribute VB_Name = "Math"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Public Function ppp(ppk As String) As String
+  ppp = Str$(Val(ppk * 0.454))
+End Function</pre>
+</div>  It has one function, ppp, which takes in the PricePerKG and returns the PricePerPound. I can call this VB6 COM DLL from VBScript as follows;<br/>
+<br/>
+
+<div class=bbcode_container>
+	<div class=bbcode_description>Code:</div>
+	
+	<pre class=bbcode_code style="max-height:calc(40 * 1.4rem + 12px + 20px);">Dim oMath
+Set oMath = CreateObject("jlcutils.Math")
+wscript.echo oMath.ppp(6.59)
+set oMath = Nothing</pre>
+</div>  This returns the correct results. So, I used the PowerBASIC COM Browser to generate the following Include file;<br/>
+<br/>
+
+<div class=bbcode_container>
+	<div class=bbcode_description>Code:</div>
+	
+	<pre class=bbcode_code style="max-height:calc(40 * 1.4rem + 12px + 20px);">' Generated by: PowerBASIC COM Browser v.2.00.0081
+' Date & Time : 11/23/2012 at 12:18 PM
+' ------------------------------------------------
+' Library Name: jlcutils
+' Library File: C:\jlc\vb6\jlcutils\jlcutils.dll
+' Description : 
+' GUID : {1031A6CA-F13B-43D6-B91B-A59844D7BBF7}
+' LCID : 0
+' Version : 4.0
+
+' Version Dependent ProgIDs
+$PROGID_jlcutils_MathMath = "jlcutils.Math"
+
+' Class Identifiers
+$CLSID_jlcutils_Math = GUID$("{5DA96ACA-EA0F-412F-B8F6-81EE401C5D0C}")
+
+' Interface Identifiers
+$IID_jlcutils_Int__Math = GUID$("{EF25C7E3-FAEC-4512-82F5-F2FD8524FC11}")
+
+' Interface Name  : Int__Math
+' Class Name      : Math
+' ClassID         : $CLSID_jlcutils_Math
+' Version ProgID  : $PROGID_jlcutils_MathMath
+Interface Int__Math $IID_jlcutils_Int__Math 
+    Inherit IDispatch
+
+    Method ppp &lt;1610809344&gt; (ByRef InOut ppk As String) As String
+End Interface</pre>
+</div>  The following PowerBASIC code;<br/>
+<br/>
+
+<div class=bbcode_container>
+	<div class=bbcode_description>Code:</div>
+	
+	<pre class=bbcode_code style="max-height:calc(40 * 1.4rem + 12px + 20px);">#COMPILE EXE
+#COMPILER PBCC 5.05
+#DIM ALL
+#INCLUDE "Win32API.inc"
+#INCLUDE "jlcutils.inc"
+
+FUNCTION PBMAIN () AS LONG
+  DIM JLCUtils AS DISPATCH
+  LOCAL ppk AS VARIANT
+  LOCAL ppp AS STRING
+
+  SET JLCUtils = NEW DISPATCH IN "JLCUtils.Math"
+
+  IF ISOBJECT(JLCUtils) THEN
+    ppk = "6.59"
+
+    OBJECT CALL JLCUtils.ppp(ppk) TO ppp
+
+    STDOUT ACODE$(ppp)
+  ELSE
+    STDOUT "Error Creating Object"
+  END IF
+
+  LET JLCUtils = NOTHING
+END FUNCTION</pre>
+</div>  also returns the correct results. I have gotten this far after reviewing many threads in the PowerBASIC Forums.<br/>
+<br/>
+Question #1:<br/>
+Why do I have to declare the ppk variable as VARIANT? I tried declaring it as STRING, but that did not work.<br/>
+<br/>
+Question #2:<br/>
+Why to I have to use ACODE$ with the ppp variable? Using ppp alone returned no result.<br/>
+<br/>
+  I believe it has to do with BSTRs, and <a href="http://www.lcs.syr.edu/faculty/fawcett/handouts/cse775/presentations/brucemckinneypapers/comstrings.htm" target=_blank rel=nofollow>this link</a> gave me a good overview of how they work.<br/>
+<br/>
+Thanks from Joe
+							
+						</div>
+					</div>
+
+
+	
+	
+	
+	
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=1815>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Joe Caverly" title="Joe Caverly"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Joe Caverly
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%221815%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/1815-joe-caverly">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+	
+	<div class="b-post__edit h-margin-vert-l">
+		
+		
+			Last edited by <a href="https://forum.powerbasic.com/member/1815-joe-caverly" data-vbnamecard=1815>Joe Caverly</a>; <span class=time>24 Nov 2012, 01:59 PM</span>.
+		
+		
+
+	</div>
+
+	
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+
+
+		
+			
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+			<div class="h-margin-bottom-xl h-margin-top-none h-text-size--11" id=content-tags-53178>
+
+	
+	
+	
+	
+	
+	
+		
+	
+
+	
+		<strong>Tags:</strong>
+	
+
+	
+		<span class=js-content-tag-none>None</span>
+	
+</div>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=53178 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class=edit-conversation-container></div>
+		
+
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+									
+									
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=632120 data-node-publishdate=1353781909 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post632120 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/490-aslan-babakhanov" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/image1.jpg" alt="Aslan Babakhanov" title="Aslan Babakhanov"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=490>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/490-aslan-babakhanov" class="avatar medium h-left">
+		<img src="resources/image2.jpg" alt="Aslan Babakhanov" title="Aslan Babakhanov"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Aslan Babakhanov
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22490%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/490-aslan-babakhanov">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/490-aslan-babakhanov" class data-vbnamecard=490>Aslan Babakhanov</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Oct 2001</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>435</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Aslan Babakhanov is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632120%23post632120" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?p=632120#post632120" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632120%23post632120" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post632120">#2</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2012-11-24T10:31:49>24 Nov 2012, 01:31 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								Try WSTRING
+							
+						</div>
+					</div>
+
+
+
+	
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=632120 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-632120 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-632120 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=632124 data-node-publishdate=1353795470 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post632124 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Joe Caverly" title="Joe Caverly"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=1815>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Joe Caverly" title="Joe Caverly"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Joe Caverly
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%221815%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/1815-joe-caverly">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class data-vbnamecard=1815>Joe Caverly</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Sep 2004</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>260</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Joe Caverly is online now"><span class="b-icon b-icon__status--green"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632124%23post632124" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?p=632124#post632124" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632124%23post632124" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post632124">#3</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2012-11-24T14:17:50>24 Nov 2012, 05:17 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								I found the answer in the help file, under the <b>OBJECT Statement</b>;<br/>
+<br/>
+<div class=bbcode_container>
+	<div class=bbcode_quote>
+		<div class=quote_container>
+			<div class="bbcode_quote_container b-icon b-icon__ldquo-l--gray"></div>
+			
+				All parameters, return values, and assignment values must be in the form of COM-compatible variables.  Literals and expressions are not allowed.  COM-compatible variables include BYTE, WORD, DWORD, INTEGER, LONG, QUAD, SINGLE, DOUBLE, CURRENCY, , and VARIANT.  You should use caution passing string data since COM Objects require that unicode format be used.  When string data is contained in a VARIANT variable, conversion to/from unicode is automatic, and no intervention is needed from the programmer.  However, if you pass data in a dynamic string variable, you must use the ACODE$() and UCODE$() functions to convert the data to an appropriate format.  For this reason, we recommend that string data be passed using VARIANT variables.
+			
+		</div>
+	</div>
+</div>Joe
+							
+						</div>
+					</div>
+
+
+
+	
+	
+	
+	
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=1815>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Joe Caverly" title="Joe Caverly"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Joe Caverly
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%221815%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/1815-joe-caverly">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+	
+	<div class="b-post__edit h-margin-vert-l">
+		
+		
+			Last edited by <a href="https://forum.powerbasic.com/member/1815-joe-caverly" data-vbnamecard=1815>Joe Caverly</a>; <span class=time>24 Nov 2012, 05:22 PM</span>.
+		
+		
+
+	</div>
+
+	
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=632124 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-632124 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-632124 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=632163 data-node-publishdate=1353859376 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post632163 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/123-michael-mattias" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/image.png" alt="Michael Mattias" title="Michael Mattias"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=123>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/123-michael-mattias" class="avatar medium h-left">
+		<img src="resources/image1.png" alt="Michael Mattias" title="Michael Mattias"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Michael Mattias
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22123%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/123-michael-mattias">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/123-michael-mattias" class data-vbnamecard=123>Michael Mattias</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m off" title="has disabled reputation">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Aug 1998</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>42720</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Michael Mattias is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632163%23post632163" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?p=632163#post632163" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632163%23post632163" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post632163">#4</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2012-11-25T08:02:56>25 Nov 2012, 11:02 AM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								&gt; has one function, ppp, which takes in the PricePerKG and returns the PricePerPound.<br/>
+
+<div class=bbcode_container>
+	<div class=bbcode_description>Code:</div>
+	
+	<pre class=bbcode_code style="max-height:calc(40 * 1.4rem + 12px + 20px);">MACRO PricePerPound  (PricePerKg) = PricePerKg/2.2</pre>
+</div>
+							
+						</div>
+					</div>
+
+
+
+	
+	
+		
+			<div class="post-signature restore">Michael Mattias<br/>
+Tal Systems (retired)<br/>
+Port Washington WI USA<br/>
+<a href="https://forum.powerbasic.com/cdn-cgi/l/email-protection#680505091c1c01091b281c09041b111b1c0d051b460b0705"><span class=__cf_email__ data-cfemail=d6bbbbb7a2a2bfb7a596a2b7baa5afa5a2b3bba5f8b5b9bb>[email protected]</span></a><br/>
+<a href="http://www.talsystems.com" target=_blank rel=nofollow>http://www.talsystems.com</a></div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=632163 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-632163 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-632163 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=632181 data-node-publishdate=1353879108 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post632181 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/263-stuart-mclachlan" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/image.jpg" alt="Stuart McLachlan" title="Stuart McLachlan"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=263>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/263-stuart-mclachlan" class="avatar medium h-left">
+		<img src="resources/image3.jpg" alt="Stuart McLachlan" title="Stuart McLachlan"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Stuart McLachlan
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22263%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/263-stuart-mclachlan">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/263-stuart-mclachlan" class data-vbnamecard=263>Stuart McLachlan</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Mar 2000</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>6614</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Stuart McLachlan is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632181%23post632181" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?p=632181#post632181" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632181%23post632181" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post632181">#5</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2012-11-25T13:31:48>25 Nov 2012, 04:31 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								<i>&gt; <br/>
+</i><i>MACRO PricePerPound  (PricePerKg) = PricePerKg/2.2<br/>
+<br/>
+</i>Maybe the intention was to test calling a COM DLL written in another language, rather than to make a specific calculation <img src="resources/smile.png" border=0 alt title=Smilie smilieid=1 class=inlineimg />
+							
+						</div>
+					</div>
+
+
+
+	
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=632181 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-632181 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-632181 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=632182 data-node-publishdate=1353881603 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post632182 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Joe Caverly" title="Joe Caverly"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=1815>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Joe Caverly" title="Joe Caverly"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Joe Caverly
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%221815%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/1815-joe-caverly">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/1815-joe-caverly" class data-vbnamecard=1815>Joe Caverly</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m balance" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Sep 2004</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>260</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Joe Caverly is online now"><span class="b-icon b-icon__status--green"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632182%23post632182" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?p=632182#post632182" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632182%23post632182" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post632182">#6</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2012-11-25T14:13:23>25 Nov 2012, 05:13 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								<div class=bbcode_container>
+	<div class=bbcode_quote>
+		<div class=quote_container>
+			<div class="bbcode_quote_container b-icon b-icon__ldquo-l--gray"></div>
+			
+				<div class=bbcode_postedby>
+					Originally posted by <strong>Stuart McLachlan</strong>
+					
+						
+						
+							
+							
+							
+							
+								
+								
+								
+								
+									<a href="#post632181" rel=nofollow title="View Post" class="b-icon b-icon__double-arrow-right--blue animate-scroll">View Post</a>
+								
+							
+						
+					
+				</div>
+				<div class=message><i>&gt; <br/>
+</i><i>MACRO PricePerPound  (PricePerKg) = PricePerKg/2.2<br/>
+<br/>
+</i>Maybe the intention was to test calling a COM DLL written in another language, rather than to make a specific calculation <img src="resources/smile.png" border=0 alt title=Smilie smilieid=1 class=inlineimg /></div>
+			
+		</div>
+	</div>
+</div>Hello Stuart,<br/>
+  Yes, you are correct. That was my intention. This was a learning project for me. Thanks to the PowerBASIC Help file, and the threads in the PowerBASIC Forums, I have learned how to call a COM DLL written in VB6. I also now know how and why it works.<br/>
+<br/>
+Joe
+							
+						</div>
+					</div>
+
+
+
+	
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=632182 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-632182 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-632182 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+								
+									
+									
+								
+								
+									<!-- Conversation Replies or Comments -->
+									
+									
+									
+										
+									
+
+									
+										
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+<li data-node-id=632183 data-node-publishdate=1353884897 class="b-post js-post js-comment-entry__parent h-restore--on-preview b-post--text  js-conversation-reply h-left h-clear js-slideshow__gallery-node js-poll__parent " itemscope itemtype="http://schema.org/Comment">
+
+	
+	
+	
+		<a id=post632183 class=anchor></a>
+	
+
+	
+		
+
+		
+		
+
+		
+
+		
+		
+		<meta itemprop=url content="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions"/>
+	
+
+
+	<div class="l-row l-row__fixed--left">
+		<div class="l-col__fixed-3 l-col--userinfo l-col__small--full h-hide--on-preview h-padding-right-l">
+			
+
+
+
+<div class="userinfo b-userinfo b-post__hide-when-deleted" itemprop=author itemscope itemtype="http://schema.org/Person">
+	
+		
+
+		
+		
+			
+			
+		
+
+		
+			<a href="https://forum.powerbasic.com/member/195-dominic-mitchell" class="b-avatar b-avatar--m b-avatar--thread h-margin-bottom-l"><img src="resources/default_avatar_medium.png" width=64 height=64 alt="Dominic Mitchell" title="Dominic Mitchell"/></a>
+		
+	
+	<!-- responsive alteration: Added userinfo-details wrapper in order to
+	support left floated avatar with all other information on the right. -->
+	
+	<div class=b-userinfo__details>
+		
+		<div class="author h-text-size--14">
+			<strong>
+			
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-namecard js-namecard-html h-hide-imp" data-userid=195>
+	<div class=b-namecard__top>
+		<div class=b-namecard__column>
+			
+				
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+	<a href="https://forum.powerbasic.com/member/195-dominic-mitchell" class="avatar medium h-left">
+		<img src="resources/default_avatar_medium.png" alt="Dominic Mitchell" title="Dominic Mitchell"/>
+	</a>
+
+			
+		</div>
+		<div class=b-namecard__column>
+			
+
+			<div class=b-namecard__username>
+				Dominic Mitchell
+			</div>
+
+			
+				<div class=b-namecard__usertitle>
+					Member
+				</div>
+			
+
+			
+				<div class=b-namecard__search-link>
+					
+					
+					
+					
+					
+					
+					
+					<a href="https://forum.powerbasic.com/search?searchJSON=%7B%22authorid%22%3A%5B%22195%22%5D%2C%22channel%22%3A%222%22%2C%22exclude_type%22%3A%5B%22vBForum_PrivateMessage%22%2C+%22vBForum_Channel%22%5D%7D">Find all posts</a>
+				</div>
+			
+
+			
+			
+				<div class=b-namecard__profile-link>
+					<a href="https://forum.powerbasic.com/member/195-dominic-mitchell">View Profile</a>
+				</div>
+			
+		</div>
+	</div>
+	<div class=b-namecard__bottom>
+		<div class="b-namecard__close h-hide">
+			<button class="b-button b-button--secondary js-close-qtip">Close</button>
+		</div>
+	</div>
+</div>
+
+	<a href="https://forum.powerbasic.com/member/195-dominic-mitchell" class data-vbnamecard=195>Dominic Mitchell</a>
+
+			</strong>
+			
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+		</div>
+		
+		
+			
+			<div class=usertitle>Member</div>
+		
+
+		
+			
+			<div class="b-meter h-margin-top-m pos" title="pointless gray bars">
+				
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+					<div class=b-meter__bar></div>
+					<div class=b-meter__bar></div>
+				
+			</div>
+		
+		
+		<div class="b-userinfo__rank h-margin-top-s h-hide"></div>
+		
+		<ul class="b-userinfo__additional-info-block h-margin-top-xl">
+			
+				<li class=b-userinfo__additional-info><label>Join Date:</label> <span>Nov 1999</span></li>
+				<li class=b-userinfo__additional-info><label>Posts:</label> <span>1931</span></li>
+				
+			
+			
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+			
+		</ul>
+		<ul class="b-userinfo__icons h-margin-none">
+			
+				
+			
+			<li class="b-userinfo__icon h-left" title="Dominic Mitchell is offline"><span class="b-icon b-icon__status--gray"></span></li>
+
+			
+		</ul>
+	</div>
+</div>
+			
+
+
+
+
+
+
+
+
+
+	
+
+
+<ul class="b-sharing-menu js-sharing-menu js-comp-menu-horizontal js-comp-menu--dropdown-on-small b-post__hide-when-deleted" data-dropdown-trigger-phrase=share data-dropdown-icon-classes="b-icon b-icon__share" data-dropdown-content-classes=b-sharing-menu--dropdown data-dropdown-menu-classes=b-sharing-menu--right-on-small>
+
+	
+		<li class=b-sharing-menu__item>
+			
+			<a class="js-fb-share-dialog b-sharing-menu__item-link b-sharing-menu__item-link--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632183%23post632183" data-url-not-encoded="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions?p=632183#post632183" target=_blank>
+				<svg class=b-sharing-menu__item-link-img xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" color="#ffffff">
+					<path fill="#ffffff" fill-rule=evenodd d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path>
+				</svg>
+				Share
+			</a>
+		</li>
+	
+
+	
+		<li class="b-sharing-menu__item b-sharing-menu__item--twitter">
+			
+			
+			<a class="js-twitter-share b-sharing-menu__item-link b-sharing-menu__item-link--twitter" href="https://twitter.com/intent/tweet?text=&amp;url=https%3A%2F%2Fforum.powerbasic.com%2Fforum%2Fuser-to-user-discussions%2Fprogramming-with-objects%2F53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions%3Fp%3D632183%23post632183" target=_blank>
+				<img class=b-sharing-menu__item-link-img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E"/>
+				Tweet
+			</a>
+		</li>
+	
+
+	
+
+</ul>
+		</div>
+
+		<div class="js-post__content-wrapper l-col__flex-3 l-col--post__body l-col__small--full h-restore--on-preview">
+			<div class="b-post__body h-restore--on-preview h-padding-horiz-xxl h-padding-top-xl h-padding-bottom-m h-clearfix">
+				<div class="b-post__arrow b-post__hide-when-deleted"></div>
+
+				
+
+				<div class="b-post__content js-post__content">
+					<hr class=b-divider--section />
+
+					<div class="b-media h-hide--on-preview">
+						<div class=b-media__img--rev>
+
+							
+								
+							
+
+							
+							
+							
+							
+							
+
+							
+								<a class="b-post__count js-show-post-link" href="#post632183">#7</a>
+							
+
+							
+
+
+						</div>
+						<div class=b-media__body>
+							
+
+
+							
+							
+							<div class=b-post__timestamp><time itemprop=dateCreated datetime=2012-11-25T15:08:17>25 Nov 2012, 06:08 PM</time></div>
+
+						</div>
+					</div>
+
+
+					<div class=b-post__hide-when-deleted>
+					<div class="OLD__post-content h-padding-vert-xl">
+						
+							<div class="axd axd_last-post">
+								
+								
+								
+							</div>
+						
+
+
+						
+						<div class="js-post__content-text restore h-wordwrap" itemprop=text>
+							
+								
+								<div class=bbcode_container>
+	<div class=bbcode_quote>
+		<div class=quote_container>
+			<div class="bbcode_quote_container b-icon b-icon__ldquo-l--gray"></div>
+			
+				This was a learning project for me. Thanks to the PowerBASIC Help file, and the threads in the PowerBASIC Forums, I have learned how to call a COM DLL written in VB6. I also now know how and why it works.
+			
+		</div>
+	</div>
+</div>Keep in mind that the quote from the help file does not apply to newer versions of the compiler. Aslan' s suggestion will work, but your version of the compiler does not support unicode(WString).
+							
+						</div>
+					</div>
+
+
+
+	
+	
+		
+			<div class="post-signature restore">Dominic Mitchell<br/>
+Phoenix Visual Designer<br/>
+ <a href="http://www.phnxthunder.com" target=_blank rel=nofollow>http://www.phnxthunder.com</a></div>
+		
+	
+
+	</div> 
+  </div> 
+
+
+
+
+
+	
+	
+
+
+
+
+
+		
+			
+				
+				
+				
+				
+				
+				
+			
+			
+<div class="b-post__footer h-hide--on-preview h-clear h-padding-bottom-m h-margin-horiz-xl">
+
+	<div class=h-clearfix>
+		
+
+		
+			<hr class="b-divider b-divider--post-controls"/>
+		
+
+		<ul class="h-left js-post-info">
+
+			
+			
+
+			
+
+			
+		</ul>
+
+		<ul class="h-margin-top-s h-right js-post-controls b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive" data-node-id=632183 data-dropdown-icon-classes="b-icon b-icon__ellipsis" data-dropdown-content-classes=b-comp-menu-dropdown__content--right>
+			
+
+			
+
+			
+
+			
+
+				
+
+					
+
+				
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+
+			
+
+
+			
+
+		</ul>
+
+
+	</div>
+</div>
+
+
+			<div class="b-comment-entry js-comment-entry h-padding-xxl h-padding-top-xl  comment-entry-box h-hide ">
+				<h2 class=h-margin-bottom-xl>Comment</h2>
+				<textarea class="b-comment-entry__textbox js-comment-entry__textbox autogrow" placeholder="Type your comment here"></textarea>
+
+				<div class="b-button-group h-margin-top-xl">
+					<button type=button id=btnPostComment-632183 class="b-button b-button--primary js-comment-entry__post">Post</button>
+					<button type=button id=btnPostCommentCancel-632183 class="b-button js-comment-entry__cancel">Cancel</button>
+				</div>
+			</div>
+
+			<div class=edit-conversation-container></div>
+
+			
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="b-comments js-comments   h-margin-bottom-xl h-clearfix h-hide">
+
+	
+
+	
+		<div class="b-comments__header js-comments__header b-media h-padding-vert-m h-padding-horiz-l h-hide">
+			<div class="js-comments__total h-margin-left-l b-media__body">
+				<span class="b-icon b-icon__speech-single h-margin-right-s"></span>
+				<label class="js-comments__total-text h-align-top"></label>
+			</div>
+			<div class="b-media__img--rev js-comments__pagination h-hide">
+				<label></label>
+				<span class="b-comments__pagination--up js-comments__page--prev h-margin-left-s" title="See previous comments"><span class="b-icon b-icon__arrow-up-m"></span></span>
+			</div>
+		</div>
+		<ul class="b-comments__comments js-comments__comments h-left"></ul>
+		<div class="b-comments__footer js-comments__footer b-media h-padding-vert-m h-padding-horiz-l h-clear h-hide">
+			<div class="b-media__img--rev js-comments__pagination">
+				<label></label>
+				<span class="b-comments__pagination--down js-comments__page--next h-margin-left-s" title="See next comments"><span class="b-icon b-icon__arrow-down-m"></span></span>
+			</div>
+		</div>
+	
+</div>
+
+		
+
+
+      </div>
+    </div>  
+  </div>    
+</li><!-- /end .b-post -->
+									
+								
+								
+
+								
+								
+							
+						</ul>
+					</div>
+				</div>
+				
+					
+
+
+	
+
+
+
+	
+
+
+<div class="pagenav-container h-clearfix noselect h-hide">
+	<div class="js-pagenav pagenav h-right js-shrink-event-parent" data-baseurl="https://forum.powerbasic.com/forum/user-to-user-discussions/programming-with-objects/53178-this-vb6-com-dll-works-from-pbcc-but-a-few-questions">
+
+		
+
+		
+		
+			<a class="js-pagenav-button js-pagenav-prev-button b-button b-button--secondary h-hide-imp js-shrink-event-child" data-page=0 tabindex=0>Previous</a>
+		
+
+		
+		
+		
+		
+		
+		<a class="js-pagenav-button b-button b-button--narrow js-shrink-event-child b-button--secondary js-pagenav-button--template h-hide-imp" data-page=0 tabindex=0>template</a>
+
+		
+		
+			<a class="js-pagenav-button js-pagenav-next-button b-button b-button--secondary h-hide-imp js-shrink-event-child" data-page=0 tabindex=0>Next</a>
+		
+
+	</div>
+</div>
+					
+						<div class=h-margin-top-xl></div>
+					
+				
+
+				
+			</div>
+		
+		
+	</div>
+	
+
+
+
+
+
+	<!-- *** END WIDGET widgetid:6, widgetinstanceid:20, template:widget_conversationdisplay *** -->
+
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 3 -->
+
+
+
+<div class="canvas-widget-list section-3 js-sectiontype-extra h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+		
+	
+
+
+
+	
+
+
+
+<!-- row -->
+<div class="canvas-layout-row l-row no-columns h-clearfix">
+
+	
+	
+
+	
+
+		
+		
+		
+
+		
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+<!-- section 201 -->
+
+
+
+<div class="canvas-widget-list section-201 js-sectiontype-global_before_footer h-clearfix l-col__large-12 l-col__small--full l-wide-column">
+
+	
+
+	
+
+	
+
+</div>
+
+	
+
+</div>
+
+	
+
+</div>
+
+</div>
+	<div class=h-clear></div>
+</main>
+
+	<footer id=footer>
+		
+		
+		<nav id=footer-tabbar class="h-clearfix js-shrink-event-parent">
+			
+			
+			
+			
+			
+				
+			
+			
+			<ul class="h-left js-footer-chooser-list h-margin-left-xxl js-shrink-event-child">
+				
+				
+					<li>
+
+						<div class="b-comp-menu-dropdown js-comp-menu-dropdown b-comp-menu-dropdown--open-on-hover b-comp-menu-dropdown--direction-up js-languagechooser js-select-on-xsmall h-margin-right-l">
+							<div class="b-comp-menu-dropdown__trigger js-comp-menu-dropdown__trigger b-comp-menu-dropdown__trigger--arrow">
+								
+									
+								
+									
+										English (US)
+									
+								
+									
+								
+									
+								
+							</div>
+							<ul class="b-comp-menu-dropdown__content js-comp-menu-dropdown__content b-comp-menu-dropdown__content--left">
+								
+									<li class=b-comp-menu-dropdown__content-item>
+										<a href="https://forum.powerbasic.com/#" data-languageid=3>Deutsch (Du)</a>
+									</li>
+								
+									<li class="b-comp-menu-dropdown__content-item b-comp-menu-dropdown__content-item--current">
+										<a href="https://forum.powerbasic.com/#" data-languageid=1>English (US)</a>
+									</li>
+								
+									<li class=b-comp-menu-dropdown__content-item>
+										<a href="https://forum.powerbasic.com/#" data-languageid=2>French</a>
+									</li>
+								
+									<li class=b-comp-menu-dropdown__content-item>
+										<a href="https://forum.powerbasic.com/#" data-languageid=4>Spanish</a>
+									</li>
+								
+							</ul>
+						</div>
+
+					</li>
+				
+				
+			</ul>
+
+			<ul class="nav-list h-right js-footer-nav-list h-margin-right-xxl b-comp-menu-horizontal js-comp-menu-horizontal js-comp-menu--dropdown-on-xsmall b-comp-menu-dropdown--inactive js-shrink-event-child" data-dropdown-trigger-phrase=go_to_ellipsis data-dropdown-menu-classes="h-margin-vert-l b-comp-menu-dropdown--direction-up" data-dropdown-trigger-classes=b-comp-menu-dropdown__trigger--arrow>
+				
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+					<li class>
+						<a target=_blank href="http://www.powerbasic.com/">PowerBASIC Web Site</a>
+					</li>
+
+				
+					
+					
+					
+						
+						
+					
+					
+					
+					
+					
+					
+					
+					
+
+					<li class>
+						<a rel=nofollow href="https://forum.powerbasic.com/help">Site Help</a>
+					</li>
+
+				
+					
+					
+					
+						
+						
+					
+					
+					
+					
+					
+					
+					
+					
+
+					<li class>
+						<a rel=nofollow href="https://forum.powerbasic.com/contact-us">Contact Us</a>
+					</li>
+
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+					<li class>
+						<a href="https://forum.powerbasic.com/">Community Main Page</a>
+					</li>
+
+				
+				<li><a href="https://forum.powerbasic.com/#" class=js-footer-go-to-top>Top of Page</a></li>
+			</ul>
+		</nav>
+		
+      
+      
+      
+      
+
+      
+    
+
+	</footer>
+</div>
+<div id=footer-copyright>
+	<div id=footer-user-copyright>Copyright © 1998-2020 PowerBASIC Tools, LLC - All Rights Reserved.</div>
+	<div id=footer-vb-copyright>Powered by <a href="https://www.vbulletin.com" id=vbulletinlink>vBulletin®</a> Version 5.6.6 <br/>Copyright © 2022 vBulletin Solutions, Inc. All rights reserved. </div>
+	<div id=footer-current-datetime>All times are GMT-5. This page was generated at 07:41 AM.</div>
+</div>
+</div>
+
+<div id=loading-indicator class="js-loading-indicator b-ajax-loading-indicator h-hide">
+	<span>Working...</span>
+</div>
+<div class="js-flash-message b-ajax-loading-indicator b-ajax-loading-indicator--medium h-hide">
+	<span class=js-flash-message-content></span>
+</div>
+<div id=confirm-dialog class=sb-dialog>
+	<div class="dialog-content h-clearfix">
+		<div class="icon h-left"></div>
+		<div class=message></div>
+	</div>
+	<div class=b-button-group>
+		<button id=btnConfirmDialogYes type=button class="b-button b-button--primary js-button">Yes</button>
+		<button id=btnConfirmDialogNo type=button class="b-button b-button--secondary js-button">No</button>
+	</div>
+</div>
+<div id=alert-dialog class=sb-dialog>
+	<div class="dialog-content h-clearfix">
+		<div class="icon h-left"></div>
+		<div class=message></div>
+	</div>
+	<div class=b-button-group>
+		<button id=btnAlertDialogOK type=button class="b-button b-button--primary js-button">OK</button>
+	</div>
+</div>
+<div id=prompt-dialog class=sb-dialog>
+	<div class="dialog-content table h-clearfix">
+		<div class="message td"></div>
+		<div class="input-box-container td">
+			<input type=text class="input-box textbox"/>
+			<textarea class="input-box textbox h-hide" rows=3></textarea>
+		</div>
+	</div>
+	<div class="js-prompt-error h-hide"></div>
+	<div class=b-button-group>
+		<button id=btnPromptDialogOK type=button class="b-button b-button--primary js-button">OK</button>
+		<button id=btnPromptDialogCancel type=button class="b-button b-button--secondary js-button">Cancel</button>
+	</div>
+</div>
+<div id=slideshow-dialog class="sb-dialog slideshow">
+	<div class="b-icon b-icon__x-square--gray close-btn">X</div>
+	<div class=slideshow-wrapper></div>
+	<div class=caption></div>
+	<div class=thumbnails-wrapper>
+		<div class=thumbnails></div>
+	</div>
+
+</div>
+
+<div class=unsubscribe-overlay-container></div>
+
+<div id=fb-root data-facebook-language=en_US></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="b-modal-banner__banner js-privacy-consent-banner__banner h-hide-imp b-modal-banner__banner--center">
+	
+		<p class=b-modal-banner__paragraph>We process personal data about users of our site, through the use of cookies and other technologies, to deliver our services, and to analyze site activity. For additional details, refer to our <a href="https://www.powerbasic.com/privacy-notice" target=_blank class=b-modal-banner__clickable>Privacy Policy</a>.</p>
+
+<p class=b-modal-banner__paragraph>By clicking "<b>I AGREE</b>" below, you agree to our <a href="https://www.powerbasic.com/privacy-notice" target=_blank class=b-modal-banner__clickable>Privacy Policy</a> and our personal data processing and cookie practices as described therein. You also acknowledge that this forum may be hosted outside your country and you consent to the collection, storage, and processing of your data in the country where this forum is hosted.</p>
+		<p class=b-modal-banner__paragraph>
+			<a href="https://forum.powerbasic.com/#" class="b-button b-button--primary b-modal-banner__clickable js-privacy-consent-banner__button">I Agree</a>
+		</p>
+	
+</div>
+<div class="b-modal-banner__overlay js-privacy-consent-banner__overlay h-hide-imp"></div>
+	
+
+
+
+
+
+
+
+</body>
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

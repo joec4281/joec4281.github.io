@@ -1,0 +1,1504 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.0 transitional//en">
+<!--saved from url=(0024)http://www.bauerapps.com--><html>
+<head>
+   <meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+   <meta name=Generator content=Paws>
+   <meta name=keywords content="64-bits, 64 bits, AMD64, EM64T, Win64, Windows, assembler, assembly, resources, resource compiler, GoAsm, GoRC, asm, programming, tools, 64-bit assembler, 64-bit assembly">
+   <title>Writing 64-bit programs</title>
+   <!--Copyright Jeremy Gordon 2006-2016-->
+   <style>
+   <!--
+   A {color: #0000FF; font: bold 10pt times}
+   A:Visited {color: #333399}
+   A:Hover {color: #009900}
+   OL {list-style: lower-alpha}
+   -->
+   </style>
+   <!--
+   Note: files which need to be shipped with this file are:-
+   GoLogo50.gif
+   GoAsm.htm
+   GoLogo64192.png
+   -->
+</head>
+<body>
+
+<a NAME=top></a>
+<table width="80%" CELLPADDING=0>
+<tr><td width="15%"> </td>
+<td>
+<font size=-1>
+<br><a href="http://www.GoDevTool.com"><img SRC="resources/GoLogo50.gif" hspace=4 border=0 height=22 width=50>The "Go" tools</a>
+<br><a href="https://www.godevtool.com/GoasmHelp/GoAsm.htm">The GoAsm manual</a>
+<br><a href="http://www.masmforum.com/">GoAsm Assembler and Tools forum</a><font size=-1> (in the MASM forum)</font>
+</font>
+
+<p><center><table width="100%" CELLPADDING=0>
+<tr><td>
+<font size="+3"><b>Writing 64-bit programs</b></font>
+<br><font color=000000>by Jeremy Gordon - </font>
+<img SRC="resources/mail6sblue.gif" height=13 width=93 align=top vspace=5>
+<p><font size=-1><i>This file is intended for those interested in writing
+64-bit programs for the AMD64 and EM64T processors running on x64 (64-bit Windows),
+using GoAsm (assembler), GoRC (resource compiler) and GoLink (linker).
+It may also be of interest to those writing 64-bit assembler programs for
+Windows using other tools.</font></i></p>
+</td>
+<td width=200>
+<img SRC="resources/GoLogo64192.png" height=96 width=192 align=left>
+</td>
+</tr>
+</table></center>
+
+<h2><font color=000066>Contents</font></h2>
+
+<DL>
+<DT><font size="+0"><font color=000066><b>Introduction to 64-bit programming:</b></font></font>
+<font size=-1>
+<DD><a href="#easy">How easy is 64-bit programming?</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffe">Differences between 32-bit and 64-bit executables</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffwin">Differences between Win32 and Win64 (for AMD64/EM64T)</a>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffproc">Differences between x86 and x64 processors:</a>
+<br>      <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffreg">registers</a>
+<br>      <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffins">instructions</a>
+<br>      <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffrel">RIP-relative addressing</a>
+<br>      <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#calladd">call address sizes</a>
+
+<p><DT><font size="+0"><font color=000066><b>64-bit programming in practice</b></font></font>
+<font size=-1>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#datat">Changes to Windows data types</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#alignment">Alignment requirements</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#structs">Windows structures in 64-bit programming</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#choice">Choice of register</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#zerox">Zero-extension of results into 64-bit registers</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#signx">Sign-extension of results into qwords</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#autoal">Automatic stack alignment</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#rules">Using the same source code for both 32 and 64-bits</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#convert">Converting existing 32-bit code to 64-bit</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#adapt">Using AdaptAsm.exe to help with the conversion</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#pitfalls">Some pitfalls to avoid when converting existing source code</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#switch">Switching using /x64 and /x86 in conditional assembly</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#make">Assembling and linking to produce the executable</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#optim">Some code optimisation and refinement done by GoAsm</a></DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#tips">Some tips to reduce the size of your code</a></DD>
+</font>
+
+<p><DT><font size="+0"><font color=000066><b>Demonstration files</b></font></font>
+<font size=-1>
+<DD><a href="https://www.godevtool.com/GoasmHelp/Hello64World1">
+Hello64World1</a> (simple 64-bit console program)</DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/Hello64World2">
+Hello64World2</a> (simple 64-bit windows program)</DD>
+<DD><a href="https://www.godevtool.com/GoasmHelp/Hello64World3">
+Hello64World3</a> (switchable 32-bit or 64-bit windows program)</DD>
+</font></p>
+
+<p><DT><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#links"><font size="+0"><font color=000066>More information, references and links
+</font></font></a>
+   <!--
+<font size=-1>
+<br><a href="#ack"><font size=+0><font color="000066">Acknowledgements</font></a>
+</font>
+   -->
+</DL></p>
+
+<p><hr width="50%">
+
+
+<a NAME=easy></a>
+<h2>Introduction to 64-bit programming</h2>
+<font size=-1>
+<h3>How easy is 64-bit programming?<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h3>
+Despite the differences between the 64-bit processors and their 32-bit counterparts, and between
+the x64 (Win64) operating system and Win32, using GoAsm to write 64-bit Windows programs
+is just as easy as it was in Win32.
+<p>In fact, you can readily use the same source code to create executables for both platforms if
+you follow a set of <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#rules">rules</a>.
+<p>You can also <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#convert">convert</a> existing 32-bit source code to 64-bits
+and some of the work required to do this can be done automatically using
+<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#adapt">AdaptAsm</a>.
+
+<a NAME=diffe></a>
+<h3>Differences between 32-bit and 64-bit executables<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h3>
+Although 32-bit and 64-bit executables are based on the same PE (Portable Executable) format,
+in fact there are a number of major differences.  The extent of those differences means that
+32-bit code will only run on Win64 using the Windows on Windows (WOW64) subsystem.  This works
+by intercepting API calls from the executable and converting the parameters to suit Win64.
+64-bit code will not work at all on 32-bit platforms.
+<p>The executable contains a flag which tells the system at load-time whether it is 32-bit or
+64-bit.  If the x64 loader sees a 32-bit executable, WOW64 kicks-in automatically.  This means
+that 32-bit and 64-bit code cannot be mixed within the same executable.
+<p>The significance of the above is that the programmer has to choose between:-
+<ul>
+<li>Making one version of the application (Win32).  This will work on both platforms.</li>
+<li>Making two versions of the application (one for Win32 and one for Win64).</li>
+</ul>
+For those who are interested in PE file internals, here is a summary of the main differences
+between 32-bit and 64-bit executables:-
+<ul>
+<li>The PE file format for Win64 files is called "PE+".</li>
+<li>The size of optional header field in the COFF header is 0F0h in a PE+ file and 0E0h in a
+PE file.</li>
+<li>The "machine type" in the COFF header is not 14Ch (as it is for x86 processors), but is
+8664h (for the AMD64 processor).</li>
+<li>The "magic number" at the beginning of the optional header is 20Bh instead of 10Bh.</li>
+<li>The "majorsubsystemversion" in a PE+ file is 5 instead of 4 in a PE file.</li>
+<li>The executable "image" (the code/data as loaded in memory) of a Win64
+file is limited in size to 2GB. This is because the AMD64/EM64T processors use relative addressing
+for most instructions, and the relative address is kept in a dword.  A dword is only capable of
+holding a relative value of ±2GB.</li>
+<li>The import address table (where the loader overwrites the addresses of external calls such
+as the addresses of APIs in system Dlls) is enlarged to 64-bits, as is the import look-up table.
+This is because the address of external calls could be anywhere in memory.</li>
+<li>The preferred image base, SizeofStackReserve, SizeofStackCommit, SizeofHeapReserve
+and SizeofHeapCommit fields in the optional header are enlarged from 4 to 8 bytes.</li>
+<li>The default base address in Win64 is 400000h as in Win32 files.</li>
+<li>64-bit executables which provide properly for full Win64 exception handling contain a .pdata
+section holding the tables required for this.</li>
+</ul>
+You can view the internals of the PE file using
+<a href="http://wjradburn.com/software/">Wayne J. Radburn's PEview</a>.
+
+<a NAME=diffwin></a>
+<h3>Differences between Win32 and Win64 (for AMD64/EM64T)<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h3>
+Here are the main differences between Win32 and Win64 of relevance to the assembler or
+Windows programmer:-
+<ul>
+<a NAME=callingc></a>
+<li><b>Calling convention</b>.  Win32 uses the STDCALL convention whereas Win64 uses the FASTCALL
+convention.  In STDCALL all parameters which are sent to an API are PUSHed on the stack.
+In Win32 the stack pointer (ESP) is reduced by 4 bytes for each PUSH.  In STDCALL it is the
+responsibility of the API to restore the stack to equilibrium.
+<br>In FASTCALL, the first four parameters are sent to the API in registers (in this order: RCX,RDX,R8 and
+R9), but the fifth and subsequent parameters are PUSHed on the stack.
+In Win64, the stack pointer (RSP) is reduced by 8 bytes for each PUSH.  Unlike STDCALL, it is not
+the responsibility of the API to clear up the stack.  Instead this must be done by the caller
+to the API.  The caller must also ensure that there is space on the stack for the API to store
+the parameters which are passed in registers.  In practice this is achieved by reducing the stack
+pointer by 32 bytes just before the call.<br>Note than in GoAsm all the work required by the FASTCALL calling convention is done
+automatically if you use INVOKE or ARG followed by INVOKE.  See
+<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#invokec">coding to comply with FASTCALL calling convention</a>.
+The use of ARG and INVOKE is described in the relevant part of the
+<a href="https://www.godevtool.com/GoasmHelp/GoAsm.htm#apicall">GoAsm manual</a>.
+<br><font color=FF0066><i>Note that GoAsm does not yet do this for parameters which need
+to be sent in the XMM registers (ie. in floating point instructions).</i></font></li>
+<li>Windows uses the FASTCALL convention to call the <b>window procedures</b> and other callback
+procedures in your application.  This means that your window procedures will pick up the parameters
+in a different way under Win64.  Also the window procedures no longer have to
+restore the stack to equilibrium.
+<br>Note that GoAsm will implement these things automatically if you use FRAME...ENDF.
+The use of FRAME...ENDF is described in the relevant part of the
+<a href="https://www.godevtool.com/GoasmHelp/GoAsm.htm#frame">GoAsm manual</a>.
+</li>
+<a NAME=exceptionh></a>
+<li>All functions using a stack frame (including window procedures) need to follow certain
+rules if they wish to make use of <b>exception handling</b>.  The tools need also to add exception
+frame records to the executable.  This will also be handled automatically by the "Go" tools.
+<font color=FF0066><i>Note this is not yet available</i></font></li>
+<a NAME=registerv></a>
+<li><b>Register volatility.</b> In Win32, window procedures and other callback procedures have to restore the values in the
+EBP,EBX,EDI and ESI registers before returning to the caller (if the value in those registers
+are changed).  This is something that is also done by the Windows APIs (these registers
+will not change when you call an API).  These are called the "non-volatile" registers.
+In Win64, this list of registers is extended to RBP,RBX,RDI,RSI,R12 to R15 and
+XMM6 to XMM15.
+<br>The "volatile" registers are those which may be changed by APIs, and which you do
+not need to save and restore in your window procedures and other callback procedures.
+In Win32 the general purpose volatile registers were EAX,ECX and EDX.  These have now
+been extended to RAX,RCX,RDX, and R8 to R11.
+</li>
+<li>You might not have expected this, but in 64-bit assembly for the AMD64, <b>pointers to
+code and data</b> whose addresses are <i>within the executable</i> are still only 32-bits.
+This ties in with the fact that <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffrel">RIP-relative addressing</a> limits the size of the
+executable to 2GB.  Pointers to external addresses, such as functions in Dlls, are 64-bit
+wide so that the function can be anywhere in memory see <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#calladd">call address sizes</a>.</li>
+<li>In Win64 the <b>data size</b> of all handles and pointers are now 64-bits instead
+of 32-bits. See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#datat">Changes to Windows data types</a> for more.
+</li>
+<li>In Win64 there are stricter requirements for the alignment of <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#alignsta">the stack</a>,
+<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#aligndat">data</a>, and for structures (see <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#alignstr">alignment
+of structures and structure members</a>).</li>
+<a NAME=apis></a>
+<li>The <b>Windows APIs</b> have been modified to work in 64-bits.  There are, however, a small
+number of new APIs to handle the extra requirements of 64-bit operation. These include:-
+<BLOCKQUOTE>
+GetClassLongPtr
+<br>GetWindowLongPtr
+<br>SetClassLongPtr
+<br>SetWindowLongPtr
+</BLOCKQUOTE>
+Note that just as in Win32, you can make your application with either the ANSI or the
+Unicode version of the APIs. See <a href="https://www.godevtool.com/GoasmHelp/Unicode.htm">Writing Unicode programs</a>.
+</li>
+</ul>
+
+<a NAME=diffproc></a>
+<h3>Differences between x86 and x64 processors<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h3>
+The main differences are the expanded register range, some changes to instructions, and the use of
+RIP-relative addressing.  The notes below refer to the AMD64 in 64-bit mode.  In this mode the
+AMD64 can also run 32-bit executables naturally.
+
+<BLOCKQUOTE>
+<a NAME=diffreg></a>
+<h3>Registers<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h3>
+The AMD64 adds several new registers to those available in the 86 series of processors, and
+also adds new ways to address the existing registers.
+<ul>
+<li>The EAX,EBX,ECX,EDX,ESI,EDI,EBP and ESP "general purpose" registers are all enlarged to 64-bits.
+The enlarged registers are accessed using RAX,RBX,RCX,RDX,RSI,RDI,RBP and RSP</li>
+<li>You can still access the low dword of these registers (ie. the least significant 32 bits) by using
+the existing names EAX,EBX,ECX,EDX,ESI,EDI,EBP and ESP.</li>
+<li>You can still access the lowest word of these registers (ie. the least significant 16 bits) by using
+the existing names AX,BX,CX,DX,SI,DI,BP and SP.</li>
+<li>You can still access the first byte of RAX,RBX,RCX and RDX (ie. the least significant 8 bits)
+by using the existing names AL,BL,CL,DL as in the 86 processor.  But you can now also address
+the first byte of the "index" registers by using SIL,DIL,BPL and SPL.  So for example SIL is
+the least significant 8 bits of the index register RSI.</li>
+<li>You can still access the second byte of RAX,RBX,RCX and RDX (bits 8 to 15) by using
+the existing names AH,BH,CH,DH as in the 86 processor.  However, the opcodes for this have been
+altered in the AMD64 processor.  They now clash with the opcodes required to address the
+byte versions of the extended registers R8 to R15.  So you cannot use AH,BH,CH,DH and
+R8B to R15B in the same instruction.</li>
+<li>There are eight new 64-bit registers (the "extended registers") named R8 to R15.</li>
+<li>The low dword of these registers (ie. the least significant 32 bits) can be addressed
+using the R8D to R15D forms.</li>
+<li>The low word of these registers (ie. the least significant 16 bits) can be addressed
+using the R8W to R15W forms.</li>
+<li>The first byte of these registers (ie. the least significant 8 bits) can be addressed
+using the R8B to R15B forms.</li>
+<li>There are 8 new XMM (128-bit) registers named XMM8 to XMM15.</li>
+<li>The 64-bit MMX registers (MM0 to MM7) are still available.  As in the 86 processor they are
+also used as floating point registers (ST0 to ST7) for the x87 floating point instructions.</li>
+<li>The instruction pointer is now in the 64-bit RIP register.</li>
+</ul>
+
+<a NAME=diffins></a>
+<h3>Instructions<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h3>
+<ul>
+<li>There are some instructions which are not available in the AMD64.  The opcodes are now
+used for other purposes.  The full list is contained in the AMD64 manuals, but includes
+AAA, AAD, AAM, AAS, DAA and PUSH and POP operations using CS,DS,ES and SS.</li>
+<p><li>Instructions are enlarged to allow for the new registers and register forms of address,
+for example:-
+<pre>
+MOV RAX,<i>immediate</i>     ;move a 64-bit number into the 64-bit register
+JRCXZ &gt;L1             ;if RCX is zero jump forward to L1
+</pre>
+</li>
+<p><li>The string instructions are now enlarged to allow for 64-bit addressing for, example:-
+<pre>
+LODSB         ;now equivalent to MOV AL,[RSI] then INC RSI
+LODSW         ;now equivalent to MOV AX,[RSI] then ADD RSI,2
+LODSD         ;now equivalent to MOV EAX,[RSI] then ADD RSI,4
+LODSQ         ;new! equivalent to MOV RAX,[RSI] then ADD RSI,8
+CMPSB         ;now equivalent to CMP B[RSI],B[RDI] then INC RSI,RDI
+CMPSQ         ;new! equivalent to CMP Q[RSI],Q[RDI] then ADD RSI,8 ADD RDI,8
+MOVSW         ;now equivalent to MOV W[RDI],W[RSI] then ADD RSI,2 ADD RDI,2
+MOVSQ         ;new! equivalent to MOV Q[RDI],Q[RSI] then ADD RSI,8 ADD RDI,8
+SCASD         ;now equivalent to CMP [RDI],EAX then ADD RDI,4
+SCASQ         ;new! equivalent to CMP [RDI],RAX then ADD RDI,8
+STOSQ         ;new! equivalent to MOV [RDI],RAX then ADD RDI,8
+</pre>
+The repeat prefixes REP, REPZ and REPNZ use RCX rather than ECX.
+The loop instructions LOOP, LOOPZ and LOOPNZ use RCX rather than ECX.
+The table look-up instruction XLATB uses RBX rather than EBX.
+</li>
+<p><li>Apart from the above, the only new instruction of any note usable by programmers is MOVSXD
+which can move 32-bits of data from a register or from memory into a 64-bit register, sign extending
+bit 31 into all higher bits.  There are also a handful of new system instructions.</li>
+<p><li>In the AMD64, each PUSH and POP instruction moves the stack pointer by 8 bytes instead
+of 4 bytes as in the 86 processor.  This means that PUSH <i>32-bit register</i> is no longer
+a recognised instruction on the AMD64.  To help with compatibility of source code, GoAsm treats (for example) PUSH EAX
+as equivalent to PUSH RAX.  In /x86 mode, GoAsm treats PUSH RAX as equivalent to PUSH EAX.
+So it does not really matter which you use.</li>
+<a NAME=diffins2></a>
+<p><li>PUSH <i>immediate</i> on the AMD64 takes a 32-bit immediate (number) value and sign extends bit 31
+into all higher bits.  There is no single instruction capable of taking a 64-bit immediate value and
+PUSHing that onto the stack.  For this reason PUSH ADDR THING is not a recognised instruction
+on the AMD64 (the offset value is treated as an immediate).  The problem here is that the actual
+immediate value of any particular offset is unknown until link-time, and at assemble-time it is
+impossible for the assembler to know whether the offset is above 7FFFFFFFh and so would
+be affected by the sign extension.
+<p><i>Therefore in GoAsm, PUSH ADDR THING <b>makes use of the R11 register</b>
+and takes advantage of the shorter RIP-relative addressing of LEA with the following coding:-</i>
+<pre>
+LEA R11,[THING]
+PUSH R11
+</pre>
+<p><li>The 3DNow! instructions are still available in the AMD64.  It's not clear whether
+these instructions are now available on processors supporting Intel EM64T technology.</li>
+</ul>
+
+<a NAME=diffrel></a>
+<h3>RIP-Relative addressing<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h3>
+Some instructions in the AMD64 processor which address data or code, use RIP-Relative addressing
+to do so.  The relative address is contained in a dword which is part of the instruction.  When
+using this type of addressing, the processor adds three values: (a) the contents of the dword
+containing the relative address (b) the length of the instruction and (c) the value of RIP (the
+current instruction pointer) at the beginning of the instruction.  The resulting value is then
+regarded as the absolute address of the data and code to be addressed by the instruction.  Since
+the relative address can be a negative value, it is possible to address data or code earlier
+in the image from RIP as well as later.  The range is roughly ±2GB, depending on the
+instruction size.  Since relative addressing cannot address outside this range, this is the
+practical size limit of 64-bit images.
+<p>RIP-relative addressing happens "behind the back" of the user.  The processor uses it if the
+opcodes contain certain values (in the ModRM byte, the Mod field equals 00 binary, and the r/m
+field equals 101 binary).  You cannot control this except by changing the type of
+instructions you use.  Generally here are the rules which govern whether or not an instruction
+uses RIP-relative addressing:-
+<ul>
+<li>Addresses in data cannot use RIP-relative addressing since the value of RIP cannot be
+known at the time when those addresses are set.  Instead, an absolute address for insertion
+is calculated at link-time.  So for example the following instructions do not use
+RIP-relative addressing but instead use absolute addresses:-
+<pre>
+MyDataLabel1 DQ MyDataLabel3   ;address of data label
+MyDataLabel2 DQ MyCodeLabel    ;address of code label
+MyDataLabel3 DQ $              ;using current data pointer
+MyDataLabel4 DD MyDataLabel3   ;address of data label
+MyDataLabel5 DT MyCodeLabel    ;address of code label
+MyDataLabel6 DD $              ;using current data pointer
+</pre>
+Note that in practice, the absolute address is contained in a dword and not in a qword.  This is why
+in the above examples data and code addresses can be contained within a dword data declaration.
+This restriction is feasible because the practical image size is limited to 2GB anyway because
+of the restrictions imposed by RIP-relative addressing.</li>
+<p>
+<li>Offsets converted to immediate values either at assemble-time or at link-time use
+absolute addressing rather than relative addressing.  For example the following instructions
+do not use RIP-relative addressing but instead use absolute addresses:-
+<pre>
+MOV RAX,ADDR MyDataLabel3      ;address of data label put in register
+MOV MM0,ADDR MyCodeLabel       ;address of code label put in register
+MOV Q[RSP],ADDR MyDataLabel3   ;address of data label put in memory location
+MOV Q[RSP],ADDR MyCodeLabel    ;address of code label put in memory location
+</pre>
+<i>However, GoAsm actually codes MOV RAX,ADDR MyDataLabel3 and similar instructions using the shorter
+LEA instruction, which does use RIP-relative addressing.</i>
+<br>
+<br>
+<i>Also note that for a MOV to memory of an ADDR, GoAsm <b>makes use of the R11 register</b>
+and takes advantage of the shorter RIP-relative addressing of LEA with the following coding:-</i>
+<pre>
+LEA R11,ADDR Non_Local_Label
+MOV [Memory64],R11
+</pre>
+
+<p><i></i>
+</li>
+<p>
+<li>Here are examples of other instructions which use RIP-relative addressing:-
+<pre>
+MOV RAX,[MyDataLabel3+55h]     ;address of data label
+RCL Q[MyDataLabel3],1          ;address of data label
+MOV Q[MyDataLabel3],20h        ;address of data label
+PAVGUSB MM3,[MyDataLabel3]     ;a 3DNow! instruction
+CALL ExitProcess               ;address of code label (system API)
+JMP InternalCodeLabel          ;address of code label inside the module
+CALL InternalCodeLabel         ;address of code label inside the module
+CALL ExternalCodeLabel         ;address of code label outside the module
+PUSH [MyData]                  ;saving the contents of a data label
+POP [MyData]                   ;restoring the contents of a data label
+</pre>
+<i>Note in the case of an external call, the relative address points to the Import
+Address Table. Since the table is now enlarged to 64-bits, it is possible to call a code label
+anywhere in memory.</i></li>
+<p>
+<li>LEA uses RIP-relative addressing, for example:-
+<pre>
+LEA RBX,MyDataLabel3           ;load into RBX address of data label
+</pre>
+</li>
+<li>RIP-relative addressing is not used where the data or code label is supplemented by
+an index register.  Although this may seem odd, the reason appears to be that adding
+information about the register to the opcodes means that the processor can no longer
+recognise the instruction as one which uses RIP-relative addressing (in the ModRM byte,
+the Mod field no longer equals 00 binary, and the r/m field no longer equals 101 binary).
+This means that the following instructions use absolute addresses rather than RIP-relative
+ones:-
+<pre>
+MOV RAX,[ESI+MyData]
+RCL Q[EBX+MyData],1
+MOV Q[RSI*2+MyData],44444444h
+PAVGUSB MM3,[R12+MyData]
+LEA RBX,MyData+RSI
+CALL [MyCall+RDI]
+JMP [MyJump2+RDI]
+PUSH [MyCall+RSI]
+POP [MyCall+R12]
+</pre>
+<i>Because RIP-relative addressing is not being used here, for these types of instructions to work properly,
+the Image Base should be well below 7FFFFFFFh.
+These types of instructions would need to be adjusted if using a larger Image Base or when linking with the /LARGEADDRESSAWARE option.</i>
+</li>
+</ul>
+Bearing in mind that the image size is limited to 2GB by the above arrangements, it might be
+thought that the advantages of RIP-relative addressing are somewhat limited.  This seems to
+be the case.  It appears that the only advantage is that it lessens the number of relocations
+which would need to be carried out by the loader if a DLL is loaded at an address which is
+unexpected.  The loader then would need to adjust all absolute addresses to suit the actual
+image base, but relative addresses would not have to be altered since they refer to other
+parts of the virtual image of the executable itself.  However, it is good practice for the
+programmer to choose a suitable image base at link-time to avoid the need for relocations in
+a DLL in the first place.  A good example of this is the system DLLs themselves.  They all
+have a different image base which effectively avoids any prospective clashes of the image
+in memory which would require relocation at load-time.
+
+<a NAME=calladd></a>
+<h3>Call address sizes<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h3>
+In 64-bit assembly, a simple call to a code label eg.
+<pre>
+CALL CALCULATE
+</pre>
+will be coded as an E8 RIP-relative call, using a dword to provide the offset from RIP.
+The destination of this call might be an internal code label (ie. a procedure or function
+within the executable itself).  Or it might be to an <i>external</i> code label, such as
+an API in a system Dll or to a code label exported by another exe or Dll.  The first
+destination of a call to an external code label is to the Import Address Table which
+is part of the executable itself.  This table is written over by the loader when the
+executable starts.  Therefore during run-time the table contains the absolute addresses
+in virtual memory of the eventual destination of the call.  In a 64-bit executable,
+the table contains 64-bit values, so the E8 RIP-relative call is capable of calling a procedure
+or function anywhere in memory.
+<p>Calls to memory addresses either held in a label, or in registers, or in
+memory pointed to by registers, however, are dealt with in a different way.  They are
+not channelled through the Import Address Table.  These calls must also permit the
+destination of the call to be anywhere in memory.  In order to achieve this they must
+themselves use 64-bit absolute addresses.    Examples of these types of calls are:-
+<pre>
+CALL RAX
+CALL EAX           ;codes the same as CALL RAX
+CALL [Table+8h]
+CALL [RSI]
+CALL [ESI]         ;codes the same as CALL [RSI]
+</pre>
+Here you need to be careful that you are in fact giving a qword to the call, and not just a dword.
+<br>See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#pitfalls">some pitfalls to avoid when converting existing source code</a>.
+</BLOCKQUOTE>
+
+<a NAME=datat></a>
+<h2>Changes to Windows data types</h2>
+Here is a list of the changes to data types between 32 and 64-bits:-
+<p><h4>All handles now qwords not dwords</h4>
+<pre>
+eg.
+HACCEL, HINSTANCE, HBRUSH, HBITMAP
+HCOLORSPACE, HCURSOR, HDC, HFONT
+HICON, HINSTANCE, HKEY, HLOCAL
+HMENU, HMODULE, HPEN, HPALETTE, HWND
+(and others starting with H)
+</pre>
+exceptions:- HRESULT, HFILE which remain dwords, and HALF_PTR (see below)
+<p><h4>All pointers now qwords not dwords</h4>
+<pre>
+eg.
+LPCSTR, LPCTSTR, LPLONG, LPSTR
+(and others starting with LP)
+PBOOL, PHANDLE, PHKEY, PVOID
+(and others starting with P)
+DWORD_PTR, ULONG_PTR, UINT_PTR
+(and others ending with _PTR)
+and LRESULT
+</pre>
+exceptions:- HALF_PTR, and UHALF_PTR which are now dwords instead of a word
+and POINTER_32 which remains a 32-bit pointer
+<p><h4>WPARAM and LPARAM now qwords not dwords</h4>
+<p>Here is a list of the data types which remain the same:-
+<pre>
+ATOM         remains a word
+BOOL         remains a dword
+CHAR         remains a byte
+DWORDLONG    remains a qword
+COLORREF     remains a dword
+INT          remains a dword
+INT32        remains a dword
+INT64        remains a qword
+LANGID       remains a word
+LCTYPE       remains a dword
+LCID         remains a dword
+LGRPID       remains a dword
+LONG         remains a dword
+LONG32       remains a dword
+LONG64       remains a qword
+LONGLONG     remains a qword
+POINT        remains two dwords
+RECT         remains four dwords
+SHORT        remains a word
+UINT         remains a dword
+UINT32       remains a dword
+UINT64       remains a qword
+ULONG        remains a dword
+ULONG32      remains a dword
+ULONG64      remains a qword
+ULONGLONG    remains a qword
+USHORT       remains a word
+</pre>
+
+<a NAME=ptype></a><h4>Using the switched type indicator</h4>
+The above change of a data type may require a corresponding change to a type indicator. The letter P is reserved as a type indicator in all situations when
+GoAsm might expect to find one.  So you can have this switch:-
+<pre>
+#if x64
+P = 8
+#else
+P = 4
+#endif
+</pre>
+P can be switched to the equivalent of any of the pre-defined type
+indicators that is B, W, D, Q or T.  In this case it is switched either
+to Q (value 8) or to D (value 4).  Therefore you can control the size
+of the instruction with it, for example:-
+<pre>
+MOV P[RDI],0          ;zero a qword at RDI if 64-bit, dword at EDI if 32-bit
+LOCAL POINTERS[10]:P  ;make 80 byte local pointer buffer if 64-bit, 40 byte if 32-bit
+</pre>
+
+<a NAME=alignment></a>
+<h2>Alignment requirements</h2>
+The requirements of the system in Win64 for correct alignment of the stack pointer,
+data, and structure members are much stricter than in Win32.  Wrong alignment
+can cause as best a loss of performance and at worst, an exception or program exit.
+<p><a NAME=alignsta></a>
+<h4>Stack alignment</h4>
+The stack pointer (RSP) must be 16-byte aligned when making a
+call to an API.  However, this is organised automatically by GoAsm if you use
+INVOKE see <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#autoal">automatic stack alignment</a></li>.
+
+<p><a NAME=aligndat></a>
+<h4>Data alignment</h4>
+All data must be aligned on a "natural boundary".  So a byte can be byte-aligned, a word
+should be 2-byte aligned, a dword should be 4-byte aligned, and a qword should be 8-byte
+aligned.  A tword should also be qword aligned.  GoAsm deals with alignment automatically
+for you when you declare local data (within a FRAME or USEDATA area).  But you will need
+to organise your own data declarations to ensure that the data is properly aligned.  The
+easiest way to do this is to declare all qwords first, then all dwords, then all words
+and finally all bytes.  Twords (being 10 bytes) would put out the alignment for later
+declarations, so you could declare all those first and then put the data back into
+alignment ready for the qwords by using ALIGN 8.
+<p>As for strings, in accordance with the above rules, Unicode strings must be
+2-byte aligned, whereas ANSI strings can be byte aligned.
+<p>When structures are used they need to be aligned on the natural boundary of the
+largest member. All structure members must also be aligned properly, and the structure
+itself needs to be padded to end on a natural boundary (the system can write in
+this area).  Because of the importance of this, from Version 0.56 (beta), GoAsm aligns structures
+automatically for you.  See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#alignstr">automatic alignment and padding of
+structures and structure members</a> for more.
+
+<a NAME=structs></a>
+<h2>Windows structures in 64-bit programming<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+Windows often uses structures to send and receive information using the APIs.  In 64-bits
+these structures are likely to be significantly different from their 32-bit counterparts
+because of the enlargement of many data types to 64-bits.
+See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#datat">changes to Windows data types</a>.
+<br>Take for example the WNDCLASS structure which is used when you want to register a window class:-
+<pre>
+WNDCLASS STRUCT
+        style DD 0    ;+0 window class style
+              DD 0    ;+4 padding for next
+  lpfnWndProc DQ 0    ;+8 pointer to Window Procedure
+              DD 0    ;+10 no. of extra bytes to allocate after structure
+              DD 0    ;+14 no. of extra bytes to allocate after window instance
+    hInstance DQ 0    ;+18 handle to instance containing window procedure
+        hIcon DQ 0    ;+20 handle to the class icon
+      hCursor DQ 0    ;+28 handle to the class cursor
+hbrBackground DQ 0    ;+30 identifies the class background brush
+ lpszMenuName DQ 0    ;+38 pointer to resource name for class menu
+lpszClassName DQ 0    ;+40 pointer to string for window class name
+ENDS
+</pre>
+A number of the members are now qwords, whereas previously they were dwords as you can
+see from the 32-bit version below.  The class style at offset +0h remains a dword, but then
+in the 64-bit version, padding of four bytes is required because the next member is a
+qword.  This complies with the requirement that structure members are aligned on their natural
+boundary.  A qword is used to provide space for the pointers firstly to the window procedure
+itself at +8h, to menu name at +38h and to the window class name at +40h.  This is despite
+the fact that 64-programming as implemented by Win64 for the AMD64 processor only uses 32-bit
+pointers where those pointers give the addresses of internal data.  Presumably the reason
+for this is that the same structures as being used here as are used for the IA64 family of
+processors (which use 64-bit pointers to internal data).  Handles in the structure are also
+enlarged to 64-bits.
+<pre>
+WNDCLASS STRUCT
+        style DD 0    ;+0 window class style
+  lpfnWndProc DD 0    ;+4 pointer to Window Procedure
+              DD 0    ;+8 no. of extra bytes to allocate after structure
+              DD 0    ;+C no. of extra bytes to allocate after window instance
+    hInstance DD 0    ;+10 handle to instance containing window procedure
+        hIcon DD 0    ;+14 handle to the class icon
+      hCursor DD 0    ;+18 handle to the class cursor
+hbrBackground DD 0    ;+1C identifies the class background brush
+ lpszMenuName DD 0    ;+20 pointer to resource name for class menu
+lpszClassName DD 0    ;+24 pointer to string for window class name
+ENDS
+</pre>
+Here is another example, this time the structure DRAWITEMSTRUCT.  First, lets have a look at the 32-bit version in the form you would find it in the SDK:-
+<pre>
+    UINT CtlType      ;+0
+    UINT CtlID        ;+4
+    UINT itemID       ;+8
+    UINT itemAction   ;+C
+    UINT itemState    ;+10
+    HWND hwndItem     ;+14
+    HDC hDC           ;+18
+    RECT rcItem       ;+1C
+    ULONG_PTR itemData;+2C
+(total size of structure is 30h bytes)
+</pre>
+In 64-bits this structure becomes:-
+<pre>
+    UINT CtlType      ;+0
+    UINT CtlID        ;+4
+    UINT itemID       ;+8
+    UINT itemAction   ;+C
+    UINT itemState    ;+10
+    <i>padding dword</i>    HWND hwndItem     ;+18    HDC hDC           ;+20
+    RECT rcItem       ;+28
+    ULONG_PTR itemData;+38
+(total size of structure is 40h bytes)
+</pre>
+It is also a requirement that the structure is enlarged so that it <i>ends</i> on
+the natural boundary of its largest member.  This is achieved by adding the
+necessary padding at the end of the structure.  So PAINTSTRUCT becomes:-
+<pre>
+PAINTSTRUCT STRUCT
+            DQ 0      ;+0 hDC
+            DD 0      ;+8 fErase
+      left  DD 0      ;+C  left   )
+       top  DD 0      ;+10 top    ) RECT
+     right  DD 0      ;+14 right  )
+    bottom  DD 0      ;+18 bottom )
+            DD 0      ;+1C fRestore
+            DD 0      ;+20 fIncUpdate
+            DB 32 DUP 0   ;+24 rgbReserved
+            DD 0      ;+44 padding to being total size to 72 bytes
+ENDS
+</pre>
+In practice it was found that the system wrote to the area of padding at +44h when
+using PAINTSTRUCT in certain circumstances.  This shows the importance of complying
+with these rules (otherwise you could find that data after the structure could be
+written over).
+<p>Note that the <i>beginning</i> of structures must be aligned on the natural boundary
+of the largest member as well.  All the above rules ensure, therefore, that qwords
+in the structure are always qword aligned.
+
+<p><a NAME=alignstr></a>
+<h3>Automatic alignment and padding of structures and structure members</h3>
+As we have seen correct alignment of structures and structure members is crucial
+for proper operation of 64-bit code.  Unfortunately the Windows header files
+containing the structure definitions do not necessarily contain the necessary
+padding to achieve such alignment.
+<p>So from Version 0.56 (beta), GoAsm does this work automatically for you as follows:-
+<ol VALUE=1>
+<li>GoAsm always aligns the structure itself to the correct data boundary.</li>
+<li>GoAsm always pads if necessary to ensure that structure members are on their
+natural boundary.  So in the MSG structure example below, the padding at +0Ch
+could be left out.  It would be inserted automatically.</li>
+<li>GoAsm always adds padding at the end of a structure so that the structure
+ends on a natural boundary.  So in the example below the padding at +2Ch could be
+left out.  It would be inserted automatically.</li>
+<li>The symbols created when using a structure are automatically adjusted to suit
+the alignment and padding which is applied.</li>
+</ol>
+<pre>
+MSG      DQ 0         ;+0h hWnd
+         DD 0         ;+8h message
+         DD 0         ;padding for next
+         DQ 0         ;+10h wParam
+         DQ 0         ;+18h lParam
+         DD 0         ;+20h time
+         DD 0         ;+24h 1st part of point structure
+         DD 0         ;+28h 2nd part of point structure
+         DD 0         ;+2Ch padding to bring the overall size to 48 bytes
+</pre>
+You can see what alignment and padding GoAsm has added to your source code if you
+specify /l in GoAsm's command line.  This will create a list file. Also you can
+view the effect in a debugger.
+
+<h3>Structures - the overall picture</h3>
+<ul>
+<li>If you are writing source code for both 32 and 64-bit versions of your program, this
+will be made much easier if you use conditional assembly to switch the correct structures
+at assemble-time, and then instead of filling the structures using the offset values, you
+fill them using the member names.  Using this method, GoAsm finds the correct offset for
+you automatically.  This technique has been used in the demonstration file Hello64World 3.</li>
+<li>You can use conditional assembly to switch whole banks of structures in one go.  These
+can be contained in include files containing 32-bit structures and 64-bit structures
+respectively.</li>
+<li>Since GoAsm aligns and pads the structures automatically for you, you can use
+the 64-bit structure definitions already available in include files, or you can make
+your own from the Windows header files using Wayne J Radburn's
+<a href="http://wjradburn.com/software/">xlatHinc utility</a>.</li>
+</ul>
+
+<a NAME=choice></a>
+<h2>Choice of register<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+<ul>
+<li>
+One main thing to remember is that all Windows handles are 64-bits so the APIs will provide them
+in RAX rather than in EAX.
+</li>
+<p><li>
+The same goes for Windows pointers.  For example you may ask Windows for some memory.  The address
+of the memory will be returned in RAX and not in EAX.
+<br>So this means that:-
+<pre>
+ARG 4h,3000h,EDX,0
+INVOKE VirtualAlloc    ;reserve and commit edx bytes of read/write memory
+MOV [EAX],66666666h    ;insert a number at the beginning of that memory
+</pre>
+is bad 64-bit coding, whereas
+<pre>
+ARG 4h,3000h,EDX,0
+INVOKE VirtualAlloc    ;reserve and commit edx bytes of read/write memory
+MOV [RAX],66666666h    ;insert a number at the beginning of that memory
+</pre>
+is good.
+</li>
+<p><li>Since all pointers to internal data and code labels are 32-bits, in theory it is possible
+to use the 32-bit versions of the general purpose registers (EAX to ESP) for all such pointers
+so for example, you could use MOV [ESI],AL instead of MOV [RSI],AL.
+<p>However, I do advise against this for the following five reasons:-
+<ol>
+<li>It means you have to keep track of which pointers are internal ones and which are
+external ones.  You must allow for the external ones being 64-bits.</li>
+<li>You may need two sets of procedures which are oft-used in your program, one using
+32-bit register pointers and one using 64-bit register pointers.</li>
+<li>The string instructions such as LODSB, MOVSW, STOSD, CMPSQ and SCASB use RSI and RDI
+in a 64-bit program rather than ESI and EDI.  And the repeat prefixes REP, REPZ and REPNZ
+use RCX instead of ECX.</li>
+<li>Using the 32-bit versions of these instructions in 64-bit program codes one opcode
+larger than the 64-bit version.  This is because in a 64-bit program, MOV [RSI],AL is
+the default and to convert this to MOV [ESI],AL requires an 67h override byte.</li>
+<li>You can still use the same source code to make both 32-bit and 64-bit programs provided
+you only use the general purpose registers, RAX to RSP.  This is because when you use the /x86
+switch with GoAsm these registers are automatically regarded as EAX to ESP instead.</li>
+</ol>
+<p>You can automate the required changes to existing 32-bit code using <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#adapt">AdaptAsm</a>.
+</li>
+<p><li>If you need to use the R8 to R15 registers, remember that R8 to R11 are volatile (they will
+not be maintained by the APIs).  If you use the non-volatile R12 to R15 registers within window
+procedures and callback procedures then you must ensure that they are restored after use.  This
+can be done by using PUSH at the beginning and POP at the end of the procedure which uses them, or
+by using the USES statement.
+</li>
+<p><li>When passing parameters to an API using INVOKE, you may need to take into account that
+in the FASTCALL calling convention the parameters have to be sent to the API in the RCX,RDX,R8 and
+R9 registers.  Therefore you would not wish to pass parameters in registers which will be overwritten
+by GoAsm (you will get an error message if you try to do this).
+<p>For example this is bad and will show an error:-
+<pre>
+INVOKE MessageBoxW,RDX,R8,R9,R10
+</pre>
+It's bad because if it were allowed, it would translate to:-
+<pre>
+MOV R9,R10
+MOV R8,R9
+MOV RDX,R8
+MOV RCX,RDX
+</pre>
+so it can be seen that the contents of the registers are being overwritten before they
+are being used to establish the parameters.
+<p>Better would be:-
+<pre>
+INVOKE MessageBoxW,R10,R9,R8,RDX
+</pre>
+Which translates to:-
+<pre>
+MOV R9,RDX
+MOV RDX,R9
+MOV RCX,R10
+</pre>
+Note that GoAsm does not bother to code MOV R8,R8
+<br>Even better would be:-
+<pre>
+INVOKE MessageBoxW,RCX,RDX,R8,R9
+</pre>
+which requires no further code to pass the parameters since they are already in the correct
+registers.  So this is very efficient code.</li>
+</ul>
+See also <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#tips">some tips to reduce the size of your code</a> which has some additional
+implications for your choice of registers
+<br>and also <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#pitfalls">some pitfalls to avoid when converting existing source code</a>.
+
+<a NAME=zerox></a>
+<h2>Zero-extension of results into 64-bit registers<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+Take care when mixing the 64-bit registers and their 32-bit counterparts because the processor
+can change the contents of the whole 64-bit register when this is
+not obvious.  This is because when writing results to a 32-bit register the processor will
+zero-extend the result into the whole 64-bits of the register.  So, for example:-
+<pre>
+MOV RAX,-1              ;fill RAX with 0FFFFFFFF FFFFFFFFh
+AND EAX,0F0F0F0Fh       ;(apparently) work only on EAX
+</pre>
+but the processor will zero extend the result into RAX, in other words it will zero
+the whole of the high dword of RAX.  The result in RAX is 00000000 0F0F0F0Fh not 0FFFFFFFF 0F0F0F0Fh as
+expected.  This happens irrespective of the value of bit 31 of RAX (this is not the same as sign-extension).
+<p>A similar thing happens when using other instructions.  Here is an example with XOR:-
+<pre>
+MOV RAX,-1              ;fill RAX with 0FFFFFFFF FFFFFFFFh
+XOR EAX,EAX             ;(apparently) zero EAX
+</pre>
+The actual result in RAX is zero.
+<p>And it also happens with the mov instruction for example
+<pre>
+MOV RCX,1111111111111111h
+MOV ECX,88888888h
+</pre>
+The result is RCX=88888888h
+<p>You can take advantage of zero-extension in various ways.  Some examples are given in
+<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#tips">some tips to reduce the size of your code</a>.  Take also this example, where
+the structure RECT (which is four dwords) contains values which must be passed to the API MoveWindow
+as qwords:-
+<pre>
+MOV RBX,ADDR RECT
+MOV EAX,[EBX]      ;get x-pos
+MOV ECX,[EBX+4]    ;get y-pos
+MOV EDX,[EBX+8]    ;get right
+SUB EDX,EAX        ;get width
+MOV R8D,[EBX+0Ch]  ;get bottom
+SUB R8D,ECX        ;get height
+INVOKE MoveWindow,[hWnd],RAX,RCX,RDX,R8,0
+</pre>
+Here only 32-bit registers are used to extract the information from the RECT structure, but
+we know that the high part of the 64-bit versions of those registers are set to zero.
+<p>It is possible that there is a performance loss in relying on zero-extension.  Some of the
+documentation suggests that the processor has to carry out an additional operation to zero
+the high bits of the register.
+
+<a NAME=signx></a>
+<h2>Sign-extension of results into qwords<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+You may wonder about the difference between the following instructions:-
+<pre>
+MOV D[THING],12345678h
+MOV Q[THING],12345678h
+</pre>
+These code differently and do different things.  The dword version places the value 12345678h
+into the dword at the label THING as you would expect.  The qword version does the same, but
+also zeroes the dword at THING+4.  This is because it <i>sign-extends</i> the result into
+the qword at the label THING.  So if the high bit is set, the qword version will fill THING+4
+with 0FFFFFFFFh.  In other words, the 32-bit value in these instructions are regarded as
+signed numbers, and written to memory accordingly.
+<pre>
+MOV D[THING],12345678h   ;THING is now 12345678h (as dword)
+MOV Q[THING],12345678h   ;THING is now 12345678h (as qword)
+MOV D[THING],82345678h   ;THING is now 82345678h ie. -7DCBA988h (as dword)
+MOV Q[THING],82345678h   ;THING is now 0FFFFFFFF 82345678h ie. -7DCBA988h (as qword)
+</pre>
+<p>The same happens if you use a register to address the data area for example:-
+<pre>
+MOV RSI,ADDR THING
+MOV D[RSI],12345678h     ;THING is now 12345678h (as dword)
+MOV Q[RSI],12345678h     ;THING is now 12345678h (as qword)
+MOV Q[RSI],82345678h     ;THING is now 0FFFFFFFF 82345678h ie. -7DCBA988h (as qword)
+</pre>
+Note that you can't put more than 4 bytes into memory directly using the MOV instruction even
+though you are using 64-bit code, so this shows an error:-
+<pre>
+MOV Q[THING],123456789ABCDEFh
+</pre>
+Instead, to achieve this result you would use the following code:-
+<pre>
+MOV RAX,123456789ABCDEFh
+MOV [THING],RAX
+</pre>
+
+<a NAME=autoal></a>
+<h2>Automatic stack alignment<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+The stack pointer (RSP) must be 16-byte aligned when making a call to an API.  With some
+APIs this does not matter, but with other APIs wrong stack alignment will cause an exception.
+Some APIs will handle the exception themselves and align the stack as required
+(this will, however, cause performance to suffer).  Other APIs (at least on early builds
+of x64) cannot handle the exception and unless you are running the application under debug
+control, it will exit.
+<p>Because of this requirement, the Win64 documentation states that you can only call an API
+within a stack frame.  This is because it is assumed that only within a stack frame can the
+stack be guaranteed to be aligned properly.  A call out of the stack frame will misalign the
+stack by 8 bytes.
+<p>This requirement is very restrictive to assembler programmers, and causes compilers a big
+headache.  GoAsm's solution to this problem is to insert special coding before and after each
+API call (when INVOKE is used) to ensure that the stack is always properly aligned at the time
+of the call.  This liberates the assembler programmer, and means that:-
+<ul>
+<li>Calls to APIs (using INVOKE) can be made anywhere in your code.  They can be made from
+procedures called by other procedures without worrying about the stack pointer.</li>
+<li>PUSHes and POPs can be used in the usual way to save and restore registers, memory addresses
+and contents of memory without having to worry that this puts the stack out of alignment.</li>
+<li>You can use the same source code both for 32-bit and 64-bit versions of your application
+(there is no requirement for stack alignment in 32-bits).</li>
+</ul>
+The overhead for aligning the stack at the time of each API call is an additional nine bytes per
+API, which seems a small price to pay for the advantages gained.  To keep down the size of the code as
+much as possible, GoAsm takes a number of opportunities to optimise the code particularly
+when inserting the parameters.  See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#optim">some optimisation done by GoAsm</a> for
+details.  See also <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#invokec">coding to achieve automatic stack alignment</a>.
+
+<a NAME=rules></a><h2>Using the same source code for both 32 and 64-bits<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+The <a href="https://www.godevtool.com/GoasmHelp/GoAsm.htm">GoAsm manual</a> describes the use of ARG and INVOKE in the section dealing
+with <a href="https://www.godevtool.com/GoasmHelp/GoAsm.htm#apicall">calls to Windows APIs in 32-bits and 64-bits</a> and the use
+of FRAME...ENDF in the section dealing with
+<a href="https://www.godevtool.com/GoasmHelp/GoAsm.htm#frame">callback stack frames in 32-bits and 64-bits</a>.  GoAsm's ARG and INVOKE
+and FRAME...ENDF constructs effectively deal with the changes in the calling convention in 64-bit
+programming.
+<p>Bringing together all those considerations and also those set out above, it is perfectly possible
+to use the same source code to create executables for both 32-bit and 64-bit platforms.
+<p>To recap, here are the rules which must be followed to do this:-
+<ul>
+<li>When calling APIs use INVOKE in your code instead of CALL.</li>
+<li>When passing parameters to APIs use ARG in your code instead of PUSH, alternatively
+give the parameters after INVOKE.</li>
+<li>Use FRAME .. ENDF in your code when using LOCAL data or picking up parameters sent to a window
+procedure (or other similar callback procedure).</li>
+<li>If you want to use the new registers R8-R15, XMM8-XMM15, or the new 8, 16 and 32-byte addressed
+registers, make sure they are used only within switched 64-bit source code using conditional
+assembly.</li>
+<li>Use the 64-bit form of the general purpose registers (RAX,RBP,RBX,RCX,RDX,RDI,RSI, and RSP)
+for <i>pointers</i>.  When GoAsm assembles for 32-bit, it will automatically reduce these
+registers to their 32-bit counterparts.</li>
+<li>If you have used PUSHFD and POPFD to save and restore the flags, change this to
+PUSHF and POPF or PUSH FLAGS and POP FLAGS.</li>
+<li>Ensure that structures, data sizes, and type indicators are correct for 32/64-bit use, if necessary
+by using conditional assembly.</li>
+<li>Use /x64 in the command line to create a 64-bit executable, and /x86 in the command line
+to create a 32-bit executable.</li>
+</ul>
+The "Go" tools will do the rest of the work.
+<p>Note that x86 should not be used in the command line for Win32 source code (use it only for
+32/64-bit switchable source code).
+<p>See the file <a href="https://www.godevtool.com/GoasmHelp/Hello64World3">Hello64World3</a> for example source code which can make
+either a simple Win32 "Hello World" Window program or a Win64 one.
+
+<a NAME=convert></a>
+<h2>Converting existing 32-bit code to 64-bit<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+Bringing together all the above considerations, this is what you need to do to convert existing
+32-bit source code to 64-bit source.
+<ul>
+<li>Change all CALLs to APIs to INVOKE.  Do not change any CALLs to non-APIs.
+</li>
+<li>If you have used PUSH to send parameters to an API in your 32-bit source, change this to
+ARG.  Do not use ARG for any other PUSHes.</li>
+<li>Change all the 32-bit general purpose registers used as <i>pointers</i> (that is, within
+square brackets) to their 64-bit counterparts (RAX,RBP,RBX,RCX,RDX,RDI,RSI, and RSP).  This
+will keep your code shorter, and ensure that pointers to <i>external data</i> work properly.
+Remember also to use only RSI, RDI and RCX with your string instructions and repeat prefixes.
+See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#choice">choice of registers</a>.</li>
+<li>Ensure that registers which contain system handles and other values provided by the system
+are changed to their 64-bit counterparts (RAX,RBP,RBX,RCX,RDX,RDI,RSI, and RSP).</li>
+<li>Adjust all other registers use as required.  Generally for other use, the existing
+registers will work perfectly well, but do not mix the use of 32-bit and 64-bit registers
+because of <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#zerox">zero-extension of results</a>.  There is no need to change
+PUSHes and POPs of registers.  These changes are done automatically by GoAsm because the opcodes
+are the same (for example PUSH EAX is regarded the same as PUSH RAX and vice versa).</li>
+<li>Ensure that structures, data sizes, and type indicators are correct for 64-bit use.</li>
+<li>Check that your JECXZ instructions are changed to JRCXZ if appropriate.</li>
+<li>Since 64-bit tends to be a little larger than 32-bit code, when you
+re-assemble your code using the /x64 switch, you may find that some
+short jumps have to be re-organised.</li>
+</ul>
+<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#adapt">AdaptAsm</a> can do some of the above work for you.
+
+<a NAME=adapt></a>
+<h2>Using AdaptAsm.exe to help with the conversion<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+AdaptAsm comes packaged with GoAsm and I originally wrote it to help to convert
+source code used for other assemblers to GoAsm syntax.  I have now extended it to
+help towards the conversion of 32-bit source code to 64-bit source code.  This works
+both on GoAsm source code and also source code for other assemblers.
+<p><i>For full details of AdaptAsm's other rôles see</i>
+<a href="https://www.godevtool.com/GoasmHelp/GoAsm.htm#adapt">the GoAsm manual</a>.
+<p>You use AdaptAsm from the command line using the following:-
+<pre>
+AdaptAsm [command line switches] inputfile[.ext]
+</pre>
+If no input extension is specified, .asm is assumed.
+<br>If no output extension is specified, .adt is assumed
+<br>The command line switches are:-
+<pre>
+/h=this help
+/a=adapt a386 file
+/m=adapt masm file
+/n=adapt nasm file
+/fo=specify output path/file eg. /fo GoAsm\adapted.asm
+/l=create log output file
+/o=don't ask before overwriting input file
+/x64=adapt file for 64-bits
+</pre>
+
+<table width="100%" BORDER=1 CELLPADDING=4 CELLSPACING=0>
+<tr><td ALIGN=CENTER>
+<b><font size=4>What AdaptAsm does when helping to adapt a file to 64-bits using the /x64 switch</font></b>
+</td></tr>
+<tr><td><font size=-1>
+CALLs to APIs are changed to INVOKE (CALLs to non-APIs are not affected).
+<br>AdaptAsm does this by looking at lists of APIs in ".h.txt" files in the same
+folder as AdaptAsm.exe.  See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#htxt">the ".h.txt" files</a> for
+more information about these files.
+<br>This works with all types of calls even if enclosed in square brackets and
+even if dependent on a define (equate) or a switch, for example:-
+<pre>
+CALL ExitProcess        ;changed to INVOKE
+CALL [ExitProcess]      ;changed to INVOKE
+CALL INTERNAL_PROC      ;not changed
+CALL SendMessage        ;changed to INVOKE
+CALL SendMessageA       ;changed to INVOKE
+CALL SendMessageW       ;changed to INVOKE
+CALL SendMessage##AW    ;changed to INVOKE
+</pre>
+</font></td></tr>
+<tr><td><font size=-1>
+Changing PUSH to ARG for the parameters sent to the API.  AdaptAsm does this by
+counting the correct number of parameters back from the CALL and comparing this with
+the correct number of parameters in the lists of APIs in ".h.txt" files in the same
+folder as AdaptAsm.exe.  See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#htxt">the ".h.txt" files</a> for
+more information about these files.
+<br>Here are some simple examples:-
+<pre>
+PUSH EBX,0,1100h,[hMessTV]      ;PUSH is changed to ARG (and EBX changed to RBX)
+CALL SendMessageA               ;CALL is changed to INVOKE
+PUSH EBX,0                      ;PUSH is changed to ARG (and EBX changed to RBX)
+PUSH 1100h                      ;PUSH is changed to ARG
+PUSH [hMessTV]                  ;PUSH is changed to ARG
+CALL SendMessageA               ;CALL is changed to INVOKE
+</pre>
+You may have preserved registers across API calls and these are unaffected, for example:-
+<pre>
+PUSH EAX                        ;PUSH not changed (but EAX changed to RAX)
+PUSH EBX,0,1100h,[hMessTV]      ;PUSH is changed to ARG (and EBX changed to RBX)
+CALL SendMessageA               ;CALL is changed to INVOKE
+POP EAX                         ;POP not changed (but EAX changed to RAX)
+</pre>
+However, if you have mixed these two uses of PUSH AdaptAsm will show an error by
+changing the PUSH to ARG and noting the problem in the log file:-
+<pre>
+PUSH EAX,EBX,0,1100h,[hMessTV]  ;PUSH is changed to ARG (too many parameters)
+CALL SendMessageA               ;CALL is changed to INVOKE
+POP EAX                         ;restore eax register
+</pre>
+If AdaptAsm cannot find all the expected parameters it shows an error by changing
+the CALL to INVOKE and noting the problem in the log file, for example:-
+<pre>
+CALL INTERNAL_PROC              ;not changed
+PUSH 0,1100h,[hMessTV]          ;PUSH is changed to ARG
+CALL SendMessageA               ;CALL is changed to INVOKE (too few parameters)
+</pre>
+This means that this type of thing which could be done in 32-bits, will show up as
+as error by AdaptAsm (and rightly so, since in 64-bit assembler each CALL must
+immediately follow the parameters):-
+<pre>
+PUSH 0,EAX,14Eh,[hComboSev]     ;14Eh=CB_SETCURSEL
+PUSH 0,EAX,151h,[hComboSev]     ;151h=CB_SETITEMDATA
+CALL SendMessageA
+CALL SendMessageA
+</pre>
+</font></td></tr>
+<tr><td><font size=-1>
+32-bit general purpose registers in square brackets are changed to their 64-bit
+counterparts so that they can be used for both 32-bit and 64-bit assembly, for example:-
+<pre>
+MOV EAX,[EAX+EBX]         ;changed to MOV EAX,[RAX+RBX]
+MOV D[EBX*8+EBP],8h       ;changed to MOV D[RBX*8+RBP],8h
+CALL [EBX]                ;changed to CALL [RBX]
+INVOKE ExitProcess,[EBX]  ;changed to INVOKE ExitProcess,[RBX]
+PUSH [EBX]                ;changed to PUSH [RBX] or ARG [RBX]
+POP [EBX]                 ;changed to POP [RBX]
+</pre>
+</font></td></tr>
+<tr><td><font size=-1>
+Where a pointer is used with a 32-bit general purpose register, the register is changed to
+its 64-bit counterpart, for example:-
+<pre>
+MOV EAX,ADDR THING        ;changed to MOV RAX,ADDR THING
+CMP ESI,ADDR THING        ;changed to CMP RSI,ADDR THING
+MOV EBP,OFFSET THING      ;changed to MOV RBP,OFFSET THING
+LEA EAX,THING             ;changed to LEA RAX,THING
+</pre>
+</font></td></tr>
+<tr><td><font size=-1>
+Although not strictly necessary, for good measure 32-bit general purpose registers after
+PUSH, POP and INVOKE are changed to their 64-bit counterparts, for example:-
+<pre>
+PUSH EAX,EBX              ;changed to PUSH RAX,RBX
+POP EBX,EAX               ;changed to POP RBX,RAX
+INVOKE ExitProcess,EBX    ;changed to INVOKE ExitProcess,RBX
+</pre>
+</font></td></tr>
+
+<tr><td ALIGN=CENTER>
+<b><font size=4>What AdaptAsm does not do (and you need to do by hand)</font></b>
+</td></tr>
+<tr><td><font size=-1>
+AdaptAsm cannot decide for you which register to use in other circumstances.  You will
+have to decide this on a case-by-case basis see <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#choice">choice of registers</a>
+for some guidance on this.
+</font></td></tr>
+<tr><td><font size=-1>
+AdaptAsm does not ensure that structures and data sizes are correct for 64-bit use, nor that
+the pointers to structures and strings are properly aligned.
+</font></td></tr>
+</table>
+
+<a NAME=htxt></a>
+<h2>The "h.txt" files used by AdaptAsm with the /x64 switch<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+These files are text files containing lists of APIs and the number of parameters
+required by each API.  AdaptAsm looks inside its own folder for such h.txt files.
+The "h.txt" files are created from Microsoft header
+files using a clever javascript file ApiParamCount.js, written by Leland M George of
+West Virginia, who has kindly donated it to the public domain.  This js file is shipped
+with AdaptAsm together with some ready-made h.txt files containing the most commonly
+used APIs.  If your program uses APIs declared in other header files you can make your
+own "h.txt" files using the js file.  There are two ways to use the js file:-
+<ul>
+<li>Either drag and drop the header file onto the js file (an h.txt file will
+be made in the same folder)</li>
+<li>From the command line using the following command (for example):-
+<br>cscript ApiParamCount.js WinNT.h
+<br>or
+<br>wscript ApiParamCount.js WinNT.h
+<br>which commands start the Windows Scripting Host which handles JavaScript files
+outside Web page environments.
+<p>If you need to download the Windows Scripting Host you can get it from
+<a href="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">this Microsoft site</a>.
+
+</li></ul>
+Alternatively you can make your own h.txt file or edit the existing ones.  The format
+is as follows:-
+<ul>
+<li>The first API name must start at the beginning of the file and subsequent ones
+at the beginning of a line.</li>
+<li>New lines are made using carriage return (ascii 13) followed by linefeed (ascii 10).
+</li>
+<li>A comma immediately follows the API name.</li>
+<li>The number of parameters required by the API immediately follows the comma and
+is written as an ascii decimal character.  If the API does not take any parameters the number is
+zero.</li>
+</ul>
+
+<a NAME=switch></a>
+<h2>Switching using x64 and x86 in conditional assembly<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+As well as switching to 64-bit or 32-bit assembly, specifying /x64 or /x86 in GoAsm's command line
+also permits these words to be tested in conditional assembly.  So, for example, you can switch
+two different generalised window procedures in this way:-
+<pre>
+WndProcTable:
+#if X64
+MOV EAX,ADDR MESSAGES   ;give eax the list of messages to deal with
+CALL GENERAL_WNDPROC64  ;call the generic message handler (64-bit version)
+#else
+MOV EDX,ADDR MESSAGES   ;give edx the list of messages to deal with
+CALL GENERAL_WNDPROC    ;call the generic message handler (32-bit version)
+#endif
+RET
+</pre>
+Note that the words "x64" and "x86" are not case sensitive.
+<p>Here is another example to switch include files including structures:-
+<pre>
+#if X64
+#include structures64.inc
+#else
+#include structures32.inc
+#endif
+</pre>
+
+<a NAME=pitfalls></a>
+<h2>Some pitfalls to avoid when converting existing source code<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+<ul>
+<li><b>Forgetting that API parameters are always qwords.</b>
+<br>Your existing 32-bit source code will have been written on the correct assumption that each
+parameter is a dword.  For example:-
+<pre>
+ARG 4000h,[SYSTEM_INFO+4h],[MEMORY_END]
+INVOKE VirtualFree             ;decommit a page of memory
+</pre>
+In 32-bits this is good coding because there is a dword at [SYSTEM_INFO+4h] (the dword here holds
+the systems memory page size (these assumes the structure was filled in using a call to the
+GetSystemInfo API).
+<br>In 64-bits this is bad because the value at +4h is still a dword, but you are now sending a
+qword to VirtualFree and not just a dword.  This should be coded as follows instead:-
+<pre>
+XOR RAX,RAX                    ;zero rax
+MOV EAX,[SYSTEM_INFO+4h]       ;get page size into lower 32-bits of rax
+ARG 4000h,RAX,[MEMORY_END]
+INVOKE VirtualFree             ;decommit a page of memory
+</pre>
+<i>Note that in practice, because the MOV EAX line itself zeroes the top part of RAX, you could remove
+the first line of this example altogether!</i>
+<p>
+A similar problem arises when interrogating the system and receiving information into data.
+Your existing 32-bit code may well look something like this:-
+<pre>
+ARG 0,ADDR SIZEOF_WORKAREA,0,48  ;48=SPI_GETWORKAREA (excluding tray)
+INVOKE SystemParametersInfoA     ;get size of work area into SIZEOF_WORKAREA
+</pre>
+Here the call puts a 32-bit value into the dword SIZEOF_WORKAREA which is correct.  However
+assembling and running the same code in a 64-bit system would overwrite the next dword in
+memory as well (a qword is sent not a dword).  So you need to enlarge SIZEOF_WORKAREA to
+a qword.
+</li>
+<p><li><b>Forgetting that all calls are now to 64-bit values.</b>
+<br>This can easily be forgotten when using tables to control movement of execution around
+your code.  Take the case of a simple table of labels for example:-
+<pre>
+DATA
+Table DD CODELABEL,2h
+CODE
+CALL [Table]
+</pre>
+or
+<pre>
+DATA
+Table DD CODELABEL,2h
+CODE
+MOV RSI,ADDR Table
+CALL [RSI]
+</pre>
+This will call an 64-bit address with CODELABEL's address in the low dword and 2 in the high
+dword. This will produce an error at run-time.  The solution for internal calls is to code as
+follows:-
+<pre>
+DATA
+Table DQ CODELABEL,2h
+CODE
+CALL [Table]
+</pre>
+or
+<pre>
+DATA
+Table DD CODELABEL,2h
+CODE
+MOV RSI,ADDR Table
+XOR RAX,RAX
+MOV EAX,[RSI]
+CALL RAX
+</pre>
+This code ensures that the high dword of the 64-bit address holds zero.  This works because
+all pointers to internal data and code labels are 32-bits.
+</li>
+<p><li><b>Forgetting that all Windows handles are now 64-bit values.</b>
+<br>In Win64, system handles are enlarged to 64-bits so it is unsafe to assume that they
+will always fit into 32-bits.
+<br>So this means that:-
+<pre>
+ARG 32512               ;IDC_ARROW common cursor
+INVOKE LoadCursorA,0    ;get in eax, handle to arrow cursor
+MOV [WNDCLASS+28h],EAX  ;and give to WNDCLASS
+</pre>
+is bad 64-bit coding, whereas
+<pre>
+ARG 32512               ;IDC_ARROW common cursor
+INVOKE LoadCursorA,0    ;get in eax, handle to arrow cursor
+MOV [WNDCLASS+28h],RAX  ;and give to WNDCLASS
+</pre>
+is correct.
+</li>
+<p><li><b>Forgetting that all POPs are now to qwords.</b>
+<br>Your existing 32-bit source code may POP into dwords in memory.  For example:-
+<pre>
+DRAW_RECTANGLE:
+PUSH [RECT],[RECT+4]     ;save left and top of rectangle
+            ; code to adjust rectangle
+            ; and then draw it
+POP [RECT+4],[RECT]      ;restore top and left of rectangle for future use
+RET
+</pre>
+In 64-bits a RECT structure is still 4 dwords just as it was in 32-bits.  However
+the second POP in the above code would rub out the second dword in the structure
+because the POP <i>is in fact 64-bits</i>, not 32-bits.
+<p>Correct coding for 64-bits would be:-
+<pre>
+DRAW_RECTANGLE:
+PUSH [RECT],[RECT+4]     ;save left and top of rectangle
+            ; code to adjust rectangle
+            ; and then draw it
+POP RAX             ;restore top of rectangle for future use
+MOV [RECT+4],EAX    ;insert dword only
+POP RAX             ;restore left of rectangle for future use
+MOV [RECT],EAX      ;insert dword only
+RET
+</pre>
+</li>
+</ul>
+
+<a NAME=make></a>
+<h2>Assembling and linking to produce the executable<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+To make a 64-bit object file with GoAsm use this command line:-
+<pre>
+GoAsm /x64 <i>filename</i>
+</pre>
+where <i>filename</i> is the name of your asm file written either as a 64-bit source file or
+a 32/64 switchable source file.  Use /x86 instead of /x64 when assembling a 32/64 switchable
+source file to make a 32-bit version.
+<br>The object file created by GoAsm can be sent to GoLink or another linker in the usual way.
+<br>GoLink automatically senses whether the object file is 32 or 64-bit and creates the
+correct type of executable to suit.
+<br>You cannot mix 32-bit and 64-bit object files.  GoLink will show an error if you try to
+do this.
+<br>You do not necessarily need to make 64-bit executables on a 64-bit machine.  This is because the
+DLL names given to GoLink simply tell the linker that the DLL contains the APIs used by
+the application and these tend to be the same between the two platforms.   If your application
+calls APIs specific to the 64 bit system however, this does not work.
+
+<a NAME=optim></a>
+<h2>Some optimisation and refinement done by GoAsm<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+GoAsm always aims to produce the tightest possible code from your source.  In the case of x64,
+GoAsm has not yet taken up all opportunities to optimise the code.  This is because there are still
+some unknowns, such as effects on performance of optimised code on x64.
+<p>The optimisations and refinements are listed here to help you when you look at the code produced
+by GoAsm in the debugger.
+<p><table width="100%" BORDER=1 CELLPADDING=4 CELLSPACING=0>
+<tr><td ALIGN=CENTER>
+<b><font size=4>GoAsm optimisations and refinements in all code</font></b>
+</td></tr>
+<tr><td><font size=-1>
+<br>None of these affect the flags or adversely affect performance.
+<ul>
+<p><li><b>MOV <i>64-bit register</i>,ADDR label</b> changed to <b>LEA <i>64-bit register</i>,label</b>.  This saves
+5 opcodes.  One important difference between the two instructions is that the MOV version uses
+an absolute relocation (hence in theory it needs to leave space for a 64-bit value to be inserted by
+the linker).  The LEA instruction uses <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffrel">RIP-relative addressing</a> and so it can
+do the same job but requires only a 32-bit space for the relative address.</li>
+<p><li><b>PUSH or ARG ADDR Non_Local_Label</b> also uses LEA <i><b>as well as the R11 register</b></i> as follows:-
+<pre>
+LEA R11,ADDR Non_Local_Label
+PUSH R11
+</pre>
+See <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#diffins2">explanation for this</a>. <i>Note that this will also take place with INVOKE when pushing arguments with ADDR,
+<b>which also includes use of pointers to a string or raw data</b> (ex. 'Hello' or &lt;'H','i',0&gt;).</i>
+</li></ul>
+<br>This affects the flags.
+<ul>
+<p><li><b>PUSH or ARG ADDR Local_Label</b> is coded as follows:-
+<pre>
+PUSH RBP
+ADD D[RSP],+/-Displacement
+</pre>
+<br>
+</li></ul>
+</ul>
+</font></td></tr></table>
+
+<br><table width="100%" BORDER=1 CELLPADDING=4 CELLSPACING=0>
+<tr><td ALIGN=CENTER>
+<b><font size=4>Additional optimisations and refinements only when INVOKE is used</font></b>
+</td></tr>
+<tr><td><font size=-1>
+<br>These may affect the flags which does not matter when calling an API.  Those that rely on
+<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#zerox">zero-extension</a> may require another operation from the processor, but it
+is assumed that this does not matter when calling an API.  It is more important to keep the
+code size down.
+<ul>
+<p><li>A <b>register parameter containing zero</b> is optimised using XOR <i>32-bit register</i>.  This is a
+saving of between 7 and 8 bytes over the MOV equivalent.</li>
+<p><li>A <b>register parameter containing a number</b> (an "immediate") which can fit into <b>32-bits</b> is
+changed to use a 32-bit register, saving between 1 and 5 bytes depending on the register and
+the number.</li>
+<p><li>A <b>register parameter containing -1</b> is achieved by using OR <i>64-bit register</i>,-1 saving
+6 bytes.</li>
+<p><li>If the parameter is <b>already in the correct register</b> no further code is emitted
+because it is not required.</li>
+<a NAME=invokec></a>
+<p><li>The coding to achieve <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#autoal">automatic stack alignment</a> and to adjust the
+stack for the <a href="https://www.godevtool.com/GoasmHelp/64bits.htm#callingc">FASTCALL calling convention</a> is as follows (which one is
+used depends on the number of parameters):-
+<pre>
+PUSH RSP             ;save current RSP position on the stack
+PUSH [RSP]           ;keep another copy of that on the stack
+AND SPL,0F0h         ;adjust RSP to align the stack if not already there
+                     ;
+                     ;  parameters dealt with here
+                     ;
+SUB RSP,20h          ;adjust RSP to provide placeholders
+CALL TheAPI
+LEA RSP,[RSP+xxh]    ;get RSP back to correct place for next
+POP RSP              ;restore RSP to its original value
+</pre>
+or
+<pre>
+PUSH RSP             ;save current RSP position on the stack
+PUSH [RSP]           ;keep another copy of that on the stack
+OR SPL,8h            ;adjust RSP to align the stack if not already there
+                     ;
+                     ;  parameters dealt with here
+                     ;
+SUB RSP,20h          ;adjust RSP to provide placeholders
+CALL TheAPI
+LEA RSP,[RSP+xxh]    ;get RSP back to correct place for next
+POP RSP              ;restore RSP to its original value
+</pre>
+<br>
+</li>
+</ul>
+</font></td></tr></table>
+
+<a NAME=tips></a>
+<h2>Some tips to reduce the size of your code<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+<i>Note it is possible some of these optimisations may adversely affect performance.</i>.
+<ul>
+<li>Using the 64-bit registers (RAX to RSP) as pointers to memory (for example MOV [RSI],AL)
+saves a byte over using the 32-bit versions (for example MOV [ESI],AL).  This is because in such
+instructions a 67h override byte is needed for the 32-bit version.</li>
+<li>The opposite is the case when you use registers to hold immediates (numbers).  In those
+cases using the enlarged registers (RAX to RSP) and the extended registers (R8 to R15) or any
+of the new register addressing methods, adds at least a byte to each instruction.  For
+example, MOV RAX,23456h is 2 bytes larger than MOV EAX,23456h.  The contrast is even greater
+using larger numbers which are above 7FFFFFFFh because these have to be coded as full 64-bit
+numbers if you use a 64-bit register.  So for example MOV RAX,80234560h codes 5 bytes larger
+than MOV EAX,80234560h. If the number you wish to move will fit into a byte, then even greater
+savings can be achieved, for example MOV AL,88h codes as 2 bytes, but MOV RAX,88h is 10 bytes.
+</li>
+<li>DEC and INC (with a register) now use two opcodes, whereas in 86 processors they were very
+frugal, using only one opcode.  But there is still an advantage in using this over SUB register,1
+or ADD register,1 which is one byte longer.  SUB or ADD can still be used if you need to test
+the carry flag after the instruction.</li>
+<li>In 64-bit programming LEA <i>register</i>,Label is 5 opcodes shorter than
+MOV <i>register</i>,ADDR Label yet they achieve the same result.  In GoAsm source code however, you
+can use either since GoAsm automatically uses the shortest form.
+</li>
+<li>PUSH ADDR THING codes as 9 bytes, whereas if you use LEA RAX,THING followed by PUSH RAX instead,
+this is 8 bytes.  However, it changes the content of the RAX register.</li>
+<li>Zero a register using XOR.  XOR RAX,RAX is 3 bytes, whereas MOV RAX,0 is 10 bytes (because
+the instruction takes a 64-bit immediate value (number).  However, XOR affects the flags, MOV
+does not.</li>
+<li>XOR EAX,EAX is even shorter at 2 bytes and it does zero the whole RAX register.  See
+<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#zerox">zero-extension of results</a>.</li>
+<li>A good way to fill a register with -1, is to use OR <i>register</i>,-1 which in the case
+of a 64-bit register is 4 bytes, a saving of 6 bytes over MOV <i>register</i>,-1. However,  OR
+affects the flags, but MOV does not.</li>
+<li>Compares in the range -80h to +7Fh code as 4 bytes (eg. CMP RDX,-80h to RDX,7Fh) but outside
+that range they code as 7 bytes (so eg. CMP RDX,80h is 7 bytes).</li>
+<li>You can still use LEA to do intra-register arithmetic for example LEA RAX,[RAX+RAX*2] which
+multiplies RAX by three.  This codes as 4 bytes.</li>
+</ul>
+See also <a href="https://www.godevtool.com/GoasmHelp/progtips.htm#tips">general tips for programming</a> in GoAsm help.
+
+<p><hr width="50%">
+<a NAME=links></a><h2>More information, references and links
+<a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top"><img SRC="resources/up.gif" BORDER=0 height=12 width=24>top</a></h2>
+<a href="http://www.amd.com/">Information about the AMD64</a>
+<br><a href="http://developer.amd.com/">AMD information for developers</a>
+<br><a href="http://www.amd64.org/">AMD and industry partners' AMD64 site</a>
+<br><a href="http://feryno.host.sk/">František Gábriš</a> much early 64-bit work including sample source code.
+<br><a href="http://www.intel.com/technology/intel64">Intel 64 Technology site</a>
+
+<p><b>Newsgroups and forums:-</b>
+<br><a href="http://www.masm32.com/board/index.php?board=43.0">64-bit assembler forum</a>
+<br><a href="http://devforums.amd.com/">AMD developer forum</a>
+<br><a href="http://www.planetamd64.com/">Planet 64</a>
+<br><a href="http://www.extended64.com/">Extended 64</a>
+<br><a href="http://www.start64.com">Start64 forum</a>
+
+<!--
+<p><hr width=50%>
+<a NAME="ack"></a><h4>Acknowledgements
+<a href="#top"><img SRC="up.gif" BORDER=0 height=12 width=24>top</a></h4>
+-->
+
+</p>
+
+</font>
+
+<p><hr>
+<center><p>Copyright © Jeremy Gordon 2006-2016
+<br><a href="https://www.godevtool.com/GoasmHelp/64bits.htm#top">Back to top</a>
+</td>
+</td></tr>
+</table>
+</body>
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

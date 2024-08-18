@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Managing CPU usage for math-intense operations</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list1 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: disc;}
+.list2 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: circle;}
+.list3 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: square;}
+.list4 {text-indent: 0px; padding: 0; margin: 0 0 0 56px; list-style-position: outside; list-style-type: disc;}
+.list5 {text-indent: 0px; padding: 0; margin: 0 0 0 56px; list-style-position: outside; list-style-type: circle;}
+.list6 {text-indent: 0px; padding: 0; margin: 0 0 0 56px; list-style-position: outside; list-style-type: square;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps2><span class=rvts6>Community</span></p>
+<p class=rvps2><span class=rvts6>&nbsp;User to User Discussions</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; PowerBASIC Console Compiler</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Christopher Becker</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Jun 2005</span></p>
+<p class=rvps2><span class=rvts6>Posts: 379</span></p>
+<p class=rvps2><span class=rvts6>#1</span></p>
+<p class=rvps2><span class=rvts6>managing CPU usage for math-intense operations</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 07:44 AM</span></p>
+<p class=rvps2><span class=rvts6>Happy Friday afternoon, folks. Suppose I'm writing a program that has some mathematically intense operations. And the operations might run inside a tight loop for a long time. If I write such code in PBCC, and let it run, it takes 25% of the CPU usage according to the Windows Task Manager on my PC (an old Lenovo X1 Carbon laptop with Windows 7 Pro).</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Now, let's further suppose the operations can be easily parallelized (that is, two or more instances can run concurrently, working separately to solve one problem). So, I launch two instances and each takes 25% of the CPU. Added up, of course, is 50%. Three instances take 75% of the CPU, and Four instances take 100% of the CPU.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>There seems to be a direct 1-to-1 correlation between the instances and CPU usage (25% per instance).</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>My questions: Is this always true for every Windows OS and processor? And if I let the user select a number from 1 to 4, for the number of instances, is this a good way to let the user select how much CPU they're willing to devote to the program?</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>I wrote the following code to illustrate my point. On my laptop, one instance is 25%, two instances are 50%, and so on. BTW, the launched spawns just do pointless but intense math for 30 seconds, then self-exit.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Any comments on letting the user select or manage CPU usage?</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Code:</span></p>
+<p class=rvps2><span class=rvts6>FUNCTION PBMAIN () AS LONG</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; LOCAL n AS LONG</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; IF COMMAND$ = "intense-math" THEN</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DIM s(1 TO 3000) AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DIM t(1 TO 3000) AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL p AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL m AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL TimeLimit AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; RANDOMIZE TIMER</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; TimeLimit = TIMER + 30</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ' ---- do pointless but intense math for 30 seconds ---</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DO</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = 50 + 40 * SIN(n / 317+RND)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t(n) = 100 + 45 * COS(n/311) * SIN(n/91+RND)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = SQR(s(n))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t(n) += s(n) ^ 1.003836747543784</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ARRAY SORT s() FOR 3000, TAGARRAY t()</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p = SQR(n + s(n) + t(n))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p = p * 100</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m = VAL(MID$(STR$(p), 5, 2))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = s(n) ^ IIF(m MOD 2=0, 1+RND, SQR(2+RND))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOOP UNTIL TIMER &gt; TimeLimit</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; ELSE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DIM h(1 TO 10) AS DWORD</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL temp AS STRING</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL instances AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; PRINT "How many instances to launch? (1 to 4) ";</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LINE INPUT temp</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; instances = VAL(temp)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO instances</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; h(n) = SHELL(EXE.NAMEX$ + " intense-math", 0)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SLEEP 620</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; END IF</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>END FUNCTION</span></p>
+<p class=rvps2><span class=rvts6>Christopher P. Becker</span></p>
+<p class=rvps2><span class=rvts6>signal engineer in the defense industry</span></p>
+<p class=rvps2><span class=rvts6>Abu Dhabi, United Arab Emirates</span></p>
+<p class=rvps2><span class=rvts6>Tags: None</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>George Bleck</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Nov 1998</span></p>
+<p class=rvps2><span class=rvts6>Posts: 3254</span></p>
+<p class=rvps2><span class=rvts6>#2</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 08:13 AM</span></p>
+<p class=rvps2><span class=rvts6>Personally, I'd use multiple threads rather than EXE instances as one EXE can control many threads. You can than scale the threads to the number of cores or HT threads depending on what makes the most sense. Additionally you could ask the client how many threads they were willing to give up from the pool of cores/ht threads (I'd never let them take all of them though, always offer N-1).</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Finally, depending on criticality, I would force the EXE/threads to use a lower CPU priority so as to still use the full CPU but give time up much more easily to other applications.</span></p>
+<p class=rvps2><span class=rvts6>&lt;b&gt;George W. Bleck&lt;/b&gt;</span></p>
+<p class=rvps2><span class=rvts6>&lt;img src='http://www.blecktech.com/myemail.gif'&gt;</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Borje Hagsten</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Jan 2000</span></p>
+<p class=rvps2><span class=rvts6>Posts: 8584</span></p>
+<p class=rvps2><span class=rvts6>#3</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 08:39 AM</span></p>
+<p class=rvps2><span class=rvts6>Yes, separate threads are good. Can also insert the following inside the For/Next loops - CPU usage should go down to 0 without increasing time that much. Maybe even MOD 100 can be enough - try and see.</span></p>
+<p class=rvps2><span class=rvts6>FOR ...</span></p>
+<p class=rvps2><span class=rvts6>IF n MOD 10 = 0 THEN SLEEP 1</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>NEXT</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Christopher Becker</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Jun 2005</span></p>
+<p class=rvps2><span class=rvts6>Posts: 379</span></p>
+<p class=rvps2><span class=rvts6>#4</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 09:35 AM</span></p>
+<p class=rvps2><span class=rvts6>Originally posted by George Bleck View Post</span></p>
+<p class=rvps2><span class=rvts6>I would force the EXE/threads to use a lower CPU priority.</span></p>
+<p class=rvps2><span class=rvts6>I know how to set it in the Task Manager. Is there a way to set it programmatically? (well, I haven't Googled it; there probably is...)</span></p>
+<p class=rvps2><span class=rvts6>Christopher P. Becker</span></p>
+<p class=rvps2><span class=rvts6>signal engineer in the defense industry</span></p>
+<p class=rvps2><span class=rvts6>Abu Dhabi, United Arab Emirates</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>George Bleck</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Nov 1998</span></p>
+<p class=rvps2><span class=rvts6>Posts: 3254</span></p>
+<p class=rvps2><span class=rvts6>#5</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 09:39 AM</span></p>
+<p class=rvps2><span class=rvts6>See...</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>THREAD SET PRIORITY and PROCESS SET PRIORITY in the PB help.</span></p>
+<p class=rvps2><span class=rvts6>&lt;b&gt;George W. Bleck&lt;/b&gt;</span></p>
+<p class=rvps2><span class=rvts6>&lt;img src='http://www.blecktech.com/myemail.gif'&gt;</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Christopher Becker</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Jun 2005</span></p>
+<p class=rvps2><span class=rvts6>Posts: 379</span></p>
+<p class=rvps2><span class=rvts6>#6</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 11:45 AM</span></p>
+<p class=rvps2><span class=rvts6>Okay, but if I go the way of THREADS, how do I know how much CPU is being used when this app is used on another machine? Example: Let's say I deploy N threads. On my machine, it might take 66% CPU (or whatever, just an example). But how do I know what that percentage will be on another, faster, machine? How to manage it or let the user manage it?</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>I suppose I could start N threads and then somehow monitor CPU usage. But that seems kinda clumsy.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>At least with the EXE way, it seems there's a direct, known ratio.</span></p>
+<p class=rvps2><span class=rvts6>Christopher P. Becker</span></p>
+<p class=rvps2><span class=rvts6>signal engineer in the defense industry</span></p>
+<p class=rvps2><span class=rvts6>Abu Dhabi, United Arab Emirates</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>George Bleck</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Nov 1998</span></p>
+<p class=rvps2><span class=rvts6>Posts: 3254</span></p>
+<p class=rvps2><span class=rvts6>#7</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 11:57 AM</span></p>
+<p class=rvps2><span class=rvts6>A solution to that is don't spawn all threads immediately at once then. Spawn one, if CPU usage is low (can be checked programmatically), spawn another; keep iterating till you meet a threshold that is comfortable (e.g. spawn threads until 80% CPU saturation). All that should be easy enough to implement programmatically (spawn, check saturation, iterate)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>You have the same control over threads that you do launching EXE's. If you already know the EXE ratio, that same ratio "should" apply to threads.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Thinking about perfect app "efficiency" you would want to saturate the CPU to 100% while still releasing time for the OS GUI and other apps to be responsive (hence the lower priority I mentioned, and the sleep method Börje mentioned). I AM over simplifying, as on some CPU's that's not quite accurate with speed boost on all cores potentially causing thermal throttling, defeating that to a point. Either way, you have scalability of threads, either dynamically based on CPU availability, or simply by customer choice of number of threads used.</span></p>
+<p class=rvps2><span class=rvts6>&lt;b&gt;George W. Bleck&lt;/b&gt;</span></p>
+<p class=rvps2><span class=rvts6>&lt;img src='http://www.blecktech.com/myemail.gif'&gt;</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Borje Hagsten</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Jan 2000</span></p>
+<p class=rvps2><span class=rvts6>Posts: 8584</span></p>
+<p class=rvps2><span class=rvts6>#8</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 12:10 PM</span></p>
+<p class=rvps2><span class=rvts6>So did you try this? Zero CPU...</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>'</span></p>
+<p class=rvps2><span class=rvts6>Code:</span></p>
+<p class=rvps2><span class=rvts6>FUNCTION PBMAIN () AS LONG</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; LOCAL n, c AS LONG, tm AS SINGLE</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; IF COMMAND$ = "intense-math" THEN</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; tm = TIMER</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DIM s(1 TO 3000) AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DIM t(1 TO 3000) AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL p AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL m AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL TimeLimit AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; RANDOMIZE TIMER</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; TimeLimit = TIMER + 30</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ' ---- do pointless but intense math for 30 seconds ---</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; c = 0</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DO</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = 50 + 40 * SIN(n / 317+RND)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t(n) = 100 + 45 * COS(n/311) * SIN(n/91+RND)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IF n MOD 10 = 0 THEN SLEEP 1</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PRINT "Done 1" + STR$(TIMER - tm) + STR$(c)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = SQR(s(n))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t(n) += s(n) ^ 1.003836747543784</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IF n MOD 10 = 0 THEN SLEEP 1</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ARRAY SORT s() FOR 3000, TAGARRAY t()</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PRINT "Done 2" + STR$(TIMER - tm) + STR$(c)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p = SQR(n + s(n) + t(n))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p = p * 100</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m = VAL(MID$(STR$(p), 5, 2))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = s(n) ^ IIF(m MOD 2=0, 1+RND, SQR(2+RND))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IF n MOD 10 = 0 THEN SLEEP 1</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; INCR c</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOOP UNTIL TIMER &gt; TimeLimit</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; PRINT "Done All" + STR$(TIMER - tm) + STR$(c)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; ELSE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DIM h(1 TO 10) AS DWORD</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL temp AS STRING</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL instances AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; PRINT "How many instances to launch? (1 to 4) ";</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LINE INPUT temp</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; instances = VAL(temp)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO instances</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; h(n) = SHELL(EXE.NAMEX$ + " intense-math", 0)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SLEEP 620</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; END IF</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>&nbsp; WAITKEY$</span></p>
+<p class=rvps2><span class=rvts6>END FUNCTION</span></p>
+<p class=rvps2><span class=rvts6>'</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Rod Macia</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: May 2006</span></p>
+<p class=rvps2><span class=rvts6>Posts: 722</span></p>
+<p class=rvps2><span class=rvts6>#9</span></p>
+<p class=rvps2><span class=rvts6>22 Mar 2024, 02:55 PM</span></p>
+<p class=rvps2><span class=rvts6>This should give you the logical processor count, to give you an idea of how many threads you can spawn</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Code:</span></p>
+<p class=rvps2><span class=rvts6>#COMPILE EXE</span></p>
+<p class=rvps2><span class=rvts6>#DIM ALL</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp;#INCLUDE "win32api.inc"</span></p>
+<p class=rvps2><span class=rvts6>FUNCTION PBMAIN () AS LONG</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>PRINT cpu_count</span></p>
+<p class=rvps2><span class=rvts6>WAITKEY$</span></p>
+<p class=rvps2><span class=rvts6>END FUNCTION</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>FUNCTION cpu_count() COMMON AS DWORD</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; LOCAL si AS SYSTEM_INFO</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; GetSystemInfo BYVAL VARPTR(si)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; FUNCTION = si.dwNumberOfProcessors</span></p>
+<p class=rvps2><span class=rvts6>END FUNCTION</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Rod Macia</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: May 2006</span></p>
+<p class=rvps2><span class=rvts6>Posts: 722</span></p>
+<p class=rvps2><span class=rvts6>#10</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 12:54 AM</span></p>
+<p class=rvps2><span class=rvts6>Borje,</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>In post # 8 you achieve low CPU usage but at a cost of a substantial drop in the number of iterations.</span></p>
+<p class=rvps2><span class=rvts6>With IF n MOD 10 = 0 THEN SLEEP 1 the do loop is performed about 2 times (on my laptop)</span></p>
+<p class=rvps2><span class=rvts6>Without the do loop is performed about 6000 times (on my laptop)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Christopher,</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Below code using getting CPU Count and starting N-1 threads, It should use close to as much CPU as possible without bugging down the system.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Code:</span></p>
+<p class=rvps2><span class=rvts6>#COMPILE EXE</span></p>
+<p class=rvps2><span class=rvts6>#DIM ALL</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp;#INCLUDE "win32api.inc"</span></p>
+<p class=rvps2><span class=rvts6>FUNCTION PBMAIN () AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; LOCAL i AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; LOCAL NoOfThreads AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; LOCAL hThreads() AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; GLOBAL Counter () AS LONG</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>&nbsp; NoOfThreads = cpu_count &nbsp;-1</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; DIM hThreads(1 TO NoOfThreads)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; DIM Counter(1 TO NoOfThreads)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>PRINT "Logical Processors &nbsp; &nbsp; &nbsp; &nbsp;= ";cpu_count</span></p>
+<p class=rvps2><span class=rvts6>PRINT "NoOfThreads Prossesors -1 = "; NoOfThreads</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; FOR i = 1 TO NoOfThreads</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; THREAD CREATE ProcessingThread(i) TO hThreads(i)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PRINT "Thread "; i ; " Created"</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; NEXT</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; FOR i = 1 TO &nbsp;NoOfThreads</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; WaitForSingleObject(hThreads(i), BYVAL %INFINITE)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PRINT "Thread "; i ; " Completed. # of Loops = " Counter(i)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; NEXT</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>PRINT "All Threads Completed"</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>WAITKEY$</span></p>
+<p class=rvps2><span class=rvts6>END FUNCTION</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>FUNCTION cpu_count() COMMON AS DWORD</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; LOCAL si AS SYSTEM_INFO</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; GetSystemInfo BYVAL VARPTR(si)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; FUNCTION = si.dwNumberOfProcessors</span></p>
+<p class=rvps2><span class=rvts6>END FUNCTION</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>THREAD FUNCTION ProcessingThread(BYVAL x AS LONG) AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL n AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DIM s(1 TO 3000) AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DIM t(1 TO 3000) AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL p AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL m AS LONG</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOCAL TimeLimit AS DOUBLE</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; RANDOMIZE TIMER</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; TimeLimit = TIMER + 30</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ' ---- do pointless but intense math for 30 seconds ---</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DO</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = 50 + 40 * SIN(n / 317+RND)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t(n) = 100 + 45 * COS(n/311) * SIN(n/91+RND)</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'IF n MOD 10 = 0 THEN SLEEP 1</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = SQR(s(n))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t(n) += s(n) ^ 1.003836747543784</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'IF n MOD 10 = 0 THEN SLEEP 1</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ARRAY SORT s() FOR 3000, TAGARRAY t()</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FOR n=1 TO 3000</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p = SQR(n + s(n) + t(n))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p = p * 100</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m = VAL(MID$(STR$(p), 5, 2))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s(n) = s(n) ^ IIF(m MOD 2=0, 1+RND, SQR(2+RND))</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'IF n MOD 10 = 0 THEN SLEEP 1</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NEXT n</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; counter(x) = counter(x) +1</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOOP UNTIL TIMER &gt; TimeLimit</span></p>
+<p class=rvps2><span class=rvts6>END FUNCTION</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Rod Macia</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: May 2006</span></p>
+<p class=rvps2><span class=rvts6>Posts: 722</span></p>
+<p class=rvps2><span class=rvts6>#11</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 01:00 AM</span></p>
+<p class=rvps2><span class=rvts6>Originally posted by Christopher Becker View Post</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Any comments on letting the user select or manage CPU usage?</span></p>
+<p class=rvps2><span class=rvts6>In my experience users rarely know how many CPU (Cores, Logical Processors) the computer they use have.</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Stuart McLachlan</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Mar 2000</span></p>
+<p class=rvps2><span class=rvts6>Posts: 9672</span></p>
+<p class=rvps2><span class=rvts6>#12</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 01:23 AM</span></p>
+<p class=rvps2><span class=rvts6>Originally posted by Rod Macia View Post</span></p>
+<p class=rvps2><span class=rvts6>In my experience users rarely know how many CPU (Cores, Logical Processors) the computer they use have.</span></p>
+<p class=rvps2><span class=rvts6>In my experience, usere rarely have any idea of what a CPU, Core or Logical Processor is.</span></p>
+<p class=rvps2><span class=rvts6>It's not uncommon for those who actually use the term '"CPU" to think it is the name of the box that their monitor sits on.&nbsp;</span></p>
+<p class=rvps2><span class=rvts6>=========================</span></p>
+<p class=rvps2><span class=rvts6>https://camcopng.com</span></p>
+<p class=rvps2><span class=rvts6>=========================</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Borje Hagsten</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Jan 2000</span></p>
+<p class=rvps2><span class=rvts6>Posts: 8584</span></p>
+<p class=rvps2><span class=rvts6>#13</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 03:39 AM</span></p>
+<p class=rvps2><span class=rvts6>Correct Rod, my mistake, but using threads in old computer with for example 2 CPUs does not help with this example. Like in my old 2 CPU machine, your code takes up almost 50% processor time and if I use both CPUs, it goes up to almost 100% processor time. In such cases, a few SLEEP 1 may be needed at the expense of speed. But not as many as I did, maybe only one per DO/LOOP.</span></p>
+<p class=rvps2><span class=rvts6>Stuart McLachlan</span></p>
+<p class=rvps2><span class=rvts6>Stuart McLachlan</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Mar 2000</span></p>
+<p class=rvps2><span class=rvts6>Posts: 9672</span></p>
+<p class=rvps2><span class=rvts6>#14</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 07:32 AM</span></p>
+<p class=rvps2><span class=rvts6>So what's the problem with a CPU running at 100% for 30 seconds or so?</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>If you never run at 100%, you've spent more than you needed to on a processor that is more powerful than you need&nbsp;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>=========================</span></p>
+<p class=rvps2><span class=rvts6>https://camcopng.com</span></p>
+<p class=rvps2><span class=rvts6>=========================</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Dale Yarker</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Mar 2004</span></p>
+<p class=rvps2><span class=rvts6>Posts: 5563</span></p>
+<p class=rvps2><span class=rvts6>#15</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 08:18 AM</span></p>
+<p class=rvps2><span class=rvts6>The impression here has been that subject app is the only, or near only, one running. With kernel and services being run by Windows, even with most inactive (doing equivalent of SLEEP 0 in their time slice), An app with one thread is more like 1 of a hundred. A parallel thread or exe only changes things to 2 of 101, then 3 of 102, etcetera. IMO parallel threads make more sense.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Georges post 7 looks like the way to go. Load up to 80% - 90% so user does not get "scared" by apparent lockup of 100%.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Warn user not to start other "high load" apps (like big database sort) and just get the math intense part done.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Cheers,</span></p>
+<p class=rvps2><span class=rvts6>Dale</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Michael Mattias</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Aug 1998</span></p>
+<p class=rvps2><span class=rvts6>Posts: 43507</span></p>
+<p class=rvps2><span class=rvts6>#16</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 11:59 AM</span></p>
+<p class=rvps2><span class=rvts6>Correct Rod, my mistake, but using threads in old computer with for example 2 CPUs does not help with this example.</span></p>
+<p class=rvps2><span class=rvts6>Did you SetThreadAffinity() and/or SetThreadPriority() [or THREAD SET PRIORITY] (or their process counterparts)??</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Maybe with only two CPUs you need to better dedicate one processor to your process?</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>There's a number of API functions to manage both threads and processes, functions not available via intrinsic PB statements:</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Process and Thread Functions - Win32 apps</span></p>
+<p class=rvps2><span class=rvts6>https://learn.microsoft.com/en-us/windows/win32/procthread/process-and-thread-functions#process-functions</span></p>
+<p class=rvps2><span class=rvts6>This topic describes the process and thread functions.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>And there's always my old favorite: Check your own program design and coding techniques. Before we had all these cool process managers and multi-threading capabilities and multiple eight gazillion Mhz processors and mountains of RAM that was the best (and only!) way to improve runtime performance. And you know, it still works!</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Oh, the original question...</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Any comments on letting the user select or manage CPU usage?</span></p>
+<p class=rvps2><span class=rvts6>Not the users who are challenged by tying their own shoes.</span></p>
+<p class=rvps2><span class=rvts6>Michael Mattias</span></p>
+<p class=rvps2><span class=rvts6>Tal Systems (retired)</span></p>
+<p class=rvps2><span class=rvts6>Port Washington WI USA</span></p>
+<p class=rvps2><span class=rvts6>mmattias@talsystems.com</span></p>
+<p class=rvps2><span class=rvts6>http://www.talsystems.com</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Frank Fenti</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Feb 2004</span></p>
+<p class=rvps2><span class=rvts6>Posts: 228</span></p>
+<p class=rvps2><span class=rvts6>#17</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 03:10 PM</span></p>
+<p class=rvps2><span class=rvts6>Another option is to periodically get the total CPU usage and then adjust your workloads to keep it under some level.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>I've used Patrice Terrier’s CPU_GetUsages() for this in a batch scheduler. and it has been working well across different systems.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>thank you Patrice</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Sample PDH (Performance Data Helper) code - PowerBASIC Peer Support Community</span></p>
+<p class=rvps2><span class=rvts6>https://forum.powerbasic.com/forum/user-to-user-discussions/source-code/814834-sample-pdh-performance-data-helper-code</span></p>
+<p class=rvps2><span class=rvts6>I've been looking for samples of how to monitor CPU usage. Those using WMI just blew me away with their complexity. Then in a web search I saw references to PDH (Performance Data Helper) which seemed much simpler, but I could find no PB examples. But I did find a sample on the web written in Delphi, which I've massaged into PB</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>BASIC shampoo - DO:LATHER:RINSE:LOOP UNTIL CLEAN &lt;&gt;0</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>George Bleck</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Nov 1998</span></p>
+<p class=rvps2><span class=rvts6>Posts: 3254</span></p>
+<p class=rvps2><span class=rvts6>#18</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 04:13 PM</span></p>
+<p class=rvps2><span class=rvts6>Isn't that what I said? lol</span></p>
+<p class=rvps2><span class=rvts6>&lt;b&gt;George W. Bleck&lt;/b&gt;</span></p>
+<p class=rvps2><span class=rvts6>&lt;img src='http://www.blecktech.com/myemail.gif'&gt;</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Frank Fenti</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Feb 2004</span></p>
+<p class=rvps2><span class=rvts6>Posts: 228</span></p>
+<p class=rvps2><span class=rvts6>#19</span></p>
+<p class=rvps2><span class=rvts6>23 Mar 2024, 04:17 PM</span></p>
+<p class=rvps2><span class=rvts6>Originally posted by George Bleck View Post</span></p>
+<p class=rvps2><span class=rvts6>Isn't that what I said? lol</span></p>
+<p class=rvps2><span class=rvts6>you may have, I have been guilty of not reading the whole thread b4</span></p>
+<p class=rvps2><span class=rvts6>BASIC shampoo - DO:LATHER:RINSE:LOOP UNTIL CLEAN &lt;&gt;0</span></p>
+<p class=rvps2 style="page-break-before: always;"><span class=rvts6>Christopher Becker</span></p>
+<p class=rvps2><span class=rvts6>Member</span></p>
+<p class=rvps2><span class=rvts6>Join Date: Jun 2005</span></p>
+<p class=rvps2><span class=rvts6>Posts: 379</span></p>
+<p class=rvps2><span class=rvts6>#20</span></p>
+<p class=rvps2><span class=rvts6>27 Mar 2024, 11:35 AM</span></p>
+<p class=rvps2><span class=rvts6>George, Frank,</span></p>
+<p class=rvps2><span class=rvts6>I looked at Patrice Terrier’s CPU_GetUsages(). It seems to be exactly what I need. Thanks.</span></p>
+<p class=rvps2><span class=rvts6>Code:</span></p>
+<p class=rvps2><span class=rvts6>DO</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; &nbsp;CALL TurnUpTheHeatOnTheCPU</span></p>
+<p class=rvps2><span class=rvts6>LOOP UNTIL CPU_GetUsages() &gt; 80</span></p>
+<p class=rvps2><span class=rvts6>Seems simple enough. (Obviously, I'll be more adaptive than that. But it does simplify things.)</span></p>
+<p class=rvps2><span class=rvts6>Christopher P. Becker</span></p>
+<p class=rvps2><span class=rvts6>signal engineer in the defense industry</span></p>
+<p class=rvps2><span class=rvts6>Abu Dhabi, United Arab Emirates</span></p>
+<p class=rvps2><span class=rvts6>PowerBASIC Web SiteSite HelpContact UsCommunity Main PageTop of Page</span></p>
+<p class=rvps2><span class=rvts6>Copyright © 1998-2023 PowerBASIC Tools, LLC - All Rights Reserved.</span></p>
+<p class=rvps2><span class=rvts6>Powered by vBulletin® Version 6.0.4</span></p>
+<p class=rvps2><span class=rvts6>Copyright © 2024 vBulletin Solutions, Inc. All rights reserved.</span></p>
+<p class=rvps2><span class=rvts6>All times are GMT-5. This page was generated at 10:58 AM.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>
