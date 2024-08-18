@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>ThisMonth.btm</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps2><span class=rvts6>@SETLOCAL</span></p>
+<p class=rvps2><span class=rvts6>@ECHO OFF</span></p>
+<p class=rvps2><span class=rvts6>:: &nbsp; &nbsp;File: ThisMonth.btm</span></p>
+<p class=rvps2><span class=rvts6>:: Created: 2024-07-30</span></p>
+<p class=rvps2><span class=rvts6>:: &nbsp; _4ver: 32.10</span></p>
+<p class=rvps2><span class=rvts6>:: _winver: 10.0</span></p>
+<p class=rvps2><span class=rvts6>iff 1 eq 1 then</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>iff %_admin eq 1 then</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>iff %_elevated eq 1 then</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>:: NEXT SENTENCE</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>else</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo Note that this .BTM was tested on a 64-bit version of Windows,</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo as Administrator,</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo from an elevated process.</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo.</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo You are running the following;</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo &nbsp; &nbsp; &nbsp;_x64: 1</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo &nbsp; &nbsp;_admin: 1</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo _elevated: 1</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>pause</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>endiff</span></p>
+<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>endiff</span></p>
+<p class=rvps2><span class=rvts6>endiff</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>::U:\&gt;which ffields</span></p>
+<p class=rvps2><span class=rvts6>::ffields is a plugin command (TextUtils)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>::U:\&gt;which dbf</span></p>
+<p class=rvps2><span class=rvts6>::dbf is an alias : "E:\Documents\GitHub\dbf\bin\Release\netcoreapp3.1\dbf.exe"</span></p>
+<p class=rvps2><span class=rvts6>::dbf 1.5.0</span></p>
+<p class=rvps2><span class=rvts6>::Copyright Chris Richards</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>if not exist r:\TRNSCTNS.dbf copy E:\DOSBox\DATA\DBASE\WealthSimple\TRNSCTNS.dbf r:\</span></p>
+<p class=rvps2><span class=rvts6>if %@fileage[r:\TRNSCTNS.dbf] ne %@fileage[E:\DOSBox\DATA\DBASE\WealthSimple\TRNSCTNS.dbf] (</span></p>
+<p class=rvps2><span class=rvts6>&nbsp; copy E:\DOSBox\DATA\DBASE\WealthSimple\TRNSCTNS.dbf r:\</span></p>
+<p class=rvps2><span class=rvts6>)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>set theMonth=%@right[2,0%_month]</span></p>
+<p class=rvps2><span class=rvts6>set theYear=%_year</span></p>
+<p class=rvps2><span class=rvts6>dbf --filename r:\TRNSCTNS.DBF --csv |! ffields /C | ffind /vt"%theYear-%theMonth" | view</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>ENDLOCAL</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

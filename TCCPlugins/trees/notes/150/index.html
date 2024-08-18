@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>WRAP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts15
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts16
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts17
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts18:hover
+{
+ color: #000000;
+}
+a.rvts19, span.rvts19
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+ text-decoration: none;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts20:hover
+{
+ color: #000000;
+}
+span.rvts21
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts22
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts23
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts24
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ background: #ffffff;
+ margin: 7px 0px 7px 0px;
+}
+.rvps4
+{
+ margin: 0px 0px 16px 32px;
+}
+.rvps5
+{
+ margin: 0px 0px 0px 16px;
+}
+.rvps6
+{
+ background: #eeeeee;
+ padding: 8px 16px 8px 16px;
+ margin: 8px 0px 16px 16px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts14>Word-wraps English text to fit a specified number of columns.</span></p>
+<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>WRAP</span><span class=rvts16> /A:</span><span class=rvts17>attribs</span><span class=rvts16> /C: /CP:</span><span class=rvts17>n</span><span class=rvts16> /D /F:</span><span class=rvts17>fmt</span><span class=rvts16> /G:</span><span class=rvts17>n</span><span class=rvts16>,</span><span class=rvts17>m</span><span class=rvts16> /H /J /N:</span><span class=rvts17>n</span><span class=rvts16> /N /P /Q /R /S /T:</span><span class=rvts17>n</span><span class=rvts16> /W:</span><span class=rvts17>width</span><span class=rvts16> /Z:</span><span class=rvts17>char</span><span class=rvts16> </span><span class=rvts17>filename…</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/A:</span><span class=rvts17>attribs</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>attributes mask; valid flags are </span><span class=rvts16>-ACEHIORS</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_condense">/C:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_condense">n</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>condense repeated spaces in input text</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_encoding">/CP:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_encoding">n</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>interpret non-Unicode input text using </span><a class=rvts20 href="file:///E:/Utils/textutils.html#codepages">code page</a><span class=rvts14> </span><span class=rvts17>n</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/D</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>disable special handling of soft hyphens (character 173 / 0xAD)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_fmt">/F:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_fmt">fmt</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>specifies the format for input text; </span><span class=rvts17>fmt</span><span class=rvts14> is one of:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>0</span><span class=rvts14> — best guess (default)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>1</span><span class=rvts14> — unformatted (line breaks are used only to end paragraphs)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>2</span><span class=rvts14> — prewrapped (line breaks are used to wrap text)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>3</span><span class=rvts14> — unformatted, with blank lines between paragraphs</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_indent">/G:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_indent">n</a><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_indent">,</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_indent">m</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>indent all paragraphs </span><span class=rvts17>n</span><span class=rvts14> spaces; if </span><span class=rvts17>m</span><span class=rvts14> is specified, it’s the indent for the second and later lines</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/H</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>display filenames</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/J</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>justify right margins</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_hybrk">/N:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_hybrk">n</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>minimum characters left on each line to split at a hyphen; 0 disables breaking at hyphens</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/P</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>page output</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_swn">/N</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>disable features</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_quotes">/Q</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>replace ASCII quotes and apostrophes with Unicode open and close quotes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_remove">/R</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>remove hyphens from line ends</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/S</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>search in subdirectories for matching filenames</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_tabsize">/T:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_tabsize">n</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>tab stops every </span><span class=rvts17>n</span><span class=rvts14> spaces</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_width">/W:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_width">width</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>desired width of output text</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wrap_feol">/Z:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wrap_feol">char</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>define a forced line-break character</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>…</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts20 href="file:///E:/Utils/textutils.html#ranges">Range options</a><span class=rvts14> are also supported.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts14>The </span><span class=rvts16>WRAP</span><span class=rvts14> command word-wraps English text to fit a specified width. It can be used as a filter reading from standard input, or it can read from one or more files specified on the command line. The resulting text is written to standard output; it can be piped or redirected.</span></p>
+<p class=rvps3><span class=rvts14>If you want to pipe to </span><span class=rvts16>WRAP</span><span class=rvts14>, remember that pipes open a new shell. To pipe to a plugin command, you must either ensure that the plugin is loaded in the transient shell, </span><span class=rvts21>e.g.</span><span class=rvts14> by installing the .DLL file in the shell’s P</span><span class=rvts22>LUG</span><span class=rvts14>I</span><span class=rvts22>NS</span><span class=rvts14> directory; or else use temporary files or an in-process pipe.</span></p>
+<p class=rvps3><span class=rvts14>You may specify more than one </span><span class=rvts17>filename</span><span class=rvts14>; wildcards and directory aliases are supported. You can search recursively into subdirectories for matching files with </span><span class=rvts16>/S</span><span class=rvts14>. @File lists and internet files are supported. You may also specify </span><span class=rvts16>CLIP:</span><span class=rvts14> to wrap text from the clipboard.</span></p>
+<p class=rvps3><span class=rvts14>‘Width’ here refers to a specified number of character positions, or columns. All characters are assumed to have the same width. The word-wrapped output should have neat, reasonably uniform line lengths when viewed or printed in a fixed-pitch font such as Courier, or displayed in a console window. Note that the specifed width includes the final newline character; if you specify a width of 80, then up to 79 printable characters may appear on a line.</span></p>
+<p class=rvps3><span class=rvts23>Note:</span><span class=rvts14> &nbsp;This command is designed specifically for use with </span><span class=rvts21>English</span><span class=rvts14> prose. It may give weird or undesired results when used on source code, program output, HTML, or whatnot. It makes Anglocentric assumptions that may not be appropriate to other languages.</span></p>
+<p class=rvps3><span class=rvts14>If standard input (stdin) is redirected, </span><span class=rvts16>WRAP</span><span class=rvts14> will read from stdin before any </span><span class=rvts17>filenames</span><span class=rvts14> specified on the command line. If no </span><span class=rvts17>filenames</span><span class=rvts14> are specified, then </span><span class=rvts16>WRAP</span><span class=rvts14> will read from stdin whether it is redirected or not. If </span><span class=rvts16>/H</span><span class=rvts14> is used, each file’s name will be printed before it is processed. (For standard input, </span><span class=rvts16>&lt;stdin&gt;</span><span class=rvts14> will be shown.)</span></p>
+<p class=rvps3><span class=rvts14>Output width: </span><span class=rvts16>/W:</span><span class=rvts17>width</span><span class=rvts14> sets the desired width in characters for the output text. </span><span class=rvts17>Width</span><span class=rvts14> may be from 40 to 512. If no </span><span class=rvts16>/W:</span><span class=rvts17>width</span><span class=rvts14> is specified, the default is the console width if output is to the console, or defaults to 100 columns if output is redirected. (You can set an environment variable COLUMNS to change this default.) If you type just a </span><span class=rvts16>/W</span><span class=rvts14> without a colon or </span><span class=rvts17>width</span><span class=rvts14>, then the current console width is assumed; this is useful if you are redirecting </span><span class=rvts16>WRAP</span><span class=rvts14>’s output but want it wrapped to the console width anyway, </span><span class=rvts21>e.g.</span><span class=rvts14> for piping to LIST.</span></p>
+<p class=rvps3><span class=rvts14>Text format: Text files use line-break characters in different ways. In some files, line break characters are used only to mark where a line end </span><span class=rvts21>should</span><span class=rvts14> occur: the end of a paragraph. In other files, line breaks are used to wrap text to some desired width. You can use </span><span class=rvts16>/F:</span><span class=rvts17>n</span><span class=rvts14> to tell </span><span class=rvts16>WRAP</span><span class=rvts14> how to handle line breaks. </span><span class=rvts16>/F:1</span><span class=rvts14> indicates that the text is unformatted, with line breaks only at the ends of paragraphs. </span><span class=rvts16>WRAP</span><span class=rvts14> will honor all line breaks, and add an extra blank line after each paragraph. </span><span class=rvts16>/F:2</span><span class=rvts14> means that the input text is prewrapped, having line breaks within paragraphs and even within sentences. </span><span class=rvts16>WRAP</span><span class=rvts14> will skip single line breaks, honoring only sequences of two or more in a row. </span><span class=rvts16>/F:3</span><span class=rvts14> is also for unformatted text and acts like </span><span class=rvts16>/F:1</span><span class=rvts14>, but does not insert a blank line after each paragraph; use this option to wrap the output from </span><a class=rvts18 href="file:///E:/Utils/textutils.html#dehtml">DEHTML</a><span class=rvts14>. If you specify </span><span class=rvts16>/F:0</span><span class=rvts14> or do not specify any </span><span class=rvts16>/F:</span><span class=rvts17>n</span><span class=rvts14>, </span><span class=rvts16>WRAP</span><span class=rvts14> will attempt to guess how the input text is formatted. (Guessing is not reliable when there isn’t much input text.)</span></p>
+<p class=rvps3><span class=rvts14>Tab size: The </span><span class=rvts16>/T:</span><span class=rvts17>n</span><span class=rvts14> option controls the expansion of tab characters. By default, tab stops are every four columns (set an environment variable TABSIZE to change this default). </span><span class=rvts16>/T:8</span><span class=rvts14> would make tabs eight columns wide. </span><span class=rvts16>/T:0</span><span class=rvts14> disables special handling of tab characters, treating them like any other character; this will probably bollix word-wrapping and is not recommended. </span><span class=rvts17>n</span><span class=rvts14> may be 0 to 20.</span></p>
+<p class=rvps3><span class=rvts14>Breaking at hyphens: </span><span class=rvts16>WRAP</span><span class=rvts14> will usually break lines at spaces. It may also break a line after a hyphen, if all of the following are true: (1) the character before the hyphen is a letter, and the following character is either a letter or a digit; (2) at least three characters, </span><span class=rvts21>not</span><span class=rvts14> counting the hyphen, will remain at the end of the line; and (3) at least three characters will move to the start of the following line. So, for example, if the phrase </span><span class=rvts23>true-blue</span><span class=rvts14> fell near the end of a line, </span><span class=rvts16>WRAP</span><span class=rvts14> might break the line after the hyphen, since </span><span class=rvts23>true</span><span class=rvts14> and </span><span class=rvts23>blue</span><span class=rvts14> have four letters each. The phrases </span><span class=rvts23>do-nothing</span><span class=rvts14> and </span><span class=rvts23>derring-do</span><span class=rvts14> would not be divided, however, since splitting either one would leave a two-letter </span><span class=rvts23>do</span><span class=rvts14> on a line by itself. You can adjust this behavior with </span><span class=rvts16>/N:</span><span class=rvts17>n</span><span class=rvts14>, which sets the minimum number of characters for both lines. If you specify </span><span class=rvts16>/N:4</span><span class=rvts14> then at least four characters, not counting the hyphen, must remain on each line. </span><span class=rvts16>/N:0</span><span class=rvts14> prevents </span><span class=rvts16>WRAP</span><span class=rvts14> from breaking lines after hyphens.</span></p>
+<p class=rvps3><span class=rvts14>Removing hyphens: If </span><span class=rvts16>/R</span><span class=rvts14> is used, </span><span class=rvts16>WRAP</span><span class=rvts14> may discard a hyphen at the end of a line if the preceding character was a letter, and if the first character on the following line is also a letter. Without </span><span class=rvts16>/R</span><span class=rvts14>, </span><span class=rvts16>WRAP</span><span class=rvts14> retains all hyphens from line ends.</span></p>
+<p class=rvps3><span class=rvts14>Forced indentation: The </span><span class=rvts16>/G:</span><span class=rvts17>n</span><span class=rvts14> option forcibly indents each new paragraph </span><span class=rvts17>n</span><span class=rvts14> spaces (not tabs.) Any indentation in the input text will be lost. </span><span class=rvts17>n</span><span class=rvts14> must be 0 to 20. </span><span class=rvts16>/G:0</span><span class=rvts14> will strip all leading whitespace, leaving text flush with the left margin. The optional second value, if present, indents the second and later lines </span><span class=rvts17>m</span><span class=rvts14> spaces; </span><span class=rvts17>m</span><span class=rvts14> is also 0 to 20. You might use </span><span class=rvts16>/G:0,4</span><span class=rvts14> to produce a hanging indent. If </span><span class=rvts16>/G:</span><span class=rvts14> is not specified, any indentation in the input text is preserved.</span></p>
+<p class=rvps3><span class=rvts14>Condensing spaces: The </span><span class=rvts16>/C:</span><span class=rvts17>n</span><span class=rvts14> option allows you to condense runs of consecutive spaces in the input text. Any sequence of more than </span><span class=rvts17>n</span><span class=rvts14> spaces will be truncated. Only spaces (character 32) are counted, not other whitespace characters. Spaces generated by the program itself (</span><span class=rvts21>e.g.</span><span class=rvts14> by expanding tabs or indenting paragraphs) will not be condensed. </span><span class=rvts17>n</span><span class=rvts14> must be 0 to 10; if </span><span class=rvts17>n</span><span class=rvts14> is 0, spaces are not condensed (the default.) This option might be useful for packing output text just a little more tightly; if the original text file had extra spaces inserted to justify margins; or if you are one of those unfortunates who suffer a violent reaction to the sight of two spaces after a period.</span></p>
+<p class=rvps3><span class=rvts14>Quotes replacement: </span><span class=rvts16>/Q</span><span class=rvts14> causes </span><span class=rvts16>WRAP</span><span class=rvts14> to replace generic ASCII apostrophes and quote marks ( </span><span class=rvts23>'</span><span class=rvts14> and </span><span class=rvts23>"</span><span class=rvts14> ) with Unicode open and close quote marks ( </span><span class=rvts23>‘</span><span class=rvts14> </span><span class=rvts23>’</span><span class=rvts14> and &nbsp;</span><span class=rvts23>“</span><span class=rvts14> </span><span class=rvts23>”</span><span class=rvts14> ). The new quote marks may or may not look different from the originals, depending on how they are displayed and the font used. If the output is displayed in a non-Unicode font, the curly quotes will be lost or mangled. You can set some </span><a class=rvts20 href="file:///E:/Utils/textutils.html#uquotesenv">environment variables</a><span class=rvts14> to control this feature.</span></p>
+<p class=rvps3><span class=rvts14>Text encoding: </span><span class=rvts16>WRAP</span><span class=rvts14> automatically detects Unicode text files. If the file is not Unicode, the command has no way of detecting the character encoding; the default Windows code page is assumed. You can specify a different code page for non-Unicode text files with </span><span class=rvts16>/CP:</span><span class=rvts17>n</span><span class=rvts14>. Most single-byte (</span><span class=rvts21>i.e.</span><span class=rvts14>, Western) code pages are </span><a class=rvts20 href="file:///E:/Utils/textutils.html#codepages">supported</a><span class=rvts14>, but multibyte code pages (Chinese, Japanese, Korean) are not. This option only affects non-Unicode files.</span></p>
+<p class=rvps3><span class=rvts14>Forced line break: </span><span class=rvts16>/Z:</span><span class=rvts17>char</span><span class=rvts14> defines a forced line-break character. </span><span class=rvts17>char</span><span class=rvts14> may be entered as either a single character, or as a decimal or hexadecimal (prefixed with 0x) character code. If a matching character is found in the input file or stream, </span><span class=rvts16>WRAP</span><span class=rvts14> will end the current line and begin a new one.</span></p>
+<p class=rvps3><span class=rvts14>Disabling features: </span><span class=rvts16>/N</span><span class=rvts14> with suboptions disables features:</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NB</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not write a Byte Order Mark</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/ND</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not search into hidden directories; only useful with </span><span class=rvts16>/S</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NH</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not add a hyphen when breaking a word</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NJ</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not search into junctions; only useful with </span><span class=rvts16>/S</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts14>You can combine these, </span><span class=rvts21>e.g.</span><span class=rvts14> </span><span class=rvts16>/NDJ</span><span class=rvts14>.</span></p>
+<p><span class=rvts24><br></span></p>
+<p class=rvps3><span class=rvts14>These variables may be set to a numeric value to modify the command’s default behavior:</span></p>
+<div class=rvps5>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>COLUMNS</span><span class=rvts14>:</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>sets the default width when output is redirected and </span><span class=rvts16>/W</span><span class=rvts14> is not specified. Legal values are 40 to 512.</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>TABSIZE</span><span class=rvts14>:</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>sets the default number of columns between tab stops when </span><span class=rvts16>/T</span><span class=rvts14> is not specified. Legal values are 1 to 20.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p><span class=rvts24><br></span></p>
+<p class=rvps6><span class=rvts16>wrap /w:100 "Fishy Story.txt"</span></p>
+<p><span class=rvts24><br></span></p>
+<p><span class=rvts8><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html#upend">TextUtils Plugin and 2 more pages - Personal</a><span class=rvts11> &nbsp;</span><span class=rvts10>(27 July 2023 9:02 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

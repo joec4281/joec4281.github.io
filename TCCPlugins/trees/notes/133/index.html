@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>FFIELDS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts15
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts16
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts17
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts18:hover
+{
+ color: #000000;
+}
+a.rvts19, span.rvts19
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts19:hover
+{
+ color: #000000;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+ text-decoration: none;
+}
+span.rvts21
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts22
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts23
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ background: #ffffff;
+ margin: 7px 0px 7px 0px;
+}
+.rvps4
+{
+ margin: 0px 0px 16px 32px;
+}
+.rvps5
+{
+ background: #eeeeee;
+ padding: 8px 16px 8px 16px;
+ margin: 8px 0px 16px 16px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts14>Reads a file and prints fields in a specified format.</span></p>
+<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>FFIELDS</span><span class=rvts16> /A:</span><span class=rvts17>attribs</span><span class=rvts16> /C /CP:</span><span class=rvts17>n</span><span class=rvts16> /E /F:"</span><span class=rvts17>format</span><span class=rvts16>" /H /L:</span><span class=rvts17>string</span><span class=rvts16> /N /P /Q /S /T /W /X </span><span class=rvts17>filename…</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/A:</span><span class=rvts17>attribs</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>attributes mask; valid flags are </span><span class=rvts16>-ACEHIORS</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/C</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>separate fields at commas</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/CP:</span><span class=rvts17>n</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>interpret non-Unicode input text using </span><a class=rvts18 href="file:///E:/Utils/textutils.html#codepages">code page</a><span class=rvts14> </span><span class=rvts17>n</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/E</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>separate fields at first unquoted equals sign</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts19 href="file:///E:/Utils/textutils.html#ff_swf">/F:"</a><a class=rvts20 href="file:///E:/Utils/textutils.html#ff_swf">format</a><span class=rvts16>"</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>format string; see below</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/H</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>display filenames</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts19 href="file:///E:/Utils/textutils.html#ff_swl">/L:</a><a class=rvts20 href="file:///E:/Utils/textutils.html#ff_swl">string</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>insert line numbers on the left</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts19 href="file:///E:/Utils/textutils.html#ff_swn">/N</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>disable features</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/P</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>page output</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/Q</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>remove quotes (the default is to retain them)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/S</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>search in subdirectories for matching files</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/T</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>separate fields at tabs</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/W</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>separate fields at whitespace</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts19 href="file:///E:/Utils/textutils.html#ff_swx">/X</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>perform variable expansion on each line</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>…</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#ranges">Range options</a><span class=rvts14> are also supported.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts14>The </span><span class=rvts16>FFIELDS</span><span class=rvts14> command reads a file, divides each line into fields (blank lines are skipped), and then prints the fields using a format string. </span><span class=rvts16>FFIELDS</span><span class=rvts14> can read from disk files or from a pipe. If you want to pipe to </span><span class=rvts16>FFIELDS</span><span class=rvts14>, remember that pipes open a new shell. To pipe to a plugin command, you must either ensure that the plugin is loaded in the transient shell, </span><span class=rvts21>e.g.</span><span class=rvts14> by installing the .DLL file in the shell’s P</span><span class=rvts22>LUG</span><span class=rvts14>I</span><span class=rvts22>NS</span><span class=rvts14> directory; or else use temporary files or an in-process pipe.</span></p>
+<p class=rvps3><span class=rvts14>You may specify more than one </span><span class=rvts17>filename</span><span class=rvts14>; wildcards and directory aliases are supported. You can search recursively into subdirectories for matching files with </span><span class=rvts16>/S</span><span class=rvts14>. @File lists and internet files are supported. You may also specify </span><span class=rvts16>CLIP:</span><span class=rvts14> to read from the clipboard instead of a file.</span></p>
+<p class=rvps3><span class=rvts14>The format string may contain </span><span class=rvts16>$</span><span class=rvts17>n</span><span class=rvts14> to print field </span><span class=rvts17>n</span><span class=rvts14>, or </span><span class=rvts16>$</span><span class=rvts17>n</span><span class=rvts16>=</span><span class=rvts17>wf</span><span class=rvts14> to print field </span><span class=rvts17>n</span><span class=rvts14> truncated to length </span><span class=rvts17>w</span><span class=rvts14>; the final letter is </span><span class=rvts16>L</span><span class=rvts14> to left-justify the field if it contains fewer than </span><span class=rvts17>w</span><span class=rvts14> characters, </span><span class=rvts16>R</span><span class=rvts14> to right-justify it, </span><span class=rvts16>C</span><span class=rvts14> to center it, or </span><span class=rvts16>T</span><span class=rvts14> to simply truncate the field without padding it to length </span><span class=rvts17>w</span><span class=rvts14>. For example, a field specifier of </span><span class=rvts16>$4=10L</span><span class=rvts14> would print field 4, left-justified to 10 characters. Use </span><span class=rvts16>$$</span><span class=rvts14> to print a literal dollar sign, or </span><span class=rvts16>$N</span><span class=rvts14> to insert a line break.</span></p>
+<p class=rvps3><span class=rvts14>Fields are numbered starting from 0.</span></p>
+<p><span class=rvts23><br></span></p>
+<p class=rvps5><span class=rvts16>set |! ffields /e /f:"$0=20l $1=58t"</span></p>
+<p class=rvps3><span class=rvts14>…displays variable names truncated to 20 characters, followed by a space and the variables’ values truncated to 58 characters.</span></p>
+<p class=rvps3><span class=rvts14>If you include </span><span class=rvts16>/L</span><span class=rvts14> on the command line, </span><span class=rvts16>FFIELDS</span><span class=rvts14> will insert line numbers to the left of each output line. Lines are numbered starting at 0. If you include the optional </span><span class=rvts17>string</span><span class=rvts14> argument, </span><span class=rvts16>FFIELDS</span><span class=rvts14> will perform variable expansion on it before prepending it to each output line; use the variable </span><span class=rvts16>_LINE</span><span class=rvts14> to get the current line number. For example, </span><span class=rvts16>/L:"%%@FORMAT[03,%%_LINE]"</span><span class=rvts14> will prepend the line number, zero-padded to at least three digits.</span></p>
+<p class=rvps3><span class=rvts14>If you don’t specify a </span><span class=rvts17>format</span><span class=rvts14> string, </span><span class=rvts16>FFIELDS</span><span class=rvts14> will invent one at random:</span></p>
+<p><span class=rvts23><br></span></p>
+<p class=rvps5><span class=rvts16>alias |! ffields /e</span></p>
+<p class=rvps3><span class=rvts16>/N</span><span class=rvts14> disables features:</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NB</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not write a Byte Order Mark</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NC</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>disable </span><a class=rvts18 href="file:///E:/Utils/textutils.html#highlight">highlight</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/ND</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not search into hidden directories; only useful with </span><span class=rvts16>/S</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NF</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>suppress the file-not-found error</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NJ</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not search into junctions; only useful with </span><span class=rvts16>/S</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NZ</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not search into system directories; only useful with </span><span class=rvts16>/S</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts14>You can combine these, </span><span class=rvts21>e.g.</span><span class=rvts14> </span><span class=rvts16>/NDJ</span><span class=rvts14>.</span></p>
+<p class=rvps3><span class=rvts16>/X</span><span class=rvts14> does variable expansion on each line before displaying it. You could, for example, count the characters in each alias definition:</span></p>
+<p><span class=rvts23><br></span></p>
+<p class=rvps5><span class=rvts16>alias |! ffields /e /f:"$0 = %%@len[$1]" /x</span></p>
+<p><span class=rvts23><br></span></p>
+<p><span class=rvts8><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html#clip2text">Reads a file and prints fields in a specified format.</a><span class=rvts11> &nbsp;</span><span class=rvts10>(26 July 2023 6:45 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

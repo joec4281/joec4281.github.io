@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>@METAPHONE</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts8
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts11, span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts12
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts13
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts14
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ font-weight: bold;
+ color: #000088;
+}
+span.rvts15
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts16
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+}
+a.rvts17, span.rvts17
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts17:hover
+{
+ color: #000000;
+}
+span.rvts18
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts19
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts20
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #660000;
+}
+span.rvts21
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ background: #ffffff;
+ margin: 7px 0px 7px 0px;
+}
+.rvps4
+{
+ margin: 0px 0px 16px 32px;
+}
+.rvps5
+{
+ background: #eeeeee;
+ padding: 8px 16px 8px 16px;
+ margin: 8px 0px 16px 16px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts12>Returns a roughly phonetic code for an English word.</span></p>
+<p class=rvps3><span class=rvts12>Syntax:</span><br><span class=rvts13>%@METAPHONE[</span><span class=rvts14>word</span><span class=rvts15>,</span><span class=rvts16>length</span><span class=rvts15>,</span><span class=rvts16>flags</span><span class=rvts13>]</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>word</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>the word or words to process</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>length</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>the maximum length of the codes to return (8)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>flags</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>set to 1 for better compatibility</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><a class=rvts17 href="http://en.wikipedia.org/wiki/Metaphone">Metaphone</a><span class=rvts12> codes are meant to roughly approximate the pronunciation of a word. Words that sound similar should have similar Metaphone codes. You can use this function to compare the sounds of words, to suggest similar words, or to group words by pronunciation.</span></p>
+<p class=rvps3><span class=rvts12>If you pass more than one </span><span class=rvts14>word</span><span class=rvts12>, separate them with spaces. The resulting codes will also be separated by spaces.</span></p>
+<p class=rvps5><span class=rvts15>rem &nbsp;Compare two words:</span><br><span class=rvts15></span><br><span class=rvts15>set word1=cougher</span><br><span class=rvts15>set word2=coffer</span><br><span class=rvts15>if %@metaphone[%word1] == %@metaphone[%word2] echo "%word1" may sound like "%word2".</span></p>
+<p><span class=rvts18><br></span></p>
+<p class=rvps3><span class=rvts12>By default, this function returns Metaphone codes of up to eight characters long. You can specify a different length with the </span><span class=rvts16>length</span><span class=rvts12> parameter, </span><span class=rvts19>e.g.</span><span class=rvts12> </span><span class=rvts15>%@metaphone[</span><span class=rvts14>word</span><span class=rvts15>,10]</span><span class=rvts12> to return ten-letter Metaphone codes. Legal values are 4 to 20.</span></p>
+<p><span class=rvts18><br></span></p>
+<p class=rvps3><span class=rvts20>• &nbsp;Note:</span><span class=rvts12> Values returned by this function are not guaranteed to match those generated by any other implementation. Documentation of the Metaphone algorithm is invariably unclear and self-contradictory, and never seems to agree with the corresponding code. This is my attempt to implement Lawrence Philips’s original algorithm to the best of my limited understanding, with a few additional tweaks thrown in.</span></p>
+<p class=rvps3><span class=rvts12>More specifically, comparing against </span><span class=rvts21>ASSERT</span><span class=rvts12>F</span><span class=rvts21>ULL</span><span class=rvts12>_</span><span class=rvts21>V1</span><span class=rvts12>.1.</span><span class=rvts21>TXT</span><span class=rvts12>, dated 2011-11-25, by the </span><a class=rvts17 href="http://code.google.com/p/metaphone-standards/">Metaphone-standards project</a><span class=rvts12>, </span><span class=rvts15>@METAPHONE</span><span class=rvts12> produces different codes for 40 out of 2753 words: about 98.5% agreement. If </span><span class=rvts16>flags</span><span class=rvts12> is set to 1, there are no mismatches — but I still cannot guarantee perfect agreement with any other implementation.</span></p>
+<p><span class=rvts7><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts10>Source</span><span class=rvts8>:</span><span class=rvts9> </span><a class=rvts11 href="file:///E:/Utils/textutils.html">Returns a roughly phonetic code for an English word.</a><span class=rvts9> &nbsp;</span><span class=rvts8>(31 July 2023 5:17 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

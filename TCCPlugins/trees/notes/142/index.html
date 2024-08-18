@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>SAVEARRAY</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts8
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts11, span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts12
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts13
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts14
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts15
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+}
+span.rvts16
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ font-weight: bold;
+ color: #000088;
+}
+a.rvts17, span.rvts17
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts17:hover
+{
+ color: #000000;
+}
+span.rvts18
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #660000;
+}
+span.rvts19
+{
+ font-size: 11pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 13pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts20:hover
+{
+ color: #000000;
+}
+a.rvts21, span.rvts21
+{
+ font-size: 13pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts21:hover
+{
+ color: #0000ff;
+}
+a.rvts22, span.rvts22
+{
+ font-size: 11pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts22:hover
+{
+ color: #0000ff;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ background: #ffffff;
+ margin: 7px 0px 7px 0px;
+}
+.rvps4
+{
+ margin: 0px 0px 16px 32px;
+}
+.rvps5
+{
+ background: #ffffff;
+ margin: 30px 0px 7px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts12>Saves data from an array variable to a file.</span></p>
+<p class=rvps3><span class=rvts12>Syntax:</span><br><span class=rvts13>SAVEARRAY</span><span class=rvts14> /O /P /Q /X:</span><span class=rvts15>m</span><span class=rvts14>,</span><span class=rvts15>n</span><span class=rvts14> /Y:</span><span class=rvts15>m</span><span class=rvts14>,</span><span class=rvts15>n</span><span class=rvts14> /Z:</span><span class=rvts15>m</span><span class=rvts14>,</span><span class=rvts15>n</span><span class=rvts14> /W:</span><span class=rvts15>m</span><span class=rvts14>,</span><span class=rvts15>n</span><span class=rvts14> </span><span class=rvts16>arrayname</span><span class=rvts14> </span><span class=rvts16>filename</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>/O</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>the command may overwrite an existing file</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>/P</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>save a partial array as if it were the whole thing; only useful with </span><span class=rvts14>/X: /Y: /Z: /W:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>/Q</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>quietly</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>/X:</span><span class=rvts15>m</span><span class=rvts14>,</span><span class=rvts15>n</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>save only X index </span><span class=rvts15>m</span><span class=rvts12> through </span><span class=rvts15>n</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>/Y:</span><span class=rvts15>m</span><span class=rvts14>,</span><span class=rvts15>n</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>save only Y index </span><span class=rvts15>m</span><span class=rvts12> through </span><span class=rvts15>n</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>/Z:</span><span class=rvts15>m</span><span class=rvts14>,</span><span class=rvts15>n</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>save only Z index </span><span class=rvts15>m</span><span class=rvts12> through </span><span class=rvts15>n</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>/W:</span><span class=rvts15>m</span><span class=rvts14>,</span><span class=rvts15>n</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>save only W index </span><span class=rvts15>m</span><span class=rvts12> through </span><span class=rvts15>n</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>arrayname</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>an array variable name</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>filename</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>the file to create</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts12>The </span><span class=rvts16>arrayname</span><span class=rvts12> should begin with a letter. It should contain only letters, digits, underscores, and dollar signs; it should not be more than 31 characters long.</span></p>
+<p class=rvps3><span class=rvts12>All non-empty elements in the array will be saved. You can restore the data later with </span><a class=rvts17 href="file:///E:/Utils/textutils.html#loadarray">LOADARRAY</a><span class=rvts12>.</span></p>
+<p class=rvps3><span class=rvts12>The default behavior is to save the entire array. You can restrict the elements saved using the </span><span class=rvts14>/X:</span><span class=rvts12>, </span><span class=rvts14>/Y:</span><span class=rvts12>, </span><span class=rvts14>/Z:</span><span class=rvts12>, and </span><span class=rvts14>/W:</span><span class=rvts12> options. </span><span class=rvts14>/X:</span><span class=rvts12> restricts the first dimension of the array, </span><span class=rvts14>/Y:</span><span class=rvts12> affects the second, </span><span class=rvts14>/Z:</span><span class=rvts12> the third, and </span><span class=rvts14>/Z:</span><span class=rvts12> the fourth.</span></p>
+<p class=rvps3><span class=rvts18>• &nbsp;Note:</span><span class=rvts12> The maximum size for any element in the array is 8,191 characters. Longer elements may cause issues!</span></p>
+<p class=rvps3><span class=rvts18>• &nbsp;Note:</span><span class=rvts12> This command is not available in TCC/LE, in 4NT, or in older versions of TCC which don’t support array variables.</span></p>
+<p class=rvps5><span class=rvts19>See also: the </span><a class=rvts21 href="#" onclick="parent.postMessage('1|135', '*');return false;">LOADARRAY</a><span class=rvts19> command.</span></p>
+<p><span class=rvts7><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts10>Source</span><span class=rvts8>:</span><span class=rvts9> </span><a class=rvts11 href="file:///E:/Utils/textutils.html#filterfiles">Saves data from an array variable to a file.</a><span class=rvts9> &nbsp;</span><span class=rvts8>(26 July 2023 7:08 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

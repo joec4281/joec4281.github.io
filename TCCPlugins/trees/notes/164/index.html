@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>AScript</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts8
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts11, span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts12
+{
+ font-size: 16pt;
+ font-family: 'Segoe UI';
+ color: #000000;
+ background-color: #ccffff;
+}
+span.rvts13
+{
+ font-size: 16pt;
+ font-family: 'Consolas';
+ color: #000000;
+ background-color: #ccffff;
+}
+span.rvts14
+{
+ font-size: 16pt;
+ font-family: 'Consolas';
+}
+span.rvts15
+{
+ font-size: 16pt;
+ font-family: 'Consolas';
+ background-color: #ccffff;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ background: #ccffff;
+ margin: 0px 0px 19px 0px;
+}
+.rvps4
+{
+ border-color: #555555;
+ border-style: solid;
+ border-width: 1px;
+ background: #ccffff;
+ margin: 7px 10px 7px 10px;
+}
+.rvps5
+{
+ background: #ccffff;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts12>Unlike the internal TCC Script command, AScript works with GetObject.</span></p>
+<p class=rvps3><span class=rvts12>Examples:</span></p>
+<p class=rvps4><span class=rvts13>TestIt()</span></p>
+<p class=rvps4><span class=rvts13>Function TestIt</span><br><span class=rvts13>&nbsp; Set fso = CreateObject ("Scripting.FileSystemObject")</span><br><span class=rvts13>&nbsp; Set stdout = fso.GetStandardStream (1)</span><br><span class=rvts13>&nbsp; Set iWMI = GetObject("WinMgmts:Root\Cimv2")</span><br><span class=rvts13>&nbsp; Set colItems = iWMI.ExecQuery("SELECT * FROM Win32_Process")</span><br><span class=rvts13>&nbsp; If Err.number &lt;&gt; 0 Then</span><br><span class=rvts13>&nbsp; &nbsp; stdout.WriteLine "Error"</span><br><span class=rvts13>&nbsp; End if</span></p>
+<p class=rvps4><span class=rvts13>&nbsp; Results = ""</span><br><span class=rvts13>&nbsp; For Each objItem in colItems</span><br><span class=rvts13>&nbsp; &nbsp; Results = Results + objItem.Name + vbCrLf</span><br><span class=rvts13>&nbsp; Next</span></p>
+<p class=rvps4><span class=rvts13>&nbsp; TestIt = Results</span><br><span class=rvts13>&nbsp; stdout.WriteLine TestIt</span><br><span class=rvts13>End Function</span></p>
+<p class=rvps3><span class=rvts12>Now, run the above script;</span></p>
+<p class=rvps4><span class=rvts13>AScript e:\utils\vince.vbs</span><br><span class=rvts13>System Idle Process</span><br><span class=rvts13>System</span><br><span class=rvts13>Secure System</span><br><span class=rvts13>Registry</span><br><span class=rvts13>smss.exe</span><br><span class=rvts13>...</span></p>
+<p class=rvps3><span class=rvts12>AScript allows one to use Windows Scripting Components;</span></p>
+<table border=1 cellpadding=5 cellspacing=0 style="border-width: 0px; background-color: #ffffff; border-spacing: 0px;">
+ <tr valign=top>
+  <td width=609 height=24 style="border-width : 1px; border-color: #000000; border-style: solid; padding: 5px;">
+   <p class=rvps5><span class=rvts15>Set oMath = GetObject("script:e:\utils\math.wsc")</span></p>
+  </td>
+ </tr>
+</table>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts10>Source</span><span class=rvts8>:</span><span class=rvts9> </span><a class=rvts11 href="file:///E:/Documents/GitHub/ActiveScript/readme.html">readme.html and 2 more pages - Personal</a><span class=rvts9> &nbsp;</span><span class=rvts8>(8 August 2023 5:07 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

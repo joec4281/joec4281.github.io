@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="initial-scale=1.1, maximum-scale=1.5, user-scalable=yes">
+	    <link rel="stylesheet" href="skins/web.css" type="text/css" media="screen" charset="utf-8">
+		<script src="../_codebase/webix.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="data/search_index.js"></script>
+		<script type="text/javascript" src="data/notes_index.js"></script>
+		<script type="text/javascript" src="data/array_helper.js"></script>
+		<script type="text/javascript" src="data/rntse.js"></script>
+       <script src="trees/tree1.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+            .blue.webix_menu-x{
+                background:#3498DB;
+            }
+		    .rows .webix_list_item:nth-child(2n){
+			  background-color:#F5F5F5;
+		    }
+			.rows .webix_list_item.webix_selected:nth-child(2n){
+			  background: #ffedbc;
+			}
+			.webix_view.custom{
+			}
+
+			@supports (-webkit-overflow-scrolling: touch) {
+			  /* CSS specific to iOS devices */ 
+              .webix_view.iosFrame {
+                  -webkit-overflow-scrolling: touch;
+                  overflow: auto;
+               }
+			}
+		</style>
+		<title>TCCPlugins.rnt mobile webbook</title>
+	</head>
+
+	<body>
+		<script type="text/javascript" charset="utf-8">
+
+		window.addEventListener("message", receiveMessage, false);
+		
+		function receiveMessage(event) {
+		  var data = event.data.split('|');
+		  gotoLink(data[0], data[1]);
+		}
+
+		var se = new SearchEngine();
+		
+        function getNoteCaption(id){
+            var result = "";
+            for( var i = 0; i < notesIndex.length; i++) {
+                if( notesIndex[i][0] === id ) {
+                    result = notesIndex[i][1];
+                    break;
+                }
+            }
+            return result;
+        }
+		
+		function search(){
+			se.results.clear();
+			se.search($$("searchbox").getValue().toLowerCase());
+			list = $$("searchlist");
+			list.clearAll();
+			
+			for (var i=0; i < se.results.count(); i++){
+				if (se.results.getId(i) !== -1)
+					list.add({value: getNoteCaption(se.results.getId(i)), link: se.results.getId(i)});
+			}
+		}
+		function gotoLink(tab, note){
+			initTree(tab);
+		    $$("tree1").select(note);
+			$$("tree1").showItem(note);
+			$$("noteLabel").setValue($$("tree1").getItem(note).value);
+            $$("note_frame").define("src", "trees/notes/" +note+ "/index.html");	
+			$$("noteview").show();			
+		}
+		
+		function initTree(id){
+			$$("tree1").clearAll();
+			if (id == 1){ $$('tree1').parse(webix.copy(tree_data1)) }
+
+			$$("treeHeader").setHTML("TCCPlugins > "+ $$("listView").getItem(id).title);
+			$$("tabbar1").setValue("treeView");
+		}
+
+		var tab_data = [
+          { id: 1, title: "TCC Plugins"}
+		];
+		var tabbar = {
+		   view:"tabbar", id: "tabbar1", type:"bottom", multiview:true, options: [
+				{ value: "<span class='webix_icon fa-search'></span><span style='padding-left: 1px'>Search</span>", id: 'searchView' },
+				{ value: "<span class='webix_icon fa-book'></span><span style='padding-left: 4px'>Tabs</span>", id: 'pageView' },
+				{ value: "<span class='webix_icon fa-tree'></span><span style='padding-left: 4px'>Tree</span>", id: 'treeView' }
+			],height:50
+		};
+		var data = {
+			id: "innerView",
+			animate: false,
+			cells:[
+				{
+				 	id:"searchView",
+					view: "layout",
+					rows:[
+						{view: "toolbar", css:"custom", elements: [
+							{ view:"text", id: "searchbox"},
+							{ view:"button", value:"Search", width: 90, click:"search()", hotkey: "enter"}
+						  ]},
+						{ view: "list", id: "searchlist", css: "rows",
+						  template:"#value#",
+					      type:{ height: "auto" },
+						  select: true,
+						  on:{
+							onItemClick:function(id){
+								$$("noteLabel").setValue(this.getItem(id).value);
+								$$("note_frame").define("src", "trees/notes/" +this.getItem(id).link + "/index.html");
+								$$("noteview").show();			
+							}
+						  }
+						}
+					]
+				},
+				{
+					id:"pageView", rows:[
+						{ type: "clean", cols: [
+							{view: "toolbar", paddingY: 0, css:"custom", elements: [
+								{view: "label", label: "TCCPlugins"},
+								{view: "icon", icon: "home", click: "history.back();" }
+							]},
+						]},
+						{view:"list", id: "listView", css: "rows",
+						template:"#title#",
+						type:{ height: "auto" },
+						select:true,
+						data: tab_data}
+					]
+				},
+				{  id: "treeView", rows: [
+					{ type: "clean", cols: [
+						{view: "toolbar", paddingY: 0, css:"custom", elements: [
+							{view: "label", label: "Notebook > Page", id: "treeHeader"},
+							{view: "icon", icon: "home", click: "history.back();" }
+						]},
+				   	]},
+					  {view: "tree", id: "tree1", select: true, borderless: true,
+					   filterMode:{ showSubItems:false },
+					   on:{
+							onItemClick:function(id){
+								$$("noteLabel").setValue(this.getItem(id).value);
+								$$("note_frame").define("src", "trees/notes/" +this.getItem(id).link + "/index.html");
+								$$("noteview").show();			
+							}
+						}
+					  },
+					  { padding: 3, rows:[
+						{view: "search", id: "text1"}
+					  ]}
+				  ]
+				}
+			]
+		};
+
+		webix.ui({
+			rows: [{
+				id: "mainview",
+				cells:[
+					{rows:[
+						data,
+						tabbar
+					]},
+					{ id: "noteview",
+					  rows:[
+						{view: "toolbar", paddingY: 0, css:"custom", cols:[
+							{view: "button", value: "< Back", width: 70, click:"go_back()"},
+							{view: "label", id: "noteLabel" }
+						]},
+						{view: "iframe", id: "note_frame", css:"iosFrame" }
+					]}
+				]
+			}]
+		});
+
+        webix.Touch.limit();
+		
+		function goto_note(){
+			$$("noteview").show();
+		}
+		
+		function go_back(){
+			$$("mainview").back();
+		}
+		
+	    $$("text1").attachEvent("onTimedKeyPress",function(){
+			$$("tree1").filter("#value#",this.getValue());
+		});
+		
+		$$("listView").attachEvent("onItemClick",function(id){
+			initTree(id);
+		});
+		
+		$$("tabbar1").setValue("pageView");
+		$$("innerView").config.animate = true;
+		
+		</script>
+	</body>
+</html>
