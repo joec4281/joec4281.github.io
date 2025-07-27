@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@MKENTITIES</title>
+<html><head><title>@WINPARENT</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -84,48 +84,85 @@ a.rvts13, span.rvts13
 }
 span.rvts14
 {
- font-size: 12pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #000000;
 }
 span.rvts15
 {
- font-size: 14pt;
- font-family: 'consolas';
- font-weight: bold;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts16
+a.rvts16, span.rvts16
 {
- font-size: 12pt;
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- color: #000088;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
 }
-span.rvts17
+a.rvts17, span.rvts17
 {
- font-size: 14pt;
- font-family: 'consolas';
- color: #000000;
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
 span.rvts18
 {
- font-size: 12pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
- text-decoration: underline;
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
 }
 span.rvts19
 {
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts20
 {
- font-size: 12pt;
+ font-size: 18pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts21, span.rvts21
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts22
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
- color: #660000;
+}
+span.rvts23
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts24, span.rvts24
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts25
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+a.rvts26, span.rvts26
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts27
+{
+ font-size: 18pt;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -145,103 +182,52 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
- background: #ffffff;
  margin: 7px 0px 7px 0px;
-}
-.rvps4
-{
- margin: 0px 0px 16px 32px;
-}
-.rvps5
-{
- background: #ffffff;
- padding: 0px 0px 0px 40px;
- margin: 7px 0px 7px 0px;
-}
-.rvps6
-{
- background: #ffffff;
- padding: 0px 0px 0px 40px;
- margin: 2px 0px 0px 0px;
 }
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
-.list1 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: disc;}
-.list2 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: circle;}
-.list3 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: square;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts14>Replaces characters in a string with HTML entities.</span></p>
-<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>%@MKENTITIES[</span><span class=rvts16>string</span><span class=rvts15>]</span></p>
-<p class=rvps3><span class=rvts17>@MKENTITIES</span><span class=rvts14> will replace these characters with HTML entities:</span></p>
-<div class=rvps4>
-<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+<p class=rvps3><span class=rvts25>@WINPARENT</span><span class=rvts23> — Searches for a window, and returns its parent window’s handle.</span></p>
+<p class=rvps3><span class=rvts23>Syntax:</span><br><span class=rvts25>%@WINPARENT[</span><span class=rvts23>window</span><span class=rvts25>,</span><span class=rvts23>flags</span><span class=rvts25>]</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
  <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts18>Character:</span></p>
+  <td width=137 valign=middle style="padding: 1px;">
+   <p><a class=rvts26 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window</a></p>
   </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts18>Replaced with:</span></p>
+  <td width=1361 valign=middle style="padding: 1px;">
+   <p><a class=rvts26 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window title, program name, PID, or HWND</a></p>
   </td>
  </tr>
  <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>" &nbsp;(double quote)</span></p>
+  <td width=137 valign=middle style="padding: 1px;">
+   <p><span class=rvts23>flags</span></p>
   </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>"</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>% &nbsp;(percent sign)</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>%</span></p>
+  <td width=1361 valign=middle style="padding: 1px;">
+   <p><span class=rvts23>bitmapped:</span></p>
   </td>
  </tr>
  <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&amp; &nbsp;(ampersand)</span></p>
+  <td width=137 valign=middle style="padding: 1px;">
+   <p><span class=rvts27><br></span></p>
   </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&amp;</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&lt; &nbsp;(less-than sign)</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&lt;</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&gt; &nbsp;(greater-than sign)</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&gt;</span></p>
+  <td width=1361 valign=middle style="padding: 1px;">
+   <p><span class=rvts23>&nbsp; &nbsp; 1: return window handle in hexadecimal</span></p>
   </td>
  </tr>
 </table>
-</div>
-<ul class=list1>
- <li class=rvps6><span class=rvts14>ASCII control codes (U+0001 through U+001F, U+007F)</span></li>
- <li class=rvps6><span class=rvts14>C1 control codes (U+0080 through U+009F) — will be replaced with Windows-1252 characters if possible</span></li>
- <li class=rvps6><span class=rvts14>high-order characters (U+10000 and up)</span></li>
-</ul>
-<p><span class=rvts19><br></span></p>
-<p class=rvps3><span class=rvts20>• Note: </span><span class=rvts14>This function can return ampersands in its output. You will need to quote it, or use </span><span class=rvts17>SETDOS /C</span><span class=rvts14> to temporarily change the command separator character.</span></p>
-<p><span class=rvts8><br></span></p>
+<p><span class=rvts23><br></span></p>
+<p class=rvps3><span class=rvts23>If no matching window is found, the return value will be </span><span class=rvts25>0</span><span class=rvts23>.</span></p>
+<p class=rvps3><span class=rvts23>See also: </span><a class=rvts24 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#f_winowner">@WINOWNER</a><span class=rvts23>.</span></p>
+<p><span class=rvts23><br></span></p>
+<p><span class=rvts20><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html">Replaces characters in a string with HTML entities.</a><span class=rvts11> &nbsp;</span><span class=rvts10>(31 July 2023 5:18 PM)</span></p>
+   <p><span class=rvts22>Source</span><span class=rvts19>:</span><span class=rvts20> </span><a class=rvts21 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#licensing">WindowInfo Plugin and 1 more page - Personal</a><span class=rvts20> &nbsp;</span><span class=rvts19>(5 February 2025 7:31 PM)</span></p>
   </td>
  </tr>
 </table>
-<p><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
+<p><span class=rvts18><br></span></p>
 </body></html>

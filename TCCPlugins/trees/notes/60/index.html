@@ -1,0 +1,565 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>WORDS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts15
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts16
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts17
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts18:hover
+{
+ color: #000000;
+}
+a.rvts19, span.rvts19
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+ text-decoration: none;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts20:hover
+{
+ color: #000000;
+}
+span.rvts21
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts22
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts23
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ background: #ffffff;
+ margin: 7px 0px 7px 0px;
+}
+.rvps4
+{
+ margin: 0px 0px 16px 32px;
+}
+.rvps5
+{
+ background: #eeeeee;
+ padding: 8px 16px 8px 16px;
+ margin: 8px 0px 16px 16px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts14>Counts words, sentences, and paragraphs in English text.</span></p>
+<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>WORDS</span><span class=rvts16> /A:</span><span class=rvts17>attribs</span><span class=rvts16> /C /CP:</span><span class=rvts17>n</span><span class=rvts16> /D /F:</span><span class=rvts17>fmt</span><span class=rvts16> /K /M:</span><span class=rvts17>n</span><span class=rvts16> /N /S /U:</span><span class=rvts17>mode</span><span class=rvts16> /X </span><span class=rvts17>filename…</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/A:</span><span class=rvts17>attribs</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>attributes mask; valid flags are </span><span class=rvts16>-ACEHIORS</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_words">/C</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>code mode; words may contain underscores and dollar signs</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_encoding">/CP:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wds_encoding">n</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>interpret non-Unicode input text using </span><a class=rvts20 href="file:///E:/Utils/textutils.html#codepages">code page</a><span class=rvts14> </span><span class=rvts17>n</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_dump">/D</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>dumps lists of unique words, sorted by frequency</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_format">/F:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wds_format">fmt</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>specifies the format for input text; </span><span class=rvts17>fmt</span><span class=rvts14> is one of:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>0</span><span class=rvts14> — best guess (default)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>1</span><span class=rvts14> — unformatted (line breaks are used only to end paragraphs)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>2</span><span class=rvts14> — prewrapped (line breaks are used to wrap text)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_hyphens">/K</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>keeps hyphens when reassembling split words</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/M:</span><span class=rvts17>n</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>minimum number of letters in a word</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_words">/N</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>by itself: no words containing digits</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_swn">/N</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>with suboptions: disable features</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/S</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>search in subdirectories for matching files</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_vocabs">/U:</a><a class=rvts19 href="file:///E:/Utils/textutils.html#wds_vocabs">mode</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>controls the counting of unique words; </span><span class=rvts17>mode</span><span class=rvts14> is one of:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>0</span><span class=rvts14> — do not count unique words (faster for large files)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>1</span><span class=rvts14> — count unique words for each file individually (the default)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>2</span><span class=rvts14> — count unique words for all files together (slower)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp; </span><span class=rvts16>3</span><span class=rvts14> — separate counts for each file and for all files together (double oink!)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#wds_words">/X</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>no words beginning with a digit</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>…</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts20 href="file:///E:/Utils/textutils.html#ranges">Range options</a><span class=rvts14> are also supported.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts16>WORDS</span><span class=rvts14> counts words, sentences, and paragraphs in English text. It can read text from standard input, or from one or more files specified on the command line. A report is written to standard output; this report can be piped or redirected. The results of the last file processed are also saved internally, and can be acessed through </span><a class=rvts20 href="file:///E:/Utils/textutils.html#words_vars">internal variables</a><span class=rvts14>.</span></p>
+<p class=rvps3><span class=rvts21>Note:</span><span class=rvts14> &nbsp;This command was designed specifically for use with </span><span class=rvts22>English</span><span class=rvts14> text. I make many Anglocentric assumptions about what constitutes a ‘word’, a ‘sentence’, a ‘paragraph’, ‘forms’ of a word, and so on. These assumptions are probably not useful for any other language. </span><span class=rvts16>WORDS</span><span class=rvts14> may give strange or undesired results when used on source code, program output, HTML, or whatnot.</span></p>
+<p class=rvps3><span class=rvts14>If standard input (stdin) is redirected, </span><span class=rvts16>WORDS</span><span class=rvts14> will read from stdin before any </span><span class=rvts17>filenames</span><span class=rvts14> specified on the command line. If no </span><span class=rvts17>filenames</span><span class=rvts14> are specified, then </span><span class=rvts16>WORDS</span><span class=rvts14> will read from stdin whether it is redirected or not. Filenames may include wildcards and directory aliases. You can search into subdirectories for matching files with </span><span class=rvts16>/S</span><span class=rvts14>. @File lists and internet files are supported. You may also specify </span><span class=rvts16>CLIP:</span><span class=rvts14> to count words on the clipboard.</span></p>
+<p class=rvps3><span class=rvts14>This command’s definition of a ‘word’ is complex and subject to ongoing tweaking. In general, though, a word may contain only letters, digits (unless </span><span class=rvts16>/N</span><span class=rvts14> is specified), periods, apostrophes, and hyphens; at least one character must be a letter. For instance, </span><span class=rvts22>20th</span><span class=rvts14>, </span><span class=rvts22>1920s</span><span class=rvts14>, </span><span class=rvts22>1969's</span><span class=rvts14>, and </span><span class=rvts22>post-1941</span><span class=rvts14> are all considered words, but </span><span class=rvts22>1984</span><span class=rvts14> is not. The first character must be alphanumeric or (very rarely) an apostrophe.</span></p>
+<p class=rvps3><span class=rvts14>If </span><span class=rvts16>/C</span><span class=rvts14> is specified, words may also contain underscores and dollar signs, but must not begin with a digit or dollar sign. </span><span class=rvts16>/C</span><span class=rvts14> also suppresses the count of sentences and paragraphs in the final report.</span></p>
+<p class=rvps3><span class=rvts14>Words that differ only in case are counted as the same word. In the phrase </span><span class=rvts22>polish Polish furniture using Polish furniture polish</span><span class=rvts14>, this command will find only three ‘unique’ words.</span></p>
+<p class=rvps3><span class=rvts14>A word is counted as ‘proper’ only if it never occurs in an all-lowercase form; no proper nouns will be found in </span><span class=rvts22>Polish polish</span><span class=rvts14>. Acronyms like </span><span class=rvts22>NATO</span><span class=rvts14> will be counted as ‘proper nouns’; so will ordinary words capitalized at the start of a sentence. The latter are often common words like articles and prepositions, which tend to be weeded out in longer files as they recur midsentence.</span></p>
+<p class=rvps3><span class=rvts14>Note that a hyphenate is always counted as a single word. Without a dictionary, the command has no way of knowing whether it is composed of actual words (</span><span class=rvts22>red-eye</span><span class=rvts14>, </span><span class=rvts22>half-baked</span><span class=rvts14>) or not (</span><span class=rvts22>pre-K</span><span class=rvts14>, </span><span class=rvts22>Wi-Fi</span><span class=rvts14>).</span></p>
+<p class=rvps3><span class=rvts16>WORDS</span><span class=rvts14> also gives counts of sentences, paragraphs, lines, characters, and bytes. All counts should be viewed as estimates rather than gospel truth. The sentences count in particular must be taken with a healthy dose of salt; the command has no good way to determine whether a period ends an abbreviation, a sentence, or both.</span></p>
+<p class=rvps3><span class=rvts14>A line, or a series of lines, which contains one or more sentences is counted as a ‘paragraph’. A line or series of lines which contains one or more words, but no recognized sentences, is instead counted as a ‘title’. It might actually be a title, subtitle, or chapter heading; or it might be a byline, date line, attribution, salutation, signature, line of poetry….</span></p>
+<p class=rvps3><span class=rvts14>The number of lines reported may differ from the number of carriage returns or line feeds in the text, </span><span class=rvts22>e.g.</span><span class=rvts14> if the last line in the file is not terminated. A line containing only whitespace characters (spaces and tabs) is considered blank. The character and byte counts do not include any Unicode byte-order mark at the beginning of the file.</span></p>
+<p class=rvps3><span class=rvts14>Split words: If a hyphenated word is split across a line break, </span><span class=rvts16>WORDS</span><span class=rvts14> will reassemble it and treat it as a single word. By default, the hyphen is dropped — the command has no way of knowing whether a hyphenated compound word was broken at a hyphen, or whether a normal word was divided between syllables and a hyphen added. The latter seems more common, and I wanted to avoid cluttering the vocabulary list with differently-hyphenated versions of the same word. If </span><span class=rvts16>/K</span><span class=rvts14> is specified, the command will instead retain hyphens when reassembling words broken at the end of a line. This option may cause a larger number of ‘unique’ words to be reported.</span></p>
+<p class=rvps3><span class=rvts14>Vocabularies: In order to count unique words and ‘proper nouns’, </span><span class=rvts16>WORDS</span><span class=rvts14> must build a list of all words found. Building this list can slow down the process and use a good deal of memory if the text file involved is large. </span><span class=rvts16>/U:</span><span class=rvts17>mode</span><span class=rvts14> controls the vocabulary lists. </span><span class=rvts16>/U:0</span><span class=rvts14> disables vocabularies; the command executes faster, but there will be no counts of unique and proper words. </span><span class=rvts16>/U:1</span><span class=rvts14> causes </span><span class=rvts16>WORDS</span><span class=rvts14> to build a vocabulary list for each file it processes; this is the default behavior. </span><span class=rvts16>/U:2</span><span class=rvts14> builds a combined vocabulary for all files that </span><span class=rvts16>WORDS</span><span class=rvts14> processes; this is slower than the default. Finally, </span><span class=rvts16>/U:3</span><span class=rvts14> builds a vocabulary for each file that </span><span class=rvts16>WORDS</span><span class=rvts14> reads, and at the same time builds a master vocabulary for all files together; this is </span><span class=rvts22>much</span><span class=rvts14> slower than the default behavior, and devours memory shamelessly.</span></p>
+<p class=rvps3><span class=rvts14>If you are processing extremely large text files, or files which are not English prose — </span><span class=rvts22>e.g.</span><span class=rvts14> output from a program or command — I strongly recommend using </span><span class=rvts16>/U:0</span><span class=rvts14> to disable vocabulary lists.</span></p>
+<p class=rvps3><span class=rvts14>Dump: If </span><span class=rvts16>/D</span><span class=rvts14> is specified, the vocabulary for each file will be dumped to stdout. If </span><span class=rvts16>/D</span><span class=rvts14> is combined with </span><span class=rvts16>/U:2</span><span class=rvts14>, you’ll instead get a combined vocabulary for all files. The list is sorted by frequency, with more common words appearing first. Note that words may be shown in a different case than they appear in the input text. This is because the command stores all words in lowercase internally for speed (lowercase letters are more streamlined).</span></p>
+<p class=rvps3><span class=rvts14>Text format: Text files use line-break characters in different ways. In some files, line break characters are used only to mark where a line end </span><span class=rvts22>should</span><span class=rvts14> occur: the end of a paragraph. In other files, line breaks are used to wrap text to some desired width. You can use </span><span class=rvts16>/F:</span><span class=rvts17>n</span><span class=rvts14> to tell </span><span class=rvts16>CONTEXT</span><span class=rvts14> how to handle line breaks. </span><span class=rvts16>/F:1</span><span class=rvts14> indicates that the text is unformatted, with line breaks only at the ends of paragraphs. </span><span class=rvts16>CONTEXT</span><span class=rvts14> will honor all line breaks, and add an extra blank line after each paragraph. </span><span class=rvts16>/F:2</span><span class=rvts14> means that the input text is prewrapped, having line breaks within paragraphs and even within sentences. </span><span class=rvts16>CONTEXT</span><span class=rvts14> will skip single line breaks, honoring only sequences of two or more in a row. </span><span class=rvts16>/F:3</span><span class=rvts14> is also for unformatted text and acts like </span><span class=rvts16>/F:1</span><span class=rvts14>, but does not insert a blank line after each paragraph. If you specify </span><span class=rvts16>/F:0</span><span class=rvts14> or do not specify any </span><span class=rvts16>/F:</span><span class=rvts17>n</span><span class=rvts14>, </span><span class=rvts16>CONTEXT</span><span class=rvts14> will attempt to guess how the input text is formatted. (Guessing is not reliable when there isn’t much input text.)</span></p>
+<p class=rvps3><span class=rvts14>Text encoding: </span><span class=rvts16>WORDS</span><span class=rvts14> automatically detects Unicode text files. If the file is not Unicode, the command has no way of detecting the character encoding; the default Windows code page is assumed. You can specify a different code page for non-Unicode text files with </span><span class=rvts16>/CP:</span><span class=rvts17>n</span><span class=rvts14>. Most single-byte (</span><span class=rvts22>i.e.</span><span class=rvts14>, alphabetic) code pages are </span><a class=rvts20 href="file:///E:/Utils/textutils.html#codepages">supported</a><span class=rvts14>, but multibyte code pages (Chinese, Japanese, Korean) are not. This option only affects non-Unicode files.</span></p>
+<p class=rvps3><span class=rvts14>Disabling features: </span><span class=rvts16>/N</span><span class=rvts14> with suboptions disables features:</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NB</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not write a Byte Order Mark</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NC</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>disable </span><a class=rvts20 href="file:///E:/Utils/textutils.html#highlight">highlight</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/ND</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not search into hidden directories; only useful with </span><span class=rvts16>/S</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NF</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>suppress the file-not-found error</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NJ</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not search into junctions; only useful with </span><span class=rvts16>/S</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/NZ</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>do not search into system directories; only useful with </span><span class=rvts16>/S</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts14>You can combine these, </span><span class=rvts22>e.g.</span><span class=rvts14> </span><span class=rvts16>/NDJ</span><span class=rvts14>.</span></p>
+<p><span class=rvts23><br></span></p>
+<p class=rvps5><span class=rvts16>C:\&gt; type EBS.txt</span><br><span class=rvts16>This is a test. &nbsp;For the next sixty seconds, this station will conduct a test</span><br><span class=rvts16>of the Emergency Broadcast System. &nbsp;This is only a test.</span><br><span class=rvts16></span><br><span class=rvts16>C:\&gt; words /d EBS.txt</span><br><span class=rvts16></span><br><span class=rvts15>File "C:\EBS.txt" :</span><br><span class=rvts16>&nbsp; 25 words total, 17 unique, 4 proper. &nbsp;25 runs of non-blanks.</span><br><span class=rvts16>&nbsp; 3 sentences total: &nbsp;3. &nbsp;0! &nbsp;0? &nbsp; Average sentence 8.3 words.</span><br><span class=rvts16>&nbsp; 1 paragraph, 0 titles. &nbsp;Average paragraph 3.0 sentences.</span><br><span class=rvts16>&nbsp; 2 lines total, 2 not blank; the longest had 77 characters.</span><br><span class=rvts16>&nbsp; 137 characters in 137 bytes (OEM, prewrapped).</span><br><span class=rvts16></span><br><span class=rvts16>3: &nbsp;a test this</span><br><span class=rvts16>2: &nbsp;is the</span><br><span class=rvts16>1: &nbsp;Broadcast conduct Emergency For next of only seconds sixty station System will</span><br><span class=rvts16></span><br><span class=rvts16>C:\&gt;</span></p>
+<p><span class=rvts23><br></span></p>
+<p class=rvps3><span class=rvts14>The results from the last file processed are saved, and can be accessed using these internal variables:</span></p>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_words">_WORDS</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_uniquewords">_UNIQUEWORDS</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_propernouns">_PROPERNOUNS</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_wc">_WC</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentences">_SENTENCES</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentencesd">_SENTENCESD</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentencese">_SENTENCESE</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentencesq">_SENTENCESQ</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentencewords">_SENTENCEWORDS</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_paragraphs">_PARAGRAPHS</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_titles">_TITLES</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_lines">_LINES</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_nonblanklines">_NONBLANKLINES</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_longestline">_LONGESTLINE</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_characters">_CHARACTERS</a></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts14>The cumulative results from all files processed by the last invocation of </span><span class=rvts16>WORDS</span><span class=rvts14> can be accessed through these variables:</span></p>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_wordsall">_WORDSALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_uniquewordsall">_UNIQUEWORDSALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_propernounsall">_PROPERNOUNSALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_wcall">_WCALL</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentencesall">_SENTENCESALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentencesdall">_SENTENCESDALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentenceseall">_SENTENCESEALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentencesqall">_SENTENCESQALL</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_sentencewordsall">_SENTENCEWORDSALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_paragraphsall">_PARAGRAPHSALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_titlesall">_TITLESALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_wordfiles">_WORDFILES</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_linesall">_LINESALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_nonblanklinesall">_NONBLANKLINESALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_longestlineall">_LONGESTLINEALL</a></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><a class=rvts18 href="file:///E:/Utils/textutils.html#v_charactersall">_CHARACTERSALL</a></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts23><br></span></p>
+<p><span class=rvts8><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html#upend">TextUtils Plugin and 2 more pages - Personal</a><span class=rvts11> &nbsp;</span><span class=rvts10>(27 July 2023 9:01 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

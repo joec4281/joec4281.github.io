@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>FFIELDS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ margin: 7px 0px 7px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps2><span class=rvts6>FFIELDS — Read a file and print fields in a specified format.</span></p>
+<p class=rvps2><span class=rvts6>Syntax:</span><br><span class=rvts6>FFIELDS /A:attribs /C /CP:n /E /F:"format" /H /K:n /L:string /N /P /Q /S /T /W /X filename…</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/A:attribs</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>attributes mask; valid flags are -ACEHIORS</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/C</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>separate fields at commas</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/CP:n</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>interpret non-Unicode input text using </span><span class=rvts6>code page</span><span class=rvts6> n</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/E</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>separate fields at first unquoted equals sign</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/F:"format</span><span class=rvts6>"</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>format string; see below</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/H</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>display filenames</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/K:n</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>output line width (columns)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/L:string</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>insert line numbers on the left</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/N</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>disable features</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/P</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>page output</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/Q</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>remove quotes (the default is to retain them)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/S</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>search in subdirectories for matching files</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/T</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>separate fields at tabs</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/W</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>separate fields at whitespace</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/X</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>perform variable expansion on each line</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>…</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>Range options</span><span class=rvts6> are also supported.</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps2><span class=rvts6>The FFIELDS command reads a file, divides each line into fields (blank lines are skipped), and then prints the fields using a format string. FFIELDS can read from disk files or from a pipe. If you want to pipe to FFIELDS, remember that pipes open a new shell. To pipe to a plugin command, you must either ensure that the plugin is loaded in the transient shell, e.g. by installing the .DLL file in the shell’s PlugIns directory; or else use temporary files or an in-process pipe.</span></p>
+<p class=rvps2><span class=rvts6>You may specify more than one filename; wildcards and directory aliases are supported. You can search recursively into subdirectories for matching files with /S. @File lists and internet files are supported. You may also specify CLIP: to read from the clipboard instead of a file.</span></p>
+<p class=rvps2><span class=rvts6>The format string may contain $n to print field n, or $n=wf to print field n truncated to length w; the final letter is L to left-justify the field if it contains fewer than w characters, R to right-justify it, C to center it, or T to simply truncate the field without padding it to length w. For example, a field specifier of $4=10L would print field 4, left-justified to 10 characters. Use $$ to print a literal dollar sign, or $N to insert a line break.</span></p>
+<p class=rvps2><span class=rvts6>Fields are numbered starting from 0.</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>set |! ffields /e /f:"$0=20l $1=58t"</span></p>
+<p class=rvps2><span class=rvts6>…displays variable names truncated to 20 characters, followed by a space and the variables’ values truncated to 58 characters.</span></p>
+<p class=rvps2><span class=rvts6>If you include /L on the command line, FFIELDS will insert line numbers to the left of each output line. Lines are numbered starting at 0. If you include the optional string argument, FFIELDS will perform variable expansion on it before prepending it to each output line; use the variable _LINE to get the current line number. For example, /L:"%%@FORMAT[03,%%_LINE]" will prepend the line number, zero-padded to at least three digits.</span></p>
+<p class=rvps2><span class=rvts6>If you don’t specify a format string, FFIELDS will invent one at random:</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>alias |! ffields /e</span></p>
+<p class=rvps2><span class=rvts6>/N disables features:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/NB</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>do not write a Byte Order Mark</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/NC</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>disable </span><span class=rvts6>highlight</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/ND</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>do not search into hidden directories; only useful with /S</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/NF</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>suppress the file-not-found error</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/NJ</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>do not search into junctions; only useful with /S</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>/NZ</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts6>do not search into system directories; only useful with /S</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps2><span class=rvts6>You can combine these, e.g. /NDJ.</span></p>
+<p class=rvps2><span class=rvts6>/X does variable expansion on each line before displaying it. You could, for example, count the characters in each alias definition:</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>alias |! ffields /e /f:"$0 = (%%@len[$1]) &nbsp;$1" /x</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts6>Source: </span><span class=rvts6>TextUtils Plugin and 3 more pages - Personal</span><span class=rvts6> &nbsp;(23 May 2025 10:34 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@INIVALUE</title>
+<html><head><title>@WINMONITOR</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -84,65 +84,71 @@ a.rvts13, span.rvts13
 }
 span.rvts14
 {
- font-size: 12pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #000000;
 }
 span.rvts15
 {
- font-size: 14pt;
- font-family: 'consolas';
- font-weight: bold;
- color: #000000;
-}
-span.rvts16
-{
- font-size: 12pt;
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- font-weight: bold;
- color: #000088;
-}
-span.rvts17
-{
- font-size: 14pt;
- font-family: 'consolas';
- color: #000000;
-}
-span.rvts18
-{
- font-size: 12pt;
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- color: #000088;
-}
-a.rvts19, span.rvts19
-{
- font-size: 14pt;
- font-family: 'consolas';
- color: #0000ff;
- text-decoration: none;
-}
-a.rvts19:hover
-{
- color: #000000;
-}
-span.rvts20
-{
- font-size: 11pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-a.rvts21, span.rvts21
+a.rvts16, span.rvts16
 {
- font-size: 13pt;
- font-family: 'consolas';
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
- text-decoration: none;
+ text-decoration: underline;
 }
-a.rvts21:hover
+span.rvts17
 {
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts18
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts19
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts21
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts22
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
+}
+span.rvts23
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+a.rvts24, span.rvts24
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts25
+{
+ font-size: 18pt;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -162,115 +168,52 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
- background: #ffffff;
  margin: 7px 0px 7px 0px;
 }
-.rvps4
-{
- margin: 0px 0px 16px 32px;
-}
-.rvps5
-{
- background: #ffffff;
- margin: 30px 0px 7px 0px;
-}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts14>Returns a value from an .INI file.</span></p>
-<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>%@INIVALUE[</span><span class=rvts16>filename</span><span class=rvts17>,</span><span class=rvts18>section</span><span class=rvts17>,</span><span class=rvts16>entry</span><span class=rvts17>,</span><span class=rvts18>index</span><span class=rvts17>,</span><span class=rvts18>errorstr</span><span class=rvts17>,</span><span class=rvts18>flags</span><span class=rvts15>]</span></p>
-<div class=rvps4>
-<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+<p class=rvps3><span class=rvts23>@WINMONITOR</span><span class=rvts22> — Searches for a matching window, and returns the monitor on which it appears.</span></p>
+<p class=rvps3><span class=rvts22>Syntax:</span><br><span class=rvts23>%@WINMONITOR[</span><span class=rvts22>window</span><span class=rvts23>,</span><span class=rvts22>flags</span><span class=rvts23>]</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
  <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts16>filename</span></p>
+  <td width=156 valign=middle style="padding: 1px;">
+   <p><a class=rvts24 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window</a></p>
   </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>the file to examine</span></p>
+  <td width=1342 valign=middle style="padding: 1px;">
+   <p><a class=rvts24 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window title, program name, PID, or HWND</a></p>
   </td>
  </tr>
  <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts18>section</span></p>
+  <td width=156 valign=middle style="padding: 1px;">
+   <p><span class=rvts22>flags</span></p>
   </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>the name of the section to search for the </span><span class=rvts16>entry</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts16>entry</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>the name associated with the desired value</span></p>
+  <td width=1342 valign=middle style="padding: 1px;">
+   <p><span class=rvts22>bitmapped:</span></p>
   </td>
  </tr>
  <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts18>index</span></p>
+  <td width=156 valign=middle style="padding: 1px;">
+   <p><span class=rvts25><br></span></p>
   </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>which </span><span class=rvts16>entry</span><span class=rvts14> to return; defaults to 0 (the first); -1 returns the number of matching entries</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts18>errorstr</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>the string to return on any error; defaults to nothing (the empty string)</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts18>flags</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>a bitmapped integer controlling advanced features:</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&nbsp;</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&nbsp; 1 — bomb out on file errors</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&nbsp;</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&nbsp; 2 — treat </span><span class=rvts18>section</span><span class=rvts14> as a wildcard to match</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&nbsp;</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>&nbsp; 4 — treat </span><span class=rvts16>entry</span><span class=rvts14> as a wildcard to match</span></p>
+  <td width=1342 valign=middle style="padding: 1px;">
+   <p><span class=rvts22>&nbsp; &nbsp; 1: return a monitor name; otherwise it’s a monitor number</span></p>
   </td>
  </tr>
 </table>
-</div>
-<p class=rvps3><span class=rvts14>This function is essentially </span><span class=rvts17>@INIREAD</span><span class=rvts14> without GetPrivateProfileString(). It can handle some things that </span><span class=rvts17>@INIREAD</span><span class=rvts14> can’t, such as UTF-8 .INI files, sectionless values, multiple values with the same name, and multiple headers for the same section.</span></p>
-<p class=rvps3><span class=rvts14>You must specify the full name and extension of the </span><span class=rvts16>filename</span><span class=rvts14>. If you do not include a path, the file is assumed to be in the Windows directory, not in the current directory! To force this function to look in the current directory, begin the </span><span class=rvts16>filename</span><span class=rvts14> with </span><span class=rvts17>.\</span><span class=rvts14>.</span></p>
-<p class=rvps3><span class=rvts14>If you do not specify a </span><span class=rvts18>section</span><span class=rvts14>, the function will look for a matching </span><span class=rvts16>entry</span><span class=rvts14> before the first section header. If </span><span class=rvts18>section</span><span class=rvts14> is an asterisk, the function will look for a matching </span><span class=rvts16>entry</span><span class=rvts14> throughout the file, ignoring all section headers.</span></p>
-<p class=rvps3><span class=rvts14>Sometimes an .INI file will contain multiple lines with the same entry name. For example, TCMD.INI may have more than one </span><span class=rvts17>NormalKey</span><span class=rvts14> directive. You can loop through multiple entries with the </span><span class=rvts18>index</span><span class=rvts14> argument. An </span><span class=rvts18>index</span><span class=rvts14> of </span><span class=rvts17>0</span><span class=rvts14> returns the first matching entry, </span><span class=rvts17>1</span><span class=rvts14> returns the second, and so on. Set </span><span class=rvts18>index</span><span class=rvts14> to </span><span class=rvts17>-1</span><span class=rvts14> to return the number of matching entries.</span></p>
-<p class=rvps3><span class=rvts14>The default behavior is to return an empty string on any error: file not found, access denied, or no matching section or entry. If you specify an </span><span class=rvts18>errorstr</span><span class=rvts14>, then that value will be returned instead. (This is useful if the .INI file can contain empty values.) Additionally, you can set </span><span class=rvts18>flags</span><span class=rvts14> to 1, and any error opening the file will result in an error message instead of returning a string value. You can also check the </span><a class=rvts19 href="file:///E:/Utils/textutils.html#v_inivaluerc">_INIVALUERC</a><span class=rvts14> internal variable to get information about the last call to </span><span class=rvts17>@INIVALUE</span><span class=rvts14>.</span></p>
-<p class=rvps5><span class=rvts20>See also: the </span><a class=rvts21 href="file:///E:/Utils/textutils.html#v_inivaluerc">_INIVALUERC</a><span class=rvts20> variable, which returns an exit code for this function.</span></p>
-<p><span class=rvts8><br></span></p>
+<p><span class=rvts22><br></span></p>
+<p class=rvps3><span class=rvts23>@WINMONITOR</span><span class=rvts22> returns a monitor index: 1 for the first monitor, 2 for the second, and so on. If no matching window was found, or if the window does not overlap any display monitor, </span><span class=rvts23>@WINMONITOR</span><span class=rvts22> returns </span><span class=rvts23>0</span><span class=rvts22>.</span></p>
+<p><span class=rvts22><br></span></p>
+<p><span class=rvts19><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html#upend">TextUtils Plugin and 2 more pages - Personal</a><span class=rvts11> &nbsp;</span><span class=rvts10>(27 July 2023 9:07 AM)</span></p>
+   <p><span class=rvts21>Source</span><span class=rvts18>:</span><span class=rvts19> </span><a class=rvts20 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#licensing">WindowInfo Plugin and 1 more page - Personal</a><span class=rvts19> &nbsp;</span><span class=rvts18>(5 February 2025 7:24 PM)</span></p>
   </td>
  </tr>
 </table>
-<p><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps2><span class=rvts17><br></span></p>
 </body></html>

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>SysUtils</title>
+<html><head><title>COPYCHARS</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,16 +48,81 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
-a.rvts7, span.rvts7
+span.rvts7
 {
- font-size: 16pt;
- font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
-a.rvts7:hover
+span.rvts14
 {
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts15
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts16
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts17
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
+ text-decoration: none;
+}
+a.rvts18:hover
+{
+ color: #000000;
+}
+span.rvts19
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -71,462 +136,64 @@ p,ul,ol /* Paragraph Style */
 {
  text-align: center;
 }
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ background: #ffffff;
+ margin: 7px 0px 7px 0px;
+}
+.rvps4
+{
+ margin: 0px 0px 16px 32px;
+}
+.rvps5
+{
+ background: #eeeeee;
+ padding: 8px 16px 8px 16px;
+ margin: 8px 0px 16px 16px;
+}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><span class=rvts6>The SYSUTILS plugin now supports the "SYSUTILS_LOAD" environment variable.</span></p>
-<p><span class=rvts6>If, at load time, this variable is set to a comma-separated list of</span></p>
-<p><span class=rvts6>commands, functions, and variables exported by SYSUTILS.DLL, only the</span></p>
-<p><span class=rvts6>specified items will be imported by 4NT (see example below).</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>This mechanism is not forgiving; specifying items not exported by SYSUTILS.DLL</span></p>
-<p><span class=rvts6>will result in errors when 4NT tries to import them.</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>This mechanism is especially intended for use in enduring batch files</span></p>
-<p><span class=rvts6>where the speed of execution is of importance. &nbsp;A batch file using only</span></p>
-<p><span class=rvts6>a few items might use, for example,&nbsp;</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>plugin /U *</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>set sysutils_load=@connect,uptime</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>plugin /L [path\to\]sysutils.dll</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
-<p><span class=rvts6>Later, to reload the default (auto-load) plugins, such a batch file</span></p>
-<p><span class=rvts6>might use</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>plugin /U sysutils</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>unset sysutils_load</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>plugin /L *</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_ISFG</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>TCC is foreground window (1|0)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_LASTINPUT</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>seconds since last input</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_MOUSEX</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>mouse position X</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_MOUSEY</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>mouse position Y</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_NPIDS</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>number of processes</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_PERFCOUNT</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>Performance counter</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_PERFFREQ</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>Performance counter frequency</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_PIDS</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>list of process IDs</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_RDTSC</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>RDTSC</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_SESSTIME</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>Cuttent logon session start time</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_TICKCOUNT</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>the Windows 64-bit tick count</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>_VOLUME</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>speaker volume, 1-100, -1 on error</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@CLUSTERSIZE</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@CLUSTERSIZE[drive|path] = cluster size on drive; -1 on error</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@CONNECT</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@CONNECT[host,port[,ms_timeout]] returns RTT &gt;= 0, or error &lt; 0</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@CWD</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@CWD[pid] = current directory of process</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@DOSDEVICE</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@DOSDEVICE[DOS_name] = device mapping or empty</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@EXEBITS</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@EXEBITS[exename|dllname|ocxname] = 32, 64, or N/A, plus subsystem</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@EXETIME</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@EXETIME[exename|dllname|ocxname] = build time</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@FGWIN</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@FGWIN[TCPMXYWH] = word list of spec'd foreground window properties</span></p>
-<p><span class=rvts6>Options: Title, Class, Pid, Module, X(pos), Y(pos), Width, Height</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@ICMP</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@ICMP[host,ms_timeout&gt;=1000,size] = RTT (ms) or -1 (timeout)</span></p>
-<p><span class=rvts6>ms_timeout and/or size may be omitted</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@ISAPP</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@ISAPP[spec] = 0|PID - PID if case-insensitive substring or wildcard match</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@ISPID</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@ISPID[N] = 1 if N is a valid PID, else 0</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@KEYTIME</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@KEYTIME[key_name] = last reg_key write time</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@LINKSTO</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@LINKSTO[file] = number of hard links to file (0 = error)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@MODULE</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@MODULE[process_id] = fully-qualified process module name</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@PIDEXE</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@PIDEXE[pid] = EXEname of pid</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@PPID</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@PPID[pid] = parent PID of process pid (or -1)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@PSTAT</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@PSTAT[pid|string|.[,flag]] = process stats; '.' = current process</span></p>
-<p><span class=rvts6>'string' = case-insensitive module substring (first match)</span></p>
-<p><span class=rvts6>flags: one of "ifqbruktwvpo" (see PSTAT /?)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@PSET</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@PSET[pid,var[=[value]]]</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>get[unset[set]] variable in process &lt;pid&gt;</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>returns value (get/set) or var (unset) on success, else an empty string</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@UP</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@UP[s|m|h|d|v|b|t] = uptime: secs|mins|hrs|days|verbose|boot|boot_datetime</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@VIDEO</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>@VIDEO[n] = 1/0/-1 (on/sleeping/error) for monitor 0, 1, ...</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>CLICK</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>CLICK [/L(eft) | /M(iddle) | /R(ight)] &nbsp;[/2 (double) [x &nbsp;y]</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; &nbsp; Defaults: single left click at current cursor position</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>EXPORT</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>EXPORT var [var [...]] (to parent 4NT/TCC)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>KEYTIMES</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>Show modification times of registry keys</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>KEYTIMES &nbsp; hklm | hkcu | hkcr | hku | all | allfast ["filter"]</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; &nbsp; "allfast" omits HKCR and HKCU since they are links to</span></p>
-<p><span class=rvts6>&nbsp; &nbsp; subkeys of HKLM and HKU</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; &nbsp; "filter" - case-insensitive substring matching on would-be output</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>LINKSTO</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>LINKSTO file - show hard links to file</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>MODULES</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>MODULES [PID] - list the modules of a process (default current)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>MOVEWIN</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>MOVEWIN "title" X Y (left top)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>OPENCP</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>OPENCP [item name or index] &nbsp;- Open the Control Panel [Item]</span></p>
-<p><span class=rvts6>OPENCP /L - List canonical item names and indices</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>PRNTRS</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>PRNTRS [N] ... list printers [or set default to printer N]</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><a class=rvts7 href="#" onclick="parent.postMessage('1|37', '*');return false;">PROPS</a></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>PROPS object ... open the objects properties dialog</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>PSTAT</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>Display process data</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>PSTAT [ pid | string | * ] &nbsp;[ /F format ]</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; string: case-insensitive unqualified module name substring match criterion</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; Format elements (lowercase suppresses description; default: IQBRvUKTWVPOC)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; &nbsp; I - PID &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Q - File (qualified) &nbsp; &nbsp;F - File &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; O - Owner</span></p>
-<p><span class=rvts6>&nbsp; &nbsp; B - Begin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;R[s|m|h|d|v] - Running &nbsp;U - User CPU &nbsp; &nbsp; &nbsp; &nbsp; N - newline</span></p>
-<p><span class=rvts6>&nbsp; &nbsp; K - Kernel CPU &nbsp; &nbsp; T - Total CPU &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; P - Priority class</span></p>
-<p><span class=rvts6>&nbsp; &nbsp; W - Working Set &nbsp; &nbsp;V - Virtual Memory &nbsp; &nbsp; &nbsp;C - Command line</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; CPU times in seconds; R defaults to Rs; memory in KB</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>REGENUM</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>REGENUM HIVE[\key[\subkey ...]] - HIVE = HKCR, HKCU, HKLM, HKU</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SETPRIORITY</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>Set process priority class</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; SETPRIORITY process_id [ I | B | N | A | H | R ]</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; Options (only the first character is significant)</span></p>
-<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IDLE, BELOW_NORMAL, NORMAL, ABOVE_NORMAL, HIGH, REALTIME</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; REALTIME will pre-empt normal system activity; use it cautiously.</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; Given only process_id, SETPRIORITY will print the process's priority class.</span></p>
-<p><span class=rvts6>&nbsp; Also see @PRIORITY.</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><a class=rvts7 href="#" onclick="parent.postMessage('1|35', '*');return false;">SHELLEX</a></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>ShellExecute with registered or context menu verb</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SHELLEX [/C] [/V verb] &lt;file&gt; [&lt;arguments&gt; [&lt;directory&gt;]]</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; /C &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;use context menu</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; /V verb &nbsp; &nbsp; "print", "edit", "explore" et c.</span></p>
-<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (with /C) "properties", "preview", et c. &nbsp;Without "/V verb",</span></p>
-<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the default verb is used if available, else "open" is used.</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; /D &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(debug) show parameter parsing without executing</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; &lt;arguments&gt; and &lt;directory&gt; apply to launching executables</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; When appropriate, &lt;file&gt; may specify a URL, a directory or a drive</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; Quote parameters containing whitespace; escape necessary quotes as \"</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SHOWLIB</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SHOWLIB library_name (e.g., "Documents") ... show targets of a library</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SS</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SS [/M | /0] Start screensaver</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>with /M also turn off monitor</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>with /0 stop screensaver</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SSMON</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SSMON [OFF | "on_command" ["off_command"] (escape embedded quotes as \")</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>QTRACE</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>QTRACE [/T(imout) ms] [/S(kip) N] [/H(ops) N] host | ip</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SYSHELP</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>SYSHELP LIST | COMMAND | @FUNCTION | _VARIABLE</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>TIMESYNC</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>Query or synchronize with a time server</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; TIMESYNC [/A(uto) | /N(oset)] [/V(erbose)] [host|IP]</span></p>
-<p><span class=rvts6>&nbsp; &nbsp; /A(uto) : only if time differential within +/- 30 seconds</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; &nbsp; Will use INI file's TimeServer if &lt;host|IP&gt; unspecified</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>UPTIME</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>UPTIME has no options; see @UP</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>VOLUME</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>VOLUME [N] - show [set, N = 0-100] speaker volume</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>WAITWIN</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>WAITWIN [/C|/D|/MS|/ME|/NC] [/I] [/T N] [/CLASS expr] [/CAPTION expr]</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>/C</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>wait for window CREATE, default: wait for SHOW)</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>/D</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>wait for window DESTROY</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>/MS|/ME</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>wait for move-size start/end</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>/NC</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>wait for new caption</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>/I</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>include existing windows (CREATE, SHOW)</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>/T</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>timeout, N = seconds</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>expr</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>wildcard expression, default: *, quote exprs with spaces</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>^C, ^BREAK - both terminate the wait; ^C is propagated</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>_?</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>0 = success, 1 = timeout, 2 = cancelled, 3 = no window</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>WHICHWIN</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>WHICHWIN: find windows and show their properties; options:</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; /F format_elements (lowercase supresses description)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; &nbsp; &nbsp;elements:</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>H(andle) &nbsp;P(rocess) &nbsp;C(lass) &nbsp; M(odule file name)</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>T(itle) &nbsp; V(isible) &nbsp;S(how) &nbsp; &nbsp;L(TRB normal)</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>I(ndex) &nbsp; D (thread) B(lank) &nbsp; E(nabled)</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>N(umber found/processed)</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; &nbsp; &nbsp;default:</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>HPMCTVSLBEN</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; /R</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>recurse (do child windows)</span></p>
-<p><span class=rvts6>&nbsp; /nnn</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>maximum number of windows to return</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; Filters:</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>&nbsp; /E | /D</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>enabled | disabled windows only</span></p>
-<p><span class=rvts6>&nbsp; /V | /I</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>visible | invisible windows only</span></p>
-<p><span class=rvts6>&nbsp; /P pid</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>decimal or hex prefixed with "0x"</span></p>
-<p><span class=rvts6>&nbsp; /M module</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>case-insensitive substring match on fully-qualified name</span></p>
-<p><span class=rvts6>&nbsp; /C class</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>case-insensitive substring match</span></p>
-<p><span class=rvts6>&nbsp; /T title</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>case-insensitive substring match</span></p>
-<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>"quote" strings containing spaces</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>*KEYHANDLER</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6>**********************************************************************</span></p>
-<p><span class=rvts6><br></span></p>
-<p><span class=rvts6><br></span></p>
+<p class=rvps3><span class=rvts14>Puts characters on the clipboard.</span></p>
+<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>COPYCHARS</span><span class=rvts16> /A /Q </span><span class=rvts17>value</span><span class=rvts16> </span><span class=rvts17>entity</span><span class=rvts16> "</span><span class=rvts17>string</span><span class=rvts16>" </span><span class=rvts17>…</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/Q</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>append to current clipboard text</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>/A</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>quietly</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts14>Character values may be specified in decimal, or in hexadecimal with a leading </span><span class=rvts16>0x</span><span class=rvts14>.</span></p>
+<p class=rvps3><a class=rvts18 href="https://www.w3.org/TR/2018/SPSD-html32-20180315/#latin1">Entities are as in HTML 3.2;</a><span class=rvts14> the leading ampersand may be omitted. Entities are case sensitive.</span></p>
+<p><span class=rvts19><br></span></p>
+<p class=rvps5><span class=rvts16>rem &nbsp; A non-breaking space, an em dash, and a space:</span><br><span class=rvts16>copychars nbsp; mdash; 32</span><br><span class=rvts16></span><br><span class=rvts16>rem &nbsp; Text in fancy quotes:</span><br><span class=rvts16>copychars ldquo; "This is a test." rdquo;</span><br><span class=rvts16></span><br><span class=rvts16>rem &nbsp; High-order characters are supported:</span><br><span class=rvts16>copychars 0x1f603</span></p>
+<p><span class=rvts8><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html#clip2text">Puts characters on the clipboard.</a><span class=rvts11> &nbsp;</span><span class=rvts10>(26 July 2023 6:32 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

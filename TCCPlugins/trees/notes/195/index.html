@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>DROPTOCLIP</title>
+<html><head><title>BSAVE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,6 +48,100 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts16, span.rvts16
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts17
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts18
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts19, span.rvts19
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts20
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts22, span.rvts22
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts23
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
 {
@@ -64,12 +158,61 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps2><span class=rvts6>Convert clipboard drop list to quoted FQ filename text</span></p>
-<p class=rvps2><span class=rvts6>/S(paces) as separators (default newlines)</span></p>
+<p class=rvps3><span class=rvts23>@BSAVE</span><span class=rvts21> — Saves data from a binary buffer to a file.</span></p>
+<p class=rvps3><span class=rvts21>Syntax:</span><br><span class=rvts23>%@BSAVE[</span><span class=rvts21>bbuf</span><span class=rvts23>,</span><span class=rvts21>filename</span><span class=rvts23>,</span><span class=rvts21>start</span><span class=rvts23>,</span><span class=rvts21>len</span><span class=rvts23>]</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>bbuf</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>a binary buffer handle returned by </span><span class=rvts23>@BALLOC</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>filename</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>the file to save to; will be overwritten if it exists</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>start</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>the starting address within the buffer; defaults to </span><span class=rvts23>0</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>len</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>the maximum number of bytes to save; defaults to all through the end of the buffer</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts23>@BSAVE</span><span class=rvts21> returns the number of bytes written to the file. If any error occurs while saving the file, </span><span class=rvts23>@BSAVE</span><span class=rvts21> returns </span><span class=rvts23>0</span><span class=rvts21>; the Windows error code is in </span><a class=rvts22 href="#v_bblasterr">_BBLASTERR</a><span class=rvts21>.</span></p>
+<p class=rvps3><span class=rvts21>See also: </span><a class=rvts22 href="#f_bload">@BLOAD</a><span class=rvts21>.</span></p>
+<p><span class=rvts18><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts20>Source</span><span class=rvts17>:</span><span class=rvts18> </span><a class=rvts19 href="file:///U:/bbufstuff.html">BBufStuff Plugin and 1 more page - Personal</a><span class=rvts18> &nbsp;</span><span class=rvts17>(11 June 2025 9:24 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
 <p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

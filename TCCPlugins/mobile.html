@@ -9,7 +9,7 @@
 		<script type="text/javascript" src="data/notes_index.js"></script>
 		<script type="text/javascript" src="data/array_helper.js"></script>
 		<script type="text/javascript" src="data/rntse.js"></script>
-       <script src="trees/tree1.js" type="text/javascript" charset="utf-8"></script>
+       <script src="trees/tree2.js" type="text/javascript" charset="utf-8"></script>
 		<style>
             .blue.webix_menu-x{
                 background:#3498DB;
@@ -79,7 +79,7 @@
 		
 		function initTree(id){
 			$$("tree1").clearAll();
-			if (id == 1){ $$('tree1').parse(webix.copy(tree_data1)) }
+			if (id == 1){ $$('tree1').parse(webix.copy(tree_data2)) }
 
 			$$("treeHeader").setHTML("TCCPlugins > "+ $$("listView").getItem(id).title);
 			$$("tabbar1").setValue("treeView");

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>Commands</title>
+<html><head><title>@WINVDESK</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,16 +48,107 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
-a.rvts7, span.rvts7
+span.rvts7
 {
- font-size: 16pt;
- font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
-a.rvts7:hover
+span.rvts14
 {
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts16, span.rvts16
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts17
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts18
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts19
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts21
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts22
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts23
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+a.rvts24, span.rvts24
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts25
+{
+ font-size: 18pt;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -71,10 +162,56 @@ p,ul,ol /* Paragraph Style */
 {
  text-align: center;
 }
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><br></p>
+<p class=rvps3><span class=rvts23>@WINVDESK</span><span class=rvts22> — Searches for a matching window, and returns the virtual desktop on which it appears.</span></p>
+<p class=rvps3><span class=rvts22>Syntax:</span><br><span class=rvts23>%@WINVDESK[</span><span class=rvts22>window</span><span class=rvts23>,</span><span class=rvts22>flags</span><span class=rvts23>]</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=127 valign=middle style="padding: 1px;">
+   <p><a class=rvts24 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window</a></p>
+  </td>
+  <td width=1371 valign=middle style="padding: 1px;">
+   <p><a class=rvts24 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window title, program name, PID, or HWND</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=127 valign=middle style="padding: 1px;">
+   <p><span class=rvts22>flags</span></p>
+  </td>
+  <td width=1371 valign=middle style="padding: 1px;">
+   <p><span class=rvts22>bitmapped:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=127 valign=middle style="padding: 1px;">
+   <p><span class=rvts25><br></span></p>
+  </td>
+  <td width=1371 valign=middle style="padding: 1px;">
+   <p><span class=rvts22>&nbsp; &nbsp; 1: return a GUID; otherwise it’s the virtual desktop’s name</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts22><br></span></p>
+<p class=rvps3><span class=rvts22>Virtual Desktops require at least Windows 10. Under earlier versions of Windows, </span><span class=rvts23>@WINVDESK</span><span class=rvts22> will always return 0.</span></p>
+<p><span class=rvts19><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts21>Source</span><span class=rvts18>:</span><span class=rvts19> </span><a class=rvts20 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#licensing">WindowInfo Plugin and 1 more page - Personal</a><span class=rvts19> &nbsp;</span><span class=rvts18>(5 February 2025 7:34 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts17><br></span></p>
 </body></html>

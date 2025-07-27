@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@FILEREADX</title>
+<html><head><title>BBDUMP</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,6 +48,150 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts16
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts17, span.rvts17
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts18, span.rvts18
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts19
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts20
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+ vertical-align: super;
+}
+span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts22
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts23, span.rvts23
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts24
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts25
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts26
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts27
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts28
+{
+ font-size: 11pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+ vertical-align: super;
+}
+a.rvts29, span.rvts29
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts30
+{
+ font-size: 16pt;
+}
+a.rvts31, span.rvts31
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
 {
@@ -64,13 +208,453 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps2><span class=rvts6>@FILEREADX[H[,N]] = hex (XX ...) representing N bytes read from file handle H</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6>&nbsp; N cannot exceed 4096 and is 1 by default.</span></p>
+<p class=rvps3><span class=rvts26>BBDUMP</span><span class=rvts25> — Dump a binary buffer to standard output as hex.</span></p>
+<p class=rvps3><span class=rvts25>Syntax:</span><br><span class=rvts26>BBDUMP /B /BE /C: /CP: /D /E: /F: /H​ /I /J /K: /LE​ /M: /N: /P /Q /UC​ /W /X /Z: </span><span class=rvts25>handle…</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/B</span><span class=rvts25> &nbsp;or &nbsp;</span><span class=rvts26>/1</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>dump bytes</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>✔</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/BE</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>big-endian</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#bbdump_opt_c">/C:</a><a class=rvts29 href="#bbdump_opt_c">start</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>start address</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#bbdump_opt_cp">/CP:</a><a class=rvts29 href="#bbdump_opt_cp">n</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>code page to use for non-Unicode text</span></p>
+  </td>
+  <td style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/D</span><span class=rvts25> &nbsp;or &nbsp;</span><span class=rvts26>/4</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>dump doublewords (four-byte integers)</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#bbdump_opt_c">/E:</a><a class=rvts29 href="#bbdump_opt_c">end</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>end address</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#bbdump_opt_f">/F:</a><a class=rvts29 href="#bbdump_opt_f">n</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>numeric base for values</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>16</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/H</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>display headers</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/I</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>include a final summary line</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#highlight">/J</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts29 href="#highlight">highlight</a><span class=rvts25> alternate lines</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#bbdump_opt_k">/K:</a><a class=rvts29 href="#bbdump_opt_k">n</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>bytes per line</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/LE</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>little-endian</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>✔</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#bbdump_opt_c">/M:</a><a class=rvts29 href="#bbdump_opt_c">max</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>maximum number of bytes to display</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#bbdump_opt_n">/N:</a><a class=rvts29 href="#bbdump_opt_n">flags</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>disable features</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#paging">/P</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts29 href="#paging">page output</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/Q</span><span class=rvts25> &nbsp;or &nbsp;</span><span class=rvts26>/8</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>dump quadwords (eight-byte integers)</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/UC</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>uppercase hexadecimal addresses and values</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/W</span><span class=rvts25> &nbsp;or &nbsp;</span><span class=rvts26>/2</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>dump words (two-byte integers)</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/X</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>use </span><a class=rvts29 href="https://en.wikipedia.org/wiki/Control_Pictures">control pictures</a><span class=rvts25> for ASCII control characters</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts31 href="#bbdump_opt_z">/Z:</a><a class=rvts29 href="#bbdump_opt_z">char</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>set the replacement character</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>0xB7</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>handle</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>a handle returned by </span><a class=rvts31 href="#f_balloc">@BALLOC</a><span class=rvts25> or </span><a class=rvts31 href="#f_bload">@BLOAD</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts30><br></span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts25><br></span></p>
+<p class=rvps3><span class=rvts26>/F:</span><span class=rvts25>n lets you specify the numeric base for displaying values. Legal values are:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/F:O</span><span class=rvts25> &nbsp;or &nbsp;</span><span class=rvts26>/F:8</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>octal</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/F:D</span><span class=rvts25> &nbsp;or &nbsp;</span><span class=rvts26>/F:10</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>decimal</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/F:S</span><span class=rvts25> &nbsp;or &nbsp;</span><span class=rvts26>/F:+</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>signed decimal</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>/F:H</span><span class=rvts25> &nbsp;or &nbsp;</span><span class=rvts26>/F:16</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>hexadecimal (the default)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts25>Addresses are always shown in hexadecimal.</span></p>
+<p><span class=rvts25><br></span></p>
+<p class=rvps3><span class=rvts26>/N:</span><span class=rvts25>flags disables features:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>C</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>no </span><a class=rvts29 href="#highlight">highlight</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>I</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>do not display the address field</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>L</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>omit the blank line at the end</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>T</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>do not display the text field (</span><span class=rvts27>i.e.</span><span class=rvts25> characters)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts25><br></span></p>
+<p class=rvps3><span class=rvts26>/C:</span><span class=rvts25>start, </span><span class=rvts26>/E:</span><span class=rvts25>end, and </span><span class=rvts26>/M:</span><span class=rvts25>max let you specify a start address, an end address, and a maximum number of bytes to dump. You can enter these values as decimal, or hexadecimal with a leading </span><span class=rvts26>0x</span><span class=rvts25>. You may give none, one, or any combination of these options.</span></p>
+<p class=rvps3><span class=rvts26>/C:</span><span class=rvts25>, </span><span class=rvts26>/E:</span><span class=rvts25>, and </span><span class=rvts26>/M:</span><span class=rvts25> values are all in bytes by default. You can append one of the following letters:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>b</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>bytes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>w</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>words</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>d</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>doublewords</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>q</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>quadwords</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>k</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>thousands of bytes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>K</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>kilobytes (2</span><span class=rvts28>10</span><span class=rvts25> or 1,024 bytes)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>m</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>millions of bytes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>M</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>megabytes (2</span><span class=rvts28>20</span><span class=rvts25> or 1,048,576 bytes)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>g</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>billions of bytes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts26>G</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>gigabytes (2</span><span class=rvts28>30</span><span class=rvts25> or 1,073,741,824 bytes)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts25>Note that </span><span class=rvts26>k K m M g</span><span class=rvts25> and </span><span class=rvts26>G</span><span class=rvts25> are case-sensitive.</span></p>
+<p class=rvps3><span class=rvts25>If you don’t give any of these suffixes, the value is in bytes — even if you are displaying words or doublewords. There are no alignment checks; you can dump misaligned data if you wish.</span></p>
+<p><span class=rvts25><br></span></p>
+<p class=rvps3><span class=rvts26>/K:</span><span class=rvts25>n lets you specify the number of bytes to display per line. If you don’t give any </span><span class=rvts26>/K:</span><span class=rvts25>, the command will pick its own value based on the console width (if output is to the console), or a default line width of 100 characters if output is redirected. Again, this value is in bytes, even if you are displaying data as words or doublewords. The value n must be between 8 and 80, and a multiple of 8.</span></p>
+<p class=rvps3><span class=rvts26>/K:0</span><span class=rvts25> sets the line length based on the console width, even in cases where </span><span class=rvts26>BBDUMP</span><span class=rvts25> normally would not do so: when output is redirected or piped, </span><span class=rvts27>e.g.</span><span class=rvts25> piping to </span><span class=rvts26>LIST</span><span class=rvts25>.</span></p>
+<p><span class=rvts25><br></span></p>
+<p class=rvps3><span class=rvts26>/CP:</span><span class=rvts25>n specifies the code page to use for non-Unicode text. If you do not specify any </span><span class=rvts26>/CP:</span><span class=rvts25>n, the default behavior is to show only ASCII characters. (Binary buffers, after all, are often used for things other than text….)</span></p>
+<p><span class=rvts25><br></span></p>
+<p class=rvps3><span class=rvts26>/Z:</span><span class=rvts25>char lets you specify the replacement character, which is shown in the text field in place of control characters. The default is normally a middle dot · &nbsp; You may give either a literal character or a character value. All three of the following are equivalent:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>• &nbsp;</span><span class=rvts26>/Z:*</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>(literal character)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>• &nbsp;</span><span class=rvts26>/Z:42</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>(decimal value)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>• &nbsp;</span><span class=rvts26>/Z:0x2a</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts25>(hexadecimal value)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts25>Your replacement character may not be alphanumeric or a control character. </span><span class=rvts26>/Z</span><span class=rvts25> by itself will use a space as the replacement character.</span></p>
+<p><span class=rvts25><br></span></p>
+<p><span class=rvts22><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts24>Source</span><span class=rvts21>:</span><span class=rvts22> </span><a class=rvts23 href="file:///U:/bbufstuff.html">BBufStuff Plugin and 1 more page - Personal</a><span class=rvts22> &nbsp;</span><span class=rvts21>(11 June 2025 9:20 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
 <p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

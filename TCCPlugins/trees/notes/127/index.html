@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>COPYCHARS</title>
+<html><head><title>@RecSize</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -50,79 +50,9 @@ span.rvts6
 }
 span.rvts7
 {
-}
-span.rvts8
-{
- font-family: 'Verdana', 'Geneva', sans-serif;
-}
-span.rvts9
-{
- font-family: 'Tahoma', 'Geneva', sans-serif;
-}
-span.rvts10
-{
- font-size: 8pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
-}
-span.rvts11
-{
- font-size: 8pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
-}
-span.rvts12
-{
- font-size: 8pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
  font-weight: bold;
-}
-a.rvts13, span.rvts13
-{
- font-size: 8pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #0000ff;
- text-decoration: underline;
-}
-span.rvts14
-{
- font-size: 12pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
-}
-span.rvts15
-{
- font-size: 14pt;
- font-family: 'consolas';
- font-weight: bold;
- color: #000000;
-}
-span.rvts16
-{
- font-size: 14pt;
- font-family: 'consolas';
- color: #000000;
-}
-span.rvts17
-{
- font-size: 12pt;
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- color: #000088;
-}
-a.rvts18, span.rvts18
-{
- font-size: 12pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #0000ff;
- text-decoration: none;
-}
-a.rvts18:hover
-{
- color: #000000;
-}
-span.rvts19
-{
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -140,60 +70,14 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
-.rvps3
-{
- background: #ffffff;
- margin: 7px 0px 7px 0px;
-}
-.rvps4
-{
- margin: 0px 0px 16px 32px;
-}
-.rvps5
-{
- background: #eeeeee;
- padding: 8px 16px 8px 16px;
- margin: 8px 0px 16px 16px;
-}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts14>Puts characters on the clipboard.</span></p>
-<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>COPYCHARS</span><span class=rvts16> /A /Q </span><span class=rvts17>value</span><span class=rvts16> </span><span class=rvts17>entity</span><span class=rvts16> "</span><span class=rvts17>string</span><span class=rvts16>" </span><span class=rvts17>…</span></p>
-<div class=rvps4>
-<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts16>/Q</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>append to current clipboard text</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts16>/A</span></p>
-  </td>
-  <td valign=top style="padding: 1px 16px;">
-   <p><span class=rvts14>quietly</span></p>
-  </td>
- </tr>
-</table>
-</div>
-<p class=rvps3><span class=rvts14>Character values may be specified in decimal, or in hexadecimal with a leading </span><span class=rvts16>0x</span><span class=rvts14>.</span></p>
-<p class=rvps3><a class=rvts18 href="https://www.w3.org/TR/2018/SPSD-html32-20180315/#latin1">Entities are as in HTML 3.2;</a><span class=rvts14> the leading ampersand may be omitted. Entities are case sensitive.</span></p>
-<p><span class=rvts19><br></span></p>
-<p class=rvps5><span class=rvts16>rem &nbsp; A non-breaking space, an em dash, and a space:</span><br><span class=rvts16>copychars nbsp; mdash; 32</span><br><span class=rvts16></span><br><span class=rvts16>rem &nbsp; Text in fancy quotes:</span><br><span class=rvts16>copychars ldquo; "This is a test." rdquo;</span><br><span class=rvts16></span><br><span class=rvts16>rem &nbsp; High-order characters are supported:</span><br><span class=rvts16>copychars 0x1f603</span></p>
-<p><span class=rvts8><br></span></p>
-<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
- <tr valign=top>
-  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html#clip2text">Puts characters on the clipboard.</a><span class=rvts11> &nbsp;</span><span class=rvts10>(26 July 2023 6:32 PM)</span></p>
-  </td>
- </tr>
-</table>
-<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts7>Determine the number of records in the .dbf</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>set thedbf=e:\utils\trans.dbf</span></p>
+<p class=rvps2><span class=rvts6>echo Recsize &nbsp; &nbsp; &nbsp; : %@Recsize[%thedbf]</span></p>
 <p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

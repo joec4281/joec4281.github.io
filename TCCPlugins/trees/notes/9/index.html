@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>CMath</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+ background-color: #dddddd;
+}
+span.rvts16
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts17
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts18
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts19
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+ text-decoration: underline;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts20:hover
+{
+ color: #000000;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ background: #ffffff;
+ margin: 7px 0px 7px 0px;
+}
+.rvps4
+{
+ background: #eeeeee;
+ padding: 8px 16px 8px 16px;
+ margin: 16px 0px 16px 16px;
+}
+.rvps5
+{
+ text-align: left;
+ text-indent: 0px;
+ background: #ffffff;
+ padding: 0px 0px 0px 0px;
+ margin: 48px 0px 0px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts14>CMath — Evaluate a math expression at the command line.</span></p>
+<p class=rvps3><span class=rvts14>To evaluate a math expression, type a colon followed by the expression. Then press </span><span class=rvts15>Enter</span><span class=rvts14>:</span></p>
+<p class=rvps4><span class=rvts16>:1+2*3</span></p>
+<p class=rvps3><span class=rvts14>The answer, 7, will be displayed below your expression. It will also be saved to the environment variable </span><span class=rvts16>ANS</span><span class=rvts14>. You can use this variable in your next expression:</span></p>
+<p class=rvps4><span class=rvts16>:ans*2</span></p>
+<p class=rvps3><span class=rvts14>Just remember that </span><span class=rvts16>ANS</span><span class=rvts14> changes every time you use CMath. After the second line, </span><span class=rvts16>ANS</span><span class=rvts14> will be 14, not 7.</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps3><span class=rvts14>CMath calls the same function that </span><span class=rvts16>@EVAL</span><span class=rvts14> uses internally. You can use any operator or function that is legal in </span><span class=rvts16>@EVAL</span><span class=rvts14>:</span></p>
+<p class=rvps4><span class=rvts16>:log(100)</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps4><span class=rvts16>set r=4</span><br><span class=rvts16>:pi*r**2</span></p>
+<p><span class=rvts17></span><br><span class=rvts17><br></span></p>
+<p class=rvps3><span class=rvts14>You do not need to quote or escape special characters:</span></p>
+<p class=rvps4><span class=rvts16>:(1+2)*3</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps4><span class=rvts16>:1 &lt;&lt; 8</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps4><span class=rvts16>:1024 &gt;&gt; 3</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps4><span class=rvts16>:5 &amp; 9</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps4><span class=rvts16>:5 | 9</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps4><span class=rvts16>:5 ^ 9</span></p>
+<p><span class=rvts17></span><br><span class=rvts17><br></span></p>
+<p class=rvps3><span class=rvts14>The one special character which needs attention is the percent sign. If you want to use a percent sign as the modulo operator, you will need to double it. (But it’s probably easier just to type </span><span class=rvts16>MOD</span><span class=rvts14>.)</span></p>
+<p class=rvps4><span class=rvts16>:100%%7</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps4><span class=rvts16>:100 mod 7</span></p>
+<p><span class=rvts17></span><br><span class=rvts17><br></span></p>
+<p class=rvps3><span class=rvts14>You do not need a percent sign before environment variables. You </span><span class=rvts18>do</span><span class=rvts14> need a percent sign before internal variables and variable functions:</span></p>
+<p class=rvps4><span class=rvts16>:%_pid =x</span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps4><span class=rvts16>:3 * %@dec[foo]</span></p>
+<p><span class=rvts17></span><br><span class=rvts17><br></span></p>
+<p class=rvps3><span class=rvts16>@EVAL</span><span class=rvts14>’s built-in functions do not take a percent sign:</span></p>
+<p class=rvps4><span class=rvts16>set n=52</span><br><span class=rvts16>set r=5</span><br><span class=rvts16>:fact(n) / fact(n-r) / fact(r)</span></p>
+<p><span class=rvts17><br></span></p>
+<h4 class=rvps5><span class=rvts0><span class=rvts19>Startup Message:</span></span></h4>
+<p class=rvps3><span class=rvts14>This plugin displays an informational line when it initializes. The message will be suppressed in transient or pipe shells. You can disable it for all shells by defining an environment variable named </span><span class=rvts16>NOLOADMSG</span><span class=rvts14>, for example:</span></p>
+<p class=rvps4><span class=rvts16>set /e /u noloadmsg=1</span></p>
+<h4 class=rvps5><span class=rvts0><span class=rvts19>Acknowledgments:</span></span></h4>
+<p class=rvps3><span class=rvts14>The chime sound which plays when you copy text to the clipboard is by Samuel Gremaud. I downloaded it from </span><a class=rvts20 href="https://freesound.org/people/SamuelGremaud/sounds/517659/">FreeSound.org</a><span class=rvts14> and modified it slightly (trimmed it for length and reduced the volume) before including it in the plugin .DLL file.</span></p>
+<h4 class=rvps5><span class=rvts0><span class=rvts19>Status and Licensing:</span></span></h4>
+<p class=rvps3><span class=rvts14>Consider this beta software. It may well have </span><a class=rvts20 href="http://en.wikipedia.org/wiki/Software_bug">issues</a><span class=rvts14>. Try it at your own risk. If you find a problem, you can report it in the </span><a class=rvts20 href="http://www.jpsoft.com/forums/forums/plugins.11/">JP Software support forum</a><span class=rvts14>.</span></p>
+<p class=rvps3><span class=rvts14>EditKeys is currently licensed only for testing purposes. I may make binaries and source code available under some free license once I consider it ready for use.</span></p>
+<p><span class=rvts17><br></span></p>
+<p><span class=rvts8><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///U:/editkeys.html#cmath">EditKeys Plugin and 3 more pages - Profile 1</a><span class=rvts11> &nbsp;</span><span class=rvts10>(29 November 2023 12:11 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

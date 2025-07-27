@@ -1,14 +1,14 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
    <head>
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
        <link rel="stylesheet" href="skins/web.css" type="text/css" media="screen" charset="utf-8">
-       <script src="https://joec4281.github.io/_codebase/webix.js" type="text/javascript" charset="utf-8"></script>
+       <script src="../_codebase/webix.js" type="text/javascript" charset="utf-8"></script>
 	   <script type="text/javascript" src="data/search_index.js"></script>
 	   <script type="text/javascript" src="data/notes_index.js"></script>
 	   <script type="text/javascript" src="data/array_helper.js"></script>
 	   <script type="text/javascript" src="data/rntse.js"></script>
-       <script src="trees/tree1.js" type="text/javascript" charset="utf-8"></script>
+       <script src="trees/tree2.js" type="text/javascript" charset="utf-8"></script>
  	 <style>
 	     .rows .webix_list_item:nth-child(2n){
 	 	   background-color:#F5F5F5;
@@ -69,7 +69,7 @@
 			switch (id){
 							case "tab1": 
 				    if (!tab1_init){
-						$$("tree1").parse(tree_data1);
+						$$("tree1").parse(tree_data2);
 						tab1_init = true;					
 					}
 					break;
@@ -105,7 +105,7 @@
 			]},
 			{ id: "tab1", header:"TCC Plugins", cols:[
 			  {rows: [
-				  {view: "tree", id: "tree1", width: 273, select: true, borderless: true,
+				  {view: "tree", id: "tree1", width: 334, select: true, borderless: true,
 				   filterMode:{ showSubItems:false },
 				   on:{
 						onItemClick:function(id){

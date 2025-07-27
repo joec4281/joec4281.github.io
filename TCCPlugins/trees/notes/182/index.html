@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>RENCASE</title>
+<html><head><title>@CountUnsafe</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -50,90 +50,96 @@ span.rvts6
 }
 span.rvts7
 {
- font-family: 'Verdana', 'Geneva', sans-serif;
 }
 span.rvts8
 {
- font-size: 8pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-family: 'Verdana', 'Geneva', sans-serif;
 }
 span.rvts9
 {
- font-size: 8pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts10
 {
  font-size: 8pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-a.rvts11, span.rvts11
+a.rvts13, span.rvts13
 {
  font-size: 8pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts12
-{
- font-size: 14pt;
- font-family: 'consolas';
- color: #000000;
-}
-span.rvts13
-{
- font-size: 12pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
-}
 span.rvts14
 {
- font-size: 14pt;
- font-family: 'consolas';
- font-weight: bold;
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #000000;
 }
 span.rvts15
 {
- font-size: 12pt;
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- color: #000088;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
 }
 a.rvts16, span.rvts16
 {
- font-size: 14pt;
- font-family: 'consolas';
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #0000ff;
- text-decoration: none;
+ text-decoration: underline;
 }
-a.rvts16:hover
+span.rvts17
 {
- color: #000000;
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
 }
-a.rvts17, span.rvts17
+span.rvts18
 {
- font-size: 12pt;
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts19, span.rvts19
+{
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
- text-decoration: none;
+ text-decoration: underline;
 }
-a.rvts17:hover
+span.rvts20
 {
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-a.rvts18, span.rvts18
+a.rvts22, span.rvts22
 {
- font-size: 12pt;
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- color: #000088;
- text-decoration: none;
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
-span.rvts19
+span.rvts23
 {
- font-family: 'Verdana', 'Geneva', sans-serif;
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #000000;
 }
 /* ========== Para Styles ========== */
@@ -154,23 +160,34 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
- background: #ffffff;
  margin: 7px 0px 7px 0px;
 }
-.rvps4
-{
- margin: 0px 0px 16px 32px;
-}
-.rvps5
-{
- background: #eeeeee;
- padding: 8px 16px 8px 16px;
- margin: 16px 0px 16px 16px;
-}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><br></p>
+<p class=rvps3><span class=rvts23>@COUNTUNSAFE</span><span class=rvts21> — Returns the number of “dangerous” characters in a string.</span></p>
+<p class=rvps3><span class=rvts21>Syntax:</span><br><span class=rvts23>%@COUNTUNSAFE[</span><span class=rvts21>text</span><span class=rvts23>]</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>text:</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>the string to examine</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts21>This function counts the number of “dangerous” characters, as defined by the </span><a class=rvts22 href="https://charlesdye.net/plugins/safechars.html#unsafe">UNSAFE</a><span class=rvts21> command, in the input text.</span></p>
+<p><span class=rvts18><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts20>Source</span><span class=rvts17>:</span><span class=rvts18> </span><a class=rvts19 href="https://charlesdye.net/plugins/safechars.html#safeechos">SafeChars Plugin and 2 more pages - Personal</a><span class=rvts18> &nbsp;</span><span class=rvts17>(6 June 2025 8:21 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

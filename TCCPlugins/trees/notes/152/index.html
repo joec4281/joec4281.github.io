@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>Functions</title>
+<html><head><title>@HWNDPID</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -45,8 +45,54 @@ a.rvts5, span.rvts5 /* Jump 2 */
 }
 span.rvts6
 {
- font-size: 16pt;
+ font-size: 18pt;
  font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts8
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts9, span.rvts9
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts10
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts11
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts12
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 18pt;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -64,10 +110,53 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><br></p>
+<p class=rvps3><span class=rvts12>@HWNDPID</span><span class=rvts11> — Returns the process ID of the process which created a given window.</span></p>
+<p class=rvps3><span class=rvts11>Syntax:</span><br><span class=rvts12>%@HWNDPID[</span><span class=rvts11>hwnd</span><span class=rvts12>,</span><span class=rvts11>flags</span><span class=rvts12>]</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=138 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>hwnd</span></p>
+  </td>
+  <td width=1360 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>the window’s handle; decimal or hex with a leading </span><span class=rvts12>0x</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=138 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>flags</span></p>
+  </td>
+  <td width=1360 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>bitmapped:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=138 valign=middle style="padding: 1px;">
+   <p><span class=rvts14><br></span></p>
+  </td>
+  <td width=1360 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>&nbsp; &nbsp; 1: return process ID in hexadecimal</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>This function only takes a window handle, not a title. It’s basically a wrapper around the Windows </span><a class=rvts13 href="https://duckduckgo.com/?q=%5cGetWindowThreadProcessId%20site:learn.microsoft.com">GetWindowThreadProcessId()</a><span class=rvts11> function.</span></p>
+<p class=rvps3><span class=rvts11>If the specified window does not exist, or on any other error, this function returns </span><span class=rvts12>0</span><span class=rvts11>.</span></p>
+<p><span class=rvts8><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts10>Source</span><span class=rvts7>:</span><span class=rvts8> </span><a class=rvts9 href="file:///U:/windowinfo.html">WindowInfo Plugin and 5 more pages - Personal</a><span class=rvts8> &nbsp;</span><span class=rvts7>(6 February 2025 8:43 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
 </body></html>
