@@ -41,75 +41,79 @@
   <ol>
     <li>Backup your <code>vba6.dll</code> from <code>%SystemRoot%\System32</code> (e.g., <code>vba6.dll.bak</code>).</li>
     <li>Open it in a PE-aware hex editor and navigate to decimal offsets <strong>866517</strong> and <strong>866577</strong>.</li>
-    <li>Confirm you see bytes <code>76</code> at 866517 and <code>75</code> at 866577. If they differ, you may have a localized or patched variant.</li>
+    <li>Confirm you see bytes <code>76</code> at 866 517 and <code>75</code> at 866 577. If they differ, you may have a localized or patched variant.</li>
   </ol>
 
   <hr>
 
-  <h2>3. Robust Patch/Unpatch Batch Scripts</h2>
-  <p>These two scripts will:</p>
-  <ul>
-    <li>Verify the DLL exists</li>
-    <li>Warn if the expected original byte isn't present</li>
-    <li>Write the patched or original opcodes back into the file</li>
-  </ul>
-  <pre><code>
-:: ------ VBA6Patch.bat ------
-@echo off
-setlocal
-set DLL=vba6.dll
-set OFF1=866517
-set OFF2=866577
+  <h2>3. Pure PowerShell Patch/Unpatch Scripts</h2>
+  <p>Save these two scripts alongside your <code>vba6.dll</code>, then run them <strong>as Administrator</strong>.</p>
 
-powershell -NoProfile -Command ^
-  "param($dll,$o1,$o2);
-   if (-not (Test-Path $dll)) { Write-Error 'Not found: '+$dll; exit 1 }
-   $b=[IO.File]::ReadAllBytes($dll);
-   if ($b[$o1] -ne 0x76) { Write-Warning 'Offset1 ~= 0x76 (found 0x{0:X2})' -f $b[$o1] }
-   if ($b[$o2] -ne 0x75) { Write-Warning 'Offset2 ~= 0x75 (found 0x{0:X2})' -f $b[$o2] }
-   $b[$o1]=0xEB; $b[$o2]=0xEB;
-   [IO.File]::WriteAllBytes($dll,$b);
-   Write-Host 'Patch applied.';" ^
-  -ArgumentList "%~dp0%DLL%",%OFF1%,%OFF2%
+  <h3>VBA6Patch.ps1</h3>
+  <pre><code class="language-powershell">
+param(
+  [string]$DllPath = "vba6.dll",
+  [int]$Off1    = 866517,
+  [int]$Off2    = 866577
+)
 
-endlocal
-exit /b
+if (-not (Test-Path $DllPath)) {
+  Write-Error "File not found: $DllPath"
+  exit 1
+}
 
-:: ----- VBA6Unpatch.bat -----
-@echo off
-setlocal
-set DLL=vba6.dll
-set OFF1=866517
-set OFF2=866577
+$bytes = [System.IO.File]::ReadAllBytes($DllPath)
 
-powershell -NoProfile -Command ^
-  "param($dll,$o1,$o2);
-   if (-not (Test-Path $dll)) { Write-Error 'Not found: '+$dll; exit 1 }
-   $b=[IO.File]::ReadAllBytes($dll);
-   if ($b[$o1] -ne 0xEB) { Write-Warning 'Offset1 not patched (found 0x{0:X2})' -f $b[$o1] }
-   if ($b[$o2] -ne 0xEB) { Write-Warning 'Offset2 not patched (found 0x{0:X2})' -f $b[$o2] }
-   $b[$o1]=0x76; $b[$o2]=0x75;
-   [IO.File]::WriteAllBytes($dll,$b);
-   Write-Host 'Patch removed.';" ^
-  -ArgumentList "%~dp0%DLL%",%OFF1%,%OFF2%
+if ($bytes[$Off1] -ne 0x76) {
+  Write-Warning ("Offset1 byte is 0x{0:X2} (expected 0x76)" -f $bytes[$Off1])
+}
+if ($bytes[$Off2] -ne 0x75) {
+  Write-Warning ("Offset2 byte is 0x{0:X2} (expected 0x75)" -f $bytes[$Off2])
+}
 
-endlocal
-exit /b
+$bytes[$Off1] = 0xEB
+$bytes[$Off2] = 0xEB
+
+[System.IO.File]::WriteAllBytes($DllPath, $bytes)
+Write-Host "Patch applied to $DllPath"
   </code></pre>
-  <p>Notes:</p>
-  <ul>
-    <li>Run as Administrator.</li>
-    <li>Always keep your <code>.bak</code> copy.</li>
-    <li>Double-check the offsets before applying.</li>
-  </ul>
+
+  <h3>VBA6Unpatch.ps1</h3>
+  <pre><code class="language-powershell">
+param(
+  [string]$DllPath = "vba6.dll",
+  [int]$Off1    = 866517,
+  [int]$Off2    = 866577
+)
+
+if (-not (Test-Path $DllPath)) {
+  Write-Error "File not found: $DllPath"
+  exit 1
+}
+
+$bytes = [System.IO.File]::ReadAllBytes($DllPath)
+
+if ($bytes[$Off1] -ne 0xEB) {
+  Write-Warning ("Offset1 byte is 0x{0:X2} (expected 0xEB)" -f $bytes[$Off1])
+}
+if ($bytes[$Off2] -ne 0xEB) {
+  Write-Warning ("Offset2 byte is 0x{0:X2} (expected 0xEB)" -f $bytes[$Off2])
+}
+
+$bytes[$Off1] = 0x76
+$bytes[$Off2] = 0x75
+
+[System.IO.File]::WriteAllBytes($DllPath, $bytes)
+Write-Host "Patch removed from $DllPath"
+  </code></pre>
 
   <hr>
 
   <h2>4. How to Confirm It Worked</h2>
   <ol>
     <li>Open the VB6 IDE and build any simple <code>.vbp</code> project.</li>
-    <li>After the build completes, inspect your project's obj folder (or <code>%TMP%</code>). The .obj files should still be present.</li>
-    <li>If they've vanished, ensure you patched the correct <code>vba6.dll</code>-on 64-bit Windows there may be one in <code>SysWOW64</code>.</li>
+    <li>After the build completes, inspect your project's obj folder (or <code>%TMP%</code>). The <code>.obj</code> files should still be present.</li>
+    <li>If they've vanished, ensure you ran the correct script against the right <code>vba6.dll</code>-on 64-bit Windows there may be one in <code>SysWOW64</code>.</li>
   </ol>
 
   <hr>
@@ -118,13 +122,12 @@ exit /b
   <ul>
     <li><strong>API Hooks:</strong> Use Detours/MinHook to intercept <code>DeleteFileA</code> calls from the VB6 process.</li>
     <li><strong>NTFS Folder Permissions:</strong> Point your obj output to a directory with "deny delete" rights.</li>
-    <li><strong>Third-Party Compilers:</strong> Consider VBCC or similar tools that produce standard .obj files.</li>
+    <li><strong>Third-Party Compilers:</strong> Consider VBCC or similar tools that produce standard <code>.obj</code> files.</li>
   </ul>
 
   <hr>
 
   <h2>6. Summary</h2>
-  <p>By applying this patch, you prevent VB6 SP6 from cleaning up your .obj outputs-granting you full control over linker workflows and easing integration of VB6-compiled objects into larger C/C++ projects.</p>
-
+  <p>By applying this patch you prevent VB6 SP6 from cleaning up your <code>.obj</code> outputs-granting you full control over linker workflows and easing integration of VB6-compiled objects into larger C/C++ projects.</p>
 </body>
 </html>
