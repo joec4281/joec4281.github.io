@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Stopping VB6's Cleanup by Patching vba6.dll</title>
+</head>
+<body>
+  <h1>Stopping VB6's Cleanup by Patching vba6.dll</h1>
+
+  <h2>1. What You're Patching</h2>
+  <p>In <strong>vba6.dll</strong> (VB6 SP6 English), two code paths check whether to delete generated <code>.obj</code> files. Those checks compile down to short-branch instructions:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>File Offset (dec)</th>
+        <th>RVA (hex)</th>
+        <th>Original Opcode</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>866 517</td>
+        <td>0x0D38D5</td>
+        <td>0x76 (JBE)</td>
+        <td>Jump if below or equal</td>
+      </tr>
+      <tr>
+        <td>866 577</td>
+        <td>0x0D3911</td>
+        <td>0x75 (JNE)</td>
+        <td>Jump if not equal (ZF)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>By changing both bytes to <code>0xEB</code> (JMP short) you force an unconditional jump over the deletion logic-VB6 will leave the <code>.obj</code> files in place.</p>
+
+  <hr>
+
+  <h2>2. Verifying the Offsets</h2>
+  <ol>
+    <li>Backup your <code>vba6.dll</code> from <code>%SystemRoot%\System32</code> (e.g., <code>vba6.dll.bak</code>).</li>
+    <li>Open it in a PE-aware hex editor and navigate to decimal offsets <strong>866517</strong> and <strong>866577</strong>.</li>
+    <li>Confirm you see bytes <code>76</code> at 866517 and <code>75</code> at 866577. If they differ, you may have a localized or patched variant.</li>
+  </ol>
+
+  <hr>
+
+  <h2>3. Robust Patch/Unpatch Batch Scripts</h2>
+  <p>These two scripts will:</p>
+  <ul>
+    <li>Verify the DLL exists</li>
+    <li>Warn if the expected original byte isn't present</li>
+    <li>Write the patched or original opcodes back into the file</li>
+  </ul>
+  <pre><code>
+:: ------ VBA6Patch.bat ------
+@echo off
+setlocal
+set DLL=vba6.dll
+set OFF1=866517
+set OFF2=866577
+
+powershell -NoProfile -Command ^
+  "param($dll,$o1,$o2);
+   if (-not (Test-Path $dll)) { Write-Error 'Not found: '+$dll; exit 1 }
+   $b=[IO.File]::ReadAllBytes($dll);
+   if ($b[$o1] -ne 0x76) { Write-Warning 'Offset1 ~= 0x76 (found 0x{0:X2})' -f $b[$o1] }
+   if ($b[$o2] -ne 0x75) { Write-Warning 'Offset2 ~= 0x75 (found 0x{0:X2})' -f $b[$o2] }
+   $b[$o1]=0xEB; $b[$o2]=0xEB;
+   [IO.File]::WriteAllBytes($dll,$b);
+   Write-Host 'Patch applied.';" ^
+  -ArgumentList "%~dp0%DLL%",%OFF1%,%OFF2%
+
+endlocal
+exit /b
+
+:: ----- VBA6Unpatch.bat -----
+@echo off
+setlocal
+set DLL=vba6.dll
+set OFF1=866517
+set OFF2=866577
+
+powershell -NoProfile -Command ^
+  "param($dll,$o1,$o2);
+   if (-not (Test-Path $dll)) { Write-Error 'Not found: '+$dll; exit 1 }
+   $b=[IO.File]::ReadAllBytes($dll);
+   if ($b[$o1] -ne 0xEB) { Write-Warning 'Offset1 not patched (found 0x{0:X2})' -f $b[$o1] }
+   if ($b[$o2] -ne 0xEB) { Write-Warning 'Offset2 not patched (found 0x{0:X2})' -f $b[$o2] }
+   $b[$o1]=0x76; $b[$o2]=0x75;
+   [IO.File]::WriteAllBytes($dll,$b);
+   Write-Host 'Patch removed.';" ^
+  -ArgumentList "%~dp0%DLL%",%OFF1%,%OFF2%
+
+endlocal
+exit /b
+  </code></pre>
+  <p>Notes:</p>
+  <ul>
+    <li>Run as Administrator.</li>
+    <li>Always keep your <code>.bak</code> copy.</li>
+    <li>Double-check the offsets before applying.</li>
+  </ul>
+
+  <hr>
+
+  <h2>4. How to Confirm It Worked</h2>
+  <ol>
+    <li>Open the VB6 IDE and build any simple <code>.vbp</code> project.</li>
+    <li>After the build completes, inspect your project's obj folder (or <code>%TMP%</code>). The .obj files should still be present.</li>
+    <li>If they've vanished, ensure you patched the correct <code>vba6.dll</code>-on 64-bit Windows there may be one in <code>SysWOW64</code>.</li>
+  </ol>
+
+  <hr>
+
+  <h2>5. Alternative Approaches</h2>
+  <ul>
+    <li><strong>API Hooks:</strong> Use Detours/MinHook to intercept <code>DeleteFileA</code> calls from the VB6 process.</li>
+    <li><strong>NTFS Folder Permissions:</strong> Point your obj output to a directory with "deny delete" rights.</li>
+    <li><strong>Third-Party Compilers:</strong> Consider VBCC or similar tools that produce standard .obj files.</li>
+  </ul>
+
+  <hr>
+
+  <h2>6. Summary</h2>
+  <p>By applying this patch, you prevent VB6 SP6 from cleaning up your .obj outputs-granting you full control over linker workflows and easing integration of VB6-compiled objects into larger C/C++ projects.</p>
+
+</body>
+</html>
