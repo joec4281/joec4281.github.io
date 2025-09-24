@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>YnMouse</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>FUNCTION YnMouse</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons (CIS: 72662,1302)</span></p>
+<p><span class=rvts6>*-- Date........: 02/28/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Returns .T. or .F. answer to question without leaving</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mouse droppings. &nbsp;Will not respond to left arrow&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; properly unless set( "ESCAPE" ) is off.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *******************************</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **** REQUIRES MUSCLICK.BIN ****</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *******************************</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, Version 1.5.</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/23/93 - original function</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/28/93 - revised to support right and left arrows</span></p>
+<p><span class=rvts6>*-- Calls.......: HighColors() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Function in COLOR.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Center &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Procedure in PROC.PRG ( if&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; centering )</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: YnMouse( &lt;cColors&gt;, &lt;cP1&gt; [, &lt;cP2&gt;...] [,&lt;lYes&gt;] )</span></p>
+<p><span class=rvts6>*-- Example.....: ? YnMouse( "", "Are you sure?" )</span></p>
+<p><span class=rvts6>*-- Parameters..: cColors &nbsp; - &nbsp; String, either blank or holding desired</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; colors as standard [ , enhanced [,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border ] ]</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cP&lt;n&gt; &nbsp; &nbsp; - &nbsp; One or more strings of prompt&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; characters.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt; only 7 may be passed as literals using</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dBASE IV 1.5 &gt;. &nbsp;They will be printed</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; one below the other. &nbsp;There may not in</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; any event be more than the number of</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; useable screen rows less 6; the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; parameters line will have to be changed</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to use more than 20. As furnished, the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; justification of the prompt strings is&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; flush left. &nbsp;To center them, see the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; commented lines in the code.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Centering uses the Center procedure in&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PROC.PRG.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lYes &nbsp; &nbsp; &nbsp;- &nbsp; A logical .T. if the default answer is&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "Yes". This must be the last parameter,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; but it may follow any number of prompt&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lines.</span></p>
+<p><span class=rvts6>*-- Returns.....: Logical, .T. for "Yes" or .F. for "No"</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

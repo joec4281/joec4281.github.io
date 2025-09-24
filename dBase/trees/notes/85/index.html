@@ -1,0 +1,1911 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>DIALOG2.PRG</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Program...: DIALOG2.PRG</span></p>
+<p><span class=rvts6>*-- Librarian.: Kenneth J. Mayer (CIS: 71333,1030)</span></p>
+<p><span class=rvts6>*-- Date......: 07/25/1995</span></p>
+<p><span class=rvts6>*-- Version...: Release G</span></p>
+<p><span class=rvts6>*-- Platform..: dBASE IV, 2.0</span></p>
+<p><span class=rvts6>*-- Notes.....: This program, which is part of the dUFLP library,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; contains copies of dialog box routines from various&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; places in the library.&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; This is "the rest of the dialog routines".</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- The following routines are included by courtesy:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; SHADOW &nbsp; &nbsp; &nbsp; &nbsp;PROC.PRG &nbsp; &nbsp;06/02/1993</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; COLORBRK() &nbsp; &nbsp;PROC.PRG &nbsp; &nbsp;03/24/1993</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; CENTER &nbsp; &nbsp; &nbsp; &nbsp;PROC.PRG &nbsp; &nbsp;05/24/1991</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; ARRAYROWS() &nbsp; ARRAY.PRG &nbsp; 03/24/1993</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION Message1</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Miriam Liskin</span></p>
+<p><span class=rvts6>*-- Date........: 05/24/1991</span></p>
+<p><span class=rvts6>*-- Notes.......: Displays a message, centered at whatever line you&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; give, pauses until user presses a key.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1</span></p>
+<p><span class=rvts6>*-- Rev. History: 04/19/1991 Modified by Ken Mayer from Miriam's&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;procedure to function</span></p>
+<p><span class=rvts6>*-- Calls.......: CENTER &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: message1(&lt;nLine&gt;,&lt;nWidth&gt;,"&lt;cColor&gt;","&lt;cText&gt;")</span></p>
+<p><span class=rvts6>*-- Example.....: cDummy = Message1(5,12,"RG+/GB","All Done.")</span></p>
+<p><span class=rvts6>*-- Returns.....: numeric value of key pressed by user (cUser)</span></p>
+<p><span class=rvts6>*-- Parameters..: nLine &nbsp;= Line to display message</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWidth = Width of screen</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cColor = Colors for display</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cText &nbsp;= Text to be displayed.</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters nLine,nWidth,cColor,cText</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cCursor, cUser</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@m-&gt;nLine,0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cCursor = set("CURSOR") &nbsp;&amp;&amp; store current state of CURSOR</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor off &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; turn it off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with m-&gt;nLine,m-&gt;nWidth,m-&gt;cColor,m-&gt;cText</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cUser = inkey(0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor &amp;cCursor. &nbsp; &nbsp; &amp;&amp; set cursor to original state</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@m-&gt;nLine,0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; erase line ...</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;cUser</span></p>
+<p><span class=rvts6>*-- EoF: Message1()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION Message2</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Miriam Liskin</span></p>
+<p><span class=rvts6>*-- Date........: 06/08/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: Displays a message in a window, pauses for user to&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; press key</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1</span></p>
+<p><span class=rvts6>*-- Rev. History: 04/19/1991 - Modified by Ken Mayer to a function</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 04/29/1991 - Modified by Ken Mayer to add shadow</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 06/08/1992 - Modified by same, to do EXPLICIT setting&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;of colors for window used.</span></p>
+<p><span class=rvts6>*-- Calls.......: SHADOW &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CENTER &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: message2("&lt;cText&gt;","&lt;cColor&gt;")</span></p>
+<p><span class=rvts6>*-- Example.....: cDummy = message2("Finished Processing!",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "RG+/GB,,RG+/GB")</span></p>
+<p><span class=rvts6>*-- Returns.....: numeric value of key pressed by user (cUser)</span></p>
+<p><span class=rvts6>*-- Parameters..: cText &nbsp;= Text to be displayed in window</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cColor = Colors for window</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cText,cColor</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cCursor, cUser</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cCursor = set("CURSOR")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;save screen to sMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- NOW we see what happens ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define window wMessage from 10,10 to 14,70 double color &amp;cColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do shadow with 10,10,14,70</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate window wMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with 1,60,"",m-&gt;cText</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;wait "" to m-&gt;cUser</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- cleanup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor &amp;cCursor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- remove window ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release window wMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;restore screen from sMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release screen sMessage</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;cUser</span></p>
+<p><span class=rvts6>*-- EoF: Message2()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION Message3</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Miriam Liskin</span></p>
+<p><span class=rvts6>*-- Date........: 06/08/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: Displays a message in a window, pauses for user,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; will wrap a long message inside the window.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1</span></p>
+<p><span class=rvts6>*-- Rev. History: 04/19/1991 - Modified by Ken Mayer to a function</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 04/29/1991 - Modified to Ken Mayer add shadow</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 06/08/1992 - Modified to explicitly set the colors ...</span></p>
+<p><span class=rvts6>*-- Calls.......: SHADOW &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: Message3("&lt;cText&gt;","&lt;cColor&gt;")</span></p>
+<p><span class=rvts6>*-- Example.....: cDummy = Message3("This is a long message that will"+;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; " be wrapped around inside the "+;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"window.","rg+/gb,,rg+/gb")</span></p>
+<p><span class=rvts6>*-- Returns.....: numeric value of key used to exit window (cUser)</span></p>
+<p><span class=rvts6>*-- Parameters..: cText &nbsp;= Text to be displayed</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cColor = Colors for window</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cText,cColor</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nLines,cCursor,cUser,nLMargin,nRMargin,cAlignment,lWrap</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nLines = int(len(m-&gt;cText) / 38) + 5 &nbsp;&amp;&amp; set # of lines for window</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cCursor = set("CURSOR")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;save screen to sMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- define/activate window</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define window wMessage from 8,20 to 8+m-&gt;nLines,60 double ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color &amp;cColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do shadow with 8,20,8+m-&gt;nLines,60</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate window wMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nLMargin &nbsp; = _lmargin</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRMargin &nbsp; = _rmargin</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cAlignment = _alignment</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;lWrap &nbsp; &nbsp; &nbsp;= _wrap</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_lmargin &nbsp; = 1&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_rmargin &nbsp; = 38</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_alignment = "CENTER"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_wrap &nbsp; &nbsp; &nbsp;= .t.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;?cText</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;?</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;wait " &nbsp; &nbsp;Press any key to continue . . ." to m-&gt;cUser</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_lmargin &nbsp; = m-&gt;nLMargin</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_rmargin &nbsp; = m-&gt;nRMargin</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_alignment = m-&gt;cAlignment</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_wrap &nbsp; &nbsp; &nbsp;= m-&gt;lWrap</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor &amp;cCursor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release window wMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;restore screen from sMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release screen sMessage</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;cUser</span></p>
+<p><span class=rvts6>*-- EoF: Message3()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION Message4</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Miriam Liskin</span></p>
+<p><span class=rvts6>*-- Date........: 11/09/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: Displays a 2-line message in a predefined window&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and pauses</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1</span></p>
+<p><span class=rvts6>*-- Rev. History: 04/19/1991 - Modified by Ken Mayer to a function</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 04/29/1991 - Modified to Ken Mayer add shadow</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 06/08/1992 -- Modified to explicitly deal with colors</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 11/09/1992 - Modified by Joey Carroll to deal with&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;text parameters being too long.</span></p>
+<p><span class=rvts6>*-- Calls.......: SHADOW &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CENTER &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: message4("&lt;cText1&gt;","&lt;cText2&gt;","&lt;cColor&gt;")</span></p>
+<p><span class=rvts6>*-- Example.....: cDummy = message4("Finished processing.","There are ";</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+ltrim(str(reccount()))+;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" Records in this file.",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"rg+/rg,rg+/rg,rg+/rg")</span></p>
+<p><span class=rvts6>*-- Returns.....: numeric value of key pressed by user to exit window&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (cUser)</span></p>
+<p><span class=rvts6>*-- Parameters..: cText1 = First line of message</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cText2 = Second line of message</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cColor = Colors for window</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cText1,cText2,cColor</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cCursor,cUser,nLMargin,nRMargin,lWrap</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if text params are too long, cut 'em off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cText1 = left(m-&gt;cText1,58)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cText2 = left(m-&gt;cText2,58)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cCursor = set("CURSOR")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;save screen to sMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define window wMonitor from 10,10 to 17,70 double color &amp;cColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do shadow with 10,10,17,70</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate window wMonitor</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nLMargin = _lmargin</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRMargin = _rmargin</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;lWrap = &nbsp; &nbsp;_wrap</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_lmargin = 1&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_rmargin = 58</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_wrap &nbsp; &nbsp;= .t.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with 1,58,"",m-&gt;cText1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with 2,58,"",m-&gt;cText2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with 4,58,"","Press any key to continue . . ."</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;wait "" to m-&gt;cUser</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_lmargin = m-&gt;nLMargin</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_rmargin = m-&gt;nRMargin</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;_wrap &nbsp; &nbsp;= m-&gt;lWrap</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor &amp;cCursor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release window wMonitor</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;restore screen from sMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release screen sMessage</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>RETURN m-&gt;cUser</span></p>
+<p><span class=rvts6>*-- EoF: Message4()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION Radio</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Ed Lafferty (CIS: 76150,3302)</span></p>
+<p><span class=rvts6>*-- Date........: 06/08/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: Routine to create and size a popup with radio buttons</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for choosing only one of up to four options. &nbsp;Pressing</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the &lt;Space Bar&gt; on an option turns it on or off.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pressing &lt;Enter&gt; chooses the selected option and&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; leaves the routine.</span></p>
+<p><span class=rvts6>*-- Written for.: dBase IV, 1.1</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/25/1992 - original procedure.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/27/1992 -- Ken Mayer -- added option for color,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; but had to take number of choices back to 4 to do so.&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Minor alterations performed to add color choice ...&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and cleaning up after self ... (original cleared the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; screen first ... this version saves screen, restores&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; back to it ...) Oh yeah, I turned it into a function,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rather than a procedure, as well.</span></p>
+<p><span class=rvts6>*-- Calls.......: CENTER &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SHADOW &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; COLORBRK() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Function in PROC.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: Radio(&lt;nULRow&gt;,&lt;nULCol&gt;,&lt;nChoice&gt;,"&lt;cTxt1&gt;",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "&lt;cTxt2&gt;","&lt;cTxt3&gt;","&lt;cTxt4&gt;","&lt;cTitle&gt;",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "&lt;cColor&gt;")</span></p>
+<p><span class=rvts6>*-- Example.....: cPort = Radio(8,15,1,"LPT1","LPT2","LPT3","",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "Choose a printer port","rg+/gb,n/w,rg+/gb")</span></p>
+<p><span class=rvts6>*-- Returns.....: number of chosen button in nChoice</span></p>
+<p><span class=rvts6>*-- Parameters..: nUlrow &nbsp;= upper left row of popup</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nUlcol &nbsp;= upper left column of popup</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nChoice = default chosen button</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTxt1 &nbsp; = Text for 1st button</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTxt2 &nbsp; = &nbsp;" &nbsp; &nbsp;" &nbsp;2nd &nbsp; "</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTxt3 &nbsp; = &nbsp;" &nbsp; &nbsp;" &nbsp;3rd &nbsp; "</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTxt4 &nbsp; = &nbsp;" &nbsp; &nbsp;" &nbsp;4th &nbsp; "</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTitle &nbsp;= Text for the box title</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cColor &nbsp;= Color string (i.e., "RG+/GB,N/W,RG+/GB")&nbsp;</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters nUlrow, nUlcol, nChoice, cTxt1, cTxt2, cTxt3, cTxt4, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cTitle, cColor</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nHeight, nKey, nCnt, nWidth, cStr, cTxt0, cMidCol, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cFirstCol, cCursor</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cCursor = set("CURSOR")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store m-&gt;cTitle to m-&gt;cTxt0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;save screen to sRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store 0 to m-&gt;nHeight, m-&gt;nKey, m-&gt;nCnt, m-&gt;nWidth</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store m-&gt;nChoice to m-&gt;nOrig &nbsp;&amp;&amp; in case user presses &lt;Esc&gt; to exit&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- deal with these colors in displaying some stuff ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cMidCol = colorbrk(m-&gt;cColor,2)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- First color (for message) is easier ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cFirstCol = colorbrk(m-&gt;cColor,1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- Determine height and width of popup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case len(m-&gt;cTxt4) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nHeight = 4</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case len(m-&gt;cTxt3) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nHeight = 3</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case len(m-&gt;cTxt2) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nHeight = 2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; otherwise</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nHeight = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nCnt &lt;= m-&gt;nHeight</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store "cTxt"+str(m-&gt;nCnt,1) to m-&gt;cStr</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if len(&amp;cstr.) &gt; m-&gt;nWidth</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nWidth = len(&amp;cStr.)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nCnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- create popup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define window wRadio from m-&gt;nULRow,m-&gt;nULCol to ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nULRow+m-&gt;nHeight+3,m-&gt;nULCol+m-&gt;nWidth+9;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; double color &amp;cColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with 23,80,m-&gt;cFirstCol,"Press "+chr(24)+chr(25)+;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ", &lt;Space&gt; to select/de-select, &lt;Enter&gt; to quit"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do shadow with m-&gt;nULRow, m-&gt;nULCol, m-&gt;nULRow+m-&gt;nHeight+3, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nULCol+m-&gt;nWidth+9</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate window wRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- display screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store 1 to m-&gt;nCnt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with 0, m-&gt;nWidth+8, "", m-&gt;cTitle</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nCnt &lt;= m-&gt;nHeight</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store "cTxt"+str(m-&gt;nCnt,1) to m-&gt;cStr</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ m-&gt;nCnt+1, 2 SAY "[ ]" color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ m-&gt;nCnt+1, 6 say &amp;cStr.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nCnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- prepare for and get nChoice</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nChoice &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store m-&gt;nChoice to m-&gt;nCnt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @m-&gt;nCnt+1,3 say "■" color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store 1 to m-&gt;nCnt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store .F. to m-&gt;lDone</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- this loop processes user input ...&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .not. m-&gt;lDone</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ m-&gt;nCnt+1,3 say "" color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nKey = inkey(0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 27 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; Press Esc to exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store m-&gt;nOrig to m-&gt;nChoice &nbsp; &nbsp; &amp;&amp; Leave at "default"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store .T. to m-&gt;lDone</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 13</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store .T. to m-&gt;lDone</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 32 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; Press Enter or Space</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set cursor off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if m-&gt;nChoice = m-&gt;nCnt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ m-&gt;nCnt+1,3 say " " color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store 0 to m-&gt;nChoice</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ m-&gt;nChoice+1,3 say " " color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ m-&gt;nCnt+1,3 say "■" color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store m-&gt;nCnt to m-&gt;nChoice</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set cursor on</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 5 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; Press up arrow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nCnt &gt; 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nCnt - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nHeight</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 24 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; Press down arrow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nCnt &lt; m-&gt;nHeight</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nCnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nCnt = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- cleanup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release window wRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;restore screen from sRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release screen sRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set message to</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor &amp;cCursor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>RETURN m-&gt;nChoice</span></p>
+<p><span class=rvts6>*-- EoF: Radio()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION RadioBar</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Angus Scott-Fleming [76711,517]</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; after Radio by Ed Lafferty (CIS: 76150,3302)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; as modified by Ken Mayer</span></p>
+<p><span class=rvts6>*-- Date........: 02/01/1994</span></p>
+<p><span class=rvts6>*-- Notes.......: Creates and sizes a horizontal popup with radio</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; buttons for choosing only one of up to four options.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pressing the &lt;Space Bar&gt; on an option toggles it.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pressing &lt;Enter&gt; chooses the selected option and&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; leaves the routine. &nbsp;Pressing &lt;Esc&gt; leaves it at</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the entry-default</span></p>
+<p><span class=rvts6>*-- Written for.: dBase IV, 1.5+</span></p>
+<p><span class=rvts6>*-- Rev. History: 06/08/1992 -- Original Radio() function.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/01/1994 -- modifed from Radio by Angus.</span></p>
+<p><span class=rvts6>*-- Calls.......: CENTER &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SHADOW &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Procedure in PROC.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; COLORBRK() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Function in PROC.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: Radio(&lt;nULRow&gt;,&lt;nULCol&gt;,&lt;nChoice&gt;,"&lt;cTitle&gt;","&lt;cColor&gt;",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"&lt;cTxt1&gt;","&lt;cTxt2&gt;","&lt;cTxt3&gt;","&lt;cTxt4&gt;")</span></p>
+<p><span class=rvts6>*-- Example.....: cPort = Radio(8,15,1,"Choose a printer port",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "rg+/gb,n/w,rg+/gb","LPT1","LPT2","LPT3","")</span></p>
+<p><span class=rvts6>*-- Returns.....: number of chosen button in nChoice</span></p>
+<p><span class=rvts6>*-- Parameters..: nUlrow &nbsp;= upper left row of popup</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nUlcol &nbsp;= upper left column of popup</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nChoice = default chosen button</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTitle &nbsp;= Text for the box title</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cColor &nbsp;= Color string (i.e., "RG+/GB,N/W,RG+/GB")</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTxt1 &nbsp; = Text for 1st button</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTxt2 &nbsp; = &nbsp;" &nbsp; &nbsp;" &nbsp;2nd &nbsp; "</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTxt3 &nbsp; = &nbsp;" &nbsp; &nbsp;" &nbsp;3rd &nbsp; "</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTxt4 &nbsp; = &nbsp;" &nbsp; &nbsp;" &nbsp;4th &nbsp; "</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters nUlrow, nUlcol, nChoice, cTitle, cColor, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cTxt1, cTxt2, cTxt3, cTxt4</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nChoices, nKey, nCnt, nWidth, cStr, cTxt0, cMidCol, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cFirstCol, lCursor, nLeftMarg, cPrompt, xData</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;lCursor = set("CURSOR") = "ON"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;save screen to sRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store 0 to m-&gt;nChoices, m-&gt;nKey, m-&gt;nCnt, m-&gt;nWidth</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store m-&gt;nChoice to m-&gt;nOrig &nbsp;&amp;&amp; in case user presses &lt;Esc&gt; to exit ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cPrompt = "Press "+chr(27)+chr(26)+;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ", &lt;Space&gt; to select/de-select, &lt;Enter&gt; to quit"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nWidth &nbsp;= max(len(m-&gt;cPrompt), len(m-&gt;cTitle))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- deal with these colors in displaying some stuff ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cMidCol = colorbrk(m-&gt;cColor,2)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- First color (for message) is easier ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cFirstCol = colorbrk(m-&gt;cColor,1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- Determine height and width of popup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;case type("m-&gt;cTxt1") = "L"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;* bad data! return after error message</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;return -1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;case type("m-&gt;cTxt4") = "C" .and. len(m-&gt;cTxt4) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;m-&gt;nChoices = 4</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;case type("m-&gt;cTxt3") = "C" .and. len(m-&gt;cTxt3) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;m-&gt;nChoices = 3</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;case type("m-&gt;cTxt2") = "C" .and. len(m-&gt;cTxt2) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;m-&gt;nChoices = 2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;otherwise</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;m-&gt;nChoices = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;declare xData[m-&gt;nChoices,2]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store 1 to m-&gt;nCnt, m-&gt;nTextCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nCnt &lt;= m-&gt;nChoices</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store "cTxt"+str(m-&gt;nCnt,1) to m-&gt;cStr</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store m-&gt;&amp;cStr. to xData[m-&gt;nCnt,1]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store m-&gt;nTextCol to xData[m-&gt;nCnt,2]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nTextCol = m-&gt;nTextCol + len(xData[m-&gt;nCnt,1]) + 5</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nCnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nTextWidth = nTextCol + len(xData[m-&gt;nCnt-1,1]) + 5</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nWidth = max(nWidth, nTextWidth)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nLeftMarg = max( (nWidth - nTextWidth + 11)/2, 0 )</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- create popup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define window wRadio from m-&gt;nULRow,m-&gt;nULCol to ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nULRow+4,m-&gt;nULCol+m-&gt;nWidth+9;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;double color &amp;cColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do shadow with m-&gt;nULRow, m-&gt;nULCol, m-&gt;nULRow+4, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nULCol+m-&gt;nWidth+9</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate window wRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- display screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store 1 to m-&gt;nCnt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with 0, m-&gt;nWidth+8, "", m-&gt;cTitle</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do center with 2, m-&gt;nWidth+8, "", m-&gt;cPrompt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nCnt &lt;= m-&gt;nChoices</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store xData[m-&gt;nCnt,2] + m-&gt;nLeftMarg to xData[m-&gt;nCnt,2]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ 1, 2 + xData[m-&gt;nCnt,2] SAY "[ ]" color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ 1, 6 + xData[m-&gt;nCnt,2] say xData[m-&gt;nCnt,1]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nCnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- prepare for and get nChoice</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nChoice &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store m-&gt;nChoice to m-&gt;nCnt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ 1, 3 + xData[m-&gt;nCnt,2] say "■" color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; store 1 to m-&gt;nCnt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;store .F. to m-&gt;lDone</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- this loop processes user input ...&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .not. m-&gt;lDone</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ 1, 3 + xData[m-&gt;nCnt,2] &nbsp;say "" color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nKey = inkey(0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 27 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; Press Esc to exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store m-&gt;nOrig to m-&gt;nChoice &nbsp; &nbsp; &amp;&amp; Leave at "default"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store .T. to m-&gt;lDone</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 13</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store .T. to m-&gt;lDone</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 32 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; Press Enter or Space</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;set cursor off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nChoice = m-&gt;nCnt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 1, 3 + xData[m-&gt;nCnt,2] say " " color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; store 0 to m-&gt;nChoice</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 1, 3 + xData[m-&gt;nChoice,2] say " " color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 1, 3 + xData[m-&gt;nCnt,2] &nbsp;say "■" color &amp;cMidCol.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; store m-&gt;nCnt to m-&gt;nChoice</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;set cursor on</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 19 .or. m-&gt;nKey = 5 .or. m-&gt;nKey = -400</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* Pressed left- or up-arrow or backtab</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nCnt &gt; 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nCnt - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nChoices</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nKey = 24 .or. m-&gt;nKey = 4 .or. m-&gt;nKey = 9</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* Pressed right- or down-arrow or tab</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nCnt &lt; m-&gt;nChoices</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nCnt = m-&gt;nCnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nCnt = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- cleanup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release window wRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;restore screen from sRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release screen sRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set message to</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if lCursor</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;set cursor on</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;set cursor off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>RETURN m-&gt;nChoice</span></p>
+<p><span class=rvts6>*-- EoF: RadioBar()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PROCEDURE MultiPick</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons (CIS: 72662,1302)</span></p>
+<p><span class=rvts6>*-- Date........: 02/06/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Permits selecting 0 or more elements of an array.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The array must contain two columns, the first of which</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; contains the prompt for the row and the second of&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; which contains logical .T. if the row is selected by&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; default, or .F. &nbsp;Array may contain additional columns.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; This is written for programmers, not end users.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; It assumes the active window and border style are set&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; before it is called, and no error handling is provided&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for attempts to write outside the current window,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; impossible colors, truncation of prompts or other&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; calling errors that should become evident on testing.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If array contains elements "Hydrangea",.T. and&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "Tulip",.F., initial display after setting a window&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and calling will be something like this:</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[ √ ] Hydrangea</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[ &nbsp; ] Tulip</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; This program will use the mouse if two conditions&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exist:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1) The variable nG_MusClic must exist and must hold&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;the inkey() value of the character "keyboarded"&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;for a click by the mouse-event handler. &nbsp;Note&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;that this is often, but need not be, the same as&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;asc( &lt;character&gt; ).</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2) The mouse must be made active and visible by a</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;mouse-control .bin such as JPMOUSE.BIN and&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;MUSCLICK.BIN must be loaded and installed.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *******************************</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **** REQUIRES MUSCLICK.BIN ****</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;JPMOUSE.BIN &nbsp;****</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;VDCURSOR.BIN ****</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *******************************</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 01/16/93 - original procedure</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/06/93 - revised to use cWnSize, etc.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/24/93 - parameters changed, functions called moved&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;out</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/28/93 - symbolic constants and support for tab&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;added</span></p>
+<p><span class=rvts6>*-- Calls.......: SMultPick &nbsp; &nbsp; &nbsp; &nbsp; Child procedure to paint screen</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Arrayrows() &nbsp; &nbsp; &nbsp; Function in Array.prg</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; MUSCLICK.BIN &nbsp; &nbsp; &nbsp;Binary mouse-event handler</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CWnSize() &nbsp; &nbsp; &nbsp; &nbsp; Function to find window size</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CWnDecode() &nbsp; &nbsp; &nbsp; Function to decode the above</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; YnMouse() &nbsp; &nbsp; &nbsp; &nbsp; Yesno function for mouse</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NormColors() &nbsp; &nbsp; &nbsp;Function to return normal colors</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; HighColors() &nbsp; &nbsp; &nbsp;Function to return highlight colors</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ForeColor() &nbsp; &nbsp; &nbsp; Function to return foreground color</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: DO Multipick WITH &lt;cArray&gt;,&lt;nDown&gt;,&lt;nLast&gt;,&lt;nRows&gt;,;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;nLength&gt;[, &lt;cColors&gt; [, &lt;cCheck&gt;]]</span></p>
+<p><span class=rvts6>*-- Example.....: DO Multipick WITH "Myarray",3,15,10,18,"RG+/G,N/W",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; chr(2)&nbsp;</span></p>
+<p><span class=rvts6>*-- Parameters..: cArray &nbsp; &nbsp; &nbsp;= Name of the array of selectable items.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; See Notes, above, for required&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; structure.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nDown &nbsp; &nbsp; &nbsp; = first useable row of window</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nLast &nbsp; &nbsp; &nbsp; = last useable row of window</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRows &nbsp; &nbsp; &nbsp; = number of items to show on screen at&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; once</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nLength &nbsp; &nbsp; = maximum length of prompts</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cColors &nbsp; &nbsp; = optional, colors to use for&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; noncurrent and current items. &nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Default is NORMAL and HIGHLIGHT colors&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for the current window.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pass default as .F. if cCheck is&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; included.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cCheck &nbsp; &nbsp; &nbsp;= optional, character to use to show&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; selection. Default is "√". &nbsp;See&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "cBox" variables in the procedure for</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bracketing characters.</span></p>
+<p><span class=rvts6>*-- Also uses...: global numeric variable nG_MusClic, giving the inkey()</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; value of the character "keyboarded" by a mouse click.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If this variable does not exist, mouse support is&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; absent.</span></p>
+<p><span class=rvts6>*-- Side effects: On return, the values of the second column of the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; array are .T. or .F. in accordance with selections&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; made.</span></p>
+<p><span class=rvts6>*-- Special note: The CWnSize function called by this routine uses</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; VDCURSOR.BIN, which must be available for this routine</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to work, and disables any ON ERROR trap.</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cArray, nDown, nLast, nRows, nLength, cColors, cCheck</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cChar, cCols, cNorm, cHigh, nAt, nTop, nKey, cBoxl, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cBoxr&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nElems, lGotMouse, nMTop, nMBot, nMLeft, nMRight, cCols</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cMrow, cMcol, nMrow, nMcol, cEsc, cWin, nWinTop, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nWinLeft</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nWinBot, nWinRight, nK, cK, cTemp, nX, cQuit, nRo, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;lOnPicks, lOk</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp;These "symbolic constants" are C-style, just to avoid "magic</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp;numbers" scattered throughout the routine. &nbsp;Of course, they</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp;may also slow it down absent a true compiler</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private NBOXLEN, NEXTRAROWS, NPADLEN, NTWOPADS</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nBoxLen &nbsp; &nbsp;= &nbsp;6 &nbsp; &nbsp;&amp;&amp; length of the "[ √ ] " structure</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nExtraRows = &nbsp;4 &nbsp; &nbsp;&amp;&amp; blank row at top, 3 rows for quit pads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nPadLen &nbsp; &nbsp;= &nbsp;6 &nbsp; &nbsp;&amp;&amp; length of the OK and Cancel pads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nTwoPads &nbsp; = 13 &nbsp; &nbsp;&amp;&amp; length of two pads and a space between</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* set escape</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cEsc = set("ESCAPE")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set escape off</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* set delimiter chars</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cBoxL = "[ "</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cBoxR = " ] "</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* set colors if specified</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if type( "cColors" ) = "C"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cCols = m-&gt;cColors</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cCols = set( "ATTRIBUTES" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cCols = left( m-&gt;cCols, at( "&amp;", m-&gt;cCols ) - 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cNorm = NormColors( m-&gt;cCols )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cHigh = HighColors( m-&gt;cCols )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* set up quit pad colors</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cQuit = m-&gt;cHigh</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* set checkmark char, default is "√" ( chr( 251 ) )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cChar = iif( type( "cCheck" ) # "L", m-&gt;cCheck, "√" )</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* calculate array rows and set up temporary array for restoration</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nElems = arrayrows( m-&gt;cArray )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;declare cTemp[ m-&gt;nElems ]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nElems</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cTemp[ m-&gt;nX ] = &amp;cArray.[ m-&gt;nX, 2 ]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp;find borders of current window and determine centering offset</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cWin = cWnSize()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if len( m-&gt;cWin ) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nWinTop &nbsp; = cWnDecode( m-&gt;cWin, "T" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nWinLeft &nbsp;= cWnDecode( m-&gt;cWin, "L" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nWinBot &nbsp; = cWnDecode( m-&gt;cWin, "B" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nWinRight = cWnDecode( m-&gt;cWin, "R" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ? "Can't find VDCURSOR.BIN - aborting"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; wait</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cancel</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRight = int( ( m-&gt;nWinRight - m-&gt;nWinLeft - m-&gt;nBoxLen - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nLength ) / 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nCkCol = m-&gt;nRight + 2</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp;we need at least 13 columns for the quit pads, and enough for</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp;the checkbox table itself</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nWinRight - m-&gt;nWinLeft &lt; max( m-&gt;nTwoPads, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nBoxLen + m-&gt;nLength )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ? "Too few columns in this window - aborting"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; wait</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cancel</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp;determine rows to use if window is small</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRo = min( m-&gt;nRows, min( m-&gt;nLast - m-&gt;nDown,;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nWinBot - m-&gt;nWinTop - m-&gt;nExtraRows ) )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nRo &lt; 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ? "Too few rows in this window - aborting"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; wait</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cancel</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* test for mouse support and set boundaries of active click area</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* nMx variables represent absolute screen positions of the edges</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* of the checkbox table</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;lGotMouse = .F.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if type( "nG_MusClick" ) = "N"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;lGotMouse = .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nMTop &nbsp; = m-&gt;nWinTop + &nbsp;m-&gt;nDown - 1 &nbsp; &nbsp;&amp;&amp; row above table</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nMLeft &nbsp;= m-&gt;nWinLeft + m-&gt;nRight &nbsp; &nbsp; &nbsp; &amp;&amp; left edge of table</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nMBot &nbsp; = m-&gt;nMTop + m-&gt;nRo + 1 &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; row below table</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nMRight = m-&gt;nMLeft + m-&gt;nBoxLen + m-&gt;nLength - 1 &amp;&amp; right edge</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* position quit pads ( they are displayed by Smultpick )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* nLpad and nRpad are column offsets within the active window</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* of the two pads, " &nbsp;OK &nbsp;" and "Cancel"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nPadLen + m-&gt;nLength &gt; m-&gt;nTwoPads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nLPad = m-&gt;nRight</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nLPad = int( ( m-&gt;nWinRight - m-&gt;nWinLeft ) / 4 ) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ( m-&gt;nPadLen / 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRPad = m-&gt;nWinRight - m-&gt;nWinLeft - m-&gt;nPadLen - m-&gt;nLPad</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* initialize display as if "Home" had been pressed</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* nTop is the index into the array of the element to be shown</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp; on the top row of the table</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* nHigh is the index into the array of the element to be shown</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp; highlighted ( the current element )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* lOnPicks is the "focus"; .T. means we are in the pick table,</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* &nbsp; not on the quit pads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nTop = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nHigh = m-&gt;nTop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;keyboard "{Home}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;lOnPicks = .T.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* commence main key-handling loop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nKey = inkey()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if m-&gt;nKey = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;loop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nKey = 23 &nbsp; &nbsp; &nbsp;&amp;&amp; Ctrl-End</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nKey = 27 &nbsp; &nbsp; &nbsp;&amp;&amp; Escape</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if YesQuit()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nKey = 79 .or. m-&gt;nKey = 111 &nbsp; &amp;&amp; 'O' or 'o'</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nKey = 67 .or. m-&gt;nKey = 99 &nbsp; &nbsp;&amp;&amp; 'C' or 'c'</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if YesQuit()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nKey = 9 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; Tab</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if m-&gt;lOnPicks</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;lOk = .T. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; default tab is "OK"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ row(), m-&gt;nRight say m-&gt;cBoxL + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;nHigh, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ row(), col() say left( &amp;cArray.[ m-&gt;nHigh, 1 ] ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+ space( m-&gt;nLength ), m-&gt;nLength ) color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ m-&gt;nLast, m-&gt;nLPad + m-&gt;nPadLen / 2 say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do SmultPick</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;lOnPicks = .not. m-&gt;lOnPicks</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;lGotMouse .and. m-&gt;nKey = nG_MusClick &nbsp;&amp;&amp; mouse click</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; store chr(255) to m-&gt;cMRow, m-&gt;cMCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call MUSCLICK with m-&gt;cMRow, m-&gt;cMCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nMRow = asc( m-&gt;cMRow )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nMCol = asc( m-&gt;cMCol )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if m-&gt;nMRow &gt;= m-&gt;nMTop .and. m-&gt;nMRow &lt;= m-&gt;nMBot .and. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nMCol &gt;= m-&gt;nMLeft .and. m-&gt;nMCol &lt;= m-&gt;nMRight &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; in active area</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nAt = m-&gt;nHigh - m-&gt;nTop + m-&gt;nMTop + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nMRow = m-&gt;nAt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;keyboard chr( 13 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nMRow = m-&gt;nMTop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;keyboard "{PgUp}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nMRow = m-&gt;nMBot</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;keyboard "{PgDn}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nMRow &gt; m-&gt;nAt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while m-&gt;nAt &lt; m-&gt;nMRow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keyboard "{DNARROW}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nAt = m-&gt;nAt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nMRow &lt; m-&gt;nAt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while m-&gt;nAt &gt; m-&gt;nMRow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keyboard "{UPARROW}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nAt = m-&gt;nAt - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* if it was on a pad</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nMRow = m-&gt;nWinTop + m-&gt;nLast</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if m-&gt;nMCol &gt;= m-&gt;nWinLeft + m-&gt;nLPad .and. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nMCol &lt; m-&gt;nWinLeft + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nLPad + m-&gt;nPadLen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keyboard "O"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; loop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if m-&gt;nMCol &gt;= m-&gt;nWinLeft + m-&gt;nRPad .and.;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nMCol &lt; m-&gt;nWinLeft + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nRPad + m-&gt;nPadLen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keyboard "C"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; loop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;keyboard "{Esc}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;otherwise</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if m-&gt;lOnPicks</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nKey = 26 &nbsp; &nbsp; &nbsp;&amp;&amp; Home</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nTop = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nHigh = m-&gt;nTop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do SMultPick</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nKey = 2 &nbsp; &nbsp; &nbsp; &amp;&amp; End</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nTop = m-&gt;nElems - m-&gt;nRo + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nHigh = m-&gt;nElems</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; do SMultPick</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nKey = 24 &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; down arrow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if m-&gt;nHigh = m-&gt;nTop + m-&gt;nRo - 1 .or. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nHigh = m-&gt;nElems</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;keyboard "{PgDn}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;nHigh - m-&gt;nTop + m-&gt;nDown,;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nRight say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nRight say m-&gt;cBoxL + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;nHigh, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), col() say ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left( &amp;cArray.[ m-&gt;nHigh, 1 ] ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + space( m-&gt;nLength ), m-&gt;nLength ) ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nHigh = m-&gt;nHigh + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row() + 1, m-&gt;nRight say m-&gt;cBoxL + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;nHigh, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) +m-&gt;cBoxR color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), col() say ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left( &amp;cArray.[ m-&gt;nHigh, 1 ] ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + space( m-&gt;nLength ), m-&gt;nLength );</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nCkCol say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nKey = 5 &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; up arrow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nHigh = m-&gt;nTop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keyboard "{PgUp}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;nHigh - m-&gt;nTop + m-&gt;nDown, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nRight say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nRight say m-&gt;cBoxL + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;nHigh, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), col() say ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left( &amp;cArray.[ m-&gt;nHigh, 1 ] ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + space( m-&gt;nLength ), m-&gt;nLength );</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nHigh = max( 1, m-&gt;nHigh - 1 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row() - 1, m-&gt;nRight say m-&gt;cBoxL +;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;nHigh, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), col() say ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left( &amp;cArray.[ m-&gt;nHigh, 1 ] ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + space( m-&gt;nLength ), m-&gt;nLength );</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nCkCol say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nKey = 32 .or. m-&gt;nKey = 13 &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; space and enter are toggles</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;cArray.[ m-&gt;nHigh, 2 ] = .not. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;cArray[ m-&gt;nHigh, 2 ]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ row(), m-&gt;nCkCol say ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;iif( &amp;cArray.[ m-&gt;nHigh, 2], m-&gt;cChar, " " ) ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ row(), m-&gt;nCkCol say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nKey = 3 &nbsp; &nbsp; &nbsp;&amp;&amp; PgDn</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nHigh = m-&gt;nTop + m-&gt;nRo - 1 .or.;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nHigh = m-&gt;nElems</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nTop = min( m-&gt;nHigh, m-&gt;nElems - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nRows + 1 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; do SmultPick</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nRight say m-&gt;cBoxL +;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;nHigh, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), col() say left( &amp;cArray.[ m-&gt;nHigh, 1];</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+ space( m-&gt;nLength ), m-&gt;nLength );</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nHigh = m-&gt;nTop + m-&gt;nRo - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;nDown + m-&gt;nRo - 1, m-&gt;nRight say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nRight say m-&gt;cBoxL + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;nHigh, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), col() say left( &amp;cArray.[ m-&gt;nHigh, 1];</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+ space( m-&gt;nLength ), m-&gt;nLength ) ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nCkCol say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nKey = 18 &nbsp; &nbsp; &nbsp;&amp;&amp; PgUp</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nHigh = m-&gt;nTop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nTop = max( 1, m-&gt;nHigh - m-&gt;nRo + 1 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; do SmultPick</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nHigh = m-&gt;nTop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;nDown, m-&gt;nRight say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nRight say m-&gt;cBoxL +;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;nHigh, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), col() say left( &amp;cArray.[ m-&gt;nHigh, 1];</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+ space( m-&gt;nLength ), m-&gt;nLength ) ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ row(), m-&gt;nCkCol say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nKey = 32 .or. m-&gt;nKey = 4 .or. m-&gt;nKey = 19 &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; space, r &amp; l</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;lOK = .not. m-&gt;lOK</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ m-&gt;nLast, iif( m-&gt;lOK, m-&gt;nLPad, m-&gt;nRPad );</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+ m-&gt;nPadLen / 2 say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nKey = 13 &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; and enter quits</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;lOK</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keyboard "{CTRL-END}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; keyboard "{ESC}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; enddo</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if m-&gt;cEsc ="ON"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;set escape on</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*-- EoP: MultiPick</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION CheckBox2</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Adam L. Menkes (BORLAND TECHNICAL SUPPORT)</span></p>
+<p><span class=rvts6>*-- Date........: 06/01/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: This routine brings up a one-line message, allows the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; user to click mouse/press &lt;Space&gt; on it, to change&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; status. Pressing &lt;Enter&gt;/&lt;Esc&gt; chooses the current&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; setting ...</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 06/01/1992 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: CheckBox2(&lt;lVar&gt;,"&lt;cTitle&gt;",&lt;nRow&gt;,&lt;nCol&gt;,&lt;nASCII&gt;)</span></p>
+<p><span class=rvts6>*-- Example.....: lX = CheckBox2(.t.,"OK as is?",9,10,4)</span></p>
+<p><span class=rvts6>*-- Returns.....: Logical</span></p>
+<p><span class=rvts6>*-- Parameters..: lVar &nbsp; &nbsp; = On or Off to start? (.t.=on, .f.=off)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTitle &nbsp; = Title/Message</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRow &nbsp; &nbsp; = Row to place this</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nCol &nbsp; &nbsp; = Column ...</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nASCII &nbsp; = ascii character to use in box. (Optional)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Default is 251 (√). Other suggestions&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;include:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4 (diamond), 176 (░), 177 (▒), 178 (▓),</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;219 (█), 249 (∙), 250 (·), 254 (■)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(Check out the ASCII chart in the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;language ref.)</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters lVar, cTitle, nRow, nCol, nASCII</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if parameter is left blank, assign 251 (√)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nASCII = iif(pCount() = 5, m-&gt;nASCII, 251)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define menu mCheck</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- loop until user does something, or presses &lt;Esc&gt;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .t.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- define the menu pad ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; define pad pCheck1 of mCheck at m-&gt;nRow,m-&gt;nCol prompt;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"["+iif(m-&gt;lVar,chr(m-&gt;nASCII)," ")+"] "+m-&gt;cTitle</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; on selection pad pCheck1 of mCheck deactivate menu</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- when user presses &lt;Enter&gt; turn it all off ... (send &lt;Esc&gt; ...)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; on key label ctrl-m keyboard "{27}"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- start 'er up</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; activate menu mCheck</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- (&lt;Esc&gt; or &lt;Enter&gt;)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if lastkey() = 27</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;lVar = .not. m-&gt;lVar &nbsp; &amp;&amp; set to opposite of current setting</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- reset environment/release things</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on key label ctrl-m</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release menu mCheck</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;lVar</span></p>
+<p><span class=rvts6>*-- EoF: CheckBox2()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Function CheckBx1</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Adam L. Menkes (BORLAND TECHNICAL SUPPORT)</span></p>
+<p><span class=rvts6>*-- Date........: 06/01/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: This routine brings up a one-line message, allows the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; user to click mouse/press &lt;Space&gt; on it, to change&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; status. Pressing &lt;Enter&gt;/&lt;Esc&gt; chooses the current&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; setting ...</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; This one is different, in that it does not use a menu&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to accomplish it's ends, but uses instead a memvar,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; with @/GET/READ and a picture using the multiple&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; choice ("@M") function.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 06/01/1992 -- Original</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: CheckBx1(&lt;lVar&gt;,"&lt;cTitle&gt;",&lt;nRow&gt;,&lt;nCol&gt;)</span></p>
+<p><span class=rvts6>*-- Example.....: lX = CheckBx1(.t.,"OK as is?",9,10)</span></p>
+<p><span class=rvts6>*-- Returns.....: Logical</span></p>
+<p><span class=rvts6>*-- Parameters..: lVar &nbsp; &nbsp; = On or Off to start? (.t.=on, .f.=off)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cTitle &nbsp; = Title/Message</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRow &nbsp; &nbsp; = Row to place this</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nCol &nbsp; &nbsp; = Column ...</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters lVar, cTitle, nRow, nCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- save parts of environment ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cFormat = set("FORMAT")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set format to</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cCursor = set("CURSOR")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- define starting value of cVar ...&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- (this is ASCII 255, √, ASCII 255, if lVar = .t., 3 spaces&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if lVar = .f.)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cVar = iif(m-&gt;lVar,chr(255)+chr(251)+chr(255),space(3))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- display/get, using picture</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@m-&gt;nRow,m-&gt;nCol get m-&gt;cVar picture "@M ,&nbsp;√&nbsp;"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- this picture is: space, comma, chr(255), chr(251), chr(255).</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@m-&gt;nRow,m-&gt;nCol + 4 say m-&gt;cTitle</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;READ</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- reset environment</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set format to &amp;cFormat.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set cursor &amp;cCursor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>RETURN .not. (m-&gt;cVar = chr(32)) &nbsp; &amp;&amp; not a space</span></p>
+<p><span class=rvts6>*-- EoF: CheckBx1()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION RadioBut</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Adam L. Menkes (BORLAND TECHNICAL SUPPORT)</span></p>
+<p><span class=rvts6>*-- Date........: 06/01/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: This is a Radio Button routine. &nbsp;NOTE that the array&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; called as cArray below must be a character array (i.e.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; all data must be character data ...).</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 06/01/1992 -- Original</span></p>
+<p><span class=rvts6>*-- Calls.......: ArrayRows() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Function in ARRAY.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TmpRadio &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Procedure in WINDOWS.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: None</span></p>
+<p><span class=rvts6>*-- Usage.......: RadioBut("&lt;cArray&gt;",&lt;nRow&gt;,&lt;nCol&gt;,&lt;nDefPad&gt;,&lt;nASCII&gt;)</span></p>
+<p><span class=rvts6>*-- Example.....: nReturn = &nbsp;RadioBut("aTest",5,10,1,15)</span></p>
+<p><span class=rvts6>*-- Returns.....: Numeric (Array Index of item selected)</span></p>
+<p><span class=rvts6>*-- Parameters..: cArray &nbsp;= Name of Array (Character data)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRow &nbsp; &nbsp;= Row for coordinates ... (start position)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nCol &nbsp; &nbsp;= Column for same</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nDefPad = Default Pad number</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nASCII &nbsp;= ASCII character to use as 'button'&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(Optional ...)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; try: 4 (Diamond), 9 (Circle), 15 (splot), 42 (*),</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;249 (∙), &nbsp;251 (√) or 254 (■) ...</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cArray, nRow, nCol, nDefPad, nASCII</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define menu mRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;public aTmpRadio, nARows, nPad</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- get number of items to display</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nARows = ArrayRows(m-&gt;cArray)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- set character for 'button'</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nASCII = iif(PCOUNT() &lt;= 4,4,m-&gt;nASCII) &amp;&amp; default is a 'diamond'</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- start definitions ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cPad = iif(pcount() =&gt; 4 .and. m-&gt;nDefPad # 0,;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ltrim(str(m-&gt;nDefPad)),"1")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nCol = iif(pcount() &lt;= 2,10,m-&gt;nCol)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRow = iif(pCount() &lt;= 1,5,m-&gt;nRow)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- here we get the largest item in the array ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nLongest = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nARows</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nLongest = max(m-&gt;nLongest,len(trim(&amp;cArray.[m-&gt;nX])))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- define a temporary array ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;declare aTmpRadio[m-&gt;nARows]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on key label ctrl-m keyboard "{27}" &nbsp;&amp;&amp; close down if &lt;Enter&gt; ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cX = "1"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .t.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- define menu pads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do while val(m-&gt;cX) &lt;= m-&gt;nARows</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;define pad button&amp;cX. of mRadio at m-&gt;nRow - 1 + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val(m-&gt;cX),m-&gt;nCol;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; prompt "("+ iif(aTmpRadio[val(m-&gt;cX)] .or. m-&gt;cPad = m-&gt;cX,;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; chr(m-&gt;nASCII)," ")+") "+trim(&amp;cArray[val(m-&gt;cX)])+;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; space(m-&gt;nLongest-len(trim(&amp;cArray[val(m-&gt;cX)])))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;on selection pad button&amp;cX. of mRadio deactivate menu</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;cX = ltrim(str(val(m-&gt;cX)+1))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- start 'er up</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; activate menu mRadio pad button&amp;nPad.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *-- if &lt;Esc&gt; (or &lt;Enter&gt;), we're done ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if lastkey() = 27</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nPad = substr(pad(),7)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*-- if not, perform routine below to reset the temp array ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do TmpRadio</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- cleanup</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on key label ctrl-m</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nY = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nY &lt;= m-&gt;nARows .and. .not. aTmpRadio[m-&gt;nY]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nY = m-&gt;nY + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release aTmpRadio, nPad</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release menu mRadio</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN iif(m-&gt;nY &gt; m-&gt;nARows, 0, m-&gt;nY)</span></p>
+<p><span class=rvts6>*-- EoF: RadioBut()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PROCEDURE TmpRadio</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Adam L. Menkes (BORLAND TECHNICAL SUPPORT)</span></p>
+<p><span class=rvts6>*-- Date........: 06/01/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: Used to set/reset the temporary array aTmpRadio[] for&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; use in the RadioBut() function above.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 06/01/1992 -- Original</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: RadioBut() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Function in WINDOWS.PRG</span></p>
+<p><span class=rvts6>*-- Usage.......: Do TmpRadio</span></p>
+<p><span class=rvts6>*-- Example.....: Do TmpRadio</span></p>
+<p><span class=rvts6>*-- Returns.....: None</span></p>
+<p><span class=rvts6>*-- Parameters..: None</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nPad = substr(pad(),7)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nY = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nY &lt;= m-&gt;nARows</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; aTmpRadio[m-&gt;nY] = .f.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nY = m-&gt;nY + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;aTmpRadio[val(m-&gt;nPad)] = .t.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cX = "1"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*-- EoP: TmpRadio</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- The following routines are included by courtesy:</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PROCEDURE Shadow</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Ashton-Tate</span></p>
+<p><span class=rvts6>*-- Date........: 06/02/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Creates a shadow for a window (taken from the dBASE IV</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; picklist functions)</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1</span></p>
+<p><span class=rvts6>*-- Rev. History: 05/23/1991 - original procedure.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 12/14/1991 - Modified by Jim Magnant (TXAGGIE) - to&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; check for columns exceeding 79, and temporarily&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; change last col. value (so routine doesn't "blow&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; up").</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 01/27/1992 -- Modifiedy by Ken Mayer to check for&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bottom of screen, based on what Jim did above. No&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; further than 23.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 06/02/1993 -- Modified to handle screens larger than&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 24 lines. (KJM)</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Too many to list ...</span></p>
+<p><span class=rvts6>*-- Usage.......: do shadow with &lt;nULRow&gt;,&lt;nULCol&gt;,&lt;nBRRow&gt;,&lt;nBRCol&gt;</span></p>
+<p><span class=rvts6>*-- Example.....: save screen to sMain</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; activate screen</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; define window wError from 5,15 to 15,65 double color;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rg+/r,rg+/r,rg+/r</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; do shadow with 5,15,15,65</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; activate window WError</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; perform actions in window</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; release window WError</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; restore screen from sMain</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; release screen sMain</span></p>
+<p><span class=rvts6>*-- Returns.....: None</span></p>
+<p><span class=rvts6>*-- Parameters..: nULRow = Upper Left Row position</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nULCol = Upper Left Column position (x,y)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nBRRow = Bottom Right Row position</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nBRCol = Bottom Right Column position (x2,y2)</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters nULRow,nULCol,nBRRow,nBRCOL</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nTempRow,nTempCol,nIncRow,nIncCol,cScreen,nScreen</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- if screen is larger than 24 lines (EGA43, EGA50 ...)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cScreen = set("DISPLAY")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;cScreen = "MONO"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nScreen = 23</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nScreen = val(right(m-&gt;cScreen,2))-2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nTempRow = iif(m-&gt;nBRRow+1&gt;m-&gt;nScreen,m-&gt;nScreen,m-&gt;nBRRow+1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nTempCol = iif(m-&gt;nBRCol+2&gt;79,79,m-&gt;nBRCol+2)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nIncRow = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nIncCol = (m-&gt;nBRCol-m-&gt;nULCol) / (m-&gt;nBRRow-m-&gt;nULRow)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nTempRow &lt;&gt; m-&gt;nULRow .or. m-&gt;nTempCol &lt;&gt; m-&gt;nULCol+2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nRightCol = m-&gt;nBRCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nBRCol = iif(m-&gt;nBRCol + 2 &gt; 79,77,m-&gt;nBRCol)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nBotRow = m-&gt;nBRRow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nBRRow = iif(m-&gt;nBRRow + 1 &gt; m-&gt;nScreen,m-&gt;nScreen-1,m-&gt;nBRRow)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ m-&gt;nTempRow,m-&gt;nTempCol fill to m-&gt;nBRRow+1,m-&gt;nBRCol+2 ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color n+/n</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nBRCol = m-&gt;nRightCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nBRRow = m-&gt;nBotRow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nTempRow = iif(m-&gt;nTempRow&lt;&gt;m-&gt;nULRow,m-&gt;nTempRow -m-&gt;nIncRow,;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nTempRow)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nTempCol = iif(m-&gt;nTempCol&lt;&gt;m-&gt;nULCol+2,m-&gt;nTempCol - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nIncCol,m-&gt;nTempCol)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nTempCol = iif(m-&gt;nTempCol&lt;m-&gt;nULCol+2,m-&gt;nULCol+2,m-&gt;nTempCol)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*-- EoP: Shadow</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PROCEDURE SMultPick</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons (CIS: 72662,1305)</span></p>
+<p><span class=rvts6>*-- Date........: 01/16/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Does screen display loop for Multipick procedure.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: Original function 01/16/1993.</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Multipick</span></p>
+<p><span class=rvts6>*-- Usage.......: DO SMultpick</span></p>
+<p><span class=rvts6>*-- Parameters..: None, but procedure uses various variables set by the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; parent Multipick procedure.</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nThisOff, nThisRow, nThisElem, nHiRow, nR</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nThisOff = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nR = min( m-&gt;nRo, m-&gt;nElems - m-&gt;nTop + 1 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nThisOff &lt; m-&gt;nRo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;ThisRow = m-&gt;nDown + m-&gt;nThisOff</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;ThisElem = m-&gt;nTop + m-&gt;nThisOff</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if m-&gt;nThisoff &lt; m-&gt;nR</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;ThisElem = m-&gt;nHigh</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;ThisRow, m-&gt;m-&gt;nRight say m-&gt;cBoxL + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;ThisElem, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;ThisRow, col() say left( &amp;cArray.[ m-&gt;ThisElem, 1 ] ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + space( m-&gt;nLength ), m-&gt;nLength ) color &amp;cHigh.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nHiRow = m-&gt;ThisRow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;ThisRow, m-&gt;nRight say m-&gt;cBoxL + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; iif( &amp;cArray.[ m-&gt;ThisElem, 2], ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cChar, " " ) + m-&gt;cBoxR color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;ThisRow, col() say left( &amp;cArray.[ m-&gt;ThisElem, 1 ] ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + space( m-&gt;nLength ), m-&gt;nLength ) color &amp;cNorm.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ m-&gt;ThisRow, m-&gt;nRight say space( m-&gt;nCkCol + len( m-&gt;cBoxR );</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+ m-&gt;nLength )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nThisoff = m-&gt;nThisOff + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ m-&gt;nLast, m-&gt;nLPad say " Done " color &amp;cQuit.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ m-&gt;nLast, m-&gt;nRPad say "Cancel" color &amp;cQuit.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ m-&gt;nHiRow, m-&gt;nCkCol say ""</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*-- EoP: SMultPick</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION YesQuit</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons &nbsp;(CIS: 72662,1302)</span></p>
+<p><span class=rvts6>*-- Date........: 02/24/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Asks whether to quit and cancel changes; does so if&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; yes.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, Version 1.5.</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/.24/1993 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: YnMouse() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Function in SCREENS.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Multipick</span></p>
+<p><span class=rvts6>*-- Usage.......: YesQuit()</span></p>
+<p><span class=rvts6>*-- Example.....: ? Yesquit()</span></p>
+<p><span class=rvts6>*-- Parameters..: None</span></p>
+<p><span class=rvts6>*-- Returns.....: Logical, .T. for "Yes" or .F. for "No"</span></p>
+<p><span class=rvts6>*-- Side effects: If "Yes", restores cArray[ , 2 ] values from cTemp</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nX, lRet</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;lRet = YnMouse( "","Do you wish to restore", ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"the original selection","and leave this routine?" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;lRet</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do while m-&gt;nX &lt;= m-&gt;nElems</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;store cTemp[m-&gt;nX] to &amp;cArray.[ m-&gt;nX, 2 ]&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;lRet</span></p>
+<p><span class=rvts6>*-- EoF: YesQuit()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION YnMouse</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons (CIS: 72662,1302)</span></p>
+<p><span class=rvts6>*-- Date........: 02/28/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Returns .T. or .F. answer to question without leaving</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mouse droppings. &nbsp;Will not respond to left arrow&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; properly unless set( "ESCAPE" ) is off.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *******************************</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **** REQUIRES MUSCLICK.BIN ****</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *******************************</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, Version 1.5.</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/23/93 - original function</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/28/93 - revised to support right and left arrows</span></p>
+<p><span class=rvts6>*-- Calls.......: HighColors() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Function in COLOR.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Center &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Procedure in PROC.PRG ( if&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; centering )</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: YnMouse( &lt;cColors&gt;, &lt;cP1&gt; [, &lt;cP2&gt;...] [,&lt;lYes&gt;] )</span></p>
+<p><span class=rvts6>*-- Example.....: ? YnMouse( "", "Are you sure?" )</span></p>
+<p><span class=rvts6>*-- Parameters..: cColors &nbsp; - &nbsp; String, either blank or holding desired</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; colors as standard [ , enhanced [,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; border ] ]</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cP&lt;n&gt; &nbsp; &nbsp; - &nbsp; One or more strings of prompt&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; characters.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt; only 7 may be passed as literals using</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dBASE IV 1.5 &gt;. &nbsp;They will be printed</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; one below the other. &nbsp;There may not in</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; any event be more than the number of</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; useable screen rows less 6; the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; parameters line will have to be changed</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to use more than 20. As furnished, the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; justification of the prompt strings is&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; flush left. &nbsp;To center them, see the&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; commented lines in the code.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Centering uses the Center procedure in&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PROC.PRG.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lYes &nbsp; &nbsp; &nbsp;- &nbsp; A logical .T. if the default answer is&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "Yes". This must be the last parameter,&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; but it may follow any number of prompt&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lines.</span></p>
+<p><span class=rvts6>*-- Returns.....: Logical, .T. for "Yes" or .F. for "No"</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cColors, cP01, cP02, cP03, cP04, cP05, cP06, cP07, cP08,;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cP09, cP10, cP11, cP12, cP13, cP14, cP15, cP16, cP17, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cP18, cP19, cP20, lYes</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cYn, nX, lY, nParams, nRows, nCols, cWhich, nBot, nTop, nLeft</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cColrs, cPads, nLPad, nRpad, lRet, nScr</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* obtain number of prompts, and default answer if provided</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nParams = pcount() - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;lY = .F.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* if we have 22 parameters, last must be the default answer</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nParams = 21</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;lY = m-&gt;lYes</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* otherwise look at the last parameter's type--if it is logical</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* that's the default answer and not a prompt</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cWhich = "cP" + right( str( 100 + m-&gt;nParams ), 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if type( m-&gt;cWhich ) = "L"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;lY = &amp;cWhich.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nParams = m-&gt;nParams - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* we need six rows for top and bottom borders, space before prompts,</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* space after prompts, yes/no pads and space after them</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRows = m-&gt;nParams + 6</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nScr = iif( "43" $ set( "DISPLAY" ), 43, 25 )</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* don't overwrite messages, status or scoreboard</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nBot = m-&gt;nScr - 2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nTop = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if set( "STATUS" ) = "ON"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nBot = m-&gt;nBot - 2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if set( "SCOREBOARD" ) = "ON"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nTop = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nRows &gt; m-&gt;nBot - m-&gt;nTop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ? "Too many prompt lines for screen size - aborting"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; wait</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cancel</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* find longest prompt line and window width it requires including</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* a space at both ends</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nCols = 13 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; 11 spaces for the pads, 2 for border</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nParams</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cWhich = "cP" + right( str( 100 + m-&gt;nX ), 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nCols = max( m-&gt;nCols, len( trim( &amp;cWhich. ) ) + 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* round up to even number of columns in order to center the window</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nCols = 2 * ceiling( m-&gt;nCols/ 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nCols &gt; 80</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; activate screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ? "Prompts are too long for screen - aborting"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; wait</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; cancel</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* calculate screen row of top and bottom of centered window</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nTop = max( m-&gt;nTop, int( ( m-&gt;nScr - m-&gt;nRows ) / 2 ) )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nBot = m-&gt;nTop + m-&gt;nRows</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* and screen column of left edge</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nLeft = 39 - m-&gt;nCols / 2</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* obtain colors to use, using highlight for pads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cColrs = iif( "" # m-&gt;cColors, m-&gt;cColors, set( "ATTRIBUTES" ) )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if "&amp;" $ m-&gt;cColrs</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cColrs = left( m-&gt;cColrs, at( "&amp;", m-&gt;cColrs ) - 1 &nbsp;)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cPads = HighColors( m-&gt;cColrs )</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* calculate column positions of yes/no pads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nLPad = int( ( m-&gt;nCols - 2 ) / 4 ) - 2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRPad = m-&gt;nCols - m-&gt;nLPad - 6</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* now open the window and print prompts</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;define window cYn from m-&gt;nTop, m-&gt;nLeft to m-&gt;nBot, ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nLeft + m-&gt;nCols color &amp;cColrs.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;activate window cYn</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nParams</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cWhich = "cP" + right( str( 100 + m-&gt;nX ), 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp;To change from flush left to centered justification of the&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp;prompts, uncomment the next code line and comment out the one</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp;following.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp;You will then need the "Center" procedure in PROC.PRG.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; do Center with m-&gt;nX, m-&gt;nCols, "", &amp;cWhich.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ m-&gt;nX, 1 say &amp;cWhich.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* print pads</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ m-&gt;nX + 1, m-&gt;nLPad say " Yes " color &amp;cPads.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ m-&gt;nX + 1, m-&gt;nRPad say " &nbsp;No " color &amp;cPads.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@ m-&gt;nX + 1, iif( m-&gt;lY, m-&gt;nLPad, m-&gt;nRPad ) + 2 say ""</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;* and begin a loop that may last forever</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;clear typeahead</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nk = inkey()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if m-&gt;nk = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;loop</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nk = 89 .or. m-&gt;nk = 121 &nbsp; &nbsp;&amp;&amp; 'Y' or 'y'</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;lRet = .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;nK = 78 .or. m-&gt;nK = 110 .or. m-&gt;nK = 27 &nbsp;&nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; 'N' or 'n' or Esc</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;lRet = .F.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nK = 13 .or. m-&gt;nK = 23 &nbsp; &nbsp; &amp;&amp; Enter or Ctrl-End</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;lRet = m-&gt;lY</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;nK = 4 .or. m-&gt;nK = 19 &nbsp; &nbsp; &nbsp;&amp;&amp; right or left arrow</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;lY = .not. m-&gt;lY</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ m-&gt;nX + 1, iif( m-&gt;lY, m-&gt;nLPad, m-&gt;nRPad ) + 2 say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case type( "nG_MusClic" ) = "N" .and. m-&gt;nk = m-&gt;nG_MusClic</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; store chr(255) to m-&gt;cMRow, m-&gt;cMCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call MUSCLICK with m-&gt;cMRow, m-&gt;cMCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nMRow = asc( m-&gt;cMRow )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nMCol = asc( m-&gt;cMCol )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nMRow = m-&gt;nTop + m-&gt;nX + 2 &nbsp; &nbsp; &nbsp;&amp;&amp; one more for border</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nMCol &gt;= m-&gt;nLPad + m-&gt;nLeft .and. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nMCol &lt; m-&gt;nLPad + m-&gt;nLeft + 5</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;lRet = .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if m-&gt;nMCol &gt;= m-&gt;nRPad + m-&gt;nLeft .and. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;nMCol &lt;m-&gt;nRPad + m-&gt;nLeft + 5</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;lRet = .F.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;deactivate window cYn</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release window cYn</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;lRet</span></p>
+<p><span class=rvts6>*-- EoF: YnMouse()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION CWnDecode</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons (CIS: 72662,1302)</span></p>
+<p><span class=rvts6>*-- Date........: 02/06/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Returns the numeric value of one of the four codes for</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; edges of the window held in a string of the type&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; returned by cWnSize. &nbsp;These represent numbers of rows&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or columns.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, Versions 1.0 - 1.5.</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/06/1993 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: cWnDecode( &lt;cWnString&gt;,&lt;cEdge&gt;|&lt;nPos&gt; )</span></p>
+<p><span class=rvts6>*-- Example.....: cWim-&gt;nTop = cWnDecode( cWin, "T" )</span></p>
+<p><span class=rvts6>*-- Parameters..: cWnString - &nbsp; A string returned by CWnSize</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cEdge - &nbsp; &nbsp; &nbsp; A character parameter beginning with one</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; of the four characters "T","L","B",or&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "R", ( upper or lower case ), OR</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nPos &nbsp;- &nbsp; &nbsp; &nbsp; A number indicating the position in the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cWnString of the code for the edge.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; These correspond to the following:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Window edge &nbsp; &nbsp; &nbsp; cEdge &nbsp; &nbsp; &nbsp; nPos</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; top &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;T &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; L &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bottom &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; right &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;R &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 4</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Either cEdge or nPos must be furnished,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; not both.</span></p>
+<p><span class=rvts6>*-- Returns.....: numeric value of the row or column; -1 for argument</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; out of range or cWnString holds garbage or is empty.</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cWnString, xEdge</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nPos, nRet</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nRet = -1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if type( "xEdge" ) = "C"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nPos = at( upper( left( m-&gt;xEdge, 1 ) ), "TLBR" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if type( "xEdge" ) = "N"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nPos = m-&gt;xEdge</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nPos &gt; 0 .and. m-&gt;nPos &lt; 5 .and. len( m-&gt;cWnString ) = 4</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nRet = asc( substr( m-&gt;cWnString, m-&gt;nPos, 1 ) ) - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;nRet &gt; iif( mod( m-&gt;nPos, 2 ) &gt; 0, 43, 80 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nRet = -1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;nRet</span></p>
+<p><span class=rvts6>*-- EoF: CWnDecode</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION CWnSize</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons (CIS: 72662,1302)</span></p>
+<p><span class=rvts6>*-- Date........: 02/06/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Returns a string of four characters which are chr()</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; values of one more each than the top, left, bottom</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and right row and column numbers of the usable surface</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; of the current window, or of the screen. &nbsp;( one more</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to avoid chr( 0 ) problems )</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Returns "" if unable to find VDCURSOR.BIN</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *******************************</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **** REQUIRES VDCURSOR.BIN ****</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *******************************</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, Versions 1.0 - 1.5.</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/06/1993 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: nWBsrch() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; function included</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: cWnSize()</span></p>
+<p><span class=rvts6>*-- Example.....: cWin = cWnSize()</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; WinBot = asc( substr( cWin, 3 1 ) )</span></p>
+<p><span class=rvts6>*-- Parameters..: None</span></p>
+<p><span class=rvts6>*-- Returns.....: character string of four chr() values, or "" if error</span></p>
+<p><span class=rvts6>*-- Side effects: Called function nWBsrch disables any error trap</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nHi, nLo, nL, cV</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cV = ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if file( "VDCURSOR.BIN" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; load VDCURSOR</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ 0,0 say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cV = call( "VDCURSOR"," &nbsp;" )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; release module VDCURSOR</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * reverse bytes so row comes first</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cV = right( m-&gt;cV, 1 ) + left( m-&gt;cV, 1 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * this is the first row, and one more than maximum last</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nL = asc( m-&gt;cV ) - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nLo = m-&gt;nL</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nHi = 44</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cV = m-&gt;cV + chr( m-&gt;nL + nWBsrch( m-&gt;nLo, m-&gt;nHi, "Down" );</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + 1 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * first column and one more than last</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nL = asc( substr( m-&gt;cV, 2, 1 ) ) - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nLo = m-&gt;nL</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nHi = 80</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;cV = m-&gt;cV + chr( m-&gt;nL + nWBsrch( m-&gt;nLo, m-&gt;nHi, "Across" );</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + 1 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;cV</span></p>
+<p><span class=rvts6>*-- EoF: CWnSize()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION nWBsrch</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons (CIS: 72662,1302)</span></p>
+<p><span class=rvts6>*-- Date........: 02/06/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: special binary search routine for window edges</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, Versions 1.0 - 1.5.</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/06/1993 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: cWnSize</span></p>
+<p><span class=rvts6>*-- Usage.......: nWBsrch( &lt; nLo &gt;, &lt; nHi &gt;, &lt; cDir &gt; )</span></p>
+<p><span class=rvts6>*-- Example.....: Lastrow = nWBsrch( 0, 44, "Down" )</span></p>
+<p><span class=rvts6>*-- Parameters..: nLo &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Number, top row or left column</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nHi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Number, bottom or right screen edge + 1</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cDir &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;char, direction - "Down" or "Across"</span></p>
+<p><span class=rvts6>*-- Returns.....: number of highest row or column that may be written to</span></p>
+<p><span class=rvts6>*-- Side effects: Disables any ON ERROR trap</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters nLo, nHi, cDir</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private lToohigh, nTry, cD</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;cD = upper( left( m-&gt;cDir, 1 ) )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nHi &gt; m-&gt;nLo + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;lTooHigh = .F.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nTry = int( ( m-&gt;nHi + m-&gt;nLo ) / 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; on error m-&gt;lTooHigh = .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if m-&gt;cD $ "DB"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ nTry, 0 say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ 0, nTry say ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if m-&gt;lTooHigh</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nHi = nTry - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nLo = nTry</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;on error</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;nLo</span></p>
+<p><span class=rvts6>*-- EoF(): nWBsrch</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION ColorBrk</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Ken Mayer (CIS: 71333,1030)</span></p>
+<p><span class=rvts6>*-- Date........: 03/24/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: This routine is designed to be used with any of my&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; functions and procedures that accept a memory variable</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for color, and use a window. It's purpose is to break&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; that color var into it's components (depending on&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; which one the user wants) and return those components,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; so that they can then be used in SET COLOR OF ...&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; commands.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1, 1.5 (written because of 1.5, but will&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; work in 1.1)</span></p>
+<p><span class=rvts6>*-- Rev. History: 07/22/1992 - modified to handle memvars/color strings</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; that may have only two parts to them (no &lt;border&gt;...),</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; so that if the &lt;nField&gt; parm is 2, we get a valid&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; value.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 03/24/1993 -- Lee Hite - Fixed to work correctly when&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;cColorVar&gt; contains a single colorset (i.e., "b/w").</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: ColorBrk(&lt;cColorVar&gt;,&lt;nField&gt;)</span></p>
+<p><span class=rvts6>*-- Example.....: set color of normal to ColorBrk(cColor,1)</span></p>
+<p><span class=rvts6>*-- Returns.....: Either the field you asked for (1 thru 3) or null&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string ("").</span></p>
+<p><span class=rvts6>*-- Parameters..: cColorVar = Color variable to extract data from</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Assumes the form: &lt;main color&gt;,&lt;highlight&gt;,;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;border&gt;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Where each part uses: &lt;foreground&gt;/&lt;background&gt;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;format</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;i.e., rg+/gb,w+/b,rg+/gb</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nField &nbsp; &nbsp;= Field you want to extract</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cColorVar, nField</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cReturn, cExtract</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nField = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if at(",",m-&gt;cColorVar) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cReturn = left(m-&gt;cColorVar,at(",",m-&gt;cColorVar)-1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cReturn = m-&gt;cColorVar</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nField = 2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;cExtract = substr(m-&gt;cColorVar,at(",",m-&gt;cColorVar)+1) &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; everything to right of comma</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if at(",",m-&gt;cExtract) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cReturn = left(m-&gt;cExtract,at(",",m-&gt;cExtract)-1) &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; left of second ,</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cReturn = m-&gt;cExtract</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nField = 3</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;cExtract = substr(m-&gt;cColorVar,at(",",m-&gt;cColorVar)+1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if at(",",m-&gt;cExtract) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cReturn = substr(m-&gt;cExtract,at(",",m-&gt;cExtract)+1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cReturn = ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; otherwise</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;cReturn = ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;cReturn</span></p>
+<p><span class=rvts6>*-- EoF: ColorBrk()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PROCEDURE Center</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Miriam Liskin</span></p>
+<p><span class=rvts6>*-- Date........: 05/24/1991</span></p>
+<p><span class=rvts6>*-- Notes.......: Centers text on the screen with @says</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1</span></p>
+<p><span class=rvts6>*-- Rev. History: This and all other procedures/functions listed in this</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file attributed to Miriam Liskin came from "Liskin's</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Programming dBASE IV Book". Very good, worth the money</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: do center with &lt;nLine&gt;,&lt;nWidth&gt;,"&lt;cColor&gt;","&lt;cText&gt;"</span></p>
+<p><span class=rvts6>*-- Example.....: do center with 5,65,"RG+/GB",;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "WARNING! This will blow up!"</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Note that the color field may be blank: ""</span></p>
+<p><span class=rvts6>*-- Returns.....: None</span></p>
+<p><span class=rvts6>*-- Parameters..: nLine &nbsp;= Line or Row for @/Say</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWidth = Width of screen</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cColor = Colors to be used ("Forg/Back") (may be nul</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"", in order to use the default colors of&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;window/screen)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cText &nbsp;= Message to center on screen</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters nLine,nWidth,cColor,cText</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nCol</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nCol = (m-&gt;nWidth - len(m-&gt;cText)) /2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;@m-&gt;nLine,m-&gt;nCol say m-&gt;cText color &amp;cColor.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*-- EoP: Center</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>FUNCTION ArrayRows</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Jay Parsons (CIS: 72662,1302)</span></p>
+<p><span class=rvts6>*-- Date........: 03/24/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Number of Rows in an array</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1 to 2.0</span></p>
+<p><span class=rvts6>*-- Rev. History: 03/01/1992 -- Original</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 03/24/1993 -- Modified to allow up to 65,535 elements</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; per dimension, as allowed by version&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2.0.</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: ArrayRows("&lt;aArray&gt;")</span></p>
+<p><span class=rvts6>*-- Example.....: n = ArrayRows("aTest")</span></p>
+<p><span class=rvts6>*-- Returns.....: numeric</span></p>
+<p><span class=rvts6>*-- Parameters..: aArray &nbsp; &nbsp; &nbsp;= Name of array&nbsp;</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters aArray</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nHi, nLo, nTrial, nDims</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nLo = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;nHi = iif( val( substr( version(), 11, 3 ) ) &lt; 2, 1170, 65535 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if type( "&amp;aArray.[ 1, 1 ]" ) = "U"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nDims = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nDims = 2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m-&gt;nTrial = int( ( m-&gt;nHi + m-&gt;nLo ) / 2 )</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if m-&gt;nHi &lt; m-&gt;nLo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if m-&gt;nDims = 1 .and. type( "&amp;aArray.[ m-&gt;nTrial ]" ) = "U" .or.;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nDims = 2 .and. type( "&amp;aArray.[ m-&gt;nTrial, 1 ]" ) = "U"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nHi = m-&gt;nTrial - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;nLo = m-&gt;nTrial + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;</span></p>
+<p><span class=rvts6>RETURN m-&gt;nTrial</span></p>
+<p><span class=rvts6>*-- EoF: ArrayRows()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- End of Program: DIALOG2.PRG</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6></span></p>
+</body></html>

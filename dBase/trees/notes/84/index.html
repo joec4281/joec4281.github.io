@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>RBtnBrack</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>PROCEDURE RBtnBrack</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Kenneth Chan [Zak] (CIS: 72662,1305)</span></p>
+<p><span class=rvts6>*-- Date........: 02/17/1994</span></p>
+<p><span class=rvts6>*-- Notes.......: Written for use with RadioBtn(), this simply handles</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; placing the brackets on the screen for the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobuttons being used, then either blanking or</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; placing the selection marker in between, and</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; optionally displaying a prompt for that radiobutton.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The brackets painted have a space before and after,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i.e. " &lt; &gt; ", which improves their appearance when</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; they are colored. If the memvar c_RBtnClr exists, that</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; memvar is assumed to contain a color for your</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobuttons, and is used to paint the brackets and</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; optional prompt, which is placed to the right of the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; brackets.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RBtnBrack will detect the position of the radiobutton</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if used immediately after GETting a single character</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (use PICTURE "X" if necessary -- see RadioBtn()). You</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; may explicitly specify the coordinates of the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobutton.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 2.0</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/03/1994 -- co-dUFLPed by Ken Mayer</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/17/1994 -- Added optional prompt, color support,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and auto-positioning.</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: do RtnBrack with &lt;xVar&gt;, &lt;xVal&gt; [, &lt;cPrompt&gt; ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [, &lt;nRow&gt; [, &lt;nCol&gt; ]]]</span></p>
+<p><span class=rvts6>*-- Example.....: do RtnBrack with cFlav,"C","Chocolate"</span></p>
+<p><span class=rvts6>*-- Returns.....: Nil</span></p>
+<p><span class=rvts6>*-- Parameters..: xVar &nbsp; &nbsp;= Variable name</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xVal &nbsp; &nbsp;= Value for that radiobutton</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OPTIONAL:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cPrompt = Prompt to display for radiobutton</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRow &nbsp; &nbsp;= Row to display brackets</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nCol &nbsp; &nbsp;= Column radiobutton appears in</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

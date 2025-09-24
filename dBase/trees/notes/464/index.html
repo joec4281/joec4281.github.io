@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>FIns</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>FUNCTION FIns</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Adam L. Menkes (Borland Technical Support)</span></p>
+<p><span class=rvts6>*-- Date........: 04/01/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: Inserts specified number of NULLS into a low-level</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file. Taken from Technotes, April, 1992. FIns() works</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the way FDel() works, but in reverse. &nbsp;See comments</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; in FDel about temp directory ...</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 04/01/1992 -- Original</span></p>
+<p><span class=rvts6>*-- Calls.......: TempFile() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Function in FILES3.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: FIns(&lt;nHandle&gt;,&lt;nBytes&gt;,&lt;nStart&gt;)</span></p>
+<p><span class=rvts6>*-- Example.....: nOpen = fopen("TEST.TXT","RW")</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ?FIns(nOpen,10,1)</span></p>
+<p><span class=rvts6>*-- Returns.....: Logical</span></p>
+<p><span class=rvts6>*-- Parameters..: nHandle = File Handle from FOPEN() function</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nBytes &nbsp;= Number of nulls to insert into file</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nStart &nbsp;= Location in file to start at, where:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 = Beginning of file</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1 = Current file pointer</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2 = End of file</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters nHandle, nBytes, nStart</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private nTemp, cTemp, nSave, nRead, nWrite, nSeek, lFlush, nX,nClose</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cTemp = TempFile("ADM") &nbsp; &nbsp; &nbsp;&amp;&amp; create temp file</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nSave = fseek(m-&gt;nHandle,0,1) &nbsp; &amp;&amp; save current position</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nStart = 0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; beginning of file</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nTemp = fcreate(m-&gt;cTemp)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nBytes</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWrite = fwrite(m-&gt;nTemp,chr(0),1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nSeek = fseek(m-&gt;nHandle,0,0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while .not. feof(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRead = fread(m-&gt;nHandle,254)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWrite = fwrite(m-&gt;nTemp,m-&gt;nRead)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lFlush = fflush(m-&gt;nTemp)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nSeek = fseek(m-&gt;nTemp,0,0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nSeek = fseek(m-&gt;nHandle,0,0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while .not. feof(m-&gt;nTemp)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRead = fread(m-&gt;nTemp,254)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWrite = fwrite(m-&gt;nHandle,m-&gt;nRead)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lFlush = fflush(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nWrite = fwrite(m-&gt;nHandle,chr(0),0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nclose = fclose(m-&gt;ntemp)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nSeek = fseek(m-&gt;nHandle,0,0)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nStart = 1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; current location</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*-- write the rest to a temp file</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nTemp = fcreate(m-&gt;cTemp)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while .not. feof(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRead = fread(m-&gt;nHandle,254)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWrite = fwrite(m-&gt;nTemp,m-&gt;nRead)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lFlush = fflush(m-&gt;nTemp)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nSeek = fseek(m-&gt;nHandle,m-&gt;nSave,0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nBytes</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWrite = fWrite(m-&gt;nHandle,chr(0),1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nSeek = fseek(m-&gt;nTemp,0,0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while .not. feof(m-&gt;nTemp)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nRead = fread(m-&gt;nTemp,254)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWrite = fwrite(m-&gt;nHandle,m-&gt;nRead)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lFlush = fflush(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nSeek = fseek(m-&gt;nHandle,m-&gt;nSave,0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nClose = fclose(m-&gt;nTemp)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;nStart = 2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; End of File</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nSeek = fseek(m-&gt;nHandle,0,2)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nBytes</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nWrite = fwrite(m-&gt;nHandle,chr(0),1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;erase (m-&gt;cTemp)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN (ferror() = 0)</span></p>
+<p><span class=rvts6>*-- EoF: FIns()</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

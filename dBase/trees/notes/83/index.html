@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>RadioBtn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>FUNCTION RadioBtn</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Kenneth Chan [Zak] (CIS: 72662,1305)</span></p>
+<p><span class=rvts6>*-- Date........: 02/17/1994</span></p>
+<p><span class=rvts6>*-- Notes.......: This is a CUA-ish radiobutton handler. This routine,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; while complex to explain, is designed to be easy to</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; use.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Using normal @ SAY/GET commands to position, specify,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and annotate the possibilities, GET the same field or</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; memvar and add the RadioBtn() UDF to the WHEN clause</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; of each (see Example).</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The GETs must:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - GET the same field or memvar</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - be consecutive, i.e. no GETs for other fields or</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; memvars in between</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - be in natural top-down/left-right order</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; None of these requirements is extraordinary.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The first parameter must be unique for each</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobutton. It is the value that will be assigned</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to the GET field/memvar upon leaving the radiobutton</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; group. The value is often, but not required to be, a</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; single character. If it is not a single character,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the GET should include PICTURE "X" so that only a</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; single character will be occupied by the radiobutton.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The PICTURE does not affect the value stored.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The second parameter is the number of buttons in the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobutton group. This is how the function determines</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; which buttons are in a group. All of the GETs in the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; group should have the same number.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The optional third parameter designates whether or not</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the GET is for a field or memvar. If it is left out or</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .F., the GET is handled like a memvar. If it is .T.,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; it is handled like a field in the current work area.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If the field is in another work area, the third</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; parameter should be a character string containing that</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; work area's alias.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RadioBtn() works by inducing a cascade failure in each</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobutton. As each radiobutton's WHEN clause is</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; processed, the radiobutton's position and value is</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; recorded. Once all the radiobuttons in the group have</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; been registered (indicated by the group count), the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; key handler activates, and the user is allowed to</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; select the radiobutton.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; In order to support familiar dBASE-style cursor keys</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to move from field to field, out of the radiobutton</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; group, different cursor keys are used to move within</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the group, depending on whether the radiobuttons are</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; horizontal or vertical. If they are horizontal, the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; right arrow and space bar move the selection to the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the next radiobutton to the right, and the left arrow</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and backspace move the selection to the previous</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobutton to the left. The up and down arrows move</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; out of the radiobutton group to the next and previous</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; field or radiobutton group. If they are vertical, the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; down arrow and space bar move down, the up arrow and</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; backspace move up, and the left and right arrows move</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; out of the radiobutton group. Other cursor keys like</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Tab, Backtab, and Enter work normally, moving out of</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the radiobutton group. This is not quite CUA, but more</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dBASE-like.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Once an attempt is made to move out of the group, the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; value for the currently selected radiobutton is</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; assigned to the field/memvar, and RadioBtn() returns</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .T. The last key has been KEYBOARDed, so the cursor</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; moves in that direction. Nothing gets KEYBOARDed into</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the GET field/memvar, since that would disrupt the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; display.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; In addition to the RadioBtn() UDF, before the READ,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; you will probably want to paint over the GETs so that</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; the non-selected radiobuttons are blank and the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; selected radiobutton has a marker (use the RBtnBrack</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; procedure -- see Example).</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; You may have as many groups as you want, and the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; groups may be consecutive. The important thing is to</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; get the group count right. For example:</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 10,10 get cFormat picture "X" ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; when RadioBtn( "VHS ", 2 )</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 10,20 get cFormat picture "X" ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; when RadioBtn( "Beta", 2 )</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 11,10 get cColor &nbsp;picture "X" ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; when RadioBtn( "Color", 2 )</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 11,20 get cColor &nbsp;picture "X" ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; when RadioBtn( "B&amp;W &nbsp;", 2 )</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; is treated as two groups of two. If the second</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; parameter was 4 for all four, these would be treated</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; as one group of four (but then the GET memvars</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; wouldn't match).</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RadioBtn() does not affect READKEY(), so you cannot</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rely on it to determine whether or not a value was</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; changed. If you are interested in this, create a</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; memvar called l_RBtnChg and set it to .F. before the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; READ:</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; l_RBtnChg = .f.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; read</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if readkey() &gt; 256 .or. ( l_RBtnChg .and. ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;readkey() # 12 )</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; *-- Data was changed</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RadioBtn() will set l_RBtnChg to .T. if a radiobutton</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; is changed (the user leaves the radiobutton group with</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a different value selected) in any group. Note that,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; like READKEY(), once a value is changed, there is no</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; way to clear the change flag. You should also check to</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; see if the user aborted with the Esc key, in which</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case l_RBtnChg may be .T., but the user clearly</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; intended to abandon the changes.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Using RadioBtn() will cause the MESSAGE option of the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GET to be ignored, so RadioBtn() supports messages,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; either for individual radiobuttons, or the same</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; message for the entire radiobutton group.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; To display the same message for the entire radiobutton</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; group, you can either specify the same message for</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; every individual radiobutton in the fourth &lt;cMsg&gt;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; parameter, or specify the message text in any one, but</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; only one of the RadioBtn() calls in the group, in the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fifth &lt;cGrpMsg&gt; parameter. For example:</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 10,10 get cFormat picture "X" ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; when RadioBtn( "VHS ", 2, .f., "", ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; " Select the videotape format " &nbsp;)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 10,20 get cFormat picture "X" ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; when RadioBtn( "Beta", 2 )</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Note that if you specify a message, the third normally</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; optional field designator parameter must be provided.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; You may specify an individual radiobutton message and</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a group message in the same RadioBtn() call, in which</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case the group message will apply to all the other</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobuttons which do not have an individual message.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; You may want to color the radiobutton group so that</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; it is different from both normal text and regular GET</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fields. To do this, create the memvar c_RBtnClr and</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; assign to it a standard dBASE color attribute.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RadioBtn() will use this color for the selection</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; marker. The procedure RBtnBrack also uses this color</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for its brackets and prompts. By creating this memvar</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; early on in your application, all your radiobuttons</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; will have a consistent look.</span></p>
+<p><span class=rvts6>*--</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 2.0</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/03/1994 -- co-dUFLPed by Ken Mayer</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/15/1994 -- Added MESSAGE options</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/16/1994 -- Modified message handling routines to</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; allow use with a dialog window. Added</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; up/down arrows for navigation (useful</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; when doing a vertical set of</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobuttons). Turned off cursor to</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eliminate flicker between message line</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and radiobuttons. -- KJM and KC</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 02/17/1994 -- Use different cursor keys for horizontal</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or vertical orientation. &nbsp;Added color</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; support.</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: WHEN clause of GET</span></p>
+<p><span class=rvts6>*-- Usage.......: @ ... GET &lt;field/memvar&gt; [PICTURE "X"] ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; WHEN RadioBtn( &lt;xVal&gt;, &lt;nBtns&gt; ;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[, &lt;xFld&gt; [, &lt;cMsg&gt; [, &lt;cGrpMsg&gt; ]]] )</span></p>
+<p><span class=rvts6>*-- Example.....: cFlav = "V"</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ &nbsp;8,10 get cFlav when RadioBtn( "C", 3 )</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; do RBtnBrack with cFlav, "C", "Chocolate &nbsp;"</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ &nbsp;9,10 get cFlav when RadioBtn( "S", 3 )</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; do RBtnBrack with cFlav, "S", "Strawberry "</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ 10,10 get cFlav when RadioBtn( "V", 3 )</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; do RBtnBrack with cFlav, "V", "Vanilla &nbsp; &nbsp;"</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; read</span></p>
+<p><span class=rvts6>*-- Returns.....: Logical (.T. when done, .F. to scan next field)</span></p>
+<p><span class=rvts6>*-- Parameters..: xVal &nbsp; &nbsp;= Value to be assigned to GET if this</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiobutton is selected</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nBtns &nbsp; = Number of radiobuttons in group</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OPTIONAL:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; xFld &nbsp; &nbsp;= Field designator:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .F. &nbsp; &nbsp;= Memvar (default)</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .T. &nbsp; &nbsp;= Field in current work area</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;cArg&gt; = Alias of field in another work area</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cMsg &nbsp; &nbsp;= MESSAGE to display when radiobutton is</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; active</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cGrpMsg = MESSAGE to display when group is active</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

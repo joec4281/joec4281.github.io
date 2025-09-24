@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GetInfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>FUNCTION GetInfo</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Adam L. Menkes (Borland Technical Support)</span></p>
+<p><span class=rvts6>*-- Date........: 10/26/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Retrieves information from STATUS that you cannot get</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; with the dBASE IV function SET(). See 'parameters'</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; below for list of keywords.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CAUTION: If you have ALTERNATE set, you need to reset</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; it after the function executes. SET ALTERNATE TO must</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; be used instead of LIST STATUS TO filename, since the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print destination would always show as a file. All</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; results that are returned are returned as character</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; types, including ones that return numbers (use VAL()</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to look at/use returned value as a number).</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5</span></p>
+<p><span class=rvts6>*-- Rev. History: 04/01/1992 -- Original</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : 10/26/1993 &nbsp;Angus Scott-Fleming</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; replace cSafety w lSafety</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; upper-case cStart</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; minor bug fixes as noted by &amp;&amp; &lt;date&gt;</span></p>
+<p><span class=rvts6>*-- Calls.......: TempFile() &nbsp; &nbsp; &nbsp; Function in FILES3.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TextLine() &nbsp; &nbsp; &nbsp; Function in FILES3.PRG</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AAppend() &nbsp; &nbsp; &nbsp; &nbsp;Function in FILES3.PRG</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: GetInfo(&lt;cKeyWord&gt;,[&lt;cKeyWord2&gt;])</span></p>
+<p><span class=rvts6>*-- Example.....: ? GetInfo("F5")</span></p>
+<p><span class=rvts6>*-- Returns.....: Character expression</span></p>
+<p><span class=rvts6>*-- Parameters..: cKeyWord &nbsp;= Item you are looking for status of,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; options listed return the following:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;WORK &nbsp; &nbsp;Number of current work area - whether</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;or not database is in use</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PRINT &nbsp; Current printer destination (PRN, NUL,</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LPT1, COM1) as set by SET PRINTER TO.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ERROR &nbsp; Error condition set by ON ERROR</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ESCAPE &nbsp;Escape condition set by ON ESCAPE</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;F2 to F10, Ctrl-F1 to Ctrl-F10, Shift-F1</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; to Shift-F10</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;The current setting of each key</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;as set by SET FUNCTION &lt;label&gt; TO</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OR</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cKeyWord, cKeyWord2 = Items you are checking the</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; status of, options return the following:</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PAGE,LINE &nbsp;Line number specified by ON PAGE AT</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LINE in the page handling routine</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;HANDLE,&lt;filename&gt; &nbsp;The handle number of the low-</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; level file specified by &lt;filename&gt;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;NAME,&lt;filehandle&gt; &nbsp;The file name of the low-</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; level file specified by &lt;filehandle&gt;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;MODE,&lt;filehandle&gt; &nbsp;The privilege of the low-</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; level file specified by &lt;filehandle&gt;</span></p>
+<p><span class=rvts6>*----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameters cKeyWord, cKeyWord2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private cKey, l2Parms, cStart, lSafety, cTempTxt, nLines, cTmpArray</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cKey = upper(m-&gt;cKeyWord)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;l2Parms = (pcount() = 2)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;cKey = "CTRL-" .or. m-&gt;cKey = "SHIFT" .or. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (","+m-&gt;cKey+"," $ ",F2,F3,F4,F5,F6,F7,F8,F9,F10,")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cStart = m-&gt;cKey + space(9 - len(m-&gt;cKey))+"-"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;cKey = "PRINT"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cStart = "Print Destination:"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;cKey = "WORK"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cStart = "Current work area ="</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if "" &lt;&gt; dbf()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RETURN select(alias())</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;cKey = "ERROR"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cStart = "On Error:"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;cKey = "ESCAPE"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cStart = "On Escape:"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;cKey = "PAGE"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cStart = "On Page At Line"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case m-&gt;cKey = "HANDLE" .or. m-&gt;cKey = "NAME" .or. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;cKey = "MODE"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cStart = "Low level files opened"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; otherwise &nbsp; &nbsp; &nbsp;&amp;&amp; none of the above</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;RETURN ""</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cTempTxt = TempFile()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- get status info (into a temp file), which will then be parsed to</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- extract information requested ...</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set console off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set alternate to &amp;cTempTxt.. &nbsp;&amp;&amp; create file without extension</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; double 'dot' is required</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set alternate on</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;list status</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;close alternate</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set console on</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nLines = TextLine(m-&gt;cTempTxt)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;aTmpArray = right(m-&gt;cTempTxt,8)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cTmp = AAppend(m-&gt;cTempTxt,m-&gt;aTmpArray)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nHandle = fopen(m-&gt;cTempTxt,"R")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cResult = ""</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nX = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cStart = upper(m-&gt;cStart) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; Tue &nbsp;10-26-1993 &nbsp;upper case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nStartLen = len(m-&gt;cStart) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; Tue &nbsp;10-26-1993 &nbsp;pre-load LEN</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do while m-&gt;nX &lt;= m-&gt;nLines</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; if upper(left(&amp;aTmpArray.[m-&gt;nX],m-&gt;nStartLen)) = m-&gt;cStart</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cResult = ltrim(substr(&amp;aTmpArray.[m-&gt;nX],m-&gt;nStartLen+1))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;enddo</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;*-- 2 parameters?</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if m-&gt;l2Parms .and. "" # m-&gt;cResult</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;cKey = "PAGE"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if upper(m-&gt;cKeyWord2) = "LINE"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cResult = left(m-&gt;cResult,at(" ",m-&gt;cResult) - 1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cResult = substr(m-&gt;cResult,at(" ",m-&gt;cResult) + 1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;case m-&gt;cKey = "HANDLE" .or. m-&gt;cKey = "NAME" .or. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m-&gt;cKey = "MODE"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cResult = ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nX = m-&gt;nX + 2</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; do while val(&amp;aTmpArray.[m-&gt;nX]) &lt;&gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;cKey = "HANDLE" .and. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;upper(m-&gt;cKeyWord2) $ &amp;aTmpArray.[m-&gt;nX]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cResult = str(val(&amp;aTmpArray.[m-&gt;nX]))</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;cKey = "NAME" .and. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;cKeyWord2 = val(&amp;aTmpArray.[m-&gt;nX])</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cResult = substr(&amp;aTmpArray.[m-&gt;nX],10,40)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case m-&gt;cKey = "MODE" .and. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;m-&gt;cKeyWord2 = val(&amp;aTmpArray.[m-&gt;nX])</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;cResult = substr(&amp;aTmpArray.[m-&gt;nX],50,5)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if "" &lt;&gt; m-&gt;cResult</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exit</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;nX = m-&gt;nX + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; enddo</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; endcase</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;release &amp;aTmpArray.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;nClose = fclose(m-&gt;nHandle)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;lSafety = set ("safety") = "ON" &nbsp; &nbsp; &amp;&amp; Tue &nbsp;10-26-1993</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;set safety off</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;erase (m-&gt;cTempTxt + ".")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;if lSafety &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; Tue &nbsp;10-26-1993 &nbsp;replace</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; set safety ON &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; the dreaded macro expansion</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endif</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;cResult = ltrim(rtrim(m-&gt;cResult))</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN iif(right(m-&gt;cResult,1) = ":",;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp;left(m-&gt;cResult,len(m-&gt;cResult)-1),m-&gt;cResult)</span></p>
+<p><span class=rvts6>*-- EoF: GetInfo()</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

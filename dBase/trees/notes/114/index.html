@@ -1,0 +1,658 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>A Calendar for dBASE IV</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>A Calendar for dBASE IV</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Mike Carlisle</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dCLNDR is a dBASE IV utility program that provides a Calendar in conjunction with a Daily Planner and a Special (Holiday) reminder.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dCLNDR is a calendar utility which demonstrates some of dBASE IV's new capabilities, such as bar and popup menus, windows and arrays. &nbsp;It also shows how the functionality of these new features can be stretched to produce some interesting results. &nbsp;Below I explain why these new capabilities were used and how they made dCLNDR possible.&nbsp;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The features of dCLNDR</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Calendar</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Calendar is a matrix of six rows and seven columns in which each intersection represents a day. &nbsp;dCLNDR calculates the days in a month and their position in the week and places them within the matrix. &nbsp;The matrix itself is created by defining and activating a dBASE IV bar menu.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>There are two attributes that can be displayed alongside each day. &nbsp;The first is an asterisk (*) displayed to the left of the day to indicate a Special Day (i.e. Holiday, Birthday, Anniversary, etc...). &nbsp;The dates and descriptions of Special Days are stored in the Holiday database. &nbsp;The second attribute is a number sign (#) to indicate that there's Daily&nbsp;</span></p>
+<p><span class=rvts6>Planner information stored for that day in the Calendar database.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Navigation in the calendar is performed using the Up, Down, Left and Right arrow keys. &nbsp;The PgUp and PgDn keys allow you to move forward and backward between consecutive months. &nbsp;The F1 function key allows you to display a help screen with information about the Calendar and the F10 function key allows you to exit from the program to the dBASE IV dot prompt. &nbsp;You can activate the Time Table by placing the highlight on a day and pressing the Return key.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Time Table</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Time Table is a standard dBASE IV popup menu based on a field from a database and provides a complete 24 hour time span (12:00 midnight to 11:45 PM) divided into quarter hours. &nbsp;If Daily Planner information exists for the selected day, an arrow will be displayed to the right of the time slot where the information is stored.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Navigation is achieved by pressing the Up, Down, PgUp and PgDn keys. &nbsp;As with the Calendar, the F1 function key will provide a help screen when pressed. &nbsp;Pressing the Escape key will return you to the Calendar.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Special Days</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The first option on the Time Table menu is the word SPECIAL. &nbsp;If there is information in the Holiday database for that day (as indicated by an asterisk in the Calendar), placing the highlight on SPECIAL and pressing Return will display the information and allow you to edit it. &nbsp;If it is not a Special Day, pressing Return will allow you to enter information for that day to make it a Special Day in the Calendar.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Daily Planner</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Placing the highlight on a time slot that has an arrow next to it and pressing Return will show the information stored for that time and allow you to edit that information. &nbsp;Pressing Return on a time slot with no arrow will display a blank box and allow you to create an entry for that time slot.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>How dCLNDR works</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dCLNDR has four major areas: the Calendar, the Time Table, the data entry/display boxes for the Special Day and Daily Planner information and the Help screens. &nbsp;We will look at each of these in order.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Calendar bar menu</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>As mentioned earlier the Calendar is primarily comprised of a dBASE IV bar menu. &nbsp;The grid structure surrounding the Calendar is produced using dBASE IV's box drawing ability with @...SAY commands.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The bar menu was chosen to produce the Calendar for many reasons. &nbsp;One primary reason is that dBASE IV allows us to place the bar menu prompts (called PADs) anywhere on the screen. &nbsp;This allows us to very easily create the necessary matrix. &nbsp;Another good reason for choosing the bar menu is that cursor control is automatically available. &nbsp;This frees us from having to calculate the current and new positions of the highlight as well having to redisplay the prompts in the proper colors. &nbsp;However, cursor control in a bar menu is limited to moving the highlight from left to right.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Because the calendar matrix is comprised of seven positions for each of the six rows, moving forward to the right or backward to the left seven times will place us at the intersection just below or just above our original position. &nbsp;To perform this seven step movement, dCLNDR makes use of the ON KEY LABEL and PLAY MACRO commands. &nbsp;Using the ON KEY LABEL command we trap the Up and Down arrow keys by storing seven Right &nbsp;arrow key &nbsp;presses in a macro called D (for Down) and seven Left arrow key presses in a macro called U (for Up). &nbsp;Now, when an Up or Down arrow key is pressed, the ON KEY LABEL command executes the PLAY MACRO command and the respective macros are "played out".</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The next major hurtle in using the bar menu is updating each prompt as we move forward and backward from month to month.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Fortunately the functionality of the dBASE IV bar menu definition commands make this less of a problem. &nbsp;The command DEFINE PAD &lt;pad name&gt; OF &lt;menu name&gt; PROMPT &lt;character expression&gt; allows us to use a variable for the PROMPT expression. &nbsp;Thus, the day numbers are stored in a dBASE IV array and the array elements are used as the PROMPT expression for the DEFINE PAD commands. &nbsp;Each time the month changes, the day numbers are recalculated and stored to the array. &nbsp;The bar menu is then released, redefined and reactivated. &nbsp;Although some lag time results from redefining the bar menu as we move from month to month, it is minimal compared to the lag time (not to mention frustration) that would occur by having to control cursor movement from within the program.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Time Table popup menu</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The &nbsp;next area of dCLNDR is the Time Table, which makes use of dBASE IV's popup menus. &nbsp;Popup menus are a versatile and highly viable alternative to the standard "list the options and get the user's choice" type of menus used in earlier versions of dBASE. &nbsp;The popup menu has two major forms: a predefined number of prompts (called BARs) or a values list displaying either file names from a directory listing or the values in a field of a database. &nbsp;In the case of dCLNDR, a values list based on a database field was chosen to allow for on-the-fly changing of the values shown without having to redefine the popup. &nbsp;This lets the program place an arrow (as mentioned earlier) next to a time slot in which Daily Planner information is stored.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Special Day, Daily Planner and Help windows</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Another new and very useful feature of dBASE IV is windowing. &nbsp;For those who are unfamiliar with windows, a window is primarily a redefinition of the screen boundaries. &nbsp;Windows are defined by designating the area of the screen they will encompass from the top left corner of the window to its bottom right corner. &nbsp;When a window is activated, the screen position 0,0 becomes the top left corner within the window.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>A very useful feature of windowing is the ability to overlay a portion of the screen without destroying the text beneath it. &nbsp;When the window is deactivated the text in that area of the screen is redisplayed. &nbsp;dCLNDR makes use of windows for displaying the Special Day and Daily Planner information as well as the Help screens. &nbsp;In the case of the Special Day and Daily Planner, windows are used primarily for aesthetics and because long fields will wrap within the boundaries of a window.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dCLNDR Help screens make use of two windows. &nbsp;The first is used to give the effect of having CLEARed the screen. &nbsp;This window's foreground, background and border colors have been set to be the same as the background color of the standard screen. &nbsp;Its size was defined so that it would cover the entire screen except for the message line and line 0 (where dCLNDR displays the system clock). &nbsp;The second window is activated within the first as a standard window with normal colors. &nbsp;The help text is then displayed (using TEXT...ENDTEXT) within the second window. &nbsp;When both windows are deactivated, the normal screen reappears without the program having to regenerate any of the text displayed.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Required Files</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Database Structures and Index TAGs</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The following databases and their corresponding .MDX TAGs must be created. &nbsp;The Mark database will hold the Time Table information. &nbsp;Record 1 of Mark.DBF should have the word SPECIAL (in upper case) in its Time field. &nbsp;Each of the remaining records should have a time string of the form hh:mm ?M (where ? is an A or P) with either a blank space or a zero (0) in front of single digit hours. &nbsp;You can fill the records with a time span that suits your personal needs (for example, 8:00 AM to 5:00 PM). &nbsp;Also, increments in the time span do not have to be uniform as long as each time string is unique. &nbsp;I recommend inputting each time in chronological order since dCLNDR's Time Table menu will display them in the order entered. &nbsp;Append records with your times to the following database:</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Structure for database: MARK.DBF</span></p>
+<p><span class=rvts6>Field &nbsp;Field Name &nbsp;Type &nbsp; &nbsp; &nbsp; Width &nbsp; &nbsp;Dec &nbsp; &nbsp;Index</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;1 &nbsp;DATE &nbsp; &nbsp; &nbsp; &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 8 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;2 &nbsp;TIME &nbsp; &nbsp; &nbsp; &nbsp;Character &nbsp; &nbsp; &nbsp;9 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N&nbsp;</span></p>
+<p><span class=rvts6>** Total ** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;18 &nbsp;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Key for TAG Mark of Mark.MDX: DTOS(Date) + Time</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Calendar database will hold the Daily Planner information. &nbsp;It does not require any preloaded information. &nbsp;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Structure for database: CALENDAR.DBF</span></p>
+<p><span class=rvts6>Field &nbsp;Field Name &nbsp;Type &nbsp; &nbsp; &nbsp; Width &nbsp; &nbsp;Dec &nbsp; &nbsp;Index</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;1 &nbsp;DATE &nbsp; &nbsp; &nbsp; &nbsp;Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 8 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;2 &nbsp;TIME &nbsp; &nbsp; &nbsp; &nbsp;Character &nbsp; &nbsp; &nbsp;9 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;3 &nbsp;LINE1 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;4 &nbsp;LINE2 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;5 &nbsp;LINE3 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;6 &nbsp;LINE4 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;7 &nbsp;LINE5 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;8 &nbsp;LINE6 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;9 &nbsp;LINE7 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; 10 &nbsp;LINE8 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>&nbsp; 11 &nbsp;LINE9 &nbsp; &nbsp; &nbsp; Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N</span></p>
+<p><span class=rvts6>** Total ** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2043</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Key for TAG Calendar of Calendar.MDX: DTOS(Date) + Time</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>You may want to append records to the Holiday database for dates you want to have as predefined Special Days. &nbsp;Dates will have to be updated each year. &nbsp;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Structure for database: HOLIDAY.DBF</span></p>
+<p><span class=rvts6>Field &nbsp;Field Name &nbsp;Type &nbsp; &nbsp; &nbsp; Width &nbsp; &nbsp;Dec &nbsp; &nbsp;Index</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;1 &nbsp;HOLIDAY &nbsp; &nbsp; Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 8 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Y</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;2 &nbsp;DESC &nbsp; &nbsp; &nbsp; &nbsp;Character &nbsp; &nbsp;225 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; N&nbsp;</span></p>
+<p><span class=rvts6>** Total ** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 234 &nbsp;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Key for TAG Holiday of Holiday.MDX: Holiday &nbsp;&nbsp;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The Arrows.KEY Macro Library File &nbsp;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Three keyboard macros must be created by pressing Shift-F10. &nbsp;They are U for Up arrow, D for Down arrow and O to perform an Escape and need to contain seven Left arrow key presses, seven Right &nbsp;arrow key presses and an Escape key press, respectively. &nbsp;Use the SAVE MACROS command to save these macros to a macro library file called Arrows.KEY. &nbsp;(For more information on macro files, see pages 13-2 to 13-10 in Using the Menu System.)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>July 1989</span></p>
+<p><span class=rvts6>• Program ...: dCLNDR.PRG</span></p>
+<p><span class=rvts6>• Author ....: Michael B. Carlisle</span></p>
+<p><span class=rvts6>• Date ......: 7-12-89</span></p>
+<p><span class=rvts6>• Versions ..: dBASE IV version 1.0</span></p>
+<p><span class=rvts6>• Notes .....: Daily calendar and planner</span></p>
+<p><span class=rvts6>CLEAR ALL</span></p>
+<p><span class=rvts6>SET CLOCK ON</span></p>
+<p><span class=rvts6>SET TALK OFF</span></p>
+<p><span class=rvts6>SET STATUS OFF</span></p>
+<p><span class=rvts6>SET SCOREBOARD OFF</span></p>
+<p><span class=rvts6>SET BORDER TO DOUBLE</span></p>
+<p><span class=rvts6>SET ESCAPE OFF</span></p>
+<p><span class=rvts6>SET MESSAGE TO ""</span></p>
+<p><span class=rvts6>SET COLOR TO</span></p>
+<p><span class=rvts6>IF ISCOLOR()</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Set colors for color monitors.</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF NORMAL</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; TO W+/B</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF MESSAGES &nbsp; &nbsp;TO W+/R</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF TITLES</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; TO W/B</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF HIGHLIGHT &nbsp; TO GR+/BG</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF BOX &nbsp; &nbsp; &nbsp; &nbsp; TO W/R</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF INFORMATION TO N/W</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF FIELDS</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp; TO N/BG</span></p>
+<p><span class=rvts6>&nbsp; line_fg = "GR+"</span></p>
+<p><span class=rvts6>&nbsp; line_bg = "R"</span></p>
+<p><span class=rvts6>&nbsp; norm_fg = "W"</span></p>
+<p><span class=rvts6>&nbsp; norm_bg = "B"</span></p>
+<p><span class=rvts6>&nbsp; norm &nbsp; &nbsp;= "W/B"</span></p>
+<p><span class=rvts6>&nbsp; box &nbsp; &nbsp; = "W/R"</span></p>
+<p><span class=rvts6>&nbsp; shadow &nbsp;= "/N"</span></p>
+<p><span class=rvts6>&nbsp; top—line= "N/W"</span></p>
+<p><span class=rvts6>ELSE</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Set colors for monochrome monitors.</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF NORMAL</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>TO N/W</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF MESSAGES</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>TO W/N</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF TITLES</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>TO W/N</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF HIGHLIGHT TO N/W</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF BOX TO W/N</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF INFORMATION TO W/N</span></p>
+<p><span class=rvts6>&nbsp; SET COLOR OF FIELDS TO N/W</span></p>
+<p><span class=rvts6>&nbsp; line_fg = "W"</span></p>
+<p><span class=rvts6>&nbsp; line_bg = "N"</span></p>
+<p><span class=rvts6>&nbsp; norm_fg = "N"</span></p>
+<p><span class=rvts6>&nbsp; norm_bg = "W"</span></p>
+<p><span class=rvts6>&nbsp; norm &nbsp; &nbsp;= "N/W"</span></p>
+<p><span class=rvts6>&nbsp; box &nbsp; &nbsp; = "WIN"</span></p>
+<p><span class=rvts6>&nbsp; shadow &nbsp;= "W/N"</span></p>
+<p><span class=rvts6>&nbsp; top_line= "W/N"</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>CLEAR</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>DEFINE WINDOW Show_Fld FROM 18,2 TO 22,78</span></p>
+<p><span class=rvts6>DEFINE WINDOW Cir_Scr FROM 1,0 TO 23,79 COLOR &amp;norm_bg/&amp;norm_bg,;</span></p>
+<p><span class=rvts6>&amp;norm_bg/&amp;norm_bg,;</span></p>
+<p><span class=rvts6>&amp;norm_bg/&amp;norm_bg</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>DEFINE WINDOW ShowHelp FROM 3,5 TO 20,73</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>SELECT 1</span></p>
+<p><span class=rvts6>USE Mark</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Time Table database.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>k--- Define Time Table menu.</span></p>
+<p><span class=rvts6>DEFINE POPUP Hours FROM 3,65 TO 15,75 PROMPT FIELD Time;</span></p>
+<p><span class=rvts6>MESSAGE 'Position with: '+CHR(24)+CHR(25)+'&lt;Pg Up&gt;&lt;Pg Dn&gt;'+;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Page 20</span></p>
+<p><span class=rvts6>TechNotes I dBASE IV</span></p>
+<p><span class=rvts6>- &lt;Enter&gt; to select choice - &lt;Fl&gt; Help' ON SELECTION POPUP Hours DO ACT02</span></p>
+<p><span class=rvts6>USE Calendar ORDER Calendar IN 2</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Daily Planner database.</span></p>
+<p><span class=rvts6>SET RELATION TO DTOS(Date) + LEFT(Time,8) INTO Calendar</span></p>
+<p><span class=rvts6>USE Holiday ORDER Holiday IN 3</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Special Day database.</span></p>
+<p><span class=rvts6>RESTORE MACROS FROM Arrows</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Load cursor control macros.</span></p>
+<p><span class=rvts6>*___ Establish key traps for cursor control and system branching.</span></p>
+<p><span class=rvts6>ON KEY LABEL uparrow PLAY MACRO U</span></p>
+<p><span class=rvts6>ON KEY LABEL dnarrow PLAY MACRO D</span></p>
+<p><span class=rvts6>ON KEY LABEL pgup</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DO New Cal WITH -1</span></p>
+<p><span class=rvts6>ON KEY LABEL pgdn</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DO New Cal WITH</span></p>
+<p><span class=rvts6>ON KEY LABEL Fl</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DO HelpText</span></p>
+<p><span class=rvts6>ON KEY LABEL FlO</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DO Leave</span></p>
+<p><span class=rvts6>k---- Initialize system variables.</span></p>
+<p><span class=rvts6>PUBLIC sdate, edate</span></p>
+<p><span class=rvts6>sdate = DATE()</span></p>
+<p><span class=rvts6>edate = 0</span></p>
+<p><span class=rvts6>holiday = F. data = F.</span></p>
+<p><span class=rvts6>day_pad = DAY(sdate)</span></p>
+<p><span class=rvts6>xday =</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>It</span></p>
+<p><span class=rvts6>DO New-Cal with 0</span></p>
+<p><span class=rvts6>k--- Display calendar matrix.</span></p>
+<p><span class=rvts6>@ 4,10 FILL TO 16,59 COLOR &amp;shadow @ 3,11 FILL TO 15,60 COLOR &amp;box</span></p>
+<p><span class=rvts6>@ 3,11 TO 15,60 DOUBLE COLOR &amp;box 8 3,18 SAY CHR(209) COLOR &amp;box</span></p>
+<p><span class=rvts6>8 3,25 SAY CHR(209) COLOR &amp;box 8 3,32 SAY CHR(209) COLOR &amp;box 0 3,39 SAY CHR(209) COLOR &amp;box O 3,46 SAY CHR(209) COLOR &amp;box 0 3,53 SAY CHR(209) COLOR &amp;box O 4,18 SAY CHR(179) COLOR &amp;box O 4,25 SAY CHR(179) COLOR &amp;box 0 4,32 SAY CHR(179) COLOR &amp;box O 4,39 SAY CHR(179) COLOR &amp;box O 4,46 SAY CHR(179) COLOR &amp;box 0 4,53 SAY CHR(179) COLOR &amp;box O 5,11 SAY CHR(199) ;</span></p>
+<p><span class=rvts6>+ REPLICATE(REPLICATE(CHR(196),6) + CHR(197),6)</span></p>
+<p><span class=rvts6>+ REPLICATE(CHR(196),6) + CHR(182) COLOR &amp;box</span></p>
+<p><span class=rvts6>O 6,18 SAY CHR(179) COLOR &amp;box 0 6,25 SAY CHR(179) COLOR &amp;box 0 6,32 SAY CHR(179) COLOR &amp;box O 6,39 SAY CHR(179) COLOR &amp;box 0 6,46 SAY CHR(179) COLOR &amp;box O 6,53 SAY CHR(179) COLOR &amp;box O 7,11 SAY CHR(199) ;</span></p>
+<p><span class=rvts6>• REPLICATE(REPLICATE(CHR(196),6) + CHR(197),6)</span></p>
+<p><span class=rvts6>• REPLICATE(CHR(196),6) + CHR(182) COLOR &amp;box</span></p>
+<p><span class=rvts6>O 8,18 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>O 8,25 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>O 8,32 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>,0 8,39 SAY CHR(179) COLOR &amp;box 0 8,46 SAY CHR(179) COLOR &amp;box 0 8,53 SAY CHR(179) COLOR &amp;box O 9,11 SAY CHR(199) ;</span></p>
+<p><span class=rvts6>• REPLICATE(REPLICATE(CHR(196),6) + CHR(197),6) ;</span></p>
+<p><span class=rvts6>• REPLICATE(CHR(196),6) + CHR(182) COLOR &amp;box</span></p>
+<p><span class=rvts6>Page 21</span></p>
+<p><span class=rvts6>July 1989</span></p>
+<p><span class=rvts6>8 10,18 SAY CHR(179) COLOR &amp;box 8 10,25 SAY CHR(179) COLOR &amp;box @ 10,32 SAY CHR(179) COLOR &amp;box 8 10,39 SAY CHR(179) COLOR &amp;box 8 10,46 SAY CHR(179) COLOR &amp;box @ 10,53 SAY CHR(179) COLOR &amp;box 8 11,11 SAY CHR(199)</span></p>
+<p><span class=rvts6>• REPLICATE (REPLICATE (CHR(196), 6)</span></p>
+<p><span class=rvts6>• REPLICATE(CHR(196),6) + CHR(182 @ 12,18 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>@ 12,25 SAY CHR(179) COLOR &amp;box @ 12,32 SAY CHR(179) COLOR &amp;box 8 12,39 SAY CHR(179) COLOR &amp;box @ 12,46 SAY CHR(179) COLOR &amp;box 8 12,53 SAY CHR(179) COLOR &amp;box 8 13,11 SAY CHR(199) ;</span></p>
+<p><span class=rvts6>• REPLICATE (REPLICATE (CHR(196), 6)</span></p>
+<p><span class=rvts6>• REPLICATE(CHR(196),6) + CHR(182 8 14,18 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>8 14,25 SAY CHR(179) COLOR &amp;box @ 14,32 SAY CHR(179) COLOR &amp;box 8 14,39 SAY CHR(179) COLOR &amp;box 8 14,46 SAY CHR(179) COLOR &amp;box 8 14,53 SAY CHR(179) COLOR &amp;box 8 15,18 SAY CHR(207) COLOR &amp;box 8 15,25 SAY CHR(207) COLOR &amp;box 8 15,32 SAY CHR(207) COLOR &amp;box 8 15,39 SAY CHR(207) COLOR &amp;box 8 15,46 SAY CHR(207) COLOR &amp;box 8 15,53 SAY CHR(207) COLOR &amp;box 8 2,11 SAY " SUN</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>MON</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>TUE</span></p>
+<p><span class=rvts6>+ CHR(197),6)</span></p>
+<p><span class=rvts6>COLOR &amp;box</span></p>
+<p><span class=rvts6>+ CHR(197),6) ; COLOR &amp;box</span></p>
+<p><span class=rvts6>WED</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>THR</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>FRI</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>SAT"</span></p>
+<p><span class=rvts6>k--- Main program loop.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>COLOR &amp;top line</span></p>
+<p><span class=rvts6>leave = "NO"</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>DO WHILE leave = "No"</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>DO Disp Cal</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>8 0, 0 SAY SPACE(70) COLOR &amp;top line</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>8 0, 0 SAY CMONTH(sdate) + ", " + STR(YEAR(sdate),4,0) xpad = "PAD" + LTRIM(STR(DOW(sdate)+;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>IIF(DAY(sdate) = day_pad, 0, +day_pad-1), 2, 0)) ACTIVATE MENU Clndr PAD &amp;xpad</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>ENDDO</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>k--- Release key traps. ON KEY LABEL uparrow ON KEY LABEL dnarrow ON KEY LABEL pgup</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>ON KEY LABEL pgdn ON KEY LABEL Fl</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>*___ Reset environment.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>SET CLOCK OFF SET TALK ON SET STATUS ON</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>SET SCOREBOARD ON</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>SET ESCAPE ON CLEAR ALL</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>CLEAR</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>RETURN</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>PROCEDURE Disp Cal</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>k--- Define Calendar bar menu.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>Page 22</span></p>
+<p><span class=rvts6>TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>LI</span></p>
+<p><span class=rvts6>DEFINE MENU CLNDR MESSAGE "Position with:</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>+ CHR(27) + CHR(26) + CHR(24);</span></p>
+<p><span class=rvts6>+ CHR(25)+" - &lt;Enter&gt; to select choice - &lt;Fl&gt; Help - &lt;FlO&gt; Quit"</span></p>
+<p><span class=rvts6>*___ Define the bar menu PADS using array elements for PROMPTS.</span></p>
+<p><span class=rvts6>DEFINE PAD PAD&nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>OF Clndr PROMPT Days[i,l] AT 4,12</span></p>
+<p><span class=rvts6>DEFINE PAD PAD&nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>OF Clndr PROMPT Days[1,2] AT 4,19</span></p>
+<p><span class=rvts6>DEFINE PAD PAD&nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>OF Clndr PROMPT Days[1,3] AT 4,26</span></p>
+<p><span class=rvts6>DEFINE PAD PAD4 OF Clndr PROMPT Days[1,4] AT 4,33</span></p>
+<p><span class=rvts6>DEFINE PAD PAD&nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>OF Clndr PROMPT Days[1,5] AT 4,40</span></p>
+<p><span class=rvts6>DEFINE PAD PAD&nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>OF Clndr PROMPT Days[1,6] AT 4,47</span></p>
+<p><span class=rvts6>DEFINE PAD PAD&nbsp;</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>OF Clndr PROMPT Days[1,7] AT 4,54</span></p>
+<p><span class=rvts6>DEFINE PAD PAD _8 OF Cindr PROMPT Days[1,81 AT 6,12 DEFINE PAD PAD _9 OF Clndr PROMPT Days[1,91 AT 6,19 DEFINE PAD PAD 10 OF Clndr PROMPT Days[1,10] AT 6,26 DEFINE PAD PAD 11 OF Clndr PROMPT Days[1,11] AT 6,33 DEFINE PAD PAD 12 OF Clndr PROMPT Days[1,12] AT 6,40 DEFINE PAD PAD 13 OF Clndr PROMPT Days[1,13] AT 6,47 DEFINE PAD PAD 14 OF Clndr PROMPT Days[1,14] AT 6,54 DEFINE PAD PAD 15 OF Clndr PROMPT Days[1,15] AT 8,12 DEFINE PAD PAD 16 OF Clndr PROMPT Days[1,16] AT 8,19 DEFINE PAD PAD 17 OF Clndr PROMPT Days[1,171 AT 8,26 DEFINE PAD PAD 18 OF Clndr PROMPT Days[1,18] AT 8,33 DEFINE PAD PAD 19 OF Clndr PROMPT Days[1,19] AT 8,40 DEFINE PAD PAD 20 OF Clndr PROMPT Days[1,20] AT 8,47 DEFINE PAD PAD 21 OF Clndr PROMPT Days[1,21] AT 8,54 DEFINE PAD PAD 22 OF Cindr PROMPT Days[1,22] AT 10,12 DEFINE PAD PAD23 OF Clndr PROMPT Days[1,23] AT 10,19 DEFINE PAD PAD-24 OF Clndr PROMPT Days[1,24] AT 10,26 DEFINE PAD PAD 25 OF Clndr PROMPT Days[1,25] AT 10,33 DEFINE PAD PAD 26 OF Clndr PROMPT Days[1,26] AT 10,40 DEFINE PAD PAD 27 OF Clndr PROMPT Days[1,27] AT 10,47 DEFINE PAD PAD 28 OF Clndr PROMPT Days[1,28] AT 10,54 DEFINE PAD PAD _29 OF Clndr PROMPT Days[1,29] AT 12,12 DEFINE PAD PAD 30 OF Clndr PROMPT Days[1,30] AT 12,19 DEFINE PAD PAD 31 OF Clndr PROMPT Days[1,31] AT 12,26 DEFINE PAD PAD 32 OF Clndr PROMPT Days[1,32] AT 12,33 DEFINE PAD PAD 33 OF Clndr PROMPT Days[1,331 AT 12,40 DEFINE PAD PAD 34 OF Clndr PROMPT Days[1,34] AT 12,47 DEFINE PAD PAD 35 OF Clndr PROMPT Days(i,35] AT 12,54 DEFINE PAD PAD 36 OF Clndr PROMPT Days[1,36] AT 14,12 DEFINE PAD PAD 37 OF Clndr PROMPT Days[1,371 AT 14,19 DEFINE PAD PAD 38 OF Clndr PROMPT Days[i,38] AT 14,26 DEFINE PAD PAD 39 OF Clndr PROMPT Days[1,39] AT 14,33 DEFINE PAD PAD 40 OF Clndr PROMPT Days[1,40] AT 14,40 DEFINE PAD PAD 41 OF ClncIr PROMPT Days[1,41] AT 14,47 DEFINE PAD PAD 42 OF Clndr PROMPT Days[1,42] AT 14,54 ON SELECTION PAD PAD-1 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD _2 OF Cindr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD3 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD _4 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD _S OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD _6 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD _7 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD8 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD _9 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 10 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 11 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 12 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 13 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 14 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 15 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 16 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 17 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>-</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>Page 23</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>July 1989</span></p>
+<p><span class=rvts6>ON SELECTION PAD PAD 18 OF Clndr DO ACT01 ON SELECTION PAD PAD 19 OF Clndr DO ACT01 ON SELECTION PAD PAD 20 OF Clndr DO ACT01 ON SELECTION PAD PAD 21 OF Clndr DO ACT01 ON SELECTION PAD PAD 22 OF Clndr DO ACT01 ON SELECTION PAD PAD 23 OF Clndr DO ACT01 ON SELECTION PAD PAD 24 OF Clndr DO ACT01 ON SELECTION PAD PAD 25 OF Clndr DO ACT01 ON SELECTION PAD PAD 26 OF Clndr DO ACT01 ON SELECTION PAD PAD-27 OF Clndr DO ACT01 ON SELECTION PAD PAD 28 OF Clndr DO ACT01 ON SELECTION PAD PAD 29 OF Clndr DO ACT01 ON SELECTION PAD PAD 30 OF Clndr DO ACT01 ON SELECTION PAD PAD 31 OF Clndr DO ACT01 ON SELECTION PAD PAD 32 OF Clndr DO ACT01 ON SELECTION PAD PAD 33 OF Clndr DO ACT01 ON SELECTION PAD PAD 34 OF Clndr DO ACT01 ON SELECTION PAD PAD 35 OF Clndr DO ACT01 ON SELECTION PAD PAD 36 OF Clndr DO ACT01 ON SELECTION PAD PAD 37 OF Clndr DO ACT01 ON SELECTION PAD PAD 38 OF Clndr DO ACT01 ON SELECTION PAD PAD 39 OF Clndr DO ACT01 ON SELECTION PAD PAD 40 OF Clndr DO ACT01 ON SELECTION PAD PAD 41 OF Clndr DO ACT01 ON SELECTION PAD PAD 42 OF Clndr DO ACT01</span></p>
+<p><span class=rvts6>RETURN</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; EOP: Disp_Cal</span></p>
+<p><span class=rvts6>PROCEDURE New—Cal</span></p>
+<p><span class=rvts6>k--- Calculate days of month and store to array.</span></p>
+<p><span class=rvts6>PARAMETERS x</span></p>
+<p><span class=rvts6>SET TYPEAHEAD TO 0</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Disable ON KEY LABEL key traps.</span></p>
+<p><span class=rvts6>k--- Keep cursor on same day in new month.</span></p>
+<p><span class=rvts6>day—pad = IIF(LEN(xday) = 0, VAL(LTRIM(TRIM(SUBSTR(PROMPTQ, 2, 2)))), day_pad)</span></p>
+<p><span class=rvts6>Calculate the next month to process.</span></p>
+<p><span class=rvts6>sdate = CTOD(STR(MONTH(sdate) + x, 2, 0) + 11/01/" + STR(YEAR(sdate), 4, 0)) mdate = sdate</span></p>
+<p><span class=rvts6>*--- Declare array to hold Calendar prompt values.</span></p>
+<p><span class=rvts6>RELEASE Days</span></p>
+<p><span class=rvts6>PUBLIC ARRAY Days[1,42]</span></p>
+<p><span class=rvts6>*--- Fill array elements with blanks up to first day of month. cntr = 1</span></p>
+<p><span class=rvts6>DO WHILE cntr &lt; DOW(sdate)</span></p>
+<p><span class=rvts6>Days[1,cntr] =</span></p>
+<p><span class=rvts6>cntr = cntr + 1</span></p>
+<p><span class=rvts6>ENDDO</span></p>
+<p><span class=rvts6>k--- Fill array elements with days of the month.</span></p>
+<p><span class=rvts6>mnth = MONTH (sdate)</span></p>
+<p><span class=rvts6>DO WHILE cntr &lt;= 42</span></p>
+<p><span class=rvts6>IF MONTH(sdate) = ninth</span></p>
+<p><span class=rvts6>Days[1,cntr] = IIF(SEEK(sdate, 3),11*11, ") + STR(DAY(sdate), 2, 0); + IIF(SEEK(DTOS (sdate) ,2) , "#"," ")</span></p>
+<p><span class=rvts6>ELSE</span></p>
+<p><span class=rvts6>Days[1,cntr] =</span></p>
+<p><span class=rvts6>END IF</span></p>
+<p><span class=rvts6>sdate = sdate + 1</span></p>
+<p><span class=rvts6>cntr = cntr + 1</span></p>
+<p><span class=rvts6>ENDDO</span></p>
+<p><span class=rvts6>sdate = mdate</span></p>
+<p><span class=rvts6>xday =VT</span></p>
+<p><span class=rvts6>Page 24</span></p>
+<p><span class=rvts6>TechNotes I dBASE IV</span></p>
+<p><span class=rvts6>SET TYPEAHEAD TO 20</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Reactivate ON KEY LABEL key traps.</span></p>
+<p><span class=rvts6>4*--- Exit from and remove Calendar from the screen. PLAY MACRO 0</span></p>
+<p><span class=rvts6>DEACTIVATE MENU</span></p>
+<p><span class=rvts6>RETURN</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; EOP: New Cal</span></p>
+<p><span class=rvts6>PROCEDURE ActOl</span></p>
+<p><span class=rvts6>* --- Called by Clndr menu to activate Hours popup.</span></p>
+<p><span class=rvts6>i'--- Deactivate ON KEY LABEL key traps for cursor control.</span></p>
+<p><span class=rvts6>ON KEY LABEL uparrow</span></p>
+<p><span class=rvts6>ON KEY LABEL dnarrow</span></p>
+<p><span class=rvts6>ON KEY LABEL pgup</span></p>
+<p><span class=rvts6>ON KEY LABEL pgdn</span></p>
+<p><span class=rvts6>IF LEN(TRIM(PROMPTQ)) &gt; 0</span></p>
+<p><span class=rvts6>xday = LTRIM(TRIM(SUBSTR(PROMPT() ,2,2))) day—pad = VAL(xday)</span></p>
+<p><span class=rvts6>idate = CTOD(STR(MONTH(sdate), 2, 0) + "/"+xday+"/" + STR(YEAR(sdate), 4, 0)) DO Def_Pop</span></p>
+<p><span class=rvts6>@ 4,64 FILL TO 16,74 COLOR &amp;shadow ACTIVATE POPUP Hours</span></p>
+<p><span class=rvts6>@ 4,64 FILL TO 16,74 COLOR /&amp;normbg REPLACE ALL Time WITH LEFT (Time,8) ENDIF</span></p>
+<p><span class=rvts6>k--- Reactivate ON KEY LABEL key traps for cursor control. ON KEY LABEL uparrow PLAY MACRO U</span></p>
+<p><span class=rvts6>ON KEY LABEL dnarrow PLAY MACRO D</span></p>
+<p><span class=rvts6>ON KEY LABEL pgup</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DO New _Cal WITH -1</span></p>
+<p><span class=rvts6>,</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>ON KEY LABEL pgdn</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DO New—Cal WITH 1</span></p>
+<p><span class=rvts6>DO New Cal WITH 0</span></p>
+<p><span class=rvts6>DEACTIVATE MENU</span></p>
+<p><span class=rvts6>RETURN</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; EOP: ActOl</span></p>
+<p><span class=rvts6>PROCEDURE Act02</span></p>
+<p><span class=rvts6>*___ Special Day and Daily Planner input routine.</span></p>
+<p><span class=rvts6>IF PROMPT() = "SPECIAL"</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Indicates Special Day.</span></p>
+<p><span class=rvts6>holiday = .T.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Help screen flag.</span></p>
+<p><span class=rvts6>SELE 3</span></p>
+<p><span class=rvts6>SEEK idate</span></p>
+<p><span class=rvts6>@ 19,1 FILL TO 23,77 COLOR &amp;shadow</span></p>
+<p><span class=rvts6>ACTIVATE WINDOW Show Fld</span></p>
+<p><span class=rvts6>SET MESSAGE TO "&lt;Ctrl-End&gt; Exit/Save - &lt;ESC&gt; Cancel - &lt;Fl&gt; Help"</span></p>
+<p><span class=rvts6>At</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>IF FOUND()</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DO WHILE .NOT. STR(LASTKEY0,2,0) $ " 23, 27"</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Ctrl-End or Escape.</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>@ 0,0 GET Desc</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>READ ENDDO</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>ELSE</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>XDESC = SPACE (225)</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DO WHILE .NOT. STR(LASTKEYQ, 2, 0) $ " 23, 27"</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Ctrl-End or Escape.</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>@ 0,0 GET xdesc</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>READ ENDDO</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>APPEND BLANK</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>REPLACE Desc WITH xdesc, Holiday WITH ldate</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>END IF</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>IF LEN(TRIM(Desc)) = 0</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; If no entry or data removed, delete record.</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>DELETE</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>PACK</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>Page 25</span></p>
+<p><span class=rvts6>July 1989</span></p>
+<p><span class=rvts6>holiday = F.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Reset Help screen flag.</span></p>
+<p><span class=rvts6>SELE 1</span></p>
+<p><span class=rvts6>ELSE</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Daily Planner.</span></p>
+<p><span class=rvts6>data = T.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Help screen flag.</span></p>
+<p><span class=rvts6>SELE 2</span></p>
+<p><span class=rvts6>SEEK DTOS(ldate) + LEFT(PROMPTQ, 8)</span></p>
+<p><span class=rvts6>8 19,1 FILL TO 23,77 COLOR &amp;shadow</span></p>
+<p><span class=rvts6>ACTIVATE WINDOW Show Fid</span></p>
+<p><span class=rvts6>k--- Place a + next to records longer than display width.</span></p>
+<p><span class=rvts6>k--- Separate input blocks into three columns.</span></p>
+<p><span class=rvts6>k--- See also the LongFld UDF used in the WHEN and VALID</span></p>
+<p><span class=rvts6>*</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>clauses of the @. . .GET5 below.</span></p>
+<p><span class=rvts6>0 0,24 SAY IIF(LEN(TRIM(linel)) &gt; 24, "+", "</span></p>
+<p><span class=rvts6>0 0,25 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>0 1,24 SAY IIF(LEN(TRIM(line2)) &gt; 24, "+", IT</span></p>
+<p><span class=rvts6>@ 1,25 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>@ 2,24 SAY IIF(LEN(TRIM(line3)) &gt; 24, "+", "</span></p>
+<p><span class=rvts6>0 2,25 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>0 0,50 SAY IIF(LEN(TRIM(line4)) &gt; 24, "+", IT</span></p>
+<p><span class=rvts6>0 0,51 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>0 1,50 SAY IIF(LEN(TRIM(line5)) &gt; 24, "+", if</span></p>
+<p><span class=rvts6>0 1,51 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>0 2,50 SAY IIF(LEN(TRIM(lirie6)) &gt; 24, "+", 11 TV)</span></p>
+<p><span class=rvts6>@ 2,51 SAY CHR(179) COLOR &amp;box</span></p>
+<p><span class=rvts6>0 0,74 SAY IIF(LEN(TRIM(line7)) &gt; 22, "+", IT</span></p>
+<p><span class=rvts6>0 1,74 SAY IIF(LEN(TRIM(line8)) &gt; 22, "+", "</span></p>
+<p><span class=rvts6>0 2,74 SAY IIF(LEN(TRIM(line9)) &gt; 22, "+", "</span></p>
+<p><span class=rvts6>SET MESSAGE TO "Position with: " + CHR(24) + CHR(25);</span></p>
+<p><span class=rvts6>+ IT &lt;TAB&gt; - &lt;Ctrl-End&gt; Exit/Save - &lt;Esc&gt; Cancel - &lt;Fl&gt; Help" IF found()</span></p>
+<p><span class=rvts6>DO WHILE .NOT. STR(LASTKEY0,2,0) $ " 23, 27"</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Ctrl-End or Escape.</span></p>
+<p><span class=rvts6>O 0, 0 GET Linel FUNCTION "S24" WHEN LongFld(LEN(TRIM(Linel))); VALID LongFld(LEN(TRIM(Linel)))</span></p>
+<p><span class=rvts6>O 1, 0 GET Line2 FUNCTION "S24" WHEN LorigFld(LEN(TRIM(Line2))); VALID LongFld(LEN(TRIM(Line2)))</span></p>
+<p><span class=rvts6>O 2, 0 GET Line3 FUNCTION "S24" WHEN LongFld(LEN(TRIM(Line3))); VALID LongFld(LEN(TRIM(Line3)))</span></p>
+<p><span class=rvts6>O 0,26 GET Line4 FUNCTION "S24" WHEN LongFld(LEN(TRIM(Line4))); VALID LongFld(LEN(TRIM(Line4)))</span></p>
+<p><span class=rvts6>O 1,26 GET Line5 FUNCTION "S24" WHEN LongFld(LEN(TRIM(Lines))); VALID LongFld(LEN(TRIM(Lines)))</span></p>
+<p><span class=rvts6>0 2,26 GET Line6 FUNCTION "S24" WHEN LongFld(LEN(TRIM(Line6))); VALID LongFld(LEN(TRIM(Line6)))</span></p>
+<p><span class=rvts6>0 0,52 GET Line7 FUNCTION "S22" WHEN LongFld(LEN(TRIM(Line7))); VALID LongFld(LEN(TRIM(Line7)))</span></p>
+<p><span class=rvts6>O 1,52 GET Line8 FUNCTION "S22" WHEN LongFld(LEN(TRIM(Lirie8))); VALID LongFld(LEN(TRIM(Line8)))</span></p>
+<p><span class=rvts6>O 2,52 GET Line9 FUNCTION "S22" WHEN LongFld(LEN(TRIM(Line9))); VALID LongFld(LEN(TRIM(Line9)))</span></p>
+<p><span class=rvts6>READ</span></p>
+<p><span class=rvts6>ENDDO</span></p>
+<p><span class=rvts6>ELSE</span></p>
+<p><span class=rvts6>xlinel = SPACE (225)</span></p>
+<p><span class=rvts6>xline2 = SPACE(225)</span></p>
+<p><span class=rvts6>xline3 = SPACE(225)</span></p>
+<p><span class=rvts6>xline4 = SPACE (225)</span></p>
+<p><span class=rvts6>xline5 = SPACE (225)</span></p>
+<p><span class=rvts6>xline6 = SPACE (225)</span></p>
+<p><span class=rvts6>xline7 = SPACE(225)</span></p>
+<p><span class=rvts6>xline8 = SPACE (225)</span></p>
+<p><span class=rvts6>xline9 = SPACE(225)</span></p>
+<p><span class=rvts6>DO WHILE .NOT. STR(LASTKEY0,2,0) $ " 23, 27"</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Ctrl-End or Escape.</span></p>
+<p><span class=rvts6>0)</span></p>
+<p><span class=rvts6>Page 26</span></p>
+<p><span class=rvts6>TechNotes I dBASE IV</span></p>
+<p><span class=rvts6>8 0, 0 GET xlinel FUNCTION "S24'T WHEN LongFld(LEN(TRIM(xlinel))); VALID LongFld(LEN(TRIM(xlinel)))</span></p>
+<p><span class=rvts6>8 1, 0 GET xline2 FUNCTION "S24" WHEN LongFld(LEN(TRIM(xline2))); VALID LongFld(LEN(TRIM(xline2)))</span></p>
+<p><span class=rvts6>@ 2, 0 GET xline3 FUNCTION "S24" WHEN LongFld(LEN(TRIM(xline3))); VALID LongFld(LEN(TRIM(xline3)))</span></p>
+<p><span class=rvts6>8 0,26 GET xline4 FUNCTION "S24" WHEN LongFld(LEN(TRIM(xline4))); VALID LongFld(LEN(TRIM(xline4)))</span></p>
+<p><span class=rvts6>8 1,26 GET xline5 FUNCTION "S24" WHEN LongFld(LEN(TRIM(xline5))); VALID LongFld(LEN(TRIM(xline5)))</span></p>
+<p><span class=rvts6>8 2,26 GET xline6 FUNCTION IIS2411 WHEN LongFld(LEN(TRIM(xlirie6))); VALID LongFld(LEN(TRIM(xline6)))</span></p>
+<p><span class=rvts6>8 0,52 GET xline7 FUNCTION "S22" WHEN LongFld(LEN(TRIM(xline7))); VALID LongFld(LEN(TRIM(xline7)))</span></p>
+<p><span class=rvts6>8 1,52 GET xline8 FUNCTION "S22" WHEN LongFld(LEN(TRIM(xline8))); VALID LongFld(LEN(TRIM(xline8)))</span></p>
+<p><span class=rvts6>8 2,52 GET xline9 FUNCTION "S22" WHEN LongFld(LEN(TRIM(xlirie9))); VALID LongFld(LEN(TRIM(xline9)))</span></p>
+<p><span class=rvts6>READ</span></p>
+<p><span class=rvts6>ENDDO</span></p>
+<p><span class=rvts6>I*</span></p>
+<p><span class=rvts6>IF LASTKEY() &lt;&gt; 27</span></p>
+<p><span class=rvts6>APPEND BLANK</span></p>
+<p><span class=rvts6>REPLACE Linel WITH xliriel, Date with idate,;</span></p>
+<p><span class=rvts6>Time WITH LEFT(PROMPT0,8) + CHR(27)</span></p>
+<p><span class=rvts6>REPLACE Line2 WITH xline2 REPLACE Line3 WITH xline3 REPLACE Line4 WITH xline4 REPLACE Line5 WITH xline5 REPLACE Line6 WITH xline6 REPLACE Line7 WITH xline7 REPLACE Line8 WITH xline8 REPLACE Line9 WITH xline9</span></p>
+<p><span class=rvts6>END IF</span></p>
+<p><span class=rvts6>END IF</span></p>
+<p><span class=rvts6>SELE 2</span></p>
+<p><span class=rvts6>k---- If no entry or data removed, delete record.</span></p>
+<p><span class=rvts6>IF LEN(TRIM(Linel))+LEN(TRIM(Line2))+LEN(TRIM(Line3))+LEN(TRIM(Line4))+; LEN(TRIM(Line5))+LEN(TRIM(Line6))+LEN(TRIM(Line7))+LEN(TRIM(Line8))+; LEN(TRIM(Line9)) = 0</span></p>
+<p><span class=rvts6>DELETE PACK</span></p>
+<p><span class=rvts6>k--- Remove arrow from next to time slot.</span></p>
+<p><span class=rvts6>SELE 1</span></p>
+<p><span class=rvts6>SET ORDER TO Mark</span></p>
+<p><span class=rvts6>SEEK DTOS(ldate) + LEFT(PROMPTQ, 8)</span></p>
+<p><span class=rvts6>REPLACE Time WITH LEFT(Time, 8)</span></p>
+<p><span class=rvts6>SET ORDER TO</span></p>
+<p><span class=rvts6>ELSE</span></p>
+<p><span class=rvts6>*__.. Place an arrow next to time slot.</span></p>
+<p><span class=rvts6>SELE 1</span></p>
+<p><span class=rvts6>SET ORDER TO Mark</span></p>
+<p><span class=rvts6>SEEK DTOS(ldate) + LEFT(PROMPT0,8) REPLACE Time WITH LEFT(Time, 8) + CHR(27) SET ORDER TO</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>data = F.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Reset Help screen flag.</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>DEACTIVATE WINDOW Show Fld</span></p>
+<p><span class=rvts6>8 19,1 FILL TO 23,78 COLOR /&amp;normbg</span></p>
+<p><span class=rvts6>SET MESSAGE TO I'll</span></p>
+<p><span class=rvts6>IF .NOT. ISCOLOR()</span></p>
+<p><span class=rvts6>Page 27</span></p>
+<p><span class=rvts6>July 1989</span></p>
+<p><span class=rvts6>SET COLOR OF INFORMATION TO W/N</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>SET COLOR OF BOX</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>TO WIN</span></p>
+<p><span class=rvts6>END IF</span></p>
+<p><span class=rvts6>RETURN</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; EOP: Act02</span></p>
+<p><span class=rvts6>PROCEDURE Def_Pop</span></p>
+<p><span class=rvts6>k--- Update Time Table database to mark times with *</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>Daily Planner information.</span></p>
+<p><span class=rvts6>REPLACE ALL Date WITH idate</span></p>
+<p><span class=rvts6>REPLACE ALL Time WITH TRIM(b-&gt;Time)+Time</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>FUNCTION LongFld</span></p>
+<p><span class=rvts6>k--- Tests length of data against length of input block</span></p>
+<p><span class=rvts6>*</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>and places a + next to data that exceeds display width.</span></p>
+<p><span class=rvts6>*</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>Removes + if data has been made shorter than display width.</span></p>
+<p><span class=rvts6>PARAMETERS fldlngth</span></p>
+<p><span class=rvts6>IF fldlngth &gt; 24 .OR. (fldlngth &gt; 22 .AND.;</span></p>
+<p><span class=rvts6>VARREAD() $ "LINE7,LINE8,LINE9,XLINE7,XLINE8,XLINE9")</span></p>
+<p><span class=rvts6>DO CASE</span></p>
+<p><span class=rvts6>CASE VARREAD() = 'TLINE1" @ 0,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = LINE2" @ 1,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE3" @ 2,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE4" @ 0,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE5" @ 1,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE6" @ 2,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE7" @ 0,74 SAY "+"</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>CASE VARREAD()</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>"LINE8"</span></p>
+<p><span class=rvts6>@ 1,74 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE9" @ 1,74 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE1" @ 0,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE2" @ 1,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE3" @ 2,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE4" @ 0,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = !XLINE5 @ 1,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = 'tXLINE6" @ 2,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE7" @ 0,74 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE8" @ 1,74 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE9" @ 1,74 SAY V!+t</span></p>
+<p><span class=rvts6>ENDCASE</span></p>
+<p><span class=rvts6>ELSE</span></p>
+<p><span class=rvts6>DO CASE</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINEl" @ 0,24 SAY "</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE2"</span></p>
+<p><span class=rvts6>ov</span></p>
+<p><span class=rvts6>0</span></p>
+<p><span class=rvts6>SI</span></p>
+<p><span class=rvts6>Page 28</span></p>
+<p><span class=rvts6>TechNotes I dBASE IV</span></p>
+<p><span class=rvts6>@ 1,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD O = "LINE3"</span></p>
+<p><span class=rvts6>@ 2,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE4"</span></p>
+<p><span class=rvts6>@ 0,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE5"</span></p>
+<p><span class=rvts6>@ 1,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREADO = "LINE6"</span></p>
+<p><span class=rvts6>@ 2,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "LINE7"</span></p>
+<p><span class=rvts6>0 0,74 SAY</span></p>
+<p><span class=rvts6>CASE VARBEAD() = "LINE8"</span></p>
+<p><span class=rvts6>0 1,74 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = 'LINE9"</span></p>
+<p><span class=rvts6>0 1,74 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE1"</span></p>
+<p><span class=rvts6>0 0,24 SAY "</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE2"</span></p>
+<p><span class=rvts6>0 1,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE3"</span></p>
+<p><span class=rvts6>0 2,24 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE4"</span></p>
+<p><span class=rvts6>0 0,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE5"</span></p>
+<p><span class=rvts6>0 1,50 SAY "</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE6"</span></p>
+<p><span class=rvts6>0 2,50 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE7"</span></p>
+<p><span class=rvts6>0 0,74 SAY "</span></p>
+<p><span class=rvts6>.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>CASE VARREAD() = "XLINE8"</span></p>
+<p><span class=rvts6>0 1,74 SAY</span></p>
+<p><span class=rvts6>CASE VARREAD() = "XLINE9"</span></p>
+<p><span class=rvts6>0 1,74 SAY ENDCASE</span></p>
+<p><span class=rvts6>END IF</span></p>
+<p><span class=rvts6>RETURN T.</span></p>
+<p><span class=rvts6>PROCEDURE HelpText</span></p>
+<p><span class=rvts6>SET TYPEAHEAD TO 0</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Disable ON KEY traps.</span></p>
+<p><span class=rvts6>SET MESSAGE TO "Press any key to dontinue. .."</span></p>
+<p><span class=rvts6>ACTIVATE WINDOW ClrScr</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Cover existing text so screen appears</span></p>
+<p><span class=rvts6>&amp;&amp; to have been cleared.</span></p>
+<p><span class=rvts6>0 2,3 FILL TO 19,71 COLOR WIN</span></p>
+<p><span class=rvts6>ACTIVATE WINDOW ShowHelp</span></p>
+<p><span class=rvts6>DO CASE</span></p>
+<p><span class=rvts6>CASE M-&gt;holiday</span></p>
+<p><span class=rvts6>TEXT</span></p>
+<p><span class=rvts6>Special Day</span></p>
+<p><span class=rvts6>Display and edit message for a Special Day (i.e. Holiday, Birthday, Anniversary, etc...)</span></p>
+<p><span class=rvts6>END TEXT</span></p>
+<p><span class=rvts6>I *</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>CASE data</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>TEXT</span></p>
+<p><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>Display/Edit Entries</span></p>
+<p><span class=rvts6>Display and edit notes for the particular time period.</span></p>
+<p><span class=rvts6>Page 29</span></p>
+<p><span class=rvts6>July 1989</span></p>
+<p><span class=rvts6>A + following an input space indicates there is data beyond</span></p>
+<p><span class=rvts6>the displayed length of the input space. Data will scroll</span></p>
+<p><span class=rvts6>to the left within the input space.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>0</span></p>
+<p><span class=rvts6>END TEXT</span></p>
+<p><span class=rvts6>CASE POPUP() = "HOURS" TEXT</span></p>
+<p><span class=rvts6>Time Periods</span></p>
+<p><span class=rvts6>Place the highlight on the time period you wish to display/modify and press &lt;Enter&gt;.</span></p>
+<p><span class=rvts6>If an entry already exists for that time an arrow will appear to right of it.</span></p>
+<p><span class=rvts6>Place the highlight on the word SPECIAL and press &lt;Enter&gt; to display, modify or create a Special Day message.</span></p>
+<p><span class=rvts6>ENDTEXT</span></p>
+<p><span class=rvts6>CASE MENU() = "CLNDR" TEXT</span></p>
+<p><span class=rvts6>The Calendar</span></p>
+<p><span class=rvts6>Place the highlight on the day of the month you wish to display</span></p>
+<p><span class=rvts6>planner information for and press &lt;Enter&gt;.</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>0</span></p>
+<p><span class=rvts6>An * to the left of the day indicates a SPECIAL day (i.e. Holiday, Birthday, Anniversary, etc...). A # to the right of the day indicates there is planner information stored for that day.</span></p>
+<p><span class=rvts6>ENDTEXT</span></p>
+<p><span class=rvts6>ENDCASE</span></p>
+<p><span class=rvts6>READ</span></p>
+<p><span class=rvts6>DEACTIVATE WINDOW ShowHelp</span></p>
+<p><span class=rvts6>DEACTIVATE WINDOW ClrScr</span></p>
+<p><span class=rvts6>SET MESSAGE TO</span></p>
+<p><span class=rvts6>IF data .OR. M-&gt;holiday</span></p>
+<p><span class=rvts6>SET MESSAGE TO "Position with:</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>+ CHR(24) + CHR(25);</span></p>
+<p><span class=rvts6>+ " &lt;TAB&gt; - &lt;Ctrl-End&gt; Exit - &lt;Esc&gt; Cancel - &lt;Fl&gt; Help"</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>SET TYPEAHEAD TO 20</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; Reactivate ON KEY traps.</span></p>
+<p><span class=rvts6>IF .NOT. ISCOLOR()</span></p>
+<p><span class=rvts6>SET COLOR OF INFORMATION TO WIN SET COLOR OF BOX</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>TO WIN</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>RETURN</span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>&amp;&amp; EOP: ShowHelp</span></p>
+<p><span class=rvts6>PROCEDURE Leave</span></p>
+<p><span class=rvts6>*_ Sets main program loop variable to force program end.</span></p>
+<p><span class=rvts6>leave = "Yes" PLAY MACRO 0 DEACTIVATE MENU</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>k--- EOP: dCLNDR.PRG</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Page 30</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

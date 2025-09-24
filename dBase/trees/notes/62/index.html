@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>LDoM</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body>
+<p><span class=rvts6>FUNCTION LDoM</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Ken Chan [HazMatZak] (CIS: 72662,1305)</span></p>
+<p><span class=rvts6>*-- Date........: 02/26/1992</span></p>
+<p><span class=rvts6>*-- Notes.......: Last Day of Month -- Zak wrote this one up as a MUCH</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shorter and more straightforward version of one I did.</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &gt;sigh&lt;. &nbsp;This function returns the date of the last</span></p>
+<p><span class=rvts6>*- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;day of the month.</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.1</span></p>
+<p><span class=rvts6>*-- Rev. History: 02/26/1992 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: Any</span></p>
+<p><span class=rvts6>*-- Usage.......: LDoM(&lt;dDate&gt;)</span></p>
+<p><span class=rvts6>*-- Example.....: ? LDoM(DATE())</span></p>
+<p><span class=rvts6>*-- Returns.....: dBASE Date</span></p>
+<p><span class=rvts6>*-- Parameters..: dDate &nbsp;-- date to work from ...</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;parameter dDate</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;private dNxtMonth</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;m-&gt;dNxtMonth = dDate - day( dDate ) + 45 &amp;&amp; middle of next month</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN m-&gt;dNxtMonth - day( n-&gt;dNxtMonth ) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class=rvts6>*-- EoF: LDoM()</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

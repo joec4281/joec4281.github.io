@@ -1,0 +1,731 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Dot in Run Time</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body>
+<p><span class=rvts6>***********************************************************************</span></p>
+<p><span class=rvts6>* PROGRAM : DOT.PRG</span></p>
+<p><span class=rvts6>* &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 4</span></p>
+<p><span class=rvts6>***********************************************************************</span></p>
+<p><span class=rvts6>PROCEDURE DOT</span></p>
+<p><span class=rvts6>&nbsp; PARAMETERS mDot_row, mDot_Col, mDot_Prompt</span></p>
+<p><span class=rvts6>&nbsp; if "FoxPro" $ version()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; mDot_row = wrows()-4</span></p>
+<p><span class=rvts6>&nbsp; else</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; mDot_Row = 21</span></p>
+<p><span class=rvts6>&nbsp; endif</span></p>
+<p><span class=rvts6>&nbsp; mDot_Col = 0</span></p>
+<p><span class=rvts6>&nbsp; mDot_Prompt = "."</span></p>
+<p><span class=rvts6>&nbsp; SET CONSOLE OFF</span></p>
+<p><span class=rvts6>&nbsp; Dot_Error = 0</span></p>
+<p><span class=rvts6>&nbsp; ON ERROR Dot_Error = ERROR()</span></p>
+<p><span class=rvts6>&nbsp; IF Dot_Error = 94</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Set default dot row, based on status bar and display mode.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Some terminal emulators for non-DOS versions of dBASE use</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- the last line on the screen. This command adjusts for this.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; mDot_row = IIF(SET("STATUS") = "ON", 21, 24) + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; IIF("43" $ SET("DISPLAY"), 18, 0) - IIF("DOS" $ OS(), 0, 1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; mDot_Col = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; mDot_Prompt = "."</span></p>
+<p><span class=rvts6>&nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; RELEASE Dot_Error</span></p>
+<p><span class=rvts6>&nbsp; DO Dot_Public</span></p>
+<p><span class=rvts6>&nbsp; IF TYPE("m_Prog") = "U"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; PUBLIC m_Prog</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; m_Prog = PROGRAM()</span></p>
+<p><span class=rvts6>&nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; Dot_Talk = SET("TALK")</span></p>
+<p><span class=rvts6>&nbsp; SET TALK OFF</span></p>
+<p><span class=rvts6>&nbsp; CLEAR</span></p>
+<p><span class=rvts6>&nbsp; SET CONSOLE ON</span></p>
+<p><span class=rvts6>&nbsp; SET FORMAT TO</span></p>
+<p><span class=rvts6>&nbsp; SET ESCAPE ON</span></p>
+<p><span class=rvts6>&nbsp; ON ESCAPE Dot_Escape = 0</span></p>
+<p><span class=rvts6>&nbsp; ON ERROR DO DOT_ERR WITH ERROR(), MESSAGE()</span></p>
+<p><span class=rvts6>&nbsp; ON KEY LABEL CTRL-F9 CANCEL</span></p>
+<p><span class=rvts6>&nbsp; IF .NOT. "RUNTIME" $ UPPER(VERSION(0))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ON KEY LABEL F1 HELP</span></p>
+<p><span class=rvts6>&nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ON KEY LABEL F1 KEYBOARD "HELP" + CHR(13)</span></p>
+<p><span class=rvts6>&nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; Dot_Row = mDot_row</span></p>
+<p><span class=rvts6>&nbsp; Dot_Col = mDot_Col</span></p>
+<p><span class=rvts6>&nbsp; Dot_Prompt = mDot_Prompt</span></p>
+<p><span class=rvts6>&nbsp; RELEASE mDot_row, mDot_Col, mDot_Prompt</span></p>
+<p><span class=rvts6>&nbsp; Dot_Pop = .F.</span></p>
+<p><span class=rvts6>&nbsp; Dot_Hist = 20</span></p>
+<p><span class=rvts6>&nbsp; DECLARE Dot_Array[Dot_Hist]</span></p>
+<p><span class=rvts6>&nbsp; Dot_Len = 80 - (Dot_Col + LEN(Dot_Prompt) + 1)</span></p>
+<p><span class=rvts6>&nbsp; Dot_Pic = '"@S' + LTRIM(STR(Dot_Len)) + '"'</span></p>
+<p><span class=rvts6>&nbsp; Dot_1st = ""</span></p>
+<p><span class=rvts6>&nbsp; DO Set_Color</span></p>
+<p><span class=rvts6>&nbsp; DO WHILE .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF Dot_1st &lt;&gt; "@" .AND. Dot_1st &lt;&gt; "?" .AND. Dot_Talk = "ON"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ?</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Comm = SPACE(254)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; @ Dot_Row, Dot_Col SAY Dot_Prompt GET Dot_Comm ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; PICTURE &amp;Dot_Pic COLOR &amp;Dot_Color</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; READ</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Comm = RTRIM(LTRIM(Dot_Comm))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF MOD(READKEY(), 256) = 4</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 5</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO Dot_Key</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF "" &lt;&gt; Dot_Comm .AND. Dot_Hist &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO Dot_Stack</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF UPPER(Dot_Comm) = "EXIT"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; EXIT</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Disable SET TALK</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF UPPER(Dot_Comm) = "SET TALK"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_Talk = IIF(UPPER(Dot_Comm) = "SET TALK ON", "ON", "OFF")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF "" &lt;&gt; Dot_Comm .AND. UPPER(Dot_Comm) &lt;&gt; "SET TALK"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ON ERROR Dot_Error = ERROR()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_Cnt = 0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; Used for break-out of fatal error.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO WHILE "&amp;" $ Dot_Comm</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DO MacroSub</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Cnt = Dot_Cnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF Dot_Cnt &gt;= 32 &nbsp; &nbsp; &nbsp; &nbsp;&amp;&amp; Attempted 32 macro substitutions.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; EXIT</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDDO</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ON ERROR DO DOT_ERR WITH ERROR(), MESSAGE()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO IsRTime</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; ENDDO</span></p>
+<p><span class=rvts6>&nbsp; SET TALK &amp;Dot_Talk</span></p>
+<p><span class=rvts6>&nbsp; ON ERROR</span></p>
+<p><span class=rvts6>&nbsp; RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PROCEDURE Dot_Key</span></p>
+<p><span class=rvts6>&nbsp; *- Show commands in popup or on the command line.</span></p>
+<p><span class=rvts6>&nbsp; IF Dot_Pop</span></p>
+<p><span class=rvts6>DEFINE POPUP Dot_Pop FROM 0, 0</span></p>
+<p><span class=rvts6>counter = 1</span></p>
+<p><span class=rvts6>m_First = 1</span></p>
+<p><span class=rvts6>DO WHILE counter &lt;= Dot_Hist</span></p>
+<p><span class=rvts6>&nbsp; IF TYPE("Dot_Array[counter]") = "L"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; m_First = m_First + 1</span></p>
+<p><span class=rvts6>&nbsp; ELSE</span></p>
+<p><span class=rvts6>DEFINE BAR 1 + (counter - m_First) OF Dot_Pop PROMPT ;</span></p>
+<p><span class=rvts6>&nbsp; Dot_Array[counter]</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>counter = counter + 1</span></p>
+<p><span class=rvts6>ENDDO</span></p>
+<p><span class=rvts6>ON SELECTION POPUP Dot_Pop DEACTIVATE POPUP</span></p>
+<p><span class=rvts6>IF counter - m_First &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; ACTIVATE POPUP Dot_Pop</span></p>
+<p><span class=rvts6>&nbsp; m_Bar = BAR()</span></p>
+<p><span class=rvts6>&nbsp; IF m_Bar &lt;&gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; @ Dot_Row, 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Comm = LTRIM(RTRIM(Dot_Array[m_Bar + m_First - 1]))</span></p>
+<p><span class=rvts6>&nbsp; ENDIF</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>ELSE</span></p>
+<p><span class=rvts6>&nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; * PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 6</span></p>
+<p><span class=rvts6>&nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; Stack_Num = Dot_Hist</span></p>
+<p><span class=rvts6>&nbsp; DO WHILE .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; m_Temp = Dot_Array[Stack_Num]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; m_Temp = IIF(TYPE("m_Temp") = "L", SPACE(254), m_Temp + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; SPACE(254 - LEN(m_Temp)))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; @ Dot_Row, Dot_Col CLEAR TO Dot_Row, 79</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; @ Dot_Row, Dot_Col SAY Dot_Prompt GET m_Temp ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; PICTURE &amp;Dot_Pic COLOR &amp;Dot_Color</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; KEYBOARD CHR(2)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; READ</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; DO CASE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE MOD(READKEY(), 256) = 4</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF Stack_Num &gt; 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack_Num = Stack_Num - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE MOD(READKEY(), 256) = 5</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF Stack_Num &lt; Dot_Hist</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stack_Num = Stack_Num + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dot_1st = "?"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; EXIT</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE LASTKEY() = 27</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; EXIT</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE TYPE("m_Temp") &lt;&gt; "L"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Comm = LTRIM(RTRIM(m_Temp))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; EXIT</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDCASE</span></p>
+<p><span class=rvts6>&nbsp; ENDDO</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE Dot_Public</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Sets up PUBLIC variables required by DOT.PRG</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; PUBLIC Dot_1st, Dot_Rest, Dot_Color, Dot_Comm, Dot_Exact</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; PUBLIC Dot_Pic, Dot_Len, Dot_Talk, Dot_Prompt, Dot_Row, Dot_Col</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; PUBLIC Dot_Array, Dot_Hist, Dot_Pop, Dot_Error, Dot_Escape</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE Dot_Release</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- RELEASEs PUBLIC variables required by DOT.PRG</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RELEASE Dot_1st, Dot_Color, Dot_Comm, Dot_Exact</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RELEASE Dot_Pic, Dot_Len, Dot_Talk, Dot_Prompt, Dot_Row, Dot_Col</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RELEASE Dot_Array, Dot_Hist, Dot_Pop, Dot_Safety</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RELEASE Dot_Error, Dot_Escape</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE Dot_Save</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; PARAMETERS mFirst</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Preserves variables required by DOT.PRG when executing</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- commands that could RELEASE or CLEAR them.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Safety = SET("SAFETY")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; * PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; * &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 7</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SET SAFETY OFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SAVE ALL LIKE Dot_* TO Dot_1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; DO CASE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CLEAR" = mFirst</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CLEAR &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "LOGOUT" = mFirst</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; SAVE TO Dot_2 ALL LIKE m_Prog*</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; SAVE TO Dot_3 ALL LIKE mDot_row</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; LOGOUT</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; SET TALK OFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; PUBLIC m_Prog, mDot_row</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; RESTORE FROM Dot_2 ADDITIVE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; RESTORE FROM Dot_3 ADDITIVE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ERASE Dot_2.MEM</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ERASE Dot_3.MEM</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "RELEASE" = mFirst</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CLEAR MEMORY</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "SAVE" = mFirst</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; SAVE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDCASE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; DO Dot_Public</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RESTORE FROM Dot_1 ADDITIVE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ERASE Dot_1.MEM</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SET SAFETY &amp;Dot_Safety</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE Dot_Stack</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Stacks commands (history) in an array.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF TYPE("Dot_Array[Dot_Hist]") = "L" .OR. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Array[Dot_Hist] &lt;&gt; Dot_Comm</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m_Temp = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO WHILE m_Temp &lt; Dot_Hist</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Array[m_Temp] = Dot_Array[m_Temp + 1]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; m_Temp = m_Temp + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDDO</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_Array[m_Temp] = Dot_Comm</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE IsRTime</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Parses commands so they may be executed in RunTime.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Exact = SET("EXACT")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SET EXACT OFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF AT(" ", Dot_Comm) = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_1st = UPPER(Dot_Comm)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_Rest = ""</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_1st = UPPER(LEFT(Dot_Comm, AT(" ", Dot_Comm) - 1))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_Rest = RIGHT(Dot_Comm, LEN(Dot_Comm) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; AT(" ", Dot_Comm))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF TYPE("As3_Runtime") &lt;&gt; "U"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; IF Dot_1st &lt;&gt; "?" .AND. Dot_1st &lt;&gt; "SET"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; SET TALK ON</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; * PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; * &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 8</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; SET TALK OFF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Evaluate first word or symbol in command.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; DO CASE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE LEFT(Dot_Comm, 1) = "?"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Rest = RIGHT(Dot_Comm, LEN(Dot_Comm) - AT("?", Dot_Comm))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; m_Temp = AT("SET(", UPPER(Dot_Rest))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF m_Temp &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m_Text = UPPER(SUBSTR(Dot_Rest, AT("SET(", UPPER(Dot_Rest)) ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; + 5, AT(")", UPPER(Dot_Rest)) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (AT("SET(", UPPER(Dot_Rest)) + 6)))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IF m_Text $ "EXACT TALK"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dot_Rest = STUFF(Dot_Rest, AT("SET(", UPPER(Dot_Rest)), ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 5, "Dot_")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dot_Rest = LEFT(Dot_Rest, AT(")", Dot_Rest) - 2) + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IIF("EXAC" = m_Text, "T", "")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ?&amp;Dot_Rest &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; '&amp;' must be next to '?'</span></p>
+<p><span class=rvts6>&amp;&amp; ? &amp;Dot_Rest won't work for ?? or ???</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ?</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE LEFT(Dot_Comm, 1) = "@"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Rest = RIGHT(Dot_Comm, LEN(Dot_Comm) - AT("@", Dot_Comm))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; @ &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE LEFT(Dot_Comm, 1) = "!"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Rest = RIGHT(Dot_Comm, LEN(Dot_Comm) - AT("!", Dot_Comm))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; RUN &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "ACCEPT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; m_Temp = RIGHT(Dot_Rest, LEN(Dot_Rest) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AT(" TO ", UPPER(Dot_Rest)) - 3)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; PUBLIC &amp;m_Temp</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ACCEPT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "ACTIVATE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ACTIVATE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "APPEND" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; APPEND &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "AVERAGE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; AVERAGE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "BROWSE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; BROWSE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CALCULATE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CALCULATE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CALL" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CALL &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CANCEL" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CANCEL</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CHANGE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CHANGE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CLEAR" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF "" = TRIM(Dot_Rest)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CLEAR</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; * PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; * &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 9</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DO Dot_Save WITH Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CLOSE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CLOSE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "COMPILE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF .NOT. "RUNTIME" $ UPPER(VERSION(0))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; COMPILE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CONTINUE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CONTINUE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CONVERT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; CONVERT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "COPY" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; COPY &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "COUNT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; COUNT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "CREATE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF .NOT. "RUNTIME" $ UPPER(VERSION(0))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CREATE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IF LEFT(UPPER(TRIM(Dot_Rest)), 4) = "VIEW" ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .AND. " FROM ENVI" $ UPPER(Dot_Rest)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; m_Temp = SUBSTR(Dot_Rest, 6, AT(" FROM ENVI", ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UPPER(Dot_Rest)) - 6)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CREATE VIEW &amp;m_Temp FROM ENVIRONMENT</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IF FILE("User_Def.DBO")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DO User_Def</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "DEACTIVATE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DEACTIVATE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "DEBUG" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF .NOT. "RUNTIME" $ UPPER(VERSION(0))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DEBUG &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "DECLARE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DISPLAY MEMORY</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DECLARE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DISPLAY MEMORY</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; CASE "DEFINE" = Dot_1st</span></p>
+<p><span class=rvts6>DEFINE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "DELETE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; DELETE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "DIR" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; DIR &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "DISPLAY" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; DISPLAY &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "DO" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; DO &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "EDIT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; EDIT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "EJECT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; EJECT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "ERASE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; ERASE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; * PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 10</span></p>
+<p><span class=rvts6>&nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>CASE "EXPORT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; EXPORT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "FIND" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; FIND &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "IMPORT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; FIND &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "INDEX" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; INDEX &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "INPUT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; m_Temp = RIGHT(Dot_Rest, LEN(Dot_Rest) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; AT(" TO ", UPPER(Dot_Rest)) - 3)</span></p>
+<p><span class=rvts6>&nbsp; PUBLIC &amp;m_Temp</span></p>
+<p><span class=rvts6>&nbsp; INPUT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "INSERT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; INSERT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "JOIN" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; JOIN &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "KEYBOARD" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; KEYBOARD &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "LABEL" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; LABEL &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "LIST" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; LIST &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "LOAD" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; LOAD &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "LOCATE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; LOCATE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "LOGOUT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; DO Dot_Save WITH Dot_1st</span></p>
+<p><span class=rvts6>CASE "MODIFY" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; IF .NOT. "RUNTIME" $ UPPER(VERSION(0))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; MODIFY &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; ENDIF</span></p>
+<p><span class=rvts6>CASE "MOVE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; MOVE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "ON" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; IF .NOT. ("ESCA" $ UPPER(Dot_Rest) .OR. "ERRO" $ UPPER(Dot_Rest))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ON &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; ENDIF</span></p>
+<p><span class=rvts6>CASE "PACK" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; PACK</span></p>
+<p><span class=rvts6>CASE "PLAY" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; PLAY &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "PRIVATE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; PRIVATE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>*CASE "PROTECT" = Dot_1st</span></p>
+<p><span class=rvts6>* &nbsp;PROTECT</span></p>
+<p><span class=rvts6>CASE "PUBLIC" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; PUBLIC &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "QUIT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; QUIT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "READ" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; READ &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; * PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>&nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 11</span></p>
+<p><span class=rvts6>&nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>CASE "RECALL" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; RECALL &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "REINDEX" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; REINDEX &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "RELEASE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; IF UPPER(TRIM(Dot_Rest)) = "ALL"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; DO Dot_Save WITH Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RELEASE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; ENDIF</span></p>
+<p><span class=rvts6>CASE "RENAME" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; RENAME &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "REPLACE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; REPLACE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "REPORT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; REPORT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "RESET" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; RESET &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "RESTORE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; Dot_Rest = Dot_Rest + IIF(" ADDI" $ ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; UPPER(Dot_Rest), "", " ADDITIVE")</span></p>
+<p><span class=rvts6>&nbsp; RESTORE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "ROLLBACK" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; ROLLBACK &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "RUN" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; RUN &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "SAVE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; DO Dot_Save WITH Dot_1st</span></p>
+<p><span class=rvts6>CASE "SEEK" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; SEEK &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "SELECT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; SELECT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "SET" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; Dot_Temp = UPPER(LEFT(LTRIM(Dot_Rest), 4))</span></p>
+<p><span class=rvts6>&nbsp; DO CASE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; CASE "HIST" = Dot_Temp</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; IF " TO " $ UPPER(Dot_Rest)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; m_Temp = VAL(RIGHT(Dot_Rest, LEN(Dot_Rest) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AT(" TO ", UPPER(Dot_Rest)) - 3))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; DO CASE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CASE m_Temp = 0 .AND. RIGHT(RTRIM(Dot_Rest), 1) = "0"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RELEASE Dot_Array</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dot_Hist = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CASE m_Temp &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IF m_Temp &lt;&gt; Dot_Hist</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dot_Hist = m_Temp</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DECLARE Dot_Array[Dot_Hist]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDCASE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; CASE "" &lt;&gt; Dot_Temp .AND. .NOT. Dot_Temp $ ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; "FORMATDEBUGDOHISTORYECHOINSTRUCTSQL STEPTRAP"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_t_st = SET("STATUS")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; Dot_t_DI = SET("DISPLAY")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; SET &amp;Dot_Rest</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO Set_Color</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; * &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 12</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ***********************************************************************</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *- Move prompt if STATUS or DISPLAY mode has changed.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; IF "DISPLAY" = Dot_Temp .OR. "STATUS" = Dot_Temp</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF SET("STATUS") &lt;&gt; Dot_t_st</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dot_Row = Dot_Row + IIF(SET("STATUS") = "ON", - 3, 3)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; IF SET("DISPLAY") &lt;&gt; Dot_t_DI</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Dot_Row = Dot_Row + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IIF(RIGHT(SET("DISPLAY"), 2) = "43", 18, -18)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Row = MIN(IIF("43" $ SET("DISPLAY"), 42, 24), Dot_Row)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; RELEASE Dot_t_st, Dot_t_DI</span></p>
+<p><span class=rvts6>&nbsp; ENDCASE</span></p>
+<p><span class=rvts6>&nbsp; RELEASE Dot_Temp</span></p>
+<p><span class=rvts6>CASE "SHOW" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; SHOW &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "SKIP" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; SKIP &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "SORT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; SKIP &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "STORE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; STORE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "SUM" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; SUM &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "TOTAL" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; TOTAL &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "TYPE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; TYPE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "UNLOCK" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; UNLOCK &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "UPDATE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; UPDATE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "USE" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; USE &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "WAIT" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; IF "TO " $ UPPER(Dot_Rest)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; m_Temp = RIGHT(Dot_Rest, LEN(Dot_Rest) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; AT(" TO ", UPPER(Dot_Rest)) - 3)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; PUBLIC &amp;m_Temp</span></p>
+<p><span class=rvts6>&nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; WAIT &amp;Dot_Rest</span></p>
+<p><span class=rvts6>CASE "ZAP" = Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; ZAP</span></p>
+<p><span class=rvts6>CASE "=" $ Dot_Comm</span></p>
+<p><span class=rvts6>&nbsp; mStoreVar = LEFT(Dot_Comm, AT("=", Dot_Comm) - 1)</span></p>
+<p><span class=rvts6>&nbsp; mstore = SUBSTR(Dot_Comm, AT("=", Dot_Comm) + 1, LEN(Dot_Comm))</span></p>
+<p><span class=rvts6>&nbsp; PUBLIC &amp;mStoreVar</span></p>
+<p><span class=rvts6>&nbsp; STORE &amp;mstore TO &amp;mStoreVar</span></p>
+<p><span class=rvts6>CASE VAL(Dot_Comm) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; GO &amp;Dot_Comm</span></p>
+<p><span class=rvts6>ENDCASE</span></p>
+<p><span class=rvts6>SET TALK OFF</span></p>
+<p><span class=rvts6>IF "" &lt;&gt; Dot_1st</span></p>
+<p><span class=rvts6>&nbsp; DO User_Defined</span></p>
+<p><span class=rvts6>ENDIF</span></p>
+<p><span class=rvts6>***********************************************************************</span></p>
+<p><span class=rvts6>* PROGRAM : DBFORDOS.PRG</span></p>
+<p><span class=rvts6>* &nbsp; &nbsp;FROM : TechNotes / dBASE IV</span></p>
+<p><span class=rvts6>* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; February 1992</span></p>
+<p><span class=rvts6>* &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Page 14</span></p>
+<p><span class=rvts6>***********************************************************************</span></p>
+<p><span class=rvts6>SET EXACT &amp;Dot_Exact</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE MacroSub</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Check for -, +, =, &gt;=, =&lt;, &lt;&gt;, #, &lt;, &gt;, = in COMMAND line</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; DECLARE SYMBOL[11]</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[1] = "-"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[2] = "+"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[3] = "&gt;="</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[4] = "&lt;="</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[5] = "&lt;&gt;"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[6] = "#"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[7] = "*"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[8] = "/"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[9] = "="</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[10] = "&lt;"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; SYMBOL[11] = "&gt;"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; m_cnt = 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; DO WHILE m_cnt &lt;= 8</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO WHILE AT(SYMBOL[m_cnt], Dot_Comm) &gt; 0 .AND. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (SUBSTR(Dot_Comm, AT(SYMBOL[m_cnt], Dot_Comm) + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LEN(SYMBOL[m_cnt]), 1) &lt;&gt; CHR(32) .OR. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; SUBSTR(Dot_Comm, AT(SYMBOL[m_cnt], Dot_Comm) - 1, 1) ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;&gt; CHR(32))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Comm = STUFF(Dot_Comm, AT(SYMBOL[m_cnt], Dot_Comm), ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LEN(SYMBOL[m_cnt]), " " + CHR(1) + " ")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDDO</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO WHILE AT(CHR(1), Dot_Comm) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Comm = STUFF(Dot_Comm, AT(CHR(1), Dot_Comm), 1, SYMBOL[m_cnt])</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDDO</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m_cnt = m_cnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDDO</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; DO WHILE m_cnt &lt;= 11</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO WHILE AT(SYMBOL[m_cnt], Dot_Comm) &gt; 0 .AND. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ((.NOT. SUBSTR(Dot_Comm, AT(SYMBOL[m_cnt], Dot_Comm) + ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LEN(SYMBOL[m_cnt]), 1) $ " &lt;,&gt;,=") .OR. ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (.NOT. SUBSTR(Dot_Comm, AT(SYMBOL[m_cnt], Dot_Comm) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1, 1) $ " ,&lt;,&gt;,="))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Comm = STUFF(Dot_Comm, AT(SYMBOL[m_cnt], Dot_Comm), ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LEN(SYMBOL[m_cnt])," " + CHR(1) + " ")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDDO</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO WHILE AT(CHR(1), Dot_Comm) &gt; 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; Dot_Comm = STUFF(Dot_Comm, AT(CHR(1), Dot_Comm), 1, SYMBOL[m_cnt])</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDDO</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m_cnt = m_cnt + 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDDO</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Comm = LTRIM(RTRIM(Dot_Comm))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; part1 = SUBSTR(Dot_Comm, AT("&amp;", Dot_Comm) + 1, LEN(Dot_Comm))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF AT(".", part1) = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; is_Dot = .F.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m_Pos = IIF(AT(" ", part1) = 0, LEN(part1), AT(" ", part1) - 1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; is_Dot = .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; IF AT(" ", part1) = 0</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; m_Pos = AT(".", part1) - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ELSE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; m_Pos = MIN(AT(".", part1), AT(" ", part1)) - 1</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; part2 = LEFT(part1, m_Pos)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; part3 = RIGHT(Dot_Comm, LEN(Dot_Comm) - AT("&amp;", Dot_Comm) - ;</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; m_Pos - IIF(is_Dot, 1, 0))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Comm = LEFT(Dot_Comm, AT("&amp;", Dot_Comm) - 1) + &amp;part2 + &amp;part3</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE Set_Color</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Color = LEFT(SET("ATTRIBUTES"), AT(",", SET("ATTRIBUTES")) - 1)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Color = Dot_Color + "," + Dot_Color</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE User_Defined</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- Allows UDCs (User-Defined Commands) to execute if a non-dBASE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *- command is entered.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF FILE("User_Def.DBO")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO User_Def</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *- RETURN is optional. Add it here if you want to disable the</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *- built-in UDCs (in Adam_Def). Only necessary if USER_DEF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; *- contains the same UDC.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF FILE("Adam_Def.DBO")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO Adam_Def</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF FILE("User_Def.DBO")</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; DO User_Def</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; PROCEDURE DOT_ERR</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; PARAMETERS mDot_Err, mDot_Msg</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; Dot_Error = mDot_Err</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; IF .NOT. LTRIM(STR(Dot_Error)) $ "10"</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; SAVE SCREEN TO Err_Screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ &nbsp;8, 15 CLEAR TO 14, 60</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ &nbsp;8, 15 TO 14, 60 DOUBLE</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ &nbsp;9, 20 SAY "ERROR number : " + LTRIM(STR(mDot_Err))</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ 11, 20 SAY mDot_Msg</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ 11, 40 SAY PROGRAM()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; @ 13, 20 SAY "Press any key to continue ... "</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; i = INKEY(0)</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; RESTORE SCREEN FROM Err_Screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; RELEASE SCREEN Err_Screen</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; ENDIF</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; RETURN</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; *: EOF: DBFORDOS.PRG</span></p>
+</body></html>

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Net_Err</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>PROCEDURE Net_Err</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6>*-- Programmer..: Angus Scott-Fleming (CIS: 76711,617)</span></p>
+<p><span class=rvts6>*-- Date........: 07/14/1993</span></p>
+<p><span class=rvts6>*-- Notes.......: Routine to handle error processing if a network&nbsp;</span></p>
+<p><span class=rvts6>*-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; directory doesn't exist. This is part of IsNetDir().</span></p>
+<p><span class=rvts6>*-- Written for.: dBASE IV, 1.5 ...</span></p>
+<p><span class=rvts6>*-- Rev. History: 07/14/1993 -- Original Release</span></p>
+<p><span class=rvts6>*-- Calls.......: None</span></p>
+<p><span class=rvts6>*-- Called by...: IsNetDir() &nbsp; &nbsp; &nbsp; &nbsp;Function in FILES3.PRG</span></p>
+<p><span class=rvts6>*-- Usage.......: On error do Net_Err</span></p>
+<p><span class=rvts6>*-- Example.....: ditto.</span></p>
+<p><span class=rvts6>*-- Returns.....: None</span></p>
+<p><span class=rvts6>*-- Parameters..: None</span></p>
+<p><span class=rvts6>*-----------------------------------------------------------------------</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>&nbsp; &nbsp;do case</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case ERROR() = 413</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 413 - Not a valid directory:</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;lNetError = .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; case ERROR() = 412</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 412 - Not a valid Disk drive:</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;lNetError = .T.</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; otherwise</span></p>
+<p><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;wait "Unknown error: "+str(errno())+" "+errmsg()</span></p>
+<p><span class=rvts6>&nbsp; &nbsp;endcase</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*-- EoP: Net_Err</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

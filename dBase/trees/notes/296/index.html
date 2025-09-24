@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>SAYing and GETting</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>TechNotes</span></p>
+<p><span class=rvts6>January 1991</span></p>
+<p><span class=rvts6>Page 30</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Here's a simple little program/procedure that toggles between Display and Edit modes (in other words, toggle between @ SAYs and @ GETs).</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Setting Flag = .T. will assign the initial mode to Display only. When Flag = .F. the screen will be set to Edit mode allowing changes to the given fields. By adding a parameter statement to the code below, you could pass the true/false value in a called procedure to allow your Display programs and Edit programs to use the same screen definitions. In that case, remove the "ON KEY LABEL F5 DO Flip" command if you want to disable the ability to toggle between display and edit modes.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>* SAYGET.PRG</span></p>
+<p><span class=rvts6>Flag = .T.</span></p>
+<p><span class=rvts6>mFld1 = Field_1</span></p>
+<p><span class=rvts6>mFld2 = Field_2</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>DO WHILE LASTKEY() &lt;&gt; 27</span></p>
+<p><span class=rvts6>&nbsp; ON KEY LABEL F5 DO Flip</span></p>
+<p><span class=rvts6>&nbsp; mSayGet = IIF(Flag,"SAY","GET")</span></p>
+<p><span class=rvts6>&nbsp; @ 10, 10 &amp;mSayGet mFld1</span></p>
+<p><span class=rvts6>&nbsp; @ 12, 10 &amp;mSayGet mFld2</span></p>
+<p><span class=rvts6>&nbsp; READ</span></p>
+<p><span class=rvts6>ENDDO</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6>*</span></p>
+<p><span class=rvts6>PROCEDURE Flip</span></p>
+<p><span class=rvts6>&nbsp; Flag = IIF(Flag, .F., .T.)</span></p>
+<p><span class=rvts6>&nbsp; KEYBOARD CHR(29)</span></p>
+<p><span class=rvts6>RETURN</span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>
