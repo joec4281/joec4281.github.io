@@ -85,7 +85,7 @@
           { value: "A UDF for the Last Days", id: "32", link: "32" }        ]
         },
         { value: "1990 07 July", id: "33", link: "33", open: true, data: [
-          { value: "It's .bin Fun", id: "34", link: "34" },
+          { value: "It's .bin fun", id: "548", link: "548" },
           { value: "Pass the Variables, Please", id: "35", link: "35" }        ]
         },
         { value: "1990 08 August", id: "74", link: "74", data: [

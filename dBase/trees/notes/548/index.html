@@ -1,0 +1,590 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>It's .bin fun</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ font-weight: bold;
+}
+a.rvts8, span.rvts8
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ text-decoration: none;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ background: #e6e6e6;
+ padding: 4px 4px 4px 4px;
+}
+.rvps3
+{
+ background: #99ccff;
+}
+.rvps4
+{
+ background: #339966;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p><span class=rvts6>TechNotes</span></p>
+<p><span class=rvts6>July 1990</span></p>
+<p><span class=rvts6>Page 2</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Erik McBeth</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>You might have seen Curson.bin or GetDriv.bin in your samples directory and wondered, "Just what are "bin" files anyway?" Or perhaps you have used them and were curious about how they were created. In either case, this article should give insight into the wonderful world of .bin files and their creation using the language simply known as C.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Binary, or .bin, files are assembly language files that can be loaded into memory from within another program and then executed. Not to be confused with programs which are executed via the RUN command from inside of a dBASE IV program or from the dot prompt, .bin files almost become part of the dBASE IV program itself and have the luxury of speed because they are only loaded once into memory and from there, they can be executed quickly. Conversely, programs which are RUN from the dot prompt must be loaded each time you want to execute them.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dBASE IV has two special commands that it uses when handling .bin files: LOAD and CALL. The LOAD command does exactly what you'd think it would do, it loads the .bin file into a special area of memory that is reserved for this purpose. The CALL command (and the CALL() funciton) runs the .bin file with the parameters you supply, (that is, memory variables, strings, and so on). These parameters are palced in a special place in memoury so that the .bin file cna find and act upon them. You can pass up to seven parameters.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts7>Interfacing dBASE IV with C</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Well you might have come to the conclusion that since we're loading assembly language routines into memory that we are forced into using that cryptic computer language known a Assembly with all it strange abbreviated commands. It's not quite that bad. Instead, you'll be shown how to write programs in the somewhat less crypitc language of C.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The C language has been around for about 20 years or so. It originally grew out of a research project and was subsequently used in the writing of the UNIX operating system. Numerous companies make C compilers including Borland International and Microsoft and the price for a compiler has come down substantially in the last few years. Add to this the large library of reference material available on C and you can see that C is a good choice for a language we can use to create our .bin files.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Those familiar with C might be saying "Well great, I'll just convert my 8000 line directory management C program into a .bin file!" Wrong! If you have this great program just run it from the dot prompt with the RUN command. Speaking from personal experience, most programs written in C probably can't be turned into a .bin file or, at worst, would take so much rewriting and dipping into assembler that it wouldn't be worth the effort. Most C functions supplied by the manufacturer of the compiler (printf for example) probably won't work in a .bin file. All I/O (input/output) operations for the most part must be handled in assembler.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts7>Reversing Character Strings</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Now let's do a more in-depth study on how we put together a C file. We'll look at two sample C files to get an idea of what is involved when constructing C code which will eventually be used inside of dBASE IV. The first file, StrRev.C, reverses the order of the letters in a string. The second one, StrDct.C, is used in instances when you want to place data in true dictionary order (more on "dictionary" order later). This example illustrates how multiple parameters to a .bin file can be passed by referencing an array that contains up to seven parameter addresses. For this example, we keep it simple and just use the first address parameter in the array. The hooks are in there to allow for expansion to more parameters.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Let's start with StrRev.C (a function which reverses the characters in a string) because of its simplicity. We'll try to dissect this C program as much as possible so as to get a better understanding of all that is involved in making .bin files. Once you have a pretty good understanding of the various sections of a C file you can easily take this code and substitute in your own function in place of StrRev().</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts7>Creating an .exe file</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>We start out by defining a constant known as EXE. Often times, it is easier to test your .bin file by first turning it into a small program that can be run from the DOS level; a file known as an executable file. In our StrRev example, we have constructed the file in such a way that if the constant EXE equals 1, we will then get our string parameter from the DOS prompt and print out its reverse using the C function Printf() (somewhat like the dBASE IV ? command). Since the size of your C program and other memory limitations can be weighing factors, there is no guarantee that your .exe program will run as a .bin file in dBASE IV, but at least you'll feel a little more confident of your coding.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Next we "#include" the header file known as StrLib.H which contains various definitions that we'll be using in our program, most notably the register variable BX, CX, and so on. Our StrLib.H file also contains a C macro called MK LONG() which is critical to the success of the bin file creation. If we were constructing an .exe file instead of a .bin we would also need to read in the header file known as stdio.H. Our "#if EXE" statement would take care of this automatically.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The next few lines deal with what would be required to make our .exe file so it could run from DOS. I'll leave out the details of what these lines are doing so we can quickly jump into what we're here for: .bin file creation.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Starting after the "#else" statement we see:</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>void far main()</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>This is declaring the main starting point of our program. It is very important that we declare main() in this way. The use of the keyword "far" causes the compiler to issue a far return (RETF) at the end of the program. This type of return is needed so that dBASE IV can jump back to what it was doing before it called your .bin file. Some C enthusiasts may have noticed that we are declaring our main function as "void", which usually means we don't want to return anything to the function/program that called the routine. In this case, we are not returning anything, just jumping back to dBASE.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts7>1010 Memory Lane</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>In the next three lines of code, we grab the string that dBASE IV has passed to the .bin file. dBASE sends a string to a .bin file by passing the address of where the string is stored in memory.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Memory addresses are composed of two parts, a segment and the offset into the segment. Think of this as a street and an address number. The street is the segment, and the offset is the address number. The segment address of the string is passed to the DS register and the offset to the BX register.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Registers are special memory locations within the computer's processor that programs use to pass information back and forth. In our .bin file, we cannot directly access the various registers so we need some kind of bridge which will allow us to do so. The assembly language procedure Getregs() does just this. It takes the various registers (DS, BX, and so on) and copies them into variables that the C program can use. The DS and BX registers that you see in StrRev are actually program variables. Our MK_LONG macro then takes these two variables/registers and converts them into a memory address that the C program can use. This address is then assigned to our variable "p" which can then be processed by a string function such as StrRev(). If all of this sounds complicated just remember that all you really need to do in the future is copy in these first few lines into your own .bin file and you'll be set!</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Well, the hard part is over. All we need to do now is write the string function that we'll be using with our "p" variable. In this case we have the StrRev function but you could just as easily have a function which selectively alters upper or lower case, opens access to non-dBASE files or even encrypts it for security. Use your imagination. Our StrRev function reverses the order of the characters in a string by exchanging characters from the two ends until they meet each other in the middle. Any changes we make in our string function will be reflected in the string that is returned to dBASE IV. For this reason do not shorten or lengthen the string in any way because unpredictable results might follow.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts7>Sorting in Dictionary Order</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>We've looked at a rather simple example of a C program that we can use to create a .bin routine. Now lets look at a slightly more complicated example which has the ability to pass multiple parameters (a maximum of seven) to a .bin file. Our example will still only use one parameter though, just to keep it simple. The example in question is StrDct.C, a rudimentary translating function which we can use to place a data file in "dictionary order".</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>We start out the C program in much the same way as our previous example. We "#include" some information and make sure that we generate a far return by declaring the main() function "void far main()". We then declare two variables, argc and argv (seasoned C programmers will no doubt recognize these old standbys). Argc will contain the number of parameters passed plus one, and argv will be an array containing the parameters with the first parameter being in argv[1]. These values are in keeping with more traditional non-bin programming.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Remember when we talked about memory registers and how dBASE IV communicates with .bin files? dBASE IV can talk with .bin files in either the traditional dBASE III PLUS way (through the DS:BX register pair) or in its extended mode which allows multiple parameters and a special register to tell us how many actual parameters were passed. With this flexibility we can even write .bin files which take a variable number of parameters, something we can't do in UDFs.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dBASE III PLUS passed its parameter into a BX register. Since dBASE IV passes an array or table of parameters into a ES:DI register pair, an additional parsing routine in the C program is required.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Multiple arguments are accomplished in dBASE IV by sending our .bin file the address of a table in memory which in turn contains the individual addresses of our parameters. You can think of this as an usher who directs us to the betting windows at a horse track. Once we find the betting area, we only have to go up to a specific window to place our bet or get our parameter. dBASE passes the address of the "betting windows" in the ES:DI register pair and the number of windows/parameters in the CX register. We learned earlier of segment and offset and how they pertain to memory addresses. Each betting window is four bytes away from its neighbor with the address of the first window starting at zero. Thus, the address of the first window is in the ES segment with an offset of DI plus zero and its neighbor has an offset of four greater (DI plus four). You see, you don't really have to understand everything about .bin files in order to make and use them.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>After we assign memory locations to the elements in argv we are ready to call our StrDct function. We first check to see that the value of argc is greater than one (remember that the ARGument Count is one greater than the number of parameters passed by dBASE) so that we know that we have a string to play with before calling StrDct(). StrDct rearranges the sorting sequence of letters from normal alphabetical order (which is used by dBASE IV) to dictionary order. Dictionary</span></p>
+<p><span class=rvts6>order is generally defined as an order in which special symbols (#, &amp;) are placed first, then letters and then numbers, much like a dictionary. This dictionary sequencing is borrowed from Framework III, which places words in this order instead of the ASCII ordering which dBASE uses by default (some special symbols, then numbers, then letters). The ordering presented in StrDct is NOT case sensitive; upper case does not necessarily come before lower case.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>We should now examine how we turn our completed and presumably tested C programs into .bin files. I'll demonstrate the construction process with the two compilers and assemblers from Borland and Microsoft; other compilers/assemblers should be fairly similar. Remember, besides the assemblers and compilers, you will need LINK.exe and EXE2BIN.exe, both of which come with most versions of DOS. The process will involve:</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>1. Compiling the C program to an object file.</span></p>
+<p><span class=rvts6>2. Assembling the Getregs.ASM file to an object file.</span></p>
+<p><span class=rvts6>3. Linking these two object file into one .exe file.</span></p>
+<p><span class=rvts6>4. Running EXE2BIN on the resulting .exe file.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The specific steps for the two compilers mentioned are detailed below:\</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Borland Microsoft</span></p>
+<p><span class=rvts6>1. ALT-F9 in editor cl -c .C</span></p>
+<p><span class=rvts6>2. TASM Getregs.asm MASM Getregs.asm,,,,</span></p>
+<p><span class=rvts6>3. LINK +Getregs,,,,</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>4. EXE2BIN</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The filename reference would be either StrDct, StrRev, or StrFlp and you should end up with a file like StrDct.bin, and so on. You can mix and match assemblers and compilers since they all produce the same kind of object format. You'll know something went wrong if either LINK gives an error (other than the Warning no stack message) or EXE2BIN says, File can't be converted. All these examples work so you shouldn't have any problems. One small note, if you use TURBO C and set TURBOC to 1 in Strlib.H you can eliminate steps 2 and 3 above.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts7>Running the Routine from dBASE IV</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Now the real fun begins, we get to try out our .bin files in dBASE. We'll look at three different ways that we can use our .bin files with dBASE. All three ways can be mixed and matched with other .bin files.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Let's first use our simplest .bin file, StrRev, since it is fairly easy to tell if a string has been reversed or not. From the dBASE IV dot prompt, type</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>LOAD StrRev &amp;&amp; loads StrRev into memory</span></p>
+<p class=rvps2><span class=rvts6>x="John" &amp;&amp; test string</span></p>
+<p class=rvps2><span class=rvts6>CALL StrRev WITH x &amp;&amp; call Strrev</span></p>
+<p class=rvps2><span class=rvts6>? x &amp;&amp; what is the value now?</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>You should have seen "nhoJ" displayed if everything went ok. Repeat steps two through four with different values to make sure our STRing REVersal is working.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>We can go ahead and create a UDF that will CALL StrRev with whatever string we gave it and then return the reversed string, but let's not. Instead, let's create a UDF called Strflp() which calls our StrFlp.bin file. StrFlp is a .bin file which "flips" ASCII characters. Those characters which have an ASCII value of 127 and below will have the value of 128 added (the letter 'A' which has a value of 65 would end up with a value of 193) and those above 127 will have 128 subtracted (160 becomes 32 or the space character).</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Enter the dBASE IV text editor by typing MODIFY COMMAND from the dot prompt. The code for our UDF is shown below.</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>FUNCTION StrFlp</span></p>
+<p class=rvps2><span class=rvts6>* Strflp should have already been LOADed.</span></p>
+<p class=rvps2><span class=rvts6>PARAMETER str</span></p>
+<p class=rvps2><span class=rvts6>temp = str</span></p>
+<p class=rvps2><span class=rvts6>CALL Strflp WITH temp</span></p>
+<p class=rvps2><span class=rvts6>RETURN temp</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>After compiling this function, from the dot prompt, type:</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>? StrFlp("flip")</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The result should look something like mq . Remember that StrFlp flips the value of the characters in a string so that characters which use to come at the start of the ASCII table now come at the end and vice-versa. If we do something like:</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>? StrFlp("mq")</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>we get "flip" back again since now the characters at the end of the ASCII table are transposed into characters at the beginning.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Note that on page 9 is a section of code with extensive repetitive array assignments. At first glance, it would appear as if this could and should be done more concisely and programmatically. Indeed, this is the approach you would take if you were creating a stand-alone .exe program. Unfortunately, this approach does not work when constructing .bin files. The reason is that most C compilers place array tables into the uninitialized data segment, also known as the BSS. dBASE IV</span></p>
+<p><span class=rvts6>could not consistently deal with data in the BSS and would return bad values intermittently. Therefore, it was necessary to create a table on the fly by assigning values to the array elements explicitly.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>The program is available on the Ashton-Tate BBS if you wish to download it.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Now for our final example involving StrDct and putting database files in dictionary order. One of the advantages of .bin files is that they have the capability of being used for indexing via the CALL() function (as opposed to CALL command) in dBASE IV. If we have a database file that we decide we want in dictionary order, or StrRev order, or StrFlp order, all we need to do is the following:</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>USE Datafile</span></p>
+<p class=rvps2><span class=rvts6>LOAD Strdct</span></p>
+<p class=rvps2><span class=rvts6>INDEX ON CALL("Strdct",fieldname + "") TO Indexfile</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>dBASE IV will then call StrDct for each record so that it can place our data in dictionary order. It is important to remember that whenever we use this datafile and index in the future to LOAD StrDct first. This indexing feature works well with StrFlp also. Suppose you wanted to put your file in order by last name plus first name but the first names needed to be in descending order, you could try this:</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>LOAD StrFlp</span></p>
+<p class=rvps2><span class=rvts6>USE Namefile</span></p>
+<p class=rvps2><span class=rvts6>INDEX ON lastname+CALL("StrFlp",firstname+"") TO Lfname</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>This puts the last names in ascending order but the first names in descending order. You might be wondering why we need to add the + "" to the firstname field. This prevents dBASE IV from permanently changing the contents of the firstname field to whatever StrFlp would return.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Well that about wraps up our journey into the world of C and dBASE .bin files. I hope you've seen that .bin files are really not that complicated once you understand a few of the guidelines and principles involved in their creation. .bin files provide for useful and powerful extensions to the dBASE language that in turn allow programmers to develop and code more extensive and powerful programs.</span></p>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>StrRev.C</span></p>
+<p class=rvps2><span class=rvts6>/* Program ...: Strrev.C</span></p>
+<p class=rvps2><span class=rvts6>Author ....: Erik A McBeth</span></p>
+<p class=rvps2><span class=rvts6>Version ...: dBASE III Plus 1.0, 1.1</span></p>
+<p class=rvps2><span class=rvts6>dBASE IV 1.0, 1.1</span></p>
+<p class=rvps2><span class=rvts6>(Tested compilers/assemblers)</span></p>
+<p class=rvps2><span class=rvts6>Turbo C 1.5, 2.0 TASM 1.0</span></p>
+<p class=rvps2><span class=rvts6>Microsoft C 5.1 MASM 5.1</span></p>
+<p class=rvps2><span class=rvts6>*/</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>#define EXE 0 /* Set to 1 if we want to create an exe, If</span></p>
+<p class=rvps2><span class=rvts6>we have an exe then run from DOS like this</span></p>
+<p class=rvps2><span class=rvts6>STRREV string and you'll see your string</span></p>
+<p class=rvps2><span class=rvts6>reversed */</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>#include "strlib.h" /* Various definitions */</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>#if EXE</span></p>
+<p class=rvps2><span class=rvts6>#include "stdio.h"</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>main(argc,argv)</span></p>
+<p class=rvps2><span class=rvts6>int argc;</span></p>
+<p class=rvps2><span class=rvts6>char *argv[];</span></p>
+<p class=rvps2><span class=rvts6>{</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>unsigned char *p;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>p = (unsigned char *)argv[1];</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>#else /* Creating BIN file */</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>void far main() /* Need a FAR return */</span></p>
+<p class=rvps2><span class=rvts6>{</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>unsigned char *p;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Getregs(); /* Get our memory registers */</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>p = (unsigned char *)MK_LONG(DS,BX); /* Get our string */</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>#endif /* If EXE */</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>if (p)</span></p>
+<p class=rvps2><span class=rvts6>Strrev(p); /* Same operation if we do a bin or an exe */</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>#if EXE</span></p>
+<p class=rvps2><span class=rvts6>printf("%s\n",p);</span></p>
+<p class=rvps2><span class=rvts6>#endif</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>}</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Strrev(str)</span></p>
+<p class=rvps2><span class=rvts6>unsigned char *str;</span></p>
+<p class=rvps2><span class=rvts6>{</span></p>
+<p class=rvps2><span class=rvts6>unsigned char *p=str,ch;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>/* Go to the end of the string and stop */</span></p>
+<p class=rvps2><span class=rvts6>while(*++p);</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>/* Now swap the letters until we come to the middle of the string</span></p>
+<p class=rvps2><span class=rvts6>*/</span></p>
+<p class=rvps2><span class=rvts6>for(--p;p&gt;str;p--,str++) {</span></p>
+<p class=rvps2><span class=rvts6>ch = *p;</span></p>
+<p class=rvps2><span class=rvts6>*p = *str;</span></p>
+<p class=rvps2><span class=rvts6>*str = ch;</span></p>
+<p class=rvps2><span class=rvts6>}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>}</span></p>
+<p><span class=rvts6>StrDct.C</span></p>
+<p><span class=rvts6>/* Program ...: Strdct.C</span></p>
+<p><span class=rvts6>Version ...: dBASE III Plus 1.0, 1.1</span></p>
+<p><span class=rvts6>dBASE IV 1.0, 1.1</span></p>
+<p><span class=rvts6>(Tested compilers/assemblers)</span></p>
+<p><span class=rvts6>Turbo C 1.5, 2.0 TASM 1.0</span></p>
+<p><span class=rvts6>Microsoft C 5.1 MASM 5.1</span></p>
+<p><span class=rvts6>*/</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>#include "strlib.h"</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>void far main() /* very important, make sure we get a far return */</span></p>
+<p><span class=rvts6>{</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/* Tried to make this look familiar to 'C' programmers, Notice the</span></p>
+<p><span class=rvts6>use of argc and argv, I've set argc to have a value of 2 to</span></p>
+<p><span class=rvts6>simulate the routine being called from the DOS prompt */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>int argc;</span></p>
+<p><span class=rvts6>unsigned char *argv[6];</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Getregs(); /* Assign memory registers */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/* Translate the parameter passed by dBASE IV into something we</span></p>
+<p><span class=rvts6>can use, The argv[2] and argv[3] are placed here to show</span></p>
+<p><span class=rvts6>you how to read multiple parameters */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>argc = CX+1; /* Number of arguments */</span></p>
+<p><span class=rvts6>argv[1] = (unsigned char *)*((int *)MK_LONG(ES, DI + 0));</span></p>
+<p><span class=rvts6>argv[2] = (unsigned char *)*((int *)MK_LONG(ES, DI + 4));</span></p>
+<p><span class=rvts6>argv[3] = (unsigned char *)*((int *)MK_LONG(ES, DI + 8));</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>if (argc&gt;1) /* Do we have a string to use? */</span></p>
+<p><span class=rvts6>Strdct(argv[1]);</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Strdct(str)</span></p>
+<p><span class=rvts6>unsigned char *str;</span></p>
+<p><span class=rvts6>{</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/* Had to do it this way, couldn't do "trnslt[]={" */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/* Read from AMENG.SO (Framework III). Table is case insensitive</span></p>
+<p><span class=rvts6>*/</span></p>
+<p><span class=rvts6>static unsigned char trnslt[256];</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>trnslt[ 0]= 0; trnslt[ 1]= 1; trnslt[ 2]= 2; trnslt[3]= 3;</span></p>
+<p><span class=rvts6>trnslt[ 4]= 4; trnslt[ 5]= 5; trnslt[ 6]= 6; trnslt[7]= 7;</span></p>
+<p><span class=rvts6>trnslt[ 8]= 8; trnslt[ 9]= 9; trnslt[ 10]= 10; trnslt[11]= 11;</span></p>
+<p><span class=rvts6>trnslt[ 12]= 12; trnslt[ 13]= 13; trnslt[ 14]= 14; trnslt[15]= 15;</span></p>
+<p><span class=rvts6>trnslt[ 16]= 16; trnslt[ 17]= 17; trnslt[ 18]= 18; trnslt[19]= 19;</span></p>
+<p><span class=rvts6>trnslt[ 20]= 20; trnslt[ 21]= 21; trnslt[ 22]= 22; trnslt[23]= 23;</span></p>
+<p><span class=rvts6>trnslt[ 24]= 24; trnslt[ 25]= 25; trnslt[ 26]= 26; trnslt[27]= 27;</span></p>
+<p><span class=rvts6>trnslt[ 28]= 28; trnslt[ 29]= 29; trnslt[ 30]= 30; trnslt[31]= 31;</span></p>
+<p><span class=rvts6>trnslt[' ']=' '; trnslt['!']='!'; trnslt['\"']='\"';</span></p>
+<p><span class=rvts6>trnslt['#']='#';</span></p>
+<p><span class=rvts6>trnslt['$']='$'; trnslt['%']='%'; trnslt['&amp;']='&amp;';</span></p>
+<p><span class=rvts6>trnslt['\'']='\'';</span></p>
+<p><span class=rvts6>trnslt['(']='('; trnslt[')']=')'; trnslt['*']='*';</span></p>
+<p><span class=rvts6>trnslt['+']='+';</span></p>
+<p><span class=rvts6>trnslt[',']=','; trnslt['-']='-'; trnslt['.']='.';</span></p>
+<p><span class=rvts6>trnslt['/']='/';</span></p>
+<p><span class=rvts6>trnslt['0']='k'; trnslt['1']='l'; trnslt['2']='m';</span></p>
+<p><span class=rvts6>trnslt['3']='n';</span></p>
+<p><span class=rvts6>trnslt['4']='o'; trnslt['5']='p'; trnslt['6']='q';</span></p>
+<p><span class=rvts6>trnslt['7']='r';</span></p>
+<p><span class=rvts6>trnslt['8']='s'; trnslt['9']='t'; trnslt[':']='0';</span></p>
+<p><span class=rvts6>trnslt[';']='1';</span></p>
+<p><span class=rvts6>trnslt['&lt;']='2'; trnslt['=']='3'; trnslt['&gt;']='4';</span></p>
+<p><span class=rvts6>trnslt['?']='5';</span></p>
+<p><span class=rvts6>trnslt['@']='6'; trnslt['A']='7'; trnslt['B']='&gt;';</span></p>
+<p><span class=rvts6>trnslt['C']='?';</span></p>
+<p><span class=rvts6>trnslt['D']='A'; trnslt['E']='B'; trnslt['F']='G';</span></p>
+<p><span class=rvts6>trnslt['G']='H';</span></p>
+<p><span class=rvts6>trnslt['H']='I'; trnslt['I']='J'; trnslt['J']='O';</span></p>
+<p><span class=rvts6>trnslt['K']='P';</span></p>
+<p><span class=rvts6>trnslt['L']='Q'; trnslt['M']='R'; trnslt['N']='S';</span></p>
+<p><span class=rvts6>trnslt['O']='U';</span></p>
+<p><span class=rvts6>trnslt['P']='['; trnslt['Q']='</span><a class=rvts8 href="\\&apos;">\\'</a><span class=rvts6>; trnslt['R']=']';</span></p>
+<p><span class=rvts6>trnslt['S']='^';</span></p>
+<p><span class=rvts6>trnslt['T']='_'; trnslt['U']='`'; trnslt['V']='e';</span></p>
+<p><span class=rvts6>trnslt['W']='f';</span></p>
+<p><span class=rvts6>trnslt['X']='g'; trnslt['Y']='h'; trnslt['Z']='j';</span></p>
+<p><span class=rvts6>trnslt['[']='u';</span></p>
+<p><span class=rvts6>trnslt['</span><a class=rvts8 href="\\&apos;]=&apos;w&apos;">\\']='w'</a><span class=rvts6>; trnslt[']']='x'; trnslt['^']='y';</span></p>
+<p><span class=rvts6>trnslt['_']='z';</span></p>
+<p><span class=rvts6>trnslt['`']='{'; trnslt['a']='7'; trnslt['b']='&gt;';</span></p>
+<p><span class=rvts6>trnslt['c']='?';</span></p>
+<p><span class=rvts6>trnslt['d']='A'; trnslt['e']='B'; trnslt['f']='G';</span></p>
+<p><span class=rvts6>trnslt['g']='H';</span></p>
+<p><span class=rvts6>trnslt['h']='I'; trnslt['i']='J'; trnslt['j']='O';</span></p>
+<p><span class=rvts6>trnslt['k']='P';</span></p>
+<p><span class=rvts6>trnslt['l']='Q'; trnslt['m']='R'; trnslt['n']='S';</span></p>
+<p><span class=rvts6>trnslt['o']='U';</span></p>
+<p><span class=rvts6>trnslt['p']='['; trnslt['q']='</span><a class=rvts8 href="\\&apos;">\\'</a><span class=rvts6>; trnslt['r']=']';</span></p>
+<p><span class=rvts6>trnslt['s']='^';</span></p>
+<p><span class=rvts6>trnslt['t']='_'; trnslt['u']='`'; trnslt['v']='e';</span></p>
+<p><span class=rvts6>trnslt['w']='f';</span></p>
+<p><span class=rvts6>trnslt['x']='g'; trnslt['y']='h'; trnslt['z']='j';</span></p>
+<p><span class=rvts6>trnslt['{']='|';</span></p>
+<p><span class=rvts6>trnslt['|']='}'; trnslt['}']='~'; trnslt['~']=127;</span></p>
+<p><span class=rvts6>trnslt[127]=128;</span></p>
+<p><span class=rvts6>trnslt[128]='@'; trnslt[129]='a'; trnslt[130]='C';</span></p>
+<p><span class=rvts6>trnslt[131]=':';</span></p>
+<p><span class=rvts6>trnslt[132]='8'; trnslt[133]=';'; trnslt[134]='9';</span></p>
+<p><span class=rvts6>trnslt[135]='@';</span></p>
+<p><span class=rvts6>trnslt[136]='D'; trnslt[137]='E'; trnslt[138]='F';</span></p>
+<p><span class=rvts6>trnslt[139]='K';</span></p>
+<p><span class=rvts6>trnslt[140]='L'; trnslt[141]='M'; trnslt[142]='8';</span></p>
+<p><span class=rvts6>trnslt[143]='9';</span></p>
+<p><span class=rvts6>trnslt[144]='C'; trnslt[145]= 0; trnslt[146]= 0;</span></p>
+<p><span class=rvts6>trnslt[147]='W';</span></p>
+<p><span class=rvts6>trnslt[148]='V'; trnslt[149]='X'; trnslt[150]='b';</span></p>
+<p><span class=rvts6>trnslt[151]='c';</span></p>
+<p><span class=rvts6>trnslt[152]='i'; trnslt[153]='V'; trnslt[154]='a';</span></p>
+<p><span class=rvts6>trnslt[155]=129;</span></p>
+<p><span class=rvts6>trnslt[156]=130; trnslt[157]=131; trnslt[158]=132;</span></p>
+<p><span class=rvts6>trnslt[159]=133;</span></p>
+<p><span class=rvts6>trnslt[160]='&lt;'; trnslt[161]='N'; trnslt[162]='Y';</span></p>
+<p><span class=rvts6>trnslt[163]='d';</span></p>
+<p><span class=rvts6>trnslt[164]='T'; trnslt[165]='T'; trnslt[166]='=';</span></p>
+<p><span class=rvts6>trnslt[167]='Z';</span></p>
+<p><span class=rvts6>trnslt[168]=134; trnslt[169]=135; trnslt[170]=136;</span></p>
+<p><span class=rvts6>trnslt[171]=137;</span></p>
+<p><span class=rvts6>trnslt[172]=138; trnslt[173]=139; trnslt[174]=140;</span></p>
+<p><span class=rvts6>trnslt[175]=141;</span></p>
+<p><span class=rvts6>trnslt[176]=142; trnslt[177]=143; trnslt[178]=144;</span></p>
+<p><span class=rvts6>trnslt[179]=145;</span></p>
+<p><span class=rvts6>trnslt[180]=146; trnslt[181]=147; trnslt[182]=148;</span></p>
+<p><span class=rvts6>trnslt[183]=149;</span></p>
+<p><span class=rvts6>trnslt[184]=150; trnslt[185]=151; trnslt[186]=152;</span></p>
+<p><span class=rvts6>trnslt[187]=153;</span></p>
+<p><span class=rvts6>trnslt[188]=154; trnslt[189]=155; trnslt[190]=156;</span></p>
+<p><span class=rvts6>trnslt[191]=157;</span></p>
+<p><span class=rvts6>trnslt[192]=158; trnslt[193]=159; trnslt[194]=160;</span></p>
+<p><span class=rvts6>trnslt[195]=161;</span></p>
+<p><span class=rvts6>trnslt[196]=162; trnslt[197]=163; trnslt[198]=164;</span></p>
+<p><span class=rvts6>trnslt[199]=165;</span></p>
+<p><span class=rvts6>trnslt[200]=166; trnslt[201]=167; trnslt[202]=168;</span></p>
+<p><span class=rvts6>trnslt[203]=169;</span></p>
+<p><span class=rvts6>trnslt[204]=170; trnslt[205]=171; trnslt[206]=172;</span></p>
+<p><span class=rvts6>trnslt[207]=173;</span></p>
+<p><span class=rvts6>trnslt[208]=174; trnslt[209]=175; trnslt[210]=176;</span></p>
+<p><span class=rvts6>trnslt[211]=177;</span></p>
+<p><span class=rvts6>trnslt[212]=178; trnslt[213]=179; trnslt[214]=180;</span></p>
+<p><span class=rvts6>trnslt[215]=181;</span></p>
+<p><span class=rvts6>trnslt[216]=182; trnslt[217]=183; trnslt[218]=184;</span></p>
+<p><span class=rvts6>trnslt[219]=185;</span></p>
+<p><span class=rvts6>trnslt[220]=186; trnslt[221]=187; trnslt[222]=188;</span></p>
+<p><span class=rvts6>trnslt[223]=189;</span></p>
+<p><span class=rvts6>trnslt[224]=190; trnslt[225]= 0; trnslt[226]=192;</span></p>
+<p><span class=rvts6>trnslt[227]=193;</span></p>
+<p><span class=rvts6>trnslt[228]=194; trnslt[229]=195; trnslt[230]=196;</span></p>
+<p><span class=rvts6>trnslt[231]=197;</span></p>
+<p><span class=rvts6>trnslt[232]=198; trnslt[233]=199; trnslt[234]=200;</span></p>
+<p><span class=rvts6>trnslt[235]=201;</span></p>
+<p><span class=rvts6>trnslt[236]=202; trnslt[237]=203; trnslt[238]=204;</span></p>
+<p><span class=rvts6>trnslt[239]=205;</span></p>
+<p><span class=rvts6>trnslt[240]=206; trnslt[241]=207; trnslt[242]=208;</span></p>
+<p><span class=rvts6>trnslt[243]=209;</span></p>
+<p><span class=rvts6>trnslt[244]=210; trnslt[245]=211; trnslt[246]=212;</span></p>
+<p><span class=rvts6>trnslt[247]=213;</span></p>
+<p><span class=rvts6>trnslt[248]=214; trnslt[249]=215; trnslt[250]=216;</span></p>
+<p><span class=rvts6>trnslt[251]=217;</span></p>
+<p><span class=rvts6>trnslt[252]=218; trnslt[253]=219; trnslt[254]=221;</span></p>
+<p><span class=rvts6>trnslt[255]=222;</span></p>
+<p><span class=rvts6>/* Go through the string and substitute the new value based on the</span></p>
+<p><span class=rvts6>value of the old character */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>for(;*str;str++) {</span></p>
+<p><span class=rvts6>*str = trnslt[(int)*str];</span></p>
+<p><span class=rvts6>}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>StrFlp.C</span></p>
+<p><span class=rvts6>/* Program ...: Strflp.C</span></p>
+<p><span class=rvts6>Version ...: dBASE III Plus 1.0, 1.1,</span></p>
+<p><span class=rvts6>dBASE IV 1.0, 1.1</span></p>
+<p><span class=rvts6>(Tested compilers/assemblers)</span></p>
+<p><span class=rvts6>Turbo C 1.5, 2.0 TASM 1.0</span></p>
+<p><span class=rvts6>Microsoft C 5.1 MASM 5.1</span></p>
+<p><span class=rvts6>*/</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>#include "strlib.h" /* Some definitions */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>void far main() /* Need a FAR return */</span></p>
+<p><span class=rvts6>{</span></p>
+<p><span class=rvts6>unsigned char *p;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Getregs(); /* Get our memory registers */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>p = (unsigned char *)MK_LONG(DS,BX); /* Get our string */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>if (p)</span></p>
+<p><span class=rvts6>Strflp(p);</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Strflp(str)</span></p>
+<p><span class=rvts6>unsigned char *str;</span></p>
+<p><span class=rvts6>{</span></p>
+<p><span class=rvts6>/* Go through the string and subtract character ASCII value from 255</span></p>
+<p><span class=rvts6>*/</span></p>
+<p><span class=rvts6>for(;*str;str++) {</span></p>
+<p><span class=rvts6>*str = (unsigned char) (((int)*str+128) % 256);</span></p>
+<p><span class=rvts6>}</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>}</span></p>
+<p><span class=rvts6>StrLib.C</span></p>
+<p><span class=rvts6>/* Program ...: Strlib.H</span></p>
+<p><span class=rvts6>Version ...: Use with</span></p>
+<p><span class=rvts6>Strdct.C</span></p>
+<p><span class=rvts6>Strflp.C</span></p>
+<p><span class=rvts6>Strrev.C</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>Header file which contains various definitions and information</span></p>
+<p><span class=rvts6>on how functions are called.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>*/</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>#define TURBOC 0 /* Set true if compiler supports "pseudoregisters" like</span></p>
+<p><span class=rvts6>Turbo C, this way you don't have to link in getregs.obj */</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>#define MK_LONG(hi,low) (((unsigned long)(hi) &lt;&lt; 16) |</span></p>
+<p><span class=rvts6>(unsigned)(low))</span></p>
+<p><span class=rvts6>#define isdigit(ch) (ch &gt;= '0' &amp;&amp; ch &lt;= '9')</span></p>
+<p><span class=rvts6>#define isspace(ch) (ch==' ' || ch=='\t' || ch=='\r')</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>/* These are function "prototypes", some compilers don't like</span></p>
+<p><span class=rvts6>these so you can delete them if they give a problem */</span></p>
+<p><span class=rvts6>int Strdct(unsigned char *str);</span></p>
+<p><span class=rvts6>int Strflp(unsigned char *str);</span></p>
+<p><span class=rvts6>int Strrev(unsigned char *str);</span></p>
+<p><span class=rvts6>int Getregs(void);</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>unsigned DS, BX, ES, DI, CX;</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>#if TURBOC</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>#define Getregs() (DS=_DS, BX=_BX, ES=_ES, DI=_DI, CX=_CX)</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>#endif</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>; Program ...: GetRegs.asm</span></p>
+<p><span class=rvts6>; Version ...: dBASE III Plus 1.0, 1.1</span></p>
+<p><span class=rvts6>; dBASE IV 1.0, 1.1</span></p>
+<p><span class=rvts6>; (Tested assemblers)</span></p>
+<p><span class=rvts6>; TASM 1.0</span></p>
+<p><span class=rvts6>; MASM 5.1</span></p>
+<p><span class=rvts6>; File loads global variables with the values of the actual memory</span></p>
+<p><span class=rvts6>registers.</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>_DATA SEGMENT PUBLIC 'DATA'</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>EXTRN _BX:WORD ; These variables are in 'C' file</span></p>
+<p><span class=rvts6>EXTRN _CX:WORD</span></p>
+<p><span class=rvts6>EXTRN _ES:WORD</span></p>
+<p><span class=rvts6>EXTRN _DI:WORD</span></p>
+<p><span class=rvts6>EXTRN _DS:WORD</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PUBLIC __acrtused,__chkstk ; Microsoft C needs to find these</span></p>
+<p><span class=rvts6>__acrtused = 9876h</span></p>
+<p><span class=rvts6>__chkstk = 0</span></p>
+<p><span class=rvts6>_DATA ENDS</span></p>
+<p><span class=rvts6>DGROUP GROUP _DATA</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>_TEXT SEGMENT PUBLIC 'CODE'</span></p>
+<p><span class=rvts6>ASSUME CS:_TEXT,DS:DGROUP,ES:DGROUP,SS:DGROUP</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>PUBLIC _Getregs</span></p>
+<p><span class=rvts6>_Getregs PROC NEAR</span></p>
+<p><span class=rvts6>MOV _BX,BX</span></p>
+<p><span class=rvts6>MOV _CX,CX</span></p>
+<p><span class=rvts6>MOV _ES,ES</span></p>
+<p><span class=rvts6>MOV _DI,DI</span></p>
+<p><span class=rvts6>MOV _DS,DS</span></p>
+<p><span class=rvts6>RET</span></p>
+<p><span class=rvts6>_Getregs ENDP</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6>_TEXT ENDS</span></p>
+<p><span class=rvts6>CGROUP GROUP _TEXT</span></p>
+<p><span class=rvts6>END</span></p>
+<p><span class=rvts6><br></span></p>
+<p><span class=rvts6><br></span></p>
+</body></html>

@@ -31,7 +31,6 @@
 [31,"Default _PDRIVER in REPORT/LABEL"],
 [32,"A UDF for the Last Days"],
 [33,"1990 07 July"],
-[34,"It's .bin Fun"],
 [35,"Pass the Variables, Please"],
 [36,"1990 11 November"],
 [37,"Popup Calendar"],
@@ -541,5 +540,6 @@
 [544,"That's Not How You Delete"],
 [545,"The Big IIF"],
 [546,"Notes and Nuances"],
-[547,".MDX vs. .NDX Usage"]
+[547,".MDX vs. .NDX Usage"],
+[548,"It's .bin fun"]
 ];
