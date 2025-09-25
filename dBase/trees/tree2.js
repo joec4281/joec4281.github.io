@@ -1,7 +1,7 @@
 ﻿var tree_data2 = [
   { value: "dBASE", id: "2", link: "2", open: true, data: [
-    { value: "PC Magazine", id: "3", link: "3", data: [
-      { value: "1991", id: "4", link: "4", data: [
+    { value: "PC Magazine", id: "3", link: "3", open: true, data: [
+      { value: "1991", id: "4", link: "4", open: true, data: [
         { value: "04 April", id: "5", link: "5", open: true, data: [
           { value: ".BIN Files In Turbo C", id: "6", link: "6" },
           { value: "Batch Files In Clipper", id: "118", link: "118" }        ]
@@ -63,7 +63,7 @@
           { value: "REPORTing by Group Sum", id: "364", link: "364"          }        ]
         }      ]
       },
-      { value: "1990", id: "14", link: "14", data: [
+      { value: "1990", id: "14", link: "14", open: true, data: [
         { value: "1990 02 February", id: "15", link: "15", open: true, data: [
           { value: "Exploding Windows", id: "16", link: "16" }        ]
         },
@@ -90,6 +90,77 @@
         },
         { value: "1990 08 August", id: "74", link: "74", data: [
           { value: "How Low Can You Go?", id: "75", link: "75" }        ]
+        },
+        { value: "1990 09 September", id: "488", link: "488", open: true, data: [
+          { value: "dBASE IV Version 1.1 Change Summary", id: "489", link: "489", open: true, data: [
+            { value: "COMMANDS", id: "490", link: "490", data: [
+              { value: "@...GET...RANGE/VALID [REQUIRED]", id: "491", link: "491" },
+              { value: "BROWSE/EDIT", id: "498", link: "498" },
+              { value: "COPY STRUCTURE", id: "499", link: "499" },
+              { value: "COPY TO", id: "500", link: "500" },
+              { value: "dBASE III PLUS Memos", id: "501", link: "501" },
+              { value: "DEBUG", id: "502", link: "502" },
+              { value: "INDEX ON", id: "503", link: "503" },
+              { value: "KEYBOARD", id: "504", link: "504" },
+              { value: "MODIFY COMMAND/FILE", id: "505", link: "505" },
+              { value: "MODIFY STRUCTURE", id: "506", link: "506" },
+              { value: "ON SELECTION POPUP", id: "507", link: "507" },
+              { value: "RELEASE SCREENS", id: "508", link: "508" },
+              { value: "REPLACE FROM ARRAY", id: "509", link: "509" },
+              { value: "RESTORE SCREEN FROM", id: "510", link: "510" },
+              { value: "SAVE SCREEN TO", id: "511", link: "511" }            ]
+            },
+            { value: "SET COMMANDS", id: "492", link: "492", data: [
+              { value: "SET CURSOR", id: "512", link: "512" },
+              { value: "SET DIRECTORY", id: "513", link: "513" },
+              { value: "SET MESSAGE TO", id: "514", link: "514" },
+              { value: "SET PRINTER TO", id: "515", link: "515" }            ]
+            },
+            { value: "FUNCTIONS", id: "493", link: "493", data: [
+              { value: "COUNTC()", id: "516", link: "516" },
+              { value: "CERROR()", id: "517", link: "517" },
+              { value: "CHANGE()", id: "518", link: "518" },
+              { value: "INKEY()", id: "519", link: "519" },
+              { value: "LKSYS()", id: "520", link: "520" },
+              { value: "RUN()", id: "521", link: "521" },
+              { value: "SET()", id: "522", link: "522" },
+              { value: "WINDOW()", id: "523", link: "523" }            ]
+            },
+            { value: "MENU SYSTEM", id: "494", link: "494", data: [
+              { value: "Form Generation", id: "524", link: "524" },
+              { value: "Label Generation", id: "525", link: "525" },
+              { value: "QBE Design Surface", id: "526", link: "526" },
+              { value: "Report Generation", id: "527", link: "527" }            ]
+            },
+            { value: "CONFIGURATION AND INSTALLATION", id: "495", link: "495", data: [
+              { value: "New Config.db Options", id: "528", link: "528" },
+              { value: "Dbcache", id: "529", link: "529" },
+              { value: "DOS Environment Variables", id: "530", link: "530" },
+              { value: "Installation and Associated Changes", id: "531", link: "531" },
+              { value: "Runtime install:", id: "532", link: "532" }            ]
+            },
+            { value: "PRINTING", id: "496", link: "496", data: [
+              { value: "Printer Drivers", id: "533", link: "533" },
+              { value: "PostScript Printer Driver", id: "534", link: "534" },
+              { value: "New Hewlett Packard Printer Drivers", id: "535", link: "535" },
+              { value: "XON/XOFF Support of Serial Printers", id: "536", link: "536" }            ]
+            },
+            { value: "MISCELLANY", id: "497", link: "497", open: true, data: [
+              { value: "SQL Support at the Dot Prompt", id: "537", link: "537" },
+              { value: "Recursive Macro Calls", id: "538", link: "538" }            ]
+            }          ]
+          },
+          { value: "Dialog", id: "539", link: "539", open: true, data: [
+            { value: "Suppressing DOS messages", id: "540", link: "540" },
+            { value: "Format Files: A Million and One Uses", id: "541", link: "541" },
+            { value: "Bull-headed Menu", id: "542", link: "542" },
+            { value: "You Can't Touch 'Dis", id: "543", link: "543" },
+            { value: "That's Not How You Delete", id: "544", link: "544" }          ]
+          },
+          { value: "The Big IIF", id: "545", link: "545", open: true, data: [
+            { value: "Notes and Nuances", id: "546", link: "546" },
+            { value: ".MDX vs. .NDX Usage", id: "547", link: "547" }          ]
+          }        ]
         },
         { value: "1990 10 October", id: "365", link: "365", data: [
           { value: "The Redemption of QBE", id: "366", link: "366", data: [
