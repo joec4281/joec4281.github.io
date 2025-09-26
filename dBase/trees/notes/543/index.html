@@ -54,6 +54,17 @@ span.rvts7
  font-family: 'Courier New', 'Courier', monospace;
  font-weight: bold;
 }
+a.rvts8, span.rvts8
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts8:hover
+{
+ color: #0000ff;
+}
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
 {
@@ -70,10 +81,24 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
-/* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><br></p>
+<p class=rvps2><span class=rvts6>Q: In my screen form, I wish to prevent the editing of a memo.&nbsp;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>I would prefer for the operator to view the memo information in a window I've setup.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>I tried turning the </span><span class=rvts7>Edit options:Editing allowed </span><span class=rvts6>to NO but then the memo only shows up as a marker.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>A: The reason for this is that when Editing allowed is turned off (to NO), the form generator only issues an </span><a class=rvts8 href="mailto:@...SAY">@...SAY</a><span class=rvts6> command in the resultant .fmt file.&nbsp;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>The problem is that the OPEN WINDOW clause needed to display your memo in a window is only available in an </span><a class=rvts8 href="mailto:@...GET">@...GET</a><span class=rvts6>.&nbsp;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Catch-22, you say?&nbsp;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Not at all.&nbsp;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>To achieve a displayable memo that can't be edited, simply enter .F. in the </span><span class=rvts7>Permit edit if </span><span class=rvts6>option.&nbsp;</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>The cursor will always bypass the memo field but the contents will be visible.&nbsp;</span></p>
 </body></html>

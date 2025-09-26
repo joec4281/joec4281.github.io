@@ -63,7 +63,7 @@
           { value: "REPORTing by Group Sum", id: "364", link: "364"          }        ]
         }      ]
       },
-      { value: "1990", id: "14", link: "14", open: true, data: [
+      { value: "1990", id: "14", link: "14", data: [
         { value: "1990 02 February", id: "15", link: "15", open: true, data: [
           { value: "Exploding Windows", id: "16", link: "16" }        ]
         },
@@ -382,9 +382,11 @@
           { value: "1991 Cummulative Index", id: "449", link: "449"          }        ]
         }      ]
       },
-      { value: "1992", id: "41", link: "41", data: [
+      { value: "1992", id: "41", link: "41", open: true, data: [
         { value: "1992 02 February", id: "42", link: "42", open: true, data: [
-          { value: "Dot in Run Time", id: "43", link: "43" }        ]
+          { value: "Dot in Run Time", id: "43", link: "43", open: true, data: [
+            { value: "DOT.PRG", id: "549", link: "549", open: true }          ]
+          }        ]
         },
         { value: "1993 03 March", id: "44", link: "44", data: [
           { value: "Mastering the Environment", id: "45", link: "45" }        ]
