@@ -1,5 +1,5 @@
 ﻿var notesIndex = [
-[2,"dBASE IV"],
+[2,"dBASE"],
 [3,"PC Magazine"],
 [4,"1991"],
 [5,"04 April"],
