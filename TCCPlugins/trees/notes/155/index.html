@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@TITLEHWND</title>
+<html><head><title>Variables</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -45,47 +45,80 @@ a.rvts5, span.rvts5 /* Jump 2 */
 }
 span.rvts6
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
 span.rvts7
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts8
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
 }
 a.rvts9, span.rvts9
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
 span.rvts10
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-span.rvts11
+a.rvts11, span.rvts11
 {
- font-size: 18pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
 span.rvts12
 {
- font-size: 18pt;
- font-family: 'Courier New', 'Courier', monospace;
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts13
+a.rvts13, span.rvts13
 {
- font-size: 18pt;
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
+a.rvts15, span.rvts15
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts15:hover
+{
+ color: #0000ff;
+}
+a.rvts16, span.rvts16
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts16:hover
+{
+ color: #0000ff;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -105,6 +138,13 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 15px 0px 15px 0px;
+}
+.rvps4
+{
  margin: 7px 0px 7px 0px;
 }
 /* ========== Lists ========== */
@@ -112,44 +152,5 @@ p,ul,ol /* Paragraph Style */
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts12>@TITLEHWND</span><span class=rvts11> — Searches for a window with a matching title, and returns its handle.</span></p>
-<p class=rvps3><span class=rvts11>Syntax:</span><br><span class=rvts12>%@TITLEHWND[</span><span class=rvts11>title</span><span class=rvts12>,</span><span class=rvts11>flags</span><span class=rvts12>]</span></p>
-<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
- <tr valign=top>
-  <td width=140 valign=middle style="padding: 1px;">
-   <p><span class=rvts11>title</span></p>
-  </td>
-  <td width=1358 valign=middle style="padding: 1px;">
-   <p><span class=rvts11>wildcards are supported</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td width=140 valign=middle style="padding: 1px;">
-   <p><span class=rvts11>flags</span></p>
-  </td>
-  <td width=1358 valign=middle style="padding: 1px;">
-   <p><span class=rvts11>bitmapped:</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td width=140 valign=middle style="padding: 1px;">
-   <p><span class=rvts13><br></span></p>
-  </td>
-  <td width=1358 valign=middle style="padding: 1px;">
-   <p><span class=rvts11>&nbsp; &nbsp; 1: return handle in hexadecimal</span></p>
-  </td>
- </tr>
-</table>
-<p class=rvps3><span class=rvts12>@TITLEHWND</span><span class=rvts11> returns the window handle (HWND) of a matching window.&nbsp;</span></p>
-<p class=rvps3><span class=rvts11>If no matching window is found, </span><span class=rvts12>@TITLEHWND</span><span class=rvts11> returns </span><span class=rvts12>0</span><span class=rvts11>.</span></p>
-<p><span class=rvts8><br></span></p>
-<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
- <tr valign=top>
-  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts10>Source</span><span class=rvts7>:</span><span class=rvts8> </span><a class=rvts9 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#licensing">WindowInfo Plugin and 1 more page - Personal</a><span class=rvts8> &nbsp;</span><span class=rvts7>(5 February 2025 7:21 PM)</span></p>
-  </td>
- </tr>
-</table>
-<p><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
+<p><br></p>
 </body></html>

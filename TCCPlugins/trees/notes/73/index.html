@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>AScript</title>
+<html><head><title>@OBSCURE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -50,55 +50,103 @@ span.rvts6
 }
 span.rvts7
 {
- font-family: 'Verdana', 'Geneva', sans-serif;
 }
 span.rvts8
 {
- font-size: 8pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-family: 'Verdana', 'Geneva', sans-serif;
 }
 span.rvts9
 {
- font-size: 8pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts10
 {
  font-size: 8pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-a.rvts11, span.rvts11
+a.rvts13, span.rvts13
 {
  font-size: 8pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts12
-{
- font-size: 16pt;
- font-family: 'Segoe UI';
- color: #000000;
- background-color: #ccffff;
-}
-span.rvts13
-{
- font-size: 16pt;
- font-family: 'Consolas';
- color: #000000;
- background-color: #ccffff;
-}
 span.rvts14
 {
- font-size: 16pt;
- font-family: 'Consolas';
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
 }
 span.rvts15
 {
- font-size: 16pt;
- font-family: 'Consolas';
- background-color: #ccffff;
+ font-size: 14pt;
+ font-family: 'consolas';
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts16
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ color: #000088;
+}
+span.rvts17
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts18
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts19
+{
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #660000;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts20:hover
+{
+ color: #000000;
+}
+span.rvts21
+{
+ font-size: 11pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts22, span.rvts22
+{
+ font-size: 13pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts22:hover
+{
+ color: #000000;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -118,46 +166,55 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
- background: #ccffff;
- margin: 0px 0px 19px 0px;
+ background: #ffffff;
+ margin: 7px 0px 7px 0px;
 }
 .rvps4
 {
- border-color: #555555;
- border-style: solid;
- border-width: 1px;
- background: #ccffff;
- margin: 7px 10px 7px 10px;
+ margin: 0px 0px 16px 32px;
 }
 .rvps5
 {
- background: #ccffff;
+ background: #eeeeee;
+ padding: 8px 16px 8px 16px;
+ margin: 8px 0px 16px 16px;
+}
+.rvps6
+{
+ background: #ffffff;
+ margin: 30px 0px 7px 0px;
 }
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts12>Unlike the internal TCC Script command, AScript works with GetObject.</span></p>
-<p class=rvps3><span class=rvts12>Examples:</span></p>
-<p class=rvps4><span class=rvts13>TestIt()</span></p>
-<p class=rvps4><span class=rvts13>Function TestIt</span><br><span class=rvts13>&nbsp; Set fso = CreateObject ("Scripting.FileSystemObject")</span><br><span class=rvts13>&nbsp; Set stdout = fso.GetStandardStream (1)</span><br><span class=rvts13>&nbsp; Set iWMI = GetObject("WinMgmts:Root\Cimv2")</span><br><span class=rvts13>&nbsp; Set colItems = iWMI.ExecQuery("SELECT * FROM Win32_Process")</span><br><span class=rvts13>&nbsp; If Err.number &lt;&gt; 0 Then</span><br><span class=rvts13>&nbsp; &nbsp; stdout.WriteLine "Error"</span><br><span class=rvts13>&nbsp; End if</span></p>
-<p class=rvps4><span class=rvts13>&nbsp; Results = ""</span><br><span class=rvts13>&nbsp; For Each objItem in colItems</span><br><span class=rvts13>&nbsp; &nbsp; Results = Results + objItem.Name + vbCrLf</span><br><span class=rvts13>&nbsp; Next</span></p>
-<p class=rvps4><span class=rvts13>&nbsp; TestIt = Results</span><br><span class=rvts13>&nbsp; stdout.WriteLine TestIt</span><br><span class=rvts13>End Function</span></p>
-<p class=rvps3><span class=rvts12>Now, run the above script;</span></p>
-<p class=rvps4><span class=rvts13>AScript e:\utils\vince.vbs</span><br><span class=rvts13>System Idle Process</span><br><span class=rvts13>System</span><br><span class=rvts13>Secure System</span><br><span class=rvts13>Registry</span><br><span class=rvts13>smss.exe</span><br><span class=rvts13>...</span></p>
-<p class=rvps3><span class=rvts12>AScript allows one to use Windows Scripting Components;</span></p>
-<table border=1 cellpadding=5 cellspacing=0 style="border-width: 0px; background-color: #ffffff; border-spacing: 0px;">
+<p class=rvps3><span class=rvts14>Mangles a text string, making it difficult to read.</span></p>
+<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>%@OBSCURE[</span><span class=rvts16>text</span><span class=rvts15>]</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
  <tr valign=top>
-  <td width=609 height=24 style="border-width : 1px; border-color: #000000; border-style: solid; padding: 5px;">
-   <p class=rvps5><span class=rvts15>Set oMath = GetObject("script:e:\utils\math.wsc")</span></p>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>text</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>text to be obfuscated</span></p>
   </td>
  </tr>
 </table>
+</div>
+<p class=rvps3><span class=rvts14>The input </span><span class=rvts16>text</span><span class=rvts14> should be reasonably short, preferably not more than a kilobyte or two. The resulting, mangled string will be longer than the original string, usually by about one-third. The same input </span><span class=rvts16>text</span><span class=rvts14> can return different obfuscated text; you cannot meaningfully compare the output from two calls to </span><span class=rvts17>@OBSCURE</span><span class=rvts14>. Do not edit or alter the returned text in any way.</span></p>
+<p class=rvps3><span class=rvts14>If the input </span><span class=rvts16>text</span><span class=rvts14> comes from an environment variable, it’s probably a good idea to remove or overwrite that variable as soon as possible after calling </span><span class=rvts17>@OBSCURE</span><span class=rvts14>. One way to do this would be to simply store the returned string back in the original variable.</span></p>
+<p class=rvps5><span class=rvts17>set inifile="%userprofile\Passwords.ini"</span><br><span class=rvts17>input /p Enter password: &nbsp;%%password</span><br><span class=rvts17>set password=%@obscure[%password]</span><br><span class=rvts17></span><br><span class=rvts17>set rv=%@iniwrite[%inifile,Personal,Password,%password]</span><br><span class=rvts17>unset inifile password</span></p>
+<p><span class=rvts18><br></span></p>
+<p class=rvps3><span class=rvts19>• &nbsp;Note: This function does not provide secure cryptography!</span><span class=rvts14> It was designed for ease of use, not for real security. Using </span><span class=rvts17>@OBSCURE</span><span class=rvts14> to muddle text will discourage casual snooping, but a sophisticated user can recover the original data easily by passing the obscured text to </span><a class=rvts20 href="#f_clarify">@CLARIFY</a><span class=rvts14>. (A determined attacker could also reverse-engineer the algorithm, although that would be a pointless waste of time when the plugin itself is readily available.)</span></p>
+<p class=rvps6><span class=rvts21>See also: the </span><a class=rvts22 href="#f_clarify">@CLARIFY</a><span class=rvts21> function.</span></p>
+<p><span class=rvts18><br></span></p>
+<p><span class=rvts8><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts10>Source</span><span class=rvts8>:</span><span class=rvts9> </span><a class=rvts11 href="file:///E:/Documents/GitHub/ActiveScript/readme.html">readme.html and 2 more pages - Personal</a><span class=rvts9> &nbsp;</span><span class=rvts8>(8 August 2023 5:07 PM)</span></p>
+   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html">Mangles a text string, making it difficult to read.</a><span class=rvts11> &nbsp;</span><span class=rvts10>(31 July 2023 5:18 PM)</span></p>
   </td>
  </tr>
 </table>

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>TestDBF.btm</title>
+<html><head><title>_BUFY</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -65,103 +65,9 @@ p,ul,ol /* Paragraph Style */
  line-height: 1.20;
 }
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps2><span class=rvts6>:: TestDBF.btm</span></p>
-<p class=rvps2><span class=rvts6>:: This tests the functions from the dbf64.dll plugin</span></p>
-<p class=rvps2><span class=rvts6>::</span></p>
-<p class=rvps2><span class=rvts6>@setlocal</span></p>
-<p class=rvps2><span class=rvts6>@echo off</span></p>
-<p class=rvps2><span class=rvts6>if plugin dbf plugin /u dbf</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6>plugin /l dbf64.dll</span></p>
-<p class=rvps2><span class=rvts6>plugin /i dbf</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6>iff plugin dbf then</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; :: This is just to remove from memory any same-named functions</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction dbfversion &nbsp; &nbsp; unfunction dbfversion</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction RecCount &nbsp; &nbsp; &nbsp; unfunction RecCount</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction BytesInHeader &nbsp;unfunction BytesInHeader</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction FieldCount &nbsp; &nbsp; unfunction FieldCount</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction FieldDecimal &nbsp; unfunction FieldDecimal</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction FieldName &nbsp; &nbsp; &nbsp;unfunction FieldName</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction FieldWidth &nbsp; &nbsp; unfunction FieldWidth</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction FirstRecOffset unfunction FirstRecOffset</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction LUpdate &nbsp; &nbsp; &nbsp; &nbsp;unfunction LUpdate</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction Recnum &nbsp; &nbsp; &nbsp; &nbsp; unfunction Recnum</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction Record &nbsp; &nbsp; &nbsp; &nbsp; unfunction Record</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if isfunction Recsize &nbsp; &nbsp; &nbsp; &nbsp;unfunction Recsize</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo.</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if %# gt 0 (set thedbf=%1) else (set thedbf=e:\utils\trans.dbf)</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; iff not exist %thedbf then</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; echo USAGE: %_batchname YourFile.dbf</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>quit</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; endiff</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo DBFVersion &nbsp; &nbsp;: %@dbfversion[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo RecCount &nbsp; &nbsp; &nbsp;: %@RecCount[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo BytesInHeader : %@BytesInHeader[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo FieldCount &nbsp; &nbsp;: %@FieldCount[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo FirstRecOffset: %@FirstRecOffset[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo Last Update &nbsp; : %@LUpdate[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6>&nbsp; if exist %temp\results.txt del /q %temp\results.txt</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; iff exist %thedbf then</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; echo Searching for "Harvey's" in %thedbf</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; ffind /t"Harvey's" /x %thedbf &gt; %temp\results.txt</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; echo _ffind_matches: %_ffind_matches</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; iff %_ffind_matches gt 0 then</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; :: Get the offset in the file where the search word was found</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp;set Offset=%@word[1,%@line[%temp\results.txt 2]]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; echo Offset %Offset &nbsp; &nbsp;: Record # %@Recnum[%thedbf,%Offset]</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp;echo Record %@Recnum[%thedbf,%Offset]: &nbsp;%@record[%thedbf,%@Recnum[%thedbf,%Offset]]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; else</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; echo Match not found</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; endiff</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; endiff</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo Recsize &nbsp; &nbsp; &nbsp; : %@Recsize[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo.</span></p>
-<p class=rvps2><span class=rvts6>::setdos /x-5</span></p>
-<p class=rvps2><span class=rvts6>::do kount=1 to %@RecCount[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; set kount=%@RecCount[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; set kount=%@int[%kount/2]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo Record %kount : %@Record[%thedbf,%kount]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo.</span></p>
-<p class=rvps2><span class=rvts6>::enddo</span></p>
-<p class=rvps2><span class=rvts6>::setdos /x+5</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo Field &nbsp;Field Name &nbsp;Type &nbsp; &nbsp; &nbsp; &nbsp;Width &nbsp; Dec</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; do FieldNumber=1 to %@FieldCount[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; screen %_row 0 %@format[5,%FieldNumber]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; screen %_row 7 %@FieldName[%thedbf,%FieldNumber]</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>set FieldType=%@FieldType[%thedbf,%FieldNumber]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; switch %FieldType</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; case C</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; &nbsp; set TheType=Character</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp;case D</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp;set TheType=Date</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp;case L</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp;set TheType=Logical</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp;case M</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp;set TheType=Memo</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp;case N</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6> &nbsp; &nbsp;set TheType=Numeric</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; endswitch</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; screen %_row 19 %TheType</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>set FieldWidth=%@FieldWidth[%thedbf,%FieldNumber]</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>screen %_row 33 %@format[3,%FieldWidth]</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>iff %@FieldType[%dbfName %FieldNumber] eq N then</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; &nbsp; screen %_row 40 %@format[2,%@FieldDecimal[%thedbf,%FieldNumber]]</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; &nbsp; endiff</span></p>
-<p class=rvps2><span class=rvts6></span><span class=rvts6> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class=rvts6>echo.</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; enddo</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo.</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; file %thedbf</span></p>
-<p class=rvps2><span class=rvts6>else</span></p>
-<p class=rvps2><span class=rvts6>&nbsp; echo dbf plugin not loaded into memory.</span></p>
-<p class=rvps2><span class=rvts6>endiff</span></p>
-<p class=rvps2><span class=rvts6>endlocal</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>screen buffer row of cursor&nbsp;</span></p>
 </body></html>

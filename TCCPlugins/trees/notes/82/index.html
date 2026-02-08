@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>Functions</title>
+<html><head><title>VerInfoEx</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,6 +48,12 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
+span.rvts7
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ font-weight: bold;
+}
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
 {
@@ -64,10 +70,79 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
+.rvps3
+{
+ line-height: 1.20;
+ background: #ccffff;
+}
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><br></p>
+<p class=rvps2><span class=rvts6>Extended Version Information for any file.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>USAGE: VerInfoEx thefile.ext,theAttrib</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>theAttrib can be a number between 0 and 321</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts7>Note</span><span class=rvts6> that the file name must include the complete path,</span></p>
+<p class=rvps2><span class=rvts6>even if you are in the folder where the file resides.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Example: If I am in the R:\ folder, and it contains the file readme.txt,</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<div class=rvps2>
+<table border=1 cellpadding=5 cellspacing=-1 style="border-width: 0px; background-color: #ffffff; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=925 style="border-width : 1px; border-color: #000000; border-style: solid; padding: 5px;">
+   <p class=rvps3><span class=rvts7>R:\&gt;verinfoex %_cwd\readme.txt,1&nbsp;</span></p>
+   <p class=rvps3><span class=rvts7>1:Size:2.22 KB</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<div class=rvps2>
+<table border=1 cellpadding=5 cellspacing=-1 style="border-width: 0px; background-color: #ffffff; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=923 style="border-width : 1px; border-color: #000000; border-style: solid; padding: 5px;">
+   <p class=rvps3><span class=rvts7>@setlocal</span></p>
+   <p class=rvps3><span class=rvts7>@echo off</span></p>
+   <p class=rvps3><span class=rvts7>iff not plugin ActiveScript then</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; echo ActiveScript Plugin is required.</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; quit</span></p>
+   <p class=rvps3><span class=rvts7>endiff</span></p>
+   <p class=rvps3><span class=rvts7><br></span></p>
+   <p class=rvps3><span class=rvts7>iff not isplugin VerInfoEx then</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; echo The ActiveScript plugin does not contain the VerInfoEx command.</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; plugin /i ActiveScript</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; quit</span></p>
+   <p class=rvps3><span class=rvts7>endiff</span></p>
+   <p class=rvps3><span class=rvts7><br></span></p>
+   <p class=rvps3><span class=rvts7>iff %# eq 2 then</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; set VerInfoEx=%{verinfoex %1,%2}</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; echo Arg1=%1</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; echo Arg2=%2</span></p>
+   <p class=rvps3><span class=rvts7>else</span></p>
+   <p class=rvps3><span class=rvts7>&nbsp; set VerInfoEx=%{verinfoex %_cmdspec,310}</span></p>
+   <p class=rvps3><span class=rvts7>endiff</span></p>
+   <p class=rvps3><span class=rvts7><br></span></p>
+   <p class=rvps3><span class=rvts7>echo %VerInfoEx</span></p>
+   <p class=rvps3><span class=rvts7>set theAttribute=%@word[":",0,%VerInfoEx]</span></p>
+   <p class=rvps3><span class=rvts7>set theType=%@word[":",1,%VerInfoEx]</span></p>
+   <p class=rvps3><span class=rvts7>set theResult=%@word[":",2,%VerInfoEx]</span></p>
+   <p class=rvps3><span class=rvts7><br></span></p>
+   <p class=rvps3><span class=rvts7>echo.</span></p>
+   <p class=rvps3><span class=rvts7>echo The Attribute: %theAttribute</span></p>
+   <p class=rvps3><span class=rvts7>echo The Type: &nbsp; &nbsp; &nbsp;%theType</span></p>
+   <p class=rvps3><span class=rvts7>echo The Result: &nbsp; &nbsp;%theResult</span></p>
+   <p class=rvps3><span class=rvts7><br></span></p>
+   <p class=rvps3><span class=rvts7>endlocal</span></p>
+   <p class=rvps3><span class=rvts7><br></span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

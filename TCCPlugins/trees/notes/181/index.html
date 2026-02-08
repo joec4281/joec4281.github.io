@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@SafeEnv</title>
+<html><head><title>Functions</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -45,111 +45,80 @@ a.rvts5, span.rvts5 /* Jump 2 */
 }
 span.rvts6
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
 span.rvts7
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts8
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
 }
 a.rvts9, span.rvts9
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
 span.rvts10
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-span.rvts11
+a.rvts11, span.rvts11
 {
- font-size: 18pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
 span.rvts12
 {
- font-size: 18pt;
- font-family: 'Courier New', 'Courier', monospace;
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
 a.rvts13, span.rvts13
 {
- font-size: 18pt;
- font-family: 'Courier New', 'Courier', monospace;
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
 span.rvts14
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  font-weight: bold;
  color: #000000;
 }
-span.rvts15
-{
- font-size: 16pt;
- font-family: 'Courier New', 'Courier', monospace;
-}
-span.rvts16
-{
- font-size: 16pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
-}
-span.rvts17
-{
- font-size: 16pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
-}
-a.rvts18, span.rvts18
-{
- font-size: 16pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #0000ff;
- text-decoration: underline;
-}
-span.rvts19
-{
- font-size: 16pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
- font-weight: bold;
-}
-span.rvts20
-{
- font-size: 16pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
-}
-span.rvts21
-{
- font-size: 16pt;
- font-family: 'Courier New', 'Courier', monospace;
- color: #000000;
-}
-a.rvts22, span.rvts22
+a.rvts15, span.rvts15
 {
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts23
+a.rvts15:hover
+{
+ color: #0000ff;
+}
+a.rvts16, span.rvts16
 {
  font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
- font-weight: bold;
- color: #000000;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts16:hover
+{
+ color: #0000ff;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -169,6 +138,13 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 15px 0px 15px 0px;
+}
+.rvps4
+{
  margin: 7px 0px 7px 0px;
 }
 /* ========== Lists ========== */
@@ -176,30 +152,5 @@ p,ul,ol /* Paragraph Style */
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts21>@SAFEENV</span><span class=rvts20> — Returns the value of an environment variable, replacing any dangerous characters with “safe” equivalents.</span></p>
-<p class=rvps3><span class=rvts20>Syntax:</span><br><span class=rvts21>%@SAFEENV[</span><span class=rvts20>var</span><span class=rvts21>]</span></p>
-<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
- <tr valign=top>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts20>var:</span></p>
-  </td>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts20>the name of an environment variable</span></p>
-  </td>
- </tr>
-</table>
-<p><span class=rvts21>input Type some text: %%text</span><br><span class=rvts21>set text=%@safeenv[text]</span><br><span class=rvts21>echo You typed "%text".</span><br><span class=rvts21>&nbsp;</span></p>
-<p class=rvps3><span class=rvts20>This function is useful with commands such as </span><span class=rvts21>INPUT</span><span class=rvts20> or </span><span class=rvts21>DO</span><span class=rvts20> var </span><span class=rvts21>IN @</span><span class=rvts20>file, which stash text directly in an environment variable without first passing it through the command parser. </span><span class=rvts23>Do not type a percent sign before the variable name.</span><span class=rvts20> If you do, TCC’s parser will expand the variable before </span><span class=rvts21>@SAFEENV</span><span class=rvts20> ever sees it.</span></p>
-<p class=rvps3><span class=rvts20>Note: This function only reads text from environment variables, not from internal variables, functions, or array elements. For anything other than an environment variable, use </span><a class=rvts22 href="file:///U:/safechars.html#f_safeexp">@SAFEEXP</a><span class=rvts20> instead.</span></p>
-<p class=rvps3><span class=rvts20>Note: If you want to use this function in conjunction with the </span><span class=rvts21>FOR</span><span class=rvts20> command, be aware that </span><span class=rvts21>FOR</span><span class=rvts20> only stores its control variable in the environment if the variable name is more than one character long.</span></p>
-<p><span class=rvts17><br></span></p>
-<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
- <tr valign=top>
-  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts19>Source</span><span class=rvts16>:</span><span class=rvts17> </span><a class=rvts18 href="file:///U:/safechars.html#functions">SafeChars Plugin and 2 more pages - Personal</a><span class=rvts17> &nbsp;</span><span class=rvts16>(5 June 2025 12:52 PM)</span></p>
-  </td>
- </tr>
-</table>
-<p><span class=rvts15><br></span></p>
-<p class=rvps2><span class=rvts15><br></span></p>
+<p><br></p>
 </body></html>

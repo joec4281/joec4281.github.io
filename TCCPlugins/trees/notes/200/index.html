@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@REVCO</title>
+<html><head><title>@BMEMCPY</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,6 +48,112 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts16
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
+a.rvts17, span.rvts17
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts18
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts19
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts22
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts23, span.rvts23
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts24
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts25
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
 {
@@ -64,11 +170,69 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps2><span class=rvts6>@REVCO[text] = text with reversed color ANSI sequences added</span></p>
+<p class=rvps3><span class=rvts24>@BMEMCPY</span><span class=rvts22> — Copies a series of bytes in binary buffers.</span></p>
+<p class=rvps3><span class=rvts22>Syntax:</span><br><span class=rvts24>%@BMEMCPY[</span><span class=rvts22>src_bbuf</span><span class=rvts24>,</span><span class=rvts22>src_offset</span><span class=rvts24>,</span><span class=rvts22>dest_bbuf</span><span class=rvts24>,</span><span class=rvts22>dest_offset</span><span class=rvts24>,</span><span class=rvts22>size</span><span class=rvts24>]</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>src_bbuf</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>the handle of the binary buffer to copy </span><span class=rvts25>from</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>src_offset</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>the location within the source buffer to copy from</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>dest_bbuf</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>the handle of the binary buffer to copy </span><span class=rvts25>to</span><span class=rvts22>; defaults to src_bbuf</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>dest_offset</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>the location within the destination buffer to copy to</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>size</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>the number of bytes to copy</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts24>@BMEMCPY</span><span class=rvts22> copies a series of bytes. It can copy within a single buffer, or from one buffer to another.</span></p>
+<p class=rvps3><span class=rvts22>After parsing and validating its arguments, this function just calls </span><a class=rvts23 href="https://duckduckgo.com/?q=%5cmemcpy%20site:learn.microsoft.com">memcpy()</a><span class=rvts22>.</span></p>
+<p><span class=rvts19><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts21>Source</span><span class=rvts18>:</span><span class=rvts19> </span><a class=rvts20 href="file:///U:/bbufstuff.html#f_bmemcmp">General</a><span class=rvts19> &nbsp;</span><span class=rvts18>(13 January 2026 9:31 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
 <p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

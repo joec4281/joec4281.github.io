@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>FILEUTILSHELP</title>
+<html><head><title>DATEDIR</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -84,8 +84,8 @@ a.rvts13, span.rvts13
 }
 span.rvts14
 {
- font-size: 14pt;
- font-family: 'consolas';
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #000000;
 }
 span.rvts15
@@ -93,30 +93,67 @@ span.rvts15
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts16
+a.rvts16, span.rvts16
 {
- font-size: 14pt;
- font-family: 'consolas';
- font-weight: bold;
- color: #000000;
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
-span.rvts17
+a.rvts17, span.rvts17
 {
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- color: #000088;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
 }
 span.rvts18
 {
- font-size: 8pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
- background-color: #dddddd;
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts19
 {
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts22
+{
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
+}
+span.rvts23
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+a.rvts24, span.rvts24
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts25, span.rvts25
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -136,80 +173,260 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
- background: #ffffff;
  margin: 7px 0px 7px 0px;
 }
 .rvps4
 {
- margin: 0px 0px 13px 26px;
+ background: #e6e6e6;
+ padding: 4px 4px 4px 4px;
 }
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts14>FILEUTILSHELP</span><span class=rvts15> — Open the FileUtils plugin help file.</span></p>
-<p class=rvps3><span class=rvts15>Syntax:</span><br><span class=rvts16>FILEUTILSHELP</span><span class=rvts14> /C /F /S /S:</span><span class=rvts17>text</span><span class=rvts14> /V </span><span class=rvts17>topic</span></p>
-<div class=rvps4>
-<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+<p class=rvps3><span class=rvts23>DATEDIR</span><span class=rvts22> — Lists files and subdirectories, sorted by date and time.</span></p>
+<p class=rvps3><span class=rvts22>Syntax:</span><br><span class=rvts23>DATEDIR /A:</span><span class=rvts22>attribs</span><span class=rvts23> /B /E /F /F:"</span><span class=rvts22>format</span><span class=rvts23>" /L /M /N:</span><span class=rvts22>flags</span><span class=rvts23> /P /Q /R /S /T /T:</span><span class=rvts22>flags</span><span class=rvts23> /[</span><span class=rvts22>range</span><span class=rvts23>] </span><span class=rvts22>file…</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
  <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/C</span></p>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/A:</span><span class=rvts22>attribs</span></p>
   </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>select the ‘Contents’ tab</span></p>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>filter by attributes</span></p>
   </td>
  </tr>
  <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/F</span></p>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/B</span></p>
   </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>select the ‘Favorites’ tab</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/S</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>select the ‘Search’ tab</span></p>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>bare: filenames only, no dates or times</span></p>
   </td>
  </tr>
  <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/S:</span><span class=rvts17>text</span></p>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/E</span></p>
   </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>select the ‘Search’ tab and search for </span><span class=rvts17>text</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/V</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>show detailed plugin version info</span></p>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>uppercase</span></p>
   </td>
  </tr>
  <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>topic</span></p>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/F</span></p>
   </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>the page to display</span></p>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>show full paths (implied by </span><span class=rvts23>/S</span><span class=rvts22>)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/F:"</span><span class=rvts22>format</span><span class=rvts23>"</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>time format string, as per </span><span class=rvts23>@DATEFMT</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/L</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>lowercase</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/M</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>show final counts at the end</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts25 href="#datedir_opt_n">/N:</a><a class=rvts24 href="#datedir_opt_n">flags</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>disable features; see </span><a class=rvts24 href="#datedir_opt_n">below</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts25 href="https://charlesdye.net/plugins/fileutils.html#paging">/P</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts24 href="https://charlesdye.net/plugins/fileutils.html#paging">page output</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/Q</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>quote filenames</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/R</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>reverse sort order (newest first)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/S</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>search in subdirectories</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>/T</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>show times; the default is to show dates only</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts25 href="#datedir_opt_t">/T:</a><a class=rvts24 href="#datedir_opt_t">flags</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>time options; see </span><a class=rvts24 href="#datedir_opt_t">below</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts25 href="https://charlesdye.net/plugins/fileutils.html#ranges">/[</a><a class=rvts24 href="https://charlesdye.net/plugins/fileutils.html#ranges">range</a><a class=rvts25 href="https://charlesdye.net/plugins/fileutils.html#ranges">]</a></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>many </span><a class=rvts24 href="https://charlesdye.net/plugins/fileutils.html#ranges">range options</a><span class=rvts22> are supported</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>file…</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>wildcards and directory aliases are supported</span></p>
   </td>
  </tr>
 </table>
-</div>
-<p class=rvps3><span class=rvts15>The </span><span class=rvts14>FILEUTILSHELP</span><span class=rvts15> command will locate and open this plugin’s help file. In most cases, the internal </span><span class=rvts14>HELP</span><span class=rvts15> command, and the </span><span class=rvts18>F1</span><span class=rvts15> and </span><span class=rvts18>Ctrl</span><span class=rvts15>-</span><span class=rvts18>F1</span><span class=rvts15> keys, will be more convenient. The main advantage to this command is that it can be used to open the help file to any desired topic, not only to the names of commands, functions, and variables.</span></p>
+<p class=rvps3><span class=rvts22>If you do not give any filespecs, </span><span class=rvts23>*</span><span class=rvts22> is assumed by default. If you do not give any </span><span class=rvts23>/A:</span><span class=rvts22>attribs, the default is to list files and subdirectores which do not have the hidden or system attributes.</span></p>
+<p><span class=rvts22><br></span></p>
+<p class=rvps3><span class=rvts23>DATEDIR</span><span class=rvts22> lists matching files and subdirectories ordered by date and time, oldest first. If you give multiple filespecs or use </span><span class=rvts23>/S</span><span class=rvts22> to search into subdirectories, all matching files will be sorted together. By default, </span><span class=rvts23>DATEDIR</span><span class=rvts22> shows only the dates of matching files; I find that in most cases, dates alone are enough to distinguish between different versions of the same file. You can add </span><span class=rvts23>/T</span><span class=rvts22> to show times along with dates, or use </span><span class=rvts23>/F:</span><span class=rvts22>format to roll your own display format.</span></p>
+<p><span class=rvts22><br></span></p>
+<p class=rvps3><span class=rvts23>/N:</span><span class=rvts22> disables features. These flags can be combined:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>D</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>do not search into hidden directories</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>F</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>suppress file-not-found errors</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>J</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>do not search into junctions</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>Z</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>do not search into system directories</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts22><br></span></p>
+<p class=rvps3><span class=rvts23>/T:</span><span class=rvts22> selects which time stamp to display and sort on, and how to display it. Flags may include:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>A</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>show the last-access time stamp</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>C</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>show the creation time stamp</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>W</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>show the last-write time stamp</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>D</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>default: localize time stamps as TCC and CMD.EXE do</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>L</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>local times, taking DST time changes into account</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>U</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>Coordinated Universal Time</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>F</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>show fractional seconds (implies </span><span class=rvts23>/T</span><span class=rvts22>)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts22>The default is to use the last-write time,&nbsp;</span></p>
+<p class=rvps3><span class=rvts22>localized as TCC and CMD do. </span><span class=rvts23>D</span><span class=rvts22>, </span><span class=rvts23>L</span><span class=rvts22>, </span><span class=rvts23>U</span><span class=rvts22>, and </span><span class=rvts23>F</span><span class=rvts22> modify the way times are displayed;&nbsp;</span></p>
+<p class=rvps3><span class=rvts22>they do not affect sorting.</span></p>
+<p><span class=rvts22><br></span></p>
+<p class=rvps4><span class=rvts23>rem &nbsp; List all copies of conlist.cpp, sorted by age:</span><br><span class=rvts23>datedir /s c:\code\conlist.cpp</span></p>
+<p><span class=rvts22><br></span></p>
 <p><span class=rvts19><br></span></p>
-<p class=rvps3><span class=rvts15>Note that any </span><span class=rvts14>/C</span><span class=rvts15> </span><span class=rvts14>/F</span><span class=rvts15> or </span><span class=rvts14>/S</span><span class=rvts15> must precede any </span><span class=rvts17>topic</span><span class=rvts15> on the command line. (This command has a very simple-minded parser.)</span></p>
-<p><span class=rvts8><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="https://charlesdye.net/plugins/fileutils.html#commands">FileUtils Plugin and 2 more pages - Profile 1</a><span class=rvts11> &nbsp;</span><span class=rvts10>(10 November 2024 5:17 PM)</span></p>
+   <p><span class=rvts21>Source</span><span class=rvts18>:</span><span class=rvts19> </span><a class=rvts20 href="https://charlesdye.net/plugins/fileutils.html#datedir">General</a><span class=rvts19> &nbsp;</span><span class=rvts18>(18 December 2025 8:34 AM)</span></p>
   </td>
  </tr>
 </table>

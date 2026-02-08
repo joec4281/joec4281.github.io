@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>_ENVVARS</title>
+<html><head><title>_BBLASTERR</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,6 +48,131 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts15
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts16
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts17, span.rvts17
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts19
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts20
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts21
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts22, span.rvts22
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts23
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts24
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts25, span.rvts25
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts26
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+a.rvts27, span.rvts27
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts28
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
 {
@@ -64,11 +189,35 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
+.rvps3
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 15px 0px 15px 0px;
+}
+.rvps4
+{
+ margin: 7px 0px 7px 0px;
+}
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps2><span class=rvts6>space-separated list of environment variable names</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
+<h4 class=rvps3><span class=rvts0><span class=rvts28>New Variables:</span></span></h4>
+<p class=rvps4><span class=rvts26>_BBLASTERR</span><span class=rvts24> — Returns the last error code from </span><span class=rvts26>@BLOAD</span><span class=rvts24> or </span><span class=rvts26>@BSAVE</span><span class=rvts24>.</span></p>
+<p class=rvps4><span class=rvts24>Syntax:</span><br><span class=rvts26>%_BBLASTERR</span></p>
+<p class=rvps4><span class=rvts24>If the function call was successful, </span><span class=rvts26>_BBLASTERR</span><span class=rvts24> returns </span><span class=rvts26>0</span><span class=rvts24>. If it failed, this variable returns a </span><a class=rvts27 href="https://duckduckgo.com/?q=%5csystem%20error%20codes%20site:learn.microsoft.com">Windows error code</a><span class=rvts24>; pass this value to </span><span class=rvts26>@ERRTEXT</span><span class=rvts24> or </span><span class=rvts26>LOOKUPERRORS</span><span class=rvts24> for more information.</span></p>
+<p class=rvps4><span class=rvts24>See also: </span><a class=rvts25 href="file:///U:/bbufstuff.html#f_bload">@BLOAD</a><span class=rvts24> and </span><a class=rvts25 href="file:///U:/bbufstuff.html#f_bsave">@BSAVE</a><span class=rvts24>.</span></p>
+<p><span class=rvts21><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts23>Source</span><span class=rvts20>:</span><span class=rvts21> </span><a class=rvts22 href="file:///U:/bbufstuff.html#variables">General</a><span class=rvts21> &nbsp;</span><span class=rvts20>(15 January 2026 10:17 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts19><br></span></p>
+<p class=rvps2><span class=rvts19><br></span></p>
 </body></html>

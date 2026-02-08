@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@Days</title>
+<html><head><title>Variables</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -45,57 +45,80 @@ a.rvts5, span.rvts5 /* Jump 2 */
 }
 span.rvts6
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
 span.rvts7
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts8
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
 }
 a.rvts9, span.rvts9
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
 span.rvts10
 {
- font-size: 18pt;
+ font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-span.rvts11
+a.rvts11, span.rvts11
 {
- font-size: 18pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
 span.rvts12
 {
- font-size: 18pt;
- font-family: 'Courier New', 'Courier', monospace;
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
 a.rvts13, span.rvts13
 {
- font-size: 18pt;
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
+a.rvts15, span.rvts15
+{
+ font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
  color: #0000ff;
  text-decoration: underline;
 }
-a.rvts14, span.rvts14
+a.rvts15:hover
 {
- font-size: 18pt;
+ color: #0000ff;
+}
+a.rvts16, span.rvts16
+{
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
+}
+a.rvts16:hover
+{
+ color: #0000ff;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -115,74 +138,19 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
- margin: 7px 0px 7px 0px;
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 15px 0px 15px 0px;
 }
 .rvps4
 {
- background: #f0e1ff;
- padding: 2px 2px 2px 2px;
-}
-.rvps5
-{
- background: #e9e9e9;
- padding: 4px 4px 4px 4px;
-}
-.rvps6
-{
- background: #e6e6e6;
- padding: 4px 4px 4px 4px;
-}
-.rvps7
-{
- background: #d6d6d6;
- padding: 4px 4px 4px 4px;
+ margin: 7px 0px 7px 0px;
 }
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts12>@DAYS</span><span class=rvts11> — subtracts one date from another, and returns the difference in days. Both input dates may be in </span><a class=rvts14 href="https://charlesdye.net/plugins/iso8601.html#infmt">any input date format supported by this plugin.</a><span class=rvts11> Both must be valid dates, and both must fall within </span><a class=rvts14 href="https://charlesdye.net/plugins/iso8601.html#daterange">the supported date range.</a></p>
-<p class=rvps3><span class=rvts11>Syntax:</span><br><span class=rvts12>%@DAYS[</span><span class=rvts11>startdate</span><span class=rvts12>,</span><span class=rvts11>enddate</span><span class=rvts12>,</span><span class=rvts11>infmt</span><span class=rvts12>,</span><span class=rvts11>mode</span><span class=rvts12>]</span></p>
-<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
- <tr valign=top>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts11>startdate, enddate</span></p>
-  </td>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts11>the dates to subtract</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts11>infmt</span></p>
-  </td>
-  <td valign=middle style="padding: 1px;">
-   <p><a class=rvts14 href="https://charlesdye.net/plugins/iso8601.html#infmt">the input date format</a><span class=rvts11>, used to interpret ambiguous dates</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts11>mode</span></p>
-  </td>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts11>0 for the difference, 1 for the size of the (inclusive) range; defaults to 0</span></p>
-  </td>
- </tr>
-</table>
-<p class=rvps3><span class=rvts11>When mode is 0 or not specified, startdate is subtracted from enddate. If startdate is later than enddate, the result will be negative. If both refer to the same date, the result will be zero.</span></p>
-<p class=rvps3><span class=rvts11>When mode is 1, the earlier date is subtracted from the later, and one added to the difference. The result will always be positive; if startdate and enddate refer to the same date, the result will be 1.</span></p>
-<p class=rvps3><span class=rvts11>You can use this function to calculate the number of days until some future event by specifying </span><span class=rvts12>T</span><span class=rvts11> for the startdate:</span></p>
-<p class=rvps6><span class=rvts12>echo Only %@days[T,</span><a class=rvts13 href="https://charlesdye.net/plugins/iso8601.html#f_nextdate">%@nextdate</a><span class=rvts12>[12,25]] days until Christmas!</span><br><span class=rvts12>echo %@days[T,%@easter[*]] days until Easter.</span></p>
-<p class=rvps3><span class=rvts11>• New: This function does not exist in Take Command.</span></p>
-<p><span class=rvts8><br></span></p>
-<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
- <tr valign=top>
-  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts10>Source</span><span class=rvts7>:</span><span class=rvts8> </span><a class=rvts9 href="https://charlesdye.net/plugins/iso8601.html#f_agedate">@DAYS — subtracts one date from another, and returns the...</a><span class=rvts8> &nbsp;</span><span class=rvts7>(9 April 2025 6:54 PM)</span></p>
-  </td>
- </tr>
-</table>
-<p><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
+<p><br></p>
 </body></html>

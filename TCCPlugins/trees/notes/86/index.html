@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>BSPLIT</title>
+<html><head><title>Variables</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -50,91 +50,75 @@ span.rvts6
 }
 span.rvts7
 {
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts8
 {
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
 }
-span.rvts9
+a.rvts9, span.rvts9
 {
- font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
 }
 span.rvts10
 {
- font-size: 8pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
-}
-span.rvts11
-{
- font-size: 8pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
-}
-span.rvts12
-{
- font-size: 8pt;
+ font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
+a.rvts11, span.rvts11
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts12
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
 a.rvts13, span.rvts13
 {
- font-size: 8pt;
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
 span.rvts14
 {
- font-size: 14pt;
- font-family: 'consolas';
- color: #000000;
-}
-span.rvts15
-{
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
-}
-span.rvts16
-{
- font-size: 14pt;
- font-family: 'consolas';
  font-weight: bold;
  color: #000000;
 }
-span.rvts17
+a.rvts15, span.rvts15
 {
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- color: #000088;
-}
-span.rvts18
-{
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- font-weight: bold;
- color: #000088;
-}
-a.rvts19, span.rvts19
-{
- font-size: 14pt;
- font-family: 'consolas';
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #0000ff;
- text-decoration: none;
+ text-decoration: underline;
 }
-a.rvts19:hover
+a.rvts15:hover
 {
- color: #000000;
+ color: #0000ff;
 }
-a.rvts20, span.rvts20
+a.rvts16, span.rvts16
 {
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
- color: #000088;
- text-decoration: none;
-}
-span.rvts21
-{
+ font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts16:hover
+{
+ color: #0000ff;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -154,269 +138,19 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
- background: #ffffff;
- margin: 7px 0px 7px 0px;
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 15px 0px 15px 0px;
 }
 .rvps4
 {
- margin: 0px 0px 13px 26px;
-}
-.rvps5
-{
- background: #eeeeee;
- padding: 6px 13px 6px 13px;
- margin: 13px 0px 13px 13px;
+ margin: 7px 0px 7px 0px;
 }
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts14>BSPLIT</span><span class=rvts15> — Split files into smaller files.</span></p>
-<p class=rvps3><span class=rvts15>Syntax:</span><br><span class=rvts16>BSPLIT</span><span class=rvts14> /D:</span><span class=rvts17>dir</span><span class=rvts14> /E /F:</span><span class=rvts17>n</span><span class=rvts14> /N:</span><span class=rvts17>n</span><span class=rvts14> /O /P /Q /S:</span><span class=rvts17>size</span><span class=rvts14> /X:</span><span class=rvts17>prefix</span><span class=rvts14> </span><span class=rvts18>filename…</span></p>
-<div class=rvps4>
-<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><a class=rvts19 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_d">/D:</a><a class=rvts20 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_d">dir</a></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>output directory</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/E</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>no error messages</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><a class=rvts19 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_f">/F:</a><a class=rvts20 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_f">n</a></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>extension numbering format</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><a class=rvts19 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_n">/N:</a><a class=rvts20 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_n">n</a></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>number of splits</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/O</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>overwrite existing files</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><a class=rvts19 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_p">/P</a></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>output to source file’s path</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/Q</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>quietly</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><a class=rvts19 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_s">/S:</a><a class=rvts20 href="https://charlesdye.net/plugins/fileutils.html#bsplit_opt_s">size</a></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>split size</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/X:</span><span class=rvts17>prefix</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>extension prefix</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts18>filename…</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>files to split</span></p>
-  </td>
- </tr>
-</table>
-</div>
-<p class=rvps3><span class=rvts14>BSPLIT</span><span class=rvts15> divides a file into multiple smaller files. You can split at a specified size (</span><span class=rvts14>/S:</span><span class=rvts15>), or into a specified number of files (</span><span class=rvts14>/N:</span><span class=rvts15>). You cannot combine </span><span class=rvts14>/N:</span><span class=rvts15> and </span><span class=rvts14>/S:</span><span class=rvts15>.</span></p>
-<p class=rvps3><span class=rvts15>You must supply a </span><span class=rvts18>filename</span><span class=rvts15>. Wildcards and directory aliases are supported, and you may have more than one filename on the command line. The output directory defaults to the current directory.</span></p>
-<p class=rvps3><span class=rvts14>BSPLIT</span><span class=rvts15> is short for “binary split”. It splits files by byte size. It does not support splitting by lines or characters. If the input file contains text it may be divided within a line, or possibly even within a character.</span></p>
-<p><span class=rvts21><br></span></p>
-<p class=rvps3><span class=rvts14>/D:</span><span class=rvts17>dir</span><span class=rvts15> specifies the directory that the split files will be written to. If this directory does not exist, </span><span class=rvts14>BSPLIT</span><span class=rvts15> will attempt to create it for you.</span></p>
-<p class=rvps3><span class=rvts14>/P</span><span class=rvts15> writes the split files to the same directory as the original file. It’s like a shorthand for </span><span class=rvts14>/D:"%@PATH[</span><span class=rvts18>filename</span><span class=rvts14>]"</span><span class=rvts15>. If you don’t specify either </span><span class=rvts14>/D:</span><span class=rvts15> or </span><span class=rvts14>/P</span><span class=rvts15>, the default is to write the split files to the current directory.</span></p>
-<p><span class=rvts21><br></span></p>
-<p class=rvps3><span class=rvts14>/F:</span><span class=rvts17>n</span><span class=rvts15> lets you change the way the output files are numbered. The formats are:</span></p>
-<div class=rvps4>
-<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>0</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>two decimal digits</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>1</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>three decimal digits</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>2</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>four decimal digits</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>3</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>two hexadecimal digits</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>4</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>three hexadecimal digits</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>5</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>four hexadecimal digits</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>6</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>two letters (base-26)</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>7</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>three letters (base-26)</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>8</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>four letters (base-26)</span></p>
-  </td>
- </tr>
-</table>
-</div>
-<p class=rvps3><span class=rvts15>Add 32 for uppercase. If you don’t specify a format, the default is three decimal digits. If you specify a prefix with </span><span class=rvts14>/X:</span><span class=rvts15>, the prefix will be inserted at the start of the extension.</span></p>
-<p><span class=rvts21><br></span></p>
-<p class=rvps3><span class=rvts14>/S:</span><span class=rvts17>size</span><span class=rvts15> specifies the size of the output files. You may give the size as:</span></p>
-<div class=rvps4>
-<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>n</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>bytes</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>n</span><span class=rvts14>k</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>thousands of bytes</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>n</span><span class=rvts14>K</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>kilobytes (1,024 bytes)</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>n</span><span class=rvts14>m</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>millions of bytes</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>n</span><span class=rvts14>M</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>megabytes (1,048,576 bytes)</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>n</span><span class=rvts14>g</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>billions of bytes</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>n</span><span class=rvts14>G</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>gigabytes (1,073,741,824 bytes)</span></p>
-  </td>
- </tr>
-</table>
-</div>
-<p class=rvps3><span class=rvts14>/N:</span><span class=rvts17>n</span><span class=rvts15> instead splits the file into </span><span class=rvts17>n</span><span class=rvts15> more-or-less equally-sized pieces. You cannot combine </span><span class=rvts14>/N:</span><span class=rvts15> and </span><span class=rvts14>/S:</span><span class=rvts15>.</span></p>
-<p><span class=rvts21><br></span></p>
-<p class=rvps5><span class=rvts14>rem &nbsp; &nbsp;Break BigFile into 500-kilobyte files:</span><br><span class=rvts14>bsplit /s:500K bigfile</span><br><span class=rvts14></span><br><span class=rvts14>rem &nbsp; &nbsp;Break BigFile into four more-or-less equal files:</span><br><span class=rvts14>bsplit /n:4 bigfile</span></p>
-<p><span class=rvts21><br></span></p>
-<p><span class=rvts8><br></span></p>
-<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
- <tr valign=top>
-  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="https://charlesdye.net/plugins/fileutils.html#commands">FileUtils Plugin and 2 more pages - Profile 1</a><span class=rvts11> &nbsp;</span><span class=rvts10>(10 November 2024 5:14 PM)</span></p>
-  </td>
- </tr>
-</table>
-<p><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
+<p><br></p>
 </body></html>

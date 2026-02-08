@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@WINMONITOR</title>
+<html><head><title>@PIDHWND</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -93,60 +93,74 @@ span.rvts15
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-a.rvts16, span.rvts16
+span.rvts16
 {
  font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+a.rvts17, span.rvts17
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #0000ff;
  text-decoration: underline;
-}
-span.rvts17
-{
- font-size: 18pt;
- font-family: 'Courier New', 'Courier', monospace;
 }
 span.rvts18
 {
  font-size: 18pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-family: 'Courier New', 'Courier', monospace;
 }
 span.rvts19
 {
  font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts20
+{
+ font-size: 18pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
 }
-a.rvts20, span.rvts20
+a.rvts21, span.rvts21
 {
  font-size: 18pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts21
+span.rvts22
 {
  font-size: 18pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-span.rvts22
-{
- font-size: 18pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- color: #000000;
-}
 span.rvts23
 {
  font-size: 18pt;
- font-family: 'Courier New', 'Courier', monospace;
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
 a.rvts24, span.rvts24
 {
  font-size: 18pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
+ font-family: 'Courier New', 'Courier', monospace;
  color: #0000ff;
  text-decoration: underline;
 }
 span.rvts25
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts26
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts27
 {
  font-size: 18pt;
 }
@@ -170,50 +184,67 @@ p,ul,ol /* Paragraph Style */
 {
  margin: 7px 0px 7px 0px;
 }
+.rvps4
+{
+ margin: 7px 0px 7px 40px;
+}
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+.list1 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: disc;}
+.list2 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: circle;}
+.list3 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: square;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts23>@WINMONITOR</span><span class=rvts22> — Searches for a matching window, and returns the monitor on which it appears.</span></p>
-<p class=rvps3><span class=rvts22>Syntax:</span><br><span class=rvts23>%@WINMONITOR[</span><span class=rvts22>window</span><span class=rvts23>,</span><span class=rvts22>flags</span><span class=rvts23>]</span></p>
+<p class=rvps3><span class=rvts25>@PIDHWND</span><span class=rvts23> — Searches for a window created by the specified process, and returns its handle.</span></p>
+<p class=rvps3><span class=rvts23>Syntax:</span><br><span class=rvts25>%@PIDHWND[</span><span class=rvts23>program</span><span class=rvts25>,</span><span class=rvts23>flags</span><span class=rvts25>]</span></p>
 <table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
  <tr valign=top>
-  <td width=156 valign=middle style="padding: 1px;">
-   <p><a class=rvts24 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window</a></p>
+  <td width=205 valign=middle style="padding: 1px;">
+   <p><span class=rvts23>program</span></p>
   </td>
-  <td width=1342 valign=middle style="padding: 1px;">
-   <p><a class=rvts24 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window title, program name, PID, or HWND</a></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td width=156 valign=middle style="padding: 1px;">
-   <p><span class=rvts22>flags</span></p>
-  </td>
-  <td width=1342 valign=middle style="padding: 1px;">
-   <p><span class=rvts22>bitmapped:</span></p>
+  <td width=1293 valign=middle style="padding: 1px;">
+   <p><span class=rvts23>program name or process ID; wildcards are supported</span></p>
   </td>
  </tr>
  <tr valign=top>
-  <td width=156 valign=middle style="padding: 1px;">
-   <p><span class=rvts25><br></span></p>
+  <td width=205 valign=middle style="padding: 1px;">
+   <p><span class=rvts23>flags</span></p>
   </td>
-  <td width=1342 valign=middle style="padding: 1px;">
-   <p><span class=rvts22>&nbsp; &nbsp; 1: return a monitor name; otherwise it’s a monitor number</span></p>
+  <td width=1293 valign=middle style="padding: 1px;">
+   <p><span class=rvts23>bitmapped:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=205 valign=middle style="padding: 1px;">
+   <p><span class=rvts27><br></span></p>
+  </td>
+  <td width=1293 valign=middle style="padding: 1px;">
+   <p><span class=rvts23>&nbsp; &nbsp; 1: return handle in hexadecimal</span></p>
+   <p><span class=rvts23><br></span></p>
   </td>
  </tr>
 </table>
-<p><span class=rvts22><br></span></p>
-<p class=rvps3><span class=rvts23>@WINMONITOR</span><span class=rvts22> returns a monitor index: 1 for the first monitor, 2 for the second, and so on. If no matching window was found, or if the window does not overlap any display monitor, </span><span class=rvts23>@WINMONITOR</span><span class=rvts22> returns </span><span class=rvts23>0</span><span class=rvts22>.</span></p>
-<p><span class=rvts22><br></span></p>
-<p><span class=rvts19><br></span></p>
+<p class=rvps3><span class=rvts23>You can specify the program as:</span></p>
+<ul class=list1>
+ <li><span class=rvts23>a filename with extension, </span><span class=rvts26>e.g.</span><span class=rvts23> </span><span class=rvts25>NOTEPAD.EXE</span></li>
+ <li><span class=rvts23>a base name, </span><span class=rvts26>e.g.</span><span class=rvts23> </span><span class=rvts25>NOTEPAD</span><span class=rvts23>; </span><span class=rvts25>.*</span><span class=rvts23> is assumed</span></li>
+ <li><span class=rvts23>a fully-qualified filename, </span><span class=rvts26>e.g.</span><span class=rvts23> </span><span class=rvts25>C:\WINDOWS\SYSTEM32\NOTEPAD.EXE</span></li>
+ <li><span class=rvts23>a process ID in decimal, </span><span class=rvts26>e.g.</span><span class=rvts23> </span><span class=rvts25>=5892</span></li>
+ <li><span class=rvts23>a process ID in hexadecimal, </span><span class=rvts26>e.g.</span><span class=rvts23> </span><span class=rvts25>=0x1704</span></li>
+</ul>
+<p><span class=rvts23><br></span></p>
+<p class=rvps3><span class=rvts25>@PIDHWND</span><span class=rvts23> returns the window handle (HWND) of a matching window. If no matching window is found, </span><span class=rvts25>@PIDHWND</span><span class=rvts23> returns </span><span class=rvts25>0</span><span class=rvts23>.</span></p>
+<p class=rvps3><span class=rvts23>Note that a process may have no windows, one window, or many windows. The window that </span><span class=rvts25>@PIDHWND</span><span class=rvts23> chooses may not necessarily be the same one that you would pick. To get a list of all top-level windows created by a process, use </span><a class=rvts24 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#f_pidhwnds">@PIDHWNDS</a><span class=rvts23>.</span></p>
+<p><span class=rvts23><br></span></p>
+<p><span class=rvts20><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts21>Source</span><span class=rvts18>:</span><span class=rvts19> </span><a class=rvts20 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#licensing">WindowInfo Plugin and 1 more page - Personal</a><span class=rvts19> &nbsp;</span><span class=rvts18>(5 February 2025 7:24 PM)</span></p>
+   <p><span class=rvts22>Source</span><span class=rvts19>:</span><span class=rvts20> </span><a class=rvts21 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#licensing">WindowInfo Plugin and 1 more page - Personal</a><span class=rvts20> &nbsp;</span><span class=rvts19>(5 February 2025 7:16 PM)</span></p>
   </td>
  </tr>
 </table>
-<p><span class=rvts17><br></span></p>
-<p class=rvps2><span class=rvts17><br></span></p>
+<p><span class=rvts18><br></span></p>
+<p class=rvps2><span class=rvts18><br></span></p>
 </body></html>

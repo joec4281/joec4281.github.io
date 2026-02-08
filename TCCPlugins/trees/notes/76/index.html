@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>DateDiffy</title>
+<html><head><title>AScript</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -77,67 +77,27 @@ a.rvts11, span.rvts11
 }
 span.rvts12
 {
- font-size: 19pt;
- font-family: 'segoe ui';
- font-weight: bold;
- color: #ababab;
+ font-size: 16pt;
+ font-family: 'Segoe UI';
+ color: #000000;
+ background-color: #ccffff;
 }
 span.rvts13
-{
- font-size: 16pt;
- font-family: 'segoe ui';
- color: #eeeeee;
-}
-span.rvts14
-{
- font-size: 16pt;
- font-family: 'consolas';
- font-weight: bold;
- color: #eeeeee;
- background-color: #555555;
-}
-span.rvts15
-{
- font-size: 16pt;
- font-family: 'consolas';
- color: #b8d7a3;
- background-color: #1e1e1e;
-}
-span.rvts16
-{
- font-size: 16pt;
- font-family: 'consolas';
- color: #dcdcdc;
- background-color: #1e1e1e;
-}
-span.rvts17
 {
  font-size: 16pt;
  font-family: 'Consolas';
  color: #000000;
  background-color: #ccffff;
 }
-span.rvts18
-{
- font-size: 19pt;
- font-family: 'Segoe UI';
- font-weight: bold;
- color: #000000;
- background-color: #ccffff;
-}
-span.rvts19
+span.rvts14
 {
  font-size: 16pt;
- font-family: 'segoe ui';
- color: #000000;
- background-color: #ccffff;
+ font-family: 'Consolas';
 }
-span.rvts20
+span.rvts15
 {
  font-size: 16pt;
- font-family: 'consolas';
- font-weight: bold;
- color: #000000;
+ font-family: 'Consolas';
  background-color: #ccffff;
 }
 /* ========== Para Styles ========== */
@@ -158,50 +118,49 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps3
 {
- text-align: left;
- text-indent: 0px;
- background: #303030;
- padding: 0px 0px 0px 0px;
- margin: 30px 0px 12px 0px;
+ background: #ccffff;
+ margin: 0px 0px 19px 0px;
 }
 .rvps4
 {
- background: #303030;
- margin: 0px 0px 19px 0px;
+ border-color: #555555;
+ border-style: solid;
+ border-width: 1px;
+ background: #ccffff;
+ margin: 7px 10px 7px 10px;
 }
 .rvps5
 {
- border-color: #555555;
- border-style: solid;
- border-width: 1px;
- background: #1e1e1e;
- margin: 7px 10px 7px 10px;
-}
-.rvps6
-{
- border-color: #555555;
- border-style: solid;
- border-width: 1px;
  background: #ccffff;
- margin: 7px 10px 7px 10px;
-}
-.rvps7
-{
- text-align: left;
- text-indent: 0px;
- background: #ccffff;
- padding: 0px 0px 0px 0px;
- margin: 30px 0px 12px 0px;
-}
-.rvps8
-{
- background: #ccffff;
- margin: 0px 0px 19px 0px;
 }
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><br></p>
+<p class=rvps3><span class=rvts12>Unlike the internal TCC Script command, AScript works with GetObject.</span></p>
+<p class=rvps3><span class=rvts12>Examples:</span></p>
+<p class=rvps4><span class=rvts13>TestIt()</span></p>
+<p class=rvps4><span class=rvts13>Function TestIt</span><br><span class=rvts13>&nbsp; Set fso = CreateObject ("Scripting.FileSystemObject")</span><br><span class=rvts13>&nbsp; Set stdout = fso.GetStandardStream (1)</span><br><span class=rvts13>&nbsp; Set iWMI = GetObject("WinMgmts:Root\Cimv2")</span><br><span class=rvts13>&nbsp; Set colItems = iWMI.ExecQuery("SELECT * FROM Win32_Process")</span><br><span class=rvts13>&nbsp; If Err.number &lt;&gt; 0 Then</span><br><span class=rvts13>&nbsp; &nbsp; stdout.WriteLine "Error"</span><br><span class=rvts13>&nbsp; End if</span></p>
+<p class=rvps4><span class=rvts13>&nbsp; Results = ""</span><br><span class=rvts13>&nbsp; For Each objItem in colItems</span><br><span class=rvts13>&nbsp; &nbsp; Results = Results + objItem.Name + vbCrLf</span><br><span class=rvts13>&nbsp; Next</span></p>
+<p class=rvps4><span class=rvts13>&nbsp; TestIt = Results</span><br><span class=rvts13>&nbsp; stdout.WriteLine TestIt</span><br><span class=rvts13>End Function</span></p>
+<p class=rvps3><span class=rvts12>Now, run the above script;</span></p>
+<p class=rvps4><span class=rvts13>AScript e:\utils\vince.vbs</span><br><span class=rvts13>System Idle Process</span><br><span class=rvts13>System</span><br><span class=rvts13>Secure System</span><br><span class=rvts13>Registry</span><br><span class=rvts13>smss.exe</span><br><span class=rvts13>...</span></p>
+<p class=rvps3><span class=rvts12>AScript allows one to use Windows Scripting Components;</span></p>
+<table border=1 cellpadding=5 cellspacing=0 style="border-width: 0px; background-color: #ffffff; border-spacing: 0px;">
+ <tr valign=top>
+  <td width=609 height=24 style="border-width : 1px; border-color: #000000; border-style: solid; padding: 5px;">
+   <p class=rvps5><span class=rvts15>Set oMath = GetObject("script:e:\utils\math.wsc")</span></p>
+  </td>
+ </tr>
+</table>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts10>Source</span><span class=rvts8>:</span><span class=rvts9> </span><a class=rvts11 href="file:///E:/Documents/GitHub/ActiveScript/readme.html">readme.html and 2 more pages - Personal</a><span class=rvts9> &nbsp;</span><span class=rvts8>(8 August 2023 5:07 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

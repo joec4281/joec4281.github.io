@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@dbfVersion</title>
+<html><head><title>SETFONT</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,11 +48,16 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
-span.rvts7
+a.rvts7, span.rvts7
 {
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
- font-weight: bold;
+ color: #0000ff;
+ text-decoration: underline;
+}
+a.rvts7:hover
+{
+ color: #0000ff;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -71,13 +76,9 @@ p,ul,ol /* Paragraph Style */
  line-height: 1.20;
 }
 /* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: decimal;}
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps2><span class=rvts7>Determine the version number of the .dbf file</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
-<p class=rvps2><span class=rvts6>set thedbf=e:\utils\trans.dbf</span></p>
-<p class=rvps2><span class=rvts6>echo DBFVersion &nbsp; &nbsp;: %@dbfversion[%thedbf]</span></p>
-<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>SETFONT index width height weight name ... see </span><a class=rvts7 href="#" onclick="parent.postMessage('1|546', '*');return false;">_FONTINFO</a></p>
 </body></html>

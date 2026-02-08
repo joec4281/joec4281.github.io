@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@Ord</title>
+<html><head><title>@DowIs</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -93,45 +93,58 @@ span.rvts15
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts16
+a.rvts16, span.rvts16
 {
- font-size: 18pt;
- font-family: 'Courier New', 'Courier', monospace;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
 }
 span.rvts17
 {
  font-size: 18pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-family: 'Courier New', 'Courier', monospace;
 }
 span.rvts18
 {
  font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts19
+{
+ font-size: 18pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
 }
-a.rvts19, span.rvts19
+a.rvts20, span.rvts20
 {
  font-size: 18pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts20
+span.rvts21
 {
  font-size: 18pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-span.rvts21
+span.rvts22
 {
  font-size: 18pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts22
+span.rvts23
 {
  font-size: 18pt;
  font-family: 'Courier New', 'Courier', monospace;
  color: #000000;
+}
+a.rvts24, span.rvts24
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -158,29 +171,44 @@ p,ul,ol /* Paragraph Style */
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts22>@ORD</span><span class=rvts21> — Returns a number with an English ordinal suffix.</span></p>
-<p class=rvps3><span class=rvts21>Syntax:</span><br><span class=rvts22>%@ORD[</span><span class=rvts21>n</span><span class=rvts22>]</span></p>
+<p class=rvps3><span class=rvts23>@DOWIS</span><span class=rvts22> — returns 1 if the input date matches one of the specified days of the week, 0 if it doesn’t. The date may be in </span><a class=rvts24 href="https://charlesdye.net/plugins/iso8601.html#infmt">any input date format supported by this plugin</a><span class=rvts22>, and it must be a valid date </span><a class=rvts24 href="https://charlesdye.net/plugins/iso8601.html#daterange">within the supported range.</a></p>
+<p class=rvps3><span class=rvts22>Syntax:</span><br><span class=rvts23>%@DOWIS[</span><span class=rvts22>dowmask</span><span class=rvts23>,</span><span class=rvts22>date</span><span class=rvts23>,</span><span class=rvts22>infmt</span><span class=rvts23>]</span></p>
 <table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
  <tr valign=top>
   <td valign=middle style="padding: 1px;">
-   <p><span class=rvts21>n</span></p>
+   <p><span class=rvts22>dowmask</span></p>
   </td>
   <td valign=middle style="padding: 1px;">
-   <p><span class=rvts21>a non-negative integer value</span></p>
+   <p><span class=rvts22>a </span><a class=rvts24 href="https://charlesdye.net/plugins/iso8601.html#names">list of days of the week</a><span class=rvts22> to test</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>date</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>the date to examine; defaults to today’s date if omitted</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts22>infmt</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><a class=rvts24 href="https://charlesdye.net/plugins/iso8601.html#infmt">the input date format</a><span class=rvts22>, used to interpret ambiguous dates</span></p>
   </td>
  </tr>
 </table>
-<p class=rvps3><span class=rvts22>C:\&gt; for /l %n in (1,1,5) echo %@ord[%n]</span><br><span class=rvts22>1st</span><br><span class=rvts22>2nd</span><br><span class=rvts22>3rd</span><br><span class=rvts22>4th</span><br><span class=rvts22>5th</span></p>
-<p class=rvps3><span class=rvts21>Commas will be inserted for values over 999.</span></p>
-<p class=rvps3><span class=rvts21>• New: This function does not exist in Take Command.</span></p>
-<p><span class=rvts18><br></span></p>
+<p class=rvps3><span class=rvts23>echo %@dowis[mon wed fri]</span><br><span class=rvts23>rem &nbsp;(1 if today is a Monday, Wednesday, or Friday)</span><br><span class=rvts23></span><br><span class=rvts23>echo %@dowis[weekend,07/04,1]</span><br><span class=rvts23>rem &nbsp;(1 if the Fourth of July falls on a Saturday or Sunday this year)</span></p>
+<p class=rvps3><span class=rvts22>• New: This function does not exist in Take Command.</span></p>
+<p><span class=rvts19><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts20>Source</span><span class=rvts17>:</span><span class=rvts18> </span><a class=rvts19 href="https://charlesdye.net/plugins/iso8601.html#f_makedate">@ORD — Returns a number with an English ordinal suffix.</a><span class=rvts18> &nbsp;</span><span class=rvts17>(9 April 2025 6:52 PM)</span></p>
+   <p><span class=rvts21>Source</span><span class=rvts18>:</span><span class=rvts19> </span><a class=rvts20 href="https://charlesdye.net/plugins/iso8601.html#f_agedate">@DOWIS — returns 1 if the input date matches one...</a><span class=rvts19> &nbsp;</span><span class=rvts18>(9 April 2025 6:55 PM)</span></p>
   </td>
  </tr>
 </table>
-<p><span class=rvts16><br></span></p>
-<p class=rvps2><span class=rvts16><br></span></p>
+<p><span class=rvts17><br></span></p>
+<p class=rvps2><span class=rvts17><br></span></p>
 </body></html>

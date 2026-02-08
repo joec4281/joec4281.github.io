@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>Commands</title>
+<html><head><title>@WINSNAPPED</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,6 +48,104 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts16, span.rvts16
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts17
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts18
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts19
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts20, span.rvts20
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts21
+{
+ font-size: 18pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts22
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts23, span.rvts23
+{
+ font-size: 18pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts24
+{
+ font-size: 18pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
 {
@@ -64,10 +162,48 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><br></p>
+<p class=rvps3><span class=rvts24>@WINSNAPPED</span><span class=rvts22> — Tests whether a window has been “snapped” to the edge.</span></p>
+<p class=rvps3><span class=rvts22>Syntax:</span><br><span class=rvts24>%@WINSNAPPED[</span><span class=rvts22>window</span><span class=rvts24>,</span><span class=rvts22>flags</span><span class=rvts24>]</span></p>
+<p><span class=rvts22><br></span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=154 valign=middle style="padding: 1px;">
+   <p><a class=rvts23 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window</a></p>
+  </td>
+  <td width=1344 valign=middle style="padding: 1px;">
+   <p><a class=rvts23 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#searches">window title, program name, PID, or HWND</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=154 valign=middle style="padding: 1px;">
+   <p><span class=rvts22>flags</span></p>
+  </td>
+  <td width=1344 valign=middle style="padding: 1px;">
+   <p><span class=rvts22>(not used in this version)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts22><br></span></p>
+<p class=rvps3><span class=rvts24>@WINSNAPPED</span><span class=rvts22> returns nonzero if the window is snapped, </span><span class=rvts24>0</span><span class=rvts22> if it is not.</span></p>
+<p class=rvps3><a class=rvts23 href="https://support.microsoft.com/windows/snap-your-windows-885a9b1e-a983-a3b1-16cd-c531795e6241">Window snapping</a><span class=rvts22> is supported in Windows 10 and later. Under earlier versions of Windows, </span><span class=rvts24>@WINSNAPPED</span><span class=rvts22> will always return </span><span class=rvts24>0</span><span class=rvts22>. If no matching window is found, the return value is also </span><span class=rvts24>0</span><span class=rvts22>.</span></p>
+<p class=rvps3><span class=rvts24>@WINSNAPPED</span><span class=rvts22> gives you access to the Windows </span><a class=rvts23 href="https://duckduckgo.com/?q=%5cIsWindowArranged%20site:learn.microsoft.com">IsWindowArranged()</a><span class=rvts22> function.</span></p>
+<p><span class=rvts19><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts21>Source</span><span class=rvts18>:</span><span class=rvts19> </span><a class=rvts20 href="file:///R:/temp/7zO093F6C9D/windowinfo.html#licensing">WindowInfo Plugin and 1 more page - Personal</a><span class=rvts19> &nbsp;</span><span class=rvts18>(5 February 2025 7:32 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts17><br></span></p>
+<p class=rvps2><span class=rvts17><br></span></p>
 </body></html>

@@ -1,0 +1,533 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>TASKLIST</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts8
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts9, span.rvts9
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts10
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts11
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts12
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #000000;
+}
+span.rvts13
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
+}
+a.rvts14, span.rvts14
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts15
+{
+ font-size: 16pt;
+}
+a.rvts16, span.rvts16
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+.list1 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: disc;}
+.list2 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: circle;}
+.list3 {text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: square;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts12>TASKLIST</span><span class=rvts11> — List running processes.</span></p>
+<p class=rvps3><span class=rvts11>Syntax:</span><br><span class=rvts12>TASKLIST /C /D /H /I /L /M /N /O /P /R /T /U /V /X /Z </span><span class=rvts11>name…</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts15><br></span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Compatible features:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/C</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show priority classes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/D</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>dump names of modules loaded by each process</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/H</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>list threads for each process</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/I</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show code integrity levels (Vista and later only)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/L</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show startup command lines</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/M</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show memory usage</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/N</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show window class names</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/O</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>sort processes by PID</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><a class=rvts16 href="file:///U:/tasks.html#paging">/P</a></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><a class=rvts14 href="file:///U:/tasks.html#paging">page output</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/R</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show a process tree</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/T</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show kernel-mode and user-mode times</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/U</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>display owner username for each process</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/U:</span><span class=rvts11>wildspec</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>only list processes whose owner names match wildspec</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/X</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>display process and thread IDs in hexadecimal</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/Z</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>include parent PIDs</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>name</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>a program name, window title, or =PID</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>&nbsp;</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts15><br></span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>&nbsp; &nbsp; New features — incompatible with TCC:</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><a class=rvts16 href="#tasklist_opt_e">/E</a></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><a class=rvts14 href="#tasklist_opt_e">show extra info</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/F</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show the filename for each process</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/MM</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>show memory usage in an abbreviated format</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><a class=rvts16 href="#tasklist_opt_n">/N:</a><a class=rvts14 href="#tasklist_opt_n">opts</a></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><a class=rvts14 href="#tasklist_opt_n">disable features</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><a class=rvts16 href="#tasklist_opt_o">/O:</a><a class=rvts14 href="#tasklist_opt_o">keys</a></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><a class=rvts14 href="#tasklist_opt_o">sort processes</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/R:</span><span class=rvts11>n</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>process tree, limited to depth n (</span><span class=rvts12>0</span><span class=rvts11> = no limit)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><a class=rvts16 href="#tasklist_opt_v">/V</a></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><a class=rvts14 href="#tasklist_opt_v">show virtual desktops</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>/X:</span><span class=rvts11>wildspec</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>exclude program names matching wildspec</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=270 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>&nbsp;</span></p>
+  </td>
+  <td width=1228 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td colspan=2 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>options may follow the name; in TCC’s native </span><span class=rvts12>TASKLIST</span><span class=rvts11> they must precede it</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td colspan=2 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>you may give more than one name</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td colspan=2 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>.</span><span class=rvts11> may be used to list the current process (shorthand for </span><span class=rvts12>=%_PID</span><span class=rvts11>)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>This command is syntax-compatible with its TCC equivalent, but is not guaranteed to display the same information. The format will also differ slightly. Using any of the options listed under “New features” will break compatibility with TCC.</span></p>
+<p><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts12>/E</span><span class=rvts11> displays extra information about each process. Elevated processes (‘Run as administrator’) will be marked with an up arrow: ↑ &nbsp; 32-bit programs will be marked with a guillemet: »</span></p>
+<p><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts12>/N:</span><span class=rvts11> disables features:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=234 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>C</span></p>
+  </td>
+  <td width=1264 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>disable </span><a class=rvts14 href="file:///U:/tasks.html#highlight">highlight</a></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=234 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>D</span></p>
+  </td>
+  <td width=1264 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>do not match name against display names (window titles, service names)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=234 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>F</span></p>
+  </td>
+  <td width=1264 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>no footer (summary line)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=234 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>S</span></p>
+  </td>
+  <td width=1264 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>do not collect service names</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=234 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>T</span></p>
+  </td>
+  <td width=1264 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>do not match this console’s window title</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=234 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>W</span></p>
+  </td>
+  <td width=1264 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>do not collect window titles</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=234 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>X</span></p>
+  </td>
+  <td width=1264 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>do not hide extensions</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>You can combine multiple suboptions. The colon is optional. This option is not compatible with TCC.</span></p>
+<p><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts12>/O:</span><span class=rvts11> can sort by several criteria. The available sort keys are:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=233 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>N</span></p>
+  </td>
+  <td width=1265 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>sort by process name</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=233 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>-N</span></p>
+  </td>
+  <td width=1265 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>reverse sort by process name</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=233 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>P</span></p>
+  </td>
+  <td width=1265 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>sort by process ID</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=233 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>-P</span></p>
+  </td>
+  <td width=1265 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>reverse sort by process ID</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=233 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>T</span></p>
+  </td>
+  <td width=1265 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>sort by window title or service name</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=233 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>-T</span></p>
+  </td>
+  <td width=1265 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>reverse sort by window title or service name</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=233 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>Z</span></p>
+  </td>
+  <td width=1265 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>sort by parent process ID</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=233 valign=middle style="padding: 1px;">
+   <p><span class=rvts12>-Z</span></p>
+  </td>
+  <td width=1265 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>reverse sort by parent process ID</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>These can be combined, </span><span class=rvts13>e.g.</span><span class=rvts11> </span><span class=rvts12>/O:ZP</span><span class=rvts11> to sort by parent process ID first, then by process ID. Note that TCC’s </span><span class=rvts12>TASKLIST</span><span class=rvts11> command does not support this syntax. If you type </span><span class=rvts12>/O</span><span class=rvts11> by itself, </span><span class=rvts12>TASKLIST</span><span class=rvts11> will sort by process ID, the same as </span><span class=rvts12>/O:P</span><span class=rvts11>.</span></p>
+<p><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts12>/V</span><span class=rvts11> attempts to show the name of the virtual desktop on which each program’s window appears. Some caveats for this feature:</span></p>
+<ul class=list1>
+ <li><span class=rvts11>Virtual desktops first appeared in Windows 10. Older versions of Windows do not support this feature.</span></li>
+ <li><span class=rvts11>Virtual desktops manage </span><span class=rvts13>windows</span><span class=rvts11>, not programs. A program may have zero, one, or several windows. The window that </span><span class=rvts12>TASKLIST</span><span class=rvts11> selects to represent a program might not be the one you would pick.</span></li>
+ <li><span class=rvts11>No desktop will be listed for hidden windows. (Windows API limitation?)</span></li>
+ <li><span class=rvts11>If you use </span><span class=rvts12>/NW</span><span class=rvts11> to prevent the collection of window info, </span><span class=rvts12>/V</span><span class=rvts11> will be disabled as well.</span></li>
+</ul>
+<p><span class=rvts8><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts10>Source</span><span class=rvts7>:</span><span class=rvts8> </span><a class=rvts9 href="file:///U:/tasks.html#tasklist">General</a><span class=rvts8> &nbsp;</span><span class=rvts7>(8 February 2026 8:54 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

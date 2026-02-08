@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@OINK</title>
+<html><head><title>@METAPHONE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -50,49 +50,56 @@ span.rvts6
 }
 span.rvts7
 {
+ font-family: 'Verdana', 'Geneva', sans-serif;
 }
 span.rvts8
 {
- font-family: 'Verdana', 'Geneva', sans-serif;
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
 }
 span.rvts9
 {
- font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
 }
 span.rvts10
 {
  font-size: 8pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
-}
-span.rvts11
-{
- font-size: 8pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
-}
-span.rvts12
-{
- font-size: 8pt;
- font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-a.rvts13, span.rvts13
+a.rvts11, span.rvts11
 {
  font-size: 8pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts14
+span.rvts12
 {
  font-size: 12pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts15
+span.rvts13
 {
  font-size: 14pt;
  font-family: 'consolas';
  font-weight: bold;
+ color: #000000;
+}
+span.rvts14
+{
+ font-size: 12pt;
+ font-family: 'Palatino Linotype', 'Palatino', serif;
+ font-style: italic;
+ font-weight: bold;
+ color: #000088;
+}
+span.rvts15
+{
+ font-size: 14pt;
+ font-family: 'consolas';
  color: #000000;
 }
 span.rvts16
@@ -102,27 +109,39 @@ span.rvts16
  font-style: italic;
  color: #000088;
 }
-span.rvts17
+a.rvts17, span.rvts17
 {
- font-size: 14pt;
- font-family: 'consolas';
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts17:hover
+{
  color: #000000;
 }
 span.rvts18
 {
- font-size: 11pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-a.rvts19, span.rvts19
+span.rvts19
 {
- font-size: 13pt;
- font-family: 'consolas';
- color: #0000ff;
- text-decoration: none;
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #000000;
 }
-a.rvts19:hover
+span.rvts20
 {
+ font-size: 12pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #660000;
+}
+span.rvts21
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
 /* ========== Para Styles ========== */
@@ -148,29 +167,62 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps4
 {
- background: #eeeeee;
- padding: 8px 16px 8px 16px;
- margin: 8px 0px 16px 16px;
+ margin: 0px 0px 16px 32px;
 }
 .rvps5
 {
- background: #ffffff;
- margin: 30px 0px 7px 0px;
+ background: #eeeeee;
+ padding: 8px 16px 8px 16px;
+ margin: 8px 0px 16px 16px;
 }
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts14>Translates text to Pig Latin.</span></p>
-<p class=rvps3><span class=rvts14>Syntax:</span><br><span class=rvts15>%@OINK[</span><span class=rvts16>text</span><span class=rvts15>]</span></p>
-<p class=rvps4><span class=rvts17>echo %@oink[This is only a test.]</span></p>
-<p class=rvps5><span class=rvts18>See also: the </span><a class=rvts19 href="#oink">OINK</a><span class=rvts18> command, which Pig Latinizes text files.</span></p>
-<p><span class=rvts8><br></span></p>
+<p class=rvps3><span class=rvts12>Returns a roughly phonetic code for an English word.</span></p>
+<p class=rvps3><span class=rvts12>Syntax:</span><br><span class=rvts13>%@METAPHONE[</span><span class=rvts14>word</span><span class=rvts15>,</span><span class=rvts16>length</span><span class=rvts15>,</span><span class=rvts16>flags</span><span class=rvts13>]</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts14>word</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>the word or words to process</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>length</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>the maximum length of the codes to return (8)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts16>flags</span></p>
+  </td>
+  <td valign=top style="padding: 1px 16px;">
+   <p><span class=rvts12>set to 1 for better compatibility</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><a class=rvts17 href="http://en.wikipedia.org/wiki/Metaphone">Metaphone</a><span class=rvts12> codes are meant to roughly approximate the pronunciation of a word. Words that sound similar should have similar Metaphone codes. You can use this function to compare the sounds of words, to suggest similar words, or to group words by pronunciation.</span></p>
+<p class=rvps3><span class=rvts12>If you pass more than one </span><span class=rvts14>word</span><span class=rvts12>, separate them with spaces. The resulting codes will also be separated by spaces.</span></p>
+<p class=rvps5><span class=rvts15>rem &nbsp;Compare two words:</span><br><span class=rvts15></span><br><span class=rvts15>set word1=cougher</span><br><span class=rvts15>set word2=coffer</span><br><span class=rvts15>if %@metaphone[%word1] == %@metaphone[%word2] echo "%word1" may sound like "%word2".</span></p>
+<p><span class=rvts18><br></span></p>
+<p class=rvps3><span class=rvts12>By default, this function returns Metaphone codes of up to eight characters long. You can specify a different length with the </span><span class=rvts16>length</span><span class=rvts12> parameter, </span><span class=rvts19>e.g.</span><span class=rvts12> </span><span class=rvts15>%@metaphone[</span><span class=rvts14>word</span><span class=rvts15>,10]</span><span class=rvts12> to return ten-letter Metaphone codes. Legal values are 4 to 20.</span></p>
+<p><span class=rvts18><br></span></p>
+<p class=rvps3><span class=rvts20>• &nbsp;Note:</span><span class=rvts12> Values returned by this function are not guaranteed to match those generated by any other implementation. Documentation of the Metaphone algorithm is invariably unclear and self-contradictory, and never seems to agree with the corresponding code. This is my attempt to implement Lawrence Philips’s original algorithm to the best of my limited understanding, with a few additional tweaks thrown in.</span></p>
+<p class=rvps3><span class=rvts12>More specifically, comparing against </span><span class=rvts21>ASSERT</span><span class=rvts12>F</span><span class=rvts21>ULL</span><span class=rvts12>_</span><span class=rvts21>V1</span><span class=rvts12>.1.</span><span class=rvts21>TXT</span><span class=rvts12>, dated 2011-11-25, by the </span><a class=rvts17 href="http://code.google.com/p/metaphone-standards/">Metaphone-standards project</a><span class=rvts12>, </span><span class=rvts15>@METAPHONE</span><span class=rvts12> produces different codes for 40 out of 2753 words: about 98.5% agreement. If </span><span class=rvts16>flags</span><span class=rvts12> is set to 1, there are no mismatches — but I still cannot guarantee perfect agreement with any other implementation.</span></p>
+<p><span class=rvts7><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="file:///E:/Utils/textutils.html">Translates text to Pig Latin.</a><span class=rvts11> &nbsp;</span><span class=rvts10>(31 July 2023 5:19 PM)</span></p>
+   <p><span class=rvts10>Source</span><span class=rvts8>:</span><span class=rvts9> </span><a class=rvts11 href="file:///E:/Utils/textutils.html">Returns a roughly phonetic code for an English word.</a><span class=rvts9> &nbsp;</span><span class=rvts8>(31 July 2023 5:17 PM)</span></p>
   </td>
  </tr>
 </table>

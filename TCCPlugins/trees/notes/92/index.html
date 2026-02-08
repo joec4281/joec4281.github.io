@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>SWAPNAMES</title>
+<html><head><title>EMPTIES</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -104,18 +104,23 @@ span.rvts17
 {
  font-family: 'Palatino Linotype', 'Palatino', serif;
  font-style: italic;
- font-weight: bold;
  color: #000088;
 }
 span.rvts18
 {
- font-size: 8pt;
+ font-size: 11pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts19
+a.rvts19, span.rvts19
 {
- font-family: 'Verdana', 'Geneva', sans-serif;
+ font-size: 12pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts19:hover
+{
  color: #000000;
 }
 /* ========== Para Styles ========== */
@@ -145,25 +150,40 @@ p,ul,ol /* Paragraph Style */
 }
 .rvps5
 {
- background: #eeeeee;
- padding: 6px 13px 6px 13px;
- margin: 13px 0px 13px 13px;
+ background: #ffffff;
+ margin: 28px 0px 7px 0px;
 }
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts14>SWAPNAMES</span><span class=rvts15> — Exchange two files.</span></p>
-<p class=rvps3><span class=rvts15>Syntax:</span><br><span class=rvts16>SWAPNAMES</span><span class=rvts14> /D /Q /X </span><span class=rvts17>file1</span><span class=rvts14> </span><span class=rvts17>file2</span></p>
+<p class=rvps3><span class=rvts14>EMPTIES</span><span class=rvts15> — List or remove empty subdirectories.</span></p>
+<p class=rvps3><span class=rvts15>Syntax:</span><br><span class=rvts16>EMPTIES</span><span class=rvts14> /J /M /P /Q /R /Y </span><span class=rvts17>dirname…</span></p>
 <div class=rvps4>
 <table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/D</span></p>
+   <p><span class=rvts14>/J</span></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>file1</span><span class=rvts15> and </span><span class=rvts17>file2</span><span class=rvts15> are directories, not files</span></p>
+   <p><span class=rvts15>allow recursion into reparse points</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts14>/M</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>no footers</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts14>/P</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>page output</span></p>
   </td>
  </tr>
  <tr valign=top>
@@ -171,36 +191,42 @@ p,ul,ol /* Paragraph Style */
    <p><span class=rvts14>/Q</span></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>quietly</span></p>
+   <p><span class=rvts15>quietly (only useful with </span><span class=rvts14>/R</span><span class=rvts15>)</span></p>
   </td>
  </tr>
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/X</span></p>
+   <p><span class=rvts14>/R</span></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>check that </span><span class=rvts17>file1</span><span class=rvts15> and </span><span class=rvts17>file2</span><span class=rvts15> have the same file type</span></p>
+   <p><span class=rvts15>remove empty directories</span></p>
   </td>
  </tr>
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts17>file1</span><span class=rvts15>, </span><span class=rvts17>file2</span></p>
+   <p><span class=rvts14>/Y</span></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>required; wildcards not allowed</span></p>
+   <p><span class=rvts15>yes to all prompts</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts17>dirname…</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>directory aliases are supported</span></p>
   </td>
  </tr>
 </table>
 </div>
-<p class=rvps3><span class=rvts15>This command does a double rename. It renames </span><span class=rvts17>file1</span><span class=rvts15> as </span><span class=rvts17>file2</span><span class=rvts15>, and vice versa. It only renames one pair of files; wildcards are not supported.</span></p>
-<p class=rvps3><span class=rvts14>/X</span><span class=rvts15> gets both files’ extensions, and reads their default handlers from the registry. It allows the rename only if both extensions are the same, or if both have the same handler. For example, you can swap a .</span><span class=rvts18>TXT</span><span class=rvts15> file with a .</span><span class=rvts18>LOG</span><span class=rvts15> file only if they have the same handler. </span><span class=rvts14>/X</span><span class=rvts15> is ignored with </span><span class=rvts14>/D</span><span class=rvts15>.</span></p>
-<p class=rvps5><span class=rvts14>swapnames myfile.cpp myfile.bak</span></p>
-<p><span class=rvts19><br></span></p>
+<p class=rvps3><span class=rvts15>If no directory names are given, </span><span class=rvts14>EMPTIES</span><span class=rvts15> searches the current directory by default.</span></p>
+<p class=rvps5><span class=rvts18>See also: the </span><a class=rvts19 href="https://charlesdye.net/plugins/fileutils.html#f_dirempty">@DIREMPTY</a><span class=rvts18> function.</span></p>
 <p><span class=rvts8><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="https://charlesdye.net/plugins/fileutils.html#commands">FileUtils Plugin and 2 more pages - Profile 1</a><span class=rvts11> &nbsp;</span><span class=rvts10>(10 November 2024 5:18 PM)</span></p>
+   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="https://charlesdye.net/plugins/fileutils.html#commands">FileUtils Plugin and 2 more pages - Profile 1</a><span class=rvts11> &nbsp;</span><span class=rvts10>(10 November 2024 5:17 PM)</span></p>
   </td>
  </tr>
 </table>

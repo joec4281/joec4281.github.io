@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>Variables</title>
+<html><head><title>VBScript One-Liners</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -48,6 +48,64 @@ span.rvts6
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
 }
+span.rvts7
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts8
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts11, span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts12
+{
+ font-size: 18pt;
+ font-family: 'segoe ui';
+ font-weight: bold;
+ color: #24292f;
+}
+span.rvts13
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+span.rvts14
+{
+ font-size: 16pt;
+ font-family: 'consolas';
+ color: #000000;
+}
+span.rvts15
+{
+ font-size: 16pt;
+ font-family: 'segoe ui';
+ color: #24292f;
+}
+span.rvts16
+{
+ font-size: 16pt;
+ font-family: 'segoe ui';
+ font-style: italic;
+ color: #24292f;
+}
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
 {
@@ -64,10 +122,62 @@ p,ul,ol /* Paragraph Style */
 {
  line-height: 1.20;
 }
+.rvps3
+{
+ text-align: left;
+ text-indent: 0px;
+ border-color: #d7dde3;
+ border-style: solid;
+ border-width: 1px;
+ border-top: none;
+ border-right: none;
+ border-left: none;
+ padding: 0px 0px 7px 0px;
+ margin: 24px 0px 16px 0px;
+}
+.rvps4
+{
+ background: #f6f8fa;
+ padding: 16px 16px 16px 16px;
+ margin: 0px 0px 16px 0px;
+}
+.rvps5
+{
+ margin: 0px 0px 16px 0px;
+}
 /* ========== Lists ========== */
 .list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p><br></p>
+<h2 class=rvps3><span class=rvts0><span class=rvts12>For use with the ActiveScript plugin for TCC</span></span></h2>
+<p class=rvps4><span class=rvts14>vb 140.97*52</span><br><span class=rvts14>7330.44</span></p>
+<p class=rvps4><span class=rvts14>vb DateAdd("m", 708, "03-Aug-1961")</span><br><span class=rvts14>2020-08-03</span></p>
+<p class=rvps4><span class=rvts14>vb DateDiff("d", "08/03/1961", Now) / 365.25</span><br><span class=rvts14>61.9028062970568</span></p>
+<p class=rvps5><span class=rvts15>The following retrieves text that is on the Windows Clipboard;</span></p>
+<p class=rvps4><span class=rvts14>echo Stuff on the clipboard &gt; clip:</span><br><span class=rvts14>vb CreateObject("htmlfile").ParentWindow.ClipboardData.GetData("text")</span><br><span class=rvts14>Stuff on the clipboard</span></p>
+<p class=rvps5><span class=rvts15>The following works with my </span><span class=rvts16>jlcUtils.dll</span><span class=rvts15> COM Server,</span><br><span class=rvts15>which I developed using Visual Basic 6.0 32-bit;</span></p>
+<p class=rvps4><span class=rvts14>vb CreateObject("jlcutils.clsmath").ppp(6.59)</span><br><span class=rvts14>2.99186</span></p>
+<p class=rvps5><span class=rvts15>The following writes the current week number to StdOut;</span></p>
+<p class=rvps4><span class=rvts14>vb CreateObject("scripting.filesystemobject").GetStandardStream(1).writeline(DatePart("ww",Now()))</span><br><span class=rvts14>26</span></p>
+<p class=rvps5><span class=rvts15>More...</span></p>
+<p class=rvps4><span class=rvts14>vb CreateObject("Shell.Application").ToggleDesktop</span></p>
+<p class=rvps4><span class=rvts14>vb CreateObject("Win32api.Kernel32").GetWindowsDirectory()</span></p>
+<p class=rvps5><span class=rvts15>The following gets the value of the </span><span class=rvts16>username</span><span class=rvts15> environment variable;</span></p>
+<p class=rvps4><span class=rvts14>vb CreateObject("WScript.Shell").Environment("Process")("username")</span><br><span class=rvts14>jlcav</span></p>
+<p class=rvps5><span class=rvts15>Even More...</span></p>
+<p class=rvps4><span class=rvts14>vb MonthName(6)</span><br><span class=rvts14>June</span></p>
+<p class=rvps4><span class=rvts14>vb FormatPercent(2/32)</span><br><span class=rvts14>6.25%</span></p>
+<p class=rvps4><span class=rvts14>vb FormatCurrency(1000)</span><br><span class=rvts14>$1,000.00</span></p>
+<p><span class=rvts13><br></span></p>
+<p><span class=rvts7><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts10>Source</span><span class=rvts8>:</span><span class=rvts9> </span><a class=rvts11 href="file:///E:/Documents/GitHub/ActiveScript/VBOneLiners.md#vbscript-one-liners">VBOneLiners.md#vbscript-one-liners and 2 more pages - Personal</a><span class=rvts9> &nbsp;</span><span class=rvts8>(8 August 2023 5:13 PM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
 </body></html>

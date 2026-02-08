@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@BLOAD</title>
+<html><head><title>@BALLOC</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -93,66 +93,53 @@ span.rvts15
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts16
-{
- font-family: 'Verdana', 'Geneva', sans-serif;
- font-style: italic;
- color: #000000;
-}
-a.rvts17, span.rvts17
+a.rvts16, span.rvts16
 {
  font-size: 8pt;
  font-family: 'Courier New', 'Courier', monospace;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts18
+span.rvts17
 {
  font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
 }
-span.rvts19
+span.rvts18
 {
  font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
 }
-a.rvts20, span.rvts20
+a.rvts19, span.rvts19
 {
  font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts21
+span.rvts20
 {
  font-size: 16pt;
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-weight: bold;
 }
-span.rvts22
+span.rvts21
 {
  font-size: 16pt;
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-a.rvts23, span.rvts23
+a.rvts22, span.rvts22
 {
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts24
+span.rvts23
 {
  font-size: 16pt;
  font-family: 'Courier New', 'Courier', monospace;
- color: #000000;
-}
-span.rvts25
-{
- font-size: 16pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- font-style: italic;
  color: #000000;
 }
 /* ========== Para Styles ========== */
@@ -180,29 +167,80 @@ p,ul,ol /* Paragraph Style */
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts24>@BLOAD</span><span class=rvts22> — Loads data from a file into a binary buffer.</span></p>
-<p class=rvps3><span class=rvts22>Syntax:</span><br><span class=rvts24>%@BLOAD[</span><span class=rvts22>filename</span><span class=rvts24>]</span></p>
+<p class=rvps3><span class=rvts23>@BALLOC</span><span class=rvts21> — Allocates a new binary buffer.</span></p>
+<p class=rvps3><span class=rvts21>Syntax:</span><br><span class=rvts23>%@BALLOC[</span><span class=rvts21>size</span><span class=rvts23>]</span></p>
 <table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
  <tr valign=top>
   <td valign=middle style="padding: 1px;">
-   <p><span class=rvts22>filename</span></p>
+   <p><span class=rvts21>size</span></p>
   </td>
   <td valign=middle style="padding: 1px;">
-   <p><span class=rvts22>the file to load into a binary buffer</span></p>
+   <p><span class=rvts21>the size of the new buffer; required</span></p>
   </td>
  </tr>
 </table>
-<p class=rvps3><span class=rvts22>This function allocates a new binary buffer of the same size as the file, loads the named file into it, and returns the handle of the new buffer. The number of bytes loaded — </span><span class=rvts25>i.e.</span><span class=rvts22> the file size — is available through </span><a class=rvts23 href="#v_bloadsize">_BLOADSIZE</a><span class=rvts22>.</span></p>
-<p class=rvps3><span class=rvts22>If any error occurs while allocating the buffer or reading the file, </span><span class=rvts24>@BLOAD</span><span class=rvts22> returns </span><span class=rvts24>0</span><span class=rvts22>; the Windows error code is in </span><a class=rvts23 href="#v_bblasterr">_BBLASTERR</a><span class=rvts22>.</span></p>
-<p class=rvps3><span class=rvts22>The maximum file size that </span><span class=rvts24>@BLOAD</span><span class=rvts22> will load is eight megabytes in x86 TCC, or one gigabyte in x64 TCC.</span></p>
-<p class=rvps3><span class=rvts22>(You could of course do the same thing with </span><span class=rvts24>@FILESIZE</span><span class=rvts22>, </span><span class=rvts24>@BALLOC</span><span class=rvts22>, </span><span class=rvts24>@FILEOPEN</span><span class=rvts22>, </span><span class=rvts24>@BREAD</span><span class=rvts22>, and </span><span class=rvts24>@FILECLOSE</span><span class=rvts22>. This function just spares you the tedium.)</span></p>
-<p class=rvps3><span class=rvts24>rem &nbsp; Load a file into a buffer and display it:</span><br><span class=rvts24>set bbuf=%@bload[build.txt]</span><br><span class=rvts24>bbdump %bbuf</span><br><span class=rvts24>set rv=%@bfree[%bbuf]</span></p>
-<p class=rvps3><span class=rvts22>See also: </span><a class=rvts23 href="#f_bsave">@BSAVE</a><span class=rvts22>.</span></p>
-<p><span class=rvts19><br></span></p>
+<p class=rvps3><span class=rvts23>@BALLOC</span><span class=rvts21> returns a handle to the new buffer, which you will use in subsequent buffer operations.</span></p>
+<p><span class=rvts21><br></span></p>
+<p class=rvps3><span class=rvts21>This plugin intercepts TCC’s internal </span><span class=rvts23>@BALLOC</span><span class=rvts21> function to add two new features:</span></p>
+<p class=rvps3><span class=rvts21>&nbsp; • The handle it returns will be remembered for later use. You can use </span><a class=rvts22 href="#bblist">BBLIST</a><span class=rvts21> to list all currently allocated binary buffers, and </span><a class=rvts22 href="#f_bfreeall">@BFREEALL</a><span class=rvts21> to free them all at once.</span></p>
+<p class=rvps3><span class=rvts21>&nbsp; • The size may be followed by a letter to indicate scale:</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>k</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>thousands of bytes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>K</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>kilobytes (1,024 bytes)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>m</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>millions of bytes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>M</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>megabytes (1,048,576 bytes)</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>g</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>billions of bytes</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts23>G</span></p>
+  </td>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts21>gigabytes (1,073,741,824 bytes)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts23>rem &nbsp; Allocate a 5-kilobyte buffer:</span><br><span class=rvts23>set bbuf=%@balloc[5K]</span></p>
+<p class=rvps3><span class=rvts21>See also: </span><a class=rvts22 href="#f_bfree">@BFREE</a><span class=rvts21>, </span><a class=rvts22 href="#f_bfreeall">@BFREEALL</a><span class=rvts21>.</span></p>
+<p><span class=rvts18><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts21>Source</span><span class=rvts18>:</span><span class=rvts19> </span><a class=rvts20 href="file:///U:/bbufstuff.html">BBufStuff Plugin and 1 more page - Personal</a><span class=rvts19> &nbsp;</span><span class=rvts18>(11 June 2025 9:23 PM)</span></p>
+   <p><span class=rvts20>Source</span><span class=rvts17>:</span><span class=rvts18> </span><a class=rvts19 href="file:///U:/bbufstuff.html">BBufStuff Plugin and 1 more page - Personal</a><span class=rvts18> &nbsp;</span><span class=rvts17>(11 June 2025 9:21 PM)</span></p>
   </td>
  </tr>
 </table>

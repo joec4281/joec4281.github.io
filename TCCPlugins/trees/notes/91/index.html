@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>RENCASE</title>
+<html><head><title>DIRCMP</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -104,14 +104,19 @@ span.rvts17
 {
  font-family: 'Palatino Linotype', 'Palatino', serif;
  font-style: italic;
- color: #000088;
-}
-span.rvts18
-{
- font-family: 'Palatino Linotype', 'Palatino', serif;
- font-style: italic;
  font-weight: bold;
  color: #000088;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 14pt;
+ font-family: 'consolas';
+ color: #0000ff;
+ text-decoration: none;
+}
+a.rvts18:hover
+{
+ color: #000000;
 }
 a.rvts19, span.rvts19
 {
@@ -170,109 +175,171 @@ p,ul,ol /* Paragraph Style */
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts14>RENCASE</span><span class=rvts15> — Change the case of filenames.</span></p>
-<p class=rvps3><span class=rvts15>Syntax:</span><br><span class=rvts16>RENCASE</span><span class=rvts14> /A:</span><span class=rvts17>attribs</span><span class=rvts14> /E /L /N /N:</span><span class=rvts17>flags</span><span class=rvts14> /S /U /W /X:</span><span class=rvts17>luw</span><span class=rvts14> /[</span><span class=rvts17>range</span><span class=rvts14>] </span><span class=rvts18>file…</span></p>
+<p class=rvps3><span class=rvts14>DIRCMP</span><span class=rvts15> — Compare two directories.</span></p>
+<p class=rvps3><span class=rvts15>Syntax:</span><br><span class=rvts16>DIRCMP</span><span class=rvts14> /A /C /D /M /P /R /S /T /X </span><span class=rvts17>dir1</span><span class=rvts14> </span><span class=rvts17>dir2</span></p>
 <div class=rvps4>
 <table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/A:</span><span class=rvts17>attribs</span></p>
+   <p><a class=rvts18 href="https://charlesdye.net/plugins/fileutils.html#dc_sw_a">/A</a></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>filter by attributes</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/E</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>no error messages</span></p>
+   <p><span class=rvts15>compare attributes of items which exist in both </span><span class=rvts17>dir1</span><span class=rvts15> and </span><span class=rvts17>dir2</span></p>
   </td>
  </tr>
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/L</span></p>
+   <p><a class=rvts18 href="https://charlesdye.net/plugins/fileutils.html#dc_sw_c">/C</a></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>change the base name (all but the extension) to lowercase</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/N</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>not really</span></p>
+   <p><span class=rvts15>compare file contents</span></p>
   </td>
  </tr>
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/N:</span><span class=rvts17>flags</span></p>
+   <p><span class=rvts14>/D</span></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>D</span><span class=rvts15> no hidden directories, </span><span class=rvts14>J</span><span class=rvts15> no junctions, </span><span class=rvts14>Z</span><span class=rvts15> no system directories</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/S</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>look in subdirectories for matching files</span></p>
+   <p><span class=rvts15>disable </span><a class=rvts19 href="https://charlesdye.net/plugins/fileutils.html#highlight">highlight</a></p>
   </td>
  </tr>
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/U</span></p>
+   <p><span class=rvts14>/M</span></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>change the base name (all but the extension) to uppercase</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/W</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>change the base name (all but the extension) to word case</span></p>
+   <p><span class=rvts15>do not display the footers</span></p>
   </td>
  </tr>
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/X:</span><span class=rvts17>luw</span></p>
+   <p><span class=rvts14>/P</span></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>change the extension to upper/lower/word case</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts14>/[</span><span class=rvts17>range</span><span class=rvts14>]</span></p>
-  </td>
-  <td valign=top style="padding: 1px 14px;">
-   <p><a class=rvts19 href="https://charlesdye.net/plugins/fileutils.html#ranges">many range options are supported</a></p>
+   <p><span class=rvts15>page output</span></p>
   </td>
  </tr>
  <tr valign=top>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts18>file…</span></p>
+   <p><a class=rvts18 href="https://charlesdye.net/plugins/fileutils.html#dc_sw_r">/R</a></p>
   </td>
   <td valign=top style="padding: 1px 14px;">
-   <p><span class=rvts15>wildcards, directory aliases, </span><span class=rvts20>etc.</span><span class=rvts15> supported</span></p>
+   <p><span class=rvts15>compare directories recursively</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><a class=rvts18 href="https://charlesdye.net/plugins/fileutils.html#dc_sw_s">/S</a></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>compare sizes of files which exist in both directories</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><a class=rvts18 href="https://charlesdye.net/plugins/fileutils.html#dc_sw_t">/T</a></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>compare time stamps of files which exist in both directories</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><a class=rvts18 href="https://charlesdye.net/plugins/fileutils.html#dc_sw_x">/X</a></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>reverse operation — reports only items which exist in both directories</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts17>dir1</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>the first directory; directory aliases are supported</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts17>dir2</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>the second directory; directory aliases are supported</span></p>
   </td>
  </tr>
 </table>
 </div>
-<p class=rvps3><span class=rvts14>RENCASE</span><span class=rvts15> renames files, changing the case of letters. Filenames are handled as two parts: the base name (everything before the last period), and the extension (everything after). Options </span><span class=rvts14>/L</span><span class=rvts15>, </span><span class=rvts14>/U</span><span class=rvts15>, and </span><span class=rvts14>/W</span><span class=rvts15> affect the base name, and </span><span class=rvts14>/X:</span><span class=rvts15> affects the extension.</span></p>
-<p class=rvps3><span class=rvts15>If no action is specified (none of </span><span class=rvts14>/L</span><span class=rvts15>, </span><span class=rvts14>/U</span><span class=rvts15>, </span><span class=rvts14>/W</span><span class=rvts15>, or </span><span class=rvts14>/X:</span><span class=rvts15>), the default is </span><span class=rvts14>/L</span><span class=rvts15>.</span></p>
-<p class=rvps5><span class=rvts14>rencase /l /x:l *.html</span></p>
+<p class=rvps3><span class=rvts17>dir1</span><span class=rvts15> and </span><span class=rvts17>dir2</span><span class=rvts15> are both required. Wildcards are not allowed; you must name two unambiguous directories.</span></p>
+<p class=rvps3><span class=rvts14>/A</span><span class=rvts15> compares attributes when a file or subdirectory exists in both </span><span class=rvts17>dir1</span><span class=rvts15> and </span><span class=rvts17>dir2</span><span class=rvts15>. Only the read-only, archive, hidden, and system attributes are compared. The more exotic attributes will be ignored.</span></p>
+<p class=rvps3><span class=rvts14>/C</span><span class=rvts15> compares the contents of files which appear in both directories. Both files are opened, then data is read and compared, byte-for-byte. This option can slow </span><span class=rvts14>DIRCMP</span><span class=rvts15> down considerably! If the command is unable to read from either file, the files are considered the same.</span></p>
+<p class=rvps3><span class=rvts14>/S</span><span class=rvts15> compares file sizes when a file exists in both locations. Only files are tested. The relevant Windows APIs do not report sizes for subdirectories.</span></p>
+<p class=rvps3><span class=rvts14>/T</span><span class=rvts15> compares time stamps when a file exists in both locations. Only the last-write time stamp is compared, and the comparison is fuzzy; differences of less than two seconds may be ignored. Only time stamps of </span><span class=rvts20>files</span><span class=rvts15> are compared; this option does not test subdirectories.</span></p>
+<p class=rvps3><span class=rvts14>/X</span><span class=rvts15> reverses </span><span class=rvts14>DIRCMP</span><span class=rvts15>’s operation and reports only items which exist in both locations. If you combine </span><span class=rvts14>/X</span><span class=rvts15> with </span><span class=rvts14>/A</span><span class=rvts15>, </span><span class=rvts14>/C</span><span class=rvts15>, </span><span class=rvts20>etc.</span><span class=rvts15> then only items with matching attributes, contents, and so on will be listed.</span></p>
+<p class=rvps3><span class=rvts15>Note that </span><span class=rvts14>/R</span><span class=rvts15>, not </span><span class=rvts14>/S</span><span class=rvts15>, controls recursion. Recursion is only performed where subdirectories with the exact same name exist in both </span><span class=rvts17>dir1</span><span class=rvts15> and </span><span class=rvts17>dir2</span><span class=rvts15>.</span></p>
+<p class=rvps3><span class=rvts15>Mismatches are reported with a note in brackets:</span></p>
+<div class=rvps4>
+<table border=0 cellpadding=8 cellspacing=2 style="border-width: 0px; background-color: #ffffff; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts14>[1]</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>The item exists in </span><span class=rvts17>dir1</span><span class=rvts15> but not in </span><span class=rvts17>dir2</span><span class=rvts15>.</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts14>[2]</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>The item exists in </span><span class=rvts17>dir2</span><span class=rvts15> but not in </span><span class=rvts17>dir1</span><span class=rvts15>.</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts14>[A]</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>The item has different attributes in </span><span class=rvts17>dir1</span><span class=rvts15> and </span><span class=rvts17>dir2</span><span class=rvts15>.</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts14>[C]</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>The file has different contents in </span><span class=rvts17>dir1</span><span class=rvts15> and </span><span class=rvts17>dir2</span><span class=rvts15>.</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts14>[S]</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>The file has different sizes in </span><span class=rvts17>dir1</span><span class=rvts15> and </span><span class=rvts17>dir2</span><span class=rvts15>.</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts14>[T]</span></p>
+  </td>
+  <td valign=top style="padding: 1px 14px;">
+   <p><span class=rvts15>The item has different time stamps in </span><span class=rvts17>dir1</span><span class=rvts15> and </span><span class=rvts17>dir2</span><span class=rvts15>.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class=rvps3><span class=rvts15>The letters may be combined; </span><span class=rvts20>e.g.</span><span class=rvts15> </span><span class=rvts14>[ST]</span><span class=rvts15> would mean that the items have different sizes and time stamps.</span></p>
+<p class=rvps3><span class=rvts15>Items which exist in one directory, but not the other, are always reported. There is no option to suppress this feature.</span></p>
+<p class=rvps3><span class=rvts15>If a file exists in </span><span class=rvts17>dir1</span><span class=rvts15> and a subdirectory of the same name exists in </span><span class=rvts17>dir2</span><span class=rvts15> — or vice versa — then both will be reported as mismatches.</span></p>
+<p><span class=rvts21><br></span></p>
+<p class=rvps5><span class=rvts14>dircmp /r /s "%userprofile\Documents" d:\backup\docs\</span></p>
 <p><span class=rvts21><br></span></p>
 <p><span class=rvts8><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="https://charlesdye.net/plugins/fileutils.html#commands">FileUtils Plugin and 2 more pages - Profile 1</a><span class=rvts11> &nbsp;</span><span class=rvts10>(10 November 2024 5:18 PM)</span></p>
+   <p><span class=rvts12>Source</span><span class=rvts10>:</span><span class=rvts11> </span><a class=rvts13 href="https://charlesdye.net/plugins/fileutils.html#commands">FileUtils Plugin and 2 more pages - Profile 1</a><span class=rvts11> &nbsp;</span><span class=rvts10>(10 November 2024 5:15 PM)</span></p>
   </td>
  </tr>
 </table>

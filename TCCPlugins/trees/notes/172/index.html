@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>@InRange</title>
+<html><head><title>@Date</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
@@ -99,11 +99,12 @@ a.rvts16, span.rvts16
  color: #0000ff;
  text-decoration: underline;
 }
-span.rvts17
+a.rvts17, span.rvts17
 {
- font-family: 'Verdana', 'Geneva', sans-serif;
- font-style: italic;
- color: #000000;
+ font-size: 8pt;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
 span.rvts18
 {
@@ -139,12 +140,12 @@ span.rvts23
  font-family: 'Verdana', 'Geneva', sans-serif;
  color: #000000;
 }
-span.rvts24
+a.rvts24, span.rvts24
 {
  font-size: 18pt;
- font-family: 'Verdana', 'Geneva', sans-serif;
- font-style: italic;
- color: #000000;
+ font-family: 'Courier New', 'Courier', monospace;
+ color: #0000ff;
+ text-decoration: underline;
 }
 a.rvts25, span.rvts25
 {
@@ -184,23 +185,15 @@ p,ul,ol /* Paragraph Style */
 --></style>
 </head>
 <body style="background-color:#FFFFFF;" >
-<p class=rvps3><span class=rvts26>@INRANGE</span><span class=rvts23> — determines whether a date falls within a specified range. This function takes three dates, which may be in </span><a class=rvts25 href="https://charlesdye.net/plugins/iso8601.html#infmt">any date format supported by this plugin.</a><span class=rvts23> All three must be legal dates within </span><a class=rvts25 href="https://charlesdye.net/plugins/iso8601.html#daterange">the supported date range.</a></p>
-<p class=rvps3><span class=rvts23>Syntax:</span><br><span class=rvts26>%@INRANGE[</span><span class=rvts23>date</span><span class=rvts26>,</span><span class=rvts23>startdate</span><span class=rvts26>,</span><span class=rvts23>enddate</span><span class=rvts26>,</span><span class=rvts23>infmt</span><span class=rvts26>]</span></p>
+<p class=rvps3><span class=rvts26>@DATE</span><span class=rvts23> — Converts the specified date into an MS-DOS day number, with 0 being January 1, 1980. The date argument may be in </span><a class=rvts25 href="https://charlesdye.net/plugins/iso8601.html#infmt">any input date format supported by this plugin</a><span class=rvts23>, and must be a valid date </span><a class=rvts25 href="https://charlesdye.net/plugins/iso8601.html#daterange">within the supported range.</a><span class=rvts23> If the date is before 1980, the value returned will be negative.</span></p>
+<p class=rvps3><span class=rvts23>Syntax:</span><br><span class=rvts26>%@DATE[</span><span class=rvts23>date</span><span class=rvts26>,</span><span class=rvts23>infmt</span><span class=rvts26>]</span></p>
 <table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
  <tr valign=top>
   <td valign=middle style="padding: 1px;">
    <p><span class=rvts23>date</span></p>
   </td>
   <td valign=middle style="padding: 1px;">
-   <p><span class=rvts23>the date to test</span></p>
-  </td>
- </tr>
- <tr valign=top>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts23>startdate, enddate</span></p>
-  </td>
-  <td valign=middle style="padding: 1px;">
-   <p><span class=rvts23>define the range to compare date against</span></p>
+   <p><span class=rvts23>the date to convert; if omitted, uses today’s date</span></p>
   </td>
  </tr>
  <tr valign=top>
@@ -212,15 +205,15 @@ p,ul,ol /* Paragraph Style */
   </td>
  </tr>
 </table>
-<p class=rvps3><span class=rvts23>startdate and enddate may be in either order. If date is within the range defined by startdate and enddate, this function will return 0. If date falls before the range (</span><span class=rvts24>i.e.</span><span class=rvts23> less than both startdate and enddate), the result will be -1. If date falls after the defined range (</span><span class=rvts24>i.e.</span><span class=rvts23> greater than both), the function will return 1.</span></p>
-<p class=rvps3><span class=rvts23>• New: This function does not exist in Take Command.</span></p>
+<p class=rvps3><span class=rvts23>See also: </span><a class=rvts24 href="https://charlesdye.net/plugins/iso8601.html#f_makedate">@MAKEDATE</a><span class=rvts23>, which performs the reverse function.</span></p>
 <p><span class=rvts20><br></span></p>
 <table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
  <tr valign=top>
   <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
-   <p><span class=rvts22>Source</span><span class=rvts19>:</span><span class=rvts20> </span><a class=rvts21 href="https://charlesdye.net/plugins/iso8601.html#f_agedate">@INRANGE — determines whether a date falls within a specified...</a><span class=rvts20> &nbsp;</span><span class=rvts19>(9 April 2025 6:58 PM)</span></p>
+   <p><span class=rvts22>Source</span><span class=rvts19>:</span><span class=rvts20> </span><a class=rvts21 href="https://charlesdye.net/plugins/iso8601.html#f_dateplus">@DATE — Converts the specified date into an MS-DOS day...</a><span class=rvts20> &nbsp;</span><span class=rvts19>(9 April 2025 6:50 PM)</span></p>
   </td>
  </tr>
 </table>
 <p><span class=rvts18><br></span></p>
+<p class=rvps2><span class=rvts18><br></span></p>
 </body></html>
