@@ -44,7 +44,7 @@ Here's the source file and everything you need:
 
 ---
 
-### Source: [TIMES10.C](cci:7://file:///C:/Users/jlcav/.gemini/antigravity/playground/crimson-kilonova/TIMES10.C:0:0-0:0)
+### Source: [TIMES10.C](./TIMES10.C)
 
 **Key design choices for TC 2.01 compatibility:**
 - **K&R-style function declarations** — maximum compatibility with older compilers
