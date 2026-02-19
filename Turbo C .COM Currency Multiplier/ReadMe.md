@@ -14,5 +14,5 @@ Here's the correct way to create a .com file.
 ![Compile](./Compile.jpg)
 
 Here's the conversation that was generated from my prompt;
-<a href="Turbo%20C%20.COM%20Currency%20Multiplier.md" target="_blank">Turbo C .COM Currency Multiplier</a>
+<a href="https://joec4281.github.io/Turbo%20C%20.COM%20Currency%20Multiplier/TIMES10.C" target="_blank">Turbo C .COM Currency Multiplier</a>
 
