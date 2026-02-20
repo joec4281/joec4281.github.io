@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+   <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       <link rel="stylesheet" href="skins/web.css" type="text/css" media="screen" charset="utf-8">
+       <script src="../_codebase/webix.js" type="text/javascript" charset="utf-8"></script>
+	   <script type="text/javascript" src="data/search_index.js"></script>
+	   <script type="text/javascript" src="data/notes_index.js"></script>
+	   <script type="text/javascript" src="data/array_helper.js"></script>
+	   <script type="text/javascript" src="data/rntse.js"></script>
+       <script src="trees/tree1.js" type="text/javascript" charset="utf-8"></script>
+ 	 <style>
+	     .rows .webix_list_item:nth-child(2n){
+	 	   background-color:#F5F5F5;
+	 	 }
+		  .rows .webix_list_item.webix_selected:nth-child(2n){
+		     background: #ffedbc;
+		  }
+	  </style>
+      <title>FASM Currency Multiplier.rnt webbook</title>
+   </head>
+   <body>
+	<script type="text/javascript" charset="utf-8">
+
+		window.addEventListener("message", receiveMessage, false);
+		
+		function receiveMessage(event) {
+		  var data = event.data.split('|');
+		  gotoLink(data[0], data[1]);
+		}
+
+		var se = new SearchEngine();
+
+        function getNoteCaption(id){
+            var result = "";
+            for( var i = 0; i < notesIndex.length; i++) {
+                if( notesIndex[i][0] === id ) {
+                    result = notesIndex[i][1];
+                    break;
+                }
+            }
+            return result;
+        }
+		
+		function search(){
+			se.results.clear();
+			se.search($$("searchbox").getValue().toLowerCase());
+			list = $$("searchlist");
+			list.clearAll();
+			
+			for (var i=0; i < se.results.count(); i++){
+				if (se.results.getId(i) !== -1)
+					list.add({value: getNoteCaption(se.results.getId(i)), link: se.results.getId(i)});
+			}
+		}
+
+		function gotoLink(tab, note){
+			initTree("tab" + tab);
+		    $$("tab" + tab).show();
+		    $$("tree" + tab).select(note);
+			$$("tree" + tab).showItem(note);
+            $$("frame" + tab).define("src", "trees/notes/" +note+ "/index.html");			
+		}
+
+
+       var tab1_init = false;
+
+	    function initTree(id){
+			switch (id){
+							case "tab1": 
+				    if (!tab1_init){
+						$$("tree1").parse(tree_data1);
+						tab1_init = true;					
+					}
+					break;
+
+			}
+		}
+
+	   var tabbar = {
+		  view:"tabview",
+		  cells:[
+			{ id: "tab0", cols:[
+			  {rows: [
+				  {view: "toolbar", elements: [
+					{ view:"text", id: "searchbox"},
+					{ view:"button", value:"Search", width: 90, click:"search()", hotkey: "enter"}
+				  ]},
+				  {view: "list", id: "searchlist", width: 380, select: true, borderless: true, css: "rows",
+				   template:"#value#",
+				   type:{ height: "auto" },
+				   on:{
+						onItemClick:function(id){
+							$$("frame0").define("src", "trees/notes/" +this.getItem(id).link + "/index.html");
+						}
+					}
+				  },
+				  { padding: 3, rows:[
+					{view: "search", id: "text0"}
+				  ]}
+				]
+			  },
+			  {view: "resizer"},
+			  {view: "iframe", id: "frame0"}
+			]},
+			{ id: "tab1", header:"FASM Currency Multiplier", cols:[
+			  {rows: [
+				  {view: "tree", id: "tree1", width: 300, select: true, borderless: true,
+				   filterMode:{ showSubItems:false },
+				   on:{
+						onItemClick:function(id){
+							$$("frame1").define("src", "trees/notes/" +this.getItem(id).link + "/index.html");
+						}
+					}
+				  },
+				  { padding: 3, rows:[
+					{view: "search", id: "text1"}
+				  ]}
+				]
+			  },
+			  {view: "resizer"},
+			  {view: "iframe", id: "frame1"}
+			]}
+		  ],
+		  tabbar:{ 
+		    value:"tab1",
+			on:{
+				onAfterTabClick: function(id, e){ initTree(id) }
+			},
+			options: [
+				{ id: 'tab0', value: "<span class='webix_icon fa-search'></span>Search", width: 130},
+				{ id: 'tab1', value: "FASM Currency Multiplier", width: 179}
+			]
+			}
+		};
+
+	   webix.ready(function(){
+		   webix.ui({
+			id:"layout",
+			type:"space", 
+			padding:10,
+			rows:[ tabbar ]
+		   }).show();
+
+		   $$("tab1").show();
+           initTree("tab1");
+
+		   $$("text0").attachEvent("onTimedKeyPress",function(){
+				$$("searchlist").filter("#value#",this.getValue());
+			});
+		   $$("text1").attachEvent("onTimedKeyPress",function(){
+				$$("tree1").filter("#value#",this.getValue());
+			});
+		});
+
+	</script>
+   </body>
+</html>

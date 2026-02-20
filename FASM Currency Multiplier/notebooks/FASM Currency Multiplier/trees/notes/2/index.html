@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Source file exported to file</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="SynEdit HTML exporter" />
+<style type="text/css">
+<!--
+body { color: #000000; background-color: #FFFFFF; }
+.general1-comment { font-style: italic; }
+.general1-identifier { }
+.general1-number { }
+.general1-preprocessor { }
+.general1-reservedword { font-weight: bold; }
+.general1-space { }
+.general1-string { }
+.general1-symbol { }
+-->
+</style>
+</head>
+<body>
+<pre>
+<code><span style="font: 12pt Courier New;"><span class="general1-symbol">; TIMES10.ASM - Multiply a currency amount by 10
+; Assemble: fasm TIMES10.ASM TIMES10.EXE
+; Usage:    TIMES10 &lt;amount&gt;
+;           TIMES10 123      =&gt; $1230.00
+;           TIMES10 12.50    =&gt; $125.00
+;           TIMES10 $12.50   =&gt; $125.00
+
+format PE64 console
+include 'WIN64A.INC'
+
+entry start
+
+section '.text' code readable executable
+
+start:
+        sub     rsp, 56                 ; align stack (8) + shadow space (32) + extra (16)
+
+        ; ---- Get the raw command line ----
+        call    [GetCommandLineA]
+        mov     rsi, rax
+
+        ; ---- Skip past the program name ----
+        cmp     byte [rsi], '&quot;'
+        jne     .skip_bare_name
+
+        ; Program name is quoted â find closing quote
+        inc     rsi
+.find_close_quote:
+        cmp     byte [rsi], 0
+        je      .show_usage
+        cmp     byte [rsi], '&quot;'
+        je      .past_name
+        inc     rsi
+        jmp     .find_close_quote
+.past_name:
+        inc     rsi                     ; skip the closing quote
+        jmp     .skip_spaces
+
+        ; Program name is bare â skip to first space
+.skip_bare_name:
+        cmp     byte [rsi], 0
+        je      .show_usage
+        cmp     byte [rsi], ' '
+        je      .skip_spaces
+        inc     rsi
+        jmp     .skip_bare_name
+
+        ; Skip whitespace between program name and argument
+.skip_spaces:
+        cmp     byte [rsi], ' '
+        jne     .have_arg
+        inc     rsi
+        jmp     .skip_spaces
+
+.have_arg:
+        cmp     byte [rsi], 0
+        je      .show_usage
+
+        ; ---- Skip optional leading '$' ----
+        cmp     byte [rsi], '$'
+        jne     .begin_parse
+        inc     rsi
+
+        ; ---- Parse the number into cents (integer arithmetic) ----
+.begin_parse:
+        xor     ebx, ebx               ; integer-part accumulator
+
+.parse_int_part:
+        movzx   eax, byte [rsi]
+        cmp     al, '.'
+        je      .have_decimal_point
+        cmp     al, 0
+        je      .no_decimal
+        cmp     al, ' '
+        je      .no_decimal
+        cmp     al, 13
+        je      .no_decimal
+        sub     al, '0'
+        jb      .show_usage
+        cmp     al, 9
+        ja      .show_usage
+        imul    ebx, 10
+        movzx   eax, al
+        add     ebx, eax
+        inc     rsi
+        jmp     .parse_int_part
+
+.have_decimal_point:
+        inc     rsi                     ; skip the '.'
+        xor     r12d, r12d              ; decimal-part accumulator
+        xor     r13d, r13d              ; number of decimal digits
+
+.parse_dec_part:
+        movzx   eax, byte [rsi]
+        cmp     al, 0
+        je      .end_decimal
+        cmp     al, ' '
+        je      .end_decimal
+        cmp     al, 13
+        je      .end_decimal
+        sub     al, '0'
+        jb      .show_usage
+        cmp     al, 9
+        ja      .show_usage
+        imul    r12d, 10
+        movzx   eax, al
+        add     r12d, eax
+        inc     r13d
+        inc     rsi
+        cmp     r13d, 2
+        jl      .parse_dec_part
+
+.end_decimal:
+        ; If only one decimal digit, multiply by 10  (e.g. .5 â 50 cents)
+        cmp     r13d, 1
+        jne     .combine
+        imul    r12d, 10
+
+.combine:
+        imul    ebx, 100                ; dollars â cents
+        add     ebx, r12d               ; add fractional cents
+        jmp     .do_multiply
+
+.no_decimal:
+        imul    ebx, 100                ; whole dollars â cents
+
+        ; ---- Multiply by 10 ----
+.do_multiply:
+        imul    ebx, 10
+        ; EBX = result in cents
+
+        ; ---- Format the result as &quot;$&lt;dollars&gt;.&lt;cents&gt;\r\n&quot; ----
+        mov     eax, ebx
+        xor     edx, edx
+        mov     ecx, 100
+        div     ecx
+        ; EAX = dollars, EDX = cents
+        mov     r14d, edx               ; save cents
+
+        lea     rdi, [output_buf]
+        mov     byte [rdi], '$'
+        inc     rdi
+
+        ; Convert dollars (EAX) to ASCII
+        test    eax, eax
+        jnz     .nonzero_dollars
+        mov     byte [rdi], '0'
+        inc     rdi
+        jmp     .write_dot
+
+.nonzero_dollars:
+        lea     r8, [temp_buf]
+        xor     r9d, r9d                ; digit count
+.cvt_dollar_digits:
+        test    eax, eax
+        jz      .reverse_dollars
+        xor     edx, edx
+        mov     ecx, 10
+        div     ecx
+        add     dl, '0'
+        mov     [r8 + r9], dl
+        inc     r9d
+        jmp     .cvt_dollar_digits
+
+.reverse_dollars:
+        dec     r9d
+.rev_loop:
+        movzx   eax, byte [r8 + r9]
+        mov     [rdi], al
+        inc     rdi
+        sub     r9d, 1
+        jns     .rev_loop
+
+.write_dot:
+        mov     byte [rdi], '.'
+        inc     rdi
+
+        ; Write cents as exactly two digits
+        mov     eax, r14d
+        xor     edx, edx
+        mov     ecx, 10
+        div     ecx
+        add     al, '0'
+        mov     [rdi], al
+        inc     rdi
+        add     dl, '0'
+        mov     [rdi], dl
+        inc     rdi
+
+        ; CR + LF
+        mov     byte [rdi], 13
+        inc     rdi
+        mov     byte [rdi], 10
+        inc     rdi
+
+        ; Calculate string length
+        lea     rax, [output_buf]
+        sub     rdi, rax                ; RDI = length
+
+        ; ---- Write to stdout ----
+        mov     ecx, -11                ; STD_OUTPUT_HANDLE
+        call    [GetStdHandle]
+
+        mov     rcx, rax                ; hFile
+        lea     rdx, [output_buf]       ; lpBuffer
+        mov     r8, rdi                 ; nNumberOfBytesToWrite
+        lea     r9, [written]           ; lpNumberOfBytesWritten
+        mov     qword [rsp+32], 0       ; lpOverlapped = NULL
+        call    [WriteFile]
+
+        xor     ecx, ecx
+        call    [ExitProcess]
+
+        ; ---- Usage message ----
+.show_usage:
+        mov     ecx, -11
+        call    [GetStdHandle]
+
+        mov     rcx, rax
+        lea     rdx, [usage_msg]
+        mov     r8d, usage_len
+        lea     r9, [written]
+        mov     qword [rsp+32], 0
+        call    [WriteFile]
+
+        mov     ecx, 1
+        call    [ExitProcess]
+
+; =========================================================================
+section '.data' data readable writeable
+
+usage_msg       db 'Usage: TIMES10 &lt;amount&gt;', 13, 10
+                db '  e.g. TIMES10 12.50', 13, 10
+                db '  e.g. TIMES10 $12.50', 13, 10
+usage_len       = $ - usage_msg
+
+output_buf      rb 64
+temp_buf        rb 32
+written         dq 0
+
+; =========================================================================
+section '.idata' import data readable writeable
+
+        library kernel32, 'KERNEL32.DLL'
+
+        import  kernel32, \
+                GetCommandLineA, 'GetCommandLineA', \
+                GetStdHandle,    'GetStdHandle', \
+                WriteFile,       'WriteFile', \
+                ExitProcess,     'ExitProcess'
+</span></span>
+</code></pre>
+</body>
+</html>
