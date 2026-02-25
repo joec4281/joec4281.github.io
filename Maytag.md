@@ -1,0 +1,12 @@
+| Retailer | Location in London, ON | Delivery Fee to Union, ON (N0L 2L0) | Installation Fee (Basement) | Haul Away Fee (Old Washer) |
+|----------|------------------------|-------------------------------------|-----------------------------|----------------------------|
+| Home Depot | Multiple stores (e.g., 600 Fanshawe Park Rd E) | Free (local delivery within service area; Union is approx. 25-30 km, considered local) | Included with delivery for basic hook-up; additional fees may apply for stairs/basement access (e.g., extra manpower $200 if needed) | $25-$50 per appliance |
+| Lowe's | 1395 Fanshawe Park Rd W | Free (local; no additional for <75 miles) | Free for electric washers with delivery; includes leveling and connection to existing lines (basement access if clear) | Additional charge (typically $25; one-for-one basis) |
+| Best Buy | 3165 Wonderland Rd S | Free over $399; otherwise $39.99 (Union is local) | $59 (includes connection; basement if accessible, no extra mentioned) | $29.99-$59 (one-for-one; must be disconnected) |
+| The Brick | 1061 Wonderland Rd S | $89.95 (includes full service; local area) | Included (leveling, connection; basement access standard) | Free for first appliance (one-for-one; must be disconnected) |
+| Canadian Appliance Source | 1230 Wellington Rd | $50-$100 (estimated; inquire for exact) | Extra (standard installation $100+; basement if accessible) | Small fee ($25+; must be disconnected) |
+| Appliance Canada | 1201 Dundas St | Free over $1,500; $50 under (local) | Inquire (extra fee; basement standard) | Free (if disconnected) |
+| Tepperman's | 1020 Wharncliffe Rd S | Inquire (white glove service fee; local) | Included (placement, connection; basement) | $25 per appliance |
+| Goemans Appliances | 1500 Dundas St | Nominal fee (inquire; local delivery) | Extra (professional; pre-inspection for basement) | Nominal fee (disconnect and remove) |
+| London Major Appliances | 185 Hamilton Rd | Free (prompt local delivery) | Inquire (available; basement standard) | Inquire (available) |
+| Arva Appliances | 21593 Richmond St N (near London) | Inquire (delivery service; local) | Included (placement in space; basement) | Inquire (available) |
