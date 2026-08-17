@@ -113,5 +113,13 @@
 [115,"Input / Output and Redirection"],
 [116,"Redirection and Pipes"],
 [117,"Redirection"],
-[118,"MAPPEXE (New In v34)"]
+[118,"MAPPEXE (New In v34)"],
+[119,"Whats New in Version 36.52"],
+[120,"IMGTTY (New In v36.52)"],
+[121,"Whats New in Version 36.51"],
+[122,"New In v36.51"],
+[123,"PSHELL (New In v21)"],
+[124,"New In v36.51"],
+[126,"Whats New in Version 21.01"],
+[127,"Whats New in Version 21.0"]
 ];

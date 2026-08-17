@@ -1,12 +1,16 @@
 ﻿var tree_data2 = [
   { value: "Default Note", id: "2", link: "2", open: true, data: [
     { value: "What's New in...", id: "3", link: "3", open: true, data: [
+      { value: "Whats New in Version 36.52", id: "119", link: "119" },
+      { value: "Whats New in Version 36.51", id: "121", link: "121" },
       { value: "Whats New in Version 33", id: "5", link: "5" },
       { value: "Whats New in Version 32", id: "6", link: "6" },
-      { value: "Whats New in Version 31", id: "7", link: "7" }    ]
+      { value: "Whats New in Version 31", id: "7", link: "7" },
+      { value: "Whats New in Version 21.0", id: "127", link: "127" },
+      { value: "Whats New in Version 21.01", id: "126", link: "126" }    ]
     },
     { value: "TCC", id: "4", link: "4", open: true, data: [
-      { value: "Variables & Functions", id: "8", link: "8", data: [
+      { value: "Variables & Functions", id: "8", link: "8", open: true, data: [
         { value: "Variables", id: "10", link: "10", data: [
           { value: "_BATCHLABEL (New in v32)", id: "12", link: "12", open: true },
           { value: "_DARKENABLED", id: "13", link: "13" },
@@ -69,12 +73,14 @@
         { value: "FOLDERMONITOR - Monitor Windows folders and files", id: "43", link: "43", open: true, data: [
           { value: "Example", id: "109", link: "109" }        ]
         },
-        { value: "FSEARCH (New In v32)", id: "44", link: "44", data: [
-          { value: "New In v33", id: "79", link: "79" }        ]
+        { value: "FSEARCH (New In v32)", id: "44", link: "44", open: true, data: [
+          { value: "New In v33", id: "79", link: "79" },
+          { value: "New In v36.51", id: "122", link: "122" }        ]
         },
         { value: "IF", id: "45", link: "45", data: [
           { value: "New In v33", id: "80", link: "80" }        ]
         },
+        { value: "IMGTTY (New In v36.52)", id: "120", link: "120"        },
         { value: "INTERNAL (New In v32)", id: "46", link: "46", data: [
           { value: "New In v33", id: "81", link: "81" }        ]
         },
@@ -94,6 +100,9 @@
         },
         { value: "POPD", id: "51", link: "51", data: [
           { value: "New In v32", id: "102", link: "102" }        ]
+        },
+        { value: "PSHELL (New In v21)", id: "123", link: "123", open: true, data: [
+          { value: "New In v36.51", id: "124", link: "124" }        ]
         },
         { value: "PUSHD", id: "52", link: "52", data: [
           { value: "New In v32", id: "103", link: "103" }        ]

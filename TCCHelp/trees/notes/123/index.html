@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>PSHELL (New In v21)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts15, span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts16
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts17
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts19
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts20
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts21, span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts22
+{
+ font-size: 16pt;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="padding: 1px;">
+   <p><span class=rvts20></span><br><span class=rvts20>&nbsp;</span><a class=rvts21 href="https://jpsoft.com/help/prompt.htm">Prev</a><span class=rvts20> </span><a class=rvts21 href="https://jpsoft.com/help/tcc_commands.htm">Top</a><span class=rvts20> </span><a class=rvts21 href="https://jpsoft.com/help/psubst.htm">Next</a><span class=rvts20> </span><a class=rvts21 href="javascript:void(0);">More</a></p>
+  </td>
+ </tr>
+</table>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=217 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Purpose:</span></p>
+  </td>
+  <td width=1177 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Execute a PowerShell script or string</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>or</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=216 valign=middle style="padding: 1px;">
+   <p><span class=rvts22><br></span></p>
+  </td>
+  <td width=1178 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Execute TCC commands from Powershell</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=216 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Format:</span></p>
+  </td>
+  <td width=1178 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>PSHELL [/C /S script ...]</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><a class=rvts21 href="#c">/C(lose)</a></p>
+<p class=rvps3><a class=rvts21 href="#s">/S(tring)</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>See also @PSHELL.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>File Completion Syntax:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The default </span><a class=rvts21 href="https://jpsoft.com/help/filecomp.htm">filename completion</a><span class=rvts20> syntax is: [1] dirs ps1 [2*] *</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Usage:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Note that you may need to enable PowerShell scripting on your system; on recent versions of Windows it is disabled by default (for security).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>PSHELL supports multiple string or filename arguments. If a string or filename has embedded whitespace, you must enclose it with double quotes. For example:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>pshell /s "type $Profile"</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Without the double quotes PSHELL would interpret this as two commands.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>PSHELL supports executing scripts in an NTFS stream (script:streamname).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TakeCommand.PowerShellHost</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>`[TakeCommand.PowerShellHost]` is available inside the in-process PowerShell session created by Take Command.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>It exposes two static methods:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>InvokeCommand(string command)</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>•Runs a TCC command line through `takecmd.dll`</span></p>
+<p class=rvps3><span class=rvts20>•Returns the command output as a string</span></p>
+<p class=rvps3><span class=rvts20>•Throws if the command fails or the host bridge is not initialized</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>ExpandValue(string expression)</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>•Expands a TCC variable or function expression through `takecmd.dll`</span></p>
+<p class=rvps3><span class=rvts20>•Returns the expanded value as a string</span></p>
+<p class=rvps3><span class=rvts20>•Throws if the expression fails or the host bridge is not initialized</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Direct usage</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>powershell</span></p>
+<p class=rvps3><span class=rvts6>$cwd = [TakeCommand.PowerShellHost]::ExpandValue('%_cwd')</span></p>
+<p class=rvps3><span class=rvts6>"TCC current directory: $cwd"</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts6>$files = [TakeCommand.PowerShellHost]::InvokeCommand('dir /b')</span></p>
+<p class=rvps3><span class=rvts6>"TCC dir /b output:"</span></p>
+<p class=rvps3><span class=rvts6>$files</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Helper commands added by the bridge</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The PowerShell host also creates helper functions and aliases during session startup:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>`Invoke-TccCommand` / `tcc`</span></p>
+<p class=rvps3><span class=rvts20>`Expand-TccValue` / `tccx`</span></p>
+<p class=rvps3><span class=rvts20>`Get-TccVariable` / `tccvar`</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Execute a TCC command</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>powershell</span></p>
+<p class=rvps3><span class=rvts6>tcc 'dir /b'</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Expand a TCC expression</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>powershell</span></p>
+<p class=rvps3><span class=rvts6>tccx '%@upper[test]'</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Read a TCC variable</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>powershell</span></p>
+<p class=rvps3><span class=rvts6>tccvar '_cwd'</span></p>
+<p class=rvps3><span class=rvts6>tccvar '%_pid'</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Notes</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>•These APIs are only available inside the embedded Take Command PowerShell host.</span></p>
+<p class=rvps3><span class=rvts20>•`InvokeCommand()` returns captured command output. It does not return the numeric exit code.</span></p>
+<p class=rvps3><span class=rvts20>•`ExpandValue()` is intended for TCC variable and function expansion such as `%_cwd` or `%@upper[test]`.</span></p>
+<p class=rvps3><span class=rvts20>•Null or empty inputs are rejected.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Option:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=218 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/C</span></p>
+  </td>
+  <td width=1176 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Close the persistent PowerShell interpreter</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=223 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/S</span></p>
+  </td>
+  <td width=1171 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Execute a string (like @PSHELL)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p><span class=rvts17><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts19>Source</span><span class=rvts16>:</span><span class=rvts17> </span><a class=rvts18 href="https://jpsoft.com/help/pshell.htm">General</a><span class=rvts17> &nbsp;</span><span class=rvts16>(17 August 2026 7:33 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Whats New in Version 36.51</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts15, span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts16
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts17
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts19
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts20
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts21, span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts20>Version 36.50 and 36.51</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Take Command:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Take Command 36.50 uses DirectWrite / Direct2D instead of GDI to display text in ConPTY tabs. This provides sharper and smoother text (including sub-pixel ClearType anti-aliasing), which is especially noticeable on high-DPI displays. Display output is 20-30% &nbsp;faster (using GPU acceleration), it scales better across different resolutions and DPI levels, and it supports OpenType features such as ligatures and swashes. DirectWrite also has better Unicode support for multilingual text, emojis, and surrogate pairs.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Take Command is now per-monitor DPI aware. Take Command will automatically adjust its fonts, toolbars, menus, and dialogs when moving between monitors with different DPI settings.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Take Command now can display either a ribbon menu (as in 36.0) or a Visual Studio-style menu on the caption bar with drop down menus. This option will save a little space, and make for a cleaner look. (And some people are not fans of the ribbon menus!) You can toggle this option in the Take Command configuration dialog ("Options / &nbsp;Take Command / Advanced"). See the VSMenu option in "New TCMD.INI Directives" below. If you choose the Visual Studio-style menu, you get access to 17 additional themes.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Take Command now supports Shell Integration. TCC 36.50 supports shell integration natively; PowerShell, CMD, bash, fish etc. will require some modifications to the prompt or internal settings (and may not support all shell integration features).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>When starting a Take Command tab window, you will see a gutter on the left margin. The left gutter shows the "folding" triangles. A downward triangle will be displayed to the left of a command input line if that command produced output. You can click on the triangle to collapse (hide) the output and change to a right pointing triangle. Clicking on the triangle again will show the command output again. You can toggle all of the folds on and off with the "Toggle All Folds" option in the Tabs menu.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Each command input prompt will write a "tick" mark into the vertical scrollbar on the right side of the window. If you are using TCC in the tab window, when you run a command the prompt tick mark displayed for the next prompt will be green (if the command returned 0), red (if the command returned &gt; 0), or gray (if nothing was returned). The colors can be modified with TCMD.INI directives if desired (see below). Using Shell Integration, you can move to the previous commands with the Ctrl-Up key; Ctrl-Down will take you back through the more recent commands. The currently selected command will have a highlight box drawn around its tick on the scrollbar. If you press Ctrl-G, Take Command will select all of the text output for that command; you can then copy it to the clipboard as though you had marked it with the mouse. If you are on the current input line, Ctrl-G will mark the output of the previous command.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Take Command now supports Profiles. You can create profiles for console apps (like TCC, PowerShell, CMD, and bash) and customize all of the tab settings. You can then execute a profile by selecting it from the Profiles menu in Take Command, or with the START /Profile=name option in a TCC tab window. Profiles can be created / modified / deleted in the Take Command configuration dialog, on the Profiles page. The "Detect Installed Shells..." button on the Profiles page will search your system for CMD, PowerShell, PowerShell Core, WSL, and Git shells and create profiles for them.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Searching the Take Command tab windows (ConPTY sessions only) will highlight all matches (instead of only the first match like v36.0 and earlier). The highlights are cleared when the Find dialog closes, or the ConPTY screen is cleared.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Take Command now supports background images in ConPTY tab windows. You can set the image in the Take Command configuration dialog on the Tabs page. The options are:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Opacity (0 - 100%)</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Stretch mode:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>•"stretch" → exactly rcPaint</span></p>
+<p class=rvps3><span class=rvts20>•"uniform" → scale to fit, centered (letterbox)</span></p>
+<p class=rvps3><span class=rvts20>•"uniformToFill" → scale to fill, centered (crop)</span></p>
+<p class=rvps3><span class=rvts20>•"none" / default → centered at natural size</span></p>
+<p class=rvps3><span class=rvts20>Take Command now supports Windows Terminal named color schemes (for example, Campbell, One Half Dark, Solarized, etc.). You can choose the color scheme in the Take Command Configuration / Tabs /</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The new View / Focus Mode menu entry toggles "Focus Mode" on and off. Focus Mode will hide all of the non-essential windows in Take Command, including the tabbed toolbar, the client tabs, the status bar, the command prompt pane, and the File Explorer pane.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>You can tell a splitter pane to fill the entire tab window with Ctrl+Shift+Z, or use the ribbon / menu View / Zoom Pane option. Toggle it again to restore the split pane.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Ctrl+Shift+P opens a fuzzy-searchable, keyboard-driven dialog of every menu entry. Take Command will execute the selected menu entry on an Enter.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Dragging the edges of the Take Command window will now snap to the next / previous row or column.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The internal ANSI escape sequences interpreter for pseudoconsoles now also supports bold, double underline, overline, subscript, and superscript characters.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Added DCS P…ST SIXEL escape sequences as inline raster images inside the tab window cell grid.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Added OSC 9;4 progress indicator.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Added OSC 8 clickable hyperlinks. See also TabPtyAutoURL below.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Added OSC 4 / 10 / 11 /12 (color query / set)</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Added ANSI bracketed paste.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TCC:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The Plugin Manager (OPTION / Plugins tab) connects you to a repository of third-party TCC plugins. You can browse the available plugins, and install / update / remove them.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Everything Search has been updated to 1.5.1416b.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Libcurl has been updated to 8.20.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>IDE / Batch Debugger:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The IDE / Batch Debugger now support Notepad++ plugins. The Plugin Manager (Plugins in the main menu) connects you to a repository of third-party plugins. You can browse the available plugins, and install / update / remove them.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The IDE / Batch Debugger now supports horizontal or vertical tab groups (like Take CommandI). The tab group options are on the Windows menu, and on the tab context menu (right click on a tab).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>You can detach / float / dock the toolbar.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The Scintilla editor has been updated to version 5.6.3.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The Lexilla lexer has been updated to version 5.5.0.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TCEDIT:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TCEdit now supports Notepad++ plugins. The Plugin Manager (Plugins in the main menu) connects you to a repository of third-party plugins. You can browse the available plugins, and install / update / remove them.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TCEdit now supports horizontal or vertical tab groups (like Take CommandI). The tab group options are on the Windows menu, and on the tab context menu (right click on a tab).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>You can detach / float / dock the toolbar.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The Scintilla editor has been updated to version 5.6.3</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The Lexilla lexer has been updated to version 5.5.0.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>PLUGINS:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>See the Plugin Manager under TCC (above).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>New TCMD.INI Directives:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>PasteMultiLineConfirm=yes | NO - If set to YES, when text containing newlines is pasted, a dialog asks "This will run N commands — continue?" to prevent accidentally executing a multi-line script.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>SIFolding=YES | no = If YES, and Shell Integration is enabled, display a gutter at the left margin that shows folding / unfolding triangles to hide or display output from the marked command input line.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>SIPromptMarks=YES | no - If Yes, each command input prompt will write a "tick" mark on the vertical scrollbar. The scrollbar will show whether the command succeeded (return code 0) by coloring the mark green. If the return code != 0 the mark will be red. Colors are configurable; see below.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>SICwdSync=YES|no - If YES, Take Command will enable the OSC 133 ANSI sequence to set its default directory to that of the shell.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>SISuccessColor=rgb - Sets the color for the mark on the vertical scrollbar &nbsp;for command output when the command returned a result of 0. Default color is green.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>SIErrorColor=rgb - Sets the color for the mark on the vertical scrollbar for command output when the command returned a result of 0. Default color is red.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>SIUnknownColor=rgb - Sets the color for the fill in the gutter for command output when the command did not return a result. Default color is gray.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TabPtyAutoURL=yes|NO - If YES, Take Command will underline URLs in the buffer output and make them clickable, without requiring an OSC 8 sequence from the console app.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TabPtyBell=none | AUDIBLE | visual | both - On an ASCII BEL (0x07), either beep, put an amber mark on the tab to signal a pending BEL, do both, or do nothing.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TabPtyTextOpacity=0-100 (default 95) - The text opacity DirectWrite should use for default text output. Higher values will appear bolder and brighter.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TrimCopyWhitespace=yes | NO - If YES, strips trailing space from each copied line before copying it to the clipboard.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>TrimPasteWhitespace=yes | NO - If YES, strips trailing spaces from each pasted line — useful when copying from blocks that include padding.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>VSMenu=yes|NO - If YES, Take Command will use a Visual Studio-style menu on the caption bar, instead of the ribbon menu.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Updated Commands:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><a class=rvts21 href="http://127.0.0.1:8000/87EDDBEC-DF5A-4008-8C94-6A5C706F4506/fsearch.html">FSEARCH</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Added support for &gt; 4Gb files.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>FSEARCH is significantly faster, particularly with large files.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><a class=rvts21 href="http://127.0.0.1:8000/87EDDBEC-DF5A-4008-8C94-6A5C706F4506/pshell.html">PSHELL</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Added support for NTFS file streams.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><a class=rvts21 href="http://127.0.0.1:8000/87EDDBEC-DF5A-4008-8C94-6A5C706F4506/sreplace.html">SREPLACE</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Added support for &gt; 4Gb files.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>SREPLACE is significantly faster, particularly with large files.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><a class=rvts21 href="http://127.0.0.1:8000/87EDDBEC-DF5A-4008-8C94-6A5C706F4506/start.html">START</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>/Profile=name - Asks Take Command to open the app defined in the profile in a new tab.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>/TABPTY - Starts a new tab in Take Command in a ConPTY session.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>/TABPTYNA - Starts a new tab in Take Command in a ConPTY session, but doesn't switch to the new tab.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><a class=rvts21 href="http://127.0.0.1:8000/87EDDBEC-DF5A-4008-8C94-6A5C706F4506/window.html">WINDOW</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>/TABTINT=rrggbb - Draws a 3 DPI-scaled pixel stripe along the edge of that tab in the tint color (hex RGB, e.g. FF0000 = red). Clear the tint with /TABTINT=0. Only meaningful inside a Take Command tab window. This option is useful for signaling the state of activity in the tab, or for designating the type of process in the tab.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><a class=rvts21 href="http://127.0.0.1:8000/87EDDBEC-DF5A-4008-8C94-6A5C706F4506/xdir.html">XDIR</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>If you specify an editor in "OPTION / Windows / Editor", XDIR will use that app instead of TCEdit when you select a file to edit (default Ctrl-E).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><a class=rvts21 href="http://127.0.0.1:8000/87EDDBEC-DF5A-4008-8C94-6A5C706F4506/xhistory.html">XHISTORY</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>XHISTORY first looks for its data file in ProgramData (usually c:\programdata\JP Software). If the data file isn't found (some Windows configurations block write access to ProgramData), XHISTORY will look in LocalAppData (usually "c:\users\username\AppData\Local\JP Software").</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p><span class=rvts20><br></span></p>
+<p><span class=rvts17><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts19>Source</span><span class=rvts16>:</span><span class=rvts17> </span><a class=rvts18 href="http://127.0.0.1:8000/87EDDBEC-DF5A-4008-8C94-6A5C706F4506/whats-new-in-version-36.html">ersion 36.50 and 36.51</a><span class=rvts17> &nbsp;</span><span class=rvts16>(17 August 2026 7:29 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>
