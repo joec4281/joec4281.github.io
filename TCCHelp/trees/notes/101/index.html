@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>New In v33</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps2><span class=rvts6>XSORT sorts text files, standard output, and the clipboard.&nbsp;</span></p>
+<p class=rvps2><span class=rvts6>XSORT supports ASCII, UTF-8, and UTF-16 files, including optionally converting from one encoding format to another.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>The syntax is:</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>XSORT [/D /R /unicode=in,out /+n /type=n /length=n] [input files] [/output=filename]</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>/output - The filename for the sorted output. If the file already exists, it will be overwritten. If no /output=xxx option is specified, XSORT will write to standard output. XSORT also supports writing to CLIP:</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>type - the sort type</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>0 ANSI sort (case insensitive, locale specific)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>1 ANSI sort (case sensitive, locale-specific)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>2 ASCII sort (case insensitive)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>3 ASCII sort (case sensitive)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>4 Numeric sort. - Sort according to their numeric value. Leading spaces are allowed. The number must be in decimal, and can be in floating point format. Any non-numeric characters after the number are ignored. If the line has no valid numeric value it is given a value of 0. If you have dates formatted in YYYYMMDDHHMMSS order you can easily sort by date based on the value.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>5 Sort by length of line - Note that if you also specify /D, &nbsp;there is no way of knowing which line from a group of lines with the same sort value will be kept. For example, with input of 'AAA', 'BBB', 'CCC' each has a length of 3 and appears to be the same.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>6 Sort by date and time - The value must use the current locale’s date/time format. Specifying AM or PM as part of the time is optional, as are the seconds. Use 24-hour time (7:45 PM is entered as 19:45, for example) if AM or PM is not specified.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>7 Sort by date - The value must consist of two or three numbers, separated by the character defined by the current's locale's Date Separator. The order for month, day, and year is determined by the current locale. Possible combinations are m/d/y, d/m/y, and y/m/d. If the value contains only two numbers, it is interpreted as a date (m/d or d/m) in the current year.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>8 Sort by time - The value must consist of two or three numbers, separated by the character defined by the current's locale's Date Separator. The order for month, day, and year is determined by the current locale. Possible combinations are m/d/y, d/m/y, and y/m/d. If the value contains only two numbers, it is interpreted as a date (m/d or d/m) in the current year.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>9 UTF-8 sort (case insensitive)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>10 UTF-8 sort (case sensitive)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>/D - Remove duplicate lines</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>/R - Reverse the sort order</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>/+n - The column to start comparisons from (the default is 1). The Start Column field allows you to ignore leading characters before a comparison is made. When the Start Column is 1, and the Length is 4096 or more, the sort is optimized compared to selecting a subset of each line. All lines are compared for their entire width.</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>/length=n - The length of the comparison (default is 4096)</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>/unicode=in,out - The encoding format. XSORT will auto-detect ASCII, UTF-8, and UTF-16 files, so this option is only necessary if you want the input and output encoding to be different. The options for in and out are:</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>UTF-16LE</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>UTF-16BE</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>UTF-32LE</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>UTF-32BE</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>UTF-8</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>ANSI</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>ASCII</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>CPnnn, where nnn is a Windows code page (for example, CP437 or CP1251).</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6>Anything remaining on the command line is presumed to be one or more input files.&nbsp;</span></p>
+<p class=rvps2><span class=rvts6>If no input file is specified, XSORT will read from standard input. XSORT also supports reading from CLIP:</span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

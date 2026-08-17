@@ -1,0 +1,859 @@
+<html lang=en-us style="font-size:100%"><!--
+ Page saved with SingleFile 
+ url: https://jpsoft.com/help/_net-plugins.htm 
+ saved date: Fri Aug 07 2026 15:13:17 GMT-0400 (Eastern Daylight Time)
+--><head><meta charset=utf-8>
+<title>.NET Plugins</title>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name=viewport id=pageviewport content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes, minimal-ui">
+<meta name=apple-mobile-web-app-capable content=yes>
+<meta name=apple-mobile-web-app-status-bar-style content=black>
+<meta name=mobile-web-app-capable content=yes>
+<meta http-equiv=Pragma content=no-cache>
+<meta http-equiv=Expires content=-1>
+<meta http-equiv=cache-control content=no-cache>
+<meta name=generator content="Help+Manual">
+<meta name=keywords content=".NET Plugins">
+<meta name=description content="Creating .NET plugins for TCC, including C# examples.">
+<meta name=ZOOMIMAGE content="./images/zoomimage.jpg">
+<meta name=author content="Rex Conn">
+<meta name=msapplication-tap-highlight content=no>
+<style>:root{--sf-img-0: url("data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==")}</style><style>body,table,tr{font-size:100%;font-family:Arial,Helvetica,sans-serif;font-style:normal;font-weight:normal;color:#000000;text-decoration:none}table,tr{font-size:100%}p,p.p_Normal{text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0}img.image-toggle:hover+svg.image-toggle-magnifier,svg.image-toggle-magnifier:hover{opacity:1}.hmImageMap:hover a.hmHotspotRect{opacity:0.3}.hmImageMap:hover a.hmHotspotEllipse{opacity:0.3}a.hmHotspotRect:hover{border:1px solid #000;background:#FFF;opacity:0.3}a.hmHotspotEllipse:hover{border:1px solid #000;background:#FFF;opacity:0.3}</style>
+<style>a.topiclink:visited{color:blue}a.topiclink:hover{color:blue}a.weblink:visited{color:blue}a.weblink:hover{color:blue}a.popuplink:visited{color:blue}a.popuplink:hover{color:blue}a.filelink:visited{color:blue}a.filelink:hover{color:blue}a.scriptlink:visited{color:blue}a.scriptlink:hover{color:blue}a.inline-toggle:visited{color:blue}a.inline-toggle:hover{color:blue}a.dropdown-toggle:visited{color:blue}a.dropdown-toggle:hover{color:blue}#callout-table a:visited{text-decoration:none;color:blue}#overview-table a:visited{text-decoration:none;color:#000000}#callout-table a:hover,#overview-table a:hover{text-decoration:underline}</style>
+<style>html,body,div,span,iframe,a,img,ul,li,table,tbody,tr,td,nav{margin:0;padding:0;border:0;vertical-align:baseline}html{overflow:hidden}::-webkit-scrollbar{width:10px}::-webkit-scrollbar:horizontal{height:10px}::-webkit-scrollbar-track{background:#f5f5f5}::-webkit-scrollbar-thumb{background:#a1a1a1;border-radius:5px}::-webkit-scrollbar-thumb:hover{background:#858585}body{background-color:#ffffff;background-image:var(--sf-img-0);background-position:left top;background-repeat:repeat;-moz-text-size-adjust:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;text-size-adjust:none}div#helpwrapper{position:absolute;top:0;bottom:0;left:0;right:0;min-width:230px;overflow:hidden}div#pagewrapper{position:absolute;top:0;bottom:0;left:0;right:0;padding:0;min-width:230px}nav#navpane_tabs{display:inline-block;position:absolute;top:0;right:1px;bottom:0;left:0;font-family:"Trebuchet MS",Helvetica,Arial,sans-serif}ul.tabs{display:inline-block;position:absolute;bottom:7px;height:auto;list-style:none;margin-left:5px;white-space:nowrap;font-size:1.5rem}li.hmtabs{display:inline-block;vertical-align:top;text-indent:0;list-style-image:none;padding:0;margin-left:0;cursor:pointer;background-color:transparent}li.hmtabs:first-child{margin-left:0}li.hmtabs a{color:#ffffff;text-decoration:none;padding:0 0.5rem;outline:none}li.hmtabs svg.tocicon{color:#ffffff;fill:#ffffff}li.hmtabs:hover svg.tocicon{color:#444444;fill:#444444}li.hmtabs.current{border-color:transparent;background-color:transparent;cursor:default}li.hmtabs.current a,li.hmtabs.current svg.tocicon{color:#444444;fill:#444444;cursor:default}svg.tocicon{width:1.1rem;height:1.1rem}.phone{display:none!important}div#headerbox_wrapper{position:absolute;top:0.0rem;left:0rem;right:0rem;outline:none;overflow:visible;z-index:1000;font-family:"Trebuchet MS",Helvetica,Arial,sans-serif;background-color:#d9d9d9}ul.topnav li a:visited{color:#ffffff}ul.topnav>li>a:hover{color:#000000;background-color:#cacaca;text-decoration:underline}ul.topnav ul.subnav li:hover{background-color:#cacaca;color:#000000}ul.topnav ul li a:hover{color:#000000}div#navwrapper{position:absolute;bottom:0.0rem;padding:0 0 0 0;overflow:visible;-ms-touch-action:none;background-color:#aeaeae;border-style:solid;border-color:transparent;border-width:thin thin 0 0}div#navcontainer{position:absolute;top:0;left:0;bottom:0;right:0;padding:0;overflow:visible;background-color:transparent;z-index:1001}div#navsplitbar{position:absolute;top:1.530rem;right:-1.5rem;bottom:0.157rem;width:1.063rem;background:var(--sf-img-0);cursor:ew-resize;z-index:1002}div#toolbutton_wrapper,div#dragwrapper{position:absolute;right:-1.77rem;width:1.70rem;height:3.5rem;z-index:10000}div#toolbutton_wrapper{top:20%;cursor:ns-resize}div#dragwrapper{top:40%;cursor:ew-resize}div#toolbutton,div#dragbutton{position:absolute;display:initial;right:1rem;top:0;width:0.70rem;height:2rem;padding:1.4rem 0 0 0;border-width:0;border-radius:0 0.4rem 0.4rem 0;background-color:#838383;opacity:1.0;z-index:900}svg#draghandleicon_l,svg#draghandleicon_r,svg#toolbar_updown_close,svg#toolbar_updown_open{width:1rem;height:1rem;-ms-touch-action:none;opacity:1.0;z-index:0;color:#ffffff;fill:#ffffff;transform:translate(-0.05rem,0)}div.navbox{position:absolute;right:0;bottom:0;left:0;border-color:transparent;border-style:solid;border-width:thin thin 0 0;padding:0;margin:0;overflow:hidden;background-color:#f5f5f5;-webkit-overflow-scrolling:touch;z-index:1000}div.navbox.on{display:block}iframe.navframe{width:100%;height:100%;margin:0;background-color:transparent;overflow:hidden}div#topicbox{position:absolute;background-color:#aeaeae;right:0.0rem;bottom:0.0rem;border:thin solid transparent;border-width:thin 0 0 thin;z-index:1}div#hmpageheader{position:absolute;top:0.1rem;left:0.5rem;right:0.5rem;font-family:"Trebuchet MS",Helvetica,Arial,sans-serif;overflow:hidden}div#hmpagebody{position:absolute;right:0;bottom:0;left:0;background-color:#ffffff;border-style:solid;border-color:transparent;border-width:thin 0 0 0;margin:0;-webkit-overflow-scrolling:touch;overflow:hidden}_:-ms-lang(x),_:-webkit-full-screen{right:18px}div#hmpagebody_scroller{position:absolute;top:0;left:0;right:0;bottom:0;padding:0.5rem 0.5rem 0.313rem 1.0rem;overflow-y:scroll;overflow-x:auto;scrollbar-color:#a1a1a1 #f5f5f5;scrollbar-width:thin}table#topicheadertable{width:100%;border-spacing:0;border-collapse:collapse;background:transparent;padding:0}table#topicheadertable td{border:0px solid blue;padding:0}td#topicnavcell{vertical-align:top;text-align:right;margin:0}td#topicnavcell a,td#topicnavcell span{white-space:nowrap}td#topicheadercell{vertical-align:top}div#topicheaderwrapper{outline:0px solid red}p.topic_breadcrumbs{font-size:0.75rem;font-weight:normal;font-style:italic;text-decoration:none;color:#ffffff;margin:0;padding:0}p.topic_breadcrumbs a:link{color:#ffffff;font-weight:normal;font-style:italic;text-decoration:none;opacity:0.7;border-bottom:thin dotted #ffffff}p.topic_breadcrumbs a:visited{color:#ffffff}p.topic_breadcrumbs a:hover{border-bottom:thin solid #ffffff;opacity:1.0}p.topictitle{font-family:"Trebuchet MS",Helvetica,Arial,sans-serif;font-size:1.0rem;font-weight:100;color:#ffffff;margin:0 0 0.1rem 0;padding:0}a.topicnavlink{cursor:pointer;outline:none;display:inline-block;color:#ffffff;background-color:transparent;text-align:center;text-decoration:none;opacity:1.0;padding:0 0.2rem 0.4rem 0.2rem}a.topicnavlink:hover{opacity:1.0;background-color:#cacaca}a.topicnavlink span{display:block;color:#ffffff;font-family:"Trebuchet MS",Helvetica,Arial,sans-serif;font-weight:100;font-size:0.7rem;margin-top:0.1rem}a.topicnavlink svg.navicon{width:1.1rem;height:1.1rem;margin-bottom:-0.2rem;fill:#ffffff}a.topicnavlink:hover span,a.topicnavlink:hover svg.navicon{color:#000000;fill:#000000}a.topicnavlink.disabled:hover,a.topicnavlink.disabled:hover span{color:#ffffff}a.topicnavlink.disabled:hover svg.navicon{fill:#ffffff}div#navigationmenu{position:absolute;z-index:100;right:2.1rem;border:thin solid transparent;font-family:"Trebuchet MS",Helvetica,Arial,sans-serif;background-color:#838383;border-top:none;box-shadow:0.125rem 0.125rem 0.500rem 0.025rem #676767}ul#hamburgermenu li:hover{background-color:#cacaca;color:#000000;opacity:1.0;cursor:pointer}ul#hamburgermenu li:hover a{color:#000000}ul#hamburgermenu li a:visited{color:#ffffff}ul#hamburgermenu li:hover a,ul#hamburgermenu li:hover svg.hmbicon{color:#000000;fill:#000000;cursor:pointer}div.toolwrapper{border:1px solid transparent}img#leftright{position:absolute;right:-60px;top:33%;z-index:2000}div#hmpopuptitlebar div#hmclosepopup:hover{color:red}div#dragsurface{position:absolute;top:0;right:0;bottom:0;left:0;background-image:var(--sf-img-0);cursor:ew-resize;z-index:100000}div#unclicker{position:fixed;width:100%;height:100%;z-index:99;background-image:var(--sf-img-0)}div#autoTocWrapper{position:absolute;max-height:90%;overflow-y:auto;z-index:100;right:2.1rem;white-space:nowrap;padding:0;margin:0;border:thin solid transparent;background-color:#838383;border-top-width:0;box-shadow:0.125rem 0.125rem 0.225rem 0.025rem #676767}p.autoTOC:hover{color:#000000}ul#autoTocList li:hover{color:#000000;fill:#000000;background-color:#cacaca;opacity:1.0}ul#autoTocList li:hover p.autoTOC,ul#autoTocList li:hover svg.atocicon{color:#000000;fill:#000000}div.topicfooter{width:90%;margin:1.25rem auto 0 auto;padding:0 0 0.75rem 0;border-style:solid;border-width:thin 0 0 0;border-color:#c0c0c0}p.topicfooter a:visited{color:#707070}p.topicfooter a:hover{text-decoration:none;color:#000000;border-bottom:thin solid #000000}.svgsprite{display:inline!important}span.f_CodeSampleLink:hover{color:#ffffff;background:silver}</style>
+<link rel=canonical href="resources/https://jpsoft.com/help/_net-plugins.htm">
+<meta name=referrer content=no-referrer><link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEASEgAAAEAIACIVAAAFgAAACgAAABIAAAAkAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAABAAAAAgAAAAIAAAACAAAAAgAAAAIAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAgAAAAIAAAACAAAAAgAAAAEAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAMAAAAHAAAACgAAAAwAAAANAAAAEAAAABIAAAAUAAAAFgAAABkAAAAcAAAAIAAAACAAAAAhAAAAIAAAAB8AAAAcAAAAGQAAABYAAAASAAAAEAAAAA8AAAAMAAAACwAAAAgAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAcAAAAQAAAAFgAAABoAAAAfAAAAJAAAADIAAAA/AAAATgAAAGQAAAB2DyQ6lBQvTKAUL0ygFi9MoAEDBYQAAAB2AAAAYQAAAEgAAAA0AAAAKQAAACEAAAAcAAAAFwAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////+AAAH8AAAD//////wAAAA8AAAD//////wAAAA8AAAD//////4AAAA8AAAD///////gAAf8AAAD///////AAAH8AAAD//////8AAAD8AAAD//////4AAAB8AAAD//////wAAAA8AAADgAAAAAAAAAA8AAACAAAAAAAAAAAcAAACAAAAAAAAAAAMAAACAAAAAAAAAAAMAAACAAAAAAAAAAAEAAACAAAAAAAAAAAEAAACAAAAAAAAAAAEAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAEAAACAAAAAAAAAAAEAAACAAAAAAAAAAAEAAACAAAAAAAAAAAEAAACAAAAAAAAAAAEAAACAAAAAAAAAAAMAAACAAAAAAAAAAAMAAACAAAAAAAAAAAcAAACAAAAAAAAAAAcAAACAAAAAAAAAAA8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAAAAAAAAAB8AAACAAABAAAQAAH8AAACAAABAAAQAAH8AAACAAABAAAQAAH8AAACAAABAAAQAAH8AAACAAABAAAQAAH8AAACAAABAAAQAAH8AAAD////4AD+AB/8AAAD///////////8AAAA="><style>.sf-hidden{display:none!important}</style><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"><style>img[src="data:,"],source[src="data:,"]{display:none!important}</style></head>
+<body>
+<svg version=1.1 xmlns="http://www.w3.org/2000/svg" style=display:none>
+<defs>
+<g class=svgsprite id=th-list width=32 height=32 viewBox="0 0 32 32">
+<path d="M9.152 22.272v3.456q0 0.704-0.512 1.184t-1.216 0.512h-5.696q-0.736 0-1.216-0.512t-0.512-1.184v-3.456q0-0.704 0.512-1.216t1.216-0.48h5.696q0.704 0 1.216 0.48t0.512 1.216zM9.152 13.152v3.424q0 0.704-0.512 1.216t-1.216 0.48h-5.696q-0.736 0-1.216-0.48t-0.512-1.216v-3.424q0-0.736 0.512-1.216t1.216-0.512h5.696q0.704 0 1.216 0.512t0.512 1.216zM32 22.272v3.456q0 0.704-0.512 1.184t-1.216 0.512h-17.12q-0.736 0-1.216-0.512t-0.512-1.184v-3.456q0-0.704 0.512-1.216t1.216-0.48h17.12q0.736 0 1.216 0.48t0.512 1.216zM9.152 4v3.424q0 0.704-0.512 1.216t-1.216 0.512h-5.696q-0.736 0-1.216-0.512t-0.512-1.216v-3.424q0-0.704 0.512-1.216t1.216-0.512h5.696q0.704 0 1.216 0.512t0.512 1.216zM32 13.152v3.424q0 0.704-0.512 1.216t-1.216 0.48h-17.12q-0.736 0-1.216-0.48t-0.512-1.216v-3.424q0-0.736 0.512-1.216t1.216-0.512h17.12q0.736 0 1.216 0.512t0.512 1.216zM32 4v3.424q0 0.704-0.512 1.216t-1.216 0.512h-17.12q-0.736 0-1.216-0.512t-0.512-1.216v-3.424q0-0.704 0.512-1.216t1.216-0.512h17.12q0.736 0 1.216 0.512t0.512 1.216z"></path>
+ </g> 
+<g class=svgsprite id=key-inv width=30 height=32 viewBox="0 0 30 32">
+<path d="M20.256 1.696q3.68 0 6.304 2.624t2.592 6.304-2.592 6.304-6.336 2.624q-0.896 0-1.632-0.16l-0.16 0.16v3.584h-3.584v3.552h-3.552v3.616h-10.72v-7.168l10.88-10.88q-0.16-0.736-0.16-1.664 0-3.68 2.624-6.272t6.336-2.624zM20.256 12.416q0.704 0 1.248-0.512t0.512-1.312-0.512-1.248-1.28-0.512q-0.768 0-1.28 0.544t-0.512 1.216q0 0.768 0.544 1.312t1.28 0.512z"></path>
+ </g>
+<g class=svgsprite id=search width=30 height=32 viewBox="0 0 30 32">
+<path d="M20.576 14.848q0-3.296-2.368-5.632t-5.632-2.368-5.664 2.368-2.336 5.632 2.336 5.664 5.664 2.336 5.632-2.336 2.368-5.664zM29.728 29.728q0 0.928-0.704 1.6t-1.6 0.672q-0.96 0-1.6-0.672l-6.112-6.112q-3.2 2.208-7.136 2.208-2.56 0-4.896-0.992t-4-2.688-2.688-4-0.992-4.896 0.992-4.864 2.688-4.032 4-2.688 4.896-0.992 4.864 0.992 4.032 2.688 2.688 4.032 0.992 4.864q0 3.936-2.208 7.136l6.112 6.112q0.672 0.672 0.672 1.632z"></path>
+ </g>
+<g class=svgsprite id=draghandle width=30 height=32 viewBox="0 0 30 32">
+ <path d="M21.482,17.037v-4.977h-8.877V4.977h8.877V0L30,8.519L21.482,17.037z M0,22.2l8.518,8.519v-4.977h8.877v-7.084H8.518v-4.977
+	L0,22.2z"></path>
+ </g>
+<g class=svgsprite id=draghandle_r width=30 height=32 viewBox="0 0 30 32">
+ <path d="M10,6L8.59,7.41,13.17,12l-4.58,4.59L10,18l6,-6z"></path>
+ </g>
+<g class=svgsprite id=draghandle_l width=30 height=32 viewBox="0 0 30 32">
+ <path d="M15.41,7.41L14,6l-6,6,6,6,1.41,-1.41L10.83,12z"></path>
+ </g>
+<g class=svgsprite id=toolbar_close width=30 height=30 viewBox="0 0 30 30">
+ <path d="M16.295 15.705C16.295 15.705 17.705 14.295 17.705 14.295C17.705 14.295 11.705 8.295 11.705 8.295C11.705 8.295 5.705 14.295 5.705 14.295C5.705 14.295 7.115 15.705 7.115 15.705C7.115 15.705 11.705 11.125 11.705 11.125C11.705 11.125 16.295 15.705 16.295 15.705"></path>
+ </g>
+<g class=svgsprite id=toolbar_open width=30 height=30 viewBox="0 0 30 30">
+ <path d="M7.115 8.295C7.115 8.295 5.705 9.705 5.705 9.705C5.705 9.705 11.705 15.705 11.705 15.705C11.705 15.705 17.705 9.705 17.705 9.705C17.705 9.705 16.295 8.295 16.295 8.295C16.295 8.295 11.705 12.875 11.705 12.875C11.705 12.875 7.115 8.295 7.115 8.295"></path>
+ </g>
+<g class=svgsprite id=toolbar_updown_icon width=30 height=30 viewBox="0 0 30 30">
+ <path d="M17.038,8.518h-4.977v8.879l-7.084-0.002V8.518H0L8.519,0L17.038,8.518z M22.2,30l8.519-8.518h-4.977v-8.877l-7.084-0.002
+	v8.879h-4.977L22.2,30z"></path>
+ </g>
+<g class=svgsprite id=angle-circled-left width=27 height=32 viewBox="0 0 27 32">
+<path d="M16.224 24.896l1.824-1.792q0.352-0.352 0.352-0.832t-0.352-0.8l-5.472-5.472 5.472-5.472q0.352-0.352 0.352-0.8t-0.352-0.832l-1.824-1.792q-0.32-0.352-0.8-0.352t-0.8 0.352l-8.096 8.096q-0.352 0.32-0.352 0.8t0.352 0.8l8.096 8.096q0.352 0.352 0.8 0.352t0.8-0.352zM27.424 16q0 3.744-1.824 6.88t-4.992 4.992-6.88 1.856-6.912-1.856-4.96-4.992-1.856-6.88 1.856-6.88 4.96-4.992 6.912-1.856 6.88 1.856 4.992 4.992 1.824 6.88z"></path>
+ </g>
+<g class=svgsprite id=angle-circled-up width=27 height=32 viewBox="0 0 27 32">
+<path d="M20.8 20.352l1.824-1.824q0.352-0.352 0.352-0.8t-0.352-0.832l-8.096-8.096q-0.352-0.32-0.8-0.32t-0.832 0.32l-8.096 8.096q-0.32 0.352-0.32 0.832t0.32 0.8l1.824 1.824q0.352 0.32 0.8 0.32t0.8-0.32l5.504-5.504 5.472 5.504q0.352 0.32 0.8 0.32t0.8-0.32zM27.424 16q0 3.744-1.824 6.88t-4.992 4.992-6.88 1.856-6.912-1.856-4.96-4.992-1.856-6.88 1.856-6.88 4.96-4.992 6.912-1.856 6.88 1.856 4.992 4.992 1.824 6.88z"></path>
+ </g>
+<g class=svgsprite id=angle-circled-right width=27 height=32 viewBox="0 0 27 32">
+<path d="M12.8 24.896l8.096-8.096q0.352-0.352 0.352-0.8t-0.352-0.8l-8.096-8.096q-0.32-0.352-0.8-0.352t-0.8 0.352l-1.824 1.792q-0.352 0.352-0.352 0.832t0.352 0.8l5.472 5.472-5.472 5.472q-0.352 0.352-0.352 0.8t0.352 0.832l1.824 1.792q0.352 0.352 0.8 0.352t0.8-0.352zM27.424 16q0 3.744-1.824 6.88t-4.992 4.992-6.88 1.856-6.912-1.856-4.96-4.992-1.856-6.88 1.856-6.88 4.96-4.992 6.912-1.856 6.88 1.856 4.992 4.992 1.824 6.88z"></path>
+ </g>
+<g class=svgsprite id=menu width=27 height=32 viewBox="0 0 27 32">
+ <path d="M27.424 24v2.272q0 0.48-0.32 0.8t-0.832 0.352h-25.12q-0.48 0-0.8-0.352t-0.352-0.8v-2.272q0-0.48 0.352-0.8t0.8-0.352h25.12q0.48 0 0.832 0.352t0.32 0.8zM27.424 14.848v2.304q0 0.448-0.32 0.8t-0.832 0.32h-25.12q-0.48 0-0.8-0.32t-0.352-0.8v-2.304q0-0.448 0.352-0.8t0.8-0.32h25.12q0.48 0 0.832 0.32t0.32 0.8zM27.424 5.728v2.272q0 0.48-0.32 0.8t-0.832 0.352h-25.12q-0.48 0-0.8-0.352t-0.352-0.8v-2.272q0-0.48 0.352-0.832t0.8-0.32h25.12q0.48 0 0.832 0.32t0.32 0.832z"></path>
+ </g>
+<g class=svgsprite id=collapse width=27 height=32 viewBox="0 0 27 32">
+<path d="M20.448 19.936q-0.32 0.64-1.024 0.64h-11.424q-0.704 0-1.024-0.64-0.32-0.608 0.096-1.184l5.728-8q0.32-0.48 0.928-0.48t0.928 0.48l5.696 8q0.416 0.576 0.096 1.184zM22.848 24.576v-17.152q0-0.224-0.16-0.384t-0.416-0.192h-17.12q-0.224 0-0.416 0.192t-0.16 0.384v17.152q0 0.224 0.16 0.384t0.416 0.192h17.12q0.256 0 0.416-0.192t0.16-0.384zM27.424 7.424v17.152q0 2.112-1.504 3.616t-3.648 1.536h-17.12q-2.144 0-3.648-1.536t-1.504-3.616v-17.152q0-2.112 1.504-3.616t3.648-1.536h17.12q2.144 0 3.648 1.536t1.504 3.616z"></path>
+ </g>
+<g class=svgsprite id=expand width=27 height=32 viewBox="0 0 27 32">
+<path d="M20.448 12.064q0.32 0.608-0.096 1.152l-5.696 8q-0.352 0.512-0.928 0.512t-0.928-0.512l-5.728-8q-0.416-0.544-0.096-1.152 0.32-0.64 1.024-0.64h11.424q0.704 0 1.024 0.64zM22.848 24.576v-17.152q0-0.224-0.16-0.384t-0.416-0.192h-17.12q-0.224 0-0.416 0.192t-0.16 0.384v17.152q0 0.224 0.16 0.384t0.416 0.192h17.12q0.256 0 0.416-0.192t0.16-0.384zM27.424 7.424v17.152q0 2.112-1.504 3.616t-3.648 1.536h-17.12q-2.144 0-3.648-1.536t-1.504-3.616v-17.152q0-2.112 1.504-3.616t3.648-1.536h17.12q2.144 0 3.648 1.536t1.504 3.616z"></path>
+ </g>
+<g class=svgsprite id=eye width=32 height=32 viewBox="0 0 32 32">
+<path d="M29.728 17.152q-2.72-4.224-6.816-6.304 1.088 1.856 1.088 4 0 3.328-2.336 5.664t-5.664 2.336-5.664-2.336-2.336-5.664q0-2.144 1.088-4-4.096 2.080-6.816 6.304 2.4 3.648 5.984 5.824t7.744 2.176 7.744-2.176 5.984-5.824zM16.864 10.272q0-0.352-0.256-0.608t-0.608-0.224q-2.24 0-3.84 1.6t-1.6 3.808q0 0.352 0.256 0.608t0.608 0.256 0.608-0.256 0.256-0.608q0-1.536 1.088-2.624t2.624-1.088q0.352 0 0.608-0.256t0.256-0.608zM32 17.152q0 0.608-0.352 1.216-2.496 4.128-6.72 6.592t-8.928 2.464-8.928-2.464-6.72-6.592q-0.352-0.608-0.352-1.216t0.352-1.248q2.496-4.096 6.72-6.56t8.928-2.496 8.928 2.496 6.72 6.56q0.352 0.64 0.352 1.248z"></path>
+ </g>
+<g class=svgsprite id=eye-off width=32 height=32 viewBox="0 0 32 32">
+<path d="M9.92 23.84l1.376-2.528q-1.536-1.12-2.432-2.816t-0.864-3.648q0-2.144 1.088-4-4.096 2.080-6.816 6.304 3.008 4.608 7.648 6.688zM16.864 10.272q0-0.352-0.256-0.608t-0.608-0.224q-2.24 0-3.84 1.6t-1.6 3.808q0 0.352 0.256 0.608t0.608 0.256 0.608-0.256 0.256-0.608q0-1.536 1.088-2.624t2.624-1.088q0.352 0 0.608-0.256t0.256-0.608zM23.328 6.88q0 0.128 0 0.16-1.888 3.36-5.632 10.112t-5.632 10.112l-0.896 1.6q-0.16 0.288-0.48 0.288-0.224 0-2.4-1.248-0.288-0.192-0.288-0.512 0-0.224 0.8-1.568-2.56-1.152-4.704-3.072t-3.744-4.384q-0.352-0.544-0.352-1.216t0.352-1.248q2.752-4.192 6.784-6.624t8.864-2.432q1.6 0 3.2 0.32l0.992-1.728q0.16-0.288 0.48-0.288 0.096 0 0.32 0.096t0.576 0.288 0.576 0.32 0.576 0.32 0.32 0.224q0.288 0.16 0.288 0.48zM24 14.848q0 2.496-1.408 4.544t-3.744 2.944l5.024-8.992q0.128 0.832 0.128 1.504zM32 17.152q0 0.608-0.352 1.216-0.704 1.152-1.952 2.592-2.688 3.072-6.208 4.768t-7.488 1.696l1.312-2.368q3.808-0.32 7.008-2.432t5.408-5.472q-2.080-3.2-5.056-5.248l1.12-2.016q1.696 1.152 3.264 2.752t2.592 3.264q0.352 0.608 0.352 1.248z"></path>
+ </g>
+<g class=svgsprite id=link width=30 height=32 viewBox="0 0 30 32">
+<path d="M25.984 21.728q0-0.736-0.48-1.216l-3.712-3.712q-0.512-0.512-1.216-0.512-0.768 0-1.28 0.576 0.032 0.032 0.32 0.32t0.384 0.384 0.288 0.352 0.224 0.448 0.064 0.48q0 0.736-0.512 1.216t-1.216 0.512q-0.256 0-0.48-0.064t-0.448-0.224-0.352-0.288-0.384-0.384-0.32-0.32q-0.608 0.544-0.608 1.28t0.512 1.216l3.68 3.712q0.48 0.48 1.216 0.48 0.704 0 1.216-0.48l2.624-2.592q0.48-0.512 0.48-1.184zM13.44 9.12q0-0.704-0.48-1.216l-3.68-3.68q-0.512-0.512-1.216-0.512t-1.216 0.48l-2.624 2.624q-0.512 0.48-0.512 1.184t0.512 1.216l3.712 3.712q0.48 0.48 1.216 0.48t1.28-0.544q-0.064-0.064-0.352-0.352t-0.384-0.384-0.256-0.32-0.224-0.448-0.064-0.512q0-0.704 0.48-1.216t1.216-0.48q0.288 0 0.512 0.064t0.448 0.224 0.32 0.256 0.384 0.384 0.352 0.352q0.576-0.544 0.576-1.312zM29.44 21.728q0 2.144-1.536 3.616l-2.624 2.592q-1.472 1.504-3.616 1.504-2.176 0-3.648-1.536l-3.68-3.68q-1.472-1.504-1.472-3.648 0-2.176 1.568-3.712l-1.568-1.568q-1.536 1.568-3.712 1.568-2.144 0-3.648-1.504l-3.712-3.712q-1.504-1.504-1.504-3.648t1.504-3.616l2.624-2.624q1.504-1.472 3.648-1.472t3.648 1.504l3.648 3.712q1.504 1.472 1.504 3.616 0 2.208-1.568 3.744l1.568 1.568q1.536-1.568 3.712-1.568 2.144 0 3.648 1.504l3.712 3.712q1.504 1.504 1.504 3.648z"></path>
+ </g>
+<g class=svgsprite id=mail-alt width=32 height=32 viewBox="0 0 32 32">
+<path d="M32 12.672v14.176q0 1.184-0.832 2.016t-2.016 0.864h-26.304q-1.152 0-2.016-0.864t-0.832-2.016v-14.176q0.8 0.896 1.792 1.568 6.464 4.384 8.896 6.144 1.024 0.768 1.632 1.184t1.696 0.864 1.952 0.416h0.064q0.896 0 1.952-0.416t1.696-0.864 1.632-1.184q3.040-2.176 8.896-6.144 1.024-0.704 1.792-1.568zM32 7.424q0 1.408-0.864 2.688t-2.176 2.208q-6.72 4.672-8.384 5.792-0.16 0.128-0.736 0.544t-0.96 0.704-0.928 0.576-1.056 0.48-0.864 0.16h-0.064q-0.384 0-0.864-0.16t-1.056-0.48-0.928-0.576-0.96-0.704-0.736-0.544q-1.632-1.12-4.704-3.232t-3.648-2.56q-1.12-0.736-2.080-2.048t-0.992-2.464q0-1.376 0.736-2.304t2.112-0.928h26.304q1.152 0 1.984 0.832t0.864 2.016z"></path>
+ </g>
+<g class=svgsprite id=print width=30 height=32 viewBox="0 0 30 32">
+<path d="M6.848 27.424h16v-4.576h-16v4.576zM6.848 16h16v-6.848h-2.848q-0.704 0-1.216-0.512t-0.512-1.216v-2.848h-11.424v11.424zM27.424 17.152q0-0.48-0.32-0.8t-0.832-0.352-0.8 0.352-0.32 0.8 0.32 0.8 0.8 0.32 0.832-0.32 0.32-0.8zM29.728 17.152v7.424q0 0.224-0.192 0.384t-0.384 0.192h-4v2.848q0 0.704-0.512 1.216t-1.216 0.512h-17.152q-0.704 0-1.184-0.512t-0.512-1.216v-2.848h-4q-0.224 0-0.416-0.192t-0.16-0.384v-7.424q0-1.408 1.024-2.432t2.4-0.992h1.152v-9.728q0-0.704 0.512-1.216t1.184-0.512h12q0.736 0 1.6 0.384t1.344 0.832l2.72 2.72q0.48 0.512 0.864 1.376t0.352 1.568v4.576h1.12q1.44 0 2.432 0.992t1.024 2.432z"></path>
+ </g>
+<g class=svgsprite id=resize-full width=27 height=32 viewBox="0 0 27 32">
+<path d="M13.472 18.848q0 0.256-0.16 0.416l-5.92 5.92 2.56 2.592q0.32 0.32 0.32 0.8t-0.32 0.8-0.8 0.352h-8q-0.48 0-0.8-0.352t-0.352-0.8v-8q0-0.48 0.352-0.8t0.8-0.352 0.8 0.352l2.56 2.56 5.92-5.92q0.192-0.192 0.416-0.192t0.416 0.192l2.048 2.016q0.16 0.192 0.16 0.416zM27.424 3.424v8q0 0.48-0.32 0.8t-0.832 0.352-0.8-0.352l-2.56-2.56-5.92 5.92q-0.192 0.192-0.416 0.192t-0.416-0.192l-2.048-2.016q-0.16-0.192-0.16-0.416t0.16-0.416l5.952-5.92-2.592-2.592q-0.32-0.32-0.32-0.8t0.32-0.8 0.8-0.352h8q0.48 0 0.832 0.352t0.32 0.8z"></path>
+ </g>
+<g class=svgsprite id=resize-small width=27 height=32 viewBox="0 0 27 32">
+<path d="M13.728 17.152v8q0 0.448-0.352 0.8t-0.8 0.32-0.8-0.32l-2.592-2.592-5.92 5.952q-0.16 0.16-0.416 0.16t-0.416-0.16l-2.016-2.048q-0.192-0.16-0.192-0.416t0.192-0.416l5.92-5.92-2.56-2.56q-0.352-0.352-0.352-0.8t0.352-0.8 0.8-0.352h8q0.448 0 0.8 0.352t0.352 0.8zM27.2 5.152q0 0.224-0.192 0.416l-5.92 5.92 2.56 2.56q0.352 0.352 0.352 0.8t-0.352 0.8-0.8 0.352h-8q-0.448 0-0.8-0.352t-0.32-0.8v-8q0-0.448 0.32-0.8t0.8-0.32 0.8 0.32l2.592 2.592 5.92-5.952q0.192-0.16 0.416-0.16t0.416 0.16l2.016 2.048q0.192 0.16 0.192 0.416z"></path>
+ </g>
+<g class=svgsprite id=share width=27 height=32 viewBox="0 0 27 32">
+<path d="M21.728 18.272q2.368 0 4.032 1.696t1.664 4.032-1.664 4.032-4.032 1.696-4.064-1.696-1.664-4.032q0-0.224 0.032-0.608l-6.432-3.2q-1.632 1.536-3.872 1.536-2.4 0-4.064-1.696t-1.664-4.032 1.664-4.032 4.064-1.696q2.24 0 3.872 1.536l6.432-3.2q-0.032-0.384-0.032-0.608 0-2.368 1.664-4.032t4.064-1.696 4.032 1.696 1.664 4.032-1.664 4.032-4.032 1.696q-2.272 0-3.904-1.536l-6.432 3.2q0.032 0.384 0.032 0.608t-0.032 0.608l6.432 3.2q1.632-1.536 3.904-1.536z"></path>
+ </g>
+<g class=svgsprite id=text-height width=32 height=32 viewBox="0 0 32 32">
+<path d="M31.136 25.152q0.608 0 0.768 0.32t-0.192 0.8l-2.272 2.88q-0.352 0.48-0.864 0.48t-0.864-0.48l-2.272-2.88q-0.352-0.48-0.192-0.8t0.736-0.32h1.44v-18.304h-1.44q-0.576 0-0.736-0.32t0.192-0.8l2.272-2.88q0.352-0.48 0.864-0.48t0.864 0.48l2.272 2.88q0.352 0.48 0.192 0.8t-0.768 0.32h-1.408v18.304h1.408zM1.44 2.304l0.96 0.48q0.224 0.096 3.776 0.096 0.8 0 2.368-0.032t2.336-0.032q0.672 0 1.92 0t1.92 0h5.248q0.096 0 0.384 0t0.352 0 0.288-0.032 0.32-0.16 0.256-0.32l0.768-0.032q0.064 0 0.224 0.032t0.256 0q0.032 1.984 0.032 5.984 0 1.44-0.064 1.952-0.704 0.256-1.216 0.32-0.448-0.768-0.992-2.272-0.032-0.16-0.192-0.864t-0.256-1.312-0.128-0.64q-0.096-0.128-0.224-0.224t-0.256-0.096-0.256-0.032-0.32-0.032-0.288 0.032q-0.288 0-1.184-0.032t-1.344 0-1.12 0.032-1.28 0.128q-0.16 1.44-0.128 2.4 0 1.696 0.032 6.944t0.032 8.128q0 0.288-0.032 1.28t0 1.632 0.224 1.216q0.704 0.384 2.208 0.768t2.144 0.672q0.064 0.704 0.064 0.896 0 0.256-0.032 0.512l-0.608 0.032q-1.376 0.032-3.904-0.16t-3.68-0.16q-0.896 0-2.72 0.16t-2.688 0.16q-0.064-0.928-0.064-0.928v-0.16q0.288-0.48 1.088-0.768t1.76-0.544 1.408-0.48q0.32-0.736 0.32-6.816 0-1.824-0.032-5.44t-0.064-5.408v-2.080q0-0.032 0-0.288t0.032-0.448-0.032-0.448-0.064-0.416-0.096-0.256q-0.192-0.224-2.88-0.224-0.576 0-1.664 0.224t-1.408 0.48q-0.352 0.224-0.608 1.28t-0.576 1.984-0.768 0.96q-0.736-0.48-0.992-0.8v-6.816z"></path>
+ </g>
+<g class=svgsprite id=list-bullet width=32 height=32 viewBox="0 0 32 32">
+<path d="M6.848 25.152q0 1.408-0.992 2.432t-2.432 0.992-2.432-0.992-0.992-2.432 0.992-2.432 2.432-0.992 2.432 0.992 0.992 2.432zM6.848 16q0 1.44-0.992 2.432t-2.432 0.992-2.432-0.992-0.992-2.432 0.992-2.432 2.432-0.992 2.432 0.992 0.992 2.432zM32 23.424v3.424q0 0.224-0.16 0.416t-0.416 0.16h-21.696q-0.256 0-0.416-0.16t-0.16-0.416v-3.424q0-0.224 0.16-0.384t0.416-0.192h21.696q0.224 0 0.416 0.192t0.16 0.384zM6.848 6.848q0 1.44-0.992 2.432t-2.432 0.992-2.432-0.992-0.992-2.432 0.992-2.432 2.432-0.992 2.432 0.992 0.992 2.432zM32 14.272v3.456q0 0.224-0.16 0.384t-0.416 0.16h-21.696q-0.256 0-0.416-0.16t-0.16-0.384v-3.456q0-0.224 0.16-0.384t0.416-0.16h21.696q0.224 0 0.416 0.16t0.16 0.384zM32 5.152v3.424q0 0.224-0.16 0.384t-0.416 0.192h-21.696q-0.256 0-0.416-0.192t-0.16-0.384v-3.424q0-0.256 0.16-0.416t0.416-0.16h21.696q0.224 0 0.416 0.16t0.16 0.416z"></path>
+ </g>
+<g class=svgsprite id=ok width=32 height=32 viewBox="0 0 32 32">
+<path d="M29.824 10.112q0 0.704-0.48 1.216l-15.36 15.36q-0.512 0.48-1.216 0.48t-1.216-0.48l-8.896-8.896q-0.48-0.512-0.48-1.216t0.48-1.216l2.432-2.432q0.512-0.512 1.216-0.512t1.216 0.512l5.248 5.28 11.712-11.744q0.512-0.512 1.216-0.512t1.216 0.512l2.432 2.432q0.48 0.512 0.48 1.216z"></path>
+ </g>
+<g class=svgsprite id=ok-squared width=27 height=32 viewBox="0 0 27 32">
+<path d="M12.224 23.2l10.976-10.976q0.32-0.32 0.32-0.8t-0.32-0.8l-1.824-1.824q-0.352-0.32-0.8-0.32t-0.8 0.32l-8.352 8.352-3.776-3.776q-0.32-0.352-0.8-0.352t-0.8 0.352l-1.824 1.824q-0.32 0.32-0.32 0.8t0.32 0.8l6.4 6.4q0.352 0.32 0.8 0.32t0.8-0.32zM27.424 7.424v17.152q0 2.112-1.504 3.616t-3.648 1.536h-17.12q-2.144 0-3.648-1.536t-1.504-3.616v-17.152q0-2.112 1.504-3.616t3.648-1.536h17.12q2.144 0 3.648 1.536t1.504 3.616z"></path>
+ </g>
+</defs>
+</svg>
+<div id=noscript class=sf-hidden></div>
+ <div id=helpwrapper>
+ <div id=pagewrapper>
+ <div id=toolbar_updown class="toolwrapper phone sf-hidden">
+ <svg id=toolbar_updown_button alt="Show/Hide Toolbars" viewBox="0 0 30 30"><use xlink:href="#toolbar_updown_icon"></use></svg>
+ </div>
+ <div id=headerbox_wrapper style=display:none>
+ 
+ 
+ </div>
+ 
+ <div id=topicbox style="left:20.1875rem;opacity:1;top:0px">
+ <div id=navigationmenu style=top:40.7102px class=sf-hidden>
+ 
+ 
+ </div>
+ <div id=topicbody>
+ 
+ <div id=hmpageheader>
+ <table id=topicheadertable>
+ <tbody><tr>
+ <td id=topicheadercell>
+ <div id=topicheaderwrapper>
+ <p id=ptopic_breadcrumbs class="topic_breadcrumbs desktop">Navigation: <a href="javascript:void(0)" title=Reference>Reference</a> &gt; <a href="javascript:void(0)" title=Plugins>Plugins</a> </p> 
+ <p class=topictitle>.NET Plugins</p>
+ </div>
+ </td>
+ <td id=topicnavcell><span>
+ <a id=atoclink class=topicnavlink href="javascript:void(0)" title="Contents of this topic" style=visibility:hidden>
+ <svg class=navicon viewBox="0 0 32 32"><use xlink:href="#list-bullet"></use></svg>
+ <span>Scroll</span></a> 
+ <a id=topicnavlinkprevious class="topicnavlink nav" href="https://jpsoft.com/help/plugins.htm" title="Go to previous topic" data-bs=1426 data-ac>
+ <svg class=navicon viewBox="0 0 27 32"><use xlink:href="#angle-circled-left"></use></svg>
+ <span>Prev</span></a>
+ <a id=topicnavlinkhome class="topicnavlink nav" href="https://jpsoft.com/help/plugins.htm" title="Go to top topic" data-bs=1426 data-ac>
+ <svg class=navicon viewBox="0 0 27 32"><use xlink:href="#angle-circled-up"></use></svg>
+ <span>Top</span></a>
+ <a id=topicnavlinknext class="topicnavlink nav" href="https://jpsoft.com/help/_net-plugins-calling-tcc-comma.htm" title="Go to next topic" data-bs=1428 data-ac>
+ <svg class=navicon viewBox="0 0 27 32"><use xlink:href="#angle-circled-right"></use></svg>
+ <span>Next</span></a>
+ <a id=hamburgerlink class=topicnavlink href="javascript:void(0)" title="Additional Functions Menu">
+ <svg class=navicon viewBox="0 0 27 32"><use xlink:href="#menu"></use></svg>
+ <span>More</span></a>
+ </span>
+ </td>
+ </tr>
+ </tbody></table>
+ </div>
+ <div id=autoTocWrapper class=sf-hidden style=top:40.7102px></div> 
+ <div id=hmpagebody style=top:40.7102px>
+ <div id=unclicker class=sf-hidden></div>
+ <div id=hmpagebody_scroller>
+ <p class=p_Normal><span style=font-weight:bold>Writing .NET Plugins for TCC</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>A guide for .NET developers who want to extend TCC (Take Command Console) with custom commands, variables, and functions using C# or other .NET languages.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Overview</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>TCC supports plugins written as .NET class libraries. A C++/CLI bridge DLL (`TC-DotNetPluginHost64.dll`) loads your .NET assembly at runtime via reflection. Your plugin class implements the `ITCCPlugin` interface and exposes methods that TCC invokes by name.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>How It Works</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal style="margin:0 0 0 1.5000rem">1. TCC inspects the DLL's PE headers. If a CLR metadata directory is present, TCC treats the DLL as a .NET assembly.</p>
+<p class=p_Normal style="margin:0 0 0 1.5000rem">2. TCC loads the bridge DLL (once) and calls `TCCDotNetPlugin_Load` to load your assembly.</p>
+<p class=p_Normal style="margin:0 0 0 1.5000rem">3. The bridge finds your plugin type (by `ITCCPlugin` interface or by convention), creates an instance, and caches all public methods.</p>
+<p class=p_Normal style="margin:0 0 0 1.5000rem">4. TCC calls `Initialize`, `GetPluginInfo`, and later `Shutdown` through the bridge.</p>
+<p class=p_Normal style="margin:0 0 0 1.5000rem">5. When a user invokes a command, variable, or function that matches your `Functions` list, TCC calls the corresponding method on your plugin instance via the bridge.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Quick Start</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>1. Create a Class Library Project</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Create a **.NET Framework 4.8** (or **.NET Standard 2.0**) class library project in Visual Studio.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>2. Add the SDK</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Either:</p>
+<p class=p_Normal>- Include `DotNetPluginSDK.cs` directly in your project, *or*</p>
+<p class=p_Normal>- <strike>Reference the compiled `TakeCommand.Plugin.SDK.dll`</strike></p><p class=p_Normal>- Reference the compiled 'TC-DotNetPluginHost64.dll'</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>The SDK provides two types in the `TakeCommand.Plugin` namespace:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Type            | Purpose</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>|-----------------|-------------------------------------------</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `TCCPluginInfo` | Data class holding plugin metadata</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `ITCCPlugin`    | Interface your plugin class must implement</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>3. Implement `ITCCPlugin`</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>C#</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>using System;</p>
+<p class=p_Normal>using System.Text;</p>
+<p class=p_Normal>using TakeCommand.Plugin;</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>public class MyPlugin : ITCCPlugin</p>
+<p class=p_Normal>{</p>
+<p class=p_Normal>    private static readonly TCCPluginInfo _info = new TCCPluginInfo</p>
+<p class=p_Normal>    {</p>
+<p class=p_Normal>        Name        = "MyPlugin",</p>
+<p class=p_Normal>        Author      = "Your Name",</p>
+<p class=p_Normal>        Email       = "you@example.com",</p>
+<p class=p_Normal>        WWW         = "https://example.com",</p>
+<p class=p_Normal>        Description = "A sample TCC plugin written in C#",</p>
+<p class=p_Normal>        Functions   = "HELLO,_MYPLUGINVER,@REVERSE",</p>
+<p class=p_Normal>        Major       = 1,</p>
+<p class=p_Normal>        Minor       = 0,</p>
+<p class=p_Normal>        Build       = 1</p>
+<p class=p_Normal>    };</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>    public TCCPluginInfo GetPluginInfo() =&gt; _info;</p>
+<p class=p_Normal>    public bool Initialize()            =&gt; true;</p>
+<p class=p_Normal>    public bool Shutdown(bool end)       =&gt; true;</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>    // Command: HELLO</p>
+<p class=p_Normal>    public int HELLO(StringBuilder args)</p>
+<p class=p_Normal>    {</p>
+<p class=p_Normal>        Console.WriteLine("Hello from .NET plugin!");</p>
+<p class=p_Normal>        return 0;</p>
+<p class=p_Normal>    }</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>    // Internal variable: %_MYPLUGINVER</p>
+<p class=p_Normal>    public int _MYPLUGINVER(StringBuilder args)</p>
+<p class=p_Normal>    {</p>
+<p class=p_Normal>        args.Clear();</p>
+<p class=p_Normal>        args.Append("1.0.1");</p>
+<p class=p_Normal>        return 0;</p>
+<p class=p_Normal>    }</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>    // Variable function: @REVERSE[text]</p>
+<p class=p_Normal>    public int f_REVERSE(StringBuilder args)</p>
+<p class=p_Normal>    {</p>
+<p class=p_Normal>        char[] chars = args.ToString().ToCharArray();</p>
+<p class=p_Normal>        Array.Reverse(chars);</p>
+<p class=p_Normal>        args.Clear();</p>
+<p class=p_Normal>        args.Append(chars);</p>
+<p class=p_Normal>        return 0;</p>
+<p class=p_Normal>    }</p>
+<p class=p_Normal>}</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>4. Build and Deploy</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Build your project and copy the resulting `.dll` file into TCC's `PlugIns` directory (typically a subdirectory of the TCC installation directory). TCC loads all DLLs from this directory on startup, or you can load it manually:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>PLUGIN /L C:\Path\To\MyPlugin.dll</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>The `ITCCPlugin` Interface</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>C#</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>public interface ITCCPlugin</p>
+<p class=p_Normal>{</p>
+<p class=p_Normal>    TCCPluginInfo GetPluginInfo();</p>
+<p class=p_Normal>    bool Initialize();</p>
+<p class=p_Normal>    bool Shutdown(bool endProcess);</p>
+<p class=p_Normal>}</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>`GetPluginInfo()`</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Called once after loading. Return a `TCCPluginInfo` object describing your plugin and the features it provides.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>`Initialize()`</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Called after the assembly is loaded and the plugin type is instantiated. Perform any one-time setup here. Return `true` on success, `false` on failure (TCC will unload the plugin).</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>`Shutdown(bool endProcess)`</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Called when the plugin is being unloaded. The `endProcess` parameter is `true` when the entire command processor is shutting down, `false` when only your plugin is being unloaded. Return `true` on success.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>The `TCCPluginInfo` Class</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C#</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>public class TCCPluginInfo</p>
+<p class=p_Normal>{</p>
+<p class=p_Normal>    public string Name { get; set; }         // Short name (shown in PLUGIN listings)</p>
+<p class=p_Normal>    public string Author { get; set; }       // Author's name</p>
+<p class=p_Normal>    public string Email { get; set; }        // Author's email</p>
+<p class=p_Normal>    public string WWW { get; set; }          // Author's website</p>
+<p class=p_Normal>    public string Description { get; set; }  // Brief description</p>
+<p class=p_Normal>    public string Functions { get; set; }    // Comma-delimited feature list</p>
+<p class=p_Normal>    public int Major { get; set; }           // Major version number</p>
+<p class=p_Normal>    public int Minor { get; set; }           // Minor version number</p>
+<p class=p_Normal>    public int Build { get; set; }           // Build number</p>
+<p class=p_Normal>}</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>The `Functions` String</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>The `Functions` property is a **comma-delimited** list of the commands, variables, and functions your plugin provides. The prefix on each name determines its type:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Prefix   |    Type            | TCC Syntax       | Method Signature                          |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>|----------|--------------------|------------------|-------------------------------------------|</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| *(none)* | Internal command   | `HELLO args`     | `public int HELLO(StringBuilder args)`    |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `_`      |  Internal variable | `%_MYVAR`        | `public int _MYVAR(StringBuilder args)`   |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `@`      | Variable function  | `@MYFUNC[args]`  | `public int f_MYFUNC(StringBuilder args)` |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `*`      | Keystroke handler  | *(not supported) |                                           |</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Example:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C#</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Functions = "GREET,CALC,_VERSION,_AUTHOR,@UPPER,@LOWER"</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>This registers two commands (`GREET`, `CALC`), two variables (`_VERSION`, `_AUTHOR`), and two functions (`@UPPER`, `@LOWER`).</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>&gt; **Important:** Variable function names in the `Functions` list use the `@` prefix (e.g., `@REVERSE`), but the corresponding **method name** uses the `f_` prefix (e.g., `f_REVERSE`). This convention allows a command and a variable function to share the same base name.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Method Signatures</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>All plugin feature methods must be `public` and follow one of these signatures:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Primary (read-write) â recommended</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C#</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>public int MethodName(StringBuilder args)</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>The `StringBuilder` contains the arguments passed by TCC. For variables and functions, write your result back into it. The maximum result length is 32,767 characters.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Read-only variant (commands only)</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C#</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>public int MethodName(string args)</p>
+<p class=p_Normal> </p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Use this when you only need to read the arguments and don't need to modify them.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>No-argument variant</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C#</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>public int MethodName()</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>For commands or variables that take no input.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>### What `args` Contains</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Feature Type      | Contents of `args`                             |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>|-------------------|------------------------------------------------|</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Internal command  | The command line minus the command name        |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Internal variable | Empty (output only â write result into `args`) |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Variable function | The argument(s) passed inside `@FUNC[...]`     |</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Return Values:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Return Value             | Meaning |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>|--------------------------------------|------------------------------------------------------------------------------|</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `0`                      | Success                                                                                  |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `&gt; 0`                    | Failure â TCC interprets the value as a system error code and displays an error message  |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `&lt; 0`                    | Failure â your plugin already displayed an error message                                 |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| `0xFEDCBA98` (unchecked) | **Not handled** â TCC continues searching for a matching internal or external command    |</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>The special return value `0xFEDCBA98` is useful when your plugin wants to inspect (and optionally modify) the command line but then pass it on to TCC's built-in handler:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C#</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>public int MYCOMMAND(StringBuilder args)</p>
+<p class=p_Normal>{</p>
+<p class=p_Normal>    // Optionally modify args here...</p>
+<p class=p_Normal>    // Then tell TCC we didn't handle it:</p>
+<p class=p_Normal>    return unchecked((int)0xFEDCBA98);</p>
+<p class=p_Normal>}</p>
+<p class=p_Normal> </p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Plugin Discovery</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>TCC uses two strategies to find your plugin type (in order):</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>1. **Interface match** â Finds the first public, non-abstract class that implements an interface named `ITCCPlugin`.</p>
+<p class=p_Normal>2. **Convention match** â Finds the first public, non-abstract class that has both a `GetPluginInfo` method and an `Initialize` method.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Strategy 1 is recommended. Strategy 2 exists for cases where you cannot reference the SDK assembly directly.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Complete Example</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Below is a complete, working plugin that adds a `GREET` command, a `_GREETCOUNT` variable, and an `@UPPER` function.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C#</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>using System;</p>
+<p class=p_Normal>using System.Text;</p>
+<p class=p_Normal>using TakeCommand.Plugin;</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>namespace SampleTCCPlugin</p>
+<p class=p_Normal>{</p>
+<p class=p_Normal>    public class GreetPlugin : ITCCPlugin</p>
+<p class=p_Normal>    {</p>
+<p class=p_Normal>        private int _greetCount;</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>        private readonly TCCPluginInfo _info = new TCCPluginInfo</p>
+<p class=p_Normal>        {</p>
+<p class=p_Normal>            Name        = "Greet",</p>
+<p class=p_Normal>            Author      = "Jane Developer",</p>
+<p class=p_Normal>            Email       = "jane@example.com",</p>
+<p class=p_Normal>            WWW         = "https://example.com/greet",</p>
+<p class=p_Normal>            Description = "Greeting plugin with variable and function support",</p>
+<p class=p_Normal>            Functions   = "GREET,_GREETCOUNT,@UPPER",</p>
+<p class=p_Normal>            Major       = 1,</p>
+<p class=p_Normal>            Minor       = 2,</p>
+<p class=p_Normal>            Build       = 0</p>
+<p class=p_Normal>        };</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>        public TCCPluginInfo GetPluginInfo() =&gt; _info;</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>        public bool Initialize()</p>
+<p class=p_Normal>        {</p>
+<p class=p_Normal>            _greetCount = 0;</p>
+<p class=p_Normal>            return true;</p>
+<p class=p_Normal>        }</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>        public bool Shutdown(bool endProcess)</p>
+<p class=p_Normal>        {</p>
+<p class=p_Normal>            // Nothing to clean up</p>
+<p class=p_Normal>            return true;</p>
+<p class=p_Normal>        }</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>        /// &lt;summary&gt;</p>
+<p class=p_Normal>        /// Command: GREET [name]</p>
+<p class=p_Normal>        /// Usage:   GREET World</p>
+<p class=p_Normal>        /// Output:  Hello, World!</p>
+<p class=p_Normal>        /// &lt;/summary&gt;</p>
+<p class=p_Normal>        public int GREET(StringBuilder args)</p>
+<p class=p_Normal>        {</p>
+<p class=p_Normal>            string name = args.ToString().Trim();</p>
+<p class=p_Normal>            if (string.IsNullOrEmpty(name))</p>
+<p class=p_Normal>                name = "World";</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>            Console.WriteLine($"Hello, {name}!");</p>
+<p class=p_Normal>            _greetCount++;</p>
+<p class=p_Normal>            return 0;</p>
+<p class=p_Normal>        }</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>        /// &lt;summary&gt;</p>
+<p class=p_Normal>        /// Internal variable: %_GREETCOUNT</p>
+<p class=p_Normal>        /// Returns the number of times GREET has been called.</p>
+<p class=p_Normal>        /// &lt;/summary&gt;</p>
+<p class=p_Normal>        public int _GREETCOUNT(StringBuilder args)</p>
+<p class=p_Normal>        {</p>
+<p class=p_Normal>            args.Clear();</p>
+<p class=p_Normal>            args.Append(_greetCount.ToString());</p>
+<p class=p_Normal>            return 0;</p>
+<p class=p_Normal>        }</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>        /// &lt;summary&gt;</p>
+<p class=p_Normal>        /// Variable function: @UPPER[text]</p>
+<p class=p_Normal>        /// Returns the uppercased version of the input text.</p>
+<p class=p_Normal>        /// &lt;/summary&gt;</p>
+<p class=p_Normal>        public int f_UPPER(StringBuilder args)</p>
+<p class=p_Normal>        {</p>
+<p class=p_Normal>            string input = args.ToString();</p>
+<p class=p_Normal>            args.Clear();</p>
+<p class=p_Normal>            args.Append(input.ToUpperInvariant());</p>
+<p class=p_Normal>            return 0;</p>
+<p class=p_Normal>        }</p>
+<p class=p_Normal>    }</p>
+<p class=p_Normal>}</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Using the Plugin in TCC</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C:\&gt; plugin /l C:\PlugIns\SampleTCCPlugin.dll</p>
+<p class=p_Normal>C:\&gt; greet Developer</p>
+<p class=p_Normal>Hello, Developer!</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C:\&gt; echo %_GREETCOUNT</p>
+<p class=p_Normal>1</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C:\&gt; echo @UPPER[hello world]</p>
+<p class=p_Normal>HELLO WORLD</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C:\&gt; plugin /i Greet</p>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0;padding:0;line-height:normal"><tbody><tr style=vertical-align:baseline><td style="border:none;padding:0;width:5.5625rem">Module: </td><td style="border:none;padding:0">C:\PlugIns\SampleTCCPlugin.dll</td></tr></tbody></table></div>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0;padding:0;line-height:normal"><tbody><tr style=vertical-align:baseline><td style="border:none;padding:0;width:5.5625rem">Name:</td><td style="border:none;padding:0">Greet</td></tr></tbody></table></div>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0;padding:0;line-height:normal"><tbody><tr style=vertical-align:baseline><td style="border:none;padding:0;width:5.5625rem">Author:</td><td style="border:none;padding:0">Jane Developer</td></tr></tbody></table></div>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0;padding:0;line-height:normal"><tbody><tr style=vertical-align:baseline><td style="border:none;padding:0;width:5.5625rem">Email:</td><td style="border:none;padding:0">jane@example.com</td></tr></tbody></table></div>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0;padding:0;line-height:normal"><tbody><tr style=vertical-align:baseline><td style="border:none;padding:0;width:5.5625rem">Web:</td><td style="border:none;padding:0">https://example.com/greet</td></tr></tbody></table></div>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0;padding:0;line-height:normal"><tbody><tr style=vertical-align:baseline><td style="border:none;padding:0;width:5.5625rem">Description:</td><td style="border:none;padding:0">Greeting plugin with variable and function support</td></tr></tbody></table></div>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0;padding:0;line-height:normal"><tbody><tr style=vertical-align:baseline><td style="border:none;padding:0;width:5.5625rem">Implements:</td><td style="border:none;padding:0">GREET,_GREETCOUNT,@UPPER</td></tr></tbody></table></div>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0;padding:0;line-height:normal"><tbody><tr style=vertical-align:baseline><td style="border:none;padding:0;width:5.5625rem">Version:</td><td style="border:none;padding:0">1.2  Build 0</td></tr></tbody></table></div>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Targeting a Specific Plugin</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>When multiple plugins are loaded, a user can target a specific plugin by prefixing the command, variable, or function name with the plugin name and a `$` delimiter:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>C:\&gt; Greet$GREET Developer</p>
+<p class=p_Normal>C:\&gt; echo %Greet$_GREETCOUNT</p>
+<p class=p_Normal>C:\&gt; echo @Greet$UPPER[text]</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>This is useful when two plugins register the same feature name.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Limitations</span></p>
+<p class=p_Normal> </p>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0">
+<tbody><tr>
+<td style="vertical-align:top;width:10.4375rem;padding:0;border:none"><p class=p_Normal><span style=font-weight:bold>Feature</span></p>
+</td>
+<td style="vertical-align:top;width:6.5625rem;padding:0;border:none"><p class=p_Normal><span style=font-weight:bold>Native Plugin</span></p>
+</td>
+<td style="vertical-align:top;width:68.1875rem;padding:0;border:none"><p class=p_Normal><span style=font-weight:bold>.NET Plugin</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:10.4375rem;padding:0;border:none"><p class=p_Normal>Internal commands</p>
+</td>
+<td style="vertical-align:top;width:6.5625rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+<td style="vertical-align:top;width:68.1875rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:10.4375rem;padding:0;border:none"><p class=p_Normal>Internal variables</p>
+</td>
+<td style="vertical-align:top;width:6.5625rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+<td style="vertical-align:top;width:68.1875rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:10.4375rem;padding:0;border:none"><p class=p_Normal>Variable functions</p>
+</td>
+<td style="vertical-align:top;width:6.5625rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+<td style="vertical-align:top;width:68.1875rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:10.4375rem;padding:0;border:none"><p class=p_Normal>Keystroke handlers </p>
+</td>
+<td style="vertical-align:top;width:6.5625rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+<td style="vertical-align:top;width:68.1875rem;padding:0;border:none"><p class=p_Normal>Not supported*</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:10.4375rem;padding:0;border:none"><p class=p_Normal>Tab completion </p>
+</td>
+<td style="vertical-align:top;width:6.5625rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+<td style="vertical-align:top;width:68.1875rem;padding:0;border:none"><p class=p_Normal>Not supported</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:10.4375rem;padding:0;border:none"><p class=p_Normal>Help/Usage callbacks</p>
+</td>
+<td style="vertical-align:top;width:6.5625rem;padding:0;border:none"><p class=p_Normal>Yes</p>
+</td>
+<td style="vertical-align:top;width:68.1875rem;padding:0;border:none"><p class=p_Normal>Not supported</p>
+</td>
+</tr>
+</tbody></table>
+</div>
+<p class=p_Normal> </p>
+<p class=p_Normal>* Keystroke handlers require passing the native `KEYINFO` struct (containing raw pointers) across the bridge, which is not supported. You may list `*` entries in your `Functions` string, but they will never be invoked.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Project Configuration</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Target Framework</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>- **.NET Framework 4.8** or **.NET Standard 2.0** class library</p>
+<p class=p_Normal>- The bridge DLL uses `Assembly.LoadFrom()`, so standard .NET Framework class libraries work best</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Build Output</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>- Build as **Class Library** (DLL)</p>
+<p class=p_Normal>- Ensure the output is an **AnyCPU** or platform-matching assembly (x64 for 64-bit TCC, x86 for 32-bit TCC)</p>
+<p class=p_Normal>- The DLL **must** contain CLR metadata (this is automatic for any .NET assembly)</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Dependencies</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>If your plugin references additional NuGet packages or assemblies, ensure they are in the same directory as your plugin DLL or in a location resolvable by the .NET runtime. The bridge loads your assembly with `Assembly.LoadFrom()`, which probes the assembly's directory for dependencies.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>Debugging Tips</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>1. **Attach to TCC** â In Visual Studio, use **Debug â Attach to Process** and attach to the running `tcc.exe` process. Set breakpoints in your plugin code.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>2. **Console output** â `Console.WriteLine()` writes to TCC's standard output, which is useful for diagnostics.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>3. **Error reporting** â If `Initialize()` returns `false`, TCC displays an error and unloads your plugin. Check TCC's output for bridge-level error messages.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>4. **Plugin info check** â Use `PLUGIN /I YourPluginName` from the TCC command line to verify that your metadata and function list are correct.</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>5. **Reload cycle** â Unload and reload during development:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal>   plugin /u MyPlugin</p>
+<p class=p_Normal>   plugin /l C:\Dev\MyPlugin\bin\Debug\MyPlugin.dll</p>
+<p class=p_Normal>  </p>
+<p class=p_Normal><span style=font-weight:bold>Naming Rules</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Item                    | Rule                                                                      |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>|-------------------------|---------------------------------------------------------------------------|</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Internal command names  | Alphanumeric, **maximum 12 characters**                                   |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Variable function names | **Maximum 31 characters** (excluding `@` prefix)                          |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Internal variable names | Must start with `_`                                                       |</span></p>
+<p class=p_Normal><span style='font-family:"Cascadia Code"'>| Plugin `Name`           | Used as the identifier in `PLUGIN` commands and `$`-qualified invocations |</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>Exception Handling</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>TCC wraps all plugin invocations in an exception handler. If your method throws an unhandled exception, TCC catches it and returns `0xFEDCBA98` (not handled). Your plugin will not crash TCC, but the user will receive no output. Use try/catch in your methods for graceful error handling:</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>C#</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>public int MYCOMMAND(StringBuilder args)</p>
+<p class=p_Normal>{</p>
+<p class=p_Normal>    try</p>
+<p class=p_Normal>    {</p>
+<p class=p_Normal>        // your logic here</p>
+<p class=p_Normal>        return 0;</p>
+<p class=p_Normal>    }</p>
+<p class=p_Normal>    catch (Exception ex)</p>
+<p class=p_Normal>    {</p>
+<p class=p_Normal>        Console.Error.WriteLine($"MYCOMMAND error: {ex.Message}");</p>
+<p class=p_Normal>        return 1;</p>
+<p class=p_Normal>    }</p>
+<p class=p_Normal>}</p>
+<p class=p_Normal> </p>
+<p class=p_Normal><span style=font-weight:bold>API Reference</span></p>
+<p class=p_Normal> </p>
+<p class=p_Normal>`TCCPluginInfo` Properties</p>
+<p class=p_Normal> </p>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0">
+<tbody><tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem"><span style=font-weight:bold>Property</span></p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem"><span style=font-weight:bold>Type</span></p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem"><span style=font-weight:bold>Description</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`Name`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`string`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Short name displayed by TCC (defaults to assembly filename if empty)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`Author`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`string`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Author name</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`Email`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`string`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Contact email</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`WWW`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`string`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Website URL</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`Description`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`string`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Brief description</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`Functions`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`string`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Comma-delimited list of features (see [The Functions String](#the-functions-string))</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`Major`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`int`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Major version </p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`Minor`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`int`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Minor version</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:9.6250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`Build`</p>
+</td>
+<td style="vertical-align:top;width:6.4375rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">`int`</p>
+</td>
+<td style="vertical-align:top;width:69.1250rem;padding:0;border:none"><p class=p_Normal style="margin:0 0 0 1.0000rem">Build number</p>
+</td>
+</tr>
+</tbody></table>
+</div>
+<p class=p_Normal> </p>
+<p class=p_Normal>`ITCCPlugin` Methods</p>
+<p class=p_Normal> </p>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0">
+<tbody><tr>
+<td style="vertical-align:top;width:11.9375rem;padding:0;border:none"><p class=p_Normal><span style=font-weight:bold>Method</span></p>
+</td>
+<td style="vertical-align:top;width:8.2500rem;padding:0;border:none"><p class=p_Normal><span style=font-weight:bold>Returns</span></p>
+</td>
+<td style="vertical-align:top;width:65.0000rem;padding:0;border:none"><p class=p_Normal><span style=font-weight:bold>Description</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:11.9375rem;padding:0;border:none"><p class=p_Normal>`GetPluginInfo()` </p>
+</td>
+<td style="vertical-align:top;width:8.2500rem;padding:0;border:none"><p class=p_Normal>`TCCPluginInfo`</p>
+</td>
+<td style="vertical-align:top;width:65.0000rem;padding:0;border:none"><p class=p_Normal>Provide plugin metadata</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:11.9375rem;padding:0;border:none"><p class=p_Normal> `Initialize()`</p>
+</td>
+<td style="vertical-align:top;width:8.2500rem;padding:0;border:none"><p class=p_Normal>`bool`</p>
+</td>
+<td style="vertical-align:top;width:65.0000rem;padding:0;border:none"><p class=p_Normal>One-time setup; return `true` to continue loading</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:11.9375rem;padding:0;border:none"><p class=p_Normal>`Shutdown(bool endProcess)`</p>
+</td>
+<td style="vertical-align:top;width:8.2500rem;padding:0;border:none"><p class=p_Normal> `bool`</p>
+</td>
+<td style="vertical-align:top;width:65.0000rem;padding:0;border:none"><p class=p_Normal>Cleanup before unload</p>
+</td>
+</tr>
+</tbody></table>
+</div>
+<p class=p_Normal> </p>
+<p class=p_Normal>Feature Method Signatures</p>
+<p class=p_Normal> </p>
+<div style="text-align:left;text-indent:0;padding:0 0 0 0;margin:0 0 0 0"><table style="border:none;border-spacing:0">
+<tbody><tr>
+<td style="vertical-align:top;width:13.0625rem;padding:0;border:none"><p class=p_Normal><span style=font-weight:bold>Signature</span></p>
+</td>
+<td style="vertical-align:top;width:72.1250rem;padding:0;border:none"><p class=p_Normal><span style=font-weight:bold>Use Case</span></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:13.0625rem;padding:0;border:none"><p class=p_Normal>`int Method(StringBuilder args)` </p>
+</td>
+<td style="vertical-align:top;width:72.1250rem;padding:0;border:none"><p class=p_Normal>Commands, variables, functions (read-write)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:13.0625rem;padding:0;border:none"><p class=p_Normal>`int Method(string args)`</p>
+</td>
+<td style="vertical-align:top;width:72.1250rem;padding:0;border:none"><p class=p_Normal>Commands (read-only)</p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align:top;width:13.0625rem;padding:0;border:none"><p class=p_Normal>`int Method()`</p>
+</td>
+<td style="vertical-align:top;width:72.1250rem;padding:0;border:none"><p class=p_Normal>Commands or variables with no arguments</p>
+</td>
+</tr>
+</tbody></table>
+</div>
+<p class=p_Normal> </p>
+ <div class=topicfooter>
+</div>
+ </div> 
+ </div> 
+ </div> 
+ </div>
+ <div id=navwrapper style="left:0rem;width:20.25rem;top:0px">
+ <div id=dragwrapper class=toolwrapper alt="Show/Hide Contents" title="Show/Hide Contents">
+ <svg id=draghandleicon class=phone viewBox="0 0 30 32" alt="resize nav pane"><use xlink:href="#draghandle"></use></svg>
+ <div id=dragbutton class=desk_tablet>
+ <svg id=draghandleicon_r class=splittertool viewBox="0 0 30 32" alt="resize nav pane" style=display:none><use xlink:href="#draghandle_r"></use></svg>
+ <svg id=draghandleicon_l class=splittertool viewBox="0 0 30 32" alt="resize nav pane" style=display:inline><use xlink:href="#draghandle_l"></use></svg>
+ </div></div>
+ <div id=toolbutton_wrapper class="toolwrapper desk_tablet" tabindex=0 role=button alt="Show/Hide Page Header" title="Show/Hide Page Header">
+ <div id=toolbutton>
+ <svg id=toolbar_updown_close class=splittertool viewBox="0 0 30 32" alt="showhide pageheader" style=display:none><use xlink:href="#toolbar_close"></use></svg>
+ <svg id=toolbar_updown_open class=splittertool viewBox="0 0 30 32" alt="showhide pageheader"><use xlink:href="#toolbar_open"></use></svg>
+ </div></div>
+ <div id=navsplitbar></div>
+ <img id=leftright src="resources/data:," alt="resize nav pane" width=150 height=45 border=0 style=display:none>
+ <div id=navcontainer style="box-shadow:0px 0px 0px 0px">
+ 
+ <nav id=navpane_tabs style=height:40.7102px>
+ <ul id=topictabs class=tabs>
+ <li id=contentstab class="hmtabs current" title="Table of Contents"><a id=contentstablink title="Table of Contents" href="https://jpsoft.com/help/hmcontent.htm"><svg class=tocicon viewBox="0 0 30 32"><use xlink:href="#th-list"></use></svg></a></li>
+ <li id=indextab class=hmtabs title="Keyword Index"><a id=indextablink title="Keyword Index" href="https://jpsoft.com/help/hmkwindex.htm"><svg class=tocicon viewBox="0 0 30 32"><use xlink:href="#key-inv"></use></svg></a></li>
+ <li id=searchtab class=hmtabs title="Search Topics"><a id=searchtablink title="Search Topics" href="https://jpsoft.com/help/hmftsearch.htm"><svg class=tocicon viewBox="0 0 30 32"><use xlink:href="#search"></use></svg></a></li>
+ </ul>
+ </nav>
+ 
+ <div id=contentsbox class="navbox on" style=top:40.7102px>
+ <iframe name=hmnavigation id=hmnavigation class=navframe scrolling=no seamless title="Navigation Pane" frameborder=0 sandbox="allow-popups allow-top-navigation-by-user-activation" srcdoc='<!DOCTYPE html> <html lang=en-us><meta charset=utf-8>
+<title>Take Command / TCC Help v. 36.50</title>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name=viewport id=pageviewport content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes, minimal-ui">
+<meta name=msapplication-tap-highlight content=no>
+<meta http-equiv=Pragma content=no-cache>
+<meta http-equiv=Expires content=-1>
+<meta http-equiv=cache-control content=no-cache>
+<style>:root{--sf-img-0: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCiAgPGcgaWQ9Imljb24iPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iOS43MjMsMzAuMjg4IDguMzA5LDI4Ljg3NCAyMS4xOTgsMTUuOTg0IDguMzA5LDMuMDk1IDkuNzIzLDEuNjgxIDI0LjAyNiwxNS45ODQiIGZpbGw9IiMwMDAwMDAiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiLz4NCiAgPC9nPg0KPC9zdmc+DQo=");--sf-img-1: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCiAgPGcgaWQ9Imljb24iPg0KICAgIDxyZWN0IHg9IjQiIHk9IjE1IiB3aWR0aD0iMjQiIGhlaWdodD0iMiIgZmlsbD0iIzg4ODg4OCIvPg0KICA8L2c+DQo8L3N2Zz4NCg==");--sf-img-2: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4IiB2aWV3Qm94PSIwIDAgMzIgMzIiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCiAgPGcgaWQ9Imljb24iPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iMTYuMDE0LDIzLjk5NyAxLjcxLDkuNjkzIDMuMTI1LDguMjc5IDE2LjAxNCwyMS4xNjggMjguOTAzLDguMjc5IDMwLjMxOCw5LjY5MyIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIvPg0KICA8L2c+DQo8L3N2Zz4NCg==")}</style>
+<style>html,body,div,iframe,h1,a,ul,li{margin:0;padding:0;border:0;vertical-align:baseline}::-webkit-scrollbar{width:10px}::-webkit-scrollbar:horizontal{height:10px}::-webkit-scrollbar-track{background:#f5f5f5}::-webkit-scrollbar-thumb{background:#a1a1a1;border-radius:5px}::-webkit-scrollbar-thumb:hover{background:#858585}body{font-size:100%;font-family:"Trebuchet MS",Helvetica,Arial,sans-serif;color:#444444;background-color:#f5f5f5;overflow:hidden}div#hmpagebody{position:absolute;top:0;right:0;bottom:0;left:0;background-color:#f5f5f5;overflow-x:hidden;overflow-y:scroll;scrollbar-color:#a1a1a1 #f5f5f5;scrollbar-width:thin;padding:0;margin:0}h1.page_header{font-family:"Trebuchet MS",Helvetica,Arial,sans-serif;color:#444444;padding:10px 2px 5px 5px;margin:0 5px 8px 5px;border-bottom:1px solid #555555;font-size:0.950rem;font-weight:100;overflow:hidden;text-align:center;text-overflow:ellipsis}div#hmtoctree{position:relative;left:0;right:0;bottom:0;font-size:0.950rem}ul#toc,ul#toc ul{padding:0;margin:0;list-style-type:none;border:thin solid transparent;border-width:thin 0}ul#toc li{cursor:pointer;padding:0;background-repeat:no-repeat}ul#toc li a:link,ul#toc li a:visited{color:#444444}ul#toc li a:hover,ul#toc li a.current{background-color:#e2e2e2;color:#000000}ul#toc li a.current{outline:thin dashed #000000}ul#toc li a.current:hover{outline:thin solid #000000}ul#toc li>a{display:block;padding:0.143rem 0.143rem 0.143rem 1.786rem;background-repeat:no-repeat;background-position:0.6rem 0.3rem;background-size:0.9rem;background-color:transparent;text-decoration:none}ul#toc li.lv2 a{background-position:1.2rem 0.3rem;padding-left:2.50rem}ul#toc li.lv3 a{background-position:2rem 0.3rem;padding-left:3.214rem}ul#toc li.current{z-index:10000}</style>
+<meta name=referrer content=no-referrer><style>.sf-hidden{display:none!important}</style><meta http-equiv=content-security-policy content="default-src &apos;none&apos;; font-src &apos;self&apos; data:; img-src &apos;self&apos; data:; style-src &apos;unsafe-inline&apos;; media-src &apos;self&apos; data:; script-src &apos;unsafe-inline&apos; data:; object-src &apos;self&apos; data:; frame-src &apos;self&apos; data:;"></head>
+<body id=pgBody>
+<div id=noscript class=sf-hidden></div>
+<div id=page_wrapper>
+<div id=hmpagebody>
+<h1 class="page_header desk_tablet">Take Command / TCC Help v. 36.50</h1> 
+<div id=hmtoctree><ul id=toc><li class="heading lv1 chapter" hf=whats-new-in-version-36.htm bs=0><a style=background-image:var(--sf-img-0) href=https://jpsoft.com/help/whats-new-in-version-36.htm>What&apos;s New in Version 36</a><li class="heading lv1 topic" hf=index.htm bs=27><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/index.htm>Overview</a><li class="heading lv1 chapter" hf=thebasics.htm bs=28><a style=background-image:var(--sf-img-0) href=https://jpsoft.com/help/thebasics.htm>Take Command</a><li class="heading lv1 chapter" hf=tcc.htm bs=97><a style=background-image:var(--sf-img-0) href=https://jpsoft.com/help/tcc.htm>TCC</a><li class="heading lv1 chapter" hf=ide_debugger.htm bs=1387><a style=background-image:var(--sf-img-0) href=https://jpsoft.com/help/ide_debugger.htm>IDE / Batch Debugger</a><li class="heading lv1 topic" hf=plugins-manager.htm bs=1415><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/plugins-manager.htm>Plugins Manager</a><li class="heading lv1 chapter" hf=setup.htm bs=1416><a style=background-image:var(--sf-img-0) href=https://jpsoft.com/help/setup.htm>Troubleshooting</a><li class="heading lv1 topic" hf=register.htm bs=1423><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/register.htm>Registration</a><li class="heading lv1 chapter" hf=reference.htm bs=1424><a style=background-image:var(--sf-img-2) href=https://jpsoft.com/help/reference.htm>Reference</a><ul><li class="heading lv2 topic" hf=windows_x64.htm bs=1425><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/windows_x64.htm>Windows x64</a><li class="heading lv2 chapter" hf=plugins.htm bs=1426><a style=background-image:var(--sf-img-2) href=https://jpsoft.com/help/plugins.htm>Plugins</a><ul><li class="current heading lv3 topic" hf=_net-plugins.htm bs=1427><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/_net-plugins.htm class=current>.NET Plugins</a><li class="heading lv3 topic" hf=_net-plugins-calling-tcc-comma.htm bs=1428><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/_net-plugins-calling-tcc-comma.htm>Calling TCC Commands from .NET Plugins</a></ul><li class="heading lv2 topic" hf=cmd_comp.htm bs=1429><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/cmd_comp.htm>CMD.EXE Comparison</a><li class="heading lv2 topic" hf=cmd_compatibility.htm bs=1430><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/cmd_compatibility.htm>CMD Compatibility</a><li class="heading lv2 topic" hf=limitations.htm bs=1431><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/limitations.htm>Limits</a><li class="heading lv2 chapter" hf=filesysref.htm bs=1432><a style=background-image:var(--sf-img-0) href=https://jpsoft.com/help/filesysref.htm>File Systems &amp;amp; File Names</a><li class="heading lv2 topic" hf=regularexpressionsyntax.htm bs=1440><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/regularexpressionsyntax.htm>Regular Expression Syntax</a><li class="heading lv2 chapter" hf=toc_ref.htm bs=1441><a style=background-image:var(--sf-img-0) href=https://jpsoft.com/help/toc_ref.htm>Miscellaneous</a></ul><li class="heading lv1 chapter" hf=tutorials.htm bs=1451><a style=background-image:var(--sf-img-0) href=https://jpsoft.com/help/tutorials.htm>Tutorials</a><li class="heading lv1 topic" hf=version.htm bs=1473><a style=background-image:var(--sf-img-1) href=https://jpsoft.com/help/version.htm>Copyright &amp;amp; Version</a></ul></div> 
+</div>
+</div>
+ 
+<iframe height=1 width=1 style=position:absolute;top:0px;left:0px;border-width:medium;border-style:none;border-color:currentcolor;border-image:none;visibility:hidden sandbox="allow-popups allow-top-navigation-by-user-activation" srcdoc="<html><meta charset=utf-8><meta name=referrer content=no-referrer><meta http-equiv=content-security-policy content=&amp;quot;default-src &apos;none&apos;; font-src &apos;self&apos; data:; img-src &apos;self&apos; data:; style-src &apos;unsafe-inline&apos;; media-src &apos;self&apos; data:; script-src &apos;unsafe-inline&apos; data:; object-src &apos;self&apos; data:; frame-src &apos;self&apos; data:;&amp;quot;>"></iframe>
+'></iframe>
+ </div>
+ <div id=indexbox class="navbox off sf-hidden" style=top:40.7102px>
+ 
+ </div> 
+ <div id=searchbox class="navbox off sf-hidden" style=top:40.7102px>
+ 
+ </div>
+ </div>
+ </div>
+ <div id=mob_toolbar_wrapper data=open class=sf-hidden>
+ </div>
+ </div> 
+ </div> 
+ <div id=dragsurface class=sf-hidden></div>
+ 
+<iframe height=1 width=1 style="position:absolute;top:0px;left:0px;border-width:medium;border-style:none;border-color:currentcolor;border-image:none;visibility:hidden" sandbox="allow-popups allow-top-navigation-by-user-activation" srcdoc="<html><meta charset=utf-8><meta name=referrer content=no-referrer><meta http-equiv=content-security-policy content=&quot;default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;&quot;>"></iframe>
+</body></html>

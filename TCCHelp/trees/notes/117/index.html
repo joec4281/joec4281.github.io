@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Redirection</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts8
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts9, span.rvts9
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts10
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts11
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts12, span.rvts12
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts13
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ font-weight: bold;
+ color: #000000;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts11>Redirection can be used to reassign the standard input (stdin), standard output (stdout), and standard error (stderr) devices from their default settings (the keyboard and screen) to another device such as NUL or serial port, to a file, or to the Windows clipboard.&nbsp;</span></p>
+<p class=rvps3><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts11>You must use some discretion when you use redirection with a device.</span></p>
+<p class=rvps3><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts11>Redirection always applies to a specific command, and lasts only for the duration of that command. When the command is finished, the assignments for standard input, standard output, and standard error revert to whatever they were before the command.</span></p>
+<p class=rvps3><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts11>TCC's output is normally in ANSI. If you want to redirect output in Unicode, you need to either use the </span><a class=rvts12 href="https://jpsoft.com/help/cmdlineopts.htm">/U startup option</a><span class=rvts11> in TCC, or the </span><a class=rvts12 href="https://jpsoft.com/help/inistartupdlg.htm">Unicode Output</a><span class=rvts11> option in TCMD.INI.</span></p>
+<p class=rvps3><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts11>In the descriptions below, filename means either the name of a file or of an appropriate device (CON for the keyboard and screen; CLIP: (or CLIP0: - CLIP9:) for the clipboard; NUL for the "null" device, etc.).</span></p>
+<p class=rvps3><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts11>Here are the standard redirection options supported by TCC (see below for additional redirection options using numeric file handles):</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img1.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#1">Input redirection</a></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img2.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#2">Output redirection</a></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img3.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#specialconsiderationsforspe">Special considerations for specific commands</a></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img4.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#3">NoClobber</a></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img5.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#4">Multiple redirections</a></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img6.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#5">Creating an empty file</a></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img7.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#6">Redirection by handle</a></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img8.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#7">"Here-document" redirection</a></p>
+<p class=rvps3><img alt="Onestep" style="vertical-align: text-bottom;" src="images/img9.png"><span class=rvts11> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class=rvts12 href="#8">"Here-string" redirection</a></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Input redirection</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=189 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>&lt; filename</span></p>
+  </td>
+  <td width=1205 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>To get input from a file or device instead of from the keyboard.</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Output redirection</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<table border=1 cellpadding=1 cellspacing=2 style="border-color: #000000; border-style: solid; border-spacing: 2px;">
+ <tr valign=top>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p><span class=rvts11><br></span></p>
+  </td>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>overwrite</span></p>
+  </td>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>append</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>standard output</span></p>
+  </td>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>&gt; &nbsp; filename</span></p>
+  </td>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>&gt;&gt; &nbsp; filename</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>standard error</span></p>
+  </td>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>&gt;&amp;&gt; filename</span></p>
+  </td>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>&gt;&gt;&amp;&gt; filename</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>merge standard output and standard error</span></p>
+  </td>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>&gt;&amp; &nbsp;filename</span></p>
+  </td>
+  <td valign=middle style="border-color: #000000; border-style: solid; padding: 1px;">
+   <p class=rvps3><span class=rvts11>&gt;&gt;&amp; &nbsp;filename</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>To use redirection, place the redirection symbol and filename at the end of the command line, after the command name and any parameters. For example, to redirect the output of the </span><a class=rvts12 href="https://jpsoft.com/help/dir.htm">DIR</a><span class=rvts11> command to a file called DIRLIST, you could use a command line like this:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts13>dir /b *.dat &gt; dirlist</span></p>
+<p class=rvps3><span class=rvts11><br></span></p>
+<p class=rvps3><span class=rvts11>You can use any combination of input and output redirection for the same command, as appropriate for your purpose. For example, this command sends input to the external program SORT from the file DIRLIST, and sends output from SORT to the file DIRLIST.SRT:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts13>sort &lt; dirlist &gt; dirlist.srt</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>You can redirect text to or from the Windows clipboard by using the pseudo-device name CLIP: (the colon is required). Redirection to the clipboard is always done using UTF16 Unicode.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>If you redirect the output of a single internal command like </span><a class=rvts12 href="https://jpsoft.com/help/dir.htm">DIR</a><span class=rvts11>, the redirection ends automatically when that command is done. If you start a batch file with redirection, all of the batch file's output is redirected, and redirection ends when the batch file is done. Similarly, if you use redirection after the closing parenthesis of a </span><a class=rvts12 href="https://jpsoft.com/help/grouping.htm">command group</a><span class=rvts11> (e.g., &nbsp;...) &gt; report), all of the output from the command group is redirected, and redirection ends when the command group is done.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>You can change the format of the redirected output. These options will override the UnicodeOutput and UTF8Output directives in TCMD.INI. Note: these options only work for redirecting output from TCC internal commands and batch files.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=229 valign=middle style="padding: 1px;">
+   <p><span class=rvts13>&gt;:a</span></p>
+  </td>
+  <td width=1165 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Redirected output (STDOUT and/or STDERR) is ANSI (8 bit characters)</span></p>
+  </td>
+ </tr>
+</table>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=229 valign=middle style="padding: 1px;">
+   <p><span class=rvts13>&gt;:u</span></p>
+  </td>
+  <td width=1165 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Redirected output is UTF16 Unicode</span></p>
+  </td>
+ </tr>
+</table>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=230 valign=middle style="padding: 1px;">
+   <p><span class=rvts13>&gt;:8 or &gt;:u8</span></p>
+  </td>
+  <td width=1164 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Redirected output is UTF8</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=228 valign=middle style="padding: 1px;">
+   <p><span class=rvts13>&gt;&gt;:a</span></p>
+  </td>
+  <td width=1166 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Appended redirected output (STDOUT and/or STDERR) is ANSI (8 bit characters)</span></p>
+  </td>
+ </tr>
+</table>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=228 valign=middle style="padding: 1px;">
+   <p><span class=rvts13>&gt;&gt;:u</span></p>
+  </td>
+  <td width=1166 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Appended redirected output is UTF16 Unicode</span></p>
+  </td>
+ </tr>
+</table>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=229 valign=middle style="padding: 1px;">
+   <p><span class=rvts13>&gt;&gt;:8 or &gt;&gt;:u8</span></p>
+  </td>
+  <td width=1165 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Appended redirected output is UTF8</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Special considerations for specific commands</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>You cannot redirect all output from the execution of a </span><a class=rvts12 href="https://jpsoft.com/help/do.htm">DO</a><span class=rvts11> loop due to the restriction that the </span><a class=rvts12 href="https://jpsoft.com/help/do.htm">DO</a><span class=rvts11> command and its matching </span><a class=rvts12 href="https://jpsoft.com/help/do.htm">ENDDO</a><span class=rvts11> may not be part of a command group.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>To redirect the output of a </span><a class=rvts12 href="https://jpsoft.com/help/text.htm">TEXT</a><span class=rvts11> command, append the redirection syntax to the </span><a class=rvts12 href="https://jpsoft.com/help/text.htm">TEXT</a><span class=rvts11> command.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>When you execute a </span><a class=rvts12 href="https://jpsoft.com/help/for.htm">FOR</a><span class=rvts11> or </span><a class=rvts12 href="https://jpsoft.com/help/global.htm">GLOBAL</a><span class=rvts11> command, redirection is separately performed for each iteration, based on the directory current for that iteration. This can result in repeated overwriting of the output file, or the creation of a separate output file in each directory. To generate a single, cumulative output file, use </span><a class=rvts12 href="https://jpsoft.com/help/grouping.htm">Command Grouping</a><span class=rvts11> as in the example below:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts13>( for /r %f in (*.btm) echo %@full[%f] ) &gt; c:\temp\btmlst</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts13>NoClobber</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>When output is directed to a file with &gt;, &gt;&amp;, or &gt;&amp;&gt;, and that file already exists, it will be overwritten. You can protect existing files by using the </span><a class=rvts12 href="https://jpsoft.com/help/setdos.htm">SETDOS</a><span class=rvts11> /N1 command, the Protect redirected output files setting on the </span><a class=rvts12 href="https://jpsoft.com/help/inistartupdlg.htm">Startup tab</a><span class=rvts11> of the configuration dialogs, or the </span><a class=rvts12 href="https://jpsoft.com/help/inistartupdlg.htm">Protect redirected output file</a><span class=rvts11> option.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>When output is appended to a file with &gt;&gt;, &gt;&gt;&amp;, or &gt;&gt;&amp;&gt;, the file will be created if it doesn't already exist. However, if the NoClobber mode is set as described above, append redirection will not create a new file; instead, if the output file does not exist a "File not found" or similar error will be displayed.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>You can temporarily override the current setting of NoClobber by using an exclamation mark [!] after the redirection symbol. For example, to redirect the output of DIR to the file DIROUT, and allow overwriting of any existing file despite the NoClobber setting:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts13>dir &gt;! dirout</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Multiple redirections</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Redirection is fully nestable. For example, you can invoke a batch file and redirect all of its output to a file or device. Output redirection on a command within the batch file will take effect for that command only; when the command is completed, output will revert to the redirected output file or device in use for the batch file as a whole.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Creating an empty file</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>You can use redirection to create an empty (zero-byte) file. To do so, enter &gt;filename as a command, with no actual command before the &gt; character. If you have enabled </span><a class=rvts12 href="https://jpsoft.com/help/inistartupdlg.htm">Protect redirected output file</a><span class=rvts11>, use &gt;!filename.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Redirection by handle</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>In addition to the redirection options above, TCC also supports the CMD syntax:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=219 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>n&gt;file</span></p>
+  </td>
+  <td width=1175 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Redirect handle n to the named file</span></p>
+  </td>
+ </tr>
+</table>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=219 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>n&gt;&amp;m</span></p>
+  </td>
+  <td width=1175 valign=middle style="padding: 1px;">
+   <p><span class=rvts11>Redirect handle n to the same place as handle m</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Warning: You may not put any spaces between the n and the &gt;, or between the &gt;, &amp;, and m in the second form. The values of n and m must be single decimal digits, and represent file handles. Windows defines 0, 1, and 2 as shown in the table below.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=218 valign=middle style="padding: 1px;">
+   <p class=rvps3><span class=rvts11>Handle</span></p>
+  </td>
+  <td width=1176 valign=middle style="padding: 1px;">
+   <p class=rvps3><span class=rvts11>Assignment</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=218 valign=middle style="padding: 1px;">
+   <p class=rvps3><span class=rvts11>0</span></p>
+  </td>
+  <td width=1176 valign=middle style="padding: 1px;">
+   <p class=rvps3><span class=rvts11>standard input</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=218 valign=middle style="padding: 1px;">
+   <p class=rvps3><span class=rvts11>1</span></p>
+  </td>
+  <td width=1176 valign=middle style="padding: 1px;">
+   <p class=rvps3><span class=rvts11>standard output</span></p>
+  </td>
+ </tr>
+ <tr valign=top>
+  <td width=218 valign=middle style="padding: 1px;">
+   <p class=rvps3><span class=rvts11>2</span></p>
+  </td>
+  <td width=1176 valign=middle style="padding: 1px;">
+   <p class=rvps3><span class=rvts11>standard error</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>The n&gt;file syntax redirects output from handle n to file. You can use this form to redirect two handles to different places. For example:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>dir &gt; outfile 2&gt; errfile</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>sends normal output to a file called OUTFILE and any error messages to a file called ERRFILE.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>The n&gt;&amp;m syntax redirects handle n to the same destination as the previously assigned handle m. For example, to send standard error to the same file as standard output, you could use this command:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>dir &gt; outfile 2&gt;&amp;1</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Notice that you can perform the same operations by using standard redirection features. The two examples above could be written as</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>dir &gt; outfile &gt;&amp;&gt; errfile</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>and</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>dir &gt;&amp; outfile</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>"Here-document" redirection</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Wherever input redirection is supported, you can use a Linux-like "here-document" approach. The syntax is:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>program &lt;&lt; word</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>The current batch file is read up to the next occurrence of word, and the resulting text becomes standard input to program. For example:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>c:\test\program.exe &lt;&lt; endinput</span></p>
+<p class=rvps3><span class=rvts11>input 1</span></p>
+<p class=rvps3><span class=rvts11>input 2</span></p>
+<p class=rvps3><span class=rvts11>input 3</span></p>
+<p class=rvps3><span class=rvts11>endinput</span></p>
+<p class=rvps3><span class=rvts11>echo This is the next line after "program.exe"</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>Special features of "here document":</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>•If the &lt;&lt; is followed by a hyphen (-), the leading white space on the following lines will be removed before passing them to program (i.e. they will be effectively left-justified).</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>•The parser will perform variable expansion on each line, unless the word following &lt;&lt; is enclosed in double quotes.</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>"Here-string" redirection</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>The "here-string" lets you send string text directly to a program's input. The syntax is:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>program &lt;&lt;&lt; string</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>This is similar to using </span><a class=rvts12 href="https://jpsoft.com/help/keystack.htm">KEYSTACK</a><span class=rvts11>, but easier to enter for text input. (If you need to send special keys or insert waits, you'll need to use KEYSTACK.) &nbsp;For example, to send a string to the standard input of program:</span></p>
+<p class=rvps3><span class=rvts11>&nbsp;</span></p>
+<p class=rvps3><span class=rvts11>c:\test\program.exe &lt;&lt;&lt; This is some input text.</span></p>
+<p><span class=rvts8><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts10>Source</span><span class=rvts7>:</span><span class=rvts8> </span><a class=rvts9 href="https://jpsoft.com/help/redirection.htm">General</a><span class=rvts8> &nbsp;</span><span class=rvts7>(8 August 2026 6:54 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>
