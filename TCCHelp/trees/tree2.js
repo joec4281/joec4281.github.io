@@ -25,6 +25,7 @@
           { value: "@ASCIIX", id: "18", link: "18" },
           { value: "@BUSTYPE", id: "19", link: "19" },
           { value: "@CHAR", id: "20", link: "20" },
+          { value: "@CKSUM (New in v21.0)", id: "128", link: "128" },
           { value: "@LUA", id: "21", link: "21" },
           { value: "@MEDIATYPE", id: "22", link: "22" },
           { value: "@PID", id: "23", link: "23" },

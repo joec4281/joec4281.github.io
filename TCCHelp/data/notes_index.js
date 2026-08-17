@@ -121,5 +121,6 @@
 [123,"PSHELL (New In v21)"],
 [124,"New In v36.51"],
 [126,"Whats New in Version 21.01"],
-[127,"Whats New in Version 21.0"]
+[127,"Whats New in Version 21.0"],
+[128,"@CKSUM (New in v21.0)"]
 ];
