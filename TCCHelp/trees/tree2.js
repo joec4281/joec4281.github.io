@@ -118,8 +118,12 @@
         { value: "SHORTCUT", id: "56", link: "56", data: [
           { value: "New In v33", id: "87", link: "87" }        ]
         },
-        { value: "SREPLACE", id: "57", link: "57", data: [
-          { value: "New In v33", id: "88", link: "88" }        ]
+        { value: "SREPLACE", id: "57", link: "57", open: true, data: [
+          { value: "New In v33", id: "88", link: "88" },
+          { value: "New In v36.51", id: "129", link: "129" }        ]
+        },
+        { value: "START", id: "130", link: "130", open: true, data: [
+          { value: "New In v36.51", id: "131", link: "131" }        ]
         },
         { value: "TEE", id: "58", link: "58", data: [
           { value: "New In v33", id: "89", link: "89" }        ]
