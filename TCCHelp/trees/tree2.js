@@ -145,8 +145,9 @@
         { value: "WHICH", id: "64", link: "64", data: [
           { value: "New In v33", id: "95", link: "95" }        ]
         },
-        { value: "WINDOW", id: "65", link: "65", data: [
-          { value: "New In v33", id: "96", link: "96" }        ]
+        { value: "WINDOW", id: "65", link: "65", open: true, data: [
+          { value: "New In v33", id: "96", link: "96" },
+          { value: "New In v36.51", id: "132", link: "132" }        ]
         },
         { value: "WSHELL", id: "66", link: "66", data: [
           { value: "New In v33", id: "97", link: "97" }        ]
@@ -160,6 +161,9 @@
         },
         { value: "XSORT (New In v33)", id: "69", link: "69", data: [
           { value: "New In v33", id: "101", link: "101" }        ]
+        },
+        { value: "XDIR", id: "133", link: "133", open: true, data: [
+          { value: "New In v36.51", id: "134", link: "134" }        ]
         }      ]
       },
       { value: "Input / Output and Redirection", id: "115", link: "115", open: true, data: [
