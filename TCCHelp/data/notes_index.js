@@ -129,5 +129,8 @@
 [132,"New In v36.51"],
 [133,"XDIR"],
 [134,"New In v36.51"],
-[136,"Get-Clipboard returns $null causing problems with PShell ｜ Take Command _ TCC (2026-09-06 9"]
+[137,"%GetClipboard"],
+[138,"TCC or PowerShell 5.1?"],
+[139,"How to use Powershell Profile with PSHELL ｜ Take Command _ TCC (2026-09-07 6"],
+[140,"Get-Clipboard returns $null causing problems with PShell"]
 ];

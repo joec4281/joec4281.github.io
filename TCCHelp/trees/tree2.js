@@ -104,7 +104,12 @@
         },
         { value: "PSHELL (New In v21)", id: "123", link: "123", open: true, data: [
           { value: "New In v36.51", id: "124", link: "124" },
-          { value: "Get-Clipboard returns $null causing problems with PShell ｜ Take Command _ TCC (2026-09-06 9", id: "136", link: "136" }        ]
+          { value: "Get-Clipboard returns $null causing problems with PShell", id: "140", link: "140", open: true, data: [
+            { value: "%GetClipboard", id: "137", link: "137" }          ]
+          },
+          { value: "TCC or PowerShell 5.1?", id: "138", link: "138", open: true, data: [
+            { value: "How to use Powershell Profile with PSHELL ｜ Take Command _ TCC (2026-09-07 6", id: "139", link: "139" }          ]
+          }        ]
         },
         { value: "PUSHD", id: "52", link: "52", data: [
           { value: "New In v32", id: "103", link: "103" }        ]
