@@ -103,7 +103,8 @@
           { value: "New In v32", id: "102", link: "102" }        ]
         },
         { value: "PSHELL (New In v21)", id: "123", link: "123", open: true, data: [
-          { value: "New In v36.51", id: "124", link: "124" }        ]
+          { value: "New In v36.51", id: "124", link: "124" },
+          { value: "Get-Clipboard returns $null causing problems with PShell ｜ Take Command _ TCC (2026-09-06 9", id: "136", link: "136" }        ]
         },
         { value: "PUSHD", id: "52", link: "52", data: [
           { value: "New In v32", id: "103", link: "103" }        ]

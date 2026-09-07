@@ -128,5 +128,6 @@
 [131,"New In v36.51"],
 [132,"New In v36.51"],
 [133,"XDIR"],
-[134,"New In v36.51"]
+[134,"New In v36.51"],
+[136,"Get-Clipboard returns $null causing problems with PShell ｜ Take Command _ TCC (2026-09-06 9"]
 ];
