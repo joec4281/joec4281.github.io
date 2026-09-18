@@ -189,7 +189,7 @@
         { value: ".NET Plugins", id: "114", link: "114" },
         { value: "Calling TCC Command from .NET Plugins", id: "146", link: "146" },
         { value: "/UNSAFE", id: "147", link: "147" },
-        { value: "Using Pointers in a .NET plugin ｜ Take Command _ TCC (2026-09-18 9", id: "148", link: "148" }      ]
+        { value: "Using Pointers in a .NET plugin", id: "148", link: "148" }      ]
       }    ]
     }  ]
   }

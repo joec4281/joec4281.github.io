@@ -140,5 +140,5 @@
 [145,"Functions from a specific Library"],
 [146,"Calling TCC Command from .NET Plugins"],
 [147,"/UNSAFE"],
-[148,"Using Pointers in a .NET plugin ｜ Take Command _ TCC (2026-09-18 9"]
+[148,"Using Pointers in a .NET plugin"]
 ];
