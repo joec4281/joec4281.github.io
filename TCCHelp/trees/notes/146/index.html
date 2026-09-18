@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Calling TCC Command from .NET Plugins</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts15, span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts16
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts17
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts19
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts20
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts21, span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<p class=rvps3><span class=rvts20>Overview</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>.NET plugins can execute TCC commands on the host process using the `TakeCommand.PluginHost` static class.&nbsp;</span></p>
+<p class=rvps3><span class=rvts20></span><br><span class=rvts20>This allows a plugin to run any command that TCC supports (internal commands, aliases, batch files, etc.) and capture the text output.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>The API is available automatically when your plugin is loaded by TCC — no additional references or initialization are required beyond the standard plugin SDK (`DotNetPluginSDK.cs`).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>`TakeCommand.PluginHost.InvokeCommand(string command)`</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>Executes a TCC command string and returns its captured output.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>**Namespace:** `TakeCommand`&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>**Class:** `PluginHost` (static)&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>**Parameters:**</span><br><span class=rvts20>| Parameter | Type &nbsp; &nbsp; | Description &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |</span><br><span class=rvts20>|-----------|----------|-------------------------------------------------|</span><br><span class=rvts20>| `command` | `string` | The TCC command to execute (e.g. `"dir /b C:\\"`) |</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>**Returns:** `string` — the text output produced by the command.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>**Exceptions:**</span><br><span class=rvts20>| Exception &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| Condition &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |</span><br><span class=rvts20>|----------------------------|-----------------------------------------------------|</span><br><span class=rvts20>| `InvalidOperationException`| The host callback is not initialized (plugin loaded outside TCC), or the command failed with an error. |</span><br><span class=rvts20>| `ArgumentException` &nbsp; &nbsp; &nbsp; &nbsp;| `command` is `null` or empty. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>Usage Example</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>C#</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>using System;</span><br><span class=rvts20>using System.Text;</span><br><span class=rvts20>using TakeCommand.Plugin;</span><br><span class=rvts20>public class MyPlugin : ITCCPlugin</span><br><span class=rvts20>{</span><br><span class=rvts20>&nbsp; &nbsp; private static readonly TCCPluginInfo _info = new TCCPluginInfo</span><br><span class=rvts20>&nbsp; &nbsp; {</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; Name &nbsp; &nbsp; &nbsp; &nbsp;= "MyPlugin",</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; Author &nbsp; &nbsp; &nbsp;= "Your Name",</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; Email &nbsp; &nbsp; &nbsp; = "you@example.com",</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; WWW &nbsp; &nbsp; &nbsp; &nbsp; = "https://example.com",</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; Description = "Demonstrates calling TCC commands from .NET",</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; Functions &nbsp; = "DIRCOUNT,@TCCEVAL",</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; Major &nbsp; &nbsp; &nbsp; = 1, Minor = 0, Build = 1</span><br><span class=rvts20>&nbsp; &nbsp; };</span><br><span class=rvts20>&nbsp; &nbsp; public TCCPluginInfo GetPluginInfo() =&gt; _info;</span><br><span class=rvts20>&nbsp; &nbsp; public bool Initialize() &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=&gt; true;</span><br><span class=rvts20>&nbsp; &nbsp; public bool Shutdown(bool end) &nbsp; &nbsp; &nbsp; =&gt; true;</span><br><span class=rvts20>&nbsp; &nbsp; // Command: DIRCOUNT &lt;path&gt;</span><br><span class=rvts20>&nbsp; &nbsp; // Prints the number of files in the given directory.</span><br><span class=rvts20>&nbsp; &nbsp; public int DIRCOUNT(StringBuilder args)</span><br><span class=rvts20>&nbsp; &nbsp; {</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; string path = args.ToString().Trim();</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; if (string.IsNullOrEmpty(path))</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; path = ".";</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; try</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; {</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string output = TakeCommand.PluginHost.InvokeCommand($"dir /b \"{path}\"");</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int count = output.Split(</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; new[] { '\r', '\n' },</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; StringSplitOptions.RemoveEmptyEntries).Length;</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Console.WriteLine($"{count} file(s) in {path}");</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return 0;</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; }</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; catch (InvalidOperationException ex)</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; {</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Console.Error.WriteLine($"DIRCOUNT: {ex.Message}");</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return 1;</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; }</span><br><span class=rvts20>&nbsp; &nbsp; }</span><br><span class=rvts20>&nbsp; &nbsp; // Variable function: %@TCCEVAL[command]</span><br><span class=rvts20>&nbsp; &nbsp; // Returns the captured output of an arbitrary TCC command.</span><br><span class=rvts20>&nbsp; &nbsp; public int f_TCCEVAL(StringBuilder args)</span><br><span class=rvts20>&nbsp; &nbsp; {</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; string command = args.ToString().Trim();</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; if (string.IsNullOrEmpty(command))</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return 1;</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; try</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; {</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; string result = TakeCommand.PluginHost.InvokeCommand(command);</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; args.Clear();</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; args.Append(result.TrimEnd('\r', '\n'));</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return 0;</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; }</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; catch (InvalidOperationException)</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; {</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; args.Clear();</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return 1;</span><br><span class=rvts20>&nbsp; &nbsp; &nbsp; &nbsp; }</span><br><span class=rvts20>&nbsp; &nbsp; }</span><br><span class=rvts20>}</span><br><span class=rvts20>&nbsp;</span><br><span class=rvts20>Using the command in TCC</span><br><span class=rvts20>&nbsp;</span><br><span class=rvts20>C:\&gt; dircount C:\Windows\System32</span><br><span class=rvts20>14326 file(s) in C:\Windows\System32</span><br><span class=rvts20>C:\&gt; echo %@tcceval[echo Hello from TCC]</span><br><span class=rvts20>Hello from TCC</span><br><span class=rvts20>&nbsp;</span><br><span class=rvts20>Error Handling</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>`InvokeCommand` throws `InvalidOperationException` when the host reports an error. Always wrap calls in a `try`/`catch` block in production plugins:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>C#</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>try</span><br><span class=rvts20>{</span><br><span class=rvts20>&nbsp; &nbsp; string output = TakeCommand.PluginHost.InvokeCommand("copy file1 file2");</span><br><span class=rvts20>}</span><br><span class=rvts20>catch (InvalidOperationException ex)</span><br><span class=rvts20>{</span><br><span class=rvts20>&nbsp; &nbsp; // ex.Message contains the TCC error text or a generic failure message</span><br><span class=rvts20>&nbsp; &nbsp; Console.Error.WriteLine(ex.Message);</span><br><span class=rvts20>}</span><br><span class=rvts20>&nbsp;</span><br><span class=rvts20>Notes:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>Thread safety: `InvokeCommand` calls back into TCC synchronously on the calling thread. Avoid calling it from background threads unless</span><br><span class=rvts20>&nbsp; you are certain TCC's command processor is re-entrant for the command you are invoking.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Output capture: The command's standard output is redirected to a temporary file and read back, so commands that write to the console</span><br><span class=rvts20>&nbsp; will have their output captured and returned as a string. Commands that produce no output return an empty string.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>Return value vs. output: The method returns the command's *text output*, not its exit code. If the command fails (non-zero exit code), &nbsp;`InvalidOperationException` is thrown with the error description.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span><br><span class=rvts20>Availability: The host callback is registered when TCC loads the plugin. If your plugin is loaded in a different host (unit test</span><br><span class=rvts20>&nbsp; runner, standalone app), `InvokeCommand` throws `InvalidOperationException` with the message *"Take Command command interface is not initialized."*</span></p>
+<p><span class=rvts20><br></span></p>
+<p><span class=rvts17><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts19>Source</span><span class=rvts16>:</span><span class=rvts17> </span><a class=rvts18 href="https://jpsoft.com/help/_net-plugins-calling-tcc-comma.htm">General</a><span class=rvts17> &nbsp;</span><span class=rvts16>(9 September 2026 10:16 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

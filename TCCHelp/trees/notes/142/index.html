@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>LIBRARY (New In v28)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+ margin: 5px 5px 5px 5px;
+ background-color: #ffffff;
+}
+/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6
+{
+ font-size: 16pt;
+ font-family: 'Courier New', 'Courier', monospace;
+}
+span.rvts7
+{
+}
+span.rvts8
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts9
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts10
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+span.rvts12
+{
+ font-size: 8pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+a.rvts13, span.rvts13
+{
+ font-size: 8pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts14
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts15, span.rvts15
+{
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts16
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+}
+span.rvts17
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+}
+a.rvts18, span.rvts18
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+span.rvts19
+{
+ font-size: 16pt;
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-weight: bold;
+}
+span.rvts20
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #000000;
+}
+a.rvts21, span.rvts21
+{
+ font-size: 16pt;
+ font-family: 'Verdana', 'Geneva', sans-serif;
+ color: #0000ff;
+ text-decoration: underline;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2
+{
+ line-height: 1.20;
+}
+.rvps3
+{
+ margin: 7px 0px 7px 0px;
+}
+/* ========== Lists ========== */
+.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
+--></style>
+</head>
+<body style="background-color:#FFFFFF;" >
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=327 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Purpose:</span></p>
+  </td>
+  <td width=1067 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Create, modify, delete, or display library functions</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=328 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Format:</span></p>
+  </td>
+  <td width=1066 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>LIBRARY [/= /D func /F [func] /N /P[n] /Q /R file ... /U] [command line]</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=330 valign=middle style="padding: 1px;">
+   <p><a class=rvts21 href="#d">/D(elete)</a></p>
+  </td>
+  <td width=1064 valign=middle style="padding: 1px;">
+   <p><a class=rvts21 href="#q">/Q (no errors)</a></p>
+  </td>
+ </tr>
+</table>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=330 valign=middle style="padding: 1px;">
+   <p><a class=rvts21 href="#f">/F (display functions)</a></p>
+  </td>
+  <td width=1064 valign=middle style="padding: 1px;">
+   <p><a class=rvts21 href="#r">/R(ead functions)</a></p>
+  </td>
+ </tr>
+</table>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=333 valign=middle style="padding: 1px;">
+   <p><a class=rvts21 href="#n">/N(ames)</a></p>
+  </td>
+  <td width=1061 valign=middle style="padding: 1px;">
+   <p><a class=rvts21 href="#u">/U(pdate functions)</a></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><a class=rvts21 href="#p">/P(ause)</a></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Usage:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>LIBRARY will load / display / delete library functions, which are similar to batch files but which are loaded into RAM and can be called as if they are internal commands. Library functions are read from files, with the syntax:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>functionname {</span></p>
+<p class=rvps3><span class=rvts20>command1</span></p>
+<p class=rvps3><span class=rvts20>command2</span></p>
+<p class=rvps3><span class=rvts20>...</span></p>
+<p class=rvps3><span class=rvts20>}</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The opening brace { must be on the same line as the function name (separated by a space), and the closing brace } must be on a line by itself.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>When TCC starts, it will automatically load any library function files in the LIBRARY subdirectory of the TCC installation directory. You can specify a different location by setting the </span><a class=rvts21 href="https://jpsoft.com/help/librarydirectory.htm">LibraryDirectory</a><span class=rvts20> INI directive. You can have any number of functions in a file.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>You can prevent TCC from loading library function files at startup with the TCC /IL option.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>If you do not specify any switches, LIBRARY will display the library function names that match the command line argument(s). The argument may contain wildcards or a regular expression. If you do not specify any arguments, LIBRARY will display all of the library function names.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The command line following the library function name is passed to the function, and the arguments can be referenced with the same %1 - %n syntax as used by batch files and aliases.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Library functions can call aliases, internal or external commands, batch files, or other library functions.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>You can specify which library to use for a function name (allowing you to use the same function names in different libraries). To specify a particular library and function, use the syntax:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>library$function</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Where library is the library file name, and function the name of the function.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>If you don't specify a library name, TCC will use the first matching function name it finds in the library list.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The TCC parser will look for a matching library function name before looking for plugins, internal commands, external commands, or batch files. The command line following the library function name is passed to the function, and the arguments can be referenced with the same %1 - %n syntax as used by batch files and aliases.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>The TCC startup option /IL will prevent loading the default library functions (from the Library folder).</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Prefixing a command name with a * will ignore alias and library function name matches.</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>Options:</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=330 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/=</span></p>
+  </td>
+  <td width=1064 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Display the LIBRARY command dialog to help you set the command line options. The /= option can be anywhere on the line; additional options will set the appropriate fields in the command dialog.</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=333 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/D</span></p>
+  </td>
+  <td width=1061 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Delete a function (the function name can contain wildcards)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=336 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/F</span></p>
+  </td>
+  <td width=1058 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Display the loaded (matching) functions (the function name can contain wildcards)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=339 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/N</span></p>
+  </td>
+  <td width=1055 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>LIBRARY with no arguments will display the function names in the library list. If you specify /N and no other arguments, LIBRARY will show the library name + function name in the library$function format.</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=341 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/P[n]</span></p>
+  </td>
+  <td width=1053 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Pause after each page when displaying functions. Your options at the prompt are explained in detail under </span><a class=rvts21 href="https://jpsoft.com/help/prompts.htm">Page and File Prompts</a><span class=rvts20>. The /P option has an optional argument n that specifies the number of seconds to wait for a keystroke before continuing.</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=347 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/Q</span></p>
+  </td>
+  <td width=1047 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Don't display an error if deleting or updating functions that don't exist</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=349 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/R</span></p>
+  </td>
+  <td width=1045 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Read function files. You can use multiple files with one LIBRARY /R command by placing the names on the command line, separated by spaces:</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>library /r function1.lst function2.lst</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<table border=0 cellpadding=1 cellspacing=2 style="border-width: 0px; border-spacing: 2px;">
+ <tr valign=top>
+  <td width=353 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>/U</span></p>
+  </td>
+  <td width=1041 valign=middle style="padding: 1px;">
+   <p><span class=rvts20>Update function (otherwise you will get an error when loading a function that already exists)</span></p>
+  </td>
+ </tr>
+</table>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p class=rvps3><span class=rvts20>&nbsp;</span></p>
+<p><span class=rvts17><br></span></p>
+<table width="100%" border=1 cellpadding=3 cellspacing=-1 style="border-color: #000000; border-style: solid; border-collapse: collapse;">
+ <tr valign=top>
+  <td width=530 style="border-color: #c0c0c0; border-style: solid; padding: 3px; background-color: #f0f0f0;">
+   <p><span class=rvts19>Source</span><span class=rvts16>:</span><span class=rvts17> </span><a class=rvts18 href="https://jpsoft.com/help/library.htm">General</a><span class=rvts17> &nbsp;</span><span class=rvts16>(8 September 2026 7:57 AM)</span></p>
+  </td>
+ </tr>
+</table>
+<p><span class=rvts6><br></span></p>
+<p class=rvps2><span class=rvts6><br></span></p>
+</body></html>

@@ -31,7 +31,7 @@
                }
 			}
 		</style>
-		<title>TCCHelp.rnt mobile webbook</title>
+		<title>tcchelp.rnt mobile webbook</title>
 	</head>
 
 	<body>
@@ -81,7 +81,7 @@
 			$$("tree1").clearAll();
 			if (id == 1){ $$('tree1').parse(webix.copy(tree_data2)) }
 
-			$$("treeHeader").setHTML("TCCHelp > "+ $$("listView").getItem(id).title);
+			$$("treeHeader").setHTML("tcchelp > "+ $$("listView").getItem(id).title);
 			$$("tabbar1").setValue("treeView");
 		}
 
@@ -125,7 +125,7 @@
 					id:"pageView", rows:[
 						{ type: "clean", cols: [
 							{view: "toolbar", paddingY: 0, css:"custom", elements: [
-								{view: "label", label: "TCCHelp"},
+								{view: "label", label: "tcchelp"},
 								{view: "icon", icon: "home", click: "history.back();" }
 							]},
 						]},

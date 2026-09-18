@@ -21,7 +21,7 @@
             { value: "New In v31", id: "107", link: "107" }          ]
           }        ]
         },
-        { value: "Functions", id: "11", link: "11", open: true, data: [
+        { value: "Functions", id: "11", link: "11", data: [
           { value: "@ASCIIX", id: "18", link: "18" },
           { value: "@BUSTYPE", id: "19", link: "19" },
           { value: "@CHAR", id: "20", link: "20" },
@@ -85,6 +85,11 @@
         { value: "INTERNAL (New In v32)", id: "46", link: "46", data: [
           { value: "New In v33", id: "81", link: "81" }        ]
         },
+        { value: "LIBRARY (New In v28)", id: "142", link: "142", open: true, data: [
+          { value: "LIBRARY /N but from a specifc LIBRARY", id: "143", link: "143" },
+          { value: "Functions (Bare) from a specific Library", id: "144", link: "144" },
+          { value: "Functions from a specific Library", id: "145", link: "145" }        ]
+        },
         { value: "LUA", id: "47", link: "47", data: [
           { value: "New In v33", id: "82", link: "82" }        ]
         },
@@ -104,6 +109,7 @@
         },
         { value: "PSHELL (New In v21)", id: "123", link: "123", open: true, data: [
           { value: "New In v36.51", id: "124", link: "124" },
+          { value: "Convert Clipboard contents to a continuous string", id: "141", link: "141" },
           { value: "Get-Clipboard returns $null causing problems with PShell", id: "140", link: "140", open: true, data: [
             { value: "%GetClipboard", id: "137", link: "137" }          ]
           },
@@ -180,7 +186,10 @@
     },
     { value: "Reference", id: "111", link: "111", open: true, data: [
       { value: "Plugins", id: "112", link: "112", open: true, data: [
-        { value: ".NET Plugins", id: "114", link: "114" }      ]
+        { value: ".NET Plugins", id: "114", link: "114" },
+        { value: "Calling TCC Command from .NET Plugins", id: "146", link: "146" },
+        { value: "/UNSAFE", id: "147", link: "147" },
+        { value: "Using Pointers in a .NET plugin ｜ Take Command _ TCC (2026-09-18 9", id: "148", link: "148" }      ]
       }    ]
     }  ]
   }

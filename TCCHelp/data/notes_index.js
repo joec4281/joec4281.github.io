@@ -132,5 +132,13 @@
 [137,"%GetClipboard"],
 [138,"TCC or PowerShell 5.1?"],
 [139,"How to use Powershell Profile with PSHELL ｜ Take Command _ TCC (2026-09-07 6"],
-[140,"Get-Clipboard returns $null causing problems with PShell"]
+[140,"Get-Clipboard returns $null causing problems with PShell"],
+[141,"Convert Clipboard contents to a continuous string"],
+[142,"LIBRARY (New In v28)"],
+[143,"LIBRARY /N but from a specifc LIBRARY"],
+[144,"Functions (Bare) from a specific Library"],
+[145,"Functions from a specific Library"],
+[146,"Calling TCC Command from .NET Plugins"],
+[147,"/UNSAFE"],
+[148,"Using Pointers in a .NET plugin ｜ Take Command _ TCC (2026-09-18 9"]
 ];
