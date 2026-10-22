@@ -124,7 +124,7 @@
 [127,"Whats New in Version 21.0"],
 [128,"@CKSUM (New in v21.0)"],
 [129,"New In v36.51"],
-[130,"START"],
+[130,"TC"],
 [131,"New In v36.51"],
 [132,"New In v36.51"],
 [133,"XDIR"],
@@ -140,5 +140,7 @@
 [145,"Functions from a specific Library"],
 [146,"Calling TCC Command from .NET Plugins"],
 [147,"/UNSAFE"],
-[148,"Using Pointers in a .NET plugin"]
+[148,"Using Pointers in a .NET plugin"],
+[149,"Starting TCC"],
+[150,"TCC Startup Options"]
 ];

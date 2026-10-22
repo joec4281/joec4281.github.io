@@ -10,7 +10,7 @@
       { value: "Whats New in Version 21.01", id: "126", link: "126" }    ]
     },
     { value: "TCC", id: "4", link: "4", open: true, data: [
-      { value: "Variables & Functions", id: "8", link: "8", open: true, data: [
+      { value: "Variables & Functions", id: "8", link: "8", data: [
         { value: "Variables", id: "10", link: "10", data: [
           { value: "_BATCHLABEL (New in v32)", id: "12", link: "12", open: true },
           { value: "_DARKENABLED", id: "13", link: "13" },
@@ -38,7 +38,7 @@
           { value: "@XHISTORY (New in v32)", id: "30", link: "30" }        ]
         }      ]
       },
-      { value: "Commands", id: "9", link: "9", open: true, data: [
+      { value: "Commands", id: "9", link: "9", data: [
         { value: "ACTIVATE", id: "31", link: "31", data: [
           { value: "New In v33", id: "70", link: "70" }        ]
         },
@@ -134,7 +134,7 @@
           { value: "New In v33", id: "88", link: "88" },
           { value: "New In v36.51", id: "129", link: "129" }        ]
         },
-        { value: "START", id: "130", link: "130", open: true, data: [
+        { value: "TC", id: "130", link: "130", open: true, data: [
           { value: "New In v36.51", id: "131", link: "131" }        ]
         },
         { value: "TEE", id: "58", link: "58", data: [
@@ -178,10 +178,13 @@
           { value: "New In v36.51", id: "134", link: "134" }        ]
         }      ]
       },
-      { value: "Input / Output and Redirection", id: "115", link: "115", open: true, data: [
+      { value: "Input / Output and Redirection", id: "115", link: "115", data: [
         { value: "Redirection and Pipes", id: "116", link: "116", open: true, data: [
           { value: "Redirection", id: "117", link: "117" }        ]
         }      ]
+      },
+      { value: "Starting TCC", id: "149", link: "149", open: true, data: [
+        { value: "TCC Startup Options", id: "150", link: "150" }      ]
       }    ]
     },
     { value: "Reference", id: "111", link: "111", open: true, data: [
