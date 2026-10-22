@@ -109,7 +109,6 @@
 [110,".envtc and the TEMP environment variable"],
 [111,"Reference"],
 [112,"Plugins"],
-[114,".NET Plugins"],
 [115,"Input / Output and Redirection"],
 [116,"Redirection and Pipes"],
 [117,"Redirection"],
@@ -142,5 +141,6 @@
 [147,"/UNSAFE"],
 [148,"Using Pointers in a .NET plugin"],
 [149,"Starting TCC"],
-[150,"TCC Startup Options"]
+[150,"TCC Startup Options"],
+[151,"_.NET Plugins"]
 ];
