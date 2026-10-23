@@ -38,7 +38,7 @@
           { value: "@XHISTORY (New in v32)", id: "30", link: "30" }        ]
         }      ]
       },
-      { value: "Commands", id: "9", link: "9", data: [
+      { value: "Commands", id: "9", link: "9", open: true, data: [
         { value: "ACTIVATE", id: "31", link: "31", data: [
           { value: "New In v33", id: "70", link: "70" }        ]
         },
@@ -86,9 +86,10 @@
           { value: "New In v33", id: "81", link: "81" }        ]
         },
         { value: "LIBRARY (New In v28)", id: "142", link: "142", open: true, data: [
-          { value: "LIBRARY /N but from a specifc LIBRARY", id: "143", link: "143" },
+          { value: "Format the output from LIBRARY /F", id: "152", link: "152" },
           { value: "Functions (Bare) from a specific Library", id: "144", link: "144" },
-          { value: "Functions from a specific Library", id: "145", link: "145" }        ]
+          { value: "Functions from a specific Library", id: "145", link: "145" },
+          { value: "LIBRARY /N but from a specifc LIBRARY", id: "143", link: "143" }        ]
         },
         { value: "LUA", id: "47", link: "47", data: [
           { value: "New In v33", id: "82", link: "82" }        ]
