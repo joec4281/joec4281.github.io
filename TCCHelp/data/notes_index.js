@@ -134,7 +134,6 @@
 [140,"Get-Clipboard returns $null causing problems with PShell"],
 [141,"Convert Clipboard contents to a continuous string"],
 [142,"LIBRARY (New In v28)"],
-[143,"LIBRARY /N but from a specifc LIBRARY"],
 [144,"Functions (Bare) from a specific Library"],
 [145,"Functions from a specific Library"],
 [146,"Calling TCC Command from .NET Plugins"],
@@ -143,5 +142,6 @@
 [149,"Starting TCC"],
 [150,"TCC Startup Options"],
 [151,".NET Plugins"],
-[152,"Format the output from LIBRARY /F"]
+[152,"Format the output from LIBRARY /F"],
+[153,"LIBRARY /N but from a specifc LIBRARY"]
 ];
