@@ -49,7 +49,7 @@
         { value: "CD / CHDIR", id: "34", link: "34", data: [
           { value: "New In v33", id: "72", link: "72" }        ]
         },
-        { value: "COPY", id: "35", link: "35", data: [
+        { value: "COPY", id: "35", link: "35", open: true, data: [
           { value: "New In v33", id: "73", link: "73" },
           { value: "New In v32", id: "74", link: "74" }        ]
         },
@@ -59,11 +59,11 @@
         { value: "DIRHISTORY", id: "37", link: "37", data: [
           { value: "New In v32", id: "106", link: "106" }        ]
         },
-        { value: "DO", id: "38", link: "38", data: [
-          { value: "New In v33", id: "75", link: "75" },
+        { value: "DO", id: "154", link: "154", open: true, data: [
+          { value: "New In v33", id: "75", link: "75", open: true },
           { value: "New In v32", id: "76", link: "76" }        ]
         },
-        { value: "ENDLOCAL", id: "39", link: "39", data: [
+        { value: "ENDLOCAL", id: "39", link: "39", open: true, data: [
           { value: "New In v33", id: "77", link: "77" }        ]
         },
         { value: "EXEC (New In v32)", id: "40", link: "40"        },
@@ -78,11 +78,13 @@
           { value: "New In v33", id: "79", link: "79" },
           { value: "New In v36.51", id: "122", link: "122" }        ]
         },
-        { value: "IF", id: "45", link: "45", data: [
+        { value: "IF", id: "45", link: "45", open: true, data: [
           { value: "New In v33", id: "80", link: "80" }        ]
         },
-        { value: "IMGTTY (New In v36.52)", id: "120", link: "120"        },
-        { value: "INTERNAL (New In v32)", id: "46", link: "46", data: [
+        { value: "IMGTTY (New In v36.52)", id: "120", link: "120", open: true, data: [
+          { value: "Display graphic images on a TCC v36 display via Windows Terminal", id: "157", link: "157" }        ]
+        },
+        { value: "INTERNAL (New In v32)", id: "46", link: "46", open: true, data: [
           { value: "New In v33", id: "81", link: "81" }        ]
         },
         { value: "LIBRARY (New In v28)", id: "142", link: "142", open: true, data: [
@@ -91,10 +93,10 @@
           { value: "Functions from a specific Library", id: "145", link: "145" },
           { value: "LIBRARY /N but from a specifc LIBRARY", id: "153", link: "153" }        ]
         },
-        { value: "LUA", id: "47", link: "47", data: [
+        { value: "LUA", id: "47", link: "47", open: true, data: [
           { value: "New In v33", id: "82", link: "82" }        ]
         },
-        { value: "MAPPEXE (New In v34)", id: "118", link: "118"        },
+        { value: "MAPEXE ", id: "158", link: "158"        },
         { value: "MOVE", id: "48", link: "48", data: [
           { value: "New In v33", id: "83", link: "83" },
           { value: "New In v32", id: "84", link: "84" }        ]
@@ -135,8 +137,11 @@
           { value: "New In v33", id: "88", link: "88" },
           { value: "New In v36.51", id: "129", link: "129" }        ]
         },
-        { value: "TC", id: "130", link: "130", open: true, data: [
+        { value: "START", id: "130", link: "130", open: true, data: [
           { value: "New In v36.51", id: "131", link: "131" }        ]
+        },
+        { value: "TCEDIT", id: "155", link: "155", open: true, data: [
+          { value: "Configure TCSTART depending on parent", id: "156", link: "156" }        ]
         },
         { value: "TEE", id: "58", link: "58", data: [
           { value: "New In v33", id: "89", link: "89" }        ]

@@ -35,7 +35,6 @@
 [35,"COPY"],
 [36,"DIRENV (New In v30)"],
 [37,"DIRHISTORY"],
-[38,"DO"],
 [39,"ENDLOCAL"],
 [40,"EXEC (New In v32)"],
 [41,"FOR"],
@@ -112,7 +111,6 @@
 [115,"Input / Output and Redirection"],
 [116,"Redirection and Pipes"],
 [117,"Redirection"],
-[118,"MAPPEXE (New In v34)"],
 [119,"Whats New in Version 36.52"],
 [120,"IMGTTY (New In v36.52)"],
 [121,"Whats New in Version 36.51"],
@@ -123,7 +121,7 @@
 [127,"Whats New in Version 21.0"],
 [128,"@CKSUM (New in v21.0)"],
 [129,"New In v36.51"],
-[130,"TC"],
+[130,"START"],
 [131,"New In v36.51"],
 [132,"New In v36.51"],
 [133,"XDIR"],
@@ -143,5 +141,10 @@
 [150,"TCC Startup Options"],
 [151,".NET Plugins"],
 [152,"Format the output from LIBRARY /F"],
-[153,"LIBRARY /N but from a specifc LIBRARY"]
+[153,"LIBRARY /N but from a specifc LIBRARY"],
+[154,"DO"],
+[155,"TCEDIT"],
+[156,"Configure TCSTART depending on parent"],
+[157,"Display graphic images on a TCC v36 display via Windows Terminal"],
+[158,"MAPEXE "]
 ];
