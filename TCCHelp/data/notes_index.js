@@ -153,5 +153,6 @@
 [165,"Whats New in Version 28"],
 [166,"LOCAL (New In v28)"],
 [167,"New In v28"],
-[168,"VDESKTOP (New In v28)"]
+[168,"VDESKTOP (New In v28)"],
+[169,"How to？ - Adding a command to MAPEXE "]
 ];
