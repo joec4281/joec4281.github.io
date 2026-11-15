@@ -147,5 +147,7 @@
 [156,"Configure TCSTART depending on parent"],
 [157,"Display graphic images on a TCC v36 display via Windows Terminal"],
 [158,"MAPEXE "],
-[159,"MAPEXE commands executed at the start of a BTM - is that expected behavior？ "]
+[159,"MAPEXE commands executed at the start of a BTM - is that expected behavior？ "],
+[160,"Fun with MAPEXE ｜ Take Command "],
+[161,"Done - Flush the MAPEXE cache when the PATH variable changes"]
 ];

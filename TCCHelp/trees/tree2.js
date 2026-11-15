@@ -97,7 +97,9 @@
           { value: "New In v33", id: "82", link: "82" }        ]
         },
         { value: "MAPEXE ", id: "158", link: "158", open: true, data: [
-          { value: "MAPEXE commands executed at the start of a BTM - is that expected behavior？ ", id: "159", link: "159" }        ]
+          { value: "MAPEXE commands executed at the start of a BTM - is that expected behavior？ ", id: "159", link: "159" },
+          { value: "Fun with MAPEXE ｜ Take Command ", id: "160", link: "160" },
+          { value: "Done - Flush the MAPEXE cache when the PATH variable changes", id: "161", link: "161" }        ]
         },
         { value: "MOVE", id: "48", link: "48", data: [
           { value: "New In v33", id: "83", link: "83" },
