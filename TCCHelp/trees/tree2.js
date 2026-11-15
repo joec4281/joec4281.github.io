@@ -96,7 +96,9 @@
         { value: "LUA", id: "47", link: "47", open: true, data: [
           { value: "New In v33", id: "82", link: "82" }        ]
         },
-        { value: "MAPEXE ", id: "158", link: "158"        },
+        { value: "MAPEXE ", id: "158", link: "158", open: true, data: [
+          { value: "MAPEXE commands executed at the start of a BTM - is that expected behavior？ ", id: "159", link: "159" }        ]
+        },
         { value: "MOVE", id: "48", link: "48", data: [
           { value: "New In v33", id: "83", link: "83" },
           { value: "New In v32", id: "84", link: "84" }        ]

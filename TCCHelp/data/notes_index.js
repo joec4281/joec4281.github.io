@@ -146,5 +146,6 @@
 [155,"TCEDIT"],
 [156,"Configure TCSTART depending on parent"],
 [157,"Display graphic images on a TCC v36 display via Windows Terminal"],
-[158,"MAPEXE "]
+[158,"MAPEXE "],
+[159,"MAPEXE commands executed at the start of a BTM - is that expected behavior？ "]
 ];
