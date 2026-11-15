@@ -6,6 +6,7 @@
       { value: "Whats New in Version 33", id: "5", link: "5" },
       { value: "Whats New in Version 32", id: "6", link: "6" },
       { value: "Whats New in Version 31", id: "7", link: "7" },
+      { value: "Whats New in Version 28", id: "165", link: "165" },
       { value: "Whats New in Version 21.0", id: "127", link: "127" },
       { value: "Whats New in Version 21.01", id: "126", link: "126" }    ]
     },
@@ -87,12 +88,14 @@
         { value: "INTERNAL (New In v32)", id: "46", link: "46", open: true, data: [
           { value: "New In v33", id: "81", link: "81" }        ]
         },
-        { value: "LIBRARY (New In v28)", id: "162", link: "162", open: true, data: [
+        { value: "LIBRARY", id: "162", link: "162", open: true, data: [
+          { value: "New In v28", id: "167", link: "167" },
           { value: "Format the output from LIBRARY /F", id: "152", link: "152" },
           { value: "Functions (Bare) from a specific Library", id: "144", link: "144" },
           { value: "Functions from a specific Library", id: "145", link: "145" },
           { value: "LIBRARY /N but from a specifc LIBRARY", id: "153", link: "153" }        ]
         },
+        { value: "LOCAL (New In v28)", id: "166", link: "166"        },
         { value: "LUA", id: "47", link: "47", open: true, data: [
           { value: "New In v33", id: "82", link: "82" }        ]
         },
@@ -160,9 +163,10 @@
           { value: "New In v33", id: "92", link: "92" }        ]
         },
         { value: "TRUE (New In v32)", id: "62", link: "62"        },
-        { value: "WATCH (New In v32)", id: "63", link: "63", open: true, data: [
-          { value: "New In v33", id: "93", link: "93" },
-          { value: "New In v32", id: "94", link: "94" }        ]
+        { value: "VDESKTOP (New In v28)", id: "168", link: "168"        },
+        { value: "WATCH (New In v32)", id: "164", link: "164", open: true, data: [
+          { value: "New In v32", id: "94", link: "94" },
+          { value: "New In v33", id: "93", link: "93" }        ]
         },
         { value: "WHICH", id: "64", link: "64", data: [
           { value: "New In v33", id: "95", link: "95" }        ]

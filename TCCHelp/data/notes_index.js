@@ -59,7 +59,6 @@
 [60,"TOUCH"],
 [61,"TPIPE"],
 [62,"TRUE (New In v32)"],
-[63,"WATCH (New In v32)"],
 [64,"WHICH"],
 [65,"WINDOW"],
 [66,"WSHELL"],
@@ -148,6 +147,11 @@
 [159,"MAPEXE commands executed at the start of a BTM - is that expected behavior？ "],
 [160,"Fun with MAPEXE ｜ Take Command "],
 [161,"Done - Flush the MAPEXE cache when the PATH variable changes"],
-[162,"LIBRARY (New In v28)"],
-[163,"PSHELL (New In v21)"]
+[162,"LIBRARY"],
+[163,"PSHELL (New In v21)"],
+[164,"WATCH (New In v32)"],
+[165,"Whats New in Version 28"],
+[166,"LOCAL (New In v28)"],
+[167,"New In v28"],
+[168,"VDESKTOP (New In v28)"]
 ];
