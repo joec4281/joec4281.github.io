@@ -87,7 +87,7 @@
         { value: "INTERNAL (New In v32)", id: "46", link: "46", open: true, data: [
           { value: "New In v33", id: "81", link: "81" }        ]
         },
-        { value: "LIBRARY (New In v28)", id: "142", link: "142", open: true, data: [
+        { value: "LIBRARY (New In v28)", id: "162", link: "162", open: true, data: [
           { value: "Format the output from LIBRARY /F", id: "152", link: "152" },
           { value: "Functions (Bare) from a specific Library", id: "144", link: "144" },
           { value: "Functions from a specific Library", id: "145", link: "145" },
@@ -114,7 +114,7 @@
         { value: "POPD", id: "51", link: "51", data: [
           { value: "New In v32", id: "102", link: "102" }        ]
         },
-        { value: "PSHELL (New In v21)", id: "123", link: "123", open: true, data: [
+        { value: "PSHELL (New In v21)", id: "163", link: "163", open: true, data: [
           { value: "New In v36.51", id: "124", link: "124" },
           { value: "Convert Clipboard contents to a continuous string", id: "141", link: "141" },
           { value: "Get-Clipboard returns $null causing problems with PShell", id: "140", link: "140", open: true, data: [

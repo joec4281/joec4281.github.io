@@ -115,7 +115,6 @@
 [120,"IMGTTY (New In v36.52)"],
 [121,"Whats New in Version 36.51"],
 [122,"New In v36.51"],
-[123,"PSHELL (New In v21)"],
 [124,"New In v36.51"],
 [126,"Whats New in Version 21.01"],
 [127,"Whats New in Version 21.0"],
@@ -131,7 +130,6 @@
 [139,"How to use Powershell Profile with PSHELL ｜ Take Command _ TCC (2026-09-07 6"],
 [140,"Get-Clipboard returns $null causing problems with PShell"],
 [141,"Convert Clipboard contents to a continuous string"],
-[142,"LIBRARY (New In v28)"],
 [144,"Functions (Bare) from a specific Library"],
 [145,"Functions from a specific Library"],
 [146,"Calling TCC Command from .NET Plugins"],
@@ -149,5 +147,7 @@
 [158,"MAPEXE "],
 [159,"MAPEXE commands executed at the start of a BTM - is that expected behavior？ "],
 [160,"Fun with MAPEXE ｜ Take Command "],
-[161,"Done - Flush the MAPEXE cache when the PATH variable changes"]
+[161,"Done - Flush the MAPEXE cache when the PATH variable changes"],
+[162,"LIBRARY (New In v28)"],
+[163,"PSHELL (New In v21)"]
 ];
