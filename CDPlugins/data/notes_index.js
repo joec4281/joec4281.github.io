@@ -22,7 +22,6 @@
 [21,"Timetrials"],
 [22,"Ruler"],
 [23,"Timestamp"],
-[24,"Acquire"],
 [25,"Banghistory"],
 [26,"Soundvol"],
 [27,"Ekeys"],
@@ -34,5 +33,6 @@
 [33,"Saveconsole"],
 [34,"Screenshot"],
 [35,"Sift"],
-[36,"Smbstuff"]
+[36,"Smbstuff"],
+[37,"Acquire"]
 ];
