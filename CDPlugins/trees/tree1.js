@@ -29,11 +29,11 @@
     { value: "SMBStuff", id: "63", link: "63" },
     { value: "SoundVol", id: "64", link: "64" },
     { value: "Sundry", id: "65", link: "65" },
-    { value: "Tasks", id: "20", link: "20" },
-    { value: "Textutils", id: "15", link: "15" },
-    { value: "Timestamp", id: "23", link: "23" },
-    { value: "Timetrials", id: "21", link: "21" },
-    { value: "UIstuff", id: "6", link: "6" },
-    { value: "Windowinfo", id: "28", link: "28" }  ]
+    { value: "Tasks", id: "66", link: "66" },
+    { value: "TextUtils", id: "67", link: "67" },
+    { value: "TimeStamp", id: "69", link: "69" },
+    { value: "TimeTrials", id: "70", link: "70" },
+    { value: "UIStuff", id: "71", link: "71" },
+    { value: "WindowInfo", id: "72", link: "72" }  ]
   }
 ];

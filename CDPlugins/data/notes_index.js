@@ -1,11 +1,5 @@
 ﻿var notesIndex = [
 [1,"Charles Dye Plugins"],
-[6,"UIstuff"],
-[15,"Textutils"],
-[20,"Tasks"],
-[21,"Timetrials"],
-[23,"Timestamp"],
-[28,"Windowinfo"],
 [37,"Acquire"],
 [38,"BBufStuff"],
 [39,"BangHistory"],
@@ -34,5 +28,11 @@
 [62,"Sift"],
 [63,"SMBStuff"],
 [64,"SoundVol"],
-[65,"Sundry"]
+[65,"Sundry"],
+[66,"Tasks"],
+[67,"TextUtils"],
+[69,"TimeStamp"],
+[70,"TimeTrials"],
+[71,"UIStuff"],
+[72,"WindowInfo"]
 ];
