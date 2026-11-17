@@ -1,0 +1,1042 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>EditKeys Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.defaultval			{ font-size: 90%; font-style: italic; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#hotkeys">Hotkeys</a></li>
+	<li>    <a href="E:\Utils\#editkeys"><code>EDITKEYS</code></a> command</li>
+	<li>    <a href="E:\Utils\#cmath">CMath</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#props">Acknowledgments</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>EditKeys plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.99.19     2026-10-26</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin adds a number of new keystrokes to the TCC command line.  Features
+include hotkeys to <a href="E:\Utils\#k_swapch">exchange two characters</a> or
+<a href="E:\Utils\#k_swapargs">two arguments</a>, <a href="E:\Utils\#k_lastargs">insert the
+arguments from the previous command</a>, <a href="E:\Utils\#k_cls">clear the screen</a>,
+<a href="E:\Utils\#k_mathword">do math</a>, or <a href="E:\Utils\#k_expand">expand an expression</a>.
+You can easily <a href="E:\Utils\#k_unicode">enter Unicode characters by hex value</a> or
+<a href="E:\Utils\#k_charinfo">get the Unicode value of the character at the cursor</a>.
+You can <a href="E:\Utils\#k_wordcase">flip the case of the word at the cursor</a>. </p>
+
+<p>You can also <a href="E:\Utils\#k_copyline">copy the current command line to the clipboard</a>,
+and <a href="E:\Utils\#k_copyword">copy</a> or <a href="E:\Utils\#k_cutword">cut the word at the
+cursor</a>. </p>
+
+<p>You can <a href="E:\Utils\#k_printvp">print a picture of the console window</a>, or
+<a href="E:\Utils\#k_printhist">the last 100 lines of the command history</a>. </p>
+
+<p>Key assignments can be changed or deleted. </p>
+
+<br>
+<p>EditKeys combines, updates, and replaces several of my earlier plugins,
+including AllArgs, CharValue, ClearKey, CMath, CopyLine, QuickEval, and 
+SwapArgs. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>EditKeys.dll</span> and
+<span class=filename>EditKeys.chm</span> to some known location on your hard
+drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>EditKeys-x86.dll</span> instead of
+<span class=filename>EditKeys.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\editkeys.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=4>New <a href="E:\Utils\#hotkeys">Hotkeys:</a></th></tr>
+	<tr><td><a href="E:\Utils\#k_swapch">Swap Characters</a></td><td><a href="E:\Utils\#k_swapargs">Swap Arguments</a></td><td><a href="E:\Utils\#k_lastargs">Insert Last Args</a></td><td><a href="E:\Utils\#k_cls">Clear Screen</a></td></tr>
+	<tr><td><a href="E:\Utils\#k_mathword">Math Word</a></td><td><a href="E:\Utils\#k_expand">Expand Expression</a></td><td><a href="E:\Utils\#k_unicode">Unicode Entry</a></td><td><a href="E:\Utils\#k_copyline">Copy Line</a></td></tr>
+	<tr><td><a href="E:\Utils\#k_copyword">Copy Word</a></td><td><a href="E:\Utils\#k_cutword">Cut Word</a></td><td><a href="E:\Utils\#k_swapclipword">Swap Clipboard Word</a></td><td><a href="E:\Utils\#k_wordcase">Change Word Case</a></td></tr>
+	<tr><td><a href="E:\Utils\#k_custom">Custom Insert</a></td><td><a href="E:\Utils\#k_charinfo">Character Info</a></td><td><a href="E:\Utils\#k_fileuri">File To URI</a></td><td><a href="E:\Utils\#k_printvp">Print Viewport Picture</a></td></tr>
+	<tr><td><a href="E:\Utils\#k_savepic">Save Viewport Picture</a></td><td><a href="E:\Utils\#k_printhist">Print History</a></td><td><a href="E:\Utils\#k_pathexp">Search Path and Expand</a></td><td><a href="E:\Utils\#k_resolve">Resolve Filename</a></td></tr>
+	<tr><td><a href="E:\Utils\#k_indent">Indent Line</a></td><td><a href="E:\Utils\#k_autoclose">Auto Close</a></td></tr>
+	<tr><th colspan=4>New <a href="E:\Utils\#commands">Command:</a></th></tr>
+	<tr><td><a href="E:\Utils\#editkeys"><code>EDITKEYS</code></a></td></tr>
+	<tr><th colspan=4><a href="E:\Utils\#otherfeatures">Other Features:</a></th></tr>
+	<tr><td><a href="E:\Utils\#cmath">CMath</a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+:1+2*3<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=hotkeys></a>New Hotkeys:</h4>
+
+
+<p><a name=k_swapch></a><kbd>Alt</kbd>-<kbd>;</kbd>:  Swap Characters </p>
+
+<p>The character under the cursor will be exchanged with the one before it.  If the cursor is
+at the start or the end of the command line, the two characters closest to the cursor will be
+exchanged. </p>
+
+<p><kbd>Alt</kbd>-<kbd>;</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K1:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_swapargs></a><kbd>Alt</kbd>-<kbd>'</kbd>:  Swap Arguments </p>
+
+<p>Exchanges the two arguments before the cursor.  Inside a function, arguments are separated
+by commas.  Outside of a function, arguments are space-delimited words. </p>
+
+<p><kbd>Alt</kbd>-<kbd>'</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K2:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_lastargs></a><kbd>F3</kbd>:  Insert Last Args </p>
+
+<p>All arguments from the previous command will be inserted at the cursor. </p>
+
+<p>You can use <!--hpage editkeys--><a href="E:\Utils\#ek_opt_a"><code>EDITKEYS /A:</code><span class=optname>n</span></a>
+to tweak the way this key works.  <span class=optname>n</span> is a bitmapped value;
+the default value is 2 (break on slash). </p>
+
+<table class=descript>
+	<tr><th>Value:</th><th>Feature:</th></tr>
+	<tr><td>1</td><td>Overwrite</td></tr>
+	<tr><td>2</td><td>Break on slash</td></tr>
+	<tr><td>4</td><td>Keep old args</td></tr>
+	<tr><td>8</td><td>Space around args</td></tr>
+</table>
+
+<p><b>Overwrite:</b>  Normally, pressing <kbd>F3</kbd> inserts the last command’s
+arguments at the cursor, and pushes any remaining text right.  If you set this bit,
+then the last command’s args will replace everything to the right of the
+cursor. </p>
+
+<p><b>Break on slash:</b>  If this bit is set, an unquoted slash in the command is
+treated as the start of its arguments.  This is useful if you are in the habit
+of not spacing between a command and its options, <i>e.g.</i> <code>DIR/A/W</code>. </p>
+
+<p><b>Keep old args:</b>  This bit controls what happens when a command with no
+arguments — a one-word command — is entered.  The default
+behavior is to discard any arguments from the previous command.  If you set this
+bit, the plugin will instead retain the last set of arguments across any
+“argless” commands. </p>
+
+<p><b>Space around args:</b>  By default, the last command’s arguments are inserted
+into the command line verbatim.  If this bit is set, the plugin will automatically
+add spaces between the inserted arguments and any text already on the command line. </p>
+
+<br>
+<p><kbd>F3</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K3:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_cls></a><kbd>Alt</kbd>-<kbd>L</kbd>:  Clear Screen </p>
+
+<p>This key doesn’t actually clear the screen; it <em>scrolls</em> the screen so
+the current command line is at the top.  Unless the cursor is very close to the bottom
+of the console buffer, no text will be lost. </p>
+
+<p><kbd>Alt</kbd>-<kbd>L</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K4:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_mathword></a><kbd>Alt</kbd>-<kbd>=</kbd>:  Math Word </p>
+
+<p>The space-delimited word at the cursor will be evaluated as a math expression. </p>
+
+<p>If you want to use spaces in your expression, wrap it in double quotes.
+They will be removed before the expression is evaluated. </p>
+
+<p><span class=note>•  Note:</span>  <kbd>=</kbd> is the plus-and-equals
+key on the main keyboard.  TCC version 24 and later will call it “Plus”,
+but it’s still the plus-and-equals key, not the plus-sign key on the
+numeric keypad.  Take Command uses <kbd>Alt</kbd>-<kbd>Num-</kbd> and <kbd>Alt</kbd>-<kbd>Num+</kbd>
+to change the font size. </p>
+
+<p><kbd>Alt</kbd>-<kbd>=</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K5:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_expand></a><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>X</kbd>:  Expand Expression </p>
+
+<p>The variable or function at the cursor will be expanded. </p>
+
+<p>If you have functions or variables nested within functions, the innermost variable
+or function at the cursor will be expanded.  You can press <kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>X</kbd>
+repeatedly to expand nested functions from the inside out. </p>
+
+<p>This hotkey also recognizes funky constructions like
+<code>%((</code><span class=optname>math</span><code>))</code> and
+<code>%[[</code><span class=optname>conditional</span><code>]]</code>, provided they
+are properly closed:  two consecutive close parentheses or close brackets. </p>
+
+<p><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>X</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K6:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_unicode></a><kbd>Alt</kbd>-<kbd>U</kbd>:  Unicode Entry </p>
+
+<p>Enter a Unicode character as a series of hexadecimal digits.  Type a series of
+hex digits, then press <kbd>Alt</kbd>-<kbd>U</kbd> to insert the Unicode character
+with that value. </p>
+
+<p>Characters outside the BMP are supported.  For example, you can type
+<kbd>1</kbd> <kbd>F</kbd> <kbd>4</kbd> <kbd>3</kbd> <kbd>1</kbd> <kbd>Alt</kbd>-<kbd>U</kbd>
+to produce a cat face emoji. </p>
+
+<p>The character value must be between <code>1</code> and <code>10FFFF</code>.
+If the value at the cursor is outside this range, or if there is no hexadecimal
+number at the cursor, you’ll get an error beep. </p>
+
+<p><kbd>Alt</kbd>-<kbd>U</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K7:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_copyline></a><kbd>Alt</kbd>-<kbd>C</kbd>:  Copy Line </p>
+
+<p>Copies the current command line to the clipboard.  The entire command line is copied;
+there is no need to highlight or select text first. </p>
+
+<p>If the command line is empty, nothing happens.  The clipboard is not emptied. </p>
+
+<p>The plugin will chime to let you know that the copy succeeded.  You can change or
+disable the chime with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_c"><code>EDITKEYS /C:</code><span class=optname>n</span></a>. </p>
+
+<p><kbd>Alt</kbd>-<kbd>C</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K8:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_copyword></a><kbd>Alt</kbd>-<kbd>W</kbd>:  Copy Word </p>
+
+<p>Copies the space-delimited word at the cursor to the clipboard.  There is no need to
+highlight or select text first. </p>
+
+<p>If there is no word at the cursor, nothing happens.  The clipboard is not emptied. </p>
+
+<p>The plugin will chime to let you know that the copy succeeded.  You can change or
+disable the chime with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_c"><code>EDITKEYS /C:</code><span class=optname>n</span></a>. </p>
+
+<p><kbd>Alt</kbd>-<kbd>W</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K9:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_cutword></a><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>W</kbd>:  Cut Word </p>
+
+<p>Cuts the space-delimited word at the cursor to the clipboard.  There is no need to
+highlight or select text first. </p>
+
+<p>If there is no word at the cursor, nothing happens.  The clipboard is not emptied. </p>
+
+<p><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>W</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K10:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_swapclipword></a><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Z</kbd>: Swap Clipboard Word </p>
+
+<p>Exchanges the word at the cursor with the word on the clipboard.  This action combines
+a one-word cut and a one-word paste in a single keystroke. </p>
+
+<p>If there is no word at the cursor, the plugin will beep and nothing will happen; the clipboard
+will not be emptied. </p>
+
+<p>If there is no text on the clipboard, the word at the cursor will be cut to the clipboard.
+If there is more than one word on the clipboard, only the first word will be pasted; everything
+else will be lost. </p>
+
+<p><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Z</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K11:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_wordcase></a><kbd>Ctrl</kbd>-<kbd>U</kbd>:  Change Word Case </p>
+
+<p>Changes the case of the word at the cursor.  Pressing this key repeatedly cycles
+the word:  lowercase → Initial Caps → UPPERCASE →
+ lowercase… </p>
+
+
+<p><kbd>Ctrl</kbd>-<kbd>U</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K12:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_custom></a><kbd>Alt</kbd>-<kbd>I</kbd>:  Custom Insert </p>
+
+<p>Performs variable expansion on an environment variable, and insert the results
+at the cursor.  You can define up to three variables, each with its own hotkey(s). </p>
+
+<table class=descript>
+	<tr><th><span class=optname>n</span></th><th>Default Hotkey:</th><th>Set Hotkey With:</th><th>Environment Variable:</th></tr>
+	<tr><td>1</td><td><kbd>Alt</kbd>-<kbd>I</kbd></td><td><!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K13:</code><span class=optname>key</span></a></td><td><code>Insert-1</code></td></tr>
+	<tr><td>2</td><td>none</td><td><!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K14:</code><span class=optname>key</span></a></td><td><code>Insert-2</code></td></tr>
+	<tr><td>3</td><td>none</td><td><!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K15:</code><span class=optname>key</span></a></td><td><code>Insert-3</code></td></tr>
+</table>
+
+<p>You can use internal variables and functions in the environment variable.
+Be sure to either double all percent signs, or else enclose the entire value in
+strong quotes, when you <code>SET</code> the variable. </p>
+
+<p>If the corresponding environment variable is not defined, the plugin will use
+<code>%_ISODATE</code> as a default value.  If the variable is defined, but
+variable expansion produces an empty string, the plugin will beep. </p>
+
+<br>
+<p class=example><code>rem   Use Alt-T to insert the current time:<br>
+editkeys /k14:alt-t<br>
+set insert-2=`%_time`<br>
+<br>
+rem   Use Alt-N for the current directory's name:<br>
+editkeys /k15:alt-n<br>
+set insert-3=`%@name[%_cwd]`<br>
+</code></p>
+
+<p><!--hpage editkeys--><a href="E:\Utils\#ek_opt_s"><code>EDITKEYS /S</code></a> saves the
+three environment variables <code>Insert-1</code>, <code>Insert-2</code>, and
+<code>Insert-3</code> to the registry.  They will be restored when the plugin is
+reloaded, or by <!--hpage editkeys--><a href="E:\Utils\#ek_opt_r"><code>EDITKEYS /R</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_charinfo></a><kbd>Ctrl</kbd>-<kbd>A</kbd>:  Character Info </p>
+
+<p>Shows information about the character at the cursor.  You get the character’s
+Unicode value in hex and decimal, its UTF-8 encoding, and — if its value is
+higher than 0xFFFF — its UTF-16 encoding.  If TCC is running in Take Command,
+character info will be displayed in the status bar.  If TCC is in a standalone console
+window, you’ll get a popup window. </p>
+
+<p><kbd>Ctrl</kbd>-<kbd>A</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K16:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_fileuri></a><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>F</kbd>: File To URI </p>
+
+<p>Toggles the word at the cursor from a filename to a file:/// URI, or vice versa. </p>
+
+<p>This hotkey attempts to change the <i>space-delimited</i> word at the cursor.  It knows
+nothing about function arguments, commas, or other argument separators.  If you want to use
+it on a filename inside a function, you must supply spaces around the filename. </p>
+
+<p><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>F</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K19:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_printvp></a><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>P</kbd>: Print Viewport Picture </p>
+
+<p>Prints the visible portion of the console buffer to the default printer. </p>
+
+<p>A screenshot of the console window will be saved as a .PNG file, and then printed
+using the default handler. </p>
+
+<br>
+<p><span class=note>•  Note:</span>  Exactly how your system prints a
+.PNG file depends on your file assocations.  To troubleshoot, you can use
+<a href="E:\Utils\#k_savepic"><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>Q</kbd></a> to save a .PNG file
+to your desktop; then right-click on it and choose Print to see what the system does. </p>
+
+<p><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>P</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K20:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_savepic></a><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>Q</kbd>: Save Viewport Picture </p>
+
+<p>Saves the visible portion of the console buffer to a .PNG file. </p>
+
+<p>This action is a variant of <a href="E:\Utils\#k_printvp">Print Viewport Picture</a>.  Instead
+of being printed, the file will be saved to the desktop.  Two environment variables
+are available to customize this action: </p>
+
+<table class=descript>
+	<tr><th>Variable Name</th><th>Default</th><th>Description</th></tr>
+	<tr><td><code>SavePicDir</code></td><td>user’s desktop</td><td>location to save files</td></tr>
+	<tr><td><code>SavePicExt</code></td><td>.PNG</td><td>file type for saved pictures</td></tr>
+	<!-- <tr><td><code> </code></td><td> </td><td> </td></tr> -->
+</table>
+
+<p><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>Q</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K21:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_printhist></a><kbd>Ctrl</kbd>-<kbd>P</kbd>: Print History </p>
+
+<p>Prints the last 100 lines of the command history to the default printer. </p>
+
+<p>History lines will be saved as a .TXT file, and then printed using the
+default handler.  Two environment variables are available to customize this
+action: </p>
+
+<table class=descript>
+	<tr><th>Variable Name</th><th>Default</th><th>Description</th></tr>
+	<tr><td><code>PrintHistoryMaxLines</code></td><td>100</td><td>The maximum number of lines to print. </td></tr>
+	<tr><td><code>PrintHistoryFlags</code></td><td>0</td><td>Set to 1 to print line numbers. </td></tr>
+</table>
+
+<p>History lines are numbered starting with the oldest as #1.  If there are more
+than 100 history lines (or <code>PrintHistoryMaxLines</code>) in memory, then the first
+line printed will be greater than 1. </p>
+
+<br>
+<p><span class=note>•  Note:</span>  Exactly how your system prints a
+.TXT file depends on your file associations.  To troubleshoot, you can create a text file
+on your desktop; then right-click on it and choose Print to see what the system does. </p>
+
+<p><kbd>Ctrl</kbd>-<kbd>P</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K22:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_pathexp></a><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>E</kbd>: Search Path and Expand </p>
+
+<p>Searches the path for a command or file matching the word at the cursor.  The full
+filename of the first matching file will be returned.  (<i>Only</i> the first; there is
+no provision for handling multiple matches.) </p>
+
+<p>There is one environment variable available to customize this action: </p>
+
+<table class=descript>
+	<tr><th>Variable Name</th><th>Default</th><th colspan=2>Description</th></tr>
+	<tr><td><code>PathExpandFlags</code></td><td>6</td><td colspan=2>Bitmapped: </td></tr>
+	<tr><td></td><td></td><td style="text-align: right;">1</td><td>search the current directory before <code>%PATH</code></td></tr>
+	<tr><td></td><td></td><td style="text-align: right;">2</td><td>search the registry App Paths before <code>%PATH</code></td></tr>
+	<tr><td></td><td></td><td style="text-align: right;">4</td><td>check the environment for executable extensions</td></tr>
+	<tr><td></td><td></td><td style="text-align: right;">64</td><td>return only the filename, not its complete path</td></tr>
+	<tr><td></td><td></td><td style="text-align: right;">128</td><td>automatically expand REG_EXPAND_SZ values</td></tr>
+</table>
+
+<p><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>E</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K23:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_resolve></a><kbd>Alt</kbd>-<kbd>R</kbd>:  Resolve Filename </p>
+
+<p>This keystroke examines the filename at the cursor, and tries to resolve
+any redirections in the filename.  It can trace through: </p>
+
+<ul class=descript>
+	<li>directory aliases</li>
+	<li>symlinks and junctions</li>
+	<li><span class=filename>.lnk</span> file targets</li>
+	<li>AppX executable aliases</li>
+</ul>
+
+<p>You can press this key repeatedly to step through multiple redirections. </p>
+
+<p><kbd>Alt</kbd>-<kbd>R</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K24:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_indent></a><kbd>Alt</kbd>-<kbd>,</kbd>: Indent Line</p>
+
+<p>If the first character on the command line is not a space, this keystroke
+inserts a space at the beginning of the command line.  If the first character
+on the command line <em>is</em> a space, all spaces at the start of the
+command line will be removed. </p>
+
+<p><kbd>Alt</kbd>-<kbd>,</kbd> is the default hotkey for this action, but you can change it with
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_k"><code>EDITKEYS /K25:</code><span class=optname>key</span></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=k_autoclose></a><kbd>[</kbd>, <kbd>(</kbd>, <kbd>{</kbd>, <kbd>"</kbd>, <kbd>'</kbd>, <kbd>`</kbd>:  Auto Close </p>
+
+<p>This feature is disabled by default.  You can use
+<!--hpage editkeys--><a href="E:\Utils\#ek_opt_b"><code>EDITKEYS /B:</code><span class=optname>n</span></a>
+to enable auto-close for any or all of these punctuation marks.  <span class=optname>n</span>
+is a bitmapped value: </p>
+
+<table class=descript>
+	<tr><th>Value:</th><th>Feature:</th></tr>
+	<tr><td>1</td><td>Square brackets</td><td><code>[ ]</code></td></tr>
+	<tr><td>2</td><td>Parentheses</td><td><code>( )</code></td></tr>
+	<tr><td>4</td><td>Braces</td><td><code>{ }</code></td></tr>
+	<tr><td>8</td><td>Quotation marks</td><td><code>" "</code></td></tr>
+	<tr><td>16</td><td>Apostrophes</td><td><code>' '</code></td></tr>
+	<tr><td>32</td><td>Strong quotes</td><td><code>` `</code></td></tr>
+</table>
+
+<p>The default is zero, don’t auto-close anything.  Note that
+this feature only works in insert mode.  It is automatically disabled in
+overstrike mode, where it makes no sense. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=editkeys></a><code>EDITKEYS</code> — Display and change plugin settings.</p>
+
+<p class=iewrap><a name=ek_syntax></a>Syntax:<br>
+<code class=req>EDITKEYS</code><code> /A:</code><span class=optname>n</span><code> /B:</code><span class=optname>n</span><code> /C:</code><span class=optname>n</span><code> /D /E:</code><span class=optname>n</span><code> /K</code><span class=optname>n</span><code>:</code><span class=optname>key</span><code> /L /Q /R /S /X:</code><span class=optname>key</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#ek_opt_a"><code>/A:</code><span class=optname>n</span></a></td><td>change the LastArgs flags</td><td class=defaultval>2</td></tr>
+	<tr><td><a href="E:\Utils\#ek_opt_b"><code>/B:</code><span class=optname>n</span></a></td><td>change the auto-close flags</td><td class=defaultval>0</td></tr>
+	<tr><td><a href="E:\Utils\#ek_opt_c"><code>/C:</code><span class=optname>n</span></a></td><td>change the copy chime sound</td><td class=defaultval>1</td></tr>
+	<tr><td><a href="E:\Utils\#ek_opt_d"><code>/D</code></a></td><td>restore default plugin settings</td></tr>
+	<tr><td><a href="E:\Utils\#ek_opt_e"><code>/E:</code><span class=optname>n</span></a></td><td>change the error sound</td><td class=defaultval>2</td></tr>
+	<tr><td><a href="E:\Utils\#ek_opt_k"><code>/K</code><span class=optname>n</span><code>:</code><span class=optname>key</span></a></td><td>define or change a hotkey</td></tr>
+	<tr><td><code>/L</code></td><td>list all supported hotkeys</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><a href="E:\Utils\#ek_opt_r"><code>/R</code></a></td><td>restore saved settings from the registry</td></tr>
+	<tr><td><a href="E:\Utils\#ek_opt_s"><code>/S</code></a></td><td>save the current settings to the registry</td></tr>
+	<tr><td><a href="E:\Utils\#ek_opt_x"><code>/X:</code><span class=optname>key</span></a></td><td>delete a hotkey</td></tr>
+	<!-- <tr><td><code>/</code></td><td> </td></tr> -->
+</table>
+
+<p><code>EDITKEYS</code> with no options displays the plugin’s
+current settings. </p>
+
+
+<br>
+<p><a name=ek_opt_k></a><code>/K</code><span class=optname>n</span><code>:</code><span class=optname>key</span>
+assigns a hotkey to an action.  <span class=optname>n</span> is the action
+number, and <span class=optname>key</span> is the name of the key to perform
+that action: </p>
+
+<table class=descript>
+	<tr><th><span class=optname>n</span></th><th>Action:</th><th>Default:</th></tr>
+	<tr><td>1</td><td><a href="E:\Utils\#k_swapch">Swap Characters</a></td><td><kbd>Alt</kbd>-<kbd>;</kbd></td></tr>
+	<tr><td>2</td><td><a href="E:\Utils\#k_swapargs">Swap Arguments</a></td><td><kbd>Alt</kbd>-<kbd>'</kbd></td></tr>
+	<tr><td>3</td><td><a href="E:\Utils\#k_lastargs">Insert Last Args</a></td><td><kbd>F3</kbd></td></tr>
+	<tr><td>4</td><td><a href="E:\Utils\#k_cls">Clear Screen</a></td><td><kbd>Alt</kbd>-<kbd>L</kbd></td></tr>
+	<tr><td>5</td><td><a href="E:\Utils\#k_mathword">Math Word</a></td><td><kbd>Alt</kbd>-<kbd>=</kbd></td></tr>
+	<tr><td>6</td><td><a href="E:\Utils\#k_expand">Expand Expression</a></td><td><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>X</kbd></td></tr>
+	<tr><td>7</td><td><a href="E:\Utils\#k_unicode">Unicode Entry</a></td><td><kbd>Alt</kbd>-<kbd>U</kbd></td></tr>
+	<tr><td>8</td><td><a href="E:\Utils\#k_copyline">Copy Line</a></td><td><kbd>Alt</kbd>-<kbd>C</kbd></td></tr>
+	<tr><td>9</td><td><a href="E:\Utils\#k_copyword">Copy Word</a></td><td><kbd>Alt</kbd>-<kbd>W</kbd></td></tr>
+	<tr><td>10</td><td><a href="E:\Utils\#k_cutword">Cut Word</a></td><td><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>W</kbd></td></tr>
+	<tr><td>11</td><td><a href="E:\Utils\#k_swapclipword">Swap Clipboard Word</a></td><td><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Z</kbd></td></tr>
+	<tr><td>12</td><td><a href="E:\Utils\#k_wordcase">Change Word Case</a></td><td><kbd>Ctrl</kbd>-<kbd>U</kbd></td></tr>
+	<tr><td>13</td><td><a href="E:\Utils\#k_custom">Custom Insert 1</a></td><td><kbd>Alt</kbd>-<kbd>I</kbd></td></tr>
+	<tr><td>14</td><td><a href="E:\Utils\#k_custom">Custom Insert 2</a></td><td></td></tr>
+	<tr><td>15</td><td><a href="E:\Utils\#k_custom">Custom Insert 3</a></td><td></td></tr>
+	<tr><td>16</td><td><a href="E:\Utils\#k_charinfo">Character Info</a></td><td><kbd>Ctrl</kbd>-<kbd>A</kbd></td></tr>
+	<tr><td>19</td><td><a href="E:\Utils\#k_fileuri">File To URI</a></td><td><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>F</kbd></td></tr>
+	<tr><td>20</td><td><a href="E:\Utils\#k_printvp">Print Viewport Picture</a></td><td><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>P</kbd></td></tr>
+	<tr><td>21</td><td><a href="E:\Utils\#k_savepic">Save Viewport Picture</a></td><td><kbd>Ctrl</kbd>-<kbd>Shift</kbd>-<kbd>Q</kbd></td></tr>
+	<tr><td>22</td><td><a href="E:\Utils\#k_printhist">Print History</a></td><td><kbd>Ctrl</kbd>-<kbd>P</kbd></td></tr>
+	<tr><td>23</td><td><a href="E:\Utils\#k_pathexp">Search Path and Expand</a></td><td><kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>E</kbd></td></tr>
+	<tr><td>24</td><td><a href="E:\Utils\#k_resolve">Resolve Filename</a></td><td><kbd>Alt</kbd>-<kbd>R</kbd></td></tr>
+	<tr><td>25</td><td><a href="E:\Utils\#k_indent">Indent Line</a></td><td><kbd>Alt</kbd>-<kbd>,</kbd></td></tr>
+	<!-- <tr><td> </td><td><a href="#k_*"> </a></td><td><kbd>Ctrl</kbd>-<kbd>X</kbd></td></tr> -->
+</table>
+
+<p>A hotkey can only perform one action.  If a key is assigned to an
+action, you can use <code>/K</code> to reassign it; the new action will
+replace the old one.  On the other hand, you can assign multiple keys
+to the same action. </p>
+
+<p class=example><code>rem   Use Ctrl-Alt-C to clear the screen:<br>
+editkeys /k4:ctrl-alt-c<br>
+</code></p>
+
+<br>
+<p><a name=ek_opt_x></a><code>/X:</code><span class=optname>key</span>
+lets you delete a hotkey.  <span class=optname>key</span> is the
+key’s name, <i>e.g.</i> <code>Alt-L</code>. </p>
+
+<p class=example><code>rem   Remove the Alt-L hotkey:<br>
+editkeys /x:alt-l<br>
+</code></p>
+
+<br>
+<p><a name=ek_opt_e></a><code>/E:</code><span class=optname>n</span>
+allows you to change the sound the plugin makes when an error is
+encountered. </p>
+
+<table class=descript>
+	<tr><th><span class=optname>n</span>:</th><th>Sound:</th></tr>
+	<tr><td>0</td><td>none</td></tr>
+	<tr><td>1</td><td>TCC’s internal beep</td></tr>
+	<tr><td>2</td><td>the Windows “Asterisk” sound</td></tr>
+	<tr><td>3</td><td>the Windows “Default Beep” sound</td></tr>
+	<tr><td>4</td><td>the Windows “Exclamation” sound</td></tr>
+	<tr><td>5</td><td>the Windows “Critical Stop” sound</td></tr>
+	<tr><td>6</td><td>the Windows “Question” sound</td></tr>
+</table>
+
+<p>Sound number 1 can be customized via the Option dialog; look for the
+“Default beep” settings on the Advanced tab.  Numbers 2 through
+6 can be redefined in the Control Panel “Sound” applet. </p>
+
+<br>
+<p><a name=ek_opt_c></a><code>/C:</code><span class=optname>n</span>
+lets you change the sound the plugin makes when text is copied to the
+clipboard. </p>
+
+<table class=descript>
+	<tr><th><span class=optname>n</span>:</th><th>Sound:</th></tr>
+	<tr><td>0</td><td>none</td></tr>
+	<tr><td>1</td><td>chime sound (built into the plugin)</td></tr>
+	<tr><td>2</td><td>the Windows “Asterisk” sound</td></tr>
+	<tr><td>3</td><td>the Windows “Default Beep” sound</td></tr>
+	<tr><td>4</td><td>the Windows “Exclamation” sound</td></tr>
+	<tr><td>5</td><td>the Windows “Critical Stop” sound</td></tr>
+	<tr><td>6</td><td>the Windows “Question” sound</td></tr>
+</table>
+
+<p>Numbers 2 through 6 can be redefined in the Control Panel “Sound”
+applet. </p>
+
+<br>
+<p><a name=ek_opt_a></a><code>/A:</code><span class=optname>n</span>
+sets options which affect the <a href="E:\Utils\#k_lastargs">insert last args</a>
+hotkey.  <span class=optname>n</span> is a bitmapped value: </p>
+
+<table class=descript>
+	<tr><th>Value:</th><th>Feature:</th></tr>
+	<tr><td>1</td><td>Overwrite</td></tr>
+	<tr><td>2</td><td>Break on slash</td></tr>
+	<tr><td>4</td><td>Keep old args</td></tr>
+	<tr><td>8</td><td>Space around args</td></tr>
+</table>
+
+<p>See <a href="E:\Utils\#k_lastargs">insert last args</a> for details on these
+options. </p>
+
+<br>
+<p><a name=ek_opt_b></a><code>/B:</code><span class=optname>n</span>
+determines which characters are <a href="E:\Utils\#k_autoclose">automatically closed
+as you type them</a>.  <span class=optname>n</span> is a bitmapped value: </p>
+
+<table class=descript>
+	<tr><th>Value:</th><th>Feature:</th></tr>
+	<tr><td>1</td><td>Square brackets</td><td><code>[ ]</code></td></tr>
+	<tr><td>2</td><td>Parentheses</td><td><code>( )</code></td></tr>
+	<tr><td>4</td><td>Braces</td><td><code>{ }</code></td></tr>
+	<tr><td>8</td><td>Quotation marks</td><td><code>" "</code></td></tr>
+	<tr><td>16</td><td>Apostrophes</td><td><code>' '</code></td></tr>
+	<tr><td>32</td><td>Strong quotes</td><td><code>` `</code></td></tr>
+</table>
+
+<p>The default is zero, don’t auto-close anything.  Note that
+this feature only works in insert mode.  It is automatically disabled in
+overstrike mode, where it makes no sense. </p>
+
+<p class=example><code>rem   Auto-close square brackets and parentheses:<br>
+editkeys /b:3<br>
+</code></p>
+
+<br>
+<p><a name=ek_opt_d></a><code>/D</code> restores the original plugin
+default settings (shown in the third column of <a href="E:\Utils\#ek_syntax">the
+table above</a>) and the default hotkey assignments (shown in the third
+column of <a href="E:\Utils\#ek_opt_k">this table</a>).  Environment variables
+will not be affected. </p>
+
+<p><a name=ek_opt_r></a><code>/R</code> restores the settings, hotkey
+assignments, and environment variables saved to the registry, if any.
+If you specify both <code>/D</code> and <code>/R</code>, EditKeys will try
+to read settings from the registry first, and then restore the original
+plugin defaults only if restoring from the registry failed. </p>
+
+<p><a name=ek_opt_s></a><code>/S</code> saves the current settings,
+including hotkey assignments and environment variables, to the registry.
+They will be loaded automatically the next time you load this plugin. </p>
+
+<br>
+<p><a name=ek_savevars></a><code>/S</code> and <code>/R</code> save and
+restore these environment variables: </p>
+
+<table class=descript>
+	<tr><th>Variable Name:</th><th>Function:</th></tr>
+	<tr><td><code>Insert-1</code></td><td><a href="E:\Utils\#k_custom">Custom insert string #1</a></td></tr>
+	<tr><td><code>Insert-2</code></td><td><a href="E:\Utils\#k_custom">Custom insert string #2</a></td></tr>
+	<tr><td><code>Insert-3</code></td><td><a href="E:\Utils\#k_custom">Custom insert string #3</a></td></tr>
+	<tr><td><code>SavePicDir</code></td><td>Save location for <a href="E:\Utils\#k_savepic">Save Viewport Picture</a></td></tr>
+	<tr><td><code>SavePicExt</code></td><td>File type for <a href="E:\Utils\#k_savepic">Save Viewport Picture</a></td></tr>
+	<tr><td><code>SavePicFlags</code></td><td> </td></tr>
+	<tr><td><code>PrintHistoryMaxLines</code></td><td>Maximum lines for <a href="E:\Utils\#k_printhist">Print History</a> to print</td></tr>
+	<tr><td><code>PrintHistoryFlags</code></td><td><a href="E:\Utils\#k_printhist">Print History</a> features</td></tr>
+	<tr><td><code>PathExpandFlags</code></td><td><a href="E:\Utils\#k_pathexp">Search Path and Expand</a> features</td></tr>
+	<!-- <tr><td><code> </code></td><td> </td></tr> -->
+</table>
+
+<p>When saving with <code>/S</code>, all of the above environment variables will be saved
+to the registry if defined.  If a variable is not defined, it will be deleted from the
+registry. </p>
+
+<p>When restoring with <code>/R</code>, any of the above variables which are saved to the
+registry will be restored to the environment.  However, if a variable is not present in
+the registry, it will not be deleted from the environment. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=otherfeatures></a>Other Features:</h4>
+
+
+<p><a name=cmath></a>CMath — Evaluate a math expression at the
+command line. </p>
+
+<p>To evaluate a math expression, type a colon followed by the expression.  Then
+press <kbd>Enter</kbd>: </p>
+
+<p class=example><code>:1+2*3</code></p>
+
+<p>The answer, 7, will be displayed below your expression.  It will also
+be saved to the environment variable <code>ANS</code>.  You can use this
+variable in your next expression: </p>
+
+<p class=example><code>:ans*2</code></p>
+
+<p>Just remember that the value of <code>ANS</code> changes every time you
+use CMath.  After the second line, <code>ANS</code> will be 14, not 7. </p>
+
+<br>
+<p>CMath calls the same function that <code>@EVAL</code> uses internally.
+You can use any operator or function that is legal in <code>@EVAL</code>: </p>
+
+<p class=example><code>:log(100)</code></p>
+<br>
+
+<p class=example><code>set r=4<br>
+:pi*r**2<br></code></p>
+<br>
+
+<p class=example><code>:1492 =x<br></code></p>
+<br>
+
+
+<br>
+<p>You do not need to quote or escape most special characters: </p>
+
+<p class=example><code>:(1+2)*3</code></p>
+<br>
+
+<p class=example><code>:1 &lt;&lt; 8</code></p>
+<br>
+
+<p class=example><code>:1024 &gt;&gt; 3</code></p>
+<br>
+
+<p class=example><code>:5 & 9</code></p>
+<br>
+
+<p class=example><code>:5 | 9</code></p>
+<br>
+
+<p class=example><code>:5 ^ 9</code></p>
+<br>
+
+
+<br>
+<p>The one special character which needs attention is the percent
+sign.  If you want to use a percent sign as the modulo operator,
+you will need to double it.  (But it’s probably easier just
+to type <code>MOD</code>.) </p>
+
+<p class=example><code>:100%%7</code></p>
+<br>
+
+<p class=example><code>:100 mod 7</code></p>
+<br>
+
+<br>
+<p>You do not need a percent sign before environment variables.  You
+<em>do</em> need a percent sign before internal variables and variable
+functions: </p>
+
+<p class=example><code>:%_pid =x</code></p>
+<br>
+
+<p class=example><code>:3 * %@dec[foo]</code></p>
+<br>
+
+
+<br>
+<p><code>@EVAL</code>’s built-in functions do not take a percent
+sign: </p>
+
+<p class=example><code>set n=52<br>
+set r=5<br>
+:fact(n) / fact(n-r) / fact(r)</code></p>
+<br>
+
+
+<br>
+<p>You can save the resulting value to a different environment variable,
+instead of <code>ANS</code>: </p>
+
+<p class=example><code>set n=1066<br>
+:tri=(n*(n+1))/2</code></p>
+<br>
+
+<p>The variable name may contain only letters, digits, dollar signs,
+hyphens, periods, and underscores.  It must be less than 64 characters
+long, and must not begin with a digit or a period.  Do not space between
+the variable name and the equals sign. </p>
+
+
+<br>
+<p>The clipboard:  If you press <kbd>Ctrl</kbd>-<kbd>Enter</kbd>
+instead of just <kbd>Enter</kbd>, the resulting value will be copied to the
+clipboard, as well as being saved to <code>ANS</code> or another environment
+variable. </p>
+
+
+<!--blank-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=props></a>Acknowledgments:</h4>
+
+<p>The chime sound which plays when you copy text to the clipboard is by
+Samuel Gremaud.  I downloaded it from
+<a target=_blank href="https://freesound.org/people/SamuelGremaud/sounds/517659/">FreeSound.org</a>
+and modified it slightly (trimmed it for length and reduced the volume)
+before including it in the plugin .DLL file. </p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+
+<table>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>0.99.19.2</td><td nowrap>2026-10-26</td><td class=changes><a href="E:\Utils\#cmath">CMath</a>:  Allow
+			expressions to begin with an equals sign; change it to a colon for history purposes. </td></tr>
+	<tr><td>0.99.19.1</td><td nowrap>2026-10-26</td><td class=changes>Changes to the way the help text is 
+			displayed in Windows Terminal and Take Command ConPTY tabs. </td></tr>
+	<tr><td>0.99.19.0</td><td nowrap>2026-07-10</td><td class=changes>Removed all the scrolly stuff, which
+			does not (cannot) work in Windows Terminal and ConPTY tabs. <br>
+			<a href="E:\Utils\#k_resolve"><kbd>Alt</kbd>-<kbd>R</kbd></a> in some cases can now resolve filenames
+			which do not (yet?) exist. </td></tr>
+	<tr><td>0.99.18.3</td><td nowrap>2026-06-29</td><td class=changes>The <a href="E:\Utils\#k_cls">clear-screen key</a> now 
+			checks for any ConPTY window, not just Windows Terminal.  (Take Command supports ConPTY tabs starting 
+			from v36.0.) <br>
+			Documentation:  Document that the scrolly keys do not work (cannot work) in ConPTY tabs 
+			as well as Windows Terminal tabs. </td></tr>
+	<tr><td>0.99.18.2</td><td nowrap>2026-06-25</td><td class=changes>Added a workaround for some incorrect 
+			key names returned by TCC versions 35 and 36.0. </td></tr>
+	<tr><td>0.99.18.1</td><td nowrap>2026-03-11</td><td class=changes>Updated several include files. </td></tr>
+	<tr><td>0.99.18</td><td nowrap>2025-10-17</td><td class=changes>Changed ClearScreen() to work better in Windows 
+		Terminal. <br>
+		CountPromptNewLines() also counts newline characters (<code>\n</code>) in the prompt string. </td></tr>
+	<tr><td>0.99.17</td><td nowrap>2025-05-14</td><td class=changes>Two tweaks to <a href="E:\Utils\#cmath">CMath</a>:   Per Joe
+		Caverly, <kbd>Ctrl</kbd>-<kbd>Enter</kbd> also copies the resulting value to the clipboard. <br>
+		Also, added support for the <code>NO_COLOR</code> environment variable.  If <code>NO_COLOR</code> is defined and
+		<code>HIGHLIGHT</code> is not, disable highlighting. </td></tr>
+	<tr><td>0.99.16</td><td nowrap>2025-03-11</td><td class=changes>Added <a href="E:\Utils\#k_indent"><kbd>Alt</kbd>-<kbd>,</kbd></a> to
+		add a space to the beginning of the command line. </td></tr>
+	<tr><td>0.99.15.1</td><td nowrap>2025-01-09</td><td class=changes>Tweaked <code>FH_QueryTrueNameQuietly()</code> to not 
+		break filenames at a semicolon. </td></tr>
+	<tr><td>0.99.15</td><td nowrap>2025-01-06</td><td class=changes>Adds <a href="E:\Utils\#k_resolve"><kbd>Alt</kbd>-<kbd>R</kbd></a>
+		to resolve redirections in a filename. <br>
+		Reversed the way <a href="E:\Utils\#k_unicode">Unicode Entry</a> works:  Now you 
+		type a series of hex digits first, and then press <kbd>Alt</kbd>-<kbd>U</kbd> 
+		to replace the digits with a character. </td></tr>
+	<tr><td>0.99.14.2</td><td nowrap>2024-11-29</td><td class=changes><a href="E:\Utils\#cmath">CMath</a>:  Strip <em>all</em>
+		control characters from the expression after the call to <code>ExpandVariables()</code>.  I don’t think
+		<code>Evaluate()</code> expects to see anything but printable ASCII characters. </td></tr>
+	<tr><td>0.99.14.1</td><td nowrap>2024-11-09</td><td class=changes><a href="E:\Utils\#cmath">CMath</a>:  Strip any CR or LF
+		characters from the expression after the call to <code>ExpandVariables()</code>.  (<code>@PSHELL</code> does
+		this sometimes.) </td></tr>
+	<tr><td>0.99.14</td><td nowrap>2024-10-30</td><td class=changes><a href="E:\Utils\#cmath">CMath</a>:  Check for a leading
+		environment variable name with an equals sign.  If found, save the resulting value in that variable instead of
+		<code>ANS</code>.  Made the buffers bigger. </td></tr>
+	<tr><td>0.99.13.2</td><td nowrap>2024-10-25</td><td class=changes>Disable Scrolly code in Windows Terminal; documented
+		incompatibilities between Scrolly and Windows Terminal. </td></tr>
+	<tr><td>0.99.13.1</td><td nowrap>2024-10-04</td><td class=changes>Changed http:// to https:// in the <code>PLUGININFO</code>
+		structure.  Now ParseInt() supports octal values with a leading <code>0o</code>. </td></tr>
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>EditKeys is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/editkeys.zip">https://charlesdye.net/dl/editkeys.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

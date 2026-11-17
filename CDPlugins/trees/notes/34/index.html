@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>ScreenShot Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin-left: 1em; margin-top: 0.3em; margin-bottom: 0.3em; margin-right: auto; background-color: #eee; padding: 0.5em 1em; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin-left: 1em; margin-top: 0.3em; margin-bottom: 0.3em; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#top">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#screenshot">SCREENSHOT</a></li>
+	<li>    <a href="E:\Utils\#v_lastssfile">_LASTSSFILE</a></li>
+	<li><a href="E:\Utils\#envvars">Control Variables</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#changes" class=navlink>Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=top></a>
+
+<h1>ScreenShot plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc-cmd-prompt.html">TCC</a> / <a target=_blank href="https://jpsoft.com/products/tcc-le.html">TCC/LE</a></h1>
+<h3>Version 1.0.1     2021-07-08</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides an easy way to create screen shots from the command
+line or a batch file.  It adds one new <a href="E:\Utils\#commands">command</a>,
+<a href="E:\Utils\#screenshot"><code>SCREENSHOT</code></a>, and one new
+<a href="E:\Utils\#variables">variable</a>, <a href="E:\Utils\#v_lastssfile"><code>_LASTSSFILE</code></a>. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>ScreenShot.dll</span> to
+some known location on your hard drive.  (If you are still using the 32-bit
+version of Take Command, take <span class=filename>ScreenShot-x86.dll</span>
+instead of <span class=filename>ScreenShot.dll</span>.)  Load the .DLL file
+with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\screenshot.dll</code></p>
+
+<p>If you copy this file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, it will be loaded automatically
+when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">command</a>:  <a href="E:\Utils\#screenshot"><code>SCREENSHOT</code></a></p>
+
+<p>New <a href="E:\Utils\#variables">variable</a>:  <a href="E:\Utils\#v_lastssfile"><code>_LASTSSFILE</code></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=screenshot></a><code>SCREENSHOT</code> — Save a picture of
+a window or the desktop. </p>
+
+<p>Syntax:<br>
+<code class=req>SCREENSHOT</code><code> /C /D /F /H:</code><span class=optname>hwnd</span><code> /K:</code><span class=optname>class</span><code> /M:</code><span class=optname>n</span><code> /O /P:</code><span class=optname>pid</span><code> /Q /R:</code><span class=optname>resize</span><code> /T /W:</code><span class=optname>title</span><code> /X:</code><span class=optname>text</span><code> </code><span class=optname>filename</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#sw_c"><code>/C</code></a></td><td>client area of the window only</td></tr>
+	<tr><td><a href="E:\Utils\#sw_d"><code>/D</code></a></td><td>desktop (default)</td></tr>
+	<tr><td><a href="E:\Utils\#sw_f"><code>/F</code></a></td><td>the foreground window</td></tr>
+	<tr><td><a href="E:\Utils\#sw_h"><code>/H:</code><span class=optname>hwnd</span></a></td><td>window handle</td></tr>
+	<tr><td><a href="E:\Utils\#sw_filter"><code>/K:</code><span class=optname>class</span></a></td><td>window class; wildcards are okay</td></tr>
+	<tr><td><a href="E:\Utils\#sw_d"><code>/M:</code><span class=optname>n</span></a></td><td>monitor number, 0-based; implies <code>/D</code></td></tr>
+	<tr><td><code>/O</code></td><td>overwrite any existing file</td></tr>
+	<tr><td><a href="E:\Utils\#sw_filter"><code>/P:</code><span class=optname>pid</span></a></td><td>process ID; decimal or hex with leading <code>0x</code></td></tr>
+	<tr><td><a href="E:\Utils\#sw_r"><code>/R:</code><span class=optname>resize</span></a></td><td>resize the image</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly (no success message)</td></tr>
+	<tr><td><a href="E:\Utils\#sw_t"><code>/T</code></a></td><td>Take Command’s window</td></tr>
+	<tr><td><a href="E:\Utils\#sw_filter"><code>/W:</code><span class=optname>title</span></a></td><td>window title; wildcards are supported</td></tr>
+	<tr><td><a href="E:\Utils\#sw_x"><code>/X:</code><span class=optname>text</span></a></td><td>add text to the snapshot</td></tr>
+	<tr><td><a href="E:\Utils\#ss_filename"><span class=optname>filename</span></a></td><td>may be <code>CLIP:</code> or <code>PRINT:</code>  Directory aliases are OK</td></tr>
+</table>
+
+<p><a name=sw_d></a>This command saves a picture of a window, or of the desktop,
+to a file or to the clipboard.  To capture the desktop, specify <code>/D</code> —
+or no options; <code>/D</code> is the default mode.  In a multiple-monitor
+system, you can specify a monitor with <code>/M:</code><span class=optname>n</span>.
+The monitor number <span class=optname>n</span> is zero based; use
+<code>/M:0</code> for the first monitor, <code>/M:1</code> for the second, and
+so on.  You can also use <code>/M:128</code> to capture the entire virtual
+desktop. </p>
+
+<p class=example><code>screenshot /d<br></code></p>
+
+<br>
+<p>To capture a single window, use either <code>/F</code>, <code>/H:</code>,
+<code>/T</code>, or any combination of <code>/K:</code>, <code>/W:</code>, and
+<code>/P:</code> to specify the window: </p>
+
+<ul style="list-style:square; padding-left:3em;">
+	<li><a name=sw_f></a><code>/F</code> captures the foreground window. </li>
+	<li><a name=sw_h></a><code>/H:</code><span class=optname>hwnd</span> captures the window with the specified window handle. </li>
+	<li><a name=sw_t></a><code>/T</code> captures the Take Command window. </li>
+	<li><a name=sw_filter></a><code>/W:</code>, <code>/P:</code>, and <code>/K:</code> search for a window matching the specified conditions; these three may be combined as needed. </li>
+</ul>
+
+<p><code>/W:</code><span class=optname>title</span> finds a window with a
+matching title; you can use wildcards in <span class=optname>title</span>.
+<code>/P:</code><span class=optname>pid</span> finds a window owned by the
+specified process ID.  <code>/K:</code><span class=optname>class</span> finds
+a window of the specified window class; you can use wildcards in
+<span class=optname>class</span> also.  <code>SCREENSHOT</code> will capture
+the first top-level window it finds which matches all of the given conditions. </p>
+
+<p><a name=sw_c></a>With any of the above window options, you can also add <code>/C</code>
+to capture only the window’s client area, minus the window frame and title bar. </p>
+
+<p class=example><code>screenshot /w:*notepad<br>
+</code></p>
+
+
+<br>
+<p><a name=ss_filename></a>You can specify the filename for the image file.
+If the specified <span class=optname>filename</span> exists, <code>SCREENSHOT</code>
+will give an error message unless you also specify <code>/O</code>.  Directory
+aliases and <code>CLIP:</code> are supported.  The <span class=optname>filename</span>
+must end in one of these supported extensions: </p>
+
+<table class=descript>
+	<tr><td><code>.bmp</code></td></tr>
+	<tr><td><code>.jpg</code> or <code>.jpeg</code></td></tr>
+	<tr><td><code>.png</code></td></tr>
+	<tr><td><code>.gif</code></td></tr>
+	<tr><td><code>.tif</code> or <code>.tiff</code></td><td> </td></tr>
+</table>
+
+<p>If <span class=optname>filename</span> is not specified, or if it names a
+directory, <code>SCREENSHOT</code> will generate a filename from the current
+date and time.  Generated filenames will end in <code>.png</code> by default.
+You can choose a different file type for auto-generated filenames by setting
+an environment variable <a href="E:\Utils\#envvars"><code>SCREENSHOTEXT</code></a> to
+one of the supported extensions above.  Only the extensions listed above will
+work, and the leading dot is required.  The file will be created in the current
+working directory, unless you specify a directory on the command line or set an
+environment variable <a href="E:\Utils\#envvars"><code>SCREENSHOTPATH</code></a>. </p>
+
+<p class=example><code>screenshot /d desktop.jpg<br>
+<br>
+set screenshotext=.jpeg<br>
+screenshot /d<br>
+</code></p>
+
+<p>You may also specify <code>PRINT:</code> as a filename.  In this case,
+<code>SCREENSHOT</code> will dump the screen shot to your default printer.
+Printing is very basic; there is no header or footer, and your printer’s
+default preferences will be used.  For more sophisticated printing, use
+<code>CLIP:</code> instead and paste the image into
+<a target=_blank href="http://www.irfanview.com/">any graphics editing
+program</a>. </p>
+
+<br>
+<p><a name=sw_r></a>The <code>/R:</code> option allows you to resize the
+image when saving it to a file.  You can specify the new size as a percentage,
+or as a pixel width and height.  To give a percentage, type <em>two</em> percent
+signs after the value: </p>
+
+<p class=example><code>screensave /r:85%% test.jpg<br>
+</code></p>
+
+<p>You need to double the percent sign because TCC’s variable expansion
+will swallow a single percent sign. </p>
+
+<p>Alternatively, you can specify an absolute pixel width and height: </p>
+
+<p class=example><code>screensave /r:1024,768 test.jpg<br>
+</code></p>
+
+<p>You can omit either the new width or the new height, but not both: </p>
+
+<p class=example><code>rem    To specify a new width (the height will be kept proportional)<br>
+screensave /r:512 test.jpg<br>
+<br>
+ren     To specify a new height (the width will be kept proportional)<br>
+screensave /r:,384 test.jpg<br>
+</code></p>
+
+<p><code>/R:</code> is ignored if the filename is <code>PRINT:</code> </p>
+
+
+<br>
+<p><a name=sw_x></a>You can add text to the snapshot with
+<code>/X:</code><span class=optname>text</span>.  Quote the
+<span class=optname>text</span> if it contains spaces or other
+special characters.  There is also a handful of options to format the text;
+these must come <em>before</em> the <code>/X:</code><span class=optname>text</span>. </p>
+
+<table class=example>
+	<tr><td><code>/XS:</code><span class=optname>size</span></td><td>specify the text size</td><td><code>/XS:12</code></td></tr>
+	<tr><td><code>/XF:</code><span class=optname>face</span></td><td>specify the typeface</td><td><code>/XF:Georgia</code></td></tr>
+	<tr><td><code>/XC:</code><span class=optname>color</span></td><td>specify the <a target=_blank href="https://www.w3.org/TR/css3-iccprof#x11-color">color</a></td><td><code>/XC:Orange</code></td></tr>
+	<tr><td><code>/XX:</code><span class=optname>x</span></td><td>specify the left edge</td><td><code>/XX:50</code></td></tr>
+	<tr><td><code>/XY:</code><span class=optname>y</span></td><td>specify the top edge</td><td><code>/XY:0</code></td></tr>
+	<tr><td><code>/XB</code></td><td>boldface text</td><td> </td></tr>
+	<tr><td><code>/XI</code></td><td>italic text</td><td> </td></tr>
+	<tr><td><code>/XU</code></td><td>underline text</td><td> </td></tr>
+	<tr><td><code>/XN</code></td><td>regular text</td><td> </td></tr>
+</table>
+
+<p>These options only affect <code>/X:</code><span class=optname>text</span>
+options which <em>follow</em> them. </p>
+
+<p>Note that <code>/XC:</code> uses W3C color names, not the (much shorter)
+list of CGA colors supported by most TCC commands.  You can find a list of W3C
+colors <a target=_blank href="https://www.w3.org/TR/css3-iccprof#x11-color">here</a>
+or <a target=_blank href="https://www.w3schools.com/colors/colors_names.asp">here</a>
+or <a target=_blank href="https://en.wikipedia.org/wiki/X11_color_names#Color_name_chart">here</a>.
+You can also specify RGB values in hexadecimal, as
+<span style="white-space:nowrap;"><code>/XC:#</code><span class=optname>rrggbb</span></span>. </p>
+
+<br>
+<p class=example><code>rem  Add a big yellow date and time:<br>
+screenshot /d /xs:48 /xx:10 /xy:10 /xc:yellow /x:"%_date %_time" test.png<br>
+</code></p>
+
+
+<br>
+<p><code>SCREENSHOT</code> returns: </p>
+
+<table class=descript>
+	<tr><td>0</td><td>success</td></tr>
+	<tr><td>1</td><td>error on command line:  unknown option, bad value, etc.</td></tr>
+	<tr><td>2</td><td>operational error:  can’t find window, file error, etc.</td></tr>
+</table>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variable:</h4>
+
+
+<p><a name=v_lastssfile></a><code>_LASTSSFILE</code> — Returns the
+filename of the last screen shot. </p>
+
+<p>Syntax:<br>
+<code class=req>%_LASTSSFILE</code></p>
+
+<p>If the last call to <a href="E:\Utils\#screenshot"><code>SCREENSHOT</code></a>
+saved successfully to a file or the clipboard, this function will return the
+complete filename.  If an error was encountered, it will return
+<code>*Error*</code>.  If <code>SCREENSHOT</code> has not been called yet,
+this variable returns an empty string. </p>
+
+<p class=example><code>echo %_lastssfile</code></p>
+
+<p>This might be useful after <code>SCREENSHOT</code> generates its own
+filename. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=envvars></a>Control Variables:</h4>
+
+<p>You can set environment variables to control the default behavior of
+<a href="E:\Utils\#screenshot"><code>SCREENSHOT</code></a>. </p>
+
+<p><code>SCREENSHOTEXT</code>:  Sets the extension used when generating a
+filename.  It must be one of the following, and the leading period is
+required. </p>
+
+<table class=descript>
+	<tr><td><code>.bmp</code></td></tr>
+	<tr><td><code>.jpg</code> or <code>.jpeg</code></td></tr>
+	<tr><td><code>.png</code></td></tr>
+	<tr><td><code>.gif</code></td></tr>
+	<tr><td><code>.tif</code> or <code>.tiff</code></td><td> </td></tr>
+</table>
+
+<p><code>SCREENSHOTPATH</code>:  Sets the default location for screenshot
+files.  The default is the current directory. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table style="margin-left: 2px;">
+	<tr><td style="text-align: right;">1.0.1</td><td nowrap>2021-07-08</td><td>Changes to the VerInfo structure.  Now <span class=filename>ScreenShot.dll</span> is the 64-bit file. </td></tr>
+	<tr><td style="text-align: right;">1.0.0</td><td nowrap>2017-11-29</td><td>First release. </td></tr>
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2021, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target=_blank href="http://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="http://prospero.unm.edu/dl/screenshot.zip">http://prospero.unm.edu/dl/screenshot.zip</a>
+or <a href="E:\Utils\ftp:\\prospero.unm.edu\screenshot.zip">ftp://prospero.unm.edu/screenshot.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

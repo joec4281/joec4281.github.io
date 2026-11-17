@@ -1,0 +1,556 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>Primes Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="U:\#">Top</a></li>
+	<li><a href="U:\#purpose">Purpose</a></li>
+	<li><a href="U:\#install">Installation</a></li>
+	<li><a href="U:\#features">Plugin Features:</a></li>
+	<li>    <a href="U:\#commands">Commands</a></li>
+	<li>    <a href="U:\#functions">Functions</a></li>
+	<li><a href="U:\#noloadmsg">Startup Message</a></li>
+	<li><a href="U:\#props">Acknowledgments</a></li>
+	<li><a href="U:\#licensing">Status and Licensing</a></li>
+	<li><a href="U:\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>Primes plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.99.22     2026-11-13</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides replacements for TCC’s internal
+<a href="U:\#f_isprime"><code>@ISPRIME</code></a> and
+<a href="U:\#f_prime"><code>@PRIME</code></a> functions, and also provides
+a new function <a href="U:\#f_lprime"><code>@LPRIME</code></a> to return the
+largest prime number not greater than a given value.  These functions are
+intended to produce correct results across the entire range of 64-bit
+unsigned integers. </p>
+
+<p>I also provide some additional functions involving factorization.
+<a href="U:\#f_factors"><code>@FACTORS</code></a> returns a list of prime
+factors of a given value.  <a href="U:\#f_gcf"><code>@GCF</code></a> and
+<a href="U:\#f_lcm"><code>@LCM</code></a> return, respectively, the greatest
+common factor and the least common multiple for a set of numbers.
+<a href="U:\#f_isqrt"><code>@ISQRT</code></a> is used internally by the
+factorization routines; I expose it in case someone else has a use for
+it.  Finally, I also provide a <a href="U:\#factor"><code>FACTOR</code></a>
+command, a workalike for the common Unix utility. </p>
+
+<p>N.B.:  I am no mathematician, and my methods are not sophisticated.
+These functions will be slow for extremely large values. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>Primes.dll</span> to
+some known location on your hard drive.  (If you are still using the 32-bit
+version of Take Command, take <span class=filename>Primes-x86.dll</span>
+instead of <span class=filename>Primes.dll</span>.)  Load the .DLL file
+with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\primes.dll</code></p>
+
+<p>If you copy the .DLL file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="U:\#commands">Commands:</a></th></tr>
+	<tr><td><a href="U:\#factor"><code>FACTOR</code></a></td></tr>
+	<tr><th colspan=5>New <a href="U:\#functions">Functions:</a></th></tr>
+	<tr><td><a href="U:\#f_factors"><code>@FACTORS</code></a></td><td><a href="U:\#f_gcf"><code>@GCF</code></a></td><td><a href="U:\#f_isprime"><code>@ISPRIME</code></a></td><td><a href="U:\#f_isqrt"><code>@ISQRT</code></a></td><td><a href="U:\#f_lcm"><code>@LCM</code></a></td></tr>
+	<tr><td><a href="U:\#f_lprime"><code>@LPRIME</code></a></td><td><a href="U:\#f_prime"><code>@PRIME</code></a></td><td><a href="U:\#"><code></code></a></td><td><a href="U:\#"><code></code></a></td><td><a href="U:\#"><code></code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+factor 42<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=factor></a><code>FACTOR</code> — Display prime factors of values.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>FACTOR</code><code> /E </code><span class=optname>value</span><code> </code><span class=optname>value</span><code> </code><span class=optname>value…</span></p>
+
+<table class=descript>
+	<tr><td><code>/E</code></td><td>evaluate expressions</td></tr>
+	<tr><td><span class=optname>value</span></td><td>an unsigned 64-bit number</td></tr>
+</table>
+
+<p>If no values are given on the command line, <code>FACTOR</code> will read
+them from standard input or from a pipe. </p>
+
+<p class=example><code>factor 01189998819991197253</code></p>
+
+<br>
+<p class=example><code>factor /e "2 ** 29 - 1"</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_factors></a><code>@FACTORS</code> — Returns a list of
+prime factors of a given value. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@FACTORS[</code><span class=reqname>n</span><code>,</code><span class=optname>m</span><code>,</code><span class=optname>p</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n</span></td><td>a 64-bit unsigned integer</td></tr>
+	<tr><td><span class=optname>m</span></td><td>the multiplication symbol (defaults to “<code> × </code>”)</td></tr>
+	<tr><td><span class=optname>p</span></td><td>the power symbol (defaults to none — not used)</td></tr>
+</table>
+
+<p><span class=reqname>n</span> may be decimal, or hexadecimal with a
+leading <code>0x</code>. </p>
+
+<p><span class=optname>m</span> is the multiplication symbol used to separate factors.
+If you want to include spaces or commas in this string, quote it. </p>
+
+<p><span class=optname>p</span> is the exponentation symbol, used for repeated
+factors.  If you want to include spaces or commas in this string, quote it.  If you
+want to use a caret, escape it.  If you do not specify a power symbol, <code>@FACTOR</code>
+will not use exponentation; repeated factors will simply be repeated. </p>
+
+<p class=example><code>rem  The default behavior:<br>
+echo %@factors[3776]<br>
+2 × 2 × 2 × 2 × 2 × 2 × 59<br>
+<br>
+rem  Use a different multiplication symbol:<br>
+echo %@factors[3776,*]<br>
+2*2*2*2*2*2*59<br>
+<br>
+rem  Use a caret to show powers:<br>
+echo %@factors[3776,,^^]<br>
+2^6 × 59<br>
+<br>
+rem  C-style character escapes are supported: <br>
+echo %@factors[3776,\ub7,\u2191]<br>
+2↑6·59<br>
+</code></p>
+
+<br>
+<p>You can also use an expression for the value.  If <span class=reqname>n</span>
+does not look like a number, <code>@FACTORS</code> will try to expand it via
+Evaluate(), so you can use syntax like: </p>
+
+<p class=example><code>echo %@factors[2 ** 16 - 1]<br>
+3 × 5 × 17 × 257<br>
+</code></p>
+
+<p>C-style character escapes are supported in both the <span class=optname>m</span>
+and <span class=optname>p</span> strings: </p>
+
+<p class=example><code>echo %@factors[49152,\x20\xd7\x20,\x2191]<br>
+2↑14 × 3<br>
+</code></p>
+
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_gcf></a><code>@GCF</code> — Returns the greatest
+common factor of a set of numbers. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@GCF[</code><span class=reqname>n1</span><code>,</code><span class=optname>n2</span><code>,</code><span class=optname>…</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n1</span>, <span class=optname>n2</span>, <span class=optname>…</span></td><td>64-bit unsigned integers; must be &gt; 0</td></tr>
+</table>
+
+<p>You must supply at least one value; you may give as many as 32.  Values
+may be in decimal, or hexadecimal with a leading <code>0x</code>.  All values
+must be greater than zero. </p>
+
+<p>If the values have no common factors, then this function will return
+<code>1</code>. </p>
+
+<p class=example><code>echo %@gcf[1023,2541]<br>
+33<br>
+<br>
+echo %@factors[1023]<br>
+3 × 11 × 31<br>
+<br>
+echo %@factors[2541]<br>
+3 × 7 × 11 × 11<br>
+</code></p>
+
+<p class=xref>See also:  <a href="U:\#f_lcm"><code>@LCM</code></a>, which returns
+the least common multiple of a set of numbers. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_isprime></a><code>@ISPRIME</code> — Tests a number for
+primeness. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ISPRIME[</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n</span></td><td>a 64-bit unsigned integer</td></tr>
+</table>
+
+<p><span class=reqname>n</span> may be decimal, or hexadecimal with a
+leading <code>0x</code>. </p>
+
+<p>Returns <code>1</code> if <span class=reqname>n</span> has exactly two
+factors, <code>0</code> otherwise.  (By this definition, zero and one are
+<em>not prime</em>, so both return <code>0</code>.) </p>
+
+<p class=example><code>for /l %i in ( 0, 1, 13 ) echo %i - %@isprime[%i]<br>
+0 - 0<br>
+1 - 0<br>
+2 - 1<br>
+3 - 1<br>
+4 - 0<br>
+5 - 1<br>
+6 - 0<br>
+7 - 1<br>
+8 - 0<br>
+9 - 0<br>
+10 - 0<br>
+11 - 1<br>
+12 - 0<br>
+13 - 1<br>
+</code></p>
+
+<br>
+<p>You can also use an expression for the value.  If <span class=reqname>n</span>
+does not look like a number, <code>@ISPRIME</code> will try to expand it via
+Evaluate(), so you can use syntax like: </p>
+
+<p class=example><code>echo %@isprime[2 ** 64 - 59]<br>
+1<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_isqrt></a><code>@ISQRT</code> — Returns the integer
+square root of a number. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ISQRT[</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n</span></td><td>a 64-bit unsigned integer</td></tr>
+</table>
+
+<p><span class=reqname>n</span> may be decimal, or hexadecimal with a
+leading <code>0x</code>. </p>
+
+<p>isqrt() is a function used internally by several of this plugin’s
+functions.  I’m exposing it to the user on the off chance that someone
+might find it useful. </p>
+
+<p class=example><code>echo %@isqrt[1024]<br>
+32<br>
+<br>
+echo %@isqrt[1023]<br>
+31<br>
+</code></p>
+
+<br>
+<p>You can also use an expression for the value.  If <span class=reqname>n</span>
+does not look like a number, <code>@ISQRT</code> will try to expand it via
+Evaluate(), so you can use syntax like: </p>
+
+<p class=example><code>echo %@isqrt[3 ** 6]<br>
+27<br>
+</code></p>
+
+<br>
+<p>You can append an <code>=X</code> or <code>=H</code> to the value to
+return it in hexadecimal, with or without a leading <code>0x</code>: </p>
+
+<p class=example><code>
+echo %@isqrt[3 ** 6 =X]<br>
+0x1B<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_lcm></a><code>@LCM</code> — Returns the least common
+multiple of a set of numbers. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@LCM[</code><span class=reqname>n1</span><code>,</code><span class=optname>n2</span><code>,</code><span class=optname>…</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n1</span>, <span class=optname>n2</span>, <span class=optname>…</span></td><td>64-bit unsigned integers; must be &gt; 0</td></tr>
+</table>
+
+<p>You must supply at least one value; you may give as many as 32.  Values
+may be in decimal, or hexadecimal with a leading <code>0x</code>.  All values
+must be greater than zero. </p>
+
+<p>Note that for extremely large values, it is possible for the LCM to
+overflow the 64-bit integer range.  In this case you will get an error message.
+Also, be aware that this function factorizes <em>every</em> value that you pass
+to it.  If you pass several extremely large values, this can take a significant
+amount of time! </p>
+
+<p class=example><code>echo %@lcm[1023,2541]<br>
+78771<br>
+<br>
+echo %@factors[1023]<br>
+3 × 11 × 31<br>
+<br>
+echo %@factors[2541]<br>
+3 × 7 × 11 × 11<br>
+<br>
+echo %@eval[3 * 7 * 11 * 11 *31] <br>
+78771<br>
+</code></p>
+
+<p class=xref>See also:  <a href="U:\#f_gcf"><code>@GCF</code></a>, which returns
+the greatest common factor of a set of numbers. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_lprime></a><code>@LPRIME</code> — Returns the largest prime
+number not greater than the given value. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@LPRIME[</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n</span></td><td>a 64-bit unsigned integer; must be ≥ 2</td></tr>
+</table>
+
+<p><span class=reqname>n</span> may be decimal, or hexadecimal with a
+leading <code>0x</code>. </p>
+
+<p class=example><code>echo %@lprime[8192]<br>
+8191<br>
+</code></p>
+
+<br>
+<p>You can also use an expression for the value.  If <span class=reqname>n</span>
+does not look like a number, <code>@LPRIME</code> will try to expand it via
+Evaluate(), so you can use syntax like: </p>
+
+<p class=example><code>echo %@lprime[2 ** 16]<br>
+65521<br>
+</code></p>
+
+<br>
+<p>You can append an <code>=X</code> or <code>=H</code> to the value to
+return it in hexadecimal, with or without a leading <code>0x</code>: </p>
+
+<p class=example><code>
+echo %@lprime[2 ** 16 =X]<br>
+0xFFF1<br>
+</code></p>
+
+<p class=xref>See also:  <a href="U:\#f_prime"><code>@PRIME</code></a>, which returns the
+rightward prime. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_prime></a><code>@PRIME</code> — Returns the smallest prime
+number not less than the given value. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@PRIME[</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n</span></td><td>a 64-bit unsigned integer</td></tr>
+</table>
+
+<p><span class=reqname>n</span> may be decimal, or hexadecimal with a
+leading <code>0x</code>. </p>
+
+<p>If <span class=reqname>n</span> is not prime and the next higher prime
+number is outside the 64-bit range, you’ll get an “integer overflow”
+error. </p>
+
+<p class=example><code>echo %@prime[8192]<br>
+8209<br>
+</code></p>
+
+<br>
+<p>You can also use an expression for the value.  If <span class=reqname>n</span>
+does not look like a number, <code>@PRIME</code> will try to expand it via
+Evaluate(), so you can use syntax like: </p>
+
+<p class=example><code>echo %@prime[2 ** 16]<br>
+65537<br>
+</code></p>
+
+<br>
+<p>You can append an <code>=X</code> or <code>=H</code> to the value to
+return it in hexadecimal, with or without a leading <code>0x</code>: </p>
+
+<p class=example><code>
+echo %@prime[2 ** 16 =X]<br>
+0x10001<br>
+</code></p>
+
+<p class=xref>See also:  <a href="U:\#f_lprime"><code>@LPRIME</code></a>, which returns
+the leftward prime. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=props></a>Acknowledgments:</h4>
+
+<p>Vincent Fatica provided useful suggestions for testing and performance. </p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>Primes is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/primes.zip">https://charlesdye.net/dl/primes.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

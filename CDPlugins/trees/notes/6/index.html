@@ -1,0 +1,3112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>UIStuff Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	TABLE.biglist		{ table-layout: fixed; width: 80%; margin-left: 1em; }
+	TABLE.biglist TH	{ font-size: 90%; font-weight: bold; padding-top: 1em; padding-bottom: 0.3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ font-family: "Book Antiqua", Garamond, serif; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li>    <a href="E:\Utils\#variables">Variables</a></li>
+	<li><a href="E:\Utils\#refinfo">Reference Information</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>UIStuff plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.81.3     2026-11-01</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin adds a few miscellaneous user-interface features.  You can
+get or set the <a href="E:\Utils\#screenres">screen resolution</a> for any monitor, the
+<a href="E:\Utils\#wallpaper">wallpaper</a> image and style, the
+<a href="E:\Utils\#bgcolor">desktop background color</a>, the <a href="E:\Utils\#scrnsaver">screen saver</a>
+settings, and the master <a href="E:\Utils\#soundvol">sound volume</a> and mute state.
+You can <a href="E:\Utils\#mksc">create, modify, display</a>, or <a href="E:\Utils\#f_scinfo">parse</a>
+shortcut files.  You can display or set file associations and <a href="E:\Utils\#shellverb">shell
+verbs</a>. </p>
+
+<p>This plugin might be useful for setting user defaults in a logon script,
+customizing freshly-imaged computers, or to temporarily change settings while
+running some particularly demanding program. </p>
+
+<p>Windows XP or later is required. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy the files <span class=filename>UIStuff.dll</span>
+and <span class=filename>UIStuff.chm</span> to some known location on your hard
+drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>UIStuff-x86.dll</span> instead of <span class=filename>UIStuff.dll</span>.)
+Load the plugin with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\uistuff.dll</code></p>
+
+<p>If you copy this file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+<!--endtopic-->
+
+
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+
+	<tr>
+		<th colspan=5>New <a href="E:\Utils\#commands">commands</a>: </th>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a></td>
+		<td><a href="E:\Utils\#conicon"><code>CONICON</code></a></td>
+		<td><a href="E:\Utils\#defaudioout"><code>DEFAUDIOOUT</code></a></td>
+		<td><a href="E:\Utils\#installfonts"><code>INSTALLFONTS</code></a></td>
+		<td><a href="E:\Utils\#listfonts"><code>LISTFONTS</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#minimizeall"><code>MINIMIZEALL</code></a></td>
+		<td><a href="E:\Utils\#mksc"><code>MKSC</code></a></td>
+		<td><a href="E:\Utils\#screenres"><code>SCREENRES</code></a></td>
+		<td><a href="E:\Utils\#scrnsaver"><code>SCRNSAVER</code></a></td>
+		<td><a href="E:\Utils\#setfocus"><code>SETFOCUS</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#setmousepos"><code>SETMOUSEPOS</code></a></td>
+		<td><a href="E:\Utils\#shellverb"><code>SHELLVERB</code></a></td>
+		<td><a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a></td>
+		<td><a href="E:\Utils\#uistuffhelp"><code>UISTUFFHELP</code></a></td>
+		<td><a href="E:\Utils\#wallpaper"><code>WALLPAPER</code></a></td>
+	</tr>
+
+	<tr>
+		<th colspan=5>New <a href="E:\Utils\#functions">functions</a>: </th>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_firstfont"><code>@FIRSTFONT</code></a></td>
+		<td><a href="E:\Utils\#f_imgcolor"><code>@IMGCOLOR</code></a></td>
+		<td><a href="E:\Utils\#f_nextfont"><code>@NEXTFONT</code></a></td>
+		<td><a href="E:\Utils\#f_rgbcompl"><code>@RGBCOMPL</code></a></td>
+		<td><a href="E:\Utils\#f_rgblum"><code>@RGBLUM</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a></td>
+		<td><a href="E:\Utils\#f_screenres"><code>@SCREENRES</code></a></td>
+		<td><a href="E:\Utils\#f_shellverb"><code>@SHELLVERB</code></a></td>
+		<td><a href="E:\Utils\#f_shfolder"><code>@SHFOLDER</code></a></td>
+		<td></td>
+	</tr>
+
+	<tr>
+		<th colspan=5>New <a href="E:\Utils\#variables">variables</a>: </th>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#v_bgcolor"><code>_BGCOLOR</code></a></td>
+		<td><a href="E:\Utils\#v_bgcolorname"><code>_BGCOLORNAME</code></a></td>
+		<td><a href="E:\Utils\#v_browser"><code>_BROWSER</code></a></td>
+		<td><a href="E:\Utils\#v_defaudioout"><code>_DEFAUDIOOUT</code></a></td>
+		<td><a href="E:\Utils\#v_mousex"><code>_MOUSEX</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#v_mousey"><code>_MOUSEY</code></a></td>
+		<td><a href="E:\Utils\#v_mute"><code>_MUTE</code></a></td>
+		<td><a href="E:\Utils\#v_muted"><code>_MUTED</code></a></td>
+		<td><a href="E:\Utils\#v_safemode"><code>_SAFEMODE</code></a></td>
+		<td><a href="E:\Utils\#v_soundvol"><code>_SOUNDVOL</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#v_ssvrname"><code>_SSVRNAME</code></a></td>
+		<td><a href="E:\Utils\#v_ssvrtime"><code>_SSVRTIME</code></a></td>
+		<td><a href="E:\Utils\#v_ssvrup"><code>_SSVRUP</code></a></td>
+		<td><a href="E:\Utils\#v_volume"><code>_VOLUME</code></a></td>
+		<td><a href="E:\Utils\#v_wallpaper"><code>_WALLPAPER</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#v_wallstyle"><code>_WALLSTYLE</code></a></td>
+		<td><a href="E:\Utils\#v_winosver"><code>_WINOSVER</code></a></td>
+		<td></td>
+	</tr>
+
+</table>
+
+<!--
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+-->
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+soundvol /o 100<br>
+</code></p>
+
+<br>
+<p>Some options take an argument.  These are shown with a colon between the option and its
+argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=bgcolor></a><code>BGCOLOR</code> — Display or change the desktop background color. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>BGCOLOR </code><code>/S </code><span class=optname>color</span></p>
+
+<table class=descript>
+<tr><td><code>/S</code></td><td>save color to the registry</td></tr>
+<tr><td><span class=optname>color</span></td><td>the name or RGB value of the color to set</td></tr>
+</table>
+
+<p>You may specify the <span class=optname>color</span> as a single RGB value
+in either hexadecimal (<em>e.g.</em> <code>#8B4513</code>) or decimal
+(<code>9127187</code>); as three separate values for red, green, and blue, in
+that order (<code>0x8b 0x45 0x13</code> or <code>139 69 19</code>); or as a
+<a href="E:\Utils\#w3ccolors">W3C color name</a> (<code>SaddleBrown</code>). </p>
+
+<p>If you specify the <span class=optname>color</span> in hexadecimal with a
+leading <code>#</code> sign, it must be either three or six hex digits long.
+If it’s three digits long, each digit is doubled; <code>#8ac</code> is the
+same as <code>#88aacc</code>.  Alternatively, you can use a leading <code>0x</code>
+and the rules above do not apply; the number of digits is not significant. </p>
+
+<p>The color change only affects the current session and will be lost at logout,
+unless <code>/S</code> is specified.  Note that <code>/S</code> must be typed
+<em>before</em> any <span class=optname>color</span> name. </p>
+
+<p class=example><code>rem  Set the background color to dark slate gray:<br>
+bgcolor darkslategray<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#v_bgcolor"><code>_BGCOLOR</code></a> variable, which
+which reports the current background color as a hexadecimal value; the
+<a href="E:\Utils\#v_bgcolorname"><code>_BGCOLORNAME</code></a> variable, which reports
+it as a <a href="E:\Utils\#w3ccolors">W3C color name</a> if possible; the
+<a href="E:\Utils\#f_imgcolor"><code>@IMGCOLOR</code></a> function, which returns the
+color of a pixel in a graphics file; and the <a href="E:\Utils\#f_rgbcompl"><code>@RGBCOMPL</code></a>
+function, which returns a complementary color. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=conicon></a><code>CONICON</code> — Set the icon for the
+console window. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>CONICON</code><code> /C /D /I:</code><span class=optname>n</span><code> </code><span class=optname>filename…</span></p>
+
+<table class=descript>
+	<tr><td><code>/C</code></td><td>use the icon in TCC.EXE; equivalent to <code>"%_cmdspec"</code></td></tr>
+	<tr><td><code>/D</code></td><td>restore the system default console icon</td></tr>
+	<tr><td><code>/I:</code><span class=optname>n</span></td><td>the icon’s index within the file</td></tr>
+</table>
+
+<p>This command is only useful in a standalone console window.  Changes to the
+console icon in a Take Command tab are not visible. </p>
+
+<p class=example><code>rem  Show several different console icons:<br>
+for /l %i in ( 3, 1, 11 ) ( conicon "%@shfolder[37]\shell32.dll" /i:%i & delay 1 )<br>
+conicon /c<br>
+</code><br>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=defaudioout></a><code>DEFAUDIOOUT</code> — Display or change
+the default audio output device. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>DEFAUDIOOUT </code><code> /B /Q </code><span class=optname>device</span></p>
+
+<table class=descript>
+	<tr><td><code>/B</code></td><td>beep after changing audio device</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><span class=optname>device</span></td><td>the device’s name, or its index 1 - <i>n</i></td></tr>
+</table>
+
+<p>If you do not specify a <span class=optname>device</span>,
+<code>DEFAUDIOOUT</code> will display a list of available audio outputs. </p>
+
+<p class=example><code>rem  Use my monitor for audio output:<br>
+defaudioout "dell u3415w*"<br>
+</code></p>
+
+<br>
+<p class=xref><span class=note>•  Note: </span>  This command
+requires Windows Vista or later; it will not work in Windows XP. </p>
+
+<p class=xref>See also:  the <a href="E:\Utils\#v_defaudioout"><code>_DEFAUDIOOUT</code></a>
+variable, which returns the name of the current default audio output device. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=installfonts></a><code>INSTALLFONTS</code> — Install font files. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>INSTALLFONTS</code><code> /O /X </code><span class=reqname>filename…</span></p>
+
+<table class=descript>
+	<tr><td><code>/O</code></td><td>overwrite existing files in the Fonts directory</td></tr>
+	<tr><td><code>/X</code></td><td>delete source files after successful install</td></tr>
+	<tr><td><span class=reqname>filename…</span></td><td>the files to install</td></tr>
+</table>
+
+<p>You must specify at least one <span class=reqname>filename</span>.  Wildcards are
+supported. </p>
+
+<p>Matching files will be copied to <span class=filename>C:\Windows\Fonts</span>, and
+entries will be created in the registry. </p>
+
+<p>This command requires elevation (‘Run as Administrator’).  So far, I have
+only tested it with <span class=filename>.TTF</span> and <span class=filename>.OTF</span>
+files. </p>
+
+<p class=example><code>rem  Install fonts from the C:\Download directory:<br>
+installfonts c:\download\*<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=listfonts></a><code>LISTFONTS</code> — List available fonts. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>LISTFONTS</code><code> /C:</code><span class=optname>charset</span><code> /D:</code><span class=optname>flags</span><code> /F:</code><span class=optname>family</span><code> /P:</code><span class=optname>pitch</span><code> /T:</code><span class=optname>type</span><code> </code><span class=optname>name</span></p>
+
+<table class=descript>
+	<tr><td><code>/C:</code><span class=optname>charset</span></td><td>character set; see below</td></tr>
+	<tr><td><code>/D:</code><span class=optname>flags</span></td><td>display extra info:  <code>L</code> line numbers, <code>F</code> family and pitch, <code>S</code> script, <code>T</code> font type, <code>K</code> final count</td></tr>
+	<tr><td><code>/F:</code><span class=optname>family</span></td><td>filter by font family:  <code>R</code> Roman (serif), <code>S</code> Swiss (sans-serif), <code>M</code> modern (unstressed), <code>H</code> hand (script), <code>D</code> decorative, <code>N</code> no family specified</td></tr>
+	<tr><td><code>/P:</code><span class=optname>pitch</span></td><td>filter by pitch:  <code>F</code> fixed pitch, <code>V</code> variable pitch</td></tr>
+	<tr><td><code>/T:</code><span class=optname>type</span></td><td>filter by font type:  <code>R</code> raster fonts, <code>V</code> vector fonts, <code>O</code> OpenType fonts, <code>T</code> TrueType fonts</td></tr>
+	<tr><td><span class=optname>name</span></td><td>may contain wildcards</td></tr>
+</table>
+
+<p><code>LISTFONTS</code> dumps a list of all matching fonts to standard output. </p>
+
+<p><code>/C:</code><span class=optname>charset</span> lets you specify the
+character set to be supported.  The default is 0, to list only fonts which
+include Western (Roman) letters. </p>
+
+<table class=descript>
+	<tr><td>0</td><td>ANSI (Western — the default)</td></tr>
+	<tr><td>1</td><td>don’t care</td></tr>
+	<tr><td>2</td><td>symbol</td></tr>
+	<tr><td>128</td><td>Shift JIS (Japanese)</td></tr>
+	<tr><td>129</td><td>Hangul (Korean)</td></tr>
+	<tr><td>130</td><td>Johab (Korean)</td></tr>
+	<tr><td>134</td><td>GB 2312 (simplified Chinese)</td></tr>
+	<tr><td>136</td><td>Big-5 (traditional Chinese)</td></tr>
+	<tr><td>161</td><td>Greek</td></tr>
+	<tr><td>162</td><td>Turkish</td></tr>
+	<tr><td>163</td><td>Vietnamese</td></tr>
+	<tr><td>177</td><td>Hebrew</td></tr>
+	<tr><td>178</td><td>Arabic</td></tr>
+	<tr><td>186</td><td>Baltic</td></tr>
+	<tr><td>204</td><td>Cyrillic (Russian)</td></tr>
+	<tr><td>222</td><td>Thai</td></tr>
+	<tr><td>238</td><td>Eastern Europe</td></tr>
+	<tr><td>255</td><td>OEM character set</td></tr>
+</table>
+
+<p class=example><code>listfonts *black*<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=minimizeall></a><code>MINIMIZEALL</code> — Minimize or
+restore all windows. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>MINIMIZEALL</code><code> /U</code></p>
+
+<table class=descript>
+	<tr><td><code>/U</code></td><td>undo the previous <code>MINIMIZEALL</code></td></tr>
+</table>
+
+<p class=example><code>rem  Minimize all windows for three seconds:<br>
+minimizeall & delay 3 & minimizeall /u<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=mksc></a><code>MKSC</code> — <a href="E:\Utils\#mksc_create">Create</a>, <a href="E:\Utils\#mksc_edit">modify</a>, or
+<a href="E:\Utils\#mksc_dump">display</a> a shortcut file. </p>
+
+<p class=iewrap>Syntax: (to create or modify a shortcut file)<br>
+<code class=req>MKSC </code><span class=reqname>linkfile</span><code class=req> </code><span class=reqname>target</span><code> /A:</code><span class=optname>args</span><code> /B</code><span class=optname>x</span><code>:</code><span class=optname>value</span><code> /C:</code><span class=optname>comment</span><code> /D:</code><span class=optname>directory</span><code> /I:</code><span class=optname>iconfile</span><code> /J:</code><span class=optname>index</span><code> /K:</code><span class=optname>key</span><code> /M:</code><span class=optname>mode</span><code> /N:</code><span class=optname>flags</span><code> /U:</code><span class=optname>level</span><code> /Z</code><br>
+<br>
+Syntax: (to display shortcut files)<br>
+<code class=req>MKSC </code><span class=optname>linkfile</span><code> /F:</code><span class=optname>fields</span><code> /N:</code><span class=optname>flags</span><code> /P /S</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#mksc_fn"><span class=reqname>linkfile</span></a></td><td>the shortcut file to create, change, or display</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_tgt"><span class=reqname>target</span></a></td><td>the filename or object that the shortcut points to</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_a"><code>/A:</code><span class=optname>args</span></a></td><td>command-line arguments to be passed to the <span class=reqname>target</span></td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_b"><code>/B</code><span class=optname>x</span><code>:</code><span class=optname>value</span></a></td><td>set various console properties</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_c"><code>/C:</code><span class=optname>comment</span></a></td><td>a descriptive comment</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_d"><code>/D:</code><span class=optname>directory</span></a></td><td>the default directory</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_dump"><code>/F:</code><span class=optname>fields</span></a></td><td>specify which information to display</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_i"><code>/I:</code><span class=optname>iconfile</span></a></td><td>filename of an <span class=filename>.EXE</span> or <span class=filename>.DLL</span> file containing an icon</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_i"><code>/J:</code><span class=optname>index</span></a></td><td>number of the icon in <span class=optname>iconfile</span> to use; 0 = the first</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_k"><code>/K:</code><span class=optname>key</span></a></td><td>a <a href="E:\Utils\#hotkeys">hotkey</a> which can be used to launch the shortcut</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_m"><code>/M:</code><span class=optname>mode</span></a></td><td>the suggested window mode:  Normal, MINimized, or MAXimized</td></tr>
+	<tr><td><code>/N:</code><span class=optname>flags</span></td><td>disable features; <span class=optname>flags</span> may include:</td></tr>
+	<tr><td></td><td><code>C</code> — disable <a href="E:\Utils\#highlight">highlighting</a> (display mode only)</td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_sw_d"><code>D</code></a> — don’t canonicalize <span class=optname>directory</span></td></tr>
+	<tr><td></td><td><code>E</code> — suppress many error messages (display mode only)</td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_dump"><code>H</code></a> — don’t search into hidden subdirectories; only useful with <code>/S</code></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_sw_i"><code>I</code></a> — don’t canonicalize <span class=optname>iconfile</span></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_dump"><code>J</code></a> — don’t search into junctions; only useful with <code>/S</code></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_tgt"><code>T</code></a> — don’t canonicalize <span class=reqname>target</span></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_dump"><code>Z</code></a> — don’t search into system subdirectories; only useful with <code>/S</code></td></tr>
+	<tr><td><a href="E:\Utils\#mksc_dump"><code>/P</code></a></td><td>page output</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_dump"><code>/S</code></a></td><td>recurse into subdirectories; only useful when displaying shortcuts</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_u"><code>/U:</code><span class=optname>level</span></a></td><td>the UAC level:  Normal or Elevated</td></tr>
+	<tr><td><code>/Z</code></td><td>overwrite read-only files</td></tr>
+</table>
+
+<p>This command can be used for three different tasks:  to <a href="E:\Utils\#mksc_create">create</a>
+a new shortcut file, to <a href="E:\Utils\#mksc_edit">modify</a> an existing shortcut
+file, or to <a href="E:\Utils\#mksc_dump">dump</a> the contents of shortcut files to
+standard output. </p>
+
+
+<h4><a name=mksc_create></a>Create a shortcut file:</h4>
+
+<p>You can create a new shortcut to a file or a
+folder; a TCC command, alias, or batch file; or one of a small number of
+Explorer <a href="E:\Utils\#objects">objects.</a>  To create a shortcut, pass a
+filename for the new shortcut as the first argument,
+<span class=reqname>linkfile</span>.  The second argument,
+<span class=reqname>target</span>, is required when
+creating a new shortcut; it specifies the file or object that the shortcut will
+open. </p>
+
+<p class=example><code>rem  Create a shortcut to the calculator:<br>
+mksc "%<a href="E:\Utils\#f_shfolder">@shfolder</a>[16]\Calculator.lnk" "%windir\system32\calc.exe" /k:control-alt-=<br>
+</code></p>
+
+<br>
+<p>Other kinds of files are legal too.  If the file is a document, Windows will
+use the registered program to open it.  You can even create a shortcut to a
+directory: </p>
+
+<p class=example><code>rem  Create a shortcut to the Fonts folder:<br>
+mksc "%<a href="E:\Utils\#f_shfolder">@shfolder</a>[16]\Fonts.lnk" "%windir\Fonts"<br>
+</code></p>
+
+<br>
+<p>To create a shortcut to an internal command, alias, or batch file, specify
+<code>"%_cmdspec"</code> as the <span class=reqname>target</span>.  Set
+<span class=optname>args</span> to either <code>/C</code> or <code>/K</code>
+followed by the desired command.  (<code>/C</code> causes TCC to close
+immediately after running the command; <code>/K</code> keeps it open after the
+command finishes.)  For instance, to create a shortcut which runs the command
+<code>TIME /S</code>, you might use: </p>
+
+<p class=example><code>rem  Create a shortcut to run TIME /S command:<br>
+mksc "%<a href="E:\Utils\#f_shfolder">@shfolder</a>[16]\Sync System Time.lnk" "%_cmdspec" /a:"/c time /s" /m:min<br>
+</code></p>
+
+<br>
+<p><code>MKSC</code> also recognizes a short list of Explorer objects.  You can
+use any of the following as <span class=reqname>target</span>: </p>
+
+<table class=descript>
+<tr><td>&lt;Desktop&gt;</td><td>the desktop</td></tr>
+<tr><td>&lt;Computer&gt;</td><td>the list of drives</td></tr>
+<tr><td>&lt;Documents&gt;</td><td>the default save location for many applications</td></tr>
+<tr><td>&lt;Music&gt;</td><td>the suggested save location for music files</td></tr>
+<tr><td>&lt;Pictures&gt;</td><td>the suggested save location for graphics files</td></tr>
+<tr><td>&lt;Video&gt;</td><td>the suggested save location for video files</td></tr>
+<tr><td>&lt;Printers&gt;</td><td>the list of printers</td></tr>
+<tr><td>&lt;Network&gt;</td><td>Network Neighborhood; LAN locations</td></tr>
+<tr><td>&lt;Connections&gt;</td><td>network interfaces</td></tr>
+<tr><td>&lt;Recycle Bin&gt;</td><td>deleted-but-recoverable files</td></tr>
+<tr><td>&lt;Control Panel&gt;</td><td>Windows configuration utilities</td></tr>
+<tr><td>&lt;Recent&gt;</td><td>list of shortcuts to recently-opened files</td></tr>
+<tr><td>&lt;SendTo&gt;</td><td>Explorer’s list of send-to locations</td></tr>
+</table>
+
+<p>Note that all of the above <em>must</em> be quoted to protect the angle
+brackets.  See <a href="E:\Utils\#objects">Objects Supported</a> for more information. </p>
+
+<p class=example><code>rem  Create a shortcut to My Computer:<br>
+mksc "%<a href="E:\Utils\#f_shfolder">@shfolder</a>[16]\My Computer.lnk" "&lt;Computer&gt;"<br>
+</code></p>
+
+<br>
+<p><a name=mksc_fn></a>The <span class=reqname>linkfile</span> should
+normally end in <span class=filename>.LNK</span>.  If you do not specify an
+extension, <code>MKSC</code> will supply the extension by default.  Directory
+aliases are supported in <span class=reqname>linkfile</span>. </p>
+
+<p><a name=mksc_tgt></a><span class=reqname>Target</span> should name a
+file, directory, or one of the Explorer objects listed above.  Directory
+aliases are supported, and the filename is automatically canonicalized
+(“truenamed”) when the shortcut file is created.  If the
+<span class=reqname>target</span> is not qualified at all — if it
+has no drive letter or directory — the plugin will search the path
+for a matching file.  You can bypass canonicalization and the path search with
+<code>/NC</code>, which stores a non-canonical filename; doing this also
+disables directory aliases in <span class=reqname>target</span>.
+Canonicalization will also be skipped if the <span class=reqname>target</span>
+begins with a percent sign followed by a letter. </p>
+
+
+<br>
+<p><a name=mksc_sw_a></a><code>/A:</code><span class=optname>args</span>
+specifies the command-line arguments for a target program.  Different programs
+support different arguments, and some ignore them altogether.  See the
+program’s documentation for information about its command-line options. </p>
+
+<p><a name=mksc_sw_ax></a><code>/AX:</code><span class=optname>args</span>
+works like <code>/AX:</code>, but supports the use of <a href="E:\Utils\#escseq">C-style
+character escapes</a> in the string.  If you need problematic characters like
+double quotes or backquotes in the arguments list, you can use <code>/AX:</code>
+with escapes like <code>\q</code> or <code>\k</code>.  Note that any backslashes
+in the arguments must be doubled. </p>
+
+<br>
+<p><a name=mksc_sw_c></a><code>/C:</code><span class=optname>comment</span>
+specifies a descriptive comment to be stored in the shortcut file.  Explorer
+can display this comment in a tooltip when you hover the mouse pointer over the
+shortcut icon. </p>
+
+<p><a name=mksc_sw_cx></a><code>/CX:</code><span class=optname>comment</span>
+works like <code>/C:</code>, but expands <a href="E:\Utils\#escseq">C-style character escapes</a>
+in the comment.  If you need a backslash in the comment, you must double it. </p>
+
+<br>
+<p><a name=mksc_sw_d></a><code>/D:</code><span class=optname>directory</span>
+sets the starting directory for the target program.  Some programs use this as
+a default directory; others ignore it.  The <span class=optname>directory</span> is
+canonicalized, and directory aliases are supported.  You can use <code>/ND</code>
+to store a non-canonicalized filename; this will also disable directory aliases
+in <span class=optname>directory</span>.  If you give a
+<span class=optname>directory</span> of <code>*</code>, <code>MKSC</code>
+will choose an appropriate directory based on <span class=reqname>target</span>:
+the parent directory if <span class=reqname>target</span> is a filename,
+<span class=reqname>target</span> itself if it names a directory, and nothing
+if <span class=reqname>target</span> names an object.  If the
+<span class=optname>directory</span> begins with a percent sign followed by
+a letter, canonicalization will be disabled automatically.  If the
+<span class=optname>directory</span> is a <code>~</code> or begins with
+<code>~\</code>, the tilde will automatically be replaced with the string
+<code>%USERPROFILE%</code>; this also will disable canonicalization. </p>
+
+<p><a name=mksc_sw_m></a><code>/M:</code><span class=optname>mode</span>
+sets the default window state for the target program.  Most programs will honor
+this option, but a few set their own window size at startup; <code>/M</code>
+won’t appear to affect these.  <span class=optname>Mode</span> should
+be one of <code>Normal</code>, <code>MINimized</code>, or <code>MAXimized</code>;
+case is not significant, and only the letters shown in uppercase are required. </p>
+
+<p><a name=mksc_sw_k></a><code>/K:</code><span class=optname>key</span>
+specifies a hotkey which can be used to launch the <span class=reqname>target</span>
+with a keystroke.  The exact requirements for this feature to work don’t
+seem to be documented anywhere.  For best results, I suggest that (1) the
+shortcut file should be created in the user’s desktop directory; and (2)
+the hotkey should be in the form <code>Control-Alt-</code><span class=optname>letter</span>,
+<code>Control-Alt-</code><span class=optname>digit</span>, or
+<code>Control-Alt-Num</code><span class=optname>digit</span>.  See
+<a href="E:\Utils\#hotkeys">Hotkeys</a> for a list of the hotkey names supported by this
+command; note that some of them differ from the names used by
+<code>KEYSTACK</code>.  You can also specify a hotkey of <code>None</code>,
+which will remove any hotkey associated with the shortcut. </p>
+
+<p><a name=mksc_sw_i></a><code>/I:</code><span class=optname>iconfile</span> and
+<code>/J:</code><span class=optname>index</span> specify the icon which
+Explorer uses to display the shortcut.  When creating a shortcut, you should
+specify both or neither.  When modifying an existing shortcut file, you can use
+<code>/J:</code><span class=optname>index</span> alone to select a
+different icon within the same <span class=optname>iconfile</span>. </p>
+
+<p><a name=mksc_sw_u></a><code>/U:</code><span class=optname>level</span>
+sets the UAC level for the shortcut; <span class=optname>level</span> is
+either <code>Normal</code> or <code>Elevated</code> (only the first letter is
+significant).  If it’s not specified, the default level is Normal.  This
+option has no effect under Windows XP. </p>
+
+<br>
+<p><a name=mksc_sw_b></a><span style="font-weight: bold; text-decoration: underline;">Console properties:</span></p>
+
+<p><code>MKSC</code> allows you to set or change many of the console properties
+stored in a shortcut.  Setting console properties for things that don’t run
+in a console window is possible, but pointless.  Console properties options all
+start with <code>/B</code>. </p>
+
+<br>
+<p><code>/BB:</code><span class=optname>n</span> sets the console font’s
+weight.  <span class=optname>n</span> is 400 for normal, 700 for bold. </p>
+
+<p><code>/BF:</code><span class=optname>font</span> set the console font’s
+name.  Quote it if it contains spaces.  If <span class=optname>font</span>
+doesn’t match the name of an actual font, or if it isn’t suitable for use
+in a console window, Windows will substitute some other font at random —
+generally the ugliest available. </p>
+
+<p><code>/BG:</code><span class=optname>x</span><code>,</code><span class=optname>y</span>
+sets the desired size of the console font.  <span class=optname>x</span> is the
+width, and <span class=optname>y</span> is the height.  If you’re using a
+TrueType font, the width is not relevant and may be set to 0. </p>
+
+<p><code>/BB</code>, <code>/BF</code>, and <code>/BG</code> all affect the console
+font.  If you want to set one of them, it’s probably a good idea to set all three. </p>
+
+<br>
+<p><code>/BA:</code><span class=optname>n</span> sets the console’s
+auto-position option.  0 disables auto-positioning; the console window will open
+at the screen position specified in the “Layout” tab.  1 allows the
+system to position the window automatically; the coordinates in the “Layout”
+tab will be ignored. </p>
+
+<p><code>/BC:</code><span class=optname>n</span> sets the cursor size.
+<span class=optname>n</span> is a percentage, 10 to 100.  (This setting does not
+affect TCC, which sets its own cursor size.) </p>
+
+<p><code>/BD:</code><span class=optname>n</span> set the console’s default
+colors.  You may specify the new value either as decimal, or hexadecimal with a
+leading <code>0x</code>.  The usual value is 0x0007, white on black. </p>
+
+<br>
+<p><a name=mksc_sw_bh></a><code>/BH</code><span class=optname>n</span><code>:</code><span class=optname>color</span>
+lets your redefine the console palette.  <span class=optname>n</span> is the color index,
+0 (black) through 15 (bright white).  <span class=optname>Color</span> is a
+<a href="E:\Utils\#w3ccolors">W3C color name</a> or an RGB value.  You may give a name, or
+a three- or six-digit hex value preceded by a number sign.  For example, you could use
+either <code>/BH7:ORANGE</code> or <code>/BH7:#FFA500</code> to redefine ‘white’
+as orange. </p>
+
+<p>You can give more than one color name, separated by commas or semicolons, to define
+multiple consecutive colors.  For example, <code>/BH0:#000,#009,#090,#099,#900</code>
+would set values for black, blue, green, cyan, and red. </p>
+
+<br>
+<p><code>/BI:</code><span class=optname>n</span> sets the console’s
+insert mode.  0 disables insert (the console defaults to overtype mode); 1
+enables it.  (This setting does not affect TCC, which has its own default edit
+mode settings.) </p>
+
+<p><code>/BO:</code><span class=optname>x</span><code>,</code><span class=optname>y</span>
+sets the console window’s starting screen position (its origin).  Using this
+option automatically disables the auto-position option, as if <code>/BA:0</code>
+had been specified. </p>
+
+<p><code>/BP:</code><span class=optname>n</span> set the console’s
+“popup” colors.  You may specify the new value either as
+decimal, or hexadecimal with a leading <code>0x</code>.  (TCC does not use these
+colors for anything; CMD.EXE uses them for its command history popup.) </p>
+
+<p><code>/BQ:</code><span class=optname>n</span> sets the console’s
+QuickEdit mode.  0 disables QuickEdit, 1 enables it. </p>
+
+<br>
+<p><a name=mksc_sw_bs></a><code>/BS:</code><span class=optname>x</span><code>,</code><span class=optname>y</span>
+sets the size of the console scrollback buffer.  <span class=optname>x</span> is the
+width and <span class=optname>y</span> is the height. </p>
+
+<p><code>/BS</code> also has an optional third argument to set the height of the visible window:
+<code>/BS:</code><span class=optname>x</span><code>,</code><span class=optname>y</span><code>,</code><span class=optname>h</span>.
+The height <span class=optname>h</span> must be between 5 and 100, and not greater than
+the screen buffer height <span class=optname>y</span>.  If you do not specify 
+<span class=optname>h</span>, the plugin will supply a reasonable value. </p>
+
+
+<h4><a name=mksc_edit></a>Modify a shortcut file:</h4>
+
+<p>To modify an existing shortcut file, the syntax is
+the same, except that the <span class=optname>target</span> parameter is
+optional.  You don’t have to specify a <span class=optname>target</span>
+when changing an existing shortcut, and you probably shouldn’t. </p>
+
+
+<h4><a name=mksc_dump></a>Display shortcut files:</h4>
+
+<p>To display the contents of shortcut files, specify
+only a <span class=optname>linkfile</span>.  It may contain wildcards to dump
+multiple shortcut files, and you can use <code>/S</code> to recurse into
+subdirectories.  To prevent <code>MKSC</code> from searching into junctions,
+use <code>/NJ</code>; to skip hidden subdirectories, use <code>/NH</code>; to
+skip system subdirectories, use <code>/NZ</code>.  If
+<span class=optname>linkfile</span> names a directory, all
+<span class=filename>.LNK</span> files in that directory will be shown. </p>
+
+<p>You can use <code>/F:</code><span class=optname>fields</span> to choose
+which fields to display.  <span class=optname>Fields</span> is letters: </p>
+
+<table class=descript>
+	<tr><td><code>T</code></td><td>the link target</td></tr>
+	<tr><td><code>A</code></td><td>command-line arguments</td></tr>
+	<tr><td><code>D</code></td><td>startup directory</td></tr>
+	<tr><td><code>K</code></td><td>hotkey</td></tr>
+	<tr><td><code>C</code></td><td>comment</td></tr>
+	<tr><td><code>M</code></td><td>start mode</td></tr>
+	<tr><td><code>I</code></td><td>icon filename and index</td></tr>
+	<tr><td><code>U</code></td><td>UAC level (only under Vista and later)</td></tr>
+	<tr><td><code>N</code></td><td>normal (default) fields; short for <code>TADKCMIU</code></td></tr>
+	<tr><td><code>B</code></td><td>console screen buffer info, if available</td></tr>
+	<tr><td><code>F</code></td><td>console font info, if available</td></tr>
+	<tr><td><code>H</code></td><td>the console palette, if available</td></tr>
+</table>
+
+<p>If no fields are specified, the default is <code>TADKCMIU</code>. </p>
+
+<br>
+<p><code>/P</code> causes <code>MKSC</code> to pause after each screenful
+of data. </p>
+
+<p class=example><code>mksc /s "%@shfolder[23]"<br>
+</code></p>
+
+<br>
+<br>
+<p><span class=note>• Note:</span> You must quote any argument
+containing spaces, angle brackets, or any other special characters. </p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a>
+function, which returns values from a shortcut file, and
+the <a href="E:\Utils\#f_shfolder"><code>@SHFOLDER</code></a> function, which returns
+the pathname to a folder. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=screenres></a><code>SCREENRES</code> — Display or change the screen resolution. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>SCREENRES </code><code>/A /C:</code><span class=optname>bits</span><code> /D /L /M:</code><span class=optname>monitor</span><code> /NR /Q /R:</code><span class=optname>rate</span><code> /X:</code><span class=optname>width</span><code> /Y:</code><span class=optname>height</span></p>
+
+<table class=descript>
+<tr><td><code>/A</code></td><td>show resolution for all monitors</td></tr>
+<tr><td><code>/C:</code><span class=optname>bits</span></td><td>change the color depth</td></tr>
+<tr><td><code>/D</code></td><td>don’t save new settings in the registry</td></tr>
+<tr><td><code>/L</code></td><td>list available display modes</td></tr>
+<tr><td><code>/M:</code><span class=optname>monitor</span></td><td>zero-based number of the monitor to display or change</td></tr>
+<tr><td><code>/NR</code></td><td>no report on a successful change</td></tr>
+<tr><td><code>/Q</code></td><td>do not prompt for confirmation when making changes</td></tr>
+<tr><td><code>/R:</code><span class=optname>rate</span></td><td>change the refresh rate</td></tr>
+<tr><td><code>/X:</code><span class=optname>width</span></td><td>change the display width</td></tr>
+<tr><td><code>/Y:</code><span class=optname>height</span></td><td>change the display height</td></tr>
+</table>
+
+<p>Specifying any of <code>/C:</code><span class=optname>bits</span>, <code>/R:</code><span class=optname>rate</span>, <code>/X:</code><span class=optname>width</span>, or
+<code>/Y:</code><span class=optname>height</span> will change the display settings.  If you use <code>/X:</code><span class=optname>width</span>
+you should also supply a <code>/Y:</code><span class=optname>height</span>, and vice versa.  If you don’t
+supply a <code>/M:</code><span class=optname>monitor</span>, the primary monitor will be changed. </p>
+
+<p>If you make any changes to the display settings without specifying
+<code>/Q</code>, <code>SCREENRES</code> will prompt you to enter a random
+three-digit number to verify that you can still read the display.  If you
+don’t enter the same number within fifteen seconds, the display will
+revert to its previous settings. </p>
+
+<p class=example><code>rem  Set the primary monitor to 1280 by 1024 pixels:<br>
+screenres /x:1280 /y:1024<br>
+</code></p>
+
+<br>
+<p>Option <code>/L</code> will cause <code>SCREENRES</code> to list available
+display modes, instead of setting or displaying the current mode.  The primary
+monitor will be shown by default, unless you specify a different one with
+<code>/M:</code><span class=optname>monitor</span> or use <code>/A</code> to
+list available modes for all monitors.  If you combine <code>/L</code> with any
+of <code>/X:</code><span class=optname>width</span>, <code>/Y:</code><span class=optname>height</span>,
+<code>/C:</code><span class=optname>bits</span>, or <code>/R:</code><span class=optname>rate</span>,
+the list will only include modes matching the specified values.  Note that just
+because a display mode is listed as available does not mean that your monitor
+is capable of displaying it! </p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#f_screenres"><code>@SCREENRES</code></a> function,
+which returns information about the current display settings. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=scrnsaver></a><code>SCRNSAVER</code> — Display or change the screen saver settings. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>SCRNSAVER </code><code>/A /D /E /N /S /T:</code><span class=optname>timeout</span><code> /U </code><span class=optname>filename</span></p>
+
+<table class=descript>
+<tr><td><code>/A</code></td><td>activate (run) the screen saver</td></tr>
+<tr><td><code>/D</code></td><td>disable the screen saver</td></tr>
+<tr><td><code>/E</code></td><td>enable the screen saver</td></tr>
+<tr><td><code>/N</code></td><td>no screen saver</td></tr>
+<tr><td><code>/S</code></td><td>secure (show login screen when the screen saver is dismissed)</td></tr>
+<tr><td><code>/T:</code><span class=optname>timeout</span></td><td>idle time before the screen saver is started</td></tr>
+<tr><td><code>/U</code></td><td>unsecure (no login screen)</td></tr>
+<tr><td><span class=optname>filename</span></td><td>the screen saver filename; must end in <span class=filename>.SCR</span></td></tr>
+</table>
+
+<p>If the <span class=optname>filename</span> does not have a path, the
+Windows system directory will be assumed.  If it does not have an extension,
+<span class=filename>.SCR</span> will be appended automatically. </p>
+
+<p>The <span class=optname>timeout</span> may be specified either in seconds,
+or in <span class=optname>mm</span><code>:</code><span class=optname>ss</span> format (or even
+<span class=optname>hh</span><code>:</code><span class=optname>mm</span><code>:</code><span class=optname>ss</span>
+for extremely long delays.)  <code>/T:300</code> is the same as <code>/T:5:00</code>.
+The maximum <span class=optname>timeout</span> value is 24 hours (86400 seconds). </p>
+
+<p>If <code>/A</code> is specified, the selected screen saver will be run after
+any settings changes. </p>
+
+<p class=example><code>rem  Run "Mystify" after 5 minutes of inactivity:<br>
+scrnsaver /e /t:5:00 mystify.scr<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#v_ssvrname"><code>_SSVRNAME</code></a> and
+<a href="E:\Utils\#v_ssvrtime"><code>_SSVRTIME</code></a> variables, which return the
+current screen saver filename and timeout respectively. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=setfocus></a><code>SETFOCUS</code> — Give focus to the
+specified window. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>SETFOCUS</code><code> /C:</code><span class=optname>class</span><code> /Q "</code><span class=optname>title</span><code>"</code></p>
+
+<table class=descript>
+	<tr><td><code>/C:</code><span class=optname>class</span></td><td>the window class name</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><span class=optname>title</span></td><td>the caption of the window to focus</td></tr>
+</table>
+
+<p>The <span class=optname>title</span> and <span class=optname>class</span>
+names may contain wildcards.  If no <span class=optname>title</span> or
+<span class=optname>class</span> is specified, TCC will be given the focus. </p>
+
+<p>Note that the <span class=optname>title</span> must be the last option on
+the command line. </p>
+
+<p>Under some versions of Windows, “stealing” the focus from
+another window is subject to privilege levels.  You may not be able to move the
+focus away from an administrative window such as the Registry Editor unless TCC
+is also running with administrative privileges. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=setmousepos></a><code>SETMOUSEPOS</code> — Move the
+mouse pointer to the specified screen coordinates. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>SETMOUSEPOS</code><code> /Q /X:</code><span class=optname>x</span><code> /Y:</code><span class=optname>y</span></p>
+
+<table class=descript>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><code>/X:</code><span class=optname>x</span></td><td>the new horizontal position</td></tr>
+	<tr><td><code>/Y:</code><span class=optname>y</span></td><td>the new vertical position</td></tr>
+</table>
+
+<p>This command might be useful on a kiosk system which just displays web
+pages.  If you don’t want the mouse cursor to be visible, move it to the
+lower-right corner with: </p>
+
+<p class=example><code>setmousepos /x:%@dec[<a href="E:\Utils\#f_screenres">%@screenres</a>[,X]] /y:%@dec[<a href="E:\Utils\#f_screenres">%@screenres</a>[,Y]]<br>
+</code></p>
+
+<p>The range of valid coordinates will depend on your screen size. </p>
+
+<br><hr><!--endtopic-->
+
+
+<!--
+<p><a  name="settheme"></a><code>SETTHEME</code>&nbsp;&mdash; Apply a Windows
+theme file. </p>
+
+<p class="iewrap">Syntax:<br>
+<code class="req">SETTHEME</code><code> </code><span class="reqname">filename</span></p>
+
+<table class="descript">
+	<tr><td><span class="reqname">filename</span></td><td>required; must end in .THEME</td> </tr>
+</table>
+
+<p>This command is only available under Windows 7. </p>
+
+<br><hr><!~~endtopic-->
+
+
+<p><a name=shellverb></a><code>SHELLVERB</code> — Display or change
+file associations and shell verbs. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>SHELLVERB</code><code> /C /D:</code><span class=optname>string</span><code> /M:</code><span class=optname>string</span><code> /Q /R /S /T:</code><span class=optname>ftype</span><code> /U /V:</code><span class=optname>verb</span><code> /Z </code><span class=reqname>ftype</span><code>=</code><span class=optname>command</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#sv_swc"><code>/C</code></a></td><td>replace any safechars in <span class=optname>command</span> with ASCII</td></tr>
+	<tr><td><a href="E:\Utils\#sv_swd"><code>/D:</code><span class=optname>string</span></a></td><td>descriptive name for the file type; shown in Explorer</td></tr>
+	<tr><td><a href="E:\Utils\#sv_swm"><code>/M:</code><span class=optname>string</span></a></td><td>descriptive name for the verb, used in menus</td></tr>
+	<tr><td><a href="E:\Utils\#sv_swq"><code>/Q</code></a></td><td>do it quietly</td></tr>
+	<tr><td><a href="E:\Utils\#sv_swr"><code>/R</code></a></td><td>remove file association or shell verb</td></tr>
+	<tr><td><a href="E:\Utils\#sv_sws"><code>/S</code></a></td><td>display or change system-wide settings (the default)</td></tr>
+	<tr><td><a href="E:\Utils\#sv_swt"><code>/T:</code><span class=optname>filetype</span></a></td><td>specify the file type; only useful when <span class=optname>ftype</span> is an extension</td></tr>
+	<tr><td><a href="E:\Utils\#sv_sws"><code>/U</code></a></td><td>display or change per-user settings</td></tr>
+	<tr><td><a href="E:\Utils\#sv_swv"><code>/V:</code><span class=optname>verb</span></a></td><td>the shell verb to display or change</td></tr>
+	<tr><td><a href="E:\Utils\#sv_swz"><code>/Z</code></a></td><td>make the specified verb the default</td></tr>
+	<tr><td><a href="E:\Utils\#sv_typ"><span class=reqname>ftype</span></a></td><td>may be either an extension or a descriptive file type</td></tr>
+	<tr><td><a href="E:\Utils\#sv_cmd"><span class=optname>command</span></a></td><td>the command Windows should execute for the specified verb</td></tr>
+</table>
+
+<p>This command can display or change file associations and “shell
+verbs” — the actions that Explorer can perform on a file.  It
+can be used as a combination of the <code>ASSOC</code> and <code>FTYPE</code>
+commands, but it can also display and customize file types in ways that
+<code>ASSOC</code> and <code>FTYPE</code> cannot. </p>
+
+<a name=sv_typ></a>
+<p>Windows Explorer uses a two-layer approach in determining how to work with a
+file.  The <em>extension</em> (the final part of the filename, everything after
+the last period) is mapped to a <em>file type</em>, and the file type in turn
+has various actions associated with it.  For example, a file named
+<span class=filename>ReadMe.txt</span> has the extension <span class=filename>TXT</span>,
+which maps to the file type “txtfile”.  The file type txtfile then
+has certain actions defined — Open, Print.  This command’s
+<span class=reqname>ftype</span> parameter may be either an extension
+(beginning with a period), or else a descriptive file type.  If
+<span class=reqname>ftype</span> is an extension, <code>SHELLVERB</code>
+will automatically use the associated file type, or else create a new one. </p>
+
+<a name=sv_sws></a>
+<p>Complicating matters further, Windows actually keeps multiple sets of
+file-association info:  one set of system-wide file associations which applies
+to all users; and a per-user set of associations for each user, allowing him
+to override the system-wide settings.  <code>SHELLVERB</code> can list or
+change either set.  Specify <code>/S</code> to work with the system-wide file
+assocations, or <code>/U</code> to use the current user’s personal
+assocations.  You can use both together.  If you don’t specify either
+<code>/S</code> or <code>/U</code>, <code>/S</code> is the default. </p>
+
+<br>
+<p>To display the file type and actions associated with an extension, just type
+<code>SHELLVERB</code> followed by the extension.  Note that the extension
+should begin with a period: </p>
+
+<p class=example><code>shellverb .txt<br></code></p>
+
+<p>You can also use wildcards in the extension: </p>
+
+<p class=example><code>shellverb .htm*<br></code></p>
+
+<p>If the <span class=reqname>ftype</span> does not begin with a period,
+it’s interpreted as a file type instead.  (Wildcards don’t work in
+this format.) </p>
+
+<p class=example><code>shellverb regfile<br></code></p>
+
+<br>
+<a name=sv_cmd></a>
+<p>Notice that most file types have an “Open” verb.  This verb is
+used to open, edit, or play a file, typically by double-clicking on its icon.
+You can use the <code>=</code><span class=optname>command</span> syntax to
+set the command used to open a file.  For example, if we want all
+<span class=filename>.ZZZ</span> files to open in Notepad: </p>
+
+<p class=example><code>shellverb .zzz=notepad.exe "%%1"<br></code></p>
+
+<a name=sv_swv></a>
+<p>Note the use of <code>"%1"</code> as a placeholder for the filename in the
+command string.  (Double the percent sign to prevent TCC’s variable
+expansion from expanding the variable reference before the <code>SHELLVERB</code>
+command gets it.) </p>
+
+<p>You can set the command for other verbs with the <code>/V:</code> option: </p>
+
+<p class=example><code>shellverb /v:print .zzz=notepad.exe /p "%%1"<br></code></p>
+
+<p>If you don’t specify <code>/V:</code><span class=optname>verb</span>,
+the Open verb will be used by default.  If you specify <code>/V</code> (without
+any <span class=optname>verb</span>), the <a href="E:\Utils\#sv_swz">default verb</a>
+will be used; this is usually Open, but not always. </p>
+
+<br>
+<a name=sv_swm></a>
+<p>If you examine the <span class=filename>.REG</span> extension with </p>
+
+<p class=example><code>shellverb .reg<br></code></p>
+
+<p>you’ll see that the Open verb has an alternate name:  Mer&ge.  I
+call this the verb’s “menu name”.  This is generally done for
+one of two reasons:  to give the command a more intuitive name (Merge instead
+of Open), or to set an accelerator key (the ampersand makes the <kbd>G</kbd> an
+accelerator key).  You can set the menu name for a verb using the <code>/M:</code>
+option: </p>
+
+<p class=example><code>shellverb /v:Open /m:"&Edit" .zzz=notepad.exe "%%1"<br></code></p>
+
+<p>creates an Open verb for <span class=filename>.ZZZ</span> files, which will
+appear as Edit (hotkey <kbd>E</kbd>) in the context menu. </p>
+
+<br>
+<a name=sv_swz></a>
+<p>The <em>default</em> verb, the one used when double-clicking on a file’s
+icon, is marked with an asterisk.  Usually, but not always, this is Open.  You
+can set the default verb with <code>/Z</code>: </p>
+
+<p class=example><code>shellverb /z /v:edit .reg<br></code></p>
+
+<p>Now double-clicking on a <span class=filename>.REG</span> file will open
+it in Notepad, rather than trying to install it using RegEdit.  <code>/Z</code>
+requires that you specify the verb to make the default with <code>/V:</code>;
+in fact you can combine the two options: </p>
+
+<p class=example><code>shellverb /z:edit .reg<br></code></p>
+
+<br>
+<a name=sv_swd></a>
+<p>You can set the descriptive name for a file type (shown in Explorer) with
+<code>/D:</code><span class=optname>string</span>.  Use <code>/D:</code>
+alone, without a <span class=optname>string</span>, to remove the descriptive
+name.  Note that new or changed descriptions usually don’t take effect
+until Explorer restarts — after you reboot or log out. </p>
+
+<p class=example><code>shellverb /d:"Configuration file" .cfg<br></code></p>
+
+<br>
+<a name=sv_swt></a>
+<p>When <span class=reqname>ftype</span> is an extension (<em>i.e.</em>,
+when it begins with a period), <code>SHELLVERB</code> automatically supplies
+the appropriate file type, either using the file type already associated with
+that particular extension, or else creating a file type from the extension.
+For example, if you supply a <span class=reqname>ftype</span> of
+<span class=filename>.ZZZ</span> and there is no file type associated with that
+extension, then <code>SHELLVERB</code> will create a new file type “zzzfile”.
+This is usually the desired behavior.  However, on rare occasion you may want to
+associate an extension with some other file type;
+<code>/T:</code><span class=optname>filetype</span> allows this.  <code>/T</code>
+essentially replicates the functionality of the <code>ASSOC</code> command;
+however, you can combine it with other options to, say, associate an extension
+with a file type, set a description for the new file type, and define an Open
+verb, all in one command. </p>
+
+<p class=example><code>shellverb /t:TCC.Batch .btm<br></code></p>
+
+<br>
+<a name=sv_swr></a>
+<p>To remove an extension’s association with a file type: </p>
+
+<p class=example><code>shellverb /r .zzz<br></code></p>
+
+<p>To remove a verb from a file type: </p>
+
+<p class=example><code>shellverb /r /v:print .zzz<br></code></p>
+
+<p>To remove a file type altogether:  (Warning — this deletes an
+entire tree from the registry, and cannot be undone!) </p>
+
+<p class=example><code>shellverb /r zzzfile<br></code></p>
+
+<p>Note that <code>SHELLVERB /R ZZZFILE</code> deletes a file type and all the
+information associated with it (the description and all its defined verbs),
+while <code>SHELLVERB /R .ZZZ</code> merely breaks the connection between the
+extension and the file type.  Usually the latter is to be preferred. </p>
+
+<a name=sv_swq></a>
+<p>If you use <code>/R</code> to remove something, you will be prompted first.
+Use <code>/Q</code> to suppress the prompt and perform the action immediately.
+<code>/Q</code> also prevents the report that you get after making other
+changes. </p>
+
+<br>
+<a name=sv_swc></a>
+<p>If you specify <code>/C</code>, any characters in the 
+<span class=optname>command</span> in the range U+FF01 through U+FF5E
+will be replaced with ASCII equivalents.  For example, you can include an
+<code>%@CHAR[0XFF05]</code> in the <span class=optname>command</span>, and
+<code>/C</code> will translate it to a percent sign.  This can be handy when
+copying shell verbs using the <a href="E:\Utils\#f_shellverb"><code>@SHELLVERB</code></a>
+function. </p>
+
+
+<br>
+<p>Putting it all together, we can define a new file type for
+<span class=filename>.BTM</span> files, describe it, and define some basic
+shell verbs: </p>
+
+<p class=example><code>rem  Create a new file type for .BTM files:<br>
+shellverb /t:btmfile /d:"Take Command batch file" .btm<br>
+<br>
+rem  Create an Open verb to run .BTM files:<br>
+shellverb /m:"R&un" .btm="%_cmdspec" /c "%%1"<br>
+<br>
+rem  Create an Edit verb to edit them like .TXT files:<br>
+shellverb /c /v:Edit .btm=%@shellverb[.txt,open,128]<br>
+<br>
+rem  Create a Print verb to print them using Notepad:<br>
+shellverb /v:Print .btm=notepad.exe /p "%%1"<br>
+<br>
+rem  If BDEBUGGER is available, create a Debug verb:<br>
+iff isinternal bdebugger then<br>
+    shellverb /v:Debug /m:"Debu&g" .btm="%_cmdspec" /c bdebugger "%%1"<br>
+endiff<br>
+</code></p>
+
+<br>
+<p class=xref>See also: the <a href="E:\Utils\#f_shellverb"><code>@SHELLVERB</code></a>
+function, which returns the command string for the given shell verb. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=soundvol></a><code>SOUNDVOL</code> — Display or change the
+master sound volume. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>SOUNDVOL </code><code>/B /M /O /Q /U </code><span class=optname>volume</span></p>
+
+<table class=descript>
+	<tr><td><code>/B</code></td><td>beep after changing settings</td></tr>
+	<tr><td><code>/M</code></td><td>mute the sound</td></tr>
+	<tr><td><code>/O</code></td><td>display the current settings on-screen</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><code>/U</code></td><td>unmute the sound</td></tr>
+	<tr><td><span class=optname>volume</span></td><td>new volume level, 0 — 100</td></tr>
+</table>
+
+<p>If <code>/Q</code> is not specified, the current volume will be displayed. </p>
+
+<p class=example><code>rem  Crank it all the way up:<br>
+soundvol 100<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#v_volume"><code>_VOLUME</code></a> and
+<a href="E:\Utils\#v_mute"><code>_MUTE</code></a> variables, which return the current
+master sound volume and mute state respectively. </p>
+
+<br><hr><!--endtopic-->
+
+
+<!--
+<p><a  name="startpin"></a><code>STARTPIN</code>&nbsp;&mdash; Pin or unpin a
+shortcut to the Windows 7 Start menu. </p>
+
+<p class="iewrap">Syntax:<br>
+<code class="req">STARTPIN </code><code>/U </code><span class="reqname">filename</span></p>
+
+<table class="descript">
+<tr><td><code>/U</code></td><td>unpin from the Start menu</td></tr>
+</table>
+
+<p>This command is only available under Windows 7.  The <span class="reqname">filename</span>
+is required; it must end in <span class="filename">.LNK</span>.  If you
+don&rsquo;t supply an extension, <span class="filename">.LNK</span> will be
+appended by default.</p>
+
+<p>You should supply a complete pathname to the shortcut file, even to unpin it. </p>
+
+<p class="example"><code>rem&nbsp; Pin TCC to the Start menu:<br>
+set scfile="%userprofile\%_cmdproc %_4ver.lnk"<br>
+mksc %scfile "%_cmdspec" /d:c:\<br>
+startpin %scfile<br>
+</code></p>
+
+<br>
+<p>Unfortunately, Windows arbitrarily restricts the shortcuts that may be
+pinned; even more unfortunately, Microsoft doesn&rsquo;t appear to have clearly
+documented these limitations anywhere.  It seems that only shortcuts to actual
+programs (<span class="filename">.EXE</span> files) are permitted.  If you try
+to pin a shortcut to anything else&nbsp;&mdash; a document, a folder, a URL, an
+Explorer object&nbsp;&mdash; Windows will issue a spurious &ldquo;Access is
+denied&rdquo; message.  Even if a shortcut does point to an <span class="filename">.EXE</span>
+file, Windows may still refuse to pin it.  If you want to pin a
+non-<span class="filename">EXE</span> file, a directory, or a URL, you will
+need to create a shortcut to a program which opens that item. </p>
+
+<p class="example"><code>rem&nbsp; Pin Google's home page to the start menu:<br>
+set scfile="%userprofile\Google.lnk"<br>
+mksc %scfile iexplore.exe /a:"https://www.google.com/"<br>
+startpin %scfile<br>
+</code></p>
+
+<br>
+<p class="xref">See also:  the <a href="#taskbarpin"><code>TASKBARPIN</code></a> command,
+which pins or unpins a shortcut to the Windows 7 taskbar; and the
+<a href="#mksc"><code>MKSC</code></a> command, which creates, modifies, or
+displays shortcut files. </p>
+
+<br><hr><!~~endtopic~~>
+
+
+<p><a  name="taskbarpin"></a><code>TASKBARPIN</code>&nbsp;&mdash; Pin or unpin a
+shortcut to the Windows 7 taskbar. </p>
+
+<p class="iewrap">Syntax:<br>
+<code class="req">TASKBARPIN </code><code>/U </code><span class="reqname">filename</span></p>
+
+<table class="descript">
+<tr><td><code>/U</code></td><td>unpin from the taskbar</td></tr>
+</table>
+
+<p>This command is only available under Windows 7.  The <span class="reqname">filename</span>
+is required; it must end in <span class="filename">.LNK</span>.  If you
+don&rsquo;t supply an extension, <span class="filename">.LNK</span> will be
+appended by default.</p>
+
+<p>You should supply a complete pathname to the shortcut file, even to unpin it. </p>
+
+<p class="example"><code>rem&nbsp; Pin the calculator to the taskbar:<br>
+taskbarpin "<a href="#f_shfolder">%@shfolder[23]</a>\accessories\calculator.lnk"<br>
+</code></p>
+
+<br>
+<p>Unfortunately, Windows arbitrarily restricts the shortcuts that may be
+pinned; even more unfortunately, Microsoft doesn&rsquo;t appear to have clearly
+documented these limitations anywhere.  It seems that only shortcuts to actual
+programs (<span class="filename">.EXE</span> files) are permitted.  If you try
+to pin a shortcut to anything else&nbsp;&mdash; a document, a folder, a URL, an
+Explorer object&nbsp;&mdash; Windows will issue a spurious &ldquo;Access is
+denied&rdquo; message.  Even if a shortcut does point to an <span class="filename">.EXE</span>
+file, Windows may still refuse to pin it.  If you want to pin a
+non-<span class="filename">EXE</span> file, a directory, or a URL, you will
+need to create a shortcut to a program which opens that item. </p>
+
+<p class="example"><code>rem&nbsp; Pin the Downloads folder to the taskbar:<br>
+set scfile="%userprofile\Downloads.lnk"<br>
+mksc %scfile explorer.exe /a:"%userprofile\downloads"<br>
+taskbarpin %scfile<br>
+</code></p>
+
+<br>
+<p class="xref">See also:  the <a href="#startpin"><code>STARTPIN</code></a> command,
+which pins or unpins a shortcut to the Windows 7 Start menu; and the
+<a href="#mksc"><code>MKSC</code></a> command, which creates, modifies, or
+displays shortcut files. </p>
+
+<br><hr><!~~endtopic-->
+
+
+<p><a name=uistuffhelp></a><code>UISTUFFHELP</code> — Open the
+UIStuff plugin help file. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>UISTUFFHELP</code><code> /C /F /S /S:</code><span class=optname>text</span><code> /V </code><span class=optname>topic</span></p>
+
+<table class=descript>
+	<tr><td><code>/C</code></td><td>select the ‘Contents’ tab</td></tr>
+	<tr><td><code>/F</code></td><td>select the ‘Favorites’ tab</td></tr>
+	<tr><td><code>/S</code></td><td>select the ‘Search’ tab</td></tr>
+	<tr><td><code>/S:</code><span class=optname>text</span></td><td>select the ‘Search’ tab and search for <span class=optname>text</span></td></tr>
+	<tr><td><code>/V</code></td><td>show detailed plugin version info</td></tr>
+	<tr><td><span class=optname>topic</span></td><td>the page to display</td></tr>
+</table>
+
+<p>The <code>UISTUFFHELP</code> command will locate and open this
+plugin’s help file.  In most cases, the internal <code>HELP</code>
+command, and the <kbd>F1</kbd> and <kbd>Ctrl</kbd>-<kbd>F1</kbd> keys, will
+be more convenient.  The main advantage of this command is that it can be
+used to open the help file to any desired topic, not only to the names of
+commands, functions, and variables. </p>
+
+<p>Note that any <code>/C</code> <code>/F</code> or <code>/S</code> must precede
+any <span class=optname>topic</span> on the command line.  (This command has
+a very simple-minded parser.) </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=wallpaper></a><code>WALLPAPER</code> — Display or change the desktop wallpaper. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>WALLPAPER </code><code>/B /C /N /R /S /T </code><span class=optname>filename</span></p>
+
+<table class=descript>
+<tr><td><code>/B</code></td><td>best style, based on image size</td></tr>
+<tr><td><code>/C</code></td><td>center the wallpaper</td></tr>
+<tr><td><code>/N</code></td><td>no wallpaper</td></tr>
+<tr><td><code>/R</code></td><td>recursive (search into subdirectories)</td></tr>
+<tr><td><code>/S</code></td><td>stretch the wallpaper</td></tr>
+<tr><td><code>/T</code></td><td>tile the wallpaper</td></tr>
+<tr><td><span class=optname>filename</span></td><td>a graphics file to display on the desktop</td></tr>
+</table>
+
+<p>The <span class=optname>filename</span> specifies a graphics file with an
+extension of <span class=filename>.BMP</span>, <span class=filename>.JPG</span>,
+<span class=filename>.JPEG</span>, <span class=filename>.PNG</span>,
+<span class=filename>.GIF</span>, <span class=filename>.TIF</span>, or
+<span class=filename>.TIFF</span>.  Alternatively, it may name a directory
+which contains graphics files of those types, in which case <code>WALLPAPER</code>
+will pick one at random.  Directory aliases are supported in
+<span class=optname>filename</span>. </p>
+
+<p>If there is a bitmap on the clipboard, you can use it as wallpaper by
+specifying a <span class=optname>filename</span> of <code>CLIP:</code> </p>
+
+<p><code>/B</code> chooses a style automatically, based on the image size and the
+primary monitor’s resolution.  Small images (not more than a quarter of
+the screen width or a third of the screen height) will be tiled.  Larger images
+(at least 60% of the screen width) with a similar width/height ratio to the
+screen’s will be stretched to fit.  All others will be centered. </p>
+
+<p><code>/N</code> removes any wallpaper. </p>
+
+<p>If no arguments are specified, the current filename will be displayed. </p>
+
+<p class=example><code>rem  Tile the background with "Santa Fe Stucco.bmp":<br>
+wallpaper /t "c:\windows\santa fe stucco.bmp"<br>
+<br>
+rem  Pick a random image file from the user's Pictures folder:<br>
+wallpaper /b /r "%@shfolder[39]"<br>
+</code></p>
+
+<br>
+<p><span class=note>• Note:</span> Setting the wallpaper under
+Windows Vista or Windows 7 will disable any slide show. </p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#v_wallpaper"><code>_WALLPAPER</code></a>
+and <a href="E:\Utils\#v_wallstyle"><code>_WALLSTYLE</code></a> variables, which return
+the current wallpaper filename and display style respectively. </p>
+
+<!--endtopic-->
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_firstfont></a><code>@FIRSTFONT</code> — Returns the
+name of the first matching font. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@FIRSTFONT[</code><span class=optname>name</span><code>,</code><span class=optname>charset</span><code>,</code><span class=optname>type</span><code>,</code><span class=optname>pitch-and-family</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>name</span></td><td>may contain wildcards</td></tr>
+	<tr><td><span class=optname>charset</span></td><td>see below</td></tr>
+	<tr><td><span class=optname>type</span></td><td>one of:  <code>R</code> raster fonts, <code>V</code> vector fonts, <code>O</code> OpenType fonts, or <code>T</code> TrueType fonts</td></tr>
+	<tr><td><span class=optname>pitch-and-family</span></td><td>one of:  <code>R</code> Roman, <code>S</code> Swiss, <code>M</code> modern, <code>H</code> hand (script), <code>D</code> decorative, or <code>N</code> no family;</td></tr>
+	<tr><td> </td><td>   and/or one of:  <code>F</code> fixed pitch, or <code>V</code> variable pitch</td></tr>
+</table>
+
+<p>If no matching font is found, <code>@FIRSTFONT</code> returns an empty
+string.  If a matching font is found, its name is returned, and you can continue
+enumerating fonts with <a href="E:\Utils\#f_nextfont"><code>@NEXTFONT</code></a>. </p>
+
+<p>Supported <span class=optname>charset</span> values include: </p>
+
+<table class=descript>
+	<tr><td>0</td><td>ANSI (Western — the default)</td></tr>
+	<tr><td>1</td><td>don’t care</td></tr>
+	<tr><td>2</td><td>symbol</td></tr>
+	<tr><td>128</td><td>Shift JIS (Japanese)</td></tr>
+	<tr><td>129</td><td>Hangul (Korean)</td></tr>
+	<tr><td>130</td><td>Johab (Korean)</td></tr>
+	<tr><td>134</td><td>GB 2312 (simplified Chinese)</td></tr>
+	<tr><td>136</td><td>Big-5 (traditional Chinese)</td></tr>
+	<tr><td>161</td><td>Greek</td></tr>
+	<tr><td>162</td><td>Turkish</td></tr>
+	<tr><td>163</td><td>Vietnamese</td></tr>
+	<tr><td>177</td><td>Hebrew</td></tr>
+	<tr><td>178</td><td>Arabic</td></tr>
+	<tr><td>186</td><td>Baltic</td></tr>
+	<tr><td>204</td><td>Cyrillic (Russian)</td></tr>
+	<tr><td>222</td><td>Thai</td></tr>
+	<tr><td>238</td><td>Eastern Europe</td></tr>
+	<tr><td>255</td><td>OEM character set</td></tr>
+</table>
+
+<p class=example><code>rem   List available script fonts:<br>
+<br>
+set font=%@firstfont[,,,h]<br>
+do while defined font<br>
+   echo %font<br>
+   set font=%@nextfont[]<br>
+enddo<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_imgcolor></a><code>@IMGCOLOR</code> — Returns the
+color of a pixel in an image file. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@IMGCOLOR[</code><span class=reqname>filename</span><code>,</code><span class=optname>position</span><code class=req>]</code><br>
+<code class=req>%@IMGCOLOR[</code><span class=reqname>filename</span><code>,</code><span class=optname>x</span><code>,</code><span class=optname>y</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>filename</span></td><td>the image file to examine</td></tr>
+	<tr><td><span class=optname>position</span></td><td>which pixel’s color to return:</td></tr>
+	<tr><td> </td><td>  1 — the top left</td></tr>
+	<tr><td> </td><td>  2 — the top center</td></tr>
+	<tr><td> </td><td>  3 — the top right</td></tr>
+	<tr><td> </td><td>  4 — the center left</td></tr>
+	<tr><td> </td><td>  5 — the center of the image</td></tr>
+	<tr><td> </td><td>  6 — the center right</td></tr>
+	<tr><td> </td><td>  7 — the bottom left</td></tr>
+	<tr><td> </td><td>  8 — the bottom center</td></tr>
+	<tr><td> </td><td>  9 — the bottom right</td></tr>
+	<tr><td><span class=optname>x</span><code>,</code><span class=optname>y</span></td><td>the coordinates of the pixel to return</td></tr>
+</table>
+
+<p>The <span class=reqname>filename</span> specifies a graphics file with an
+extension of .BMP, .JPG, .JPEG, .PNG, .GIF, .TIF, or .TIFF.  Directory aliases
+are supported in <span class=reqname>filename</span>. </p>
+
+<p>If you do not specify a <span class=optname>position</span> or
+<span class=optname>x</span>,<span class=optname>y</span> coordinates, the
+default is to grab the pixel at the center.  The <span class=optname>x</span>
+and <span class=optname>y</span> values may be decimal, or hexadecimal with
+a leading <code>0x</code>.  If <span class=optname>x</span> is negative, it
+is interpreted as pixels from the right edge; a negative <span class=optname>y</span>
+is pixels up from the bottom. </p>
+
+<!--
+<p>You may also specify <span class="optname">x</span> or <span class="optname">y</span>
+as a percentage, with a trailing double percent sign.  In this case, the value
+is interpreted as a percentage of the image&rsquo;s width (for <span class="optname">x</span>)
+or height (for <span class="optname">y</span>).  Again, if the value is negative,
+it is measured from the right (or bottom) edge.  For example, an <span class="optname">x</span>
+value of <code>15%%</code> means 15% of the image&rsquo;s width, measured from
+the right side.  Note that you must double the percent sign or TCC&rsquo;s
+variable expansion routine will eat it. </p>
+-->
+
+<p>The selected pixel’s color is returned as a six-digit hexadecimal
+value, <code>#</code><span class=optname>rrggbb</span>; for example, 
+<code>#5b6d85</code>.  It can be used as the <span class=optname>color</span>
+argument to the <a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a> command. </p>
+
+<p class=example><code>rem  Set the background color to match the wallpaper:<br>
+if "%_wallpaper" ne "*none*" bgcolor %@imgcolor["%_wallpaper"]<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a> command,
+which sets the background color; the <a href="E:\Utils\#f_rgbcompl"><code>@RGBCOMPL</code></a>
+function, which returns a complementary color; and the
+<a href="E:\Utils\#f_rgblum"><code>@RGBLUM</code></a> function, which returns a luminance
+value for a given color. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_nextfont></a><code>@NEXTFONT</code> — Returns further
+matching font names. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@NEXTFONT[]</code></p>
+
+<p>This function continues an enumeration started with <a href="E:\Utils\#f_firstfont"><code>@FIRSTFONT</code></a>.
+When there are no more matching fonts, <code>@NEXTFONT</code> returns an empty
+string. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_rgbcompl></a><code>@RGBCOMPL</code> — Returns a
+complementary color. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@RGBCOMPL[</code><span class=reqname>color</span><code>,</code><span class=optname>rotate</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>color</span></td><td>may be specified as <code>#</code><span class=optname>rrggbb</span> or as a <a href="E:\Utils\#w3ccolors">W3C color name</a>.</td></tr>
+	<tr><td><span class=optname>rotate</span></td><td>degrees to rotate the color’s hue; defaults to 180</td></tr>
+</table>
+
+<p>If you specify the <span class=reqname>color</span> in hexadecimal with a
+leading <code>#</code> sign, it must be either three or six hex digits long.
+If it’s three digits long, each digit is doubled; <code>#8ac</code> is the
+same as <code>#88aacc</code>.  Alternatively, you can use a leading <code>0x</code>
+and the rules above do not apply; the number of digits is not significant. </p>
+
+<p>The input <span class=reqname>color</span> is plotted on a color wheel,
+and the color opposite (180° around, or according to <span class=optname>rotate</span>)
+is returned.  The resulting color is returned as a six-digit hexadecimal value,
+<code>#</code><span class=optname>rrggbb</span>; for example, 
+<code>#5b6d85</code>.  It can be used as the <span class=optname>color</span>
+argument to the <a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a> command. </p>
+
+<p class=example><code>rem  Set the background color to contrast with the wallpaper:<br>
+if "%_wallpaper" ne "*none*" bgcolor %@rgbcompl[%@imgcolor["%_wallpaper"]]<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a> command,
+which sets the background color; the <a href="E:\Utils\#v_bgcolor"><code>_BGCOLOR</code></a>
+variable, which returns the current background color; and the
+<a href="E:\Utils\#f_imgcolor"><code>@IMGCOLOR</code></a> function, which returns a color
+from a graphics file. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_rgblum></a><code>@RGBLUM</code> — Returns a
+luminance value for a color. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@RGBLUM[</code><span class=reqname>color</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>color</span></td><td>may be specified as <code>#</code><span class=optname>rrggbb</span> or as a <a href="E:\Utils\#w3ccolors">W3C color name</a>.</td></tr>
+</table>
+
+<p>If you specify the <span class=reqname>color</span> in hexadecimal with a
+leading <code>#</code> sign, it must be either three or six hex digits long.
+If it’s three digits long, each digit is doubled; <code>#8ac</code> is the
+same as <code>#88aacc</code>.  Alternatively, you can use a leading <code>0x</code>
+and the rules above do not apply; the number of digits is not significant. </p>
+
+<p>A luminance value from 0 (darkest) to 1000 (brightest) is returned.  You
+can use this to pick a contrasting color.  For example, if a background
+has a luminance of less than 500, white would make a good contrasting color for
+text; if it’s at least 500, then black would be a better choice. </p>
+
+<p>The three color channels are given different weights:  green is 58.7% of the
+luminance value, red is 29.9%, and blue is 11.4%. </p>
+
+<p class=example><code>rem  Is yellow bright or dark?<br>
+if %@rgblum[yellow] ge 500 ( echo It's bright! ) else ( echo It's dark! )<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#v_bgcolor"><code>_BGCOLOR</code></a>
+variable, which returns the current background color; and the
+<a href="E:\Utils\#f_imgcolor"><code>@IMGCOLOR</code></a> function, which returns a color
+from a graphics file. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_scinfo></a><code>@SCINFO</code> — Returns values
+from a shortcut file. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@SCINFO[</code><span class=reqname>filename</span><code>,</code><span class=optname>field</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>filename</span></td><td colspan=2>the file to examine</td></tr>
+	<tr><td><span class=optname>field</span></td><td colspan=2>which field to return:</td></tr>
+	<tr><td></td><td><code>0</code></td><td>the target filename or object name (default)</td></tr>
+	<tr><td></td><td><code>1</code></td><td>the command-line arguments</td></tr>
+	<tr><td></td><td><code>2</code></td><td>the working directory</td></tr>
+	<tr><td></td><td><code>3</code></td><td>the descriptive comment</td></tr>
+	<tr><td></td><td><code>4</code></td><td>the hotkey</td></tr>
+	<tr><td></td><td><code>5</code></td><td>the startup window mode</td></tr>
+	<tr><td></td><td><code>6</code></td><td>the icon filename</td></tr>
+	<tr><td></td><td><code>7</code></td><td>the icon index</td></tr>
+	<tr><td></td><td><code>8</code></td><td>the UAC level</td></tr>
+	<tr><td></td><td><code>32</code> †</td><td>the width of the console screen buffer</td></tr>
+	<tr><td></td><td><code>33</code> †</td><td>the height of the console screen buffer</td></tr>
+	<tr><td></td><td><code>34</code> †</td><td>the width of the visible window</td></tr>
+	<tr><td></td><td><code>35</code> †</td><td>the height of the visible window</td></tr>
+	<tr><td></td><td><code>36</code> †</td><td>the console font name</td></tr>
+	<tr><td></td><td><code>37</code> †</td><td>the font width in pixels (may be 0 for TrueType fonts)</td></tr>
+	<tr><td></td><td><code>38</code> †</td><td>the font height in pixels</td></tr>
+	<tr><td></td><td><code>39</code> †</td><td>the font weight:  400 = normal, 700 = bold</td></tr>
+	<tr><td></td><td><code>40</code> †</td><td>the cursor size:  25 = small, 100 = large</td></tr>
+	<tr><td></td><td><code>41</code> †</td><td>QuickEdit mode:  0 = disabled, 1 = enabled</td></tr>
+	<tr><td></td><td><code>42</code> †</td><td>auto position window:  0 = disabled, 1 = enabled</td></tr>
+	<tr><td></td><td><code>43</code> †</td><td>insert mode:  0 = overstrike, 1 = insert</td></tr>
+	<tr><td></td><td><code>44</code> †</td><td>default console colors as hex, <i>e.g.</i> 0x0007 = white on black</td></tr>
+	<tr><td></td><td><code>45</code> †</td><td>console popup colors as hex, <i>e.g.</i> 0x00F5 = magenta on bright white</td></tr>
+	<tr><td></td><td><code>46</code> †</td><td>console window position (if auto position is disabled) as <span class=optname>x</span><code>,</code><span class=optname>y</span></td></tr>
+	<!-- <tr><td></td><td><code></code></td><td> </td></tr> -->
+</table>
+
+<p class=descript>†   Console property.  If the shortcut does not contain a console
+properties block, <code>@SCINFO</code> will return <code>-1</code>. </p>
+
+<p>The <span class=reqname>filename</span> is required.  Quote it if is
+contains commas or other special characters.  Wildcards are not allowed, but
+directory aliases are supported. </p>
+
+<p>If <span class=optname>field</span> is 0 or absent, <code>@SCINFO</code>
+will attempt to return the shortcut’s target.  The return value will be
+quoted.  It may be empty if the target is an object which the plugin
+doesn’t recognize. </p>
+
+<p>A <span class=optname>field</span> of 1, 2, or 3 returns the shortcut’s
+command-line arguments, working directory, or description, respectively.  These
+return values are all quoted; any of them may return an empty string if the
+respective field is not defined in the shortcut. </p>
+
+<p>A <span class=optname>field</span> of 4 returns the shortcut’s
+hotkey.  This value is not quoted.  It will return <code>None</code> if the
+shortcut has no hotkey defined. </p>
+
+<p>A <span class=optname>field</span> of 5 returns the shortcut’s
+startup window mode.  This value is not quoted; possible values are
+<code>Normal</code>, <code>Maximized</code>, and <code>Minimized</code>. </p>
+
+<p>Values of 6 and 7 return the shortcut’s icon filename and offset,
+respectively.  The filename will be quoted.  If there is no icon, the filename
+will be empty and the index will be 0. </p>
+
+<p>If <span class=optname>field</span> is 8, the shortcut’s UAC level
+will be returned; possible values are <code>Normal</code> and <code>Elevated</code>.
+(Under Windows XP and earlier, the value is always <code>Normal</code>.)  The
+returned string is not quoted. </p>
+
+<br>
+<p>If you add 256 to the <span class=optname>field</span> number, the return
+string will not be automatically quoted.  If you add 512, the return string will
+be escapified. </p>
+
+<p class=example><code>rem  Read info from a shortcut file:<br>
+set shortcut="%userprofile\desktop\test.lnk"<br>
+set target=%@scinfo[%shortcut,0]<br>
+set args=%@scinfo[%shortcut,1]<br>
+set dir=%@scinfo[%shortcut,2]<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#mksc"><code>MKSC</code></a> command, which creates,
+modifies, or displays shortcut files. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_screenres></a><code>@SCREENRES</code> — Returns the
+current settings for the specified monitor. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@SCREENRES[</code><span class=optname>monitor</span><code>,</code><span class=optname>info</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>monitor</span></td><td>zero-based number of the monitor to examine</td></tr>
+	<tr><td><span class=optname>info</span></td><td>what to return:</td></tr>
+	<tr><td> </td><td><code>0</code> or <code>I</code> — all info in one long string</td></tr>
+	<tr><td> </td><td><code>1</code> or <code>X</code> — screen width (pixels)</td></tr>
+	<tr><td> </td><td><code>2</code> or <code>Y</code> — screen height (pixels)</td></tr>
+	<tr><td> </td><td><code>3</code> or <code>C</code> — color depth (bits per pixel)</td></tr>
+	<tr><td> </td><td><code>4</code> or <code>R</code> — refresh rate (Hz)</td></tr>
+	<tr><td> </td><td><code>8</code> or <code>T</code> — horizontal and vertical only</td></tr>
+</table>
+
+<p>If you do not specify a <span class=optname>monitor</span>, the primary
+monitor will be examined by default. </p>
+
+<p>Instead of a number, you may specify the <span class=optname>info</span>
+to return as a letter or word; only the first letter is significant. </p>
+
+<p class=example><code>rem  Get display settings for the primary monitor:<br>
+set screenwidth=%@screenres[,1]<br>
+set screenheight=%@screenres[,2]<br>
+set screenbpp=%@screenres[,3]<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#screenres"><code>SCREENRES</code></a> command, which
+displays or changes the current screen resolution. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_shellverb></a><code>@SHELLVERB</code> — Returns the
+command string for the specified shell verb. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@SHELLVERB[</code><span class=reqname>ftype</span><code>,</code><span class=optname>verb</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>ftype</span></td><td>either an extension or a descriptive file type</td></tr>
+	<tr><td><span class=optname>verb</span></td><td>if omitted, the default verb is used</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped:</td></tr>
+	<tr><td> </td><td>1 — user-specific file association</td></tr>
+	<tr><td> </td><td>2 — systemwide file association</td></tr>
+	<tr><td> </td><td>128 — map dangerous characters to SafeChars</td></tr>
+</table>
+
+<p><span class=optname>Verb</span> must be the actual verb name, not its
+cosmetic or “menu” name. </p>
+
+<p>If bit 7 of <span class=optname>flags</span> is set, the following
+characters in the command string will be replaced with high-order Unicode
+equivalents: </p>
+
+<table class=descript>
+	<tr><th>Character:</th><th></th><th>ASCII:</th><th>Remapped to:</th></tr>
+	<tr><td>percent sign</td><td>%</td><td>37 / 0x25</td><td>U+FF05</td></tr>
+	<tr><td>ampersand</td><td>&</td><td>38 / 0x26</td><td>U+FF06</td></tr>
+	<tr><td>open parenthesis</td><td>(</td><td>40 / 0x28</td><td>U+FF08</td></tr>
+	<tr><td>close parenthesis</td><td>)</td><td>41 / 0x29</td><td>U+FF09</td></tr>
+	<tr><td>less-than sign</td><td>&lt;</td><td>60 / 0x3C</td><td>U+FF1C</td></tr>
+	<tr><td>greater-than sign</td><td>&gt;</td><td>62 / 0x3E</td><td>U+FF1E</td></tr>
+	<tr><td>open bracket</td><td>[</td><td>91 / 0x5B</td><td>U+FF3B</td></tr>
+	<tr><td>close bracket</td><td>]</td><td>93 / 0x5D</td><td>U+FF3D</td></tr>
+	<tr><td>caret</td><td>^</td><td>94 / 0x5E</td><td>U+FF3E</td></tr>
+	<tr><td>grave accent / backquote</td><td>`</td><td>96 / 0x60</td><td>U+FF40</td></tr>
+	<tr><td>vertical bar</td><td>¦</td><td>124 / 0x7C</td><td>U+FF5C</td></tr>
+</table>
+
+<p>If the extension, filetype, verb, or command string is unknown, this
+function returns the string <code>*ERROR*</code>. </p>
+
+<p class=xref>See also: the <a href="E:\Utils\#shellverb"><code>SHELLVERB</code></a>
+command, which displays or changes file associations and shell verbs. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_shfolder></a><code>@SHFOLDER</code> — Returns the
+full pathname of a Windows special folder. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>@SHFOLDER[</code><span class=optname>n</span><code class=req>]</code></p>
+
+<p>This function works much the same as the internal function of the same name.
+However, it can accept the index <span class=optname>n</span> as decimal,
+hexadecimal, or a descriptive CSIDL name.  Also, error checking is tighter; if
+you pass this <code>@SHFOLDER</code> something it doesn’t understand, it
+will complain. </p>
+
+<p>Not all values of <span class=optname>n</span> refer to actual directories,
+and not all values are supported under all versions of Windows.  If you pass a
+value which doesn’t work on your system, this function will return an
+empty string. </p>
+
+<p>When using the symbolic names, case is not significant, spaces and
+underscores are ignored, and you may omit the leading <code>CSIDL_</code>;
+“My Music” is equivalent to CSIDL_MYMUSIC. </p>
+
+
+<br>
+<table class=descript style="font-size: smaller;">
+	<tr style="font-weight: bold;"><td>Dec</td><td>Hex</td><td>Name</td><td>Returns:</td></tr>
+	<tr><td>0</td><td>0x00</td><td><code style="font-size: 95%;">CSIDL_DESKTOP</code></td><td>the desktop</td></tr>
+	<tr><td>2</td><td>0x02</td><td><code style="font-size: 95%;">CSIDL_PROGRAMS</code></td><td>the user’s “Programs” menu</td></tr>
+	<tr><td>5</td><td>0x05</td><td><code style="font-size: 95%;">CSIDL_PERSONAL</code></td><td>the user’s “Documents” folder</td></tr>
+	<tr><td>6</td><td>0x06</td><td><code style="font-size: 95%;">CSIDL_FAVORITES</code></td><td>the user’s “Favorites” folder</td></tr>
+	<tr><td>7</td><td>0x07</td><td><code style="font-size: 95%;">CSIDL_STARTUP</code></td><td>the user’s “Startup” programs folder</td></tr>
+	<tr><td>8</td><td>0x08</td><td><code style="font-size: 95%;">CSIDL_RECENT</code></td><td>shortcuts to the user’s recently opened files</td></tr>
+	<tr><td>9</td><td>0x09</td><td><code style="font-size: 95%;">CSIDL_SENDTO</code></td><td>the user’s “Send To” shortcuts</td></tr>
+	<tr><td>11</td><td>0x0b</td><td><code style="font-size: 95%;">CSIDL_STARTMENU</code></td><td>the user’s Start menu</td></tr>
+	<tr><td>13</td><td>0x0d</td><td><code style="font-size: 95%;">CSIDL_MYMUSIC</code></td><td>the user’s “Music” folder</td></tr>
+	<tr><td>14</td><td>0x0e</td><td><code style="font-size: 95%;">CSIDL_MYVIDEO</code></td><td>the user’s “Videos” folder</td></tr>
+	<tr><td>16</td><td>0x10</td><td><code style="font-size: 95%;">CSIDL_DESKTOP­DIRECTORY</code></td><td>the user’s Desktop folder</td></tr>
+	<tr><td>19</td><td>0x13</td><td><code style="font-size: 95%;">CSIDL_NETHOOD</code></td><td>the user’s network shortcuts</td></tr>
+	<tr><td>20</td><td>0x14</td><td><code style="font-size: 95%;">CSIDL_FONTS</code></td><td>the system fonts directory</td></tr>
+	<tr><td>21</td><td>0x15</td><td><code style="font-size: 95%;">CSIDL_TEMPLATES</code></td><td>the user’s templates folder</td></tr>
+	<tr><td>22</td><td>0x16</td><td><code style="font-size: 95%;">CSIDL_COMMON_­STARTMENU</code></td><td>Start menu for all users</td></tr>
+	<tr><td>23</td><td>0x17</td><td><code style="font-size: 95%;">CSIDL_COMMON_­PROGRAMS</code></td><td>“Programs” menu for all users</td></tr>
+	<tr><td>24</td><td>0x18</td><td><code style="font-size: 95%;">CSIDL_COMMON_­STARTUP</code></td><td>“Startup” programs folder for all users</td></tr>
+	<tr><td>25</td><td>0x19</td><td><code style="font-size: 95%;">CSIDL_COMMON_­DESKTOP­DIRECTORY</code></td><td>Desktop folder for all users</td></tr>
+	<tr><td>26</td><td>0x1a</td><td><code style="font-size: 95%;">CSIDL_APPDATA</code></td><td>the user’s application data folder</td></tr>
+	<tr><td>27</td><td>0x1b</td><td><code style="font-size: 95%;">CSIDL_PRINTHOOD</code></td><td>the user’s printer shortcuts</td></tr>
+	<tr><td>28</td><td>0x1c</td><td><code style="font-size: 95%;">CSIDL_LOCAL_­APPDATA</code></td><td>the user’s local applications data</td></tr>
+	<tr><td>29</td><td>0x1d</td><td><code style="font-size: 95%;">CSIDL_ALTSTARTUP</code></td><td>the user’s nonlocalized Startup folder</td></tr>
+	<tr><td>30</td><td>0x1e</td><td><code style="font-size: 95%;">CSIDL_COMMON_­ALTSTARTUP</code></td><td>nonlocalized Startup folder for all users</td></tr>
+	<tr><td>31</td><td>0x1f</td><td><code style="font-size: 95%;">CSIDL_COMMON_­FAVORITES</code></td><td>“Favorites” folder for all users</td></tr>
+	<tr><td>32</td><td>0x20</td><td><code style="font-size: 95%;">CSIDL_INTERNET_­CACHE</code></td><td>the user’s Internet Explorer cache</td></tr>
+	<tr><td>33</td><td>0x21</td><td><code style="font-size: 95%;">CSIDL_COOKIES</code></td><td>the user’s Internet Explorer cookies</td></tr>
+	<tr><td>34</td><td>0x22</td><td><code style="font-size: 95%;">CSIDL_HISTORY</code></td><td>the user’s Internet Explorer history</td></tr>
+	<tr><td>35</td><td>0x23</td><td><code style="font-size: 95%;">CSIDL_COMMON_­APPDATA</code></td><td>application data for all users</td></tr>
+	<tr><td>36</td><td>0x24</td><td><code style="font-size: 95%;">CSIDL_WINDOWS</code></td><td>the Windows directory</td></tr>
+	<tr><td>37</td><td>0x25</td><td><code style="font-size: 95%;">CSIDL_SYSTEM</code></td><td>the Windows system directory</td></tr>
+	<tr><td>38</td><td>0x26</td><td><code style="font-size: 95%;">CSIDL_PROGRAM_­FILES</code></td><td>default location for applications</td></tr>
+	<tr><td>39</td><td>0x27</td><td><code style="font-size: 95%;">CSIDL_MYPICTURES</code></td><td>the user’s “Pictures” folder</td></tr>
+	<tr><td>40</td><td>0x28</td><td><code style="font-size: 95%;">CSIDL_PROFILE</code></td><td>the user’s profile directory</td></tr>
+	<tr><td>41</td><td>0x29</td><td><code style="font-size: 95%;">CSIDL_SYSTEMX86</code></td><td>x86 system directory on x64 Windows</td></tr>
+	<tr><td>42</td><td>0x2a</td><td><code style="font-size: 95%;">CSIDL_PROGRAM_­FILESX86</code></td><td>x86 applications on x64 Windows</td></tr>
+	<tr><td>43</td><td>0x2b</td><td><code style="font-size: 95%;">CSIDL_PROGRAM_­FILES_­COMMON</code></td><td>shared application components</td></tr>
+	<tr><td>44</td><td>0x2c</td><td><code style="font-size: 95%;">CSIDL_PROGRAM_­FILES_­COMMONX86</code></td><td>shared x86 app components on x64 Windows</td></tr>
+	<tr><td>45</td><td>0x2d</td><td><code style="font-size: 95%;">CSIDL_COMMON_­TEMPLATES</code></td><td>templates folder for all users</td></tr>
+	<tr><td>46</td><td>0x2e</td><td><code style="font-size: 95%;">CSIDL_COMMON_­DOCUMENTS</code></td><td>documents folder for all users</td></tr>
+	<tr><td>47</td><td>0x2f</td><td><code style="font-size: 95%;">CSIDL_COMMON_­ADMINTOOLS</code></td><td>“Administrative tools” folder for all users</td></tr>
+	<tr><td>48</td><td>0x30</td><td><code style="font-size: 95%;">CSIDL_ADMINTOOLS</code></td><td>the user’s “Administrative tools” folder</td></tr>
+	<tr><td>53</td><td>0x35</td><td><code style="font-size: 95%;">CSIDL_COMMON_­MUSIC</code></td><td>“Music” folder for all users</td></tr>
+	<tr><td>54</td><td>0x36</td><td><code style="font-size: 95%;">CSIDL_COMMON_­PICTURES</code></td><td>“Pictures” folder for all users</td></tr>
+	<tr><td>55</td><td>0x37</td><td><code style="font-size: 95%;">CSIDL_COMMON_­VIDEO</code></td><td>“Video” folder for all users</td></tr>
+	<tr><td>56</td><td>0x38</td><td><code style="font-size: 95%;">CSIDL_RESOURCES</code></td><td>the system resources directory</td></tr>
+	<tr><td>59</td><td>0x3b</td><td><code style="font-size: 95%;">CSIDL_CDBURN_­AREA</code></td><td>used for burning CDs</td></tr>
+	<!--
+	<tr><td>64</td><td>0x40</td><td><code style="font-size: 95%;">CSIDL_SAMPLE_&shy;MUSIC</code></td><td><em>Vista only?</em></td></tr>
+	<tr><td>65</td><td>0x41</td><td><code style="font-size: 95%;">CSIDL_SAMPLE_&shy;PLAYLISTS</code></td><td><em>Vista only?</em></td></tr>
+	<tr><td>66</td><td>0x42</td><td><code style="font-size: 95%;">CSIDL_SAMPLE_&shy;PICTURES</code></td><td><em>Vista only?</em></td></tr>
+	<tr><td>67</td><td>0x43</td><td><code style="font-size: 95%;">CSIDL_SAMPLE_&shy;VIDEOS</code></td><td><em>Vista only?</em></td></tr>
+	-->
+</table>
+
+
+<!--endtopic-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+
+
+<p><a name=v_bgcolor></a><code>_BGCOLOR</code> — Returns the desktop
+background color. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_BGCOLOR</code></p>
+
+<p>The color will be returned as a six-digit hexadecimal number with a leading
+<code>#</code> sign. </p>
+
+<p class=example><code>rem  Save the current background color:<br>
+set backcolor=%_bgcolor<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a> command, which
+sets or displays the background color; and the
+<a href="E:\Utils\#v_bgcolorname"><code>_BGCOLORNAME</code></a> variable, which reports
+it as a <a href="E:\Utils\#w3ccolors">W3C color name</a> if possible. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_bgcolorname></a><code>_BGCOLORNAME</code> — Returns the
+desktop background color as a <a href="E:\Utils\#w3ccolors">W3C color name</a>. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_BGCOLORNAME</code></p>
+
+<p>If no matching name is found, the color will be returned in hexadecimal,
+the same as <a href="E:\Utils\#v_bgcolor"><code>_BGCOLOR</code></a>. </p>
+
+<p class=example><code>rem  Save the current background color:<br>
+set backcolor=%_bgcolorname<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a> command, which
+sets or displays the background color; and the <a href="E:\Utils\#v_bgcolor"><code>_BGCOLOR</code></a>
+variable, which reports it as a hexadecimal number. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_browser></a><code>_BROWSER</code> — Returns the
+filename of the default web browser. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_BROWSER</code></p>
+
+<p>The filename will be returned in double quotes.  On any error, this function
+returns an empty string. </p>
+
+<p class=example><code>rem  Make a shortcut to open Google in the default browser:<br>
+<a href="E:\Utils\#mksc">mksc</a> "%<a href="E:\Utils\#f_shfolder">@shfolder</a>[16]\Google.lnk" "%_browser" /a:"https://www.google.com/"<br>
+</code></p>
+
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_defaudioout></a><code>_DEFAUDIOOUT</code> — Returns the name
+of the current default audio output device. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_DEFAUDIOOUT</code></p>
+
+<p>The returned name will probably contain spaces and maybe weirder stuff,
+so it might be a good idea to quote it. </p>
+
+<p class=example><code>rem  Save the current setting:<br>
+set oldaudioout="%_defaudioout"<br>
+<br>
+rem    ...and restore it later:<br>
+defaudioout %oldaudioout<br>
+</code></p>
+
+<br>
+<p class=xref><span class=note>•  Note: </span>  This variable
+requires Windows Vista or later; it will not work in Windows XP. </p>
+
+<p class=xref>See also:  the <a href="E:\Utils\#defaudioout"><code>DEFAUDIOOUT</code></a>
+command, which displays or changes the default audio output device. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_mousex></a><code>_MOUSEX</code> — Returns the current
+horizontal position of the mouse pointer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_MOUSEX</code></p>
+
+<p>This variable might be useful with <a href="E:\Utils\#setmousepos"><code>SETMOUSEPOS</code></a>
+if you want to move the mouse pointer relative to its current position. </p>
+
+<p>The range of possible return values depends on your monitor size. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_mousey></a><code>_MOUSEY</code> — Returns the current
+vertical position of the mouse pointer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_MOUSEY</code></p>
+
+<p>This variable might be useful with <a href="E:\Utils\#setmousepos"><code>SETMOUSEPOS</code></a>
+if you want to move the mouse pointer relative to its current position. </p>
+
+<p>The range of possible return values depends on your monitor size. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_mute></a><code>_MUTE</code> — Returns the master
+sound mute state. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_MUTE</code></p>
+
+<p>The value returned is <code>1</code> if the sound is muted, or <code>0</code>
+otherwise. </p>
+
+<p class=example><code>rem  Check whether the audio is muted:<br>
+if %_mute == 1 echo The audio is muted!<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a> command, which
+sets the master sound volume and mute state; and the
+<a href="E:\Utils\#v_volume"><code>_VOLUME</code></a> variable, which returns the
+current volume. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_muted></a><code>_MUTED</code> — Returns the master
+sound mute state. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_MUTED</code></p>
+
+<p>The value returned is <code>1</code> if the sound is muted, or <code>0</code>
+otherwise. </p>
+
+<br>
+<p><span class=note>•  Note:</span>  This is the old name of the
+<a href="E:\Utils\#v_mute"><code>_MUTE</code></a> variable, retained for backward
+compatibility with older versions of this plugin.  Please use
+<a href="E:\Utils\#v_mute"><code>_MUTE</code></a> instead.  <code>_MUTED</code> may
+disappear in future versions of UIStuff. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_safemode></a><code>_SAFEMODE</code> — Indicates
+whether Windows was started in safe mode. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_SAFEMODE</code></p>
+
+<p>The documented return values are: </p>
+
+<table class=example>
+	<tr><td>0</td><td>Normal boot</td></tr>
+	<tr><td>1</td><td>Clean boot</td></tr>
+	<tr><td>2</td><td>Clean boot with network support</td></tr>
+</table>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_soundvol></a><code>_SOUNDVOL</code> — Returns the
+master sound volume level. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_SOUNDVOL</code></p>
+
+<p>The value returned is in the range 0 through 100. </p>
+
+<br>
+<p><span class=note>• Note:</span>  This is the old name of the
+<a href="E:\Utils\#v_volume"><code>_VOLUME</code></a> variable, retained for backward
+compatibility with older versions of this plugin.  Please use
+<a href="E:\Utils\#v_volume"><code>_VOLUME</code></a> instead.  <code>_SOUNDVOL</code>
+may disappear in future versions of UIStuff. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_ssvrname></a><code>_SSVRNAME</code> — Returns the
+filename of the current screen saver. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_SSVRNAME</code></p>
+
+<p>If no screen saver is defined, the value returned is <code>*None*</code>.  Note
+that the returned filename will be quoted. </p>
+
+<p class=example><code>rem  Get the current screen saver filename:<br>
+set screensaver=%_ssvrname</code></p>
+
+<br>
+<p class=xref>See also: the <a href="E:\Utils\#scrnsaver"><code>SCRNSAVER</code></a> command, which
+configures the screen saver; and the <a href="E:\Utils\#v_ssvrtime"><code>_SSVRTIME</code></a>
+variable, which returns the current screen saver timeout value. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_ssvrtime></a><code>_SSVRTIME</code> — Returns the
+current screen saver timeout, in seconds. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_SSVRTIME</code></p>
+
+<p class=example><code>rem  Get the current screen saver timeout:<br>
+set timeout=%_ssvrtime</code></p>
+
+<br>
+<p class=xref>See also: the <a href="E:\Utils\#scrnsaver"><code>SCRNSAVER</code></a> command, which
+configures the screen saver; and the <a href="E:\Utils\#v_ssvrname"><code>_SSVRNAME</code></a>
+variable, which returns the current screen saver filename. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_ssvrup></a><code>_SSVRUP</code> — Indicates whether the
+screen saver is currently running. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_SSVRUP</code></p>
+
+<p>The return value is <code>1</code> if the screen saver is currently running,
+<code>0</code> if it is not. </p>
+
+<p class=example><code>rem  Check whether the screen saver is running:<br>
+if "%_ssvrup" == "1" echo You can't read this yet (%_time).</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#scrnsaver"><code>SCRNSAVER</code></a>
+command, which can be used to start the screen saver. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_volume></a><code>_VOLUME</code> — Returns the
+master sound volume level. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_VOLUME</code></p>
+
+<p>The value returned is in the range 0 through 100. </p>
+
+<p class=example><code>rem  Display the current master volume level:<br>
+echo The master sound volume is at %_volume%%%.<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a> command, which
+sets the master sound volume and mute state; and the
+<a href="E:\Utils\#v_mute"><code>_MUTE</code></a> variable, which returns the current
+mute state. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_wallpaper></a><code>_WALLPAPER</code> — Returns the
+filename of the current desktop wallpaper. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_WALLPAPER</code></p>
+
+<p>If no wallpaper is defined, the value returned is <code>*None*</code>.  Note
+that the returned filename will be quoted. </p>
+
+<p class=example><code>rem  Get the current wallpaper filename:<br>
+set wallpaper=%_wallpaper</code></p>
+
+<br>
+<p><span class=note>• Note:</span>  If the wallpaper was converted
+or resized by the <a href="E:\Utils\#wallpaper"><code>WALLPAPER</code></a> command, the
+return value will be the converted filename, not the original source file. </p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#wallpaper"><code>WALLPAPER</code></a>
+command, which sets the current wallpaper; and the
+<a href="E:\Utils\#v_wallstyle"><code>_WALLSTYLE</code></a> variable, which reports the
+current wallpaper style. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_wallstyle></a><code>_WALLSTYLE</code> — Returns
+the current wallpaper style. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_WALLSTYLE</code></p>
+
+<p>The style is returned as a string; possible values are <code>Centered</code>,
+<code>Tiled</code>, or <code>Stretched</code>. </p>
+
+<p class=example><code>rem  Check whether the wallpaper is stretched:<br>
+if "%_wallstyle" == "Stretched" echo The wallpaper is stretched to fit.<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#wallpaper"><code>WALLPAPER</code></a>
+command, which sets the current wallpaper; and the
+<a href="E:\Utils\#v_wallpaper"><code>_WALLPAPER</code></a> variable, which reports the
+current wallpaper filename. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_winosver></a><code>_WINOSVER</code> — Returns the
+Windows version and build numbers. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_WINOSVER</code></p>
+
+<p>The version will be reported as
+<span class=reqname>major</span><code>.</code><span class=reqname>minor</span><code>.</code><span class=reqname>build</span>
+with periods between components. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=refinfo></a>Reference Information:</h4>
+
+<br>
+<table>
+	<tr><td><a href="E:\Utils\#w3ccolors">W3C Color Names</a></td><td>used in <a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a> and <a href="E:\Utils\#v_bgcolorname"><code>_BGCOLORNAME</code></a></td></tr>
+	<tr><td><a href="E:\Utils\#objects">Objects Supported</a></td><td>by the <a href="E:\Utils\#mksc"><code>MKSC</code></a> command</td></tr>
+	<tr><td><a href="E:\Utils\#hotkeys">Hotkeys</a></td><td>for the <a href="E:\Utils\#mksc"><code>MKSC</code></a> command</td></tr>
+	<tr><td><a href="E:\Utils\#escseq">Character Escapes</a></td><td>supported in the <a href="E:\Utils\#mksc"><code>MKSC</code></a> command</td></tr>
+	<tr><td><a href="E:\Utils\#highlight">Highlight Variable</a></td><td>Choose your colors. </td></tr>
+	<tr><td><a href="E:\Utils\#noloadmsg">Startup Message</a></td><td>and how to suppress it</td></tr>
+	<tr><td><a href="E:\Utils\#props">Acknowledgments</a></td><td>some of my guides through the jungle</td></tr>
+	<tr><td><a href="E:\Utils\#changes">Changes</a></td><td>What’s new? </td></tr>
+	<tr><td><a href="E:\Utils\#licensing">Status and Licensing</a></td><td> </td></tr>
+</table>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=w3ccolors></a>W3C Color Names:</h4>
+
+<p><a href="E:\Utils\#bgcolor"><code>BGCOLOR</code></a>, <a href="E:\Utils\#v_bgcolorname"><code>_BGCOLORNAME</code></a>,
+and <a href="E:\Utils\#mksc"><code>MKSC</code></a> all use W3C color names, not the much shorter list
+of VGA colors familiar from most TCC commands and functions.  Here is a list of the color
+names supported by this plugin, with their equivalent values.  (Names containing “gray”
+may be spelled using “grey” if you prefer.) </p>
+
+<table style="font-size: 85%;">
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F0F8FF;"> </td>
+	<td style="padding-left: 1em;">AliceBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0xF0F8FF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFA07A;"> </td>
+	<td style="padding-left: 1em;">LightSalmon</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFA07A</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FAEBD7;"> </td>
+	<td style="padding-left: 1em;">AntiqueWhite</td>
+	<td style="text-align: right; padding-right: 3em;">0xFAEBD7</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #20B2AA;"> </td>
+	<td style="padding-left: 1em;">LightSeaGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x20B2AA</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #00FFFF;"> </td>
+	<td style="padding-left: 1em;">Aqua</td>
+	<td style="text-align: right; padding-right: 3em;">0x00FFFF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #87CEFA;"> </td>
+	<td style="padding-left: 1em;">LightSkyBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x87CEFA</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #7FFFD4;"> </td>
+	<td style="padding-left: 1em;">Aquamarine</td>
+	<td style="text-align: right; padding-right: 3em;">0x7FFFD4</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #778899;"> </td>
+	<td style="padding-left: 1em;">LightSlateGray</td>
+	<td style="text-align: right; padding-right: 3em;">0x778899</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F0FFFF;"> </td>
+	<td style="padding-left: 1em;">Azure</td>
+	<td style="text-align: right; padding-right: 3em;">0xF0FFFF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #B0C4DE;"> </td>
+	<td style="padding-left: 1em;">LightSteelBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0xB0C4DE</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F5F5DC;"> </td>
+	<td style="padding-left: 1em;">Beige</td>
+	<td style="text-align: right; padding-right: 3em;">0xF5F5DC</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFFFE0;"> </td>
+	<td style="padding-left: 1em;">LightYellow</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFFFE0</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFE4C4;"> </td>
+	<td style="padding-left: 1em;">Bisque</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFE4C4</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #00FF00;"> </td>
+	<td style="padding-left: 1em;">Lime</td>
+	<td style="text-align: right; padding-right: 3em;">0x00FF00</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #000000;"> </td>
+	<td style="padding-left: 1em;">Black</td>
+	<td style="text-align: right; padding-right: 3em;">0x000000</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #32CD32;"> </td>
+	<td style="padding-left: 1em;">LimeGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x32CD32</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFEBCD;"> </td>
+	<td style="padding-left: 1em;">BlanchedAlmond</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFEBCD</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FAF0E6;"> </td>
+	<td style="padding-left: 1em;">Linen</td>
+	<td style="text-align: right; padding-right: 3em;">0xFAF0E6</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #0000FF;"> </td>
+	<td style="padding-left: 1em;">Blue</td>
+	<td style="text-align: right; padding-right: 3em;">0x0000FF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF00FF;"> </td>
+	<td style="padding-left: 1em;">Magenta</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF00FF</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #8A2BE2;"> </td>
+	<td style="padding-left: 1em;">BlueViolet</td>
+	<td style="text-align: right; padding-right: 3em;">0x8A2BE2</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #800000;"> </td>
+	<td style="padding-left: 1em;">Maroon</td>
+	<td style="text-align: right; padding-right: 3em;">0x800000</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #A52A2A;"> </td>
+	<td style="padding-left: 1em;">Brown</td>
+	<td style="text-align: right; padding-right: 3em;">0xA52A2A</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #66CDAA;"> </td>
+	<td style="padding-left: 1em;">MediumAquaMarine</td>
+	<td style="text-align: right; padding-right: 3em;">0x66CDAA</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #DEB887;"> </td>
+	<td style="padding-left: 1em;">BurlyWood</td>
+	<td style="text-align: right; padding-right: 3em;">0xDEB887</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #0000CD;"> </td>
+	<td style="padding-left: 1em;">MediumBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x0000CD</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #5F9EA0;"> </td>
+	<td style="padding-left: 1em;">CadetBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x5F9EA0</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #BA55D3;"> </td>
+	<td style="padding-left: 1em;">MediumOrchid</td>
+	<td style="text-align: right; padding-right: 3em;">0xBA55D3</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #7FFF00;"> </td>
+	<td style="padding-left: 1em;">Chartreuse</td>
+	<td style="text-align: right; padding-right: 3em;">0x7FFF00</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #9370DB;"> </td>
+	<td style="padding-left: 1em;">MediumPurple</td>
+	<td style="text-align: right; padding-right: 3em;">0x9370DB</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #D2691E;"> </td>
+	<td style="padding-left: 1em;">Chocolate</td>
+	<td style="text-align: right; padding-right: 3em;">0xD2691E</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #3CB371;"> </td>
+	<td style="padding-left: 1em;">MediumSeaGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x3CB371</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF7F50;"> </td>
+	<td style="padding-left: 1em;">Coral</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF7F50</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #7B68EE;"> </td>
+	<td style="padding-left: 1em;">MediumSlateBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x7B68EE</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #6495ED;"> </td>
+	<td style="padding-left: 1em;">CornflowerBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x6495ED</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #00FA9A;"> </td>
+	<td style="padding-left: 1em;">MediumSpringGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x00FA9A</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFF8DC;"> </td>
+	<td style="padding-left: 1em;">Cornsilk</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFF8DC</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #48D1CC;"> </td>
+	<td style="padding-left: 1em;">MediumTurquoise</td>
+	<td style="text-align: right; padding-right: 3em;">0x48D1CC</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #DC143C;"> </td>
+	<td style="padding-left: 1em;">Crimson</td>
+	<td style="text-align: right; padding-right: 3em;">0xDC143C</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #C71585;"> </td>
+	<td style="padding-left: 1em;">MediumVioletRed</td>
+	<td style="text-align: right; padding-right: 3em;">0xC71585</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #00FFFF;"> </td>
+	<td style="padding-left: 1em;">Cyan</td>
+	<td style="text-align: right; padding-right: 3em;">0x00FFFF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #191970;"> </td>
+	<td style="padding-left: 1em;">MidnightBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x191970</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #00008B;"> </td>
+	<td style="padding-left: 1em;">DarkBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x00008B</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F5FFFA;"> </td>
+	<td style="padding-left: 1em;">MintCream</td>
+	<td style="text-align: right; padding-right: 3em;">0xF5FFFA</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #008B8B;"> </td>
+	<td style="padding-left: 1em;">DarkCyan</td>
+	<td style="text-align: right; padding-right: 3em;">0x008B8B</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFE4E1;"> </td>
+	<td style="padding-left: 1em;">MistyRose</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFE4E1</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #B8860B;"> </td>
+	<td style="padding-left: 1em;">DarkGoldenrod</td>
+	<td style="text-align: right; padding-right: 3em;">0xB8860B</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFE4B5;"> </td>
+	<td style="padding-left: 1em;">Moccasin</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFE4B5</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #A9A9A9;"> </td>
+	<td style="padding-left: 1em;">DarkGray</td>
+	<td style="text-align: right; padding-right: 3em;">0xA9A9A9</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFDEAD;"> </td>
+	<td style="padding-left: 1em;">NavajoWhite</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFDEAD</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #006400;"> </td>
+	<td style="padding-left: 1em;">DarkGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x006400</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #000080;"> </td>
+	<td style="padding-left: 1em;">Navy</td>
+	<td style="text-align: right; padding-right: 3em;">0x000080</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #BDB76B;"> </td>
+	<td style="padding-left: 1em;">DarkKhaki</td>
+	<td style="text-align: right; padding-right: 3em;">0xBDB76B</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FDF5E6;"> </td>
+	<td style="padding-left: 1em;">OldLace</td>
+	<td style="text-align: right; padding-right: 3em;">0xFDF5E6</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #8B008B;"> </td>
+	<td style="padding-left: 1em;">DarkMagenta</td>
+	<td style="text-align: right; padding-right: 3em;">0x8B008B</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #808000;"> </td>
+	<td style="padding-left: 1em;">Olive</td>
+	<td style="text-align: right; padding-right: 3em;">0x808000</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #556B2F;"> </td>
+	<td style="padding-left: 1em;">DarkOliveGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x556B2F</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #6B8E23;"> </td>
+	<td style="padding-left: 1em;">OliveDrab</td>
+	<td style="text-align: right; padding-right: 3em;">0x6B8E23</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF8C00;"> </td>
+	<td style="padding-left: 1em;">DarkOrange</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF8C00</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFA500;"> </td>
+	<td style="padding-left: 1em;">Orange</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFA500</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #9932CC;"> </td>
+	<td style="padding-left: 1em;">DarkOrchid</td>
+	<td style="text-align: right; padding-right: 3em;">0x9932CC</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF4500;"> </td>
+	<td style="padding-left: 1em;">OrangeRed</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF4500</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #8B0000;"> </td>
+	<td style="padding-left: 1em;">DarkRed</td>
+	<td style="text-align: right; padding-right: 3em;">0x8B0000</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #DA70D6;"> </td>
+	<td style="padding-left: 1em;">Orchid</td>
+	<td style="text-align: right; padding-right: 3em;">0xDA70D6</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #E9967A;"> </td>
+	<td style="padding-left: 1em;">DarkSalmon</td>
+	<td style="text-align: right; padding-right: 3em;">0xE9967A</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #EEE8AA;"> </td>
+	<td style="padding-left: 1em;">PaleGoldenrod</td>
+	<td style="text-align: right; padding-right: 3em;">0xEEE8AA</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #8FBC8F;"> </td>
+	<td style="padding-left: 1em;">DarkSeaGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x8FBC8F</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #98FB98;"> </td>
+	<td style="padding-left: 1em;">PaleGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x98FB98</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #483D8B;"> </td>
+	<td style="padding-left: 1em;">DarkSlateBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x483D8B</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #AFEEEE;"> </td>
+	<td style="padding-left: 1em;">PaleTurquoise</td>
+	<td style="text-align: right; padding-right: 3em;">0xAFEEEE</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #2F4F4F;"> </td>
+	<td style="padding-left: 1em;">DarkSlateGray</td>
+	<td style="text-align: right; padding-right: 3em;">0x2F4F4F</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #DB7093;"> </td>
+	<td style="padding-left: 1em;">PaleVioletRed</td>
+	<td style="text-align: right; padding-right: 3em;">0xDB7093</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #00CED1;"> </td>
+	<td style="padding-left: 1em;">DarkTurquoise</td>
+	<td style="text-align: right; padding-right: 3em;">0x00CED1</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFEFD5;"> </td>
+	<td style="padding-left: 1em;">PapayaWhip</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFEFD5</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #9400D3;"> </td>
+	<td style="padding-left: 1em;">DarkViolet</td>
+	<td style="text-align: right; padding-right: 3em;">0x9400D3</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFDAB9;"> </td>
+	<td style="padding-left: 1em;">PeachPuff</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFDAB9</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF1493;"> </td>
+	<td style="padding-left: 1em;">DeepPink</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF1493</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #CD853F;"> </td>
+	<td style="padding-left: 1em;">Peru</td>
+	<td style="text-align: right; padding-right: 3em;">0xCD853F</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #00BFFF;"> </td>
+	<td style="padding-left: 1em;">DeepSkyBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x00BFFF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFC0CB;"> </td>
+	<td style="padding-left: 1em;">Pink</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFC0CB</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #696969;"> </td>
+	<td style="padding-left: 1em;">DimGray</td>
+	<td style="text-align: right; padding-right: 3em;">0x696969</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #DDA0DD;"> </td>
+	<td style="padding-left: 1em;">Plum</td>
+	<td style="text-align: right; padding-right: 3em;">0xDDA0DD</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #1E90FF;"> </td>
+	<td style="padding-left: 1em;">DodgerBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x1E90FF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #B0E0E6;"> </td>
+	<td style="padding-left: 1em;">PowderBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0xB0E0E6</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #B22222;"> </td>
+	<td style="padding-left: 1em;">FireBrick</td>
+	<td style="text-align: right; padding-right: 3em;">0xB22222</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #800080;"> </td>
+	<td style="padding-left: 1em;">Purple</td>
+	<td style="text-align: right; padding-right: 3em;">0x800080</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFFAF0;"> </td>
+	<td style="padding-left: 1em;">FloralWhite</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFFAF0</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF0000;"> </td>
+	<td style="padding-left: 1em;">Red</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF0000</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #228B22;"> </td>
+	<td style="padding-left: 1em;">ForestGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x228B22</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #BC8F8F;"> </td>
+	<td style="padding-left: 1em;">RosyBrown</td>
+	<td style="text-align: right; padding-right: 3em;">0xBC8F8F</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF00FF;"> </td>
+	<td style="padding-left: 1em;">Fuchsia</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF00FF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #4169E1;"> </td>
+	<td style="padding-left: 1em;">RoyalBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x4169E1</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #DCDCDC;"> </td>
+	<td style="padding-left: 1em;">Gainsboro</td>
+	<td style="text-align: right; padding-right: 3em;">0xDCDCDC</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #8B4513;"> </td>
+	<td style="padding-left: 1em;">SaddleBrown</td>
+	<td style="text-align: right; padding-right: 3em;">0x8B4513</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F8F8FF;"> </td>
+	<td style="padding-left: 1em;">GhostWhite</td>
+	<td style="text-align: right; padding-right: 3em;">0xF8F8FF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FA8072;"> </td>
+	<td style="padding-left: 1em;">Salmon</td>
+	<td style="text-align: right; padding-right: 3em;">0xFA8072</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFD700;"> </td>
+	<td style="padding-left: 1em;">Gold</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFD700</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F4A460;"> </td>
+	<td style="padding-left: 1em;">SandyBrown</td>
+	<td style="text-align: right; padding-right: 3em;">0xF4A460</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #DAA520;"> </td>
+	<td style="padding-left: 1em;">Goldenrod</td>
+	<td style="text-align: right; padding-right: 3em;">0xDAA520</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #2E8B57;"> </td>
+	<td style="padding-left: 1em;">SeaGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x2E8B57</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #808080;"> </td>
+	<td style="padding-left: 1em;">Gray</td>
+	<td style="text-align: right; padding-right: 3em;">0x808080</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFF5EE;"> </td>
+	<td style="padding-left: 1em;">Seashell</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFF5EE</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #008000;"> </td>
+	<td style="padding-left: 1em;">Green</td>
+	<td style="text-align: right; padding-right: 3em;">0x008000</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #A0522D;"> </td>
+	<td style="padding-left: 1em;">Sienna</td>
+	<td style="text-align: right; padding-right: 3em;">0xA0522D</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #ADFF2F;"> </td>
+	<td style="padding-left: 1em;">GreenYellow</td>
+	<td style="text-align: right; padding-right: 3em;">0xADFF2F</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #C0C0C0;"> </td>
+	<td style="padding-left: 1em;">Silver</td>
+	<td style="text-align: right; padding-right: 3em;">0xC0C0C0</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F0FFF0;"> </td>
+	<td style="padding-left: 1em;">Honeydew</td>
+	<td style="text-align: right; padding-right: 3em;">0xF0FFF0</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #87CEEB;"> </td>
+	<td style="padding-left: 1em;">SkyBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x87CEEB</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF69B4;"> </td>
+	<td style="padding-left: 1em;">Hotpink</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF69B4</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #6A5ACD;"> </td>
+	<td style="padding-left: 1em;">SlateBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x6A5ACD</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #CD5C5C;"> </td>
+	<td style="padding-left: 1em;">IndianRed</td>
+	<td style="text-align: right; padding-right: 3em;">0xCD5C5C</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #708090;"> </td>
+	<td style="padding-left: 1em;">SlateGray</td>
+	<td style="text-align: right; padding-right: 3em;">0x708090</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #4B0082;"> </td>
+	<td style="padding-left: 1em;">Indigo</td>
+	<td style="text-align: right; padding-right: 3em;">0x4B0082</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFFAFA;"> </td>
+	<td style="padding-left: 1em;">Snow</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFFAFA</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFFFF0;"> </td>
+	<td style="padding-left: 1em;">Ivory</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFFFF0</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #00FF7F;"> </td>
+	<td style="padding-left: 1em;">SpringGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x00FF7F</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F0E68C;"> </td>
+	<td style="padding-left: 1em;">Khaki</td>
+	<td style="text-align: right; padding-right: 3em;">0xF0E68C</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #4682B4;"> </td>
+	<td style="padding-left: 1em;">SteelBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0x4682B4</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #E6E6FA;"> </td>
+	<td style="padding-left: 1em;">Lavender</td>
+	<td style="text-align: right; padding-right: 3em;">0xE6E6FA</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #D2B48C;"> </td>
+	<td style="padding-left: 1em;">Tan</td>
+	<td style="text-align: right; padding-right: 3em;">0xD2B48C</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFF0F5;"> </td>
+	<td style="padding-left: 1em;">LavenderBlush</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFF0F5</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #008080;"> </td>
+	<td style="padding-left: 1em;">Teal</td>
+	<td style="text-align: right; padding-right: 3em;">0x008080</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #7CFC00;"> </td>
+	<td style="padding-left: 1em;">LawnGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x7CFC00</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #D8BFD8;"> </td>
+	<td style="padding-left: 1em;">Thistle</td>
+	<td style="text-align: right; padding-right: 3em;">0xD8BFD8</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFFACD;"> </td>
+	<td style="padding-left: 1em;">LemonChiffon</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFFACD</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FF6347;"> </td>
+	<td style="padding-left: 1em;">Tomato</td>
+	<td style="text-align: right; padding-right: 3em;">0xFF6347</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #ADD8E6;"> </td>
+	<td style="padding-left: 1em;">LightBlue</td>
+	<td style="text-align: right; padding-right: 3em;">0xADD8E6</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #40E0D0;"> </td>
+	<td style="padding-left: 1em;">Turquoise</td>
+	<td style="text-align: right; padding-right: 3em;">0x40E0D0</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F08080;"> </td>
+	<td style="padding-left: 1em;">LightCoral</td>
+	<td style="text-align: right; padding-right: 3em;">0xF08080</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #EE82EE;"> </td>
+	<td style="padding-left: 1em;">Violet</td>
+	<td style="text-align: right; padding-right: 3em;">0xEE82EE</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #E0FFFF;"> </td>
+	<td style="padding-left: 1em;">LightCyan</td>
+	<td style="text-align: right; padding-right: 3em;">0xE0FFFF</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F5DEB3;"> </td>
+	<td style="padding-left: 1em;">Wheat</td>
+	<td style="text-align: right; padding-right: 3em;">0xF5DEB3</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FAFAD2;"> </td>
+	<td style="padding-left: 1em;">LightGoldenrodYellow</td>
+	<td style="text-align: right; padding-right: 3em;">0xFAFAD2</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFFFFF;"> </td>
+	<td style="padding-left: 1em;">White</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFFFFF</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #D3D3D3;"> </td>
+	<td style="padding-left: 1em;">LightGray</td>
+	<td style="text-align: right; padding-right: 3em;">0xD3D3D3</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #F5F5F5;"> </td>
+	<td style="padding-left: 1em;">WhiteSmoke</td>
+	<td style="text-align: right; padding-right: 3em;">0xF5F5F5</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #90EE90;"> </td>
+	<td style="padding-left: 1em;">LightGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x90EE90</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFFF00;"> </td>
+	<td style="padding-left: 1em;">Yellow</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFFF00</td>
+</tr>
+<tr>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #FFB6C1;"> </td>
+	<td style="padding-left: 1em;">LightPink</td>
+	<td style="text-align: right; padding-right: 3em;">0xFFB6C1</td>
+	<td style="border-style: solid; border-width: 1px; border-color: black; background-color: #9ACD32;"> </td>
+	<td style="padding-left: 1em;">YellowGreen</td>
+	<td style="text-align: right; padding-right: 3em;">0x9ACD32</td>
+</tr>
+</table>
+
+
+<h4><a name=objects></a>Objects Supported:</h4>
+
+<p>These are the Explorer objects explicitly supported in the <span class=reqname>target</span>
+parameter to the <a href="E:\Utils\#mksc"><code>MKSC</code></a> command: </p>
+
+<table class=descript>
+	<tr><td>&lt;Desktop&gt;</td><td>the desktop</td></tr>
+	<tr><td>&lt;Computer&gt;</td><td>the list of drives</td></tr>
+	<tr><td>&lt;Documents&gt;</td><td>the default save location for many applications</td></tr>
+	<tr><td>&lt;Music&gt;</td><td>the suggested save location for music files</td></tr>
+	<tr><td>&lt;Pictures&gt;</td><td>the suggested save location for graphics files</td></tr>
+	<tr><td>&lt;Video&gt;</td><td>the suggested save location for video files</td></tr>
+	<tr><td>&lt;Common Documents&gt;</td><td>the suggested location for shared documents</td></tr>
+	<tr><td>&lt;Common Music&gt;</td><td>the suggested location for shared music files</td></tr>
+	<tr><td>&lt;Common Pictures&gt;</td><td>the suggested location for shared graphics files</td></tr>
+	<tr><td>&lt;Common Video&gt;</td><td>the suggested location for shared video files</td></tr>
+	<tr><td>&lt;Printers&gt;</td><td>the list of printers</td></tr>
+	<tr><td>&lt;Network&gt;</td><td>Network Neighborhood; LAN locations</td></tr>
+	<tr><td>&lt;Connections&gt;</td><td>network interfaces</td></tr>
+	<tr><td>&lt;Recycle Bin&gt;</td><td>deleted-but-recoverable files</td></tr>
+	<tr><td>&lt;Control Panel&gt;</td><td>Windows configuration utilities</td></tr>
+	<tr><td>&lt;Recent&gt;</td><td>list of shortcuts to recently-opened files</td></tr>
+	<tr><td>&lt;SendTo&gt;</td><td>Explorer’s list of send-to locations</td></tr>
+	<tr><td>&lt;Search&gt;</td><td>the Windows file-search utility</td></tr>
+	<tr><td>&lt;Help and Support&gt;</td><td>Help and Support Center</td></tr>
+	<tr><td>&lt;Run...&gt;</td><td>Explorer’s mini-command line</td></tr>
+	<tr><td>&lt;E-mail&gt;</td><td>the registered email application</td></tr>
+	<tr><td>&lt;Set Program Access and Defaults&gt;</td><td>configure default applications</td></tr>
+</table>
+
+<p>Note that all of the above <em>must</em> be quoted to protect the angle
+brackets. </p>
+
+<p>If you supply a name in angle brackets and it doesn’t match any of the
+above, <code>MKSC</code> will search for items with a matching display name in:  
+(1) Control Panel, (2) Administrative Tools, (3) Printers, and
+(4) Windows’s “<a target=_blank href="https://duckduckgo.com/?q=%5cCSIDL%20site:learn.microsoft.com">Constant Special Item ID List</a>”,
+in that order. </p>
+
+
+<h4><a name=hotkeys></a>Hotkeys:</h4>
+
+<p>These are the key names recognized by the <a href="E:\Utils\#mksc"><code>MKSC</code></a>
+command.  Be aware that they differ somewhat from the key names used by the
+<code>KEYSTACK</code> command.  In particular, <a href="E:\Utils\#mksc"><code>MKSC</code></a>
+distinguishes between the number keys on the numeric keypad, and those above
+the alphabetic keys. </p>
+
+<br>
+<p>Modifier keys:  use one or more of these before a named key.  Case is not
+significant.  Modifiers listed on the same line are equivalent. </p>
+
+<table class=descript>
+<tr><td><code>Control-</code></td><td><code>Ctrl-</code></td><td><code>C-</code></td><td> </td><td>the <kbd>Ctrl</kbd> key</td></tr>
+<tr><td><code>Alt-</code></td><td> </td><td><code>A-</code></td><td> </td><td>the <kbd>Alt</kbd> key</td></tr>
+<tr><td><code>Shift-</code></td><td> </td><td><code>S-</code></td><td> </td><td>the <kbd>Shift</kbd> key</td></tr>
+</table>
+
+<p>Named keys.  Case is not significant.  Some have two names; names on the
+same line are equivalent. </p>
+
+<table class=descript>
+<tr style="font-style: italic;"><td>Name</td><td>Alternate name</td><td> </td><td>Comments</td></tr>
+<tr><td><code>A</code> — <code>Z</code></td><td colspan=2> </td><td>letter keys</td></tr>
+<tr><td><code>0</code> — <code>9</code></td><td colspan=2> </td><td>number keys on the top row</td></tr>
+<tr><td><code>Num0</code> — <code>Num9</code></td><td colspan=2> </td><td>numbers on the numeric keypad when <kbd>NumLock</kbd> is on</td></tr>
+<tr><td><code>Backspace</code></td><td><code>Bksp</code></td><td> </td><td> </td></tr>
+<tr><td><code>Tab</code></td><td> </td><td> </td><td><em>not recommended</em></td></tr>
+<tr><td><code>Enter</code></td><td><code>Return</code></td><td> </td><td><em>not recommended</em></td></tr>
+<tr><td><code>Esc</code></td><td> </td><td> </td><td><em>not recommended</em></td></tr>
+<tr><td><code>PageUp</code></td><td><code>PgUp</code></td><td> </td><td>also <kbd>9</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>PageDown</code></td><td><code>PgDn</code></td><td> </td><td>also <kbd>3</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>Home</code></td><td colspan=2> </td><td>also <kbd>7</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>End</code></td><td colspan=2> </td><td>also <kbd>1</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>Left</code></td><td colspan=2> </td><td>also <kbd>4</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>Right</code></td><td colspan=2> </td><td>also <kbd>6</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>Up</code></td><td colspan=2> </td><td>also <kbd>8</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>Down</code></td><td colspan=2> </td><td>also <kbd>2</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>Insert</code></td><td><code>Ins</code></td><td> </td><td>also <kbd>0</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>Delete</code></td><td><code>Del</code></td><td> </td><td>also <kbd>.</kbd> on the keypad when <kbd>NumLock</kbd> is off</td></tr>
+<tr><td><code>Num*</code></td><td><code>*</code></td><td> </td><td><kbd>*</kbd> on the numeric keypad</td></tr>
+<tr><td><code>Num+</code></td><td><code> </code></td><td> </td><td><kbd>+</kbd> on the numeric keypad</td></tr>
+<tr><td><code>Num-</code></td><td><code> </code></td><td> </td><td><kbd>-</kbd> on the numeric keypad</td></tr>
+<tr><td><code>Num/</code></td><td><code> </code></td><td> </td><td><kbd>/</kbd> on the numeric keypad</td></tr>
+<tr><td><code>F1</code> — <code>F12</code></td><td> </td><td> </td><td>function keys</td></tr>
+<tr><td><code>;</code></td><td><code>Semicolon</code></td><td colspan=2> </td></tr>
+<tr><td><code>=</code></td><td><code>Equals</code></td><td colspan=2> </td></tr>
+<tr><td><code>,</code></td><td><code>Comma</code></td><td colspan=2> </td></tr>
+<tr><td><code>-</code></td><td><code>Minus</code></td><td colspan=2> </td></tr>
+<tr><td><code>.</code></td><td><code>Period</code></td><td colspan=2> </td></tr>
+<tr><td><code>/</code></td><td><code>Slash</code></td><td> </td><td>the key with the question mark on U.S. keyboards</td></tr>
+<tr><td><code>Grave</code></td><td><code>`</code></td><td> </td><td>the key with the swung dash on U.S. keyboards</td></tr>
+<tr><td><code>[</code></td><td><code>LeftBracket</code></td><td colspan=2> </td></tr>
+<tr><td><code>]</code></td><td><code>RightBracket</code></td><td colspan=2> </td></tr>
+<tr><td><code>\</code></td><td><code>Backslash</code></td><td colspan=2> </td></tr>
+<tr><td><code>'</code></td><td><code>Apostrophe</code></td><td colspan=2> </td></tr>
+<tr><td><code>Space</code></td><td><code>Spacebar</code></td><td> </td><td><em>not recommended</em></td></tr>
+</table>
+
+<p><span class=note>• Note:</span> Some key combinations are
+reserved by Windows, and others may not be recognized.  Also, while it may be
+<em>possible</em> to use a named key without any modifiers, it’s probably
+a Bad Idea. </p>
+
+
+<h4><a name=escseq></a>Character Escapes:</h4>
+
+<p>The <a href="E:\Utils\#mksc"><code>MKSC</code></a> command recognizes these escape sequences: </p>
+
+<table class=descript>
+	<tr><th>Code:</th><th>Expands to:</th><th>Example:</th></tr>
+	<tr><td><code>\a</code></td><td>ASCII <span style="font-size: 85%;">BEL</span> character (0x07)</td><td></td></tr>
+	<tr><td><code>\b</code></td><td>ASCII backspace (0x08)</td><td></td></tr>
+	<tr><td><code>\c</code></td><td>comma</td><td></td></tr>
+	<tr><td><code>\e</code></td><td>ASCII <span style="font-size: 85%;">ESC</span> character (0x1b)</td><td></td></tr>
+	<tr><td><code>\f</code></td><td>form feed (0x0c)</td><td></td></tr>
+	<tr><td><code>\k</code></td><td>grave accent (0x60)</td><td></td></tr>
+	<tr><td><code>\n</code></td><td>line feed (0x0a)</td><td></td></tr>
+	<tr><td><code>\q</code></td><td>double quotes (0x22)</td><td></td></tr>
+	<tr><td><code>\r</code></td><td>carriage return (0x0d)</td><td></td></tr>
+	<tr><td><code>\s</code></td><td>space (0x20)</td><td></td></tr>
+	<tr><td><code>\t</code></td><td>tab (0x09)</td><td> </td></tr>
+	<tr><td><code>\v</code></td><td>vertical tab (0x0b)</td><td></td></tr>
+	<tr><td><code>\\</code></td><td>backslash (0x5c)</td><td></td></tr>
+	<tr><td><code>\u</code><span class=optname>nnnn</span></td><td>Unicode character, up to U+FFFF</td><td><code>\u03a3</code> → Σ</td></tr>
+	<tr><td><code>\U</code><span class=optname>nnnnnnnn</span></td><td>Unicode character, up to U+10FFFF</td><td><code>\U0001f63a</code> → 😺</td></tr>
+	<tr><td><code>\<span class=optname>nnn</span></code></td><td>octal value, up to 777</td><td><code>\101</code> → A</td></tr>
+	<tr><td><code>\x</code><span class=optname>nnnn</span></td><td>hexadecimal value, up to FFFF</td><td><code>\x0041</code> → A</td></tr>
+	<tr><td><code>\#</code><span class=optname>nnnnn</span></td><td>decimal value, up to 65535</td><td><code>\#65</code> → A</td></tr>
+</table>
+
+<p>Note that case is significant for the letter after the backslash.  All must be lowercase,
+except for <code>\U</code><span class=optname>xxxxxxxx</span>. </p>
+
+<p>Case is not significant in hexadecimal values.  <code>\u</code><span class=optname>xxxx</span>
+and <code>\x</code><span class=optname>xxxx</span> read up to four hexadecimal digits;
+<code>\U</code><span class=optname>xxxxxxxx</span> reads up to eight.  You may use fewer than four
+(or eight) digits <i>if</i> the following character is not a valid hex digit. </p>
+
+<p>Similarly, octal character escapes read up to three octal digits.  You may use fewer than
+three if the following character is not an octal digit.  Decimal escapes read up to five decimal
+digits; you may use fewer than five if the following character is not a digit. </p>
+
+
+<h4><a name=highlight></a>Highlight Variable:</h4>
+
+<p><code><a href="E:\Utils\#mksc">MKSC</a></code> features highlighted output.  You can
+customize this feature by setting an environment variable <code>Highlight</code>: </p>
+
+<p class=example><code>rem  Disable highlight:<br>
+set highlight=none<br>
+<br>
+rem  Set the highlight foreground:<br>
+set highlight=bright cyan<br>
+<br>
+rem  Set both foreground and background:<br>
+set highlight=bri whi on blu<br>
+<br>
+rem  Numbers are also supported:<br>
+set highlight=46<br>
+</code></p>
+
+<p>If the <code>Highlight</code> environment variable is not defined, the plugin will
+check the registry for a value named <code>Highlight</code> of type <code>REG_SZ</code>.
+The plugin will search, in this order: </p>
+
+<table class=descript>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins\UIStuff</code></td><td>(affects this plugin only)</td></tr>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins</code></td><td>(affects several of my plugins)</td></tr>
+</table>
+
+<p>You can also use <code>/NC</code> to disable highlighting in <code>MKSC</code>. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=props></a>Acknowledgments:</h4>
+
+<p>The Windows XP (and earlier) mixer API is the kind of Byzantine, bodged-together
+Rube Goldberg monstrosity that gives “<a target=_blank href="http://www.catb.org/jargon/html/C/crawling-horror.html">crawling horror</a>” a bad name.
+<a target=_blank href="https://www.qsl.net/i2phd/mixer/index.html">This page</a> (by Alberto
+di Bene?) was instrumental in saving my sanity. </p>
+
+<p>… And then Microsoft said “Let there be Vista.”  And lo,
+there was much confusion.  Setting the master volume using the old API doesn’t
+work in Vista and later.  The new interface is <em>much</em> simpler to use,
+and <a target=_blank href="https://www.codeproject.com/Tips/233484/Change-Master-Volume-in-Visual-Cplusplus">this page</a>
+(by Sayyeid Mostafa Hashemi) was extremely helpful to me in making it work.  Of
+course, the new Vista method won’t work in Windows XP and earlier; so this
+plugin must incorporate <em>two</em> utterly different routines to get and set
+the volume and mute state.  Isn’t Windows amazing? </p>
+
+<p>It seems that Microsoft doesn’t <i>want</i> us to change the default
+audio device programatically.  Why not?  I don’t know.  I don’t care.
+I have perfectly valid reasons for wanting to do this; maybe you do too.  To do
+the seemingly impossible I am using <span class=filename>IPolicyConfig.h</span>
+by EreTIk, which I found <a target=_blank href="https://github.com/tartakynov/audioswitch/tree/master">here</a>.
+Thank you, EreTIk, whoever you are. </p>
+
+<p><a target=_blank class=deadlink href="http://bcbjournal.org/articles/vol4/0001/Enumerating_the_shell_namespace.htm">This page</a>,
+by Kent Reisdorph, was useful in battling through the bizarre complexities of
+the Windows shell namespace.  (May 2021:  Page is gone; try the
+<a target=_blank href="https://web.archive.org/web/20210126133458/http://bcbjournal.org/articles/vol4/0001/Enumerating_the_shell_namespace.htm">Wayback Machine</a>.) </p>
+
+<p>The syntax of the <a href="E:\Utils\#screenres"><code>SCREENRES</code></a> command
+borrows shamelessly from Anders Kjersem’s QRES utility. </p>
+
+<p>I compress the binary using <a target=_blank href="https://upx.github.io/">UPX</a>. </p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+
+<table>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>0.81.3.0</td><td nowrap>2026-11-01</td><td class=changes>Changed the way the help text is displayed
+			in Windows Terminal and ConPTY tabs. <br>
+			Moved several commands and functions out to separate files. <br>
+			<a href="E:\Utils\#wallpaper"><code>WALLPAPER</code></a>:  Rewrote the <code>/R</code> file search 
+			for speed. </td></tr>
+	<tr><td>0.81.2.0</td><td nowrap>2025-09-25</td><td class=changes>Updated versions of <span class=filename>conlist.cpp</span>, 
+			<span class=filename>mmfiles.cpp</span>, <span class=filename>CanonicalizeSpecial.cpp</span>. <br>
+			Always check the return value from <code>CanonicalizeSpecialEx()</code>. <br>
+			General code cleanup. </td></tr>
+	<tr><td>0.81.1.0</td><td nowrap>2025-09-16</td><td class=changes>Added support for the
+			<a target=_blank href="https://no-color.org/"><code>NO_COLOR</code></a> environment variable.  If <code>NO_COLOR</code>
+			is defined and <code>HIGHLIGHT</code> is not, disable highlighting as if <code>/NC</code> had been specified. <br>
+		<a href="E:\Utils\#defaudioout"><code>DEFAUDIOOUT</code></a>:  Added <code>/B</code>.</td></tr>
+	<tr><td>0.81.0.2</td><td nowrap>2025-03-25</td><td class=changes>Updated versions of <span class=filename>conlist.cpp</span>
+			and <span class=filename>mmfiles.cpp</span>. </td></tr>
+	<tr><td>0.81.0</td><td nowrap>2024-09-24</td><td class=changes>Added <a href="E:\Utils\#defaudioout"><code>DEFAUDIOOUT</code></a> and
+		<a href="E:\Utils\#v_defaudioout"><code>_DEFAUDIOOUT</code></a>.  Updated versions of <span class=filename>NewHelp.cpp</span>, 
+			<span class=filename>FindMyWindow.cpp</span>, and <span class=filename>conlist.cpp</span>.  ParseInt() now
+			supports octal numbers. </td></tr>
+	<tr><td>0.80.0.4</td><td nowrap>2024-04-03</td><td class=changes>Updates the QuickHelp for the
+		<a href="E:\Utils\#uistuffhelp"><code>UISTUFFHELP</code></a> command. </td></tr>
+	<tr><td>0.80.0.3</td><td nowrap>2024-04-02</td><td class=changes>Minor tweak to <span class=filename>FindMyWindow.cpp</span>: 
+		now Windows Terminal detection does not rely on the <code>WT_SESSION</code> environment variable. </td></tr>
+	<tr><td>0.80.0.2</td><td nowrap>2024-03-13</td><td class=changes>Trivial code tweaks. </td></tr>
+	<tr><td>0.80.0.1</td><td nowrap>2024-03-13</td><td class=changes>Minor tweaks to ForceForegroundWindow(). </td></tr>
+	<tr><td>0.80.0</td><td nowrap>2024-01-04</td><td class=changes><a href="E:\Utils\#mksc"><code>MKSC</code></a> updated to use
+		<span class=filename>conlist.cpp</span> v1.1 to better support Ctrl-C and Ctrl-Break.  <a href="E:\Utils\#setfocus"><code>SETFOCUS</code></a>
+		updated to use <span class=filename>FindMyWindow.cpp</span>; now it recognizes
+		<a target=_blank href="https://duckduckgo.com/?q=%5cWindows%20Terminal">Windows Terminal</a>. </td></tr>
+	<tr><td>0.79.3</td><td nowrap>2023-11-16</td><td class=changes>The “Plugin not loaded” message is no longer shown
+		in transient or pipe shells.  When it is shown, it now includes the plugin’s name. </td></tr>
+	<tr><td>0.79.2.4</td><td nowrap>2023-10-18</td><td class=changes>Updated to the current version of
+		<span class=filename>NewHelp.cpp</span>. </td></tr>
+	<tr><td>0.79.2.3</td><td nowrap>2023-10-13</td><td class=changes>Tweaked ShowCmdHelp() to also report <code>VER_PATCH</code>. </td></tr>
+	<tr><td>0.79.2.2</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>0.79.2</td><td nowrap>2023-07-25</td><td class=changes>Updated <span class=filename>w3ccolors.cpp</span> to the current version. </td></tr>
+	<tr><td>0.79.1</td><td nowrap>2023-07-21</td><td class=changes>Updated <span class=filename>OsdCmd.cpp</span> and <span class=filename>conlist.cpp</span>.
+		Rearranged code to make <a href="E:\Utils\#uistuffhelp"><code>UISTUFFHELP /V</code></a> more informative.  Other minor code tweaks.  Removed FTP download
+		link from the docs. </td></tr>
+	<tr><td>0.79.0</td><td nowrap>2023-06-13</td><td class=changes>Removed all calls to QueryIsFile() to work around
+		around an issue in TCC v30.00.20. </td></tr>
+	<tr><td>0.78.3</td><td nowrap>2023-05-18</td><td class=changes>Moved <a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a>’s OSD display slightly up
+		and to the left. </td></tr>
+	<tr><td>0.78.2</td><td nowrap>2023-04-18</td><td class=changes>Now <a href="E:\Utils\#escseq"><code>\b</code></a> correctly
+		expands to ASCII backspace in <a href="E:\Utils\#mksc"><code>MKSC</code></a>.  Updated to the latest versions of
+		<span class=filename>ExpandEscapes.cpp</span> and <span class=filename>conlist.cpp</span>. </td></tr>
+	<tr><td>0.78.1</td><td nowrap>2023-04-03</td><td class=changes>Tweaks to <a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a>’s OSD display. </td></tr>
+	<tr><td>0.78.0</td><td nowrap>2023-02-01</td><td class=changes>Moved all the sound volume stuff out to <span class=filename>SoundVol.cpp</span>.
+		The volume and mute variables are now <a href="E:\Utils\#v_volume"><code>_VOLUME</code></a> and <a href="E:\Utils\#v_mute"><code>_MUTE</code></a> respectively.
+		<a href="E:\Utils\#v_soundvol"><code>_SOUNDVOL</code></a> and <a href="E:\Utils\#v_muted"><code>_MUTED</code></a> are retained for backward compatibility,
+		but deprecated. </td></tr>
+	<tr><td>0.77.12</td><td nowrap>2023-01-02</td><td class=changes>Minor tweaks to <a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a>’s OSD display. </td></tr>
+	<tr><td>0.77.11</td><td nowrap>2022-12-27</td><td class=changes>Rewrote <a href="E:\Utils\#v_browser"><code>_BROWSER</code></a> for Windows 10. </td></tr>
+	<tr><td>0.77.10</td><td nowrap>2022-12-26</td><td class=changes>Updates and fixes for <a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a>. </td></tr>
+	<tr><td>0.77.9</td><td nowrap>2022-01-12</td><td class=changes>Removed <a href="E:\Utils\#mksc"><code>MKSC</code></a>’s
+		<code>/X</code> and <code>/Y</code>, and replaced them with <!--hpage mksc--><a href="E:\Utils\#mksc_sw_ax"><code>/AX:</code></a> and
+		<!--hpage mksc--><a href="E:\Utils\#mksc_sw_cx"><code>/CX:</code></a>. </td></tr>
+	<tr><td>0.77.8</td><td nowrap>2021-12-19</td><td class=changes><a href="E:\Utils\#mksc"><code>MKSC</code></a>:  Added
+		<code>/NE</code> to suppress many error messages.  Fixed a problem with extensionless files being incorrectly included. </td></tr>
+	<tr><td>0.77.7</td><td nowrap>2021-12-16</td><td class=changes><a href="E:\Utils\#mksc"><code>MKSC</code></a>:  Split
+		<!--hpage mksc--><a href="E:\Utils\#mksc_dump"><code>/FB</code></a> into <code>/FB</code> (buffer info) and <code>/FF</code> (font info).  Added
+		<code>/F?</code> to list available fields.  Documented the optional third argument to <!--hpage mksc--><a href="E:\Utils\#mksc_sw_bs"><code>/BS</code></a>. </td></tr>
+	<tr><td>0.77.6</td><td nowrap>2021-12-15</td><td class=changes>Added <!--hpage mksc--><a href="E:\Utils\#mksc_dump"><code>MKSC /FH</code></a> to dump the
+		console color palette.  Renamed <code>MKSC</code>’s <code>/BK</code><span class=optname>n</span><code>:</code> option to
+		<!--hpage mksc--><a href="E:\Utils\#mksc_sw_bh"><code>/BH</code><span class=optname>n</span><code>:</code></a> (think H for <i>hue</i>). </td></tr>
+	<tr><td>0.77.5</td><td nowrap>2021-12-15</td><td class=changes>Now <!--hpage mksc--><a href="E:\Utils\#mksc_sw_b"><code>MKSC /BK</code><span class=optname>n</span><code>:</code></a>
+		can accept multiple color names, separated by commas or semicolons, to define more than one color at a time. </td></tr>
+	<tr><td>0.77.2</td><td nowrap>2021-12-08</td><td class=changes><a href="E:\Utils\#mksc"><code>MKSC</code></a>:  Reworked
+		<code>/N</code> a bit.  Now <code>/NC</code> disables highlighting, and <code>/NT</code> prevents canononicalizing the target filename.
+		Also added a semi-undocumented <code>/N?</code> which describes the available <code>/N</code> flags. </td></tr>
+	<tr><td>0.77.1</td><td nowrap>2021-11-29</td><td class=changes><a href="E:\Utils\#mksc"><code>MKSC</code></a> and <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a>:
+		Added the ability to decode installer ‘Darwin’ ID strings, and return either a product name or a GUID. </td></tr>
+	<tr><td>0.77.0</td><td nowrap>2021-11-26</td><td class=changes>Removed <code>SETTHEME</code>, which hasn’t worked as designed since Windows 7. </td></tr>
+	<tr><td>0.76.4</td><td nowrap>2021-11-24</td><td class=changes>Fix for <a href="E:\Utils\#mksc"><code>MKSC</code></a> crashing
+		on an unknown symbolic name. </td></tr>
+	<tr><td>0.76.3</td><td nowrap>2021-11-23</td><td class=changes>Added <code>/P</code> to <a href="E:\Utils\#mksc"><code>MKSC</code></a>. </td></tr>
+	<tr><td>0.76.2</td><td nowrap>2021-11-23</td><td class=changes>OsdCmd.cpp version 1.0.7.2.  Further code tweaks. </td></tr>
+	<tr><td>0.76.1</td><td nowrap>2021-11-23</td><td class=changes>Added <code>/Y</code> to <a href="E:\Utils\#mksc"><code>MKSC</code></a>. </td></tr>
+	<tr><td>0.76.0</td><td nowrap>2021-11-23</td><td class=changes>In <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a>,
+		adding 512 to <span class=optname>info</span> escapifies the return string.  Now all commands display help text
+		via ShowCmdHelp(). </td></tr>
+	<tr><td>0.75.2</td><td nowrap>2021-07-30</td><td class=changes>Added <code>/X</code> and <code>/NZ</code>
+		to <a href="E:\Utils\#mksc"><code>MKSC</code></a>.  Minor tweaks to the version info resource; now the platform (x64
+		or x86) is included. </td></tr>
+	<tr><td>0.75.1</td><td nowrap>2021-05-18</td><td class=changes><code>INSTALLFONTS</code> bug
+		fix:  only save the filename to the registry, not the full pathname.  Added <code>/X</code>. </td></tr>
+	<tr><td>0.75.0</td><td nowrap>2021-05-18</td><td class=changes>Removes <code>STARTPIN</code>
+		and <code>TASKBARPIN</code>, which haven’t worked since Windows Vista.  (Thanks, Microsoft!)
+		Adds <a href="E:\Utils\#installfonts"><code>INSTALLFONTS</code></a>.  Changed the .DLL filenames; now the
+		32-bit build is <span class=filename>UIStuff-x86.dll</span>, and the 64-bit version is
+		<span class=filename>UIStuff.dll</span>.  Newer version of the OSD code.  Various other tweaks
+		and updates. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.  Try it at
+your own risk.  If you find bugs, you can report them in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>UIStuff is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use.</p>
+
+<!--
+<p>This plugin is &copy; Copyright 2025, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/uistuff.zip">https://charlesdye.net/dl/uistuff.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

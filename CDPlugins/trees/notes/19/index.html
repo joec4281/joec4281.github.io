@@ -1,0 +1,936 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>mksc Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#mksc"><code>MKSC</code></a> command</li>
+	<li>    <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a> function</li>
+	<li><a href="E:\Utils\#refinfo">Reference Information</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>mksc plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.4.5     2026-10-06</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides one command, <a href="E:\Utils\#mksc"><code>MKSC</code></a>, and
+one function, <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a>, to create, modify,
+list, and retrieve information from shortcut files. </p>
+
+<p>Both are from my <a target=_blank href="https://charlesdye.net/plugins/uistuff.html">UIStuff plugin</a>.
+I have made them available as a separate plugin for those who don’t
+want the bulk, and unrelated features, of the larger plugin.  I think 
+<code>MKSC</code> and <code>@SCINFO</code> are useful enough to stand on
+their own two… features. </p>
+
+<br>
+<p><code>MKSC</code> is similar to the internal <code>SHORTCUT</code> command,
+but with a number of differences: </p>
+
+<ul>
+	<li>When displaying shortcut files, <code>MKSC</code> supports wildcards and recursion with <code>/S</code>. </li>
+	<li>Optional arguments are optional, and may be entered in any order. </li>
+	<li>Values reported by <code>MKSC</code> and <code>@SCINFO</code> are the same used to create or modify shortcuts. </li>
+	<li><code>MKSC</code> searches the path for a matching executable if no location was specified. </li>
+	<li>Supports the UAC field (normal or elevated). </li>
+	<li>Supports some <a href="E:\Utils\#objects">Explorer objects</a>. </li>
+	<li>Supports <!--hpage mksc--><a href="E:\Utils\#mksc_sw_b">many console properties</a> (those in <a target=_blank href="https://duckduckgo.com/?q=%5cnt_console_props%20structure%20site:learn.microsoft.com"><code>NT_CONSOLE_PROPS</code></a>). </li>
+	<li>Offers limited support for .PIF files (useful only in 32-bit Windows). </li>
+	<li><code>MKSC</code> can decode installer “Darwin” strings, and report either a product name or a GUID. </li>
+	<li><code>MKSC</code> does not even try to be syntax-compatible with <code>SHORTCUT</code>. </li>
+</ul>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>mksc.dll</span> and
+<span class=filename>mksc.chm</span> to some known location on your hard
+drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>mksc-x86.dll</span> instead of
+<span class=filename>mksc.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\mksc.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">command</a>:  <a href="E:\Utils\#mksc"><code>MKSC</code></a></p>
+
+<p>New <a href="E:\Utils\#functions">function</a>:  <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+mksc /s "%@shfolder[23]"<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=mksc></a><code>MKSC</code> — <a href="E:\Utils\#mksc_create">Create</a>, <a href="E:\Utils\#mksc_edit">modify</a>,
+or <a href="E:\Utils\#mksc_dump">display</a> a shortcut file. </p>
+
+<p class=iewrap>Syntax: (to create or modify a shortcut file)<br>
+<code class=req>MKSC </code><span class=reqname>linkfile</span><code class=req> </code><span class=reqname>target</span> <code> /A:</code><span class=optname>args</span> <code> /B</code><span class=optname>x</span><code>:</code><span class=optname>value</span><code> /C:</code><span class=optname>comment</span> <code> /D:</code><span class=optname>directory</span> <code> /I:</code><span class=optname>iconfile</span> <code> /J:</code><span class=optname>index</span> <code> /K:</code><span class=optname>key</span> <code> /M:</code><span class=optname>mode</span> <code> /N:</code><span class=optname>flags</span> <code> /U:</code><span class=optname>level</span><code> /Z</code><br>
+<br>
+Syntax: (to display shortcut files)<br>
+<code class=req>MKSC </code><span class=optname>linkfile</span> <code> /F:</code><span class=optname>fields</span> <code> /N:</code><span class=optname>flags</span><code> /P /S</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#mksc_fn"><span class=reqname>linkfile</span></a></td><td>the shortcut file to create, change, or display</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_tgt"><span class=reqname>target</span></a></td><td>the filename or object that the shortcut points to</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_a"><code>/A:</code><span class=optname>args</span></a></td><td>command-line arguments to be passed to the <span class=reqname>target</span></td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_b"><code>/B</code><span class=optname>x</span><code>:</code><span class=optname>value</span></a></td><td>set various console properties</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_c"><code>/C:</code><span class=optname>comment</span></a></td><td>a descriptive comment</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_d"><code>/D:</code><span class=optname>directory</span></a></td><td>the default directory</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_dump"><code>/F:</code><span class=optname>fields</span></a></td><td>specify which information to display</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_i"><code>/I:</code><span class=optname>iconfile</span></a></td><td>filename of an <span class=filename>.EXE</span> or <span class=filename>.DLL</span> file containing an icon</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_i"><code>/J:</code><span class=optname>index</span></a></td><td>number of the icon in <span class=optname>iconfile</span> to use; 0 = the first</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_k"><code>/K:</code><span class=optname>key</span></a></td><td>a <a href="E:\Utils\#hotkeys">hotkey</a> which can be used to launch the shortcut</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_m"><code>/M:</code><span class=optname>mode</span></a></td><td>the suggested window mode:  Normal, MINimized, or MAXimized</td></tr>
+	<tr><td><code>/N:</code><span class=optname>flags</span></td><td>disable features; <span class=optname>flags</span> may include:</td></tr>
+	<tr><td></td><td><code>C</code> — disable <a href="E:\Utils\#highlight">highlight</a></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_sw_d"><code>D</code></a> — don’t canonicalize <span class=optname>directory</span></td></tr>
+	<tr><td></td><td><code>E</code> — suppress many error messages (display mode only)</td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_dump"><code>H</code></a> — don’t search into hidden subdirectories; only useful with <code>/S</code></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_sw_i"><code>I</code></a> — don’t canonicalize <span class=optname>iconfile</span></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_dump"><code>J</code></a> — don’t search into junctions; only useful with <code>/S</code></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_tgt"><code>T</code></a> — don’t canonicalize <span class=reqname>target</span></td></tr>
+	<tr><td></td><td><a href="E:\Utils\#mksc_dump"><code>Z</code></a> — don’t search into system subdirectories; only useful with <code>/S</code></td></tr>
+	<tr><td><a href="E:\Utils\#mksc_dump"><code>/P</code></a></td><td>page output</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_dump"><code>/S</code></a></td><td>recurse into subdirectories; only useful when displaying shortcuts</td></tr>
+	<tr><td><a href="E:\Utils\#mksc_sw_u"><code>/U:</code><span class=optname>level</span></a></td><td>the UAC level:  Normal or Elevated</td></tr>
+	<tr><td><code>/Z</code></td><td>overwrite read-only files</td></tr>
+</table>
+
+<p>Quote any argument containing spaces, angle brackets, or other special characters. </p>
+
+<p>This command can be used for three different tasks:  to <a href="E:\Utils\#mksc_create">create</a>
+a new shortcut file, to <a href="E:\Utils\#mksc_edit">modify</a> an existing shortcut
+file, or to <a href="E:\Utils\#mksc_dump">dump</a> the contents of shortcut files to
+standard output. </p>
+
+
+<h4><a name=mksc_create></a>Create a shortcut file:</h4>
+
+<p>You can create a new shortcut to a file or a folder; a TCC command, alias,
+or batch file; or one of a number of <a href="E:\Utils\#objects">Explorer objects.</a>
+To create a shortcut, pass a filename for the new shortcut as the first argument,
+<span class=reqname>linkfile</span>.  The second argument,
+<span class=reqname>target</span>, is required when
+creating a new shortcut; it specifies the file or object that the shortcut will
+open. </p>
+
+<p class=example><code>rem  Create a shortcut to the calculator:<br>
+mksc "%@shfolder[16]\Calculator.lnk" "%windir\system32\calc.exe" /k:control-alt-=<br>
+</code></p>
+
+<br>
+<p>Other kinds of files are legal too.  If the file is a document, Windows will
+use the registered program to open it.  You can even create a shortcut to a
+directory: </p>
+
+<p class=example><code>rem  Create a shortcut to the Fonts folder:<br>
+mksc "%@shfolder[16]\Fonts.lnk" "%windir\Fonts"<br>
+</code></p>
+
+<br>
+<p>To create a shortcut to an internal command, alias, or batch file, specify
+<code>"%_cmdspec"</code> as the <span class=reqname>target</span>.  Set
+<span class=optname>args</span> to either <code>/C</code> or <code>/K</code>
+followed by the desired command.  (<code>/C</code> causes TCC to close
+immediately after running the command; <code>/K</code> keeps it open after the
+command finishes.)  For instance, to create a shortcut which runs the command
+<code>TIME /S</code>, you might use: </p>
+
+<p class=example><code>rem  Create a shortcut to run TIME /S command:<br>
+mksc "%@shfolder[16]\Sync System Time.lnk" "%_cmdspec" /a:"/c time /s" /m:min<br>
+</code></p>
+
+<br>
+<p><code>MKSC</code> also recognizes a short list of Explorer objects.  You can
+use any of the following as <span class=reqname>target</span>: </p>
+
+<table class=descript>
+	<tr><td>&lt;Desktop&gt;</td><td>the desktop</td></tr>
+	<tr><td>&lt;Computer&gt;</td><td>the list of drives</td></tr>
+	<tr><td>&lt;Documents&gt;</td><td>the default save location for many applications</td></tr>
+	<tr><td>&lt;Music&gt;</td><td>the suggested save location for music files</td></tr>
+	<tr><td>&lt;Pictures&gt;</td><td>the suggested save location for graphics files</td></tr>
+	<tr><td>&lt;Video&gt;</td><td>the suggested save location for video files</td></tr>
+	<tr><td>&lt;Printers&gt;</td><td>the list of printers</td></tr>
+	<tr><td>&lt;Network&gt;</td><td>Network Neighborhood; LAN locations</td></tr>
+	<tr><td>&lt;Connections&gt;</td><td>network interfaces</td></tr>
+	<tr><td>&lt;Recycle Bin&gt;</td><td>deleted-but-recoverable files</td></tr>
+	<tr><td>&lt;Control Panel&gt;</td><td>Windows configuration utilities</td></tr>
+	<tr><td>&lt;Recent&gt;</td><td>list of shortcuts to recently-opened files</td></tr>
+	<tr><td>&lt;SendTo&gt;</td><td>Explorer’s list of send-to locations</td></tr>
+	<tr><td colspan=2>(This is not a complete list; see <a href="E:\Utils\#objects">Objects Supported</a> for more.)</td></tr>
+</table>
+
+<p>Note that all of the above <em>must</em> be quoted to protect the angle
+brackets. </p>
+
+<p class=example><code>rem  Create a shortcut to My Computer:<br>
+mksc "%@shfolder[16]\My Computer.lnk" "&lt;Computer&gt;"<br>
+</code></p>
+
+<p>If the <span class=reqname>target</span> is in angle brackets but is not
+in the built-in list of objects, <code>MKSC</code> will search for an object
+with a matching display name in a few predefined locations; see <a href="E:\Utils\#objects">Objects
+Supported</a> for more information.  For example, if you have a printer named
+“DrizzleJet 9000”, you can create a shortcut to it: </p>
+
+<p class=example><code>rem  Create a shortcut to my printer:<br>
+mksc "%@shfolder[16]\Printer.lnk" "&lt;DrizzleJet 9000&gt;"<br>
+</code></p>
+
+
+<br>
+<p><a name=mksc_fn></a>The <span class=reqname>linkfile</span> should
+normally end in <span class=filename>.LNK</span>.  If you do not specify an
+extension, <code>MKSC</code> will supply the extension by default.  Directory
+aliases are supported in <span class=reqname>linkfile</span>. </p>
+
+<p><a name=mksc_tgt></a><span class=reqname>Target</span> should name a
+file, directory, or one of the Explorer objects listed above.  Directory
+aliases are supported, and the filename is automatically canonicalized
+(“truenamed”) when the shortcut file is created.  If the
+<span class=reqname>target</span> is not qualified at all — if it
+has no drive letter or directory — the plugin will search the path
+for a matching file.  You can bypass canonicalization and the path search with
+<code>/NC</code>, which stores a non-canonical filename; doing this also
+disables directory aliases in <span class=reqname>target</span>.
+Canonicalization will also be skipped if the <span class=reqname>target</span>
+begins with a percent sign followed by a letter. </p>
+
+
+<br>
+<p><a name=mksc_sw_a></a><code>/A:</code><span class=optname>args</span>
+specifies the command-line arguments for the target program.  Different programs
+support different arguments, and some ignore them altogether.  See the
+program’s documentation for information about its command-line options. </p>
+
+<p><a name=mksc_sw_ax></a><code>/AX:</code><span class=optname>args</span>
+works like <code>/AX:</code>, but supports the use of <a href="E:\Utils\#escseq">C-style
+character escapes</a> in the string.  If you need problematic characters like
+double quotes or backquotes in the arguments list, you can use <code>/AX:</code>
+with escapes like <code>\q</code> or <code>\k</code>.  Note that any backslashes
+in the arguments must be doubled. </p>
+
+<br>
+<p><a name=mksc_sw_c></a><code>/C:</code><span class=optname>comment</span>
+specifies a descriptive comment to be stored in the shortcut file.  Explorer
+can display this comment in a tooltip when you hover the mouse pointer over the
+shortcut icon. </p>
+
+<p><a name=mksc_sw_cx></a><code>/CX:</code><span class=optname>comment</span>
+works like <code>/C:</code>, but expands <a href="E:\Utils\#escseq">C-style character escapes</a>
+in the comment.  If you need a backslash in the comment, you must double it. </p>
+
+<br>
+<p><a name=mksc_sw_d></a><code>/D:</code><span class=optname>directory</span>
+sets the starting directory for the target program.  Some programs use this as
+a default directory; others ignore it.  The <span class=optname>directory</span> is
+canonicalized, and directory aliases are supported.  You can use <code>/ND</code>
+to store a non-canonicalized filename; this will also disable directory aliases
+in <span class=optname>directory</span>.  If you give a
+<span class=optname>directory</span> of <code>*</code>, <code>MKSC</code>
+will choose an appropriate directory based on <span class=reqname>target</span>:
+the parent directory if <span class=reqname>target</span> is a filename,
+<span class=reqname>target</span> itself if it names a directory, and nothing
+if <span class=reqname>target</span> names an object.  If the
+<span class=optname>directory</span> begins with a percent sign followed by
+a letter, canonicalization will be disabled automatically.  If the
+<span class=optname>directory</span> is a <code>~</code> or begins with
+<code>~\</code>, the tilde will automatically be replaced with the string
+<code>%USERPROFILE%</code>; this also will disable canonicalization. </p>
+
+<p><a name=mksc_sw_m></a><code>/M:</code><span class=optname>mode</span>
+sets the default window state for the target program.  Most programs will honor
+this option, but a few set their own window size at startup; <code>/M</code>
+won’t appear to affect these.  <span class=optname>Mode</span> should
+be one of <code><b>N</b>ormal</code>, <code><b>MIN</b>imized</code>, or
+<code><b>MAX</b>imized</code>; case is not significant, and only the letters
+shown in uppercase are required. </p>
+
+<p><a name=mksc_sw_k></a><code>/K:</code><span class=optname>key</span>
+specifies a hotkey which can be used to launch the <span class=reqname>target</span>
+with a keystroke.  The exact requirements for this feature to work don’t
+seem to be documented anywhere.  For best results, I suggest that (1) the
+shortcut file should be created in the user’s desktop directory; and (2)
+the hotkey should be in the form <code>Control-Alt-</code><span class=optname>letter</span>,
+<code>Control-Alt-</code><span class=optname>digit</span>, or
+<code>Control-Alt-Num</code><span class=optname>digit</span>.  See
+<a href="E:\Utils\#hotkeys">Hotkeys</a> for a list of the hotkey names supported by this
+command; note that some of them differ from the names used by
+<code>KEYSTACK</code>.  You can also specify a hotkey of <code>None</code>,
+which will remove any hotkey associated with the shortcut. </p>
+
+<p><a name=mksc_sw_i></a><code>/I:</code><span class=optname>iconfile</span> and
+<code>/J:</code><span class=optname>index</span> specify the icon which
+Explorer uses to display the shortcut.  When creating a shortcut, you should
+specify both or neither.  When modifying an existing shortcut file, you can use
+<code>/J:</code><span class=optname>index</span> alone to select a
+different icon within the same <span class=optname>iconfile</span>. </p>
+
+<p><a name=mksc_sw_u></a><code>/U:</code><span class=optname>level</span>
+sets the UAC level for the shortcut; <span class=optname>level</span> is
+either <code><b>N</b>ormal</code> or <code><b>E</b>levated</code> (only the
+first letter is significant).  If it’s not specified, the default level
+is Normal.  This option has no effect under Windows XP. </p>
+
+<br>
+<p><a name=mksc_sw_b></a><span style="font-weight: bold; text-decoration: underline;">Console properties:</span></p>
+
+<p><code>MKSC</code> allows you to set or change many of the console properties
+stored in a shortcut.  Setting console properties for things that don’t run
+in a console window is possible, but pointless.  Console properties options all
+start with <code>/B</code>. </p>
+
+<br>
+<p><code>/BB:</code><span class=optname>n</span> sets the console font’s
+weight.  <span class=optname>n</span> is 400 for normal, 700 for bold. </p>
+
+<p><code>/BF:</code><span class=optname>font</span> set the console font’s
+name.  Quote it if it contains spaces.  If <span class=optname>font</span>
+doesn’t match the name of an actual font, or if it isn’t suitable for use
+in a console window, Windows will substitute some other font at random —
+generally the ugliest available. </p>
+
+<p><code>/BG:</code><span class=optname>x</span><code>,</code><span class=optname>y</span>
+sets the desired size of the console font.  <span class=optname>x</span> is the
+width, and <span class=optname>y</span> is the height.  If you’re using a
+TrueType font, the width is not relevant and may be set to 0. </p>
+
+<p><code>/BB</code>, <code>/BF</code>, and <code>/BG</code> all affect the console
+font.  If you want to set one of them, it’s probably a good idea to set all three. </p>
+
+<br>
+<p><code>/BA:</code><span class=optname>n</span> sets the console’s
+auto-position option.  0 disables auto-positioning; the console window will open
+at the screen position specified in the “Layout” tab.  1 allows the
+system to position the window automatically; the coordinates in the “Layout”
+tab will be ignored. </p>
+
+<p><code>/BC:</code><span class=optname>n</span> sets the cursor size.
+<span class=optname>n</span> is a percentage, 10 to 100.  (This setting does not
+affect TCC, which sets its own cursor size.) </p>
+
+<p><code>/BD:</code><span class=optname>n</span> set the console’s default
+colors.  You may specify the new value either as decimal, or hexadecimal with a
+leading <code>0x</code>.  The usual value is 0x0007, white on black. </p>
+
+<br>
+<p><code>/BH</code><span class=optname>n</span><code>:</code><span class=optname>color</span>
+lets your redefine the console palette.  <span class=optname>n</span> is the color index,
+0 (black) through 15 (bright white).  <span class=optname>Color</span> is a
+<a target=_blank href="https://www.w3.org/wiki/CSS/Properties/color/keywords">W3C color name</a>
+or an RGB value.  You may give a name, or a three- or six-digit hex value preceded by a number
+sign.  For example, you could use either <code>/BH7:ORANGE</code> or <code>/BH7:#FFA500</code>
+to redefine ‘white’ as orange. </p>
+
+<p>You can give more than one color name, separated by commas or semicolons, to define
+multiple consecutive colors.  For example, <code>/BH0:#000,#009,#090,#099,#900</code>
+would set values for black, blue, green, cyan, and red. </p>
+
+<br>
+<p><code>/BI:</code><span class=optname>n</span> sets the console’s
+insert mode.  0 disables insert (the console defaults to overtype mode); 1
+enables it.  (This setting does not affect TCC, which has its own default edit
+mode settings.) </p>
+
+<p><code>/BO:</code><span class=optname>x</span><code>,</code><span class=optname>y</span>
+sets the console window’s starting screen position (its origin).  Using this
+option automatically disables the auto-position option, as if <code>/BA:0</code>
+had been specified. </p>
+
+<p><code>/BP:</code><span class=optname>n</span> set the console’s
+“popup” colors.  You may specify the new value either as
+decimal, or hexadecimal with a leading <code>0x</code>.  (TCC does not use these
+colors for anything; CMD.EXE uses them for its command history popup.) </p>
+
+<p><code>/BQ:</code><span class=optname>n</span> sets the console’s
+QuickEdit mode.  0 disables QuickEdit, 1 enables it. </p>
+
+<br>
+<p><a name=mksc_sw_bs></a><code>/BS:</code><span class=optname>x</span><code>,</code><span class=optname>y</span>
+sets the size of the console scrollback buffer.  <span class=optname>x</span> is the
+width and <span class=optname>y</span> is the height. </p>
+
+<p><code>/BS</code> also has an optional third argument to set the height of the visible window:
+<code>/BS:</code><span class=optname>x</span><code>,</code><span class=optname>y</span><code>,</code><span class=optname>h</span>.
+The height <span class=optname>h</span> must be between 5 and 100, and not greater than
+the screen buffer height <span class=optname>y</span>.  If you do not specify 
+<span class=optname>h</span>, the plugin will supply a reasonable value. </p>
+
+
+<h4><a name=mksc_edit></a>Modify a shortcut file:</h4>
+
+<p>To modify an existing shortcut file, the syntax is
+the same, except that the <span class=optname>target</span> parameter is
+optional.  You don’t have to specify a <span class=optname>target</span>
+when changing an existing shortcut, and you probably shouldn’t. </p>
+
+
+<h4><a name=mksc_dump></a>Display shortcut files:</h4>
+
+<p>To display the contents of shortcut files, specify
+only a <span class=optname>linkfile</span>.  It may contain wildcards to dump
+multiple shortcut files, and you can use <code>/S</code> to recurse into
+subdirectories.  To prevent <code>MKSC</code> from searching into junctions,
+use <code>/NJ</code>; to skip hidden subdirectories, use <code>/NH</code>; to
+skip system subdirectories, use <code>/NZ</code>.  If
+<span class=optname>linkfile</span> names a directory, all
+<span class=filename>.LNK</span> files in that directory will be shown. </p>
+
+<p>You can use <code>/F:</code><span class=optname>fields</span> to choose
+which fields to display.  <span class=optname>Fields</span> is letters: </p>
+
+<table class=descript>
+	<tr><td><code>T</code></td><td>the link target</td></tr>
+	<tr><td><code>A</code></td><td>command-line arguments</td></tr>
+	<tr><td><code>D</code></td><td>startup directory</td></tr>
+	<tr><td><code>K</code></td><td>hotkey</td></tr>
+	<tr><td><code>C</code></td><td>comment</td></tr>
+	<tr><td><code>M</code></td><td>start mode</td></tr>
+	<tr><td><code>I</code></td><td>icon filename and index</td></tr>
+	<tr><td><code>U</code></td><td>UAC level (only under Vista and later)</td></tr>
+	<tr><td><code>N</code></td><td>normal (default) fields; short for <code>TADKCMIU</code></td></tr>
+	<tr><td><code>B</code></td><td>console screen buffer info, if available</td></tr>
+	<tr><td><code>F</code></td><td>console font info, if available</td></tr>
+	<tr><td><code>H</code></td><td>the console palette, if available</td></tr>
+</table>
+
+<p>If no fields are specified, the default is <code>TADKCMIU</code>. </p>
+
+<br>
+<p><code>/P</code> causes <code>MKSC</code> to pause after each screenful
+of data. </p>
+
+<p class=example><code>mksc /s "%@shfolder[23]"<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a>
+function, which returns values from a shortcut file. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Function:</h4>
+
+
+<p><a name=f_scinfo></a><code>@SCINFO</code> — Returns values
+from a shortcut file. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@SCINFO[</code><span class=reqname>filename</span><code>,</code><span class=optname>field</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>filename</span></td><td colspan=2>the file to examine</td></tr>
+	<tr><td><span class=optname>field</span></td><td colspan=2>which field to return:</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>0</code></td><td>the target filename or object name (default)</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>1</code></td><td>the command-line arguments</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>2</code></td><td>the working directory</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>3</code></td><td>the descriptive comment</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>4</code></td><td>the hotkey</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>5</code></td><td>the startup window mode</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>6</code></td><td>the icon filename</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>7</code></td><td>the icon index</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>8</code></td><td>the UAC level</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>32</code> <sup>†</sup></td><td>the width of the console screen buffer</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>33</code> <sup>†</sup></td><td>the height of the console screen buffer</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>34</code> <sup>†</sup></td><td>the width of the visible window</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>35</code> <sup>†</sup></td><td>the height of the visible window</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>36</code> <sup>†</sup></td><td>the console font name</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>37</code> <sup>†</sup></td><td>the font width in pixels (may be 0 for TrueType fonts)</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>38</code> <sup>†</sup></td><td>the font height in pixels</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>39</code> <sup>†</sup></td><td>the font weight:  400 = normal, 700 = bold</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>40</code> <sup>†</sup></td><td>the cursor size:  25 = small, 100 = large</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>41</code> <sup>†</sup></td><td>QuickEdit mode:  0 = disabled, 1 = enabled</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>42</code> <sup>†</sup></td><td>auto position window:  0 = disabled, 1 = enabled</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>43</code> <sup>†</sup></td><td>insert mode:  0 = overstrike, 1 = insert</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>44</code> <sup>†</sup></td><td>default console colors as hex, <i>e.g.</i> 0x0007 = white on black</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>45</code> <sup>†</sup></td><td>console popup colors as hex, <i>e.g.</i> 0x00F5 = magenta on bright white</td></tr>
+	<tr><td></td><td style="white-space: nowrap;"><code>46</code> <sup>†</sup></td><td>console window position (if auto position is disabled) as <span class=optname>x</span><code>,</code><span class=optname>y</span></td></tr>
+	<!-- <tr><td></td><td style="white-space: nowrap;"><code></code></td><td> </td></tr> -->
+</table>
+
+<p class=descript><sup>†</sup>   Console property.  If the shortcut does not contain a console
+properties block, <code>@SCINFO</code> will return <code>-1</code>. </p>
+
+<p>The <span class=reqname>filename</span> is required.  Quote it if it
+contains commas or other special characters.  Wildcards are not allowed, but
+directory aliases are supported. </p>
+
+<p>If <span class=optname>field</span> is 0 or absent, <code>@SCINFO</code>
+will attempt to return the shortcut’s target.  The return value will be
+quoted.  It may be empty if the target is an object which the plugin
+doesn’t recognize. </p>
+
+<p>A <span class=optname>field</span> of 1, 2, or 3 returns the shortcut’s
+command-line arguments, working directory, or description, respectively.  These
+return values are all quoted; any of them may return an empty string if the
+respective field is not defined in the shortcut. </p>
+
+<p>A <span class=optname>field</span> of 4 returns the shortcut’s
+hotkey.  This value is not quoted.  It will return <code>None</code> if the
+shortcut has no hotkey defined. </p>
+
+<p>A <span class=optname>field</span> of 5 returns the shortcut’s
+startup window mode.  This value is not quoted; possible values are
+<code>Normal</code>, <code>Maximized</code>, and <code>Minimized</code>. </p>
+
+<p>Values of 6 and 7 return the shortcut’s icon filename and offset,
+respectively.  The filename will be quoted.  If there is no icon, the filename
+will be empty and the index will be 0. </p>
+
+<p>If <span class=optname>field</span> is 8, the shortcut’s UAC level
+will be returned; possible values are <code>Normal</code> and <code>Elevated</code>.
+(Under Windows XP and earlier, the value is always <code>Normal</code>.)  The
+returned string is not quoted. </p>
+
+<br>
+<p>If you add 256 to the <span class=optname>field</span> number, the return
+string will not be automatically quoted.  If you add 512, the return string will
+be <a href="E:\Utils\#escseq">escapified</a>. </p>
+
+<p class=example><code>rem  Read info from a shortcut file:<br>
+set shortcut="%userprofile\desktop\test.lnk"<br>
+set target=%@scinfo[%shortcut,0]<br>
+set args=%@scinfo[%shortcut,1]<br>
+set dir=%@scinfo[%shortcut,2]<br>
+</code></p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#mksc"><code>MKSC</code></a> command, which creates,
+modifies, or displays shortcut files. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=refinfo></a>Reference Information:</h4>
+
+<br>
+<table class=descript>
+	<tr><td><a href="E:\Utils\#objects">Objects Supported</a></td><td>Pointing to things other than files. </td></tr>
+	<tr><td><a href="E:\Utils\#hotkeys">Hotkeys</a></td><td>Used in shortcuts. </td></tr>
+	<tr><td><a href="E:\Utils\#escseq">Escape Sequences</a></td><td>Putting awkward characters in the arguments or comment. </td></tr>
+	<!-- <tr><td><a href="#safechars">SafeChars</a></td><td>Another way of returning awkward characters. </td></tr> -->
+	<tr><td><a href="E:\Utils\#highlight">Highlight Variable</a></td><td>Choose your colors. </td></tr>
+	<tr><td><a href="E:\Utils\#noloadmsg">Startup Message</a></td><td>And how to suppress it. </td></tr>
+	<tr><td><a href="E:\Utils\#props">Acknowledgments</a></td><td>Credit where credit is due. </td></tr>
+	<tr><td><a href="E:\Utils\#changes">Changes</a></td><td>Slow march of progress, or just another bug hunt? </td></tr>
+	<tr><td><a href="E:\Utils\#licensing">Status and Licensing</a></td><td></td></tr>
+	<!-- <tr><td><a href="#"> </a></td><td> </td></tr> -->
+</table>
+
+
+<h4><a name=objects></a>Objects Supported:</h4>
+
+<p>These are the Explorer objects explicitly supported in the <span class=reqname>target</span>
+parameter to the <a href="E:\Utils\#mksc"><code>MKSC</code></a> command: </p>
+
+<table class=descript>
+	<tr><td>•</td><td>&lt;Desktop&gt;</td><td>the desktop</td></tr>
+	<tr><td></td><td>&lt;Computer&gt;</td><td>the list of drives</td></tr>
+	<tr><td></td><td>&lt;Printers&gt;</td><td>the list of printers</td></tr>
+	<tr><td></td><td>&lt;Network&gt;</td><td>Network Neighborhood; LAN locations</td></tr>
+	<tr><td></td><td>&lt;Connections&gt;</td><td>network interfaces</td></tr>
+	<tr><td></td><td>&lt;Recycle Bin&gt;</td><td>deleted-but-recoverable files</td></tr>
+	<tr><td></td><td>&lt;Control Panel&gt;</td><td>Windows configuration utilities</td></tr>
+	<tr><td>•</td><td>&lt;Desktop Directory&gt;</td><td>the user’s desktop directory</td></tr>
+	<tr><td>•</td><td>&lt;Documents&gt;</td><td>the default save location for many applications</td></tr>
+	<tr><td>•</td><td>&lt;Music&gt;</td><td>the suggested save location for music files</td></tr>
+	<tr><td>•</td><td>&lt;Pictures&gt;</td><td>the suggested save location for graphics files</td></tr>
+	<tr><td>•</td><td>&lt;Video&gt;</td><td>the suggested save location for video files</td></tr>
+	<tr><td>•</td><td>&lt;Start Menu&gt;</td><td>the root of the user’s Start menu</td></tr>
+	<tr><td>•</td><td>&lt;Programs&gt;</td><td>the “Programs” folder in the user’s Start menu </td></tr>
+	<tr><td>•</td><td>&lt;Startup&gt;</td><td>the “Startup” folder in the user’s Start menu</td></tr>
+	<tr><td>•</td><td>&lt;Templates&gt;</td><td>the user’s document templates directory</td></tr>
+	<tr><td>•</td><td>&lt;Profile&gt;</td><td>the user’s profile directory</td></tr>
+	<tr><td>•</td><td>&lt;NetHood&gt;</td><td>the user’s “Network Shortcuts” folder</td></tr>
+	<tr><td>•</td><td>&lt;Common Desktop Directory&gt;</td><td>the common desktop directory</td></tr>
+	<tr><td>•</td><td>&lt;Common Documents&gt;</td><td>the suggested location for shared documents</td></tr>
+	<tr><td>•</td><td>&lt;Common Music&gt;</td><td>the suggested location for shared music files</td></tr>
+	<tr><td>•</td><td>&lt;Common Pictures&gt;</td><td>the suggested location for shared graphics files</td></tr>
+	<tr><td>•</td><td>&lt;Common Video&gt;</td><td>the suggested location for shared video files</td></tr>
+	<tr><td>•</td><td>&lt;Common Start Menu&gt;</td><td>the root of the common Start menu</td></tr>
+	<tr><td>•</td><td>&lt;Common Programs&gt;</td><td>the “Programs” folder in the common Start menu</td></tr>
+	<tr><td>•</td><td>&lt;Common Startup&gt;</td><td>the “Startup” folder in the common Start menu</td></tr>
+	<tr><td>•</td><td>&lt;Common Templates&gt;</td><td>the common document templates directory</td></tr>
+	<tr><td>•</td><td>&lt;Recent&gt;</td><td>list of shortcuts to recently-opened files</td></tr>
+	<tr><td>•</td><td>&lt;SendTo&gt;</td><td>Explorer’s list of send-to locations</td></tr>
+	<tr><td>•</td><td>&lt;Windows&gt;</td><td>the root Windows directory, %WINDIR%</td></tr>
+	<tr><td>•</td><td>&lt;System&gt;</td><td>the Windows system directory, %WINDIR%\System32</td></tr>
+	<tr><td>•</td><td>&lt;System x86&gt;</td><td>the Windows SysWOW64 directory, %WINDIR%\SysWOW64</td></tr>
+	<tr><td>•</td><td>&lt;Fonts&gt;</td><td>the Windows fonts directory</td></tr>
+	<tr><td>•</td><td>&lt;Program Files&gt;</td><td>the default location for installed programs</td></tr>
+	<tr><td>•</td><td>&lt;Program Files x86&gt;</td><td>the default location for WoW64 programs</td></tr>
+	<!-- <tr><td></td><td>&lt; &gt;</td><td> </td></tr> -->
+</table>
+
+<p>Note that all of the above <em>must</em> be quoted to protect the angle
+brackets. </p>
+
+<p>If you supply a name in angle brackets and it doesn’t match any of the
+above, <code>MKSC</code> will search for an object with a matching display name in:  
+(1) Control Panel, (2) Administrative Tools, (3) Printers, and
+(4) Windows’s “<a target=_blank href="https://duckduckgo.com/?q=%5cCSIDL%20site:learn.microsoft.com">Constant Special Item ID List</a>”,
+in that order. </p>
+
+<br>
+<p>Many of the objects listed in the table above — the ones marked
+with a bullet in the left column — resolve to directories in the
+file system.  These may be used at the start of <span class=reqname>linkfile</span>,
+<span class=optname>directory</span>, or <span class=optname>iconfile</span>.
+For example, you can use <code>&lt;Desktop&gt;</code> to create a shortcut on
+the desktop: </p>
+
+<p class=example><code>mksc "&lt;Desktop&gt;Printers.lnk" "&lt;Printers&gt;"<br>
+</code></p>
+
+
+<h4><a name=hotkeys></a>Hotkeys:</h4>
+
+<p>These are the key names recognized by the <a href="E:\Utils\#mksc"><code>MKSC</code></a>
+command.  Be aware that they differ somewhat from the key names used by the
+<code>KEYSTACK</code> command.  In particular, <code>MKSC</code> distinguishes
+between the number keys on the numeric keypad, and those above the alphabetic
+keys. </p>
+
+<br>
+<p>Modifier keys:  use one or more of these before a named key.  Case is not
+significant.  Modifiers listed on the same line are equivalent. </p>
+
+<table class=descript>
+	<tr><td><code>Control-</code></td><td><code>Ctrl-</code></td><td><code>C-</code></td><td> </td><td>the <kbd>Ctrl</kbd> key</td></tr>
+	<tr><td><code>Alt-</code></td><td></td><td><code>A-</code></td><td> </td><td>the <kbd>Alt</kbd> key</td></tr>
+	<tr><td><code>Shift-</code></td><td></td><td><code>S-</code></td><td> </td><td>the <kbd>Shift</kbd> key</td></tr>
+</table>
+
+<p>Named keys.  Case is not significant.  Some have two names; names on the
+same line are equivalent. </p>
+
+<table class=descript>
+	<tr style="font-style: italic;"><td>Name</td><td>Alternate name</td><td> </td><td>Comments</td></tr>
+	<tr><td><code>A</code> — <code>Z</code></td><td colspan=2> </td><td>letter keys</td></tr>
+	<tr><td><code>0</code> — <code>9</code></td><td colspan=2> </td><td>number keys on the top row</td></tr>
+	<tr><td><code>Num0</code> — <code>Num9</code></td><td colspan=2> </td><td>numbers on the numeric keypad when NumLock is on</td></tr>
+	<tr><td><code>Backspace</code></td><td><code>Bksp</code></td><td> </td><td> </td></tr>
+	<tr><td><code>Tab</code></td><td> </td><td> </td><td><em>not recommended</em></td></tr>
+	<tr><td><code>Enter</code></td><td><code>Return</code></td><td> </td><td><em>not recommended</em></td></tr>
+	<tr><td><code>Esc</code></td><td> </td><td> </td><td><em>not recommended</em></td></tr>
+	<tr><td><code>PageUp</code></td><td><code>PgUp</code></td><td> </td><td>also <kbd>9</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>PageDown</code></td><td><code>PgDn</code></td><td> </td><td>also <kbd>3</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>Home</code></td><td colspan=2> </td><td>also <kbd>7</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>End</code></td><td colspan=2> </td><td>also <kbd>1</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>Left</code></td><td colspan=2> </td><td>also <kbd>4</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>Right</code></td><td colspan=2> </td><td>also <kbd>6</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>Up</code></td><td colspan=2> </td><td>also <kbd>8</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>Down</code></td><td colspan=2> </td><td>also <kbd>2</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>Insert</code></td><td><code>Ins</code></td><td> </td><td>also <kbd>0</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>Delete</code></td><td><code>Del</code></td><td> </td><td>also <kbd>.</kbd> on the keypad when NumLock is off</td></tr>
+	<tr><td><code>Num*</code></td><td><code>*</code></td><td> </td><td><kbd>*</kbd> on the numeric keypad</td></tr>
+	<tr><td><code>Num+</code></td><td><code> </code></td><td> </td><td><kbd>+</kbd> on the numeric keypad</td></tr>
+	<tr><td><code>Num-</code></td><td><code> </code></td><td> </td><td><kbd>-</kbd> on the numeric keypad</td></tr>
+	<tr><td><code>Num/</code></td><td><code> </code></td><td> </td><td><kbd>/</kbd> on the numeric keypad</td></tr>
+	<tr><td><code>F1</code> — <code>F12</code></td><td> </td><td> </td><td>function keys</td></tr>
+	<tr><td><code>;</code></td><td><code>Semicolon</code></td><td colspan=2> </td></tr>
+	<tr><td><code>=</code></td><td><code>Equals</code></td><td colspan=2> </td></tr>
+	<tr><td><code>,</code></td><td><code>Comma</code></td><td colspan=2> </td></tr>
+	<tr><td><code>-</code></td><td><code>Minus</code></td><td colspan=2> </td></tr>
+	<tr><td><code>.</code></td><td><code>Period</code></td><td colspan=2> </td></tr>
+	<tr><td><code>/</code></td><td><code>Slash</code></td><td> </td><td>the key with the question mark on U.S. keyboards</td></tr>
+	<tr><td><code>Grave</code></td><td><code>`</code></td><td> </td><td>the key with the swung dash on U.S. keyboards</td></tr>
+	<tr><td><code>[</code></td><td><code>LeftBracket</code></td><td colspan=2> </td></tr>
+	<tr><td><code>]</code></td><td><code>RightBracket</code></td><td colspan=2> </td></tr>
+	<tr><td><code>\</code></td><td><code>Backslash</code></td><td colspan=2> </td></tr>
+	<tr><td><code>'</code></td><td><code>Apostrophe</code></td><td colspan=2> </td></tr>
+	<tr><td><code>Space</code></td><td><code>Spacebar</code></td><td> </td><td><em>not recommended</em></td></tr>
+</table>
+
+<p><span class=note>• Note:</span> Some key combinations are
+reserved by Windows, and others may not be recognized.  Also, while it may be
+<em>possible</em> to use a named key without any modifiers, it’s probably
+a Bad Idea. </p>
+
+
+<h4><a name=escseq></a>Escape Sequences:</h4>
+
+<p>This plugin recognizes these escape sequences: </p>
+
+<table class=descript>
+	<tr><th>Code:</th><th>Expands to:</th><th>Example:</th></tr>
+	<tr><td><code>\a</code></td><td>ASCII <span style="font-size: 85%;">BEL</span> character (0x07)</td><td></td></tr>
+	<tr><td><code>\b</code></td><td>ASCII backspace (0x08)</td><td></td></tr>
+	<tr><td><code>\c</code></td><td>comma</td><td></td></tr>
+	<tr><td><code>\e</code></td><td>ASCII <span style="font-size: 85%;">ESC</span> character (0x1b)</td><td></td></tr>
+	<tr><td><code>\f</code></td><td>form feed (0x0c)</td><td></td></tr>
+	<tr><td><code>\k</code></td><td>grave accent (0x60)</td><td></td></tr>
+	<tr><td><code>\n</code></td><td>line feed (0x0a)</td><td></td></tr>
+	<tr><td><code>\q</code></td><td>double quotes (0x22)</td><td></td></tr>
+	<tr><td><code>\r</code></td><td>carriage return (0x0d)</td><td></td></tr>
+	<tr><td><code>\s</code></td><td>space (0x20)</td><td></td></tr>
+	<tr><td><code>\t</code></td><td>tab (0x09)</td><td> </td></tr>
+	<tr><td><code>\v</code></td><td>vertical tab (0x0b)</td><td></td></tr>
+	<tr><td><code>\\</code></td><td>backslash (0x5c)</td><td></td></tr>
+	<tr><td><code>\u</code><span class=optname>nnnn</span></td><td>Unicode character, up to U+FFFF</td><td><code>\u03a3</code> → Σ</td></tr>
+	<tr><td><code>\U</code><span class=optname>nnnnnnnn</span></td><td>Unicode character, up to U+10FFFF</td><td><code>\U0001f63a</code> → 😺</td></tr>
+	<tr><td><code>\<span class=optname>nnn</span></code></td><td>octal value, up to 777</td><td><code>\101</code> → A</td></tr>
+	<tr><td><code>\x</code><span class=optname>nnnn</span></td><td>hexadecimal value, up to FFFF</td><td><code>\x0041</code> → A</td></tr>
+	<tr><td><code>\#</code><span class=optname>nnnnn</span></td><td>decimal value, up to 65535</td><td><code>\#65</code> → A</td></tr>
+</table>
+
+<p>Note that case is significant for the letter after the backslash.  All must be lowercase,
+except for <code>\U</code><span class=optname>xxxxxxxx</span>. </p>
+
+<p>Case is not significant in hexadecimal values.  <code>\u</code><span class=optname>xxxx</span>
+and <code>\x</code><span class=optname>xxxx</span> read up to four hexadecimal digits;
+<code>\U</code><span class=optname>xxxxxxxx</span> reads up to eight.  You may use fewer than four
+(or eight) digits <i>if</i> the following character is not a valid hex digit. </p>
+
+<p>Similarly, octal character escapes read up to three octal digits.  You may use fewer than
+three if the following character is not an octal digit.  Decimal escapes read up to five decimal
+digits; you may use fewer than five if the following character is not a digit. </p>
+
+
+<h4><a name=highlight></a>Highlight Variable:</h4>
+
+<p><code><a href="E:\Utils\#mksc">MKSC</a></code> features highlighted output.  You can
+customize this feature by setting an environment variable <code>Highlight</code>: </p>
+
+<p class=example><code>rem  Disable highlight:<br>
+set highlight=none<br>
+<br>
+rem  Set the highlight foreground:<br>
+set highlight=bright cyan<br>
+<br>
+rem  Set both foreground and background:<br>
+set highlight=bri whi on blu<br>
+<br>
+rem  Numbers are also supported:<br>
+set highlight=46<br>
+</code></p>
+
+<p>If the <code>Highlight</code> environment variable is not defined, the plugin will
+check the registry for a value named <code>Highlight</code> of type <code>REG_SZ</code>.
+The plugin will search, in this order: </p>
+
+<table class=descript>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins\mksc</code></td><td>(affects this plugin only)</td></tr>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins</code></td><td>(affects several of my plugins)</td></tr>
+</table>
+
+<p>You can also use <code>/NC</code> to disable highlighting in <code>MKSC</code>. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=props></a>Acknowledgments:</h4>
+
+<p>Here’s one necessary step in converting those bizarre “Darwin”
+strings into something readable:
+<a target=_blank class=deadlink href="http://community.broadcom.com/symantecenterprise/viewdocument/working-with-darwin-descriptors">Working
+with Darwin Descriptors</a>, by EdT.  Thanks, man.  (2023:  Link no longer works, and the Wayback Machine doesn’t
+have it cached.  Which is too bad; it really was a helpful page.) </p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table class=descript>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<!-- <tr><td></td><td nowrap></td><td class="changes"> </td></tr> -->
+	<tr><td>1.4.5.0</td><td nowrap>2026-10-06</td><td class=changes>Changes intended to support very long filenames. 
+		Updated versions of <span class=filename>conlist.cpp</span> and <span class=filename>ParseArgs.cpp</span>.
+		Added <span class=filename>FHFunctions.cpp</span>.  Moved the integer-parsing functions out to 
+		<span class=filename>ParseInt.cpp</span>.  General code cleanup. </td></tr>
+	<tr><td>1.4.4.10</td><td nowrap>2026-05-01</td><td class=changes>Updated <span class=filename>NewHelp.cpp</span>, 
+		<span class=filename>conlist.cpp</span>, and <span class=filename>ExpandEscapes.cpp</span>. </td></tr>
+	<tr><td>1.4.4.9</td><td nowrap>2025-09-18</td><td class=changes>Updated <span class=filename>conlist.cpp</span>. </td></tr>
+	<tr><td>1.4.4.8</td><td nowrap>2025-03-26</td><td class=changes>Updated <span class=filename>conlist.cpp</span>. </td></tr>
+	<tr><td>1.4.4.7</td><td nowrap>2024-10-24</td><td class=changes>ParseSignedInt() also supports octal with a leading <code>0o</code>. </td></tr>
+	<tr><td>1.4.4.6</td><td nowrap>2024-09-30</td><td class=changes>ParseInt() now supports octal with a leading <code>0o</code>. 
+		ParseSignedInt() allows a leading plus sign.  Changed http:// to https:// in the <code>PLUGININFO</code> block. </td></tr>
+	<tr><td>1.4.4.5</td><td nowrap>2024-04-03</td><td class=changes>Updated to <span class=filename>NewHelp.cpp</span> v1.0.8.14,
+		<span class=filename>conlist.cpp</span> v1.1.0.1. </td></tr>
+	<tr><td>1.4.4.4</td><td nowrap>2023-01-04</td><td class=changes>Updated to <span class=filename>conlist.cpp</span> v1.1
+		to better handle Ctrl-C and Ctrl-Break. </td></tr>
+	<tr><td>1.4.4.3</td><td nowrap>2023-10-16</td><td class=changes>Tweaked ShowCmdHelp() to include
+		<code>VER_PATCH</code>. </td></tr>
+	<tr><td>1.4.4.2</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.4.4.1</td><td nowrap>2023-07-25</td><td class=changes>Updated to the current version of <span class=filename>w3ccolors.cpp</span>. </td></tr>
+	<tr><td>1.4.4</td><td nowrap>2023-07-21</td><td class=changes>Updated to the current versions of <span class=filename>conlist.cpp</span>, 
+		<span class=filename>NewHelp.cpp</span>, and <span class=filename>ParseArgs.cpp</span>.  The <a href="E:\Utils\#highlight">Highlight
+		variable</a> can now be set in the registry instead of the environment. </td></tr>
+	<tr><td>1.4.3</td><td nowrap>2023-06-13</td><td class=changes>Removed all calls to QueryIsFile(), to work around
+		an issue in TCC v30.00.20. </td></tr>
+	<tr><td>1.4.1</td><td nowrap>2023-04-18</td><td class=changes>Now <a href="E:\Utils\#escseq"><code>\b</code></a> correctly expands to ASCII backspace.
+		Updated to the latest versions of <span class=filename>ExpandEscapes.cpp</span> and <span class=filename>conlist.cpp</span>. </td></tr>
+	<tr><td>1.4.0</td><td nowrap>2022-06-01</td><td class=changes>Added a .CHM help file.  No changes to
+		<code>MKSC</code> or <code>@SCINFO</code>. </td></tr>
+	<tr><td>1.3.14</td><td nowrap>2022-01-12</td><td class=changes>Removed <code>/X</code> and <code>/Y</code>, and
+		replaced them with <!--hpage mksc--><a href="E:\Utils\#mksc_sw_ax"><code>/AX:</code></a> and
+		<!--hpage mksc--><a href="E:\Utils\#mksc_sw_cx"><code>/CX:</code></a>. </td></tr>
+	<tr><td>1.3.13</td><td nowrap>2021-12-18</td><td class=changes>Added <code>/NE</code> to suppress many error messages.  Fixed
+		a problem with extensionless files being incorrectly included. </td></tr>
+	<tr><td>1.3.12</td><td nowrap>2021-12-17</td><td class=changes>Now <code>MKSC</code> checks for Ctrl-C and Ctrl-Break while
+		dumping shortcuts.  (Previously this only happened during <code>/P</code> pauses.)  Also, <code>MKSC</code> now returns
+		errorlevel 3 for user abort; it was -3 before. </td></tr>
+	<tr><td>1.3.11</td><td nowrap>2021-12-16</td><td class=changes>Split <a href="E:\Utils\#mksc_dump"><code>/FB</code></a> into <code>/FB</code>
+		(buffer info) and <code>/FF</code> (font info).  Added <code>/F?</code> to list available fields.  Documented the optional third
+		argument to <a href="E:\Utils\#mksc_sw_bs"><code>/BS</code></a>. </td></tr>
+	<tr><td>1.3.10</td><td nowrap>2021-12-15</td><td class=changes>Added <code>/FH</code> to dump the console palette.  Renamed
+		<code>/BK</code><span class=optname>n</span><code>:</code> to <code>/BH</code><span class=optname>n</span><code>:</code>
+		(think H for <i>hue</i>). </td></tr>
+	<tr><td>1.3.9</td><td nowrap>2021-12-13</td><td class=changes>Now <code>/BK</code><span class=optname>n</span><code>:</code> can
+		accept multiple color names, separated by commas or semicolons, to define more than one color at a time. </td></tr>
+	<tr><td>1.3.8</td><td nowrap>2021-12-09</td><td class=changes>Added many new <code>/B</code><span class=optname>x</span><code>:</code>
+		options to set various console properties.  Removed the letter field specifiers from <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a>. </td></tr>
+	<tr><td>1.3.7</td><td nowrap>2021-12-08</td><td class=changes>Reworked <code>/N</code> a bit.  Now <code>/NC</code>
+		disables <a href="E:\Utils\#highlight">highlight</a>, and <code>/NT</code> prevents canononicalizing the target filename.
+		Also added a semi-undocumented <code>/N?</code> which describes the available <code>/N</code> flags. </td></tr>
+	<tr><td>1.3.6</td><td nowrap>2021-12-01</td><td class=changes>Experimental support for reporting console
+		properties in both <a href="E:\Utils\#mksc"><code>MKSC</code></a> and <a href="E:\Utils\#f_scinfo"><code>@SCINFO</code></a>.
+		(<code>MKSC</code> does not yet have support for <em>setting</em> console properties.)  De-documented
+		SafeChars support and letter field values in <code>@SCINFO</code>. </td></tr>
+	<tr><td>1.3.5</td><td nowrap>2021-11-29</td><td class=changes>Added the ability to decode installer “Darwin”
+		strings, and return either a product name or GUID. </td></tr>
+	<!-- <tr><td></td><td nowrap></td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed.  I make no guarantee
+and give no warranty for its operation.  If you find a problem, you can report it
+in the <a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/mksc.zip">https://charlesdye.net/dl/mksc.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

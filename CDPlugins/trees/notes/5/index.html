@@ -1,0 +1,658 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>CEsc Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Command</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li>    <a href="E:\Utils\#variables">Variable</a></li>
+	<li><a href="E:\Utils\#escseq">Escape Sequences</a></li>
+	<li><a href="E:\Utils\#escapification">Escapification</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>CEsc plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.60.1     2026-11-02</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides functions to expand C-style character escape sequences,
+and to replace troublesome characters with escape sequences. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>CEsc.dll</span> and
+<span class=filename>CEsc.chm</span> to some known location on your hard
+drive.  (If you are using the 32-bit version of Take Command, take
+<span class=filename>CEsc-x86.dll</span> instead of
+<span class=filename>CEsc.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\cesc.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Command:</a></th></tr>
+	<tr><td><a href="E:\Utils\#expecho"><code>EXPECHO</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#functions">Functions:</a></th></tr>
+	<tr><td><a href="E:\Utils\#f_escapify"><code>@ESCAPIFY</code></a></td><td><a href="E:\Utils\#f_escenv"><code>@ESCENV</code></a></td><td><a href="E:\Utils\#f_escline"><code>@ESCLINE</code></a></td><td><a href="E:\Utils\#f_escread"><code>@ESCREAD</code></a></td><td><a href="E:\Utils\#f_exp"><code>@EXP</code></a></td></tr>
+	<tr><td><a href="E:\Utils\#f_expcmp"><code>@EXPCMP</code></a></td><td><a href="E:\Utils\#f_expfind"><code>@EXPFIND</code></a></td><td><a href="E:\Utils\#f_expreplace"><code>@EXPREPLACE</code></a></td><td><a href="E:\Utils\#f_expwrite"><code>@EXPWRITE</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#variables">Variable:</a></th></tr>
+	<tr><td><a href="E:\Utils\#v_cescver"><code>_CESCVER</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+for /l %i in ( 0, 1, 20 ) echo %i: %@escline[cesc.html,%i]<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=expecho></a><code>EXPECHO</code> — Expand escapes and
+display text. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>EXPECHO </code><span class=optname>text</span></p>
+
+<table class=descript>
+	<tr><td><span class=optname>text</span></td><td>the text to be displayed</td></tr>
+</table>
+
+<p>Escape sequences will be expanded, and the resulting text sent to stdout.
+<code>EXPECHO</code> does not automatically append an end-of-line.  If you
+want one, append <code>\r\n</code> to the <span class=optname>text</span>. </p>
+
+<p class=example><code>expecho Test:\t\U1f431\r\n<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_escapify></a><code>@ESCAPIFY</code> — Returns the
+string, with troublesome characters escaped. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ESCAPIFY[</code><span class=optname>string</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>string</span></td><td>string to be escapified</td></tr>
+</table>
+
+<p>This function returns the input <span class=optname>string</span>, with troublesome
+characters replaced by C-style character escape sequences.  See
+<a href="E:\Utils\#escapification">Escapification</a> for more details. </p>
+
+<p>You can use the <code>CESC_CHARS</code> and <code>CESC_FLAGS</code> environment
+variables to <a href="E:\Utils\#escapification">tweak the way text is escapified</a>. </p>
+
+<p class=example><code>echo %@escapify[&lt;p&gt;This is a test.&lt;/p&gt;]<br>
+</code></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_exp"><code>@EXP</code></a>, which performs the
+reverse operation, expanding escape sequences in a string. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_escenv></a><code>@ESCENV</code> — Returns the value of an environment
+variable, escapified. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ESCENV[</code><span class=reqname>varname</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>varname</span></td><td>the name of an environment variable</td></tr>
+</table>
+
+<p>This function is useful with commands such as <code>INPUT</code> or <code>DO </code><span class=reqname>var</span><code> IN @</code><span class=reqname>file</span>,
+which stash text directly in an environment variable without first passing it through the command parser.
+Do not type a percent sign before the variable name.  If you do, TCC’s parser will expand the variable
+before <code>@ESCENV</code> sees it. </p>
+
+<p>You can use the <code>CESC_CHARS</code> and <code>CESC_FLAGS</code> environment
+variables to <a href="E:\Utils\#escapification">tweak the way text is escapified</a>. </p>
+
+<p class=example><code>input Type some text: %%text<br>
+set text=%@escenv[text]<br>
+expecho You typed \u201c%text\u201d.\r\n<br>
+</code></p>
+
+<p><span class=note>Note:</span>  If you want to use this function in conjunction with the <code>FOR</code>
+command, be aware that <code>FOR</code> only stores its control variable in the environment if the variable
+name is more than one character long. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_escline></a><code>@ESCLINE</code> — Returns a line from a
+file, escapified. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ESCLINE[</code><span class=reqname>filename</span><code class=req>,</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>filename</span></td><td>the file to read from</td></tr>
+	<tr><td><span class=reqname>n</span></td><td>the line to read; 0-based</td></tr>
+</table>
+
+<p>Return line <span class=reqname>n</span> from the file, with special characters escapified.
+Line numbers begin at 0.  Returns <code>**EOF**</code> for lines past the end of the file. </p>
+
+<p>You can use the <code>CESC_CHARS</code> and <code>CESC_FLAGS</code> environment
+variables to <a href="E:\Utils\#escapification">tweak the way text is escapified</a>. </p>
+
+<p>This function calls <code>@LINE</code> internally. </p>
+
+<p class=example><code>for /l %i in ( 0, 1, 20 ) echo %i: %@escline[cesc.html,%i]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_escread></a><code>@ESCREAD</code> — Returns text from a file,
+escapified. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ESCREAD[</code><span class=reqname>handle</span><code class=req>,</code><span class=optname>len</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>must be a handle returned by <code>@FILEOPEN</code></td></tr>
+	<tr><td><span class=optname>len</span></td><td>the number of bytes to read</td></tr>
+</table>
+
+<p>Reads text from the file opened as <span class=reqname>handle</span>, with special
+characters escapified.  Returns <code>**EOF**</code> if you try to read past the end of the
+file. </p>
+
+<p>If <span class=optname>len</span> is not specified, <code>@ESCREAD</code> will read
+until the next end-of-line.  If <span class=optname>len</span> is specified, <code>@ESCREAD</code>
+will read <span class=optname>len</span> bytes regardless of any end-of-line characters. </p>
+
+<p>You can use the <code>CESC_CHARS</code> and <code>CESC_FLAGS</code> environment
+variables to <a href="E:\Utils\#escapification">tweak the way text is escapified</a>. </p>
+
+<p>This function calls <code>@FILEREAD</code> internally. </p>
+
+<p class=example><code>@echo off<br>
+rem   Batch file to test @ESCREAD:<br>
+setlocal<br>
+<br>
+set handle=%@fileopen[%_batchname,r]<br>
+<br>
+do<br>
+   set line=%@escread[%handle]<br>
+   if "%line" == "**EOF**" leave<br>
+   echo %line``<br>
+enddo<br>
+<br>
+set rv=%@fileclose[%handle]<br>
+endlocal<br>
+</code></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_expwrite"><code>@EXPWRITE</code></a>, which
+does the reverse. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_exp></a><code>@EXP</code> — Expands C escape sequences
+in a string. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@EXP[</code><span class=optname>string</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>string</span></td><td>the string to be expanded</td></tr>
+</table>
+
+<p>This function returns the input <span class=optname>string</span> after expanding
+<a href="E:\Utils\#escseq">escape sequences</a>. </p>
+
+<p class=example><code>echo %@exp[Hello:\t\U1f601]<br>
+</code></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_escapify"><code>@ESCAPIFY</code></a>, which performs
+the reverse operation, escaping troublesome characters in a string. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_expcmp></a><code>@EXPCMP</code> — Compares two strings after expanding
+escapes. </p>
+
+<p class=iewrap>Syntax:
+<code class=req>%@EXPCMP[</code><span class=reqname>string1</span><code class=req>,</code><span class=reqname>string2</span><code class=req>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>string1</span></td><td>the first string to compare</td></tr>
+	<tr><td><span class=reqname>string2</span></td><td>the second string to compare</td></tr>
+	<tr><td><span class=optname>flags</span></td><td><code>1</code>: case insensitive</td></tr>
+</table>
+
+<p>Use commas to separate arguments.  If you need a comma in either string, either enclose the
+string in double quotes, or else use <code>\c</code> or <code>\x002c</code> to represent the
+comma. </p>
+
+<p>If you need a double quote in either string, use <code>\q</code> or <code>\x0022</code> to
+represent it. </p>
+
+<p>This function returns 0 if the two strings match, or nonzero if they don’t. </p>
+
+<p class=example><code>rem   Case sensitive:<br>
+echo %@expcmp[Cr\ue8me br\ufbl\u00e9e \u20ac3.50,CR\uc8ME BR\udbL\u00c9E \u20ac3.50]<br>
+<br>
+rem   Case insensitive:<br>
+echo %@expcmp[Cr\ue8me br\ufbl\u00e9e \u20ac3.50,CR\uc8ME BR\udbL\u00c9E \u20ac3.50,1]<br>
+</code></p>
+
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_expfind></a><code>@EXPFIND</code> — Searches for one string within
+another after expanding escapes. </p>
+
+<p class=iewrap>Syntax:
+<code class=req>%@EXPFIND[</code><span class=optname>string</span><code class=req>,</code><span class=optname>substring</span><code class=req>,</code><span class=optname>n</span><code class=req>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>string</span></td><td>the string to search within</td></tr>
+	<tr><td><span class=optname>substring</span></td><td>the string to search for</td></tr>
+	<tr><td><span class=optname>n</span></td><td><span class=optname>n</span><sup>th</sup> match in <span class=optname>string</span></td></tr>
+	<tr><td><span class=optname>flags</span></td><td><code>1</code>:  case sensitive</td></tr>
+	<tr><td></td><td><code>8</code>:  return offset and length</td></tr>
+</table>
+
+<p>Use commas to separate arguments.  If you need a comma in either string, either enclose the
+string double quotes, or else use <code>\c</code> or <code>\x002c</code> to represent the
+comma. </p>
+
+<p>If you need a double quote in either string, use <code>\q</code> or <code>\x0022</code> to
+represent it. </p>
+
+<p>This function returns <code>-1</code> if the <span class=optname>substring</span> was
+not found in the <span class=optname>string</span>, or a different value if it was.  If
+either <span class=optname>string</span> or <span class=optname>substring</span> is empty,
+there is no match and the function returns <code>-1</code>. </p>
+
+<p>The <span class=optname>n</span> argument can be used to look for multiple occurences
+of the <span class=optname>substring</span> in the <span class=optname>string</span>.
+If <span class=optname>n</span> is positive, <code>@EXPFIND</code> will return the
+<span class=optname>n</span><sup>th</sup> instance of <span class=optname>substring</span>.
+If <span class=optname>n</span> is negative, <code>@EXPFIND</code> will return the
+last, next-to-last, <i>etc.</i> instance.  If <span class=optname>n</span> is zero,
+<code>@EXPFIND</code> will return the number of matches.  If <span class=optname>n</span>
+is not specified, it defaults to <code>1</code> — the first instance. </p>
+
+<p>When a match is found, the return value is the zero-based offset <em>in the original
+string</em> — <i>i.e.</i> before any expansion of escapes.  If bit 4
+of <span class=optname>flags</span> is set, <code>@EXPFIND</code> returns both the
+offset and the length of <span class=optname>substring</span>, separated by a
+<code>+</code> sign.  Again, these refer to the original string before any expansion of
+escapes. </p>
+
+<p class=example><code>rem   Case insensitive:<br>
+echo %@expfind[\x41\x42\x43\x44\x45\x46\x47\x48,cde]<br>
+<br>
+rem   Case sensitive:<br>
+echo %@expfind[\x41\x42\x43\x44\x45\x46\x47\x48,cde,,1]<br>
+</code></p>
+
+<p>There may be multiple matches in one string.  You can use the <span class=optname>n</span>
+argument to select each: </p>
+
+<p class=example><code>for /l %i in ( 0, 1, 5 ) echo %i - %@expfind["B\x61n\x61n\x61 b\x61n\x61n\x61r\x61m\x61!",ana,%i]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_expreplace></a><code>@EXPREPLACE</code>   Replaces text in an escaped
+string. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@EXPREPLACE[</code><span class=reqname>from</span><code class=req>,</code><span class=optname>to</span><code class=req>,</code><span class=optname>flags</span><code class=req>,</code><span class=optname>string</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>from</span></td><td>the substring to find and replace</td></tr>
+	<tr><td><span class=optname>to</span></td><td>the text which will replace <span class=reqname>from</span></td></tr>
+	<tr><td><span class=optname>flags</span></td><td><code>1</code>: case insensitive</td></tr>
+	<tr><td></td><td><code>2</code>: replace only the first match</td></tr>
+	<tr><td></td><td><code>4</code>: do not escapify the resulting string</td></tr>
+	<tr><td><span class=optname>string</span></td><td>the string in which to find and replace text</td></tr>
+</table>
+
+<p>Use commas to separate arguments.  If you need a comma in any string, either enclose
+it in double quotes, or else use <code>\c</code> or <code>\x002c</code> to represent
+the comma.  If you need a double quote, use <code>\q</code> or <code>\x0022</code> to
+represent it. </p>
+
+<p>All three string arguments — <span class=reqname>from</span>,
+<span class=optname>to</span>, and <span class=optname>string</span> —
+may contain character escapes; they will be expanded before the search. </p>
+
+<p>You can use the <code>CESC_CHARS</code> and <code>CESC_FLAGS</code> environment
+variables to <a href="E:\Utils\#escapification">tweak the way text is escapified</a>. </p>
+
+<p class=example><code>echo %@expreplace[:),\U1f600,4,:):) Have a nice day! :):)]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_expwrite></a><code>@EXPWRITE</code> — Writes a line to a file,
+with escapes expanded. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@EXPWRITE[</code><span class=reqname>handle</span><code class=req>,</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <code>@FILEOPEN</code></td></tr>
+	<tr><td><span class=optname>text</span></td><td>the text to write to the file</td></tr>
+</table>
+
+<p>A carriage return and line feed will be appended to the <span class=optname>text</span>
+automatically. </p>
+
+<p class=example><code>@echo off<br>
+rem   Batch file to test @ESCWRITE:<br>
+setlocal<br>
+option //unicodeoutput=no<br>
+<br>
+set h1=%@fileopen[%_batchname,r]<br>
+set h2=%@fileopen[testfile.out,w]<br>
+<br>
+do<br>
+   set line=%@escread[%h1]<br>
+   if "%line" == "**EOF**" leave<br>
+   set rv=%@expwrite[%h2,%line]<br>
+enddo<br>
+<br>
+set rv=%@fileclose[%h1] %@fileclose[%h2]<br>
+endlocal<br>
+</code></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_escread"><code>@ESCREAD</code></a>, which
+does the reverse. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variable:</h4>
+
+
+<p><a name=v_cescver></a><code>_CESCVER</code> — Returns the version of
+<span class=filename>ExpandEscapes.cpp</span> used to build this plugin. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_CESCVER</code></p>
+
+<p>This variable returns the version number of <span class=filename>ExpandEscapes.cpp</span>
+in this plugin.  Note that this is not the same thing as the plugin version; use
+<code>%@PLUGINVER[CESC]</code> to get that. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=escseq></a>Escape Sequences:</h4>
+
+<p>This plugin recognizes these escape sequences: </p>
+
+<table class=descript>
+	<tr><th>Code:</th><th>Expands to:</th><th>Example:</th></tr>
+	<tr><td><code>\<span class=optname>nnn</span></code></td><td>octal value, up to 777</td><td><code>\101</code> → A</td></tr>
+	<tr><td><code>\\</code></td><td>backslash (0x5c)</td><td></td></tr>
+	<tr><td><code>\a</code></td><td>ASCII <span style="font-size: 85%;">BEL</span> character (0x07)</td><td></td></tr>
+	<tr><td><code>\b</code></td><td>backspace</td><td></td></tr>
+	<tr><td><code>\c</code></td><td>comma</td><td></td></tr>
+	<tr><td><code>\e</code></td><td>ASCII <span style="font-size: 85%;">ESC</span> character (0x1b)</td><td></td></tr>
+	<tr><td><code>\f</code></td><td>form feed (0x0c)</td><td></td></tr>
+	<tr><td><code>\k</code></td><td>grave accent (0x60)</td><td></td></tr>
+	<tr><td><code>\n</code></td><td>line feed (0x0a)</td><td></td></tr>
+	<tr><td><code>\q</code></td><td>double quotes (0x22)</td><td></td></tr>
+	<tr><td><code>\r</code></td><td>carriage return (0x0d)</td><td></td></tr>
+	<tr><td><code>\s</code></td><td>space (0x20)</td><td></td></tr>
+	<tr><td><code>\t</code></td><td>tab (0x09)</td><td> </td></tr>
+	<tr><td><code>\u</code><span class=optname>nnnn</span></td><td>Unicode character, up to U+FFFF</td><td><code>\u03a3</code> → Σ</td></tr>
+	<tr><td><code>\U</code><span class=optname>nnnnnnnn</span></td><td>Unicode character, up to U+10FFFF</td><td><code>\U0001f63a</code> → 😺</td></tr>
+	<tr><td><code>\v</code></td><td>vertical tab (0x0b)</td><td></td></tr>
+	<tr><td><code>\x</code><span class=optname>nnnn</span></td><td>hexadecimal value, up to FFFF</td><td><code>\x0041</code> → A</td></tr>
+	<tr><td><code>\#</code><span class=optname>nnnnn</span></td><td>decimal value, up to 65535</td><td><code>\#65</code> → A</td></tr>
+</table>
+
+<p>Note that case is significant for the letter after the backslash.  All must be lowercase,
+except for <code>\U</code><span class=optname>xxxxxxxx</span>. </p>
+
+<p>Case is not significant in hexadecimal values.  <code>\u</code><span class=optname>xxxx</span>
+and <code>\x</code><span class=optname>xxxx</span> read up to four hexadecimal digits;
+<code>\U</code><span class=optname>xxxxxxxx</span> reads up to eight.  You may use fewer than four
+(or eight) digits <i>if</i> the following character is not a valid hex digit. </p>
+
+<p>Similarly, octal character escapes read up to three octal digits.  You may use fewer than
+three if the following character is not an octal digit.  Decimal escapes read up to five decimal
+digits; you may use fewer than five if the following character is not a digit. </p>
+
+
+<h4><a name=escapification></a>Escapification:</h4>
+
+<p>These characters will be replaced with escape sequences: </p>
+
+<table class=descript>
+	<tr><th>Value:</th><th>Characters:</th></tr>
+	<tr><td>0x01 - 0x1f</td><td>ASCII control characters</td></tr>
+	<tr><td>0x22</td><td><code>"</code>  double quotes</td></tr>
+	<tr><td>0x25</td><td><code>%</code>  percent sign</td></tr>
+	<tr><td>0x26</td><td><code>&</code>  ampersand</td></tr>
+	<tr><td>0x3c</td><td><code>&lt;</code>  less-than sign</td></tr>
+	<tr><td>0x3e</td><td><code>&gt;</code>  greater-than sign</td></tr>
+	<tr><td>0xb5</td><td><code>[</code>  open bracket</td></tr>
+	<tr><td>0x5c</td><td><code>\</code>  backslash</td></tr>
+	<tr><td>0x5d</td><td><code>]</code>  close bracket</td></tr>
+	<tr><td>0x5e</td><td><code>^</code>  caret</td></tr>
+	<tr><td>0x60</td><td><code>`</code>  grave accent</td></tr>
+	<tr><td>0x7c</td><td><code>|</code>  vertical bar</td></tr>
+	<tr><td>0x7f</td><td>ASCII <span style="font-size: 85%;">DEL</span> character</td></tr>
+	<tr><td>0x80 - 0x9f</td><td>C1 control characters</td></tr>
+	<tr><td>0xa0</td><td>non-breaking space</td></tr>
+	<tr><td>0x10000 - 0x10ffff</td><td>any Unicode character not in the BMP</td></tr>
+	<tr><td></td><td>TCC’s current command separator character</td></tr>
+	<tr><td></td><td>TCC’s current escape character</td></tr>
+	<tr><td></td><td>anything in the <code>CESC_CHARS</code> environment variable</td></tr>
+	<!-- <tr><td></td><td> </td></tr> -->
+</table>
+
+<br>
+<p>Two environment variables affect the escapification process: </p>
+
+<p><code>CESC_CHARS</code> contains a list of characters to be escaped.  This list is
+in addition to the characters in the table above, which will always be escaped regardless
+of <code>CESC_CHARS</code>.  For example, if you need the dollar sign to be replaced with
+an escape sequence, you could: </p>
+
+<p class=example><code>set cesc_chars=$<br>
+</code></p>
+
+<p><code>CESC_FLAGS</code> is a bitmapped numeric value: </p>
+
+<table class=descript>
+	<tr><td><code>1</code></td><td>escape all non-ASCII characters, <i>i.e.</i> everything above 0x7F <span style="font-size: 85%;">DEL</span></td></tr>
+	<tr><td><code>4</code></td><td>use the nonstandard <code>\e</code> <code>\q</code> <code>\c</code> <code>\k</code> for <span style="font-size: 85%;">ESC</span>, double quote, comma, grave accent</td></tr>
+	<tr><td><code>8</code></td><td>allow short form of numeric escapes at the end of the string</td></tr>
+</table>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>0.60.1.1</td><td nowrap>2026-11-02</td><td class=changes>Changes to the way the help text 
+		is displayed in Windows Terminal and ConPTY tabs. </td></tr>
+	<tr><td>0.60.1.0</td><td nowrap>2026-04-29</td><td class=changes>When parsing 
+		octal/hex/decimal escapes, C1 control characters will be replaced with
+		characters from code page 1252.  (Unicode escapes <code>\u</code> and
+		<code>\U</code> will not do this.) </td></tr>
+	<tr><td>0.60.0.7</td><td nowrap>2025-01-27</td><td class=changes>—</td></tr>
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>CEsc is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/cesc.zip">https://charlesdye.net/dl/cesc.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

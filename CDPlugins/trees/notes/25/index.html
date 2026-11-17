@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>BangHistory Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#using">Using It</a></li>
+	<li><a href="E:\Utils\#bangh">Configuration</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>BangHistory plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.61.0     2026-01-08</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin adds a subset of Unix history features to TCC. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>BangHistory.dll</span> to
+some known location on your hard drive.  (If you are still using the 32-bit
+version of Take Command, take <span class=filename>BangHistory-x86.dll</span>
+instead of <span class=filename>BangHistory.dll</span>.)  Load the .DLL
+file with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\banghistory.dll</code></p>
+
+<p>If you copy the .DLL file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, it will be loaded automatically
+when TCC starts. </p>
+
+
+<h4><a name=using></a>Using It:</h4>
+
+<p>When you press <kbd>Enter</kbd> or <kbd>Shift</kbd>-<kbd>Enter</kbd> at
+the command line, BangHistory checks whether the command line begins with an
+exclamation point <code>!</code>.  If so, the plugin attempts to retrieve a
+line from TCC’s command history.  There are a few different ways you
+can specify the line to get. </p>
+
+<p>Two exclamation points retrieves the most recent line from the command
+history, generally the last command you entered: </p>
+
+<p class=example><code>!!<br>
+</code></p>
+
+<p>A non-negative number recalls the <i>n</i><sup>th</sup> line from the start
+of the command history.  For example, to get the very earliest line in the
+command history: </p>
+
+<p class=example><code>!0<br>
+</code></p>
+
+<p>A negative number recalls the <i>n</i><sup>th</sup> line from the end of
+the command history.  To get the third-most-recent command: </p>
+
+<p class=example><code>!-3<br>
+</code></p>
+
+<p><code>!!</code> is the same as <code>!-1</code>. </p>
+
+<p>If the first character after the exclamation point is a letter,
+BangHistory will look for the most recent command <em>beginning</em> with
+that letter (or string, if there’s more than one).  For instance,
+to get the most recent command beginning with a <code>c</code>: </p>
+
+<p class=example><code>!c<br>
+</code></p>
+
+<p>Note that the search is <em>case-sensitive</em>.  If you type a capitol
+<code>C</code>, the plugin will look for a command beginning with an
+uppercase <code>C</code>.  If you’re like me, it probably won’t
+find one. </p>
+
+<br>
+<p>Search and Replace:  BangHistory can also do a simple search-and-replace
+when recalling a command line.  The syntax is <code>:s^</code><span class=optname>old</span><code>^</code><span class=optname>new</span>
+(instead of the caret, you can use any punctuation mark which does not appear
+in either string).  Place it after the line specifier, with no spaces
+between: </p>
+
+<p class=example><code>!!:s^first^last<br>
+</code></p>
+
+<p>… would recall the most recent command, and replace the first
+instance of “first” with “last”.  Note that this
+search is also case-sensitive, and only the first matching string will be
+replaced. </p>
+
+
+<br>
+<p><span class=note>• Note:  </span> BangHistory only works at the
+command line.  It does nothing in batch files. </p>
+
+<p><span class=note>• Note:  </span> The very first character on
+the command line must be an exclamation point.  If it’s anything else,
+BangHistory does nothing.  If for some ungodly reason you actually need to
+type a command beginning with an exclamation point, space before the command,
+or quote it. </p>
+
+<p><span class=note>• Note:  </span> If you press
+<kbd>Shift</kbd>-<kbd>Enter</kbd>, BangHistory will recall the command and
+update the command line if possible, but it will not be executed until you
+hit <kbd>Enter</kbd>. </p>
+
+
+<h4><a name=bangh></a>Configuration:  The BANGH command</h4>
+
+<p>Syntax:<br>
+<code class=req>BANGH</code><code> /A:</code><span class=optname>n</span><code> /B:</code><span class=optname>n</span><code> /D /I:</code><span class=optname>n</span><code> /Q /R /S /X:</code><span class=optname>n</span><code> /Z:</code><span class=optname>n</span></p>
+
+<table class=descript>
+	<tr><td><code>/A:</code><span class=optname>n</span></td><td>allow whitespace between the <code>!</code> and the number or search string</td><td>1</td></tr>
+	<tr><td><code>/B:</code><span class=optname>n</span></td><td>beep on errors</td><td>1</td></tr>
+	<tr><td><code>/D</code></td><td>restore the plugin’s default settings</td><td></td></tr>
+	<tr><td><code>/I:</code><span class=optname>n</span></td><td>case insensitive searches</td><td>0</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td><td></td></tr>
+	<tr><td><code>/R</code></td><td>restore any saved settings from the registry</td><td></td></tr>
+	<tr><td><code>/S</code></td><td>save the current settings to the registry</td><td></td></tr>
+	<tr><td><code>/X:</code><span class=optname>n</span></td><td>execute the command even if <code>!</code> expansion failed</td><td>1</td></tr>
+	<tr><td><code>/Z:</code><span class=optname>n</span></td><td>specify how history entries are numbered</td><td>0</td></tr>
+</table>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>BangHistory is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/banghistory.zip">https://charlesdye.net/dl/banghistory.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

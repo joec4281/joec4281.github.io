@@ -1,0 +1,556 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>TimeStamp Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>TimeStamp plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.94.2     2026-04-29</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin reimplements the <a href="E:\Utils\#ts"><code>TS</code></a> command and
+the <a href="E:\Utils\#f_datefmt"><code>@DATEFMT</code></a> function.  It can be used
+in older versions of TCC which do not provide <code>TS</code> or <code>@DATEFMT</code>,
+including TCC/LE.  I have also added a little <a href="E:\Utils\#now"><code>NOW</code></a>
+command, which writes the date and time to standard output, suitable for appending
+to log files. </p>
+
+<p><a href="E:\Utils\#ts"><code>TS</code></a> is very similar to TCC’s internal
+<code>TS</code> command, but makes an attempt to identify the encoding of the
+incoming (piped) text.  There are a few other minor improvements, including
+support for incremental times, cumulative times, and UTC time stamps. </p>
+
+<p><a href="E:\Utils\#f_datefmt"><code>@DATEFMT</code></a> is, again, quite similar to
+TCC’s, but it supports a much broader range of dates, plus a few new
+<!--hpage f_datefmt--><a href="E:\Utils\#tokens">tokens</a> and
+<!--hpage f_datefmt--><a href="E:\Utils\#modifiers">modifiers</a>, and C-style
+<!--hpage f_datefmt--><a href="E:\Utils\#escapes">character escapes</a>. </p>
+
+<br>
+<p>Note that the <code>TS</code> command is almost always used to receive
+text from a pipe, and pipe commands run in a new shell.  If you want to pipe
+to <code>TS</code>, you must ensure that this plugin is loaded in the new
+shell, <i>e.g.</i> by <a href="E:\Utils\#install">copying <span class=filename>TimeStamp.dll</span>
+to TCC’s <span class=filename>PlugIns</span> directory</a>. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>TimeStamp.dll</span> and
+<span class=filename>TimeStamp.chm</span> to some known location on your hard
+drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>TimeStamp-x86.dll</span> instead of
+<span class=filename>TimeStamp.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\timestamp.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Commands:</a></th></tr>
+	<tr><td><a href="E:\Utils\#now"><code>NOW</code></a></td><td><a href="E:\Utils\#ts"><code>TS</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#functions">Function:</a></th></tr>
+	<tr><td><a href="E:\Utils\#f_datefmt"><code>@DATEFMT</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+ping localhost | ts<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=now></a><code>NOW</code> —Writes the current date and time to stdout. </p>
+
+<p>Syntax:<br>
+<code class=req>NOW</code><code> /C /F:"</code><span class=optname>format</span><code>" /M /U </code><span class=optname>comment</span></p>
+
+<table class=descript>
+	<tr><td><code>/C</code></td><td>show continuously (not redirectable)</td></tr>
+	<tr><td><code>/F:"</code><!--hpage f_datefmt--><a href="E:\Utils\#tokens"><span class=optname>format</span></a><code>"</code></td><td>format string, as in <!--hpage f_datefmt--><a href="E:\Utils\#tokens"><code>@DATEFMT</code></a>; quote it and double all percent signs</td></tr>
+	<tr><td><code>/M</code></td><td>show milliseconds</td></tr>
+	<tr><td><code>/U</code> or <code>/UTC</code></td><td>Coordinated Universal Time</td></tr>
+	<tr><td><span class=optname>comment</span></td><td>text to include after the date and time</td></tr>
+	<!-- <tr><td><code>/</code></td><td> </td></tr> -->
+</table>
+
+<p><code>NOW</code> writes the current date and time, with an optional
+comment, to standard output.  It can be redirected to a log file.  If you
+do not specify a format string, the date will be in ISO 8601 format, with a
+24-hour time. </p>
+
+<p>With <code>/C</code>, <code>NOW</code> displays the current date and time
+to the screen, repeating until you press a key.  This mode cannot be
+redirected. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=ts></a><code>TS</code> — Add time stamps to lines from
+a pipe. </p>
+
+<p>Syntax:<br>
+<code class=req>TS</code><code> /CP:</code><span class=optname>n</span><code> /D /F /I /S /T /U "</code><span class=optname>format</span><code>"</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#ts_opt_cp"><code>/CP:</code><span class=optname>n</span></a></td><td><a href="E:\Utils\#ts_opt_cp">code page</a> (for non-Unicode text)</td></tr>
+	<tr><td><code>/D</code></td><td>include the date</td></tr>
+	<tr><td><a href="E:\Utils\#ts_opt_f"><code>/F</code></a></td><td><a href="E:\Utils\#ts_opt_f">add a final footer line</a></td></tr>
+	<tr><td><code>/I</code></td><td>show incremental times (since the previous line) </td></tr>
+	<tr><td><code>/S</code></td><td>show cumulative times (since the start time) </td></tr>
+	<tr><td><code>/T</code></td><td>include the time</td></tr>
+	<tr><td><code>/U</code> or <code>/UTC</code></td><td>Coordinated Universal Time</td></tr>
+	<tr><td><!--hpage f_datefmt--><a href="E:\Utils\#tokens"><span class=optname>format</span></a></td><td>format string, as in <!--hpage f_datefmt--><a href="E:\Utils\#tokens"><code>@DATEFMT</code></a>; quote it and double all percent signs</td></tr>
+	<!-- <tr><td><code>/</code></td><td> </td></tr> -->
+</table>
+
+<p><code>TS</code> reads lines from a pipe, and prepends the current time
+to each. </p>
+
+<p>If you give a <span class=optname>format</span> string, any <code>/D</code>
+or <code>/T</code> will be ignored. </p>
+
+<p>If you do not specify any of <code>/D /T /I /S</code> or <span class=optname>format</span>,
+the default behavior is to include both the date and the time. </p>
+
+<p><span class=note>•  Important:</span> Remember that pipe commands run in a new shell!
+To pipe to this command, you must ensure that this plugin is loaded in the new
+shell, <i>e.g.</i> by <a href="E:\Utils\#install">copying the plugin <span class=filename>.DLL</span>
+to TCC’s <span class=filename>PlugIns</span> directory</a>. </p>
+
+<p><span class=note>•  Note:</span>  All options except
+<code>/D</code>, <code>/T</code>, and <span class=optname>format</span>
+are new, and not supported by TCC’s internal <code>TS</code> command.
+To be compatible with TCC, do not use any option other than <code>/D</code>,
+<code>/T</code>, or <span class=optname>format</span>. </p>
+
+<br>
+<p><a name=ts_opt_cp></a><code>/CP:</code><span class=optname>n</span>
+lets you specify a code page for non-Unicode text.  You can give a code page
+number, <i>e.g.</i> <code>/CP:1252</code>, or else the letter <code>A</code>
+for the current ANSI (Windows) code page, or <code>O</code> for the current
+OEM (console) code page.  If you do not specify any <code>/CP:</code> code
+page option, the default is the current OEM code page. </p>
+
+<p><a name=ts_opt_f></a><code>/F</code> adds a final footer line when the
+pipe closes.  This would be useful to measure any delay between the last line
+printed, and completion of the input command. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Function:</h4>
+
+
+<p><a name=f_datefmt></a><code>@DATEFMT</code> — Writes a date and time
+using a format string. </p>
+
+<div class=subnav>
+<ul>
+	<li><a href="E:\Utils\#dateentry">Date and Time</a></li>
+	<li><a href="E:\Utils\#tokens">Tokens</a></li>
+	<li><a href="E:\Utils\#modifiers">Modifiers</a></li>
+	<li><a href="E:\Utils\#escapes">Escapes</a></li>
+</ul>
+</div>
+
+<p>Syntax:<br>
+<code class=req>%@DATEFMT[</code><span class=reqname>date</span> <span class=optname>time</span><code class=req>,</code><span class=reqname>format</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>date</span> <span class=optname>time</span></td><td>the date and time to format</td></tr>
+	<tr><td><a href="E:\Utils\#tokens"><span class=reqname>format</span></a></td><td><a href="E:\Utils\#tokens">string with format specifiers</a></td></tr>
+</table>
+
+<p>Enter the date in ISO 8601 format, and the time in 24-hour format.  Use
+an asterisk for the current date and time.  The time is optional.  If you
+specify a date without a time, the default time is midnight. </p>
+
+<p>The supported range of dates is 1601-01-01 through 9999-12-31. </p>
+
+<br><a name=dateentry></a>
+<table class=descript>
+	<tr><th colspan=2>Enter the date as:</th></tr>
+	<tr><td><span class=optname>yyyy</span><code>-</code><span class=optname>mm</span><code>-</code><span class=optname>dd</span></td><td>ISO 8601 format</td></tr>
+	<tr><td><span class=optname>yyyy</span><code>-W</code><span class=optname>ww</span><code>-</code><span class=optname>d</span></td><td>ISO 8601 week-day format</td></tr>
+	<tr><td><span class=optname>yyyy</span><code>-</code><span class=optname>nnn</span></td><td>ISO 8601 ordinal format</td></tr>
+	<tr><td><code>+0</code></td><td>today</td></tr>
+	<tr><td><code>+1</code></td><td>tomorrow</td></tr>
+	<tr><td><code>+2</code></td><td>the day after tomorrow</td></tr>
+	<tr><td><code>-1</code></td><td>yesterday</td></tr>
+	<tr><td><code>-2</code></td><td>the day before yesterday, <em>etc.</em></td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><th colspan=2>Enter the time as:</th></tr>
+	<tr><td><span class=optname>hh</span><code>:</code><span class=optname>mm</span><code>:</code><span class=optname>ss</span><code>.</code><span class=optname>ddd</span></td><td>24-hour format, using only the separators shown</td></tr>
+	<tr><td><span class=optname>hh</span><code>:</code><span class=optname>mm</span><code>:</code><span class=optname>ss</span></td><td>milliseconds are optional</td></tr>
+	<tr><td><span class=optname>hh</span><code>:</code><span class=optname>mm</span></td><td>seconds and milliseconds are optional</td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><th colspan=2>Optionally followed by:</th></tr>
+	<tr><td><code>Z</code></td><td>to indicate Coordinated Universal Time</td></tr>
+	<tr><td> </td><td>   (otherwise it’s local)</td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><th colspan=2>Or else:</th></tr>
+	<tr><td><code>*</code></td><td>for the current date and time</td></tr>
+	<tr><td><code>**</code></td><td>for the current date and time UTC</td></tr>
+</table>
+
+
+<br>
+<p><a name=tokens></a>The <span class=reqname>format</span> string may include: </p>
+
+<table class=descript>
+	<tr class=topsticky><th>Token:</th><th><a href="E:\Utils\#note_hash">#</a></th><th><a href="E:\Utils\#note_roman">O</a></th><th>Expands to:</th><th>Example:</th></tr>
+	<tr><td><code>%A</code></td><td> </td><td> </td><td>local day-of-the-week name, full</td><td>Saturday</td></tr>
+	<tr><td><code>%a</code></td><td> </td><td> </td><td>local day-of-the-week name, abbreviated</td><td>Sat</td></tr>
+	<tr><td><code>%B</code></td><td> </td><td> </td><td>local month name, full</td><td>November</td></tr>
+	<tr><td><code>%b</code></td><td> </td><td> </td><td>local month name, abbreviated</td><td>Nov</td></tr>
+	<tr><td><code>%C</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>century (year / 100)</td><td>19</td></tr>
+	<tr><td><code>%c</code></td><td> </td><td> </td><td>local short date and time, as per Control Panel</td><td>11/5/1955 6:15:00 AM</td></tr>
+	<tr><td><code>%#c</code></td><td> </td><td> </td><td>local long date and time, as per Control Panel</td><td>Saturday, November 5, 1955 6:15:00 AM</td></tr>
+	<tr><td><code>%D</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>date in US format; same as %m/%d/%y</td><td>11/05/55</td></tr>
+	<tr><td><code>%d</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>day of the month (integer)</td><td>05</td></tr>
+	<tr><td><code>%e</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>day of the month (leading space if 1 digit)</td><td> 5</td></tr>
+	<tr><td><code>%F</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>date in ISO 8601 format, %Y-%m-%d</td><td>1955-11-05</td></tr>
+	<tr><td><code>%G</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>ISO 8601 week-numbering year <a href="E:\Utils\#note_1"><sup>1</sup></a></td><td>1955</td></tr>
+	<tr><td><code>%g</code></td><td> </td><td> </td><td>last two digits of ISO week-numbering year <a href="E:\Utils\#note_1"><sup>1</sup></a></td><td>55</td></tr>
+	<tr><td><code>%H</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>hour (24-hour format)</td><td>06</td></tr>
+	<tr><td><code>%h</code></td><td> </td><td> </td><td>local month name, abbreviated (same as %b)</td><td>Nov</td></tr>
+	<tr><td><code>%I</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>hour (12-hour format)</td><td>06</td></tr>
+	<tr><td><code>%J</code></td><td> </td><td> </td><td>day number (1 = January 1, 1601)</td><td>129604</td></tr>
+	<tr><td><code>%j</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>day of the year</td><td>309</td></tr>
+	<tr><td><code>%K</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>day of the week, 1 (Sunday) — 7 (Saturday)</td><td>7</td></tr>
+	<tr><td><code>%k</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>hour (24-hour format, leading space if 1 digit)</td><td> 6</td></tr>
+	<tr><td><code>%L</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>milliseconds</td><td>000</td></tr>
+	<tr><td><code>%l</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>hour (12-hour format, leading space if 1 digit)</td><td> 6</td></tr>
+	<tr><td><code>%M</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>minute (integer)</td><td>15</td></tr>
+	<tr><td><code>%m</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>month (integer)</td><td>11</td></tr>
+	<tr><td><code>%N</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>conventional century: (year + 99) / 100</td><td>20</td></tr>
+	<tr><td><code>%n</code></td><td> </td><td> </td><td>newline character</td><td> </td></tr>
+	<tr><td><code>%P</code></td><td> </td><td> </td><td>local AM or PM indicator (lowercase)</td><td>am</td></tr>
+	<tr><td><code>%p</code></td><td> </td><td> </td><td>local AM or PM indicator</td><td>AM</td></tr>
+	<tr><td><code>%Q</code></td><td> </td><td> </td><td>ISO year-day format; same as <code>%Y-%j</code></td><td>1955-309</td></tr>
+	<tr><td><code>%#Q</code></td><td> </td><td> </td><td>ISO week-day format; same as <code>%G-W%V-%u</code></td><td>1955-W44-6</td></tr>
+	<tr><td><code>%R</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>time in 24-hour format, without seconds</td><td>06:15</td></tr>
+	<tr><td><code>%r</code></td><td> </td><td> </td><td>time in 12-hour format</td><td>06:15:00 AM</td></tr>
+	<tr><td><code>%S</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>seconds (integer)</td><td>00</td></tr>
+	<tr><td><code>%s</code></td><td> </td><td> </td><td>seconds after the Unix epoch</td><td>-446726700</td></tr>
+	<tr><td><code>%T</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>time in 24-hour format</td><td>06:15:00</td></tr>
+	<tr><td><code>%t</code></td><td> </td><td> </td><td>tab character</td><td> </td></tr>
+	<tr><td><code>%U</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>Sunday-based week number <a href="E:\Utils\#note_2"><sup>2</sup></a></td><td>44</td></tr>
+	<tr><td><code>%u</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>ISO 8601 day of the week <a href="E:\Utils\#note_1"><sup>1</sup></a></td><td>6</td></tr>
+	<tr><td><code>%V</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>ISO 8601 week number <a href="E:\Utils\#note_1"><sup>1</sup></a></td><td>44</td></tr>
+	<tr><td><code>%v</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>date in VMS format; same as %e-%b-%Y</td><td> 5-Nov-1955</td></tr>
+	<tr><td><code>%W</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>Monday-based week number <a href="E:\Utils\#note_2"><sup>2</sup></a></td><td>44</td></tr>
+	<tr><td><code>%w</code></td><td> </td><td> </td><td>day of the week, 0 (Sunday) — 6 (Saturday)</td><td>6</td></tr>
+	<tr><td><code>%X</code></td><td> </td><td> </td><td>time in local format, as per Control Panel</td><td>6:15:00 AM</td></tr>
+	<tr><td><code>%#X</code></td><td> </td><td> </td><td>time in local 24-hour format</td><td>06:15:00</td></tr>
+	<tr><td><code>%x</code></td><td> </td><td> </td><td>date in local short format, as per Control Panel</td><td>11/5/1955</td></tr>
+	<tr><td><code>%#x</code></td><td> </td><td> </td><td>date in local long format, as per Control Panel</td><td>Saturday, November 5, 1955</td></tr>
+	<tr><td><code>%Y</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>year</td><td>1955</td></tr>
+	<tr><td><code>%y</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>year modulo 100</td><td>55</td></tr>
+	<tr><td><code>%Z</code></td><td> </td><td> </td><td>time zone name</td><td>Pacific Standard Time</td></tr>
+	<tr><td><code>%#Z</code></td><td> </td><td> </td><td>time zone one-letter code <a href="E:\Utils\#note_3"><sup>3</sup></a></td><td>U</td></tr>
+	<tr><td><code>%z</code></td><td> </td><td> </td><td>time zone offset from UTC, HHMM</td><td>-0800</td></tr>
+</table>
+
+
+<br>
+<p>Case <em>is</em> significant.  Note that you will need to double the percent signs
+to prevent variable expansion from eating them.  Other characters in <span class=reqname>format</span>
+will be included as-is. </p>
+
+<br>
+<p><a name=note_1></a><sup>1</sup>  These follow the ISO 8601 week-numbering scheme:
+every week begins on Monday, ends on Sunday, and belongs to the year in which
+the majority of its days fall.  Monday is day 1, Sunday is day 7. </p>
+
+<p><a name=note_2></a><sup>2</sup>  <code>%U</code> and <code>%W</code> count
+weeks beginning with Sunday (<code>%U</code>) or Monday (<code>%W</code>).  Week
+1 begins with the first Sunday (Monday) in the year.  If the year does not begin
+with a Sunday (Monday), then days before the first Sunday (Monday) return a
+week number of 0. </p>
+
+<p><a name=note_3></a><sup>3</sup>  <code>%#Z</code> returns a letter code
+for the time zone, ranging from <code>Y</code> for UTC-12 through <code>M</code>
+for UTC+12.  UTC returns <code>Z</code>.  If the current time zone is more than
+12 hours ahead of or behind UTC, or if it is not an even hour offset, this token
+returns <code>-</code>. </p>
+
+
+<br>
+<p><a name=modifiers></a>There are also several modifier characters which may be
+included in a token, between the percent sign and the letter: </p>
+
+<table class=descript>
+	<tr class=topsticky><th>Modifier:</th><th>Effect:</th><th>When returning:</th></tr>
+	<tr><td><a href="E:\Utils\#note_hash"><code>#</code></a></td><td>suppress leading zeros or spaces</td><td>numeric values</td></tr>
+	<tr><td><a href="E:\Utils\#note_roman"><code>O</code></a></td><td>roman numerals</td><td>numeric values limited to 1 — 9999</td></tr>
+	<tr><td><a href="E:\Utils\#note_ord"><code>?</code></a></td><td>append an English ordinal suffix</td><td>numeric values</td></tr>
+	<tr><td><a href="E:\Utils\#note_english"><code>E</code></a></td><td>English</td><td>names of months and days only</td></tr>
+	<tr><td><a href="E:\Utils\#note_recase"><code>!</code></a></td><td>force uppercase</td><td>strings containing letters</td></tr>
+	<tr><td><a href="E:\Utils\#note_recase"><code>,</code></a></td><td>force lowercase</td><td>strings containing letters</td></tr>
+	<tr><td><a href="E:\Utils\#note_altdigits"><code>~</code></a></td><td>use local digit forms</td><td>any value containing ASCII digits</td></tr>
+</table>
+
+
+<br>
+<p><a name=note_hash></a>If a token is marked with a ✓ in the second column,
+you can include a number sign between the percent sign and the letter to suppress leading
+zeros or spaces.  For example, <code>%H</code> may return the hour with a leading zero;
+<code>%#H</code> returns the hour with no leading zero. </p>
+
+<p>In a few cases, <em>e.g.</em> <code>%#c</code>, <code>%#X</code>, and <code>%#x</code>,
+the number sign does not suppress leading zeros but instead changes the meaning of the token.
+These special cases have separate lines in the <a href="E:\Utils\#tokens">list of tokens</a>
+above. </p>
+
+<br>
+<p><a name=note_roman></a>If a token is marked with a ✓ in the third column,
+you can add an uppercase letter <code>O</code> between the percent sign and the letter
+to return a value using Roman numerals.  This format only works with a few tokens:  those
+which return a numeric value always greater than zero and less than ten thousand.
+<code>%H</code> and <code>%k</code> are a special case, as the hour can be zero.  If
+the hour is 0 (midnight), then <code>%OH</code> and <code>%Ok</code> will return
+<code>XXIV</code>. </p>
+
+<br>
+<p><a name=note_ord></a>Occasionally you may want an ordinal number.
+Put a question mark between the percent sign and the letter to append an
+(English) ordinal suffix: </p>
+
+<table class=descript>
+	<tr><td><code>%B %d</code></td><td>March 08</td><td> </td></tr>
+	<tr><td><code>%B %?d</code></td><td>March 08th</td><td> </td></tr>
+	<tr><td><code>%B %#?d</code></td><td>March 8th</td><td>You can combine modifiers; </td></tr>
+	<tr><td><code>%B %?#d</code></td><td>March 8th</td><td>   the order is not significant. </td></tr>
+	<tr><td><code>%B %O?d</code></td><td>March VIIIth</td><td> </td></tr>
+</table>
+
+<br>
+<p><a name=note_english></a>You can get English names, rather than local names,
+for months and days with <code>E</code>.  This modifier only works with
+<code>%a</code>, <code>%A</code>, <code>%b</code>, <code>%h</code>, and
+<code>%B</code>. </p>
+
+<br>
+<p><a name=note_recase></a>If a token returns a string, you can also use an
+exclamation point to make the string all uppercase, or a comma to make it all
+lowercase: </p>
+
+<table class=descript>
+	<tr><td><code>%B</code></td><td>March</td></tr>
+	<tr><td><code>%!B</code></td><td>MARCH</td></tr>
+	<tr><td><code>%,B</code></td><td>march</td></tr>
+	<tr><td><code>%B %O,d</code></td><td>March viii</td></tr>
+</table>
+
+
+<br>
+<p><a name=note_altdigits></a>You can use the <code>~</code> modifier
+to replace ASCII digits with local digit forms.  This will only be useful
+if (A) your locale specifies alternate digits forms, and (B) your font
+includes the appropriate glyphs.  I’m not aware of any region in
+western Europe or the Americas where the first is true.  This feature
+might be useful with Arabic or Thai: </p>
+
+<p class=example><code>echo %@datefmt[*,%%#c]<br>
+الخميس، 8 مارس 2001 6:22:00 ص<br>
+<br>
+echo %@datefmt[*,%%#~c]<br>
+الخميس، ٨ مارس ٢٠٠١ ٦:٢٢:٠٠ ص<br>
+</code></p>
+
+
+<br>
+
+<p><a name=escapes></a>You can use backslash escapes to include special
+characters in the <span class=reqname>format</span> string: </p>
+
+<table class=descript>
+	<tr class=topsticky><th>Escape:</th><th>To insert:</th><th>Example:</th></tr>
+	<tr><td><code>\</code><span class=optname>nnn</span></td><td>octal character, up to 777</td><td><code>\101</code> → A</td></tr>
+	<tr><td><code>\x</code><span class=optname>hhhh</span></td><td>hexadecimal character, up to FFFF</td><td><code>\x41</code> → A</td></tr>
+	<tr><td><code>\a</code></td><td><code>\x07</code>  alert (bell)</td><td> </td></tr>
+	<tr><td><code>\b</code></td><td><code>\x08</code>  backspace</td><td> </td></tr>
+	<tr><td><code>\e</code></td><td><code>\x1b</code>  ASCII escape</td><td> </td></tr>
+	<tr><td><code>\f</code></td><td><code>\x0c</code>  form feed</td><td> </td></tr>
+	<tr><td><code>\n</code></td><td><code>\x0a</code>  newline</td><td> </td></tr>
+	<tr><td><code>\p</code></td><td><code>\x25</code>  percent sign</td><td> </td></tr>
+	<tr><td><code>\q</code></td><td><code>\x22</code>  double quote</td><td> </td></tr>
+	<tr><td><code>\r</code></td><td><code>\x0d</code>  carriage return</td><td> </td></tr>
+	<tr><td><code>\t</code></td><td><code>\x09</code>  tab</td><td> </td></tr>
+	<tr><td><code>\v</code></td><td><code>\x0b</code>  vertical tab</td><td> </td></tr>
+	<tr><td><code>\u</code><span class=optname>xxxx</span></td><td>Unicode character, up to U+FFFF</td><td><code>\u03a3</code> → Σ</td></tr>
+	<tr><td><code>\U</code><span class=optname>xxxxxxxx</span></td><td>Unicode character, up to U+10FFFF</td><td><code>\U1f63a</code> → 😺</td></tr>
+	<tr><td><code>\\</code></td><td><code>\x5c</code>  backslash</td><td> </td></tr>
+	<tr><td><code>\-</code></td><td>nothing (empty string)</td><td> </td></tr>
+	<tr><td><code>\</code><span class=optname>char</span></td><td>any other character:  use it literally</td><td> </td></tr>
+</table>
+
+<p>Case <em>is</em> significant.  Currently, the only valid uppercase escape
+is <code>\U</code>. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>TimeStamp is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/timestamp.zip">https://charlesdye.net/dl/timestamp.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

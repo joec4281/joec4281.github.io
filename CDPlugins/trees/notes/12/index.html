@@ -1,0 +1,713 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>OSD Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#osd">OSD command</a></li>
+	<li>    <a href="E:\Utils\#osdimg">OSDIMG command</a></li>
+	<li>    <a href="E:\Utils\#pctbar">PCTBAR command</a></li>
+	<li>    <a href="E:\Utils\#v_osd">_OSD variable</a></li>
+	<li>    <a href="E:\Utils\#v_osdver">_OSDVER variable</a></li>
+	<li>    <a href="E:\Utils\#f_osd">@OSD function</a></li>
+	<li><a href="E:\Utils\#commonopts">Common Options</a></li>
+	<li><a href="E:\Utils\#escapes">Character Escapes</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>OSD plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.0.12     2026-10-19</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin implements an enhanced version of the <a href="E:\Utils\#osd"><code>OSD</code></a>
+command.  It’s intended to be backwards-compatible with the built-in
+<code>OSD</code>, while providing nicer syntax and many more features.  Of course,
+using any of the new features or syntax will break TCC compatibility. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>OSD.dll</span> to
+some known location on your hard drive.  (If you are using the 32-bit
+version of Take Command, take <span class=filename>OSD-x86.dll</span>
+instead of <span class=filename>OSD.dll</span>.)  Load it with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\osd.dll</code></p>
+
+<p>If you copy this file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">commands</a>:  <a href="E:\Utils\#osd"><code>OSD</code></a>, <a href="E:\Utils\#osdimg"><code>OSDIMG</code></a>,
+<a href="E:\Utils\#pctbar"><code>PCTBAR</code></a></p>
+
+<p>New <a href="E:\Utils\#intvars">variables</a>:  <a href="E:\Utils\#v_osd"><code>_OSD</code></a>, <a href="E:\Utils\#v_osdver"><code>_OSDVER</code></a></p>
+
+<p>New <a href="E:\Utils\#functions">function</a>:  <a href="E:\Utils\#f_osd"><code>@OSD</code></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+osd /t=5 /hc /h=48 /k=1 Hello world!<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a equals sign between
+the option and its argument:  <code>/A=</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute a colon for the equals sign:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=osd></a><code>OSD</code> — Display text on the screen. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>OSD</code><code> /C=</code><span class=optname>n</span><code> /FONT=</code><span class=optname>n</span><code> /ID=</code><span class=optname>n</span><code> /N /POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span><code> /RGB=</code><span class=optname>r</span><code>,</code><span class=optname>g</span><code>,</code><span class=optname>b</span><code> /TIME=</code><span class=optname>n</span><code> /V </code><span class=reqname>text</span></p>
+
+<table class=descript>
+	<tr><td></td><td style="padding-bottom: 5px;font-size: 110%;">Compatible features:</td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_c"><code>/C</code></a></td><td>close any OSD windows with ID #0</td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_c"><code>/C=</code><span class=optname>n</span></a></td><td>close any OSD windows with ID #<span class=optname>n</span></td></tr>
+	<tr><td><code>/FONT=</code><span class=optname>n</span></td><td>text height in pixels; the default is 18</td></tr>
+	<tr><td><code>/ID=</code><span class=optname>n</span></td><td>specify an ID number; defaults to 0</td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_n"><code>/N</code></a></td><td>don’t wait for the OSD window to time out</td></tr>
+	<tr><td><code>/POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span></td><td>set OSD window position; defaults to 0,0</td></tr>
+	<tr><td><code>/RGB=</code><span class=optname>r</span><code>,</code><span class=optname>g</span><code>,</code><span class=optname>b</span></td><td>text color; the default is 0,255,0 (bright green)</td></tr>
+	<tr><td><code>/TIME=</code><span class=optname>n</span></td><td>in seconds; the default is 10</td></tr>
+	<tr><td><code>/V</code></td><td>vertical text</td></tr>
+	<tr><td><code>/LEFT</code>, <code>/RIGHT</code>, <code>/HCENTER</code></td><td>override any <code>/POS=</code> <span class=optname>x</span> value</td></tr>
+	<tr><td><code>/TOP</code>, <code>/BOTTOM</code>, <code>/VCENTER</code></td><td>override any <code>/POS=</code> <span class=optname>y</span> value</td></tr>
+	<tr><td><span class=reqname>text</span></td><td>any leading or trailing whitespace will be stripped</td></tr>
+</table>
+
+<table class=descript>
+	<tr><td></td><td></td><td style="padding-bottom: 5px;font-size: 110%;">New features — incompatible with TCC:</td></tr>
+	<tr><td><code>/FONT=</code><span class=optname>n</span></td><td><code>/H=</code><span class=optname>n</span></td><td>may be abbreviated</td></tr>
+	<tr><td><code>/TIME=</code><span class=optname>n</span></td><td><code>/T=</code><span class=optname>n</span></td><td>may be abbreviated</td></tr>
+	<tr><td><code>/LEFT</code></td><td><code>/L</code></td><td>may be abbreviated</td></tr>
+	<tr><td><code>/RIGHT</code></td><td><code>/R</code></td><td>may be abbreviated</td></tr>
+	<tr><td><code>/TOP</code></td><td><code>/T</code></td><td>may be abbreviated</td></tr>
+	<tr><td><code>/BOTTOM</code></td><td><code>/B</code></td><td>may be abbreviated</td></tr>
+	<tr><td><code>/HCENTER</code></td><td><code>/HC</code></td><td>may be abbreviated</td></tr>
+	<tr><td><code>/VCENTER</code></td><td><code>/VC</code></td><td>may be abbreviated</td></tr>
+	<tr><td><code>/CENTER</code></td><td><code>/CTR</code></td><td>combines <code>/HCENTER</code> and <code>/VCENTER</code></td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_mon"><code>/MONITOR=</code><span class=optname>n</span></a></td><td><code>/M=</code><span class=optname>n</span></td><td>monitor number</td></tr>
+	<tr><td><code>/TAB</code></td><td></td><td>position relative to Take Command tab window</td></tr>
+	<tr><td><code>/OFFSET</code></td><td></td><td><code>/POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span> coordinates are relative to <code>/TOP</code>, <code>/BOTTOM</code>, <code>/LEFT</code>, <i>etc</i>. </td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_c"><code>/CA</code></a></td><td></td><td>close all OSD windows, regardless of ID</td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_fade"><code>/FADE</code></a></td><td><code>/F</code></td><td>fade the window out when the time expires</td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_c"><code>/FADENOW</code></a></td><td></td><td>fade out and close any OSD windows with ID #0</td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_c"><code>/FADENOW=</code><span class=optname>n</span></a></td><td></td><td>fade out and close any OSD windows with ID #<span class=optname>n</span></td></tr>
+	<tr><td><code>/CJ</code></td><td></td><td>center-justify <span class=reqname>text</span>; useful with multiline text and @<span class=reqname>files</span></td></tr>
+	<tr><td><code>/RJ</code></td><td></td><td>right-justify <span class=reqname>text</span>; useful with multiline text and @<span class=reqname>files</span></td></tr>
+	<tr><td><code>/LJ</code></td><td></td><td>left-justify <span class=reqname>text</span>; useful with multiline text and @<span class=reqname>files</span> (default)</td></tr>
+	<tr><td><code>/UC</code></td><td></td><td>uppercase <span class=reqname>text</span></td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_face"><code>/FACE=</code><span class=optname>name</span></a></td><td><code>/F=</code><span class=optname>name</span></td><td>typeface name; quote it if it contains spaces</td></tr>
+	<tr><td><code>/ITALIC</code></td><td><code>/I</code></td><td>italic typeface</td></tr>
+	<tr><td><code>/UNDERLINE</code></td><td><code>/U</code></td><td>underline text</td></tr>
+	<tr><td><code>/BOLD=</code><span class=optname>n</span></td><td><code>/B=</code><span class=optname>n</span></td><td>text weight, 0 - 9; 0 don’t care, 1 thin, 4 normal, 7 bold, 9 heavy</td></tr>
+	<tr><td><code>/MS=</code><span class=optname>n</span></td><td></td><td>specify time in milliseconds rather than seconds</td></tr>
+	<tr><td><code>/COLOR=</code><span class=optname>n</span></td><td><code>/K=</code><span class=optname>n</span></td><td>specify color as a TCC color number, 0 - 15</td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_hue"><code>/HUE=</code><span class=optname>name</span></a></td><td></td><td>specify color as a <a target=_blank href="https://www.w3.org/wiki/CSS/Properties/color/keywords">W3C color name</a></td></tr>
+	<tr><td><code>/SHADOW</code></td><td><code>/DS</code></td><td>add a drop shadow</td></tr>
+	<tr><td><code>/ALPHA=</code><span class=optname>n</span></td><td><code>/A=</code><span class=optname>n</span></td><td>transparency; <span class=optname>n</span> is 48 (ghostly) to 255 (opaque)</td></tr>
+	<tr><td><code>/FADEIN</code></td><td><code>/FI</code></td><td>fade the OSD window in before starting the timer</td></tr>
+	<tr><td><code>/BLINK</code></td><td></td><td>flash the text obnoxiously</td></tr>
+	<tr><td><code>/UP</code></td><td></td><td>rotate the window 90° left</td></tr>
+	<tr><td><code>/DOWN</code></td><td></td><td>rotate the window 90° right</td></tr>
+	<!--  <tr><td><code>/DING</code></td><td></td><td>play the system &lsquo;asterisk&rsquo; sound on success</td></tr> -->
+	<tr><td><code>/Q</code></td><td></td><td>with <code>/C</code>, suppress window-not-found error messages</td></tr>
+	<tr><td><code>/X</code></td><td></td><td>expand <a href="E:\Utils\#escapes">escape sequences</a> in the <span class=reqname>text</span> string</td></tr>
+	<tr><td><code>/MAXLINES=</code><span class=optname>n</span></td><td></td><td>maximum lines to read from an @<span class=reqname>file</span>, 1 to 64; default 5; 0 disables @<span class=reqname>files</span></td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_cp"><code>/CP=</code><span class=optname>n</span></a></td><td></td><td>specify the code page for an @<span class=reqname>file</span></td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_save"><code>/SAVE=</code><span class=optname>n</span></a></td><td></td><td>save a style for use in later OSD calls</td></tr>
+	<tr><td><a href="E:\Utils\#osd_sw_style"><code>/STYLE=</code><span class=optname>n</span></a></td><td><code>/</code><span class=optname>n</span></td><td>recall a style saved by <code>/SAVE</code></td></tr>
+	<tr><td> </td><td></td><td></td></tr>
+	<tr><td colspan=3>•  <span class=reqname>text</span> may instead be an @<span class=reqname>file</span>; up to five lines (or per <code>/MAXLINES</code>) will be read.</td></tr>
+	<tr><td colspan=3>•  Option-argument separator:  You can use a colon instead of an equals sign.</td></tr>
+	<tr><td colspan=3>•  Integer arguments:  You can give these in hexadecimal with a leading <code>0x</code>.</td></tr>
+	<tr><td colspan=3>•  Window ID:  May be 0 - 1023 (the internal command’s range is 0 - 9)</td></tr>
+	<tr><td colspan=3>•  <code>/C=</code><span class=optname>n</span> or <code>/CA</code> may be combined with <span class=optname>text</span>.</td></tr>
+	<tr><td colspan=3>•  Exit code:  <code>OSD</code> returns 3 if it was interrupted by <kbd>Ctrl</kbd>-<kbd>Break</kbd> or <kbd>Ctrl</kbd>-<kbd>C</kbd>.</td></tr>
+</table>
+
+<p>Using any of the options listed under “New features” will break
+compatibility with TCC. </p>
+
+<br>
+<p>Leading and trailing spaces will be stripped from the <span class=reqname>text</span>.
+If you really want leading (or trailing) spaces, you can protect them with a leading
+(or trailing) <code>%@CHAR[0x200B]</code>.  This is the Unicode “Zero
+Width Space”, which <code>iswspace()</code> doesn’t recognize as
+whitespace.  (This trick also works in TCC’s native <code>OSD</code>.) </p>
+
+<br>
+<p><a name=osd_sw_mon></a>The <code>/MONITOR=</code><span class=optname>n</span>
+option allows you to specify the monitor used by the <code>/LEFT</code>, <code>/RIGHT</code>,
+<code>/HCENTER</code>, <code>/TOP</code>, <code>/BOTTOM</code>, <code>/VCENTER</code>,
+and <code>/CENTER</code> options.  (It does not affect absolute screen coordinates
+specified via <code>/POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span>.)
+<span class=optname>n</span> is 0 to the number of monitors.  If
+<span class=optname>n</span> is 0 or greater than the number of monitors
+present, the default monitor (the one with the taskbar) will be used instead.
+You can also type <code>/MONITOR=-1</code> to use the entire virtual desktop
+area spanning <em>all</em> monitors.  Of course, this option is only useful in a
+multiple-monitor system. </p>
+
+<br>
+<p><a name=osd_sw_face></a>The <code>/FACE=</code><span class=optname>name</span>
+option allows you to specify the typeface used for the <span class=reqname>text</span>.
+If you don’t use this option, the default is Verdana.  If the typeface name
+contains spaces, double-quote it.  Instead of a typeface name, you can give a
+family name in parentheses, and OSD will use the first TrueType font of that
+type that it finds.  These are the supported families; note that the parentheses
+are required: </p>
+
+<table class=descript>
+	<tr style="text-decoration: underline;"><td>family</td><td>description</td><td>example</td></tr>
+	<tr><td><code>(Roman)</code></td><td>a serif typeface</td><td>Times New Roman</td></tr>
+	<tr><td><code>(Swiss)</code></td><td>a sans-serif typeface</td><td>Arial</td></tr>
+	<tr><td><code>(Modern)</code></td><td>an unstressed typeface; most are fixed-pitch</td><td>Courier New</td></tr>
+	<tr><td><code>(Script)</code></td><td>a handwriting typeface</td><td>Comic Sans MS</td></tr>
+	<tr><td><code>(Decorative)</code></td><td>decorative, fantasy, wingdings, <em>etc</em>.</td><td>Bauhaus 93</td></tr>
+</table>
+
+<br>
+<p><a name=osd_sw_fade></a>The <code>/FADE</code> option causes the OSD window
+to fade away smoothly when the timeout expires.  This fadeout only happens at the
+timeout.  If the OSD window is closed for any other reason — <kbd>Ctrl</kbd>-<kbd>Break</kbd>
+was pressed (without <code>/N</code>) or a later <code>OSD /C</code> closes a window
+opened with <code>/N</code>, or if the plugin is unloaded — the fade will
+not be performed.  <code>/FADE</code> will not work in 256-color mode. </p>
+
+<br>
+<p><a name=osd_sw_n></a>If <code>/N</code> is used, you may specify a timeout
+of zero, and the OSD window will hang around indefinitely.  Use <code>OSD /C</code>
+to close it.  If <code>/N</code> is not specified, the timeout must be nonzero. </p>
+
+<br>
+<p><a name=osd_sw_hue></a><code>/HUE=</code><span class=optname>name</span>
+lets you specify the color as a <a target=_blank href="https://www.w3.org/wiki/CSS/Properties/color/keywords">W3C color name</a>.
+Case is not significant, and color names containing ‘gray’ may be spelled
+using ‘grey’ if you prefer.  You can also use hexadecimal color values like
+<code>/HUE=#E6E6FA</code> or <code>/HUE=#6CF</code> (the value must be either three or
+six hex digits). </p>
+
+<br>
+<p><a name=osd_sw_save></a><code>/SAVE=</code><span class=optname>n</span>
+saves the current text style for use in later <code>OSD</code> commands.  The
+valid range for <span class=optname>n</span> is 1 to 4096.  Only text appearance
+settings will be saved; <code>/SAVE</code> does not record behavior settings
+like the timeout, screen position, fading, and so on.  The settings that are
+saved include: </p>
+
+<table class=descript>
+	<tr><td>•  the typeface</td><td><a href="E:\Utils\#osd_sw_face"><code>/FACE</code></a></td></tr>
+	<tr><td>•  the text height</td><td><code>/FONT</code></td></tr>
+	<tr><td>•  the text weight</td><td><code>/BOLD</code></td></tr>
+	<tr><td>•  italics and underlining</td><td><code>/I</code> and <code>/U</code></td></tr>
+	<tr><td>•  the color</td><td><code>/RGB</code>, <code>/COLOR</code>, or <code>/HUE</code></td></tr>
+	<tr><td>•  drop shadows</td><td><code>/SHADOW</code></td></tr>
+	<tr><td>•  the alpha value</td><td><code>/ALPHA</code></td></tr>
+</table>
+
+<p>Use this option to simplify batch files with many <code>OSD</code> commands by
+eliminating repeated <code>/FACE</code>, <code>/FONT</code>, <code>/COLOR</code>,
+<em>etc.</em> options.  If <span class=optname>n</span> is in the range 1 to
+100, the text appearance will be saved as a <em>global style</em>:  it will
+affect other instances of TCC, and it will be remembered after you unload the
+plugin or exit the shell.  If <span class=optname>n</span> is greater than 100,
+the new style will only affect the current shell, and it will be lost when you
+unload the plugin or exit the shell.  In most cases you should use private
+styles, <em>i.e.</em> values greater than 100. </p>
+
+<p><a name=osd_sw_style></a><code>/STYLE=</code><span class=optname>n</span>
+reloads a style saved by a previous <code>/SAVE=</code><span class=optname>n</span>.
+<span class=optname>N</span> is 1 to 4096.  <code>/STYLE=</code><span class=optname>n</span>
+can be abbreviated to just <code>/</code><span class=optname>n</span>.  For
+example, <code>/101</code> is equivalent to <code>/STYLE=101</code>. </p>
+
+<br>
+<p><a name=osd_sw_c></a><code>/C</code> and its variants only close OSD
+windows created by <em>this</em> plugin in the current instance of TCC;
+it will not close OSD windows created by TCC’s internal <code>OSD</code>,
+or by other shells. </p>
+
+<p>You may combine <code>/C</code>, <code>/C=</code><span class=optname>n</span>,
+<code>/CA</code>, or <code>/FADENOW</code> with <span class=optname>text</span>
+to close old OSD windows while creating a new one.  For example, you could use: </p>
+
+<p class=example><code>osd /n /time=0 /c=5 This is a test.</code></p>
+
+<p>... to close all OSD windows with ID #5 while creating a new one, also with
+ID #5.  You can use this feature to smoothly replace one OSD with another.
+Note that this syntax is not compatible with TCC’s internal <code>OSD</code>
+command. </p>
+
+<br>
+<p><a name=osd_sw_cp></a>When displaying an OEM text file with
+<code>@</code><span class=reqname>file</span>, you can use
+<code>/CP:</code><span class=optname>n</span> to specify the code page.
+Supported values for <code>/CP</code> include: </p>
+
+<table class=descript>
+	<tr><td>437</td><td>United States (OEM)</td><td>1250</td><td>Central Europe</td></tr>
+	<tr><td>720</td><td>Arabic (OEM)</td><td>1251</td><td>Cyrillic</td></tr>
+	<tr><td>737</td><td>Greek (OEM)</td><td>1252</td><td>Latin I</td></tr>
+	<tr><td>775</td><td>Baltic (OEM)</td><td>1253</td><td>Greek</td></tr>
+	<tr><td>850</td><td>Multilingual Latin I (OEM)</td><td>1254</td><td>Turkish</td></tr>
+	<tr><td>852</td><td>Latin II (OEM)</td><td>1255</td><td>Hebrew</td></tr>
+	<tr><td>855</td><td>Cyrillic (OEM)</td><td>1256</td><td>Arabic</td></tr>
+	<tr><td>857</td><td>Turkish (OEM)</td><td>1257</td><td>Baltic</td></tr>
+	<tr><td>858</td><td>Latin I with Euro sign (OEM)</td><td>1258</td><td>Vietnam</td></tr>
+	<tr><td>862</td><td>Hebrew (OEM)</td><td>10000</td><td>Mac OS Roman</td></tr>
+	<tr><td>866</td><td>Russian (OEM)</td><td>20866</td><td>KOI8-R (Russia)</td></tr>
+	<tr><td>874</td><td>Thai (OEM)</td><td>21866</td><td>KOI8-U (Ukraine)</td></tr>
+	<tr><td>A or ANSI</td><td colspan=3>the current Windows code page</td></tr>
+	<tr><td>O or OEM</td><td colspan=3>the current OEM code page</td></tr>
+</table>
+
+<p>This option does not affect Unicode text files, including UTF-8.  If you do
+not use <code>/CP:</code><span class=optname>n</span>, the default is the
+current Windows code page. </p>
+
+
+<br>
+<p>Examples: </p>
+
+<p class=example><code>rem  Using TCC-compatible syntax:<br>
+osd /time=3 /hcenter /top /font=54 This is only a test!<br>
+<br>
+rem  This does the same thing, but is shorter:<br>
+osd /t:3 /hc /t /h:54 This is only a test!<br>
+<br>
+rem  Add some fancy options:<br>
+osd /t:3 /hc /t /h:54 /face:Georgia /k:11 /ds /fade This is only a test!<br>
+<br>
+rem  Create a style #201 ...<br>
+osd /face:"Century Gothic" /h:36 /hue:NavajoWhite /shadow /save:201<br>
+<br>
+rem  ... and use it in later calls to OSD:<br>
+for /l %i in ( 0, 50, 300 ) osd /n /pos:%i,%i /t:5 /201 This is a test.<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=osdimg></a><code>OSDIMG</code> — Display a graphical
+image on-screen. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>OSDIMG</code><code> /N /POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span><code> /TIME=</code><span class=optname>n</span><code> /SIZE=</code><span class=optname>w</span><code>,</code><span class=optname>h</span><code> /ID=</code><span class=optname>n</span><code> /C /I=</code><span class=optname>n</span><code> /BG </code><span class=reqname>filename</span></p>
+
+<table class=descript>
+	<tr><td><code>/N</code></td><td>don’t wait for the OSD window to time out</td></tr>
+	<tr><td><code>/POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span></td><td>set OSD window position; defaults to 0,0</td></tr>
+	<tr><td><code>/TIME=</code><span class=optname>n</span></td><td>in seconds; the default is 4</td></tr>
+	<tr><td><a href="E:\Utils\#osdimg_sw_size"><code>/SIZE=</code><span class=optname>w</span><code>,</code><span class=optname>h</span></a></td><td>set the window size, in pixels (200,0)</td></tr>
+	<tr><td><code>/ID=</code><span class=optname>n</span></td><td>specify an ID number; defaults to 998</td></tr>
+	<tr><td><a href="E:\Utils\#osdimg_sw_c"><code>/C</code></a></td><td>also close any OSD windows with the same ID</td></tr>
+	<tr><td><code>/ALPHA=</code><span class=optname>n</span></td><td>transparency; <span class=optname>n</span> is 48 (ghostly) to 255 (opaque)</td></tr>
+	<tr><td><code>/FADE</code></td><td>fade the window out when the time expires</td></tr>
+	<tr><td><code>/LEFT</code>, <code>/RIGHT</code>, <code>/HCENTER</code></td><td>override any <code>/POS=</code> <span class=optname>x</span> value</td></tr>
+	<tr><td><code>/TOP</code>, <code>/BOTTOM</code>, <code>/VCENTER</code></td><td>override any <code>/POS=</code> <span class=optname>y</span> value</td></tr>
+	<tr><td><code>/I=</code><span class=optname>n</span></td><td>icon index</td></tr>
+	<tr><td><code>/BG</code></td><td>make the color at the top left corner transparent</td></tr>
+	<tr><td><span class=reqname>filename</span></td><td>the file containing the image to display</td></tr>
+</table>
+
+<p>This command displays a graphic in an OSD window.  <code>OSDIMG</code>
+suports <a href="E:\Utils\#commonopts">many of the same options and abbreviations as <code>OSD</code></a>,
+including some not listed in the table above. </p>
+
+<p>The <span class=reqname>filename</span> may be a BMP, GIF, JPEG, PNG, or
+TIFF file.  You can also extract an icon from an <span class=filename>.exe</span>
+or <span class=filename>.dll</span> file; use <code>/I=</code><span class=optname>n</span>
+if the file contains more then one icon. </p>
+
+<p><a name=osdimg_sw_size></a><code>/SIZE=</code><span class=optname>w</span><code>,</code><span class=optname>h</span>
+sets the size of the OSD window, in pixels.  At present, these can range from
+16 to 1024, or 0 for ‘unspecified’.  If one dimension is unspecified,
+<code>OSDIMG</code> will scale the image to fit the other, while preventing
+either dimension from exceeding 1024. </p>
+
+<p><a name=osdimg_sw_c></a>The <code>/C</code> option works differently than
+in the <code>OSD</code> command.  You use it together with a
+<span class=reqname>num</span> argument, to display a new graphic and
+<em>simultaneously</em> close any open OSD windows with the same ID number
+(998 by default).  If you want to close an open <code>OSDIMG</code> window
+without creating a new one, use <code>OSD /C=998</code>.  Note that any old
+windows are closed <em>after</em> the new one is created — this is
+to reduce flicker.  If for some reason the new window cannot be created, then
+the <code>/C</code> close operation will not be performed. </p>
+
+<br>
+<p>Examples: </p>
+
+<p class=example><code>rem  Show a little enterprise:<br>
+osdimg /ctr /size=500 /fade NCC-1701.jpg<br>
+<br>
+ren  How about an icon?<br>
+osdimg /size=128 /bg /i=12 "%windir\system32\shell32.dll"<br>
+</code></p>
+
+<br>
+<p><span class=note>•  Note:</span>  This command does not exist in TCC. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=pctbar></a><code>PCTBAR</code> — Display an on-screen
+percentage bar. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>PCTBAR</code><code> /N /POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span><code> /RGB=</code><span class=optname>r</span><code>,</code><span class=optname>g</span><code>,</code><span class=optname>b</span><code> /TIME=</code><span class=optname>n</span><code> /SIZE=</code><span class=optname>w</span><code>,</code><span class=optname>h</span><code> /ID=</code><span class=optname>n</span><code> /C /COLOR=</code><span class=optname>n</span><code> /ALPHA=</code><span class=optname>n</span><code> /FADE </code><span class=reqname>num</span><code>/</code><span class=optname>denum</span></p>
+
+<table class=descript>
+	<tr><td><code>/N</code></td><td>don’t wait for the OSD window to time out</td></tr>
+	<tr><td><code>/POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span></td><td>set OSD window position; defaults to 0,0</td></tr>
+	<tr><td><code>/RGB=</code><span class=optname>r</span><code>,</code><span class=optname>g</span><code>,</code><span class=optname>b</span></td><td>text color; the default is 0,255,0 (bright green)</td></tr>
+	<tr><td><code>/TIME=</code><span class=optname>n</span></td><td>in seconds; the default is 4</td></tr>
+	<tr><td><code>/SIZE=</code><span class=optname>w</span><code>,</code><span class=optname>h</span></td><td>set the window size, in pixels (200,40)</td></tr>
+	<tr><td><code>/ID=</code><span class=optname>n</span></td><td>specify an ID number; defaults to 999</td></tr>
+	<tr><td><a href="E:\Utils\#pct_sw_c"><code>/C</code></a></td><td>also close any OSD windows with the same ID</td></tr>
+	<tr><td><a href="E:\Utils\#pct_sw_v"><code>/V</code></a></td><td>also show the value as a percentage</td></tr>
+	<tr><td><code>/COLOR=</code><span class=optname>n</span></td><td>specify color as a TCC color number, 0 - 15</td></tr>
+	<tr><td><code>/ALPHA=</code><span class=optname>n</span></td><td>transparency; <span class=optname>n</span> is 48 (ghostly) to 255 (opaque)</td></tr>
+	<tr><td><code>/FADE</code></td><td>fade the window out when the time expires</td></tr>
+	<tr><td><code>/LEFT</code>, <code>/RIGHT</code>, <code>/HCENTER</code></td><td>override any <code>/POS=</code> <span class=optname>x</span> value</td></tr>
+	<tr><td><code>/TOP</code>, <code>/BOTTOM</code>, <code>/VCENTER</code></td><td>override any <code>/POS=</code> <span class=optname>y</span> value</td></tr>
+	<tr><td><span class=reqname>num</span></td><td>the numerator; required</td></tr>
+	<tr><td><code>/</code><span class=optname>denom</span></td><td>the denominator; defaults to 100</td></tr>
+</table>
+
+<p>This command displays a simple percentage bar on the screen.  It might be
+useful for a sound-volume indicator or a progress bar.  <code>PCTBAR</code>
+supports <a href="E:\Utils\#commonopts">many of the same options and abbreviations as
+<code>OSD</code></a>, including many not listed here.  You may use a colon
+instead of an equals sign as the option-argument separator. </p>
+
+<p><a name=pct_sw_c></a>The <code>/C</code> option works differently than
+in the <code>OSD</code> command.  You use it together with a
+<span class=reqname>num</span> argument, to display a new percentage bar and
+<em>simultaneously</em> close any open OSD windows with the same ID number
+(999 by default).  You can use this to create the illusion of animation,
+replacing an old window with a new one.  If you want to close an open
+<code>PCTBAR</code> window without creating a new one, use
+<code>OSD /C=999</code>.  Note that any old windows are closed <em>after</em>
+the new one is created — this is to reduce flicker.  If for some
+reason the new window cannot be created, then the <code>/C</code> close
+operation will not be performed. </p>
+
+<p><a name=pct_sw_v></a><code>/V</code> causes the value to also be
+shown as a numeric percentage.  This option will be ignored if the window
+is less than 40×16 pixels. </p>
+
+<br>
+<p>Example: </p>
+
+<p class=example><code>rem  Display a progress bar at 42% :<br>
+pctbar /top /hcenter 42<br>
+<br>
+rem  Animate it:<br>
+for /l %i in ( 0, 4, 100 ) do ( pctbar /n /c /t /hc /fade %i & delay /m 100 )<br>
+</code></p>
+
+
+<br>
+<p><span class=note>•  Note:</span>  This command does not exist in TCC. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=intvars></a>New Variables:</h4>
+
+
+<p><a name=v_osd></a><code>_OSD</code> — Returns the number of OSD
+windows currently open. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_OSD</code></p>
+
+
+<p>If you have opened OSD windows with <code><a href="E:\Utils\#osd">OSD</a> /N</code>,
+<code><a href="E:\Utils\#osdimg">OSDIMG</a> /N</code>, or
+<code><a href="E:\Utils\#pctbar">PCTBAR</a> /N</code>, you can use this variable to
+check whether any are still present.  Only OSD windows opened by this plugin, in
+the current shell, will be counted. </p>
+
+<br>
+<p><span class=note>•  Note:</span>  This variable does not exist in TCC. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_osdver></a><code>_OSDVER</code> — Returns the version
+of OSD in this plugin. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_OSDVER</code></p>
+
+<br>
+<p><span class=note>•  Note:</span>  This variable does not exist in TCC. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Function:</h4>
+
+
+<p><a name=f_osd></a><code>@OSD</code> — Returns the number of OSD
+windows with the given ID currently open. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@OSD[</code><span class=optname>id</span><code class=req>]</code></p>
+
+
+<p>If you have opened OSD windows with <code><a href="E:\Utils\#osd">OSD</a> /N</code>,
+<code><a href="E:\Utils\#osdimg">OSDIMG</a> /N</code>, or
+<code><a href="E:\Utils\#pctbar">PCTBAR</a> /N</code>, you can use this function to
+check whether any are still open.  Only OSD windows with the specified ID, opened
+by this plugin in the current shell, will be counted.  If you do not specify an
+<span class=optname>id</span>, the default is zero. </p>
+
+<br>
+<p><span class=note>•  Note:</span>  This function does not exist in TCC. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=commonopts></a>Common Options:</h4>
+
+<p>These options are supported by <a href="E:\Utils\#osd"><code>OSD</code></a>,
+<a href="E:\Utils\#osdimg"><code>OSDIMG</code></a>, and <a href="E:\Utils\#pctbar"><code>PCTBAR</code></a>: </p>
+
+<table class=descript>
+	<tr><td><code>/LEFT</code></td><td><code>/L</code></td><td>position at left of monitor/desktop/tab</td></tr>
+	<tr><td><code>/RIGHT</code></td><td><code>/R</code></td><td>position at right of monitor/desktop/tab</td></tr>
+	<tr><td><code>/HCENTER</code></td><td><code>/HC</code></td><td>center horizontally on monitor/desktop/tab</td></tr>
+	<tr><td><code>/TOP</code></td><td><code>/T</code></td><td>position at top of monitor/desktop/tab</td></tr>
+	<tr><td><code>/BOTTOM</code></td><td><code>/B</code></td><td>position at bottom of monitor/desktop/tab</td></tr>
+	<tr><td><code>/VCENTER</code></td><td><code>/VC</code></td><td>center vertically on monitor/desktop/tab</td></tr>
+	<tr><td><code>/CENTER</code></td><td><code>/CTR</code></td><td>center on monitor/desktop/tab</td></tr>
+	<tr><td><code>/POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span></td><td></td><td>position OSD window</td></tr>
+	<tr><td><code>/ALPHA=</code><span class=optname>n</span></td><td><code>/A=</code><span class=optname>n</span></td><td>transparency; <span class=optname>n</span> is 48 (ghostly) to 255 (opaque)</td></tr>
+	<tr><td><code>/FADE</code></td><td><code>/F</code></td><td>fade the window out</td></tr>
+	<tr><td><code>/FADEIN</code></td><td><code>/FI</code></td><td>fade the window in</td></tr>
+	<tr><td><code>/OFFSET</code></td><td></td><td><code>/POS=</code><span class=optname>y</span><code>,</code><span class=optname>x</span> coordinates are relative to <code>/TOP</code>, <code>/BOTTOM</code>, <code>/LEFT</code>, <i>etc</i>.</td></tr>
+	<tr><td><code>/MONITOR=</code><span class=optname>n</span></td><td><code>/M=</code><span class=optname>n</span></td><td>monitor number</td></tr>
+	<tr><td><code>/TAB</code></td><td></td><td><code>/TOP</code>, <code>/BOTTOM</code>, <i>etc</i>. are relative to TCmd tab window</td></tr>
+	<!-- <tr><td><code>/</code></td><td><code>/</code></td><td> </td></tr> -->
+</table>
+
+<h4><a name=escapes></a>Character Escapes:</h4>
+
+<p>These may be used in <a href="E:\Utils\#osd"><code>OSD</code>’s</a>
+<span class=reqname>text</span> string when you specify <code>/X</code>. </p>
+
+<table class=descript>
+	<tr><th>Escape:</th><th>Expands to:</th><th>Example:</th></tr>
+	<tr><td><code>\b</code></td><td>backspace</td><td></td></tr>
+	<tr><td><code>\k</code></td><td>grave accent</td><td></td></tr>
+	<tr><td><code>\n</code></td><td>newline</td><td></td></tr>
+	<tr><td><code>\p</code></td><td>percent sign</td><td></td></tr>
+	<tr><td><code>\q</code></td><td>double quote</td><td></td></tr>
+	<tr><td><code>\u</code><span class=optname>xxxx</span></td><td>Unicode character, up to U+FFFF</td><td><code>\u03a3</code> → Σ</td></tr>
+	<tr><td><code>\U</code><span class=optname>xxxxxxxx</span></td><td>Unicode character, up to U+10FFFF</td><td>\U1f63a → 😺</td></tr>
+	<tr><td><code>\</code><span class=optname>nnn</span></td><td>octal value, up to 777</td><td><code>\101</code> → A</td></tr>
+	<tr><td><code>\x</code><span class=optname>nnnn</span></td><td>hexadecimal value, up to FFFF</td><td><code>\x41</code> → A</td></tr>
+	<tr><td><code>\#</code><span class=optname>nnnnn</span></td><td>decimal value, up to 65535</td><td><code>\#65</code> → A</td></tr>
+	<tr><td><code>\\</code></td><td>backslash</td><td></td></tr>
+</table>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table class=descript>
+	<tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td style="font-size: 85%;"> </td></tr> -->
+	<tr><td>1.0.12.0</td><td nowrap>2026-10-19</td><td style="font-size: 85%;">Changes to the way the help text is displayed in
+		Windows Terminal windows and Take Command ConPTY tabs. </td></tr>
+	<tr><td>1.0.11.11</td><td nowrap>2026-04-29</td><td style="font-size: 85%;">Supports reading high-order characters from
+		an @file. </td></tr>
+	<tr><td>1.0.11.10</td><td nowrap>2026-03-10</td><td style="font-size: 85%;">Commands, functions, and variables now return
+		<code>ERROR_INVALID_PARAMETER</code> on a null string pointer. <br>
+		Changes to support Take Command v36 ConPTY tabs. </td></tr>
+	<tr><td>1.0.11.9</td><td nowrap>2025-06-24</td><td style="font-size: 85%;">Use CharUpperW() instead of _wcsupr_s().  Now <code>/UC</code>
+		works better with accented letters and non-Roman alphabets. </td></tr>
+	<tr><td>1.0.11.8</td><td nowrap>2024-09-26</td><td style="font-size: 85%;"><span class=filename>mmfiles.cpp</span> v1.4.4.6,
+		<span class=filename>codepages.cpp</span> v2.1.0.3, <span class=filename>FindMyWindow</span> v1.1.1.4. <br>
+		ParseInt() now accepts octal numbers with a leading <code>0o</code>.  ParseSignedInt() now allows a leading plus sign. 
+		Repeated <code>OSD /TAB</code> commands in Take Command or Windows Terminal may be noticeably quicker. </td></tr>
+	<tr><td>1.0.11.7</td><td nowrap>2024-05-16</td><td style="font-size: 85%;">New version of <span class=filename>FindMyWindow.cpp</span>;
+		detection of Windows Terminal and Console2 should be faster. </td></tr>
+	<tr><td>1.0.11.6</td><td nowrap>2024-04-11</td><td style="font-size: 85%;">Minor tweak to <span class=filename>FindMyWindow.cpp</span>:
+		now Windows Terminal detection does not rely on the <code>WT_SESSION</code> environment variable. </td></tr>
+	<tr><td>1.0.11.5</td><td nowrap>2023-12-05</td><td style="font-size: 85%;">Updated <span class=filename>FindMyWindow.cpp</span>.
+		These may slightly improve compatibility with Take Command and Console2. </td></tr>
+	<tr><td>1.0.11.4</td><td nowrap>2023-11-16</td><td style="font-size: 85%;">The “Plugin not loaded” error message is
+		not displayed in pipe and transient shells.  When it is displayed, it now includes the plugin’s name. </td></tr>
+	<tr><td>1.0.11.3</td><td nowrap>2023-10-14</td><td style="font-size: 85%;">Tweaked ShowCmdHelp() to include
+		<code>VER_PATCH</code>. </td></tr>
+	<tr><td>1.0.11.2</td><td nowrap>2023-10-12</td><td style="font-size: 85%;">Updated the plugin’s web address. </td></tr>
+	<tr><td>1.0.11</td><td nowrap>2023-07-06</td><td style="font-size: 85%;">Added <code>/FADEIN</code>. </td></tr>
+	<tr><td>1.0.10</td><td nowrap>2022-12-27</td><td style="font-size: 85%;">Added an (otherwise undocumented)
+		<code>/J</code> option to <a href="E:\Utils\#pctbar"><code>PCTBAR</code></a>. </td></tr>
+	<tr><td>1.0.9</td><td nowrap>2022-11-21</td><td style="font-size: 85%;">Adds <code>/TAB</code> option.  Finally documented
+		<code>/OFFSET</code>. </td></tr>
+	<tr><td>1.0.8</td><td nowrap>2022-09-09</td><td style="font-size: 85%;">Bug fix:
+		<a href="E:\Utils\#osd_sw_c"><code>/FADENOW</code></a> was not closing windows opened with
+		<a href="E:\Utils\#osd_sw_fade"><code>/FADE</code></a>.  Made the default drop shadow darker. </td></tr>
+	<tr><td>1.0.7.2</td><td nowrap>2021-11-23</td><td style="font-size: 85%;">Updated mmfiles.cpp to version 1.4.4.0.
+		Tweaks to error messages, and other minor code cleanup. </td></tr>
+	<tr><td>1.0.7.1</td><td nowrap>2021-11-01</td><td style="font-size: 85%;">Help text is now displayed via ShowCmdHelp().
+		<code>\p</code> now expands to a percent sign. </td></tr>
+	<tr><td>1.0.7</td><td nowrap>2021-10-11</td><td style="font-size: 85%;">Minor improvements
+		to <a href="E:\Utils\#escapes">escape expansion</a>:  added <code>\k</code> for grave accent, <code>\q</code> for double quote,
+		<code>\#</code> for decimal character values.  Also tweaked the handling of malformed escape sequences. </td></tr>
+	<tr><td>1.0.6</td><td nowrap>2021-07-28</td><td style="font-size: 85%;">Changes to
+		drop shadows.  Tweaked the version info resource to include the platform (x64 or x86). </td></tr>
+	<tr><td>1.0.5</td><td nowrap>2021-06-19</td><td style="font-size: 85%;">Added
+		<code>/RJ</code>, <code>/LJ</code>, and <code>/X</code> to OSD. </td></tr>
+	<tr><td>1.0.4</td><td nowrap>2021-06-18</td><td style="font-size: 85%;">Increased
+		the drop shadow distance for larger font sizes. </td></tr>
+	<tr><td>1.0.3</td><td nowrap>2021-05-15</td><td style="font-size: 85%;">Made the
+		fade slower and smoother.  Reduced the minimum alpha value to 48.  Moved the multiline/TextAngle test
+		into MakeOsdWindow(). </td></tr>
+	<tr><td>1.0.2</td><td nowrap>2020-12-24</td><td style="font-size: 85%;">Restored
+		the WS_EX_NOACTIVATE style bit to prevent OSD from deactivating the TCC window, as it occasionally does. </td></tr>
+	<tr><td>1.0.1</td><td nowrap>2020-12-21</td><td style="font-size: 85%;">Tweaked
+		the window style bits to make OSD windows “click-throughable”.  Switched the filenames;
+		now they are <span class=filename>OSD.dll</span> (for 64-bit Take Command) and
+	<span class=filename>OSD-x86.dll</span> (for 32-bit). </td></tr>
+	<tr><td>1.0.0</td><td nowrap>2020-02-19</td><td style="font-size: 85%;">First
+		release.  Removed <code>/EBCDIC</code>.  Documented a few previously undocumented features, and
+		included some demo batch files which hint at others. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td style="font-size: 85%;"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/osd.zip">https://charlesdye.net/dl/osd.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

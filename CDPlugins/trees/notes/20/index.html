@@ -1,0 +1,855 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>Tasks Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TABLE.postable		{ border: none; margin: 2em auto 2em auto; border-spacing: 8px; }
+	TABLE.postable TD	{ border: 1px solid #dde; border-radius: 8px; padding: 1.2em 1em; background-color: #f0f0f8; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li>    <a href="E:\Utils\#variables">Variables</a></li>
+	<li><a href="E:\Utils\#reference">Reference Information</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>Tasks plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.0.33     2026-10-06</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin reimplements the <a href="E:\Utils\#enumprocesses"><code>ENUMPROCESSES</code></a>,
+<a href="E:\Utils\#services"><code>SERVICES</code></a>, and <a href="E:\Utils\#tasklist"><code>TASKLIST</code></a>
+commands.  These are syntax-compatible with their TCC equivalents, but include new options
+and new features including more info, sorting, and highlighting.  I have also added a new
+<a href="E:\Utils\#demote"><code>DEMOTE</code></a> command to run a program unelevated from an
+elevated TCC session. </p>
+
+<p>I also provide five new functions, <a href="E:\Utils\#f_elevated"><code>@ELEVATED</code></a>,
+<a href="E:\Utils\#f_pidchildren"><code>@PIDCHILDREN</code></a>, 
+<a href="E:\Utils\#f_pidexename"><code>@PIDEXENAME</code></a>, <a href="E:\Utils\#f_pidsvcnames"><code>@PIDSVCNAMES</code></a>,
+and <a href="E:\Utils\#f_pidwow64"><code>@PIDWOW64</code></a>.  These expose internal functions
+which might be useful to the user. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>Tasks.dll</span> and
+<span class=filename>Tasks.chm</span> to some known location on your hard
+drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>Tasks-x86.dll</span> instead of
+<span class=filename>Tasks.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\tasks.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Commands:</a></th></tr>
+	<tr><td><a href="E:\Utils\#demote"><code>DEMOTE</code></a></td><td><a href="E:\Utils\#enumprocesses"><code>ENUMPROCESSES</code></a></td><td><a href="E:\Utils\#services"><code>SERVICES</code></a></td><td><a href="E:\Utils\#tasklist"><code>TASKLIST</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#functions">Functions:</a></th></tr>
+	<tr><td><a href="E:\Utils\#f_elevated"><code>@ELEVATED</code></a></td><td><a href="E:\Utils\#f_pidchildren"><code>@PIDCHILDREN</code></a></td><td><a href="E:\Utils\#f_pidexename"><code>@PIDEXENAME</code></a></td><td><a href="E:\Utils\#f_pidsvcnames"><code>@PIDSVCNAMES</code></a></td><td><a href="E:\Utils\#f_pidwow64"><code>@PIDWOW64</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#functions">Variables:</a></th></tr>
+	<tr><td><a href="E:\Utils\#v_demotepid"><code>_DEMOTEPID</code></a></td><td><a href="E:\Utils\#v_demotewin"><code>_DEMOTEWIN</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+enumprocesses %_ppid<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=demote></a><code>DEMOTE</code> — Run a program without
+elevation. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>DEMOTE</code><code> /C /K /ALIGN: /CENTER /COLOR: /D: /ENV /INV /MAX /MIN /POS: /Q /SIZE: /TAB /TABNA /WAIT </code><span class=optname>command</span><code> </code><span class=optname>args</span></p>
+
+<table class=descript>
+	<tr><td><code>/C</code></td><td>run <span class=optname>command</span> in a demoted <span class=filename>tcc.exe</span> and close it </td></tr>
+	<tr><td><code>/K</code></td><td>run <span class=optname>command</span> in a demoted <span class=filename>tcc.exe</span> and keep it open </td></tr>
+	<tr><td><a href="E:\Utils\#demote_align"><code>/ALIGN:</code><span class=optname>n</span><code>,</code><span class=optname>M</span></a></td><td>align the window relative to a monitor’s edges </td></tr>
+	<tr><td><a href="E:\Utils\#demote_center"><code>/CENTER</code></a></td><td>center the window on its current monitor </td></tr>
+	<tr><td><a href="E:\Utils\#demote_color"><code>/COLOR:</code><span class=optname>color</span></a></td><td>set the console window’s startup colors </td></tr>
+	<tr><td><code>/D:</code><span class=optname>dir</span></td><td>set the startup directory for the new process</td></tr>
+	<tr><td><code>/ENV</code></td><td>create a clean environment block for the new process </td></tr>
+	<tr><td><a href="E:\Utils\#demote_envread"><code>/ENV:</code><span class=optname>file</span></a></td><td>read a new environment block from a text file</td></tr>
+	<tr><td><code>/INV</code></td><td>start the new window hidden</td></tr>
+	<tr><td><code>/MAX</code></td><td>maximize the new window</td></tr>
+	<tr><td><code>/MIN</code></td><td>minimize the new window</td></tr>
+	<tr><td><code>/POS:</code><span class=optname>x</span><code>,</code><span class=optname>y</span></td><td>set the new window’s position</td></tr>
+	<tr><td><code>/POS:</code><span class=optname>x</span><code>,</code><span class=optname>y</span><code>,</code><span class=optname>w</span><code>,</code><span class=optname>h</span></td><td>set the new window’s position and size</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><a href="E:\Utils\#demote_size"><code>/SIZE:</code><span class=optname>rows</span><code>,</code><span class=optname>cols</span></a></td><td>specifies the size of the console screen buffer</td></tr>
+	<tr><td><a href="E:\Utils\#demote_tab"><code>/TAB</code></a></td><td>start in a Take Command tab</td></tr>
+	<tr><td><a href="E:\Utils\#demote_tab"><code>/TABNA</code></a></td><td>start in a Take Command tab; do not activate the tab</td></tr>
+	<tr><td><code>/WAIT</code></td><td>wait for the new process to exit</td></tr>
+	<tr><td><span class=optname>command</span></td><td>the command or program to run</td></tr>
+	<tr><td><span class=optname>args</span></td><td>any arguments to pass to the demoted program</td></tr>
+	<!-- <tr><td> </td><td> </td></tr> -->
+</table>
+
+<p><code>DEMOTE</code> allows you run a program or command without elevated privileges,
+from an elevated shell.  If you are not running TCC elevated, this command serves no
+purpose. </p>
+
+<p>If you specify either <code>/C</code> or <code>/K</code>, <code>DEMOTE</code> will launch
+a non-elevated copy of <span class=filename>tcc.exe</span> to run the given
+<span class=optname>command</span>. </p>
+
+<p>If neither <code>/C</code> nor <code>/K</code> is given, the <span class=optname>command</span>
+must name an executable file. </p>
+
+<p>Note that <code>DEMOTE</code>’s options must precede the <span class=optname>command</span>
+on the command line.  Any trailing <span class=optname>args</span> will be passed on
+to the demoted command. </p>
+
+<br>
+<p><a name=demote_align></a><code>/ALIGN:</code><span class=optname>n</span><code>,</code><span class=optname>M</span>
+moves the window relative to a monitor.  <span class=optname>n</span> is required;
+possible values are: </p>
+
+<table class=postable>
+	<tr><td>7: top left</td><td>8: top center </td><td>9: top right</td></tr>
+	<tr><td>4: left center</td><td>5: center</td><td>6: right center</td></tr>
+	<tr><td>1: bottom left</td><td>2: bottom center</td><td>3: bottom right</td></tr>
+</table>
+
+<p>The monitor number <span class=optname>M</span> is optional.  If
+is zero or greater than the number of monitors, it defaults to the primary
+monitor.  If you do not specify a monitor number, the window will be
+aligned on whichever monitor it happens to open on. </p>
+
+<p><code>/ALIGN</code> cannot be used in combination with <code>/POS:</code>. </p>
+
+<br>
+<p><a name=demote_center></a><code>/CENTER</code> centers the new window
+on its current monitor.  This option is just short for <code>/ALIGN:5</code>. 
+<code>/CENTER</code> cannot be used in combination with <code>/POS:</code>. </p>
+
+<br>
+<p><a name=demote_color></a><code>/COLOR:</code><span class=optname>color</span>
+lets your specify the default colors for the new console window.  Note that this
+option only affects console windows; it has no effect on non-console programs. 
+You can specify your colors either as a hexadecimal value, <i>e.g.</i>
+<code>/COLOR:0x1f</code>, or as a string, <i>e.g.</i> <code>/COLOR:"BRI WHI ON BLU"</code>. 
+The default is boring old white on black. </p>
+
+<br>
+<p><a name=demote_envread></a><code>/ENV:</code><span class=optname>file</span>
+reads an environment block for the new process from a text file.  The format is
+the same as produced by the <code>SET</code> command:  one variable per line,
+<span class=optname>variable-name</span><code>=</code><span class=optname>value</span>.
+
+</p>
+
+<br>
+<p><a name=demote_size></a><code>/POS:</code><span class=optname>rows</span><code>,</code><span class=optname>cols</span>
+specifies the size of the console scrollback buffer.  Note that Windows treats
+these values as a suggestion.  The system may adjust the dimensions to fit the
+size of the console window.  This option has no effect on non-console programs. </p>
+
+<br>
+<p><a name=demote_tab></a><code>/TAB</code> and <code>/TABNA</code> try
+to start the new process in a Take Command tab.  This can only work if the
+current TCC is running in a Take Command tab, and TCC and Take Comand are the
+same version. </p>
+
+<br>
+<p class=xref>See also:  the <a href="E:\Utils\#v_demotepid"><code>_DEMOTEPID</code></a>
+variable, which returns the process ID of the last program launched by <code>DEMOTE</code>;
+and the <a href="E:\Utils\#v_demotewin"><code>_DEMOTEWIN</code></a> variable, which
+returns a window handle belonging to the last program started by <code>DEMOTE</code>. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=enumprocesses></a><code>ENUMPROCESSES</code> — List
+processes started by the specified process. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>ENUMPROCESSES</code><code> /D /O:</code><span class=optname>keys</span><code> /P /T /W /X </code><span class=optname>pid…</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#highlight"><code>/D</code></a></td><td>no <a href="E:\Utils\#highlight">highlight</a></td></tr>
+	<tr><td><a href="E:\Utils\#enumproc_opt_o"><code>/O:</code><span class=optname>keys</span></a></td><td><a href="E:\Utils\#enumproc_opt_o">sort processes</a></td></tr>
+	<tr><td><a href="E:\Utils\#paging"><code>/P</code></a></td><td><a href="E:\Utils\#paging">page output</a></td></tr>
+	<tr><td><code>/T</code></td><td>tree graphics</td></tr>
+	<tr><td><code>/W</code></td><td>show window titles and service names</td></tr>
+	<tr><td><code>/X</code></td><td>give process IDs in hexadecimal</td></tr>
+	<tr><td><span class=optname>pid…</span></td><td>may be decimal, or hexadecimal with a leading <code>0x</code></td></tr>
+</table>
+
+<p>You may supply more than one <span class=optname>pid</span>, separated by
+spaces.  If no <span class=optname>pid</span> is given, the current instance of
+TCC is assumed. </p>
+
+<br>
+<p><a name=enumproc_opt_o></a><code>/O:</code> can sort by several criteria.  The available sort
+keys are: </p>
+
+<table class=descript>
+	<tr><td><code>N</code></td><td>sort by process name</td></tr>
+	<tr><td><code>-N</code></td><td>reverse sort by process name</td></tr>
+	<tr><td><code>P</code></td><td>sort by process ID</td></tr>
+	<tr><td><code>-P</code></td><td>reverse sort by process ID</td></tr>
+</table>
+
+<p>These can be combined, <i>e.g.</i> <code>/O:NP</code> to sort by process name first,
+then by process ID.  If you type <code>/O</code> by itself, <code>ENUMPROCESSES</code>
+will sort by process ID, the same as <code>/O:P</code>.  Note that TCC’s
+<code>ENUMPROCESSES</code> command does not support <code>/O</code>. </p>
+
+<br>
+<p><span class=note>•  Note:</span>  TCC’s native <code>ENUMPROCESSES</code>
+only accepts a single <span class=optname>pid</span>, which must be in decimal.
+All options <code>/D</code>, <code>/O:</code>, <code>/P</code>, <code>/T</code>,
+<code>/W</code>, and <code>/X</code>, are new and incompatible with TCC. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=services></a><code>SERVICES</code> — List, start, or
+stop services. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>SERVICES</code><code> /I /P /R /S /T</code><span class=optname>n</span><code> </code><span class=optname>name…</span></p>
+
+<table class=descript>
+	<tr><td></td><td style="padding-bottom: 5px;">    Compatible options:</td></tr>
+	<tr><td><code>/I</code></td><td>show process IDs</td></tr>
+	<tr><td><a href="E:\Utils\#paging"><code>/P</code></a></td><td><a href="E:\Utils\#paging">page output</a></td></tr>
+	<tr><td><code>/R</code></td><td>start services</td></tr>
+	<tr><td><code>/S</code></td><td>stop services</td></tr>
+	<tr><td><code>/T</code><span class=optname>n</span></td><td>only services of type <span class=optname>n</span> (bitmapped):</td></tr>
+	<tr><td></td><td>   1: kernel drivers</td></tr>
+	<tr><td></td><td>   2: filesystem drivers</td></tr>
+	<tr><td></td><td>   16: services that run in their own process</td></tr>
+	<tr><td></td><td>   32: services that share a process</td></tr>
+	<tr><td><span class=optname>name</span></td><td>may contain wildcards; required with <code>/R</code> or <code>/S</code></td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><td></td><td style="padding-bottom: 5px;">    New options — incompatible with TCC:</td></tr>
+	<tr><td><a href="E:\Utils\#highlight"><code>/D</code></a></td><td>no <a href="E:\Utils\#highlight">highlight</a></td></tr>
+	<tr><td><code>/F</code></td><td>show filenames if found</td></tr>
+	<tr><td><code>/I:</code><span class=optname>pid</span></td><td>show only processes with the specified process ID</td></tr>
+	<tr><td><code>/L</code></td><td>show line numbers</td></tr>
+	<tr><td><a href="E:\Utils\#services_opt_o"><code>/O:</code><span class=optname>keys</span></a></td><td><a href="E:\Utils\#services_opt_o">sort services</a></td></tr>
+	<tr><td><code>/V</code></td><td>show service type values</td></tr>
+	<tr><td><code>/X</code></td><td>show process IDs in hex</td></tr>
+</table>
+
+<p>This command is intended to be syntax-compatible with its TCC equivalent.
+However, its operation and output may differ. </p>
+
+<p>Using any of the new options will break compatibility with TCC. </p>
+
+<br>
+<p><a name=services_opt_o></a><code>/O:</code> can sort by several criteria.  The available sort
+keys are: </p>
+
+<table class=descript>
+	<tr><td><code>D</code></td><td>sort by display name</td></tr>
+	<tr><td><code>-D</code></td><td>reverse sort by display name</td></tr>
+	<tr><td><code>N</code></td><td>sort by service name</td></tr>
+	<tr><td><code>-N</code></td><td>reverse sort by service name</td></tr>
+	<tr><td><code>P</code></td><td>sort by process ID</td></tr>
+	<tr><td><code>-P</code></td><td>reverse sort by process ID</td></tr>
+	<tr><td><code>S</code></td><td>sort by status</td></tr>
+	<tr><td><code>-S</code></td><td>reverse sort by status</td></tr>
+</table>
+
+<p>These can be combined, <i>e.g.</i> <code>/O:PN</code> to sort by process ID first,
+then by service name.  If you type <code>/O</code> by itself, <code>SERVICES</code>
+will sort by service names, the same as <code>/O:N</code>.  Note that TCC’s
+<code>SERVICES</code> command does not support <code>/O</code>. </p>
+
+<!--  <p class="xref">See also:  the <a href="#f_service"><code>@SERVICE</code></a> function. </p> -->
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=tasklist></a><code>TASKLIST</code> — List running
+processes. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>TASKLIST</code><code> /C /D /H /I /L /M /N /O /P /R /T /U /V /X /Z </code><span class=optname>name…</span></p>
+
+<table class=descript>
+	<tr><td></td><td style="padding-bottom: 5px;">    Compatible features:</td></tr>
+	<tr><td><code>/C</code></td><td>show priority classes</td></tr>
+	<tr><td><code>/D</code></td><td>dump names of modules loaded by each process</td></tr>
+	<tr><td><code>/H</code></td><td>list threads for each process</td></tr>
+	<tr><td><code>/I</code></td><td>show code integrity levels (Vista and later only)</td></tr>
+	<tr><td><code>/L</code></td><td>show startup command lines</td></tr>
+	<tr><td><code>/M</code></td><td>show memory usage</td></tr>
+	<tr><td><code>/N</code></td><td>show window class names</td></tr>
+	<tr><td><code>/O</code></td><td>sort processes by PID</td></tr>
+	<tr><td><a href="E:\Utils\#paging"><code>/P</code></a></td><td><a href="E:\Utils\#paging">page output</a></td></tr>
+	<tr><td><code>/R</code></td><td>show a process tree</td></tr>
+	<tr><td><code>/T</code></td><td>show kernel-mode and user-mode times</td></tr>
+	<tr><td><code>/U</code></td><td>display owner username for each process</td></tr>
+	<tr><td><code>/U:</code><span class=optname>wildspec</span></td><td>only list processes whose owner names match <span class=optname>wildspec</span></td></tr>
+	<tr><td><code>/X</code></td><td>display process and thread IDs in hexadecimal</td></tr>
+	<tr><td><code>/Z</code></td><td>include parent PIDs</td></tr>
+	<tr><td><span class=optname>name</span></td><td>a program name, window title, or =PID</td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><td></td><td style="padding-bottom: 5px;">    New features — incompatible with TCC:</td></tr>
+	<tr><td><a href="E:\Utils\#tasklist_opt_e"><code>/E</code></a></td><td><a href="E:\Utils\#tasklist_opt_e">show extra info</a></td></tr>
+	<tr><td><code>/F</code></td><td>show the filename for each process</td></tr>
+	<tr><td><code>/MM</code></td><td>show memory usage in an abbreviated format</td></tr>
+	<tr><td><a href="E:\Utils\#tasklist_opt_n"><code>/N:</code><span class=optname>opts</span></a></td><td><a href="E:\Utils\#tasklist_opt_n">disable features</a></td></tr>
+	<tr><td><a href="E:\Utils\#tasklist_opt_o"><code>/O:</code><span class=optname>keys</span></a></td><td><a href="E:\Utils\#tasklist_opt_o">sort processes</a></td></tr>
+	<tr><td><code>/R:</code><span class=optname>n</span></td><td>process tree, limited to depth <span class=optname>n</span> (<code>0</code> = no limit)</td></tr>
+	<tr><td><a href="E:\Utils\#tasklist_opt_v"><code>/V</code></a></td><td><a href="E:\Utils\#tasklist_opt_v">show virtual desktops</a></td></tr>
+	<tr><td><code>/X:</code><span class=optname>wildspec</span></td><td>exclude program names matching <span class=optname>wildspec</span></td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><td colspan=2>options may follow the <span class=optname>name</span>; in TCC’s native <code>TASKLIST</code> they must precede it</td></tr>
+	<tr><td colspan=2>you may give more than one <span class=optname>name</span></td></tr>
+	<tr><td colspan=2><code>.</code> may be used to list the current process (shorthand for <code>=%_PID</code>)</td></tr>
+</table>
+
+<p>This command is syntax-compatible with its TCC equivalent, but is not
+guaranteed to display the same information.  The format will also differ
+slightly.  Using any of the options listed under “New features”
+will break compatibility with TCC. </p>
+
+
+<br>
+<p><a name=tasklist_opt_e></a><code>/E</code> displays extra information about
+each process.  Elevated processes (‘Run as administrator’) will be
+marked with an up arrow:  ↑   32-bit programs will be marked with
+a guillemet:  »
+
+</p>
+
+<br>
+<p><a name=tasklist_opt_n></a><code>/N:</code> disables features: </p>
+
+<table class=descript>
+	<tr><td><code>C</code></td><td>disable <a href="E:\Utils\#highlight">highlight</a></td></tr>
+	<tr><td><code>D</code></td><td>do not match <span class=optname>name</span> against display names (window titles, service names)</td></tr>
+	<tr><td><code>F</code></td><td>no footer (summary line)</td></tr>
+	<tr><td><code>S</code></td><td>do not collect service names</td></tr>
+	<tr><td><code>T</code></td><td>do not match this console’s window title</td></tr>
+	<tr><td><code>W</code></td><td>do not collect window titles</td></tr>
+	<tr><td><code>X</code></td><td>do not hide extensions</td></tr>
+</table>
+
+<p>You can combine multiple suboptions.  The colon is optional.  This option
+is not compatible with TCC. </p>
+
+<br>
+<p><a name=tasklist_opt_o></a><code>/O:</code> can sort by several criteria.
+The available sort keys are: </p>
+
+<table class=descript>
+	<tr><td><code>N</code></td><td>sort by process name</td></tr>
+	<tr><td><code>-N</code></td><td>reverse sort by process name</td></tr>
+	<tr><td><code>P</code></td><td>sort by process ID</td></tr>
+	<tr><td><code>-P</code></td><td>reverse sort by process ID</td></tr>
+	<tr><td><code>T</code></td><td>sort by window title or service name</td></tr>
+	<tr><td><code>-T</code></td><td>reverse sort by window title or service name</td></tr>
+	<tr><td><code>Z</code></td><td>sort by parent process ID</td></tr>
+	<tr><td><code>-Z</code></td><td>reverse sort by parent process ID</td></tr>
+</table>
+
+<p>These can be combined, <em>e.g.</em> <code>/O:ZP</code> to sort by parent
+process ID first, then by process ID.  Note that TCC’s <code>TASKLIST</code>
+command does not support this syntax.  If you type <code>/O</code> by itself,
+<code>TASKLIST</code> will sort by process ID, the same as <code>/O:P</code>. </p>
+
+<br>
+<p><a name=tasklist_opt_v></a><code>/V</code> attempts to show the name of
+the virtual desktop on which each program’s window appears.  Some
+caveats for this feature: </p>
+
+<ul>
+	<li>Virtual desktops first appeared in Windows 10.  Older versions of Windows
+		do not support this feature. </li>
+	<li>Virtual desktops manage <em>windows</em>, not programs.  A program may
+		have zero, one, or several windows.  The window that <code>TASKLIST</code>
+		selects to represent a program might not be the one you would pick. </li>
+	<li>No desktop will be listed for hidden windows.  (Windows API limitation?) </li>
+	<li>If you use <code>/NW</code> to prevent the collection of window info,
+		<code>/V</code> will be disabled as well. </li>
+</ul>
+
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_elevated></a><code>@ELEVATED</code> — Tests whether
+a process is elevated. </p>
+
+<p>Syntax:<br>
+<code class=req>%@ELEVATED[</code><span class=optname>pid</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>pid</span></td><td>the process ID of the process to check</td></tr>
+</table>
+
+
+<p>The <span class=optname>pid</span> may be entered in decimal, or hexadecimal with
+a leading <code>0x</code>.  If <span class=optname>pid</span> is not specified,
+the current instance of TCC is assumed.  <code>@ELEVATED</code> returns one of: </p>
+
+<table class=descript>
+	<tr><td style="text-align: right;">1</td><td>if the specified process is elevated</td></tr>
+	<tr><td style="text-align: right;">0</td><td>if the specified process is not elevated</td></tr>
+	<tr><td style="text-align: right;">-1</td><td>on any error</td></tr>
+</table>
+
+
+<br>
+<p class=example><code>echo %@elevated[0x25A0]</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_pidchildren></a><code>@PIDCHILDREN</code> — Returns a
+list of child processes of a given process. </p>
+
+<p>Syntax:<br>
+<code class=req>%@PIDCHILDREN[</code><span class=optname>pid</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>pid</span></td><td>the process ID of the process to check</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    <code>1</code>: return process IDs as hexadecimal</td></tr>
+	<tr><td></td><td>    <code>128</code>: do not sort returned PIDs</td></tr>
+</table>
+
+
+<p>The <span class=optname>pid</span> may be entered in decimal, or hexadecimal with
+a leading <code>0x</code>.  If <span class=optname>pid</span> is not specified,
+the current instance of TCC is assumed. </p>
+
+<p>Only direct children are returned.  Grandchildren, great-grandchildren, <i>etc.</i>
+will not be included.  Process IDs returned by this function will be separated
+with spaces. </p>
+
+
+<br>
+<p class=example><code>echo %@pidchildren[12272]</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_pidexename></a><code>@PIDEXENAME</code> — Returns the
+filename used to start a process. </p>
+
+<p>Syntax:<br>
+<code class=req>%@PIDEXENAME[</code><span class=reqname>pid</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>pid</span></td><td>the process ID of the process to check</td></tr>
+</table>
+
+<p>The <span class=reqname>pid</span> is required.  It may be entered in decimal,
+or hexadecimal with a leading <code>0x</code>. </p>
+
+
+<br>
+<p class=example><code>echo %@pidexename[0x25A0]</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_pidsvcnames></a><code>@PIDSVCNAMES</code> — Returns the names
+of services with the given process ID. </p>
+
+<p>Syntax:<br>
+<code class=req>%@PIDSVCNAMES[</code><span class=reqname>pid</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>pid</span></td><td>the process ID to check</td></tr>
+</table>
+
+<p>The <span class=reqname>pid</span> is required.  It may be entered in decimal,
+or hexadecimal with a leading <code>0x</code>. </p>
+
+<p>If no process with the given PID is found, <code>@PIDSVCNAMES</code> returns an empty
+string.  If multiple services share the same PID, they will be separated by a semicolon
+and space. </p>
+
+
+<br>
+<p class=example><code>echo %@pidsvcnames[%@pid[lsass.exe]]</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_pidwow64></a><code>@PIDWOW64</code> — Checks whether
+a process is running under WOW64. </p>
+
+<p>Syntax:<br>
+<code class=req>%@PIDWOW64[</code><span class=optname>pid</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>pid</span></td><td>the process ID to check</td></tr>
+</table>
+
+<p>The <span class=optname>pid</span> may be entered in decimal, or hexdecimal
+with a leading <code>0x</code>.  <code>@PIDWOW64</code> returns <code>1</code>
+if process <span class=optname>pid</span> is a WOW64 process, or <code>0</code>
+otherwise. </p>
+
+<br>
+<p class=example><code>echo %@pidwow64[1492]</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+
+
+<p><a name=v_demotepid></a><code>_DEMOTEPID</code> — Returns the
+process ID of the last program started by <a href="E:\Utils\#demote"><code>DEMOTE</code></a>. </p>
+
+<p>Syntax:<br>
+<code class=req>%_DEMOTEPID</code></p>
+
+<p>The process ID will be returned in decimal.  If the last call to <code>DEMOTE</code>
+failed to launch the specified command, <code>_DEMOTEPID</code> returns <code>0</code>. </p>
+
+<p class=xref>See also:  the <a href="E:\Utils\#demote"><code>DEMOTE</code></a> command and
+the <a href="E:\Utils\#v_demotewin"><code>_DEMOTEWIN</code></a> variable. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_demotewin></a><code>_DEMOTEWIN</code> — Returns a
+window handle belonging to the last program started by <a href="E:\Utils\#demote"><code>DEMOTE</code></a>. </p>
+
+<p>Syntax:<br>
+<code class=req>%_DEMOTEWIN</code></p>
+
+<p>The window handle will be returned in decimal.  If the last call to <code>DEMOTE</code>
+failed to launch the specified command, or if <code>DEMOTE</code> could not find an
+associated window, <code>_DEMOTEWIN</code> returns <code>0</code>. </p>
+
+<p class=xref>See also:  the <a href="E:\Utils\#demote"><code>DEMOTE</code></a> command and
+the <a href="E:\Utils\#v_demotepid"><code>_DEMOTEPID</code></a> variable. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=reference></a>Reference Information:</h4>
+
+<br>
+
+<table>
+	<tr><td><a href="E:\Utils\#paging">Paging Options</a></td><td>Supported in several commands. </td></tr>
+	<tr><td><a href="E:\Utils\#highlight">The Highlight Variable</a></td><td>Choose your colors. </td></tr>
+	<tr><td><a href="E:\Utils\#noloadmsg">Startup Message</a></td><td>And how to suppress it. </td></tr>
+	<tr><td><a href="E:\Utils\#changes">Changes</a></td><td>Slow march of progress, or just another bug hunt?</td></tr>
+	<tr><td><a href="E:\Utils\#licensing">Status and Licensing</a></td><td></td></tr>
+	<!-- <tr><td> </td><td> </td></tr> -->
+</table>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=paging></a>Paging Options:</h4>
+
+<p>The commands in this plugin have a <code>/P</code> option to page
+output.  This option supports two suboptions: </p>
+
+<p class=descript><code>/P:</code><span class=optname>time</span><code>,</code><span class=optname>lines</span></p>
+
+<table class=descript>
+	<tr><td><span class=optname>time</span></td><td>time in seconds, or (with a trailing <code>M</code>) milliseconds</td></tr>
+	<tr><td><span class=optname>lines</span></td><td>number of lines to display before pausing</td></tr>
+</table>
+
+<p>Both <span class=optname>time</span> and <span class=optname>lines</span> are
+optional.  The colon is not required, but you must use the comma if you want to
+specify <span class=optname>lines</span>. </p>
+
+<p class=example><code>rem  Scroll every ten seconds:<br>
+type /p:10 myfile.txt<br>
+<br>
+rem  Display ten lines at a time:<br>
+type /p:,10 myfile.txt<br>
+<br>
+rem  Display twenty lines at a time, and<br>
+rem    scroll every 2.5 seconds:<br>
+type /p:2500m,20<br>
+</code></p>
+
+<br>
+<p>At the “Press a key to continue” prompt, <em>most</em> keys will advance by
+another screenful (or <span class=optname>lines</span>).  But a few keys behave differently: </p>
+
+<table class=descript>
+	<tr><td><kbd>A</kbd> or <kbd>C</kbd></td><td>turns off paging, and scrolls continuously</td></tr>
+	<tr><td><kbd>Esc</kbd> or <span style="white-space:nowrap;"><kbd>Ctrl</kbd>-<kbd>C</kbd></span></td><td>aborts the current command</td></tr>
+	<tr><td><kbd>/</kbd></td><td>scrolls half a screen, or half of <span class=optname>lines</span></td></tr>
+	<tr><td><kbd>1</kbd> to <kbd>9</kbd></td><td>scrolls that many lines, <em>e.g.</em> <kbd>3</kbd> scrolls three lines</td></tr>
+</table>
+
+
+<h4><a name=highlight></a>Highlight Variable:</h4>
+
+<p>The commands in this plugin feature highlighted output.  You can customize
+this feature by setting an environment variable <code>Highlight</code>: </p>
+
+<p class=example><code>rem  Disable highlight:<br>
+set highlight=none<br>
+<br>
+rem  Set the highlight foreground:<br>
+set highlight=bright cyan<br>
+<br>
+rem  Set both foreground and background:<br>
+set highlight=bri whi on blu<br>
+<br>
+rem  Numbers are also supported:<br>
+set highlight=46<br>
+</code></p>
+
+<br>
+<p>If the <code>Highlight</code> environment variable is not defined, the plugin will
+check the registry for a value named <code>Highlight</code> of type <code>REG_SZ</code>.
+The plugin will search, in this order: </p>
+
+<table class=descript>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins\Tasks</code></td><td>(affects this plugin only)</td></tr>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins</code></td><td>(affects several of my plugins)</td></tr>
+</table>
+
+<p>Many commands also have a <code>/D</code> or <code>/NC</code> option to
+disable highlighting. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>1.0.33.1</td><td nowrap>2026-10-06</td><td class=changes>Updated versions of <span class=filename>conlist.cpp</span>, 
+			<span class=filename>FHFunctions.cpp</span>, <span class=filename>NewHelp.cpp</span>, and
+			<span class=filename>ParseArgs.cpp</span>.  All commands now use <code>CL_ShowCmdHelp()</code>
+			to display help text.  Cosmetic tweaks to the help text. </td></tr>
+	<tr><td>1.0.32.1</td><td nowrap>2026-02-09</td><td class=changes><a href="E:\Utils\#demote"><code>DEMOTE</code></a>: 
+			added <code>/TAB</code>, <code>/TABNA</code>, <code>/ENV:</code><span class=optname>file</span>,
+			<code>/IDLE</code>, and local-list options. </td></tr>
+	<tr><td>1.0.32.0</td><td nowrap>2026-02-05</td><td class=changes>Added <a href="E:\Utils\#demote"><code>DEMOTE</code></a>,
+			<a href="E:\Utils\#v_demotepid"><code>DEMOTEPID</code></a>, and <a href="E:\Utils\#v_demotewin"><code>DEMOTEWIN</code></a>. </td></tr>
+	<tr><td>1.0.31.0</td><td nowrap>2025-09-18</td><td class=changes>Added <a href="E:\Utils\#f_pidchildren"><code>@PIDCHILDREN</code></a>. </td></tr>
+	<tr><td>1.0.30.0</td><td nowrap>2025-09-17</td><td class=changes><a href="E:\Utils\#tasklist"><code>TASKLIST</code></a>:  Added 
+			<code>/R:</code><span class=optname>n</span> to limit recursion to the specified depth (<code>0</code> = no limit). <br>
+			<a href="E:\Utils\#tasklist"><code>TASKLIST</code></a>:  Added <code>/X:</code><span class=optname>wildspec</span> to exclude 
+			by wildspec  (compares against executable names only, not window titles or service names). <br>
+			Added support for the <code>NO_COLOR</code> environment variable. If <code>NO_COLOR</code> is defined and 
+			<code>HIGHLIGHT</code> is not, disable highlighting. </td></tr>
+	<tr><td>1.0.29.1</td><td nowrap>2025-06-26</td><td class=changes>Replaced _wcsupr_s() with CharUpperW() throughout. <br>
+			Added a check for a <code>NO_COLOR</code> environment variable.  If <code>NO_COLOR</code> is defined and
+			<code>Highlight</code> is not, highlighting is disabled, the same as if <code>/D</code> had been specified. </td></tr>
+	<tr><td>1.0.29.0</td><td nowrap>2025-04-02</td><td class=changes><a href="E:\Utils\#f_elevated"><code>@ELEVATED</code></a>, <a href="E:\Utils\#f_pidwow64"><code>@PIDWOW64</code></a>: 
+			Allow process name in place of process ID. <br>
+			<a href="E:\Utils\#f_pidwow64"><code>@PIDWOW64</code></a>:  Removed the check for Win64; this function <em>should</em>
+			also be available to 32-bit apps. </td></tr>
+	<tr><td>1.0.28.2</td><td nowrap>2025-03-26</td><td class=changes>Updated <span class=filename>conlist.cpp</span>. </td></tr>
+	<tr><td>1.0.28.1</td><td nowrap>2024-11-24</td><td class=changes><!--hpage tasklist--><a href="E:\Utils\#tasklist_opt_v"><code>TASKLIST /V</code></a> 
+			tweak:  if a window appears on all vdesks, display <code>&lt;ALL&gt;</code>. </td></tr>
+	<tr><td>1.0.28.0</td><td nowrap>2024-11-15</td><td class=changes><a href="E:\Utils\#tasklist"><code>TASKLIST</code></a>:
+			Support multiple names and/or process IDs. <br>
+			<code>TASKLIST</code>:  Added wildcard matching against service names.  (Theoretically this was already there, but
+			in reality it wasn’t.) <br>
+			<code>TASKLIST</code>:  Added <code>/NT</code> to prevent matching the current console’s window title. </td></tr>
+	<tr><td>1.0.27.2</td><td nowrap>2024-11-13</td><td class=changes>Minor tweak to window selection. </td></tr>
+	<tr><td>1.0.27.1</td><td nowrap>2024-10-02</td><td class=changes>ParseInt() now supports octal with a leading <code>0o</code>. </td></tr>
+	<tr><td>1.0.27</td><td nowrap>2024-09-11</td><td class=changes><a href="E:\Utils\#tasklist"><code>TASKLIST</code></a>:  added
+			<code>/V</code> to (try to) show the Windows 10 virtual desktop where the program’s window appears. </td></tr>
+	<tr><td>1.0.26</td><td nowrap>2024-09-04</td><td class=changes><a href="E:\Utils\#tasklist"><code>TASKLIST</code></a>:  added
+			<code>/NX</code> to display extensions. <br>
+			Added <a href="E:\Utils\#f_pidwow64"><code>@PIDWOW64</code></a>. </td></tr>
+	<tr><td>1.0.25.3</td><td nowrap>2024-04-02</td><td class=changes>(code changes not relevant to this plugin) </td></tr>
+	<tr><td>1.0.25.2</td><td nowrap>2024-03-13</td><td class=changes>(code changes not relevant to this plugin) </td></tr>
+	<tr><td>1.0.24.1</td><td nowrap>2024-01-04</td><td class=changes>Updated to conlist v1.1 to better support
+			Ctrl-C and Ctrl-Break. </td></tr>
+	<tr><td>1.0.24.0</td><td nowrap>2023-10-20</td><td class=changes><a href="E:\Utils\#enumprocesses"><code>ENUMPROCESSES</code></a>:
+			added <code>/W</code>; allow <code>.</code> as a synonym for <code>%_PID</code>.  All functions which
+			expect a PID now accept <code>.</code> as a synonym for <code>%_PID</code>. </td></tr>
+	<tr><td>1.0.23.2</td><td nowrap>2023-10-13</td><td class=changes>Tweaked ShowCmdHelp() to include <code>VER_PATCH</code>. </td></tr>
+	<tr><td>1.0.23.1</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.0.23.0</td><td nowrap>2023-10-06</td><td class=changes><a href="E:\Utils\#enumprocesses"><code>ENUMPROCESSES</code></a>
+				improvements:  added <code>/O:</code>.  If a process name was specified, does not contain a period, and was
+				not found, append “.exe” and try again.  Added a couple of missing options to
+				<code>ENUMPROCESSES</code>’s help text. </td></tr>
+	<tr><td>1.0.22.0</td><td nowrap>2023-10-05</td><td class=changes>Added <a href="E:\Utils\#f_pidsvcnames"><code>@PIDSVCNAMES</code></a>. </td></tr>
+	<tr><td>1.0.21.0</td><td nowrap>2023-10-05</td><td class=changes>If more than one <code>/HL:</code> is given, the wildspecs
+			will be concatenated. </td></tr>
+	<tr><td>1.0.20.0</td><td nowrap>2023-10-04</td><td class=changes>Bug fix:  if a process's alleged parent was started
+			after the process, then your daddy ain't your daddy (but your daddy don't know).<br>
+			Formatting fix:  <code>TASKLIST /Z</code> now shows "no parent" as a blank, not a zero.</td></tr>
+	<tr><td>1.0.19.1</td><td nowrap>2023-09-15</td><td class=changes>Tightened up whitespace in <code>TASKLIST</code> to more
+			closely resemble TCC’s. </td></tr>
+	<tr><td>1.0.19.0</td><td nowrap>2023-09-15</td><td class=changes><code>TASKLIST /R</code> with no process name or pid
+			specified now behaves more like TCC’s, though not exactly the same.  It displays a process tree for every
+			process found which does not have an extant parent. </td></tr>
+	<tr><td>1.0.18.3</td><td nowrap>2023-09-01</td><td class=changes>Added support for SECURITY_MANDATORY_PROTECTED_PROCESS_RID
+			(theoretical, at this point; I have no processes running at this level.) </td></tr>
+	<tr><td>1.0.18.2</td><td nowrap>2023-09-01</td><td class=changes><code>TASKLIST /E</code> now marks WOW64 processes with
+			a right guillemet instead of an arrowhead (less distracting).  Minor tweaks to help text:  options were out of
+			(alphabetical) order in <code>/O?</code> text for <code>TASKLIST</code>. </td></tr>
+	<tr><td>1.0.18.0</td><td nowrap>2023-08-29</td><td class=changes><code>TASKLIST</code>:  allow PID without a leading equals
+			sign, only if it is an actual, current PID.</td></tr>
+	<tr><td>1.0.17.0</td><td nowrap>2023-04-12</td><td class=changes>Added <code>/HL:</code> option to <code>TASKLIST</code>
+			and <code>SERVICES</code>.  Now supports matching multiple wildspecs (|-separated) in many places. </td></tr>
+	<tr><td>1.0.16.0</td><td nowrap>2023-03-01</td><td class=changes>Added optional ‘full’ help text;
+			<code>#define TASKS_FULL_HELP</code> to enable.  This expanded text includes more options, those not common to
+			TCC’s native commands. </td></tr>
+	<tr><td>1.0.15.0</td><td nowrap>2023-02-28</td><td class=changes>Changes to support post-TCC/LE versions of TCC. </td></tr>
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/tasks.zip">https://charlesdye.net/dl/tasks.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

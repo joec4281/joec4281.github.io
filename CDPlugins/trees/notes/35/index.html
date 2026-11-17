@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>Sift Plugin</title>
+
+<style type="text/css">
+   BODY             { color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+   H1               { text-align: center; font-size: 150%; }
+   H2               { text-align: center; font-size: 130%; }
+   H3               { text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+   H4               { font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+   H5               { text-align: center; margin-top: 5px; margin-bottom: 0px; }
+   CODE             { font-family: Consolas, monospace; font-size: 110%; }
+   A                { color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+   A:hover          { color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+   A.navlink        { color: #000; text-decoration: none; border-bottom: none; }
+   A.navlink:hover  { color: #008; text-decoration: none; background-color: #fff; }
+   .optname         { font-family: "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+   .reqname         { font-family: "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+   .req             { font-weight: bold; }
+   .bnf             { color: #375; font-style: italic; }
+   .filename        { font-variant: small-caps; }
+   .descript        { margin-left: 2em; padding-bottom: 1em; }
+   .example         { margin-left: 1em; margin-top: 0.3em; margin-bottom: 0.3em; }
+   .note            { color: #600; font-weight: bold; }
+   TD               { padding-right: 2em; vertical-align: top; }
+   TD.header        { text-decoration: underline; }
+   .navbar          { position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; }
+   UL               { list-style: none; padding-left: 5px; }
+   LI               { margin-top: 2px; }
+   .content         { margin-left: 7px; margin-right: 12em; }
+
+   @media print {
+      BODY          { font-family: "Book Antiqua", Garamond, serif; font-weight: normal; }
+      A             { border-bottom: none; }
+      .navbar       { display: none; }
+      .content      { margin-left: 0; margin-right: 0; }
+      .noprint      { display: none; }
+   }
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+<li><a href="E:\Utils\#top" class=navlink>Top</a></li>
+<li><a href="E:\Utils\#purpose" class=navlink>Purpose</a></li>
+<li><a href="E:\Utils\#install" class=navlink>Installation</a></li>
+<li><a href="E:\Utils\#features" class=navlink>Plugin Features:</a></li>
+<li>    <a href="E:\Utils\#sift" class=navlink><code>SIFT</code> command</a></li>
+<li>    <a href="E:\Utils\#v_sift" class=navlink><code>_SIFT</code> variable</a></li>
+<li>    <a href="E:\Utils\#f_sift" class=navlink><code>@SIFT</code> function</a></li>
+<li><a href="E:\Utils\#noloadmsg" class=navlink>Startup Message</a></li>
+<li><a href="E:\Utils\#licensing" class=navlink>Status and Licensing</a></li>
+<li><a href="E:\Utils\#download" class=navlink>Download</a></li>
+</ul>
+</div>
+
+
+<div class=content><a name=top></a>
+
+<h1>Sift plugin for <a target=_blank href="http://jpsoft.com/take-command-windows-scripting.html">Take Command</a> / TCC</h1>
+<h3>beta version 0.71.1     2014-10-31</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides a quick way to find the <em>n</em> largest, smallest,
+oldest, or newest files in one or more directories or directory trees, and sort
+them into an array variable.  It adds one new <a href="E:\Utils\#commands">command</a>,
+<a href="E:\Utils\#sift"><code>SIFT</code></a>; one new <a href="E:\Utils\#variables">internal
+variable</a>, <a href="E:\Utils\#v_sift"><code>_SIFT</code></a>; and one
+<a href="E:\Utils\#functions">function</a>, <a href="E:\Utils\#f_sift"><code>@SIFT</code></a>. </p>
+
+<p>Note that because this plugin returns results in an array variable, it is
+incompatible with the free TCC/LE.  TCC/LE does not support array variables;
+trying to load this plugin will fail with an error message. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>Sift.dll</span> to
+some known location on your hard drive.  (If you are using the 64-bit
+version of Take Command, take <span class=filename>Sift-x64.dll</span>
+instead of <span class=filename>Sift.dll</span>.)  Load the plugin
+with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\sift\sift.dll</code></p>
+
+<p>If you copy this file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">command</a>:  <a href="E:\Utils\#sift"><code>SIFT</code></a></p>
+
+<p>New <a href="E:\Utils\#variables">variable</a>:  <a href="E:\Utils\#v_sift"><code>_SIFT</code></a></p>
+
+<p>New <a href="E:\Utils\#functions">function</a>:  <a href="E:\Utils\#f_sift"><code>@SIFT</code></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=sift></a><code>SIFT</code> — Returns a sorted list of files in an array. </p>
+
+<p>Syntax:<br>
+<code class=req>SIFT </code><code>/A:</code><span class=optname>attribs</span><code> /C:</code><span class=optname>sep</span><code> /I /R /T:</code><span class=optname>stamp</span><code> /U /V /Z </code><span class=optname>n</span><code> </code><span class=optname>criterion</span><code> </code><span class=reqname>array</span><code> </code><span class=optname>filespec…</span></p>
+
+<table class=descript>
+   <tr><td><code>/A:</code><span class=optname>attribs</span></td><td>select files by attributes (the default is all files):</td></tr>
+   <tr><td> </td><td>      <code>A</code> - not Archived</td></tr>
+   <tr><td> </td><td>      <code>C</code> - Compressed</td></tr>
+   <tr><td> </td><td>      <code>E</code> - Encrypted</td></tr>
+   <tr><td> </td><td>      <code>H</code> - Hidden</td></tr>
+   <tr><td> </td><td>      <code>I</code> - not Indexed</td></tr>
+   <tr><td> </td><td>      <code>O</code> - Offline</td></tr>
+   <tr><td> </td><td>      <code>R</code> - Read-only</td></tr>
+   <tr><td> </td><td>      <code>S</code> - System</td></tr>
+   <tr><td> </td><td>      <code>-</code> - a hyphen inverts attributes which follow</td></tr>
+   <tr><td><code>/C:</code><span class=optname>sep</span></td><td>Character separating the time from the date</td></tr>
+   <tr><td><code>/I</code></td><td>return date stamps in ISO 8601 format, YYYY-MM-DD</td></tr>
+   <tr><td><code>/R</code></td><td>recurse into subdirectories</td></tr>
+   <tr><td><code>/T:</code><span class=optname>stamp</span></td><td>selects which date stamp to use:</td></tr>
+   <tr><td> </td><td>      <code>A</code> - last Access</td></tr>
+   <tr><td> </td><td>      <code>C</code> - Creation</td></tr>
+   <tr><td> </td><td>      <code>W</code> - last Write (the default)</td></tr>
+   <tr><td><code>/U</code></td><td>return date stamps as UTC (not localized)</td></tr>
+   <tr><td><code>/V</code></td><td>dump the array to stdout when done</td></tr>
+   <tr><td><code>/Z</code></td><td>localize date stamps dumbly, like DIR and Explorer</td></tr>
+   <tr><td><span class=optname>n</span></td><td>the number of files to return, 1 — 4096; defaults to 10</td></tr>
+   <tr><td><span class=optname>criterion</span></td><td>the quality used to find and sort files:</td></tr>
+   <tr><td> </td><td>      <code>/L</code> or <code>LARGEST</code> — find the largest <span class=optname>n</span> files (the default)</td></tr>
+   <tr><td> </td><td>      <code>/S</code> or <code>SMALLEST</code> — find the smallest <span class=optname>n</span> files</td></tr>
+   <tr><td> </td><td>      <code>/O</code> or <code>OLDEST</code> — find the oldest <span class=optname>n</span> files</td></tr>
+   <tr><td> </td><td>      <code>/N</code> or <code>NEWEST</code> — find the newest <span class=optname>n</span> files</td></tr>
+   <tr><td><span class=reqname>array</span></td><td>name of the array to create and fill</td></tr>
+   <tr><td><span class=optname>filespec…</span></td><td>wildcard filespecs to match</td></tr>
+   <tr><td> </td><td> </td></tr>
+   <tr><td><code>/F</code></td><td>return fully qualified filenames</td></tr>
+   <tr><td><code>/NC</code></td><td>do not insert commas in file sizes</td></tr>
+   <tr><td><code>/ND</code></td><td>do not recurse into hidden directories; only useful with <code>/R</code></td></tr>
+   <tr><td><code>/NI</code></td><td>do not include <span class=filename>Descript.ion</span> files</td></tr>
+   <tr><td><code>/NJ</code></td><td>do not recurse into junctions; only useful with <code>/R</code></td></tr>
+</table>
+
+<p><span class=optname>filespecs</span> may use directory aliases, wildcards
+including character sets in square brackets, and include lists.  If you do not
+specify any <span class=optname>filespec</span>, then * (all files in the
+current directory) will be supplied by default. </p>
+
+<p>An <span class=optname>n</span>-by-3 array will be created to hold the
+resulting list.  (If an array by the same name already exists, that array will
+be lost.)  Column 0 of the array holds filenames, column 1 holds the
+files’ sizes, and column 2 holds their date stamps.  The filenames
+returned in column 0 will be fully qualified if either <code>/F</code> or
+<code>/R</code> was specified, or if more than one <span class=optname>filespec</span>
+was supplied; otherwise filenames are stored without paths.  The date stamp
+selected by <code>/T:</code> is returned in column 2, and is also used for
+sorting if <code>OLDEST</code> or <code>NEWEST</code> is specified. </p>
+
+<p>If <code>LARGEST</code> is specified or there is no <span class=optname>criterion</span>,
+files will be stored in the array in decreasing order of size, <em>i.e.</em>
+row 0 will hold the largest file, row 1 will hold the next-largest, and so on.
+If <code>SMALLEST</code> is specified, then files will be stored in increasing
+order by size.  If <code>OLDEST</code> is used, then files will be sorted into
+chronological order; and <code>NEWEST</code>, in reverse chronological order.
+If multiple files have the same size or the same date stamp, then the first one
+discovered “wins” — which one is found first depends on
+the filesystem. </p>
+
+<br>
+<p class=example><code>sift 20 largest bigdlls c:\windows\system32\*.dll</code></p>
+
+<p>… finds the 20 largest <span class=filename>.DLL</span> files in
+<span class=filename>C:\Windows\System32</span>, and sorts them into a
+20-by-3 array named BIGDLLS. </p>
+
+<p>Only the <span class=reqname>array</span> name is mandatory: </p>
+
+<p class=example><code>sift big<br>
+</code></p>
+
+<p>… is legal, and will sort the 10 largest files in the current
+directory into a 10-by-3 array named BIG. </p>
+
+
+<h4><a name=variables></a>New Variable:</h4>
+
+
+<p><a name=v_sift></a><code>_SIFT</code> — Returns the number of
+files found by the last successful <a href="E:\Utils\#sift"><code>SIFT</code></a> command. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SIFT</code></p>
+
+<p>If SIFT has not yet been called, <code>_SIFT</code> returns -1.  If
+<code>SIFT</code> fails for some reason (bad syntax?) then the value returned
+by <code>_SIFT</code> is unchanged. </p>
+
+
+<h4><a name=functions></a>New Function:</h4>
+
+
+<p><a name=f_sift></a><code>@SIFT</code> — Returns the full
+name of the single largest (smallest, etc.) matching file. </p>
+
+<p>Syntax:<br>
+<code class=req>%@SIFT[</code><span class=reqname>filespec</span><code>,</code><span class=optname>criterion</span><code>,</code><span class=optname>attribs</span><code>,</code><span class=optname>flags</span><code>,</code><span class=optname>stamp</span><code class=req>]</code></p>
+
+<table class=descript>
+   <tr><td><span class=optname>criterion</span></td><td><code>L</code>, <code>S</code>, <code>O</code>, or <code>N</code> for largest, smallest, oldest, newest; defaults to <code>L</code></td></tr>
+   <tr><td><span class=optname>attribs</span></td><td>supported attributes are <code>-ACEHIORS</code></td></tr>
+   <tr><td><span class=optname>flags</span></td><td>bitmapped:  1 recurse, 2 no junctions, 4 no hidden directories, 128 exclude <span class=filename>Descript.ion</span> files</td></tr>
+   <tr><td><span class=optname>stamp</span></td><td><code>A</code>, <code>C</code>, or <code>W</code> for last access, creation, or last write; defaults to <code>W</code></td></tr>
+</table>
+
+<p>The <code>@SIFT</code> function provides an easy way to find the single
+largest, smallest, oldest, or newest matching file in a directory or directory
+tree, without the overhead of an array.  It returns a fully-qualified filename.
+(It <em>only</em> returns a filename; if you want to get the size or time
+stamps of the file, call TCC’s internal <code>@FILEDATE</code>,
+<code>@FILESIZE</code>, and <code>@FILETIME</code> functions as usual.  This
+function is potentially very slow, so calling it multiple times to retrieve
+different information about the same file would be a bad plan.) </p>
+
+<p>You must supply a <span class=reqname>filespec</span>; it may include a
+directory alias. </p>
+
+<p>If no matching files are found, this function returns an empty string. </p>
+
+<p><span class=note>• Note:</span>  While this particular function
+does not use an array, you still cannot load this plugin in TCC/LE or in older
+shells which don’t support arrays. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a href="http://en.wikipedia.org/wiki/Software_bug">issues</a>.  Try it at
+your own risk.  If you find bugs, you can report them in the
+<a target=_blank href="http://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>Sift is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use.</p>
+
+<!--
+<p>This plugin is &copy; Copyright 2014, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="http://prospero.unm.edu/dl/sift.zip">http://prospero.unm.edu/dl/sift.zip</a>
+or <a href="E:\Utils\ftp:\\prospero.unm.edu\sift.zip">ftp://prospero.unm.edu/sift.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

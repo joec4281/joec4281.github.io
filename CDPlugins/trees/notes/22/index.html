@@ -1,0 +1,515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>Ruler Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	HR					{ margin-top: 2em; margin-bottom: 2em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.5; background-color: #eee; padding: 0.5em 1em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.defaultval			{ font-size: 90%; font-style: italic; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		DIV.navbar		{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.5; border: 1px solid #ccc; border-radius: 8px; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#ruler">RULER</a> command</li>
+	<li>    <a href="E:\Utils\#list">LIST</a> command</li>
+	<li>    <a href="E:\Utils\#ruler_hotkey">Shift-F12</a> hotkey</li>
+	<li><a href="E:\Utils\#colorspec">Color Formats</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>Ruler plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a></h1>
+<h3>Version 1.0.2.6     2026-07-06</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin displays an on-screen ruler in Take Command.  This will
+be helpful if you need to count characters on a line or in a string. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>Ruler.dll</span> to some
+known location on your hard drive.  (If you are using the 32-bit version of
+Take Command, take <span class=filename>Ruler-x86.dll</span> instead of
+<span class=filename>Ruler.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\ruler.dll<br>
+</code></p>
+
+<p>If you copy this file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">command</a>:  <a href="E:\Utils\#ruler"><code>RULER</code></a></p>
+
+<p>Modified <a href="E:\Utils\#commands">command</a>:  <a href="E:\Utils\#list"><code>LIST</code></a></p>
+
+<p>New <a href="E:\Utils\#hotkeys">hotkey</a>:  <a href="E:\Utils\#ruler_hotkey"><kbd>Shift</kbd>-<kbd>F12</kbd></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=ruler></a><code>RULER</code> — View and set ruler options.</p>
+
+<p><a name=ruler_syntax></a>Syntax:<br>
+<code class=req>RULER</code><code> /A:</code><span class=optname>alpha</span><code> /B:</code><span class=optname>color</span><code> /C:</code><span class=optname>color</span><code> /D /E:</code><span class=optname>n</span><code> /H:</code><span class=optname>color</span><code> /I:</code><span class=optname>altcols</span><code> /J:</code><span class=optname>altrows</span><code> /K:</code><span class=optname>key</span><code> /L /M:</code><span class=optname>n</span><code> /P:</code><span class=optname>n</span><code> /Q /R /S /U:</code><span class=optname>n</span><code> /W:</code><span class=optname>n</span><code> /X:</code><span class=optname>n</span><code> /Z:</code><span class=optname>n</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#ruler_opt_a"><code>/A:</code><span class=optname>alpha</span></a></td><td>set the ruler’s alpha transparency (alpha mode)</td><td class=defaultval>128</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_b"><code>/B:</code><span class=optname>color</span></a></td><td>set the ruler’s background color (alpha mode)</td><td class=defaultval>#B0E0E6</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_c"><code>/C:</code><span class=optname>color</span></a></td><td>set the ruler color (color-key mode)</td><td class=defaultval>varies</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_dr"><code>/D</code></a></td><td>restore the built-in plugin defaults</td><td></td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_e"><code>/E:</code><span class=optname>n</span></a></td><td>enable or disable (show or hide) the ruler</td><td class=defaultval>1</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_h"><code>/H:</code><span class=optname>color</span></a></td><td>set the color of the ruler’s hash marks (alpha mode)</td><td class=defaultval>#000000</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_i"><code>/I:</code><span class=optname>altcols</span></a></td><td>set alternate-color column marks</td><td class=defaultval>none</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_j"><code>/J:</code><span class=optname>altrows</span></a></td><td>set alternate-color row marks</td><td class=defaultval>none</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_k"><code>/K:</code><span class=optname>key</span></a></td><td>set the hotkey</td><td class=defaultval>Shift-F12</td></tr>
+	<tr><td><code>/L</code></td><td>list all supported hotkeys</td><td></td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_m"><code>/M:</code><span class=optname>n</span></a></td><td>set the hotkey mode</td><td class=defaultval>1</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_p"><code>/P:</code><span class=optname>n</span></a></td><td>set the ruler’s position</td><td class=defaultval>0</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td><td></td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_dr"><code>/R</code></a></td><td>restore saved settings from the registry</td><td></td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_s"><code>/S</code></a></td><td>save the current settings to the registry</td><td></td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_u"><code>/U:</code><span class=optname>n</span></a></td><td>intercept the <code>LIST</code> command</td><td class=defaultval>1</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_w"><code>/W:</code><span class=optname>n</span></a></td><td>set the width of the hash marks</td><td class=defaultval>1</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_x"><code>/X:</code><span class=optname>n</span></a></td><td>set the ruler’s transparency mode</td><td class=defaultval>0</td></tr>
+	<tr><td><a href="E:\Utils\#ruler_opt_z"><code>/Z:</code><span class=optname>n</span></a></td><td>set whether the ruler is hidden at startup</td><td class=defaultval>0</td></tr>
+</table>
+
+<p><code>RULER</code> with no options displays the plugin’s current
+settings. </p>
+
+<br>
+<p><a name=ruler_opt_k></a><code>/K:</code><span class=optname>key</span>
+allows you to change the plugin’s <a href="E:\Utils\#ruler_hotkey">hotkey</a>.  To see
+a list of all supported hotkeys, use <code>/L</code>.  (The list can vary between
+versions of Take Command, because the plugin hotkey interface changed in version 24.)
+Note that some key combinations may not work for you — they might be
+intercepted by the console, by a keystroke alias, or by Take Command itself.  If your
+hotkey doesn’t work, try changing it back to its default value,
+<kbd>Shift</kbd>-<kbd>F12</kbd>. </p>
+
+<p>You can disable the hotkey with <code>/K:NONE</code>. </p>
+
+<br>
+<p><a name=ruler_opt_m></a><code>/M:</code><span class=optname>n</span> lets you
+control what the hotkey does.  The default value is 1. </p>
+
+<table class=descript>
+	<tr><td class=header>Value:</td><td class=header>Hotkey action:</td></tr>
+	<tr><td>0</td><td>Enabled ↔ Disabled</td></tr>
+	<tr><td>1</td><td>Top → Bottom → Disabled → <span style="font-size: 85%; font-style: italic;">repeat</span></td></tr>
+	<tr><td>2</td><td>Top → Bottom → Left → Disabled → <span style="font-size: 85%; font-style: italic;">repeat</span></td></tr>
+	<tr><td>3</td><td>Top → Bottom → Left → Right → Disabled → <span style="font-size: 85%; font-style: italic;">repeat</span></td></tr>
+	<tr><td>4</td><td>Top ↔ Bottom</td></tr>
+	<tr><td>5</td><td>Top → Bottom → Left → <span style="font-size: 85%; font-style: italic;">repeat</span></td></tr>
+	<tr><td>6</td><td>Top → Bottom → Left → Right → <span style="font-size: 85%; font-style: italic;">repeat</span></td></tr>
+	<tr><td>7</td><td>Top → Left → Disabled → <span style="font-size: 85%; font-style: italic;">repeat</span></td></tr>
+	<tr><td>8</td><td>Top ↔ Left</td></tr>
+	<tr><td>9</td><td>Enable</td></tr>
+	<tr><td>10</td><td>Disable</td></tr>
+	<tr><td>11</td><td>Enable, Top</td></tr>
+	<tr><td>12</td><td>Enable, Bottom</td></tr>
+	<tr><td>13</td><td>Enable, Left</td></tr>
+	<tr><td>14</td><td>Enable, Right</td></tr>
+	<tr><td>15</td><td>Left → Right → Disabled → <span style="font-size: 85%; font-style: italic;">repeat</span></td></tr>
+	<tr><td>16</td><td>Left → Right → <span style="font-size: 85%; font-style: italic;">repeat</span></td></tr>
+</table>
+
+<p class=example><code>ruler /k:alt-r /m:8<br>
+</code></p>
+
+<br>
+<p><a name=multkeys></a>Multiple hotkeys:  You can define up to five different
+hotkeys.  The syntax is: </p>
+
+<p><code class=req>RULER /K</code><span class=optname>d</span><code class=req>:</code><span class=optname>key</span><code class=req> /M</code><span class=optname>d</span><code class=req>:</code><span class=optname>n</span></p>
+
+<p>… where <span class=optname>d</span> is a digit from 1 to 5.  (If omitted,
+it defaults to 1.) </p>
+
+<p class=example><code>ruler /k1:alt-t /m1:11 /k2:alt-b /m2:12 /k3:alt-d /m3:10<br>
+</code></p>
+
+<p><kbd>Alt</kbd>-<kbd>T</kbd> shows the ruler at the top of the tab window,
+<kbd>Alt</kbd>-<kbd>B</kbd> puts it at the bottom, and <kbd>Alt</kbd>-<kbd>D</kbd>
+disables it. </p>
+
+<br>
+<hr><!--endtopic-->
+
+<p><a name=ruler_opt_x></a>The ruler is drawn as a transparent, OSD-style window
+over the Take Command window.  <code>/X:</code><span class=optname>n</span> selects
+the type of transparency used. </p>
+
+<p><code>/X:0</code> selects color-key transparency.  In this mode, the ruler background
+is invisible, and only the hash marks are visible.  Use
+<a href="E:\Utils\#ruler_opt_c"><code>/C:</code><span class=optname>color</span></a> to
+set the ruler color.  This is the default. </p>
+
+<p><code>/X:1</code> selects alpha transparency.  In this mode, both the ruler’s
+background and hash marks are visible, and both are equally transparent.  Use
+<a href="E:\Utils\#ruler_opt_a"><code>/A:</code><span class=optname>n</span></a> to
+adjust the ruler’s transparency, and
+<a href="E:\Utils\#ruler_opt_b"><code>/B:</code><span class=optname>color</span></a> and
+<a href="E:\Utils\#ruler_opt_h"><code>/H:</code><span class=optname>color</span></a> to
+set its colors. </p>
+
+<hr>
+
+<h5>Color-Key Mode Customization:</h5>
+
+<p><a name=ruler_opt_c></a><code>/C:</code><span class=optname>color</span>
+sets the ruler color (in color-key mode).  You may specify the
+<a href="E:\Utils\#colorspec"><span class=optname>color</span></a> in several different ways: </p>
+
+<table class=descript>
+	<tr><th>Method:</th><th>Example:</th><th>Gives:</th></tr>
+	<tr><td>•  as a <a target=_blank href="https://www.w3.org/wiki/CSS/Properties/color/keywords">W3C color name</a>:</td><td><code>/C:Orange</code></td><td>Orange</td></tr>
+	<tr><td>•  as a hexadecimal RGB value:</td><td><code>/C:#ADFF2F</code></td><td>GreenYellow</td></tr>
+	<tr><td>•  three-digit hex RGB is okay too:</td><td><code>/C:#0FF</code></td><td>Aqua</td></tr>
+	<tr><td>•  comma-separated red, green, and blue values:</td><td><code>/C:255,215,0</code></td><td>Gold</td></tr>
+	<tr><td>•  hexadecimal is okay too:</td><td><code>/C:0xBA,0x55,0xD3</code></td><td>MediumOrchid</td></tr>
+	<tr><td>•  as a console color index:</td><td><code>/C:$14</code></td><td>bright yellow</td></tr>
+</table>
+
+<p>In color-key mode, this plugin stores a different ruler color for each of the 16
+possible console background colors.  For example, the ruler defaults to ‘DeepSkyBlue’
+when the console background is black, but ‘CadetBlue’ when it’s
+bright white.  When you change the ruler’s color with <code>/C:</code>, you
+are setting the ruler color for the current console background color.  If you change
+the console’s colors, <em>e.g.</em> with <code>CLS /C</code>, you will get a
+different ruler color — which you can again customize with <code>/C:</code>. </p>
+
+<p><a name=ruler_opt_w></a><code>/W:</code><span class=optname>n</span> sets the
+width of the hash marks.  Legal values are 0 to 3; the default is 1. </p>
+
+<hr>
+
+<h5>Alpha Mode Customization:</h5>
+
+<p><a name=ruler_opt_b></a><code>/B:</code><span class=optname>color</span>
+sets the background color of the ruler (in alpha mode).  You may specify the
+<a href="E:\Utils\#colorspec"><span class=optname>color</span></a> in several different ways: </p>
+
+<table class=descript>
+	<tr><th>Method:</th><th>Example:</th><th>Gives:</th></tr>
+	<tr><td>•  as a <a target=_blank href="https://www.w3.org/wiki/CSS/Properties/color/keywords">W3C color name</a>:</td><td><code>/B:Orange</code></td><td>Orange</td></tr>
+	<tr><td>•  as a hexadecimal RGB value:</td><td><code>/B:#ADFF2F</code></td><td>GreenYellow</td></tr>
+	<tr><td>•  three-digit hex RGB is okay too:</td><td><code>/B:#0FF</code></td><td>Aqua</td></tr>
+	<tr><td>•  comma-separated red, green, and blue values:</td><td><code>/B:255,215,0</code></td><td>Gold</td></tr>
+	<tr><td>•  hexadecimal is okay too:</td><td><code>/B:0xBA,0x55,0xD3</code></td><td>MediumOrchid</td></tr>
+	<tr><td>•  as a console color index:</td><td><code>/B:$14</code></td><td>bright yellow</td></tr>
+</table>
+
+<p>Because the ruler is transparent, the color you actually see will be a
+combination of the ruler’s background color and whatever is underneath it.
+For example, an orange ruler will appear to be a very dark orange if it’s
+over a black background, but it will look much brighter over a white background. </p>
+
+<p><a name=ruler_opt_h></a><code>/H:</code><span class=optname>color</span>
+specifies the color of the hash marks on the ruler (in alpha mode).  <code>/H:</code>
+supports all the same <a href="E:\Utils\#colorspec"><span class=optname>color</span> formats</a>
+as <code>/B:</code>. </p>
+
+<p>If you give a <code>/B:</code> but no <code>/H:</code>, <code>RULER</code>
+will make the hash marks either black or white, whichever gives the better
+contrast. </p>
+
+<p><a name=ruler_opt_a></a><code>/A:</code><span class=optname>alpha</span>
+lets you set the ruler’s transparency (in alpha mode).  Values range from 64
+(very faint) to 255 (completely opaque).  The default is 128. </p>
+
+<p><code>/W:</code><span class=optname>n</span> sets the width of the
+hash marks.  Legal values are 0 to 3; the default is 1. </p>
+
+<hr>
+
+<p><a name=ruler_opt_p></a><code>/P:</code><span class=optname>n</span>
+sets the ruler’s current position.  The default is <code>/P:0</code>.
+(You can also move the ruler with the <a href="E:\Utils\#ruler_hotkey">hotkey</a>.) </p>
+
+<table class=descript>
+	<tr><td class=header>Value</td><td class=header>Position</td></tr>
+	<tr><td>0</td><td>The ruler is at the top of the tab window.</td></tr>
+	<tr><td>1</td><td>The ruler is at the bottom of the tab window.</td></tr>
+	<tr><td>2</td><td>The ruler is at the left of the tab window.</td></tr>
+	<tr><td>3</td><td>The ruler is at the right of the tab window.</td></tr>
+</table>
+
+<br>
+<p><a name=ruler_opt_e></a><code>/E:</code><span class=optname>n</span>
+lets you toggle the ruler on or off.  (You can also enable or disable the ruler
+with the <a href="E:\Utils\#ruler_hotkey">hotkey</a>.) </p>
+
+<br>
+<p><a name=ruler_opt_z></a><code>/Z:</code><span class=optname>n</span>
+determines whether the ruler is hidden the next time this plugin is loaded.
+<code>/Z:0</code> shows the ruler at startup; <code>/Z:1</code> hides it.
+The default is <code>/Z:0</code>.  This option does not show or hide the
+<em>current</em> ruler; it only affects future instances of this plugin. </p>
+
+<br>
+<p><a name=ruler_opt_u></a><code>/U:</code><span class=optname>n</span>
+controls whether or not this plugin intercepts the
+<a href="E:\Utils\#list"><code>LIST</code></a> command.  <code>/U:1</code> allows the
+plugin to intercept <code>LIST</code>; <code>/U:0</code> disables this feature.
+The default is <code>/U:1</code>.  This option does not affect the <em>current</em>
+instance; it only takes effect the next time you load this plugin. </p>
+
+<br>
+<p><a name=ruler_opt_i></a><code>/I:</code><span class=optname>n</span><span class=bnf>[</span><code>,</code><span class=optname>n…</span><span class=bnf>]</span><code>=</code><span class=optname>color</span> :
+You may want to emphasize particular columns.  <code>/I:</code> lets you
+draw hash marks in a different color at a few specific columns.  Pass it up
+to sixteen column numbers separated by commas, followed by an equals sign
+and a <a href="E:\Utils\#colorspec">color name</a>: </p>
+
+<p class=example><code>ruler /i:80,100=yellow<br>
+</code></p>
+
+<p>… to make the marks at columns 80 and 100 yellow. </p>
+
+<p>Alternate syntax:  <code>/I:*</code><span class=optname>n</span><code>=</code><span class=optname>color</span>
+will draw every <span class=optname>n</span><sup>th</sup> hash mark in the
+alternate color.  For example: </p>
+
+<p class=example><code>ruler /i:*20=yellow<br>
+</code></p>
+
+<p>… will mark every 20<sup>th</sup> column in yellow. </p>
+
+<p>This option
+does not do much sanity checking on the color.  It’s up to you to make
+sure that your alternate color is easily distinguished from the regular hash
+marks color, console background, and ruler background (if any). Note that
+there is only one alternate column color; it does not change according to the
+console background color, as the <a href="E:\Utils\#ruler_opt_c"><code>/C:</code></a>
+color does.  Also note that <code>/I:</code> colors specific <em>columns</em>;
+it does not affect vertical rulers. </p>
+
+<p><code>/I</code> by itself removes all alternate-color column marks. </p>
+
+<br>
+<p><a name=ruler_opt_j></a><code>/J:</code><span class=optname>n</span><span class=bnf>[</span><code>,</code><span class=optname>n…</span><span class=bnf>]</span><code>=</code><span class=optname>color</span>
+lets you draw different-colored hash marks at a few specific rows.  The
+syntax is the same as for <a href="E:\Utils\#ruler_opt_i"><code>/I:</code></a>
+above, but the values are row numbers instead of columns.  Note that this
+option only affects vertical rulers.  <code>/J</code> by itself removes
+all alternate-color row marks. </p>
+
+<p class=example><code>ruler /j:25=yellow<br>
+</code></p>
+
+<br>
+<p><a name=ruler_opt_dr></a><code>/D</code> restores the original plugin
+default settings (shown in the third column of <a href="E:\Utils\#ruler_syntax">the
+table above</a>).  <code>/R</code> restores the settings saved to the registry,
+if any.  You cannot combine the two. </p>
+
+<p><a name=ruler_opt_s></a><code>/S</code> saves the current settings to
+the registry.  They will be loaded automatically the next time you load this
+plugin. </p>
+
+<hr><!--endtopic-->
+
+
+
+<p><a name=list></a><code>LIST</code>:  This plugin intercepts the
+<code>LIST</code> command to adjust the position of the ruler.  The ruler will
+be restored to its normal position the next time the prompt is displayed.
+<code>LIST</code>’s operation is unchanged otherwise. </p>
+
+<p>You can use <a href="E:\Utils\#ruler_opt_u"><code>RULER /U:</code></a> to disable or
+enable this feature the next time the plugin is loaded. </p>
+
+
+<hr><!--endtopic-->
+
+
+<h4><a name=hotkeys></a>New Hotkey:</h4>
+
+
+<p><a name=ruler_hotkey></a><kbd>Shift</kbd>-<kbd>F12</kbd> — Hides,
+unhides, or moves the ruler. </p>
+
+<p>You can change the default key assignment with
+<a href="E:\Utils\#ruler_opt_k"><code>RULER /K:</code><span class=optname>key</span></a>.  You can use
+<a href="E:\Utils\#ruler_opt_m"><code>RULER /M:</code><span class=optname>n</span></a> to change the way the
+hotkey works. </p>
+
+<p>You can define as many as five hotkeys by using the <a href="E:\Utils\#multkeys">extended syntax</a>. </p>
+
+<hr><!--endtopic-->
+
+
+<h4><a name=colorspec></a>Color Formats:</h4>
+
+<p>Several of <a href="E:\Utils\#ruler"><code>RULER</code></a>’s options expect
+a <span class=optname>color</span> argument.  Several different methods of
+specifying a <span class=optname>color</span> are supported: </p>
+
+<p>•  As a <a target=_blank href="https://www.w3.org/wiki/CSS/Properties/color/keywords">W3C color name</a>:
+As in CSS.  This is the most intuitive syntax.  Case is not significant, and color names containing
+‘gray’ may be spelled using ‘grey’ instead if you prefer. </p>
+
+<p>•  As hexadecimal RGB, with a leading <code>#</code> sign.  Again, as in in CSS.
+Use either six digits (<code>#</code><span class=reqname>rrggbb</span>) or three digits
+(<code>#</code><span class=reqname>rgb</span>). </p>
+
+<p>•  As red, green, and blue values, 0 to 255, separated by commas.  This just happens
+to be the format returned by the <code>@COLOR</code> function.  You can give values in hexadecimal
+with a leading <code>0x</code> — although the <code>#</code><span class=reqname>rrggbb</span>
+syntax is probably more convenient if you prefer hex. </p>
+
+<p>•  Finally, you can specify colors as console color numbers, as in many internal
+commands.  Use a leading <code>$</code> to indicate a console color.  The value must, of course,
+be 0 to 15.  Under Windows Vista or later, the current RGB value for the given color will be read
+from the console.  Under Windows XP
+<a target=_blank href="https://www.duckduckgo.com/?q=/GetConsoleScreenBufferInfoEx%20site:docs.microsoft.com">the necessary API</a>
+doesn’t exist, so the <code>$</code><span class=reqname>n</span> syntax will instead
+return a default value from an internal list. </p>
+
+
+<hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1<br>
+</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table class=descript>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<tr><td>1.0.2.6</td><td nowrap>2026-07-06</td><td class=changes>Check for a pseudoconsole;
+		do not load if found. </td></tr>
+	<tr><td>1.0.2.5</td><td nowrap>2024-10-09</td><td class=changes>Changed http:// to https:// in the <code>PLUGININFO</code> block. 
+		Now ParseInt() supports octal values with a leading <code>0o</code>. </td></tr>
+	<tr><td>1.0.2.4</td><td nowrap>2023-10-15</td><td class=changes>Tweaked ShowCmdHelp() to report
+		<code>VER_PATCH</code>. </td></tr>
+	<tr><td>1.0.2.3</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.0.2.2</td><td nowrap>2023-07-24</td><td class=changes>Updated <span class=filename>ParseArgs.cpp</span> to the current version. </td></tr>
+	<tr><td>1.0.2.1</td><td nowrap>2023-06-13</td><td class=changes>Removes a call to QueryIsFile(), which
+		appears to have issues in TCC v30.00.20. </td></tr>
+	<tr><td>1.0.2</td><td nowrap>2021-12-22</td><td class=changes>No longer links to TakeCommandIPC() dynamically.
+		That hasn’t been necessary for a long, long time. </td></tr>
+	<tr><td>1.0.1</td><td nowrap>2021-12-21</td><td class=changes>Fixed a problem calling TakeCommandIPC() in 32-bit TCC. </td></tr>
+	<tr><td>1.0.0</td><td nowrap>2021-10-02</td><td class=changes>First release. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/ruler.zip">https://charlesdye.net/dl/ruler.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

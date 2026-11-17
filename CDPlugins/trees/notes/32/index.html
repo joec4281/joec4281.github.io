@@ -1,0 +1,845 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--saved from url=(0024)http://www.bauerapps.com--><html><head>
+<meta http-equiv=content-type content="text/html; charset=UTF-8">
+<title>SafeChars Plugin</title>
+
+<style type="text/css">
+   BODY                { color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+   H1                  { text-align: center; font-size: 150%; }
+   H2                  { text-align: center; font-size: 130%; }
+   H3                  { text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+   H4                  { font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+   H5                  { text-align: center; margin-top: 5px; margin-bottom: 0px; }
+   CODE                { font-family: Consolas, monospace; font-size: 110%; }
+   A                   { color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+   A:hover             { color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+   DIV.navbar A        { color: #000; text-decoration: none; border-bottom: none; }
+   DIV.navbar A:hover  { color: #008; text-decoration: none; background-color: #fff; }
+   .optname            { font-family: "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+   .reqname            { font-family: "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+   .req                { font-weight: bold; }
+   .bnf                { color: #375; font-style: italic; }
+   .filename           { font-variant: small-caps; }
+   .descript           { margin-left: 2em; padding-bottom: 1em; }
+   .example            { margin-left: 1em; margin-top: 0.3em; margin-bottom: 0.3em; }
+   .note               { color: #600; font-weight: bold; }
+   TD                  { padding-right: 2em; vertical-align: top; }
+   TD.header           { text-decoration: underline; }
+   .navbar             { position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; }
+   UL                  { list-style: none; padding-left: 5px; }
+   LI                  { margin-top: 2px; }
+   .content            { margin-left: 7px; margin-right: 12em; }
+
+   @media print {
+      BODY             { font-family: "Book Antiqua", Garamond, serif; font-weight: normal; }
+      A                { border-bottom: none; }
+      .navbar          { display: none; }
+      .content         { margin-left: 0; margin-right: 0; }
+      .noprint         { display: none; }
+   }
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+<li><a href="E:\Utils\#top">Top</a></li>
+<li><a href="E:\Utils\#purpose">Purpose</a></li>
+<li><a href="E:\Utils\#installation">Installation</a></li>
+<li><a href="E:\Utils\#theory">Theory</a></li>
+<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+<li><a href="E:\Utils\#commands">    Commands</a></li>
+<li><a href="E:\Utils\#functions">    Functions</a></li>
+<li><a href="E:\Utils\#intvars">    Variables</a></li>
+<li><a href="E:\Utils\#limits">Size Limits</a></li>
+<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+<li><a href="E:\Utils\#changes">Changes</a></li>
+<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=top></a>
+
+<h1>SafeChars plugin for <a target=_blank href="http://jpsoft.com/take-command-windows-scripting.html">Take Command</a> / TCC / 4NT</h1>
+<h3>Version 1.9.3     2016-08-16</h3>
+<h3>Charles Dye</h3>
+
+<h4><a name=purpose></a>Purpose:</h4>
+<p>This plugin provides functions for reading and writing text which may
+contain characters with special meaning to TCC (“dangerous”
+characters.)</p>
+
+<p>This plugin requires Take Command / TCC / 4NT version 8 or
+better.  Older versions are <em>not</em> supported.</p>
+
+
+<h4><a name=installation></a>Installation:</h4>
+
+<p>To use this plugin, copy the files <span class=filename>SafeChars.dll</span> and
+<span class=filename>SafeChars.chm</span> to some known location on your hard drive.  (If
+you are using the x64 version of Take Command, take <span class=filename>SafeChars-x64.dll</span>
+instead of <span class=filename>SafeChars.dll</span>.)  Load the plugin with a
+<code>PLUGIN /L</code> command.  For example: </p>
+
+<div class=example><code>plugin /l c:\bin\tcmd\safechars\safechars.dll</code></div>
+
+<p>If you copy the <span class=filename>.DLL</span> to a subdirectory
+named <span class=filename>PlugIns</span> within your Take Command
+program directory, the plugin will be loaded automatically by each new
+instance of TCC.</p>
+
+
+<h4><a name=theory></a>Theory:</h4>
+
+<p>This plugin takes advantage of
+<a target=_blank href="http://unicode.org/charts/PDF/UFF00.pdf">Unicode’s “Halfwidth
+and Fullwidth Forms” block</a>, specifically the characters at U+FF01
+through U+FF5E.  These characters correspond to ASCII characters 0x20
+through 0x7E, and when redirected to a file with //UnicodeOutput=No, they
+will even be automatically translated back to their ASCII equivalents.  But
+TCC doesn’t assign any significance to these remapped “safe”
+characters, so you can safely use them in a batch file and they will be
+handled like ordinary text characters.</p>
+
+<p>Depending on your font, whether TCC is running in a standalone console
+window or within a Take Command tab, the phase of the moon and general
+Windows witchiness, the remapped “safe” characters may or may
+not appear the same on-screen as their ASCII equivalents.  If you see empty
+boxes instead of normal-looking characters, try a different font.  The
+default “Raster Fonts” works well for me, although it’s not
+terribly attractive.</p>
+
+<p>By default, the characters defined as “dangerous” by this
+plugin are:</p>
+
+<table>
+<tbody><tr><td class=header>Character</td><td> </td><td class=header>ASCII</td><td class=header>Remapped to</td></tr>
+<tr><td>double quotes</td><td>"</td><td>34 / 0x22</td><td>U+FF02</td></tr>
+<tr><td>percent sign</td><td>%</td><td>37 / 0x25</td><td>U+FF05</td></tr>
+<tr><td>ampersand</td><td>&</td><td>38 / 0x26</td><td>U+FF06</td></tr>
+<tr><td>open parenthesis</td><td>(</td><td>40 / 0x28</td><td>U+FF08</td></tr>
+<tr><td>close parenthesis</td><td>)</td><td>41 / 0x29</td><td>U+FF09</td></tr>
+<tr><td>less-than sign</td><td>&lt;</td><td>60 / 0x3C</td><td>U+FF1C</td></tr>
+<tr><td>greater-than sign</td><td>&gt;</td><td>62 / 0x3E</td><td>U+FF1E</td></tr>
+<tr><td>open bracket</td><td>[</td><td>91 / 0x5B</td><td>U+FF3B</td></tr>
+<tr><td>close bracket</td><td>]</td><td>93 / 0x5D</td><td>U+FF3D</td></tr>
+<tr><td>caret</td><td>^</td><td>94 / 0x5E</td><td>U+FF3E</td></tr>
+<tr><td>grave accent / backquote</td><td>`</td><td>96 / 0x60</td><td>U+FF40</td></tr>
+<tr><td>vertical bar</td><td>¦</td><td>124 / 0x7C</td><td>U+FF5C</td></tr>
+</tbody></table>
+
+<br>
+
+<p>You can customize this list, adding or removing unsafe characters, with
+the <a href="E:\Utils\#unsafe"><code>UNSAFE</code></a> command. </p>
+
+<p>Note that this list includes the <em>default</em> command separator and
+the <em>default</em> escape character.  If you use non-default settings for
+these characters, I suggest changing back to the defaults at least
+temporarily while using this plugin’s features:</p>
+
+<div class=example><code>setlocal<br>
+setdos /c38 /e94 /p36<br>
+...<br>
+<br>
+endlocal</code></div>
+
+<p>As mentioned above, when //UnicodeOutput=No you can redirect these
+“safe” characters and they will automatically be replaced with
+their ASCII equivalents.  This convenient fix won’t happen when
+//UnicodeOutput=Yes, though; you’ll get strange characters in the output
+file.  To write Unicode to a file, converting the remapped
+“safe” characters back to their original values, a
+<a href="E:\Utils\#f_safewrite">@SAFEWRITE</a> function is provided.</p>
+
+<p>No provision is made for remapping or handling the ASCII NUL, character
+0.</p>
+
+
+<!--endtopic-->
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+<tbody><tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</tbody></table>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">commands</a>:  <a href="E:\Utils\#safearray"><code>SAFEARRAY</code></a>,
+<a href="E:\Utils\#safecharshelp"><code>SAFECHARSHELP</code></a>, <a href="E:\Utils\#safeecho"><code>SAFEECHO</code></a>,
+<a href="E:\Utils\#safeechos"><code>SAFEECHOS</code></a>, <a href="E:\Utils\#unsafe"><code>UNSAFE</code></a>
+</p>
+
+<p>New <a href="E:\Utils\#functions">functions</a>:  <a href="E:\Utils\#f_countsafe"><code>@COUNTSAFE</code></a>,
+<a href="E:\Utils\#f_countsafex"><code>@COUNTSAFEX</code></a>, <a href="E:\Utils\#f_countunsafe"><code>@COUNTUNSAFE</code></a>,
+<a href="E:\Utils\#f_countunsafex"><code>@COUNTUNSAFEX</code></a>, <a href="E:\Utils\#f_safecharsinfo"><code>@SAFECHARSINFO</code></a>,
+<a href="E:\Utils\#f_safeclip"><code>@SAFECLIP</code></a>, <a href="E:\Utils\#f_safeclipw"><code>@SAFECLIPW</code></a>,
+<a href="E:\Utils\#f_safeenv"><code>@SAFEENV</code></a>, <a href="E:\Utils\#f_safeexp"><code>@SAFEEXP</code></a>,
+<a href="E:\Utils\#f_safeline"><code>@SAFELINE</code></a>, <a href="E:\Utils\#f_saferead"><code>@SAFEREAD</code></a>,
+<a href="E:\Utils\#f_safewrite"><code>@SAFEWRITE</code></a>, <a href="E:\Utils\#f_unsafe"><code>@UNSAFE</code></a>,
+<a href="E:\Utils\#f_unsafeesc"><code>@UNSAFEESC</code></a></p>
+
+<p>New <a href="E:\Utils\#intvars">variables</a>:  <a href="E:\Utils\#intvars"><code>_AMP</code></a>,
+<a href="E:\Utils\#intvars"><code>_BQ</code></a>, <a href="E:\Utils\#intvars"><code>_CARET</code></a>, 
+<a href="E:\Utils\#intvars"><code>_CLOSEBRK</code></a>, <a href="E:\Utils\#intvars"><code>_CLOSEPAT</code></a>, 
+<a href="E:\Utils\#intvars"><code>_GT</code></a>, <a href="E:\Utils\#intvars"><code>_LT</code></a>, 
+<a href="E:\Utils\#intvars"><code>_OPENBRK</code></a>, <a href="E:\Utils\#intvars"><code>_OPENPAT</code></a>, 
+<a href="E:\Utils\#intvars"><code>_PCT</code></a>, <a href="E:\Utils\#intvars"><code>_QUOTE</code></a>, 
+<a href="E:\Utils\#intvars"><code>_VBAR</code></a>
+</p>
+
+
+<h4><a name=commands></a>Commands:</h4>
+<br>
+
+<p><a name=safearray></a><code>SAFEARRAY</code> —Replaces dangerous
+characters or quotes elements in an array. </p>
+
+<p>Syntax:<br>
+<code class=req>SAFEARRAY </code><code>/C:</code><span class=optname>n</span><code> /R:</code><span class=optname>n</span><code> /Q /QE </code><span class=reqname>arrayname</span></p>
+
+<table class=descript>
+<tbody><tr><td><code>/C:</code><span class=optname>n</span></td><td>the column to change; 0-based, defaults to all</td></tr>
+<tr><td><code>/R:</code><span class=optname>n</span></td><td>the row to change; 0-based, defaults to all</td></tr>
+<tr><td><code>/Q</code></td><td>Quote non-empty elements instead of replacing characters</td></tr>
+<tr><td><code>/QE</code></td><td>Quote all elements, even empty</td></tr>
+<tr><td><span class=reqname>arrayname</span></td><td>the array to modify</td></tr>
+</tbody></table>
+
+<p>The <span class=reqname>arrayname</span> is required.  The array must already
+exist; it must have one or two dimensions.  If <code>/C:</code><span class=optname>n</span>
+is not specified, all columns will be affected; if <code>/R:</code><span class=optname>n</span>
+is not specified, all rows will be affected.  The default action is to remap
+any “dangerous” characters in array elements.  If <code>/Q</code>
+is specified, each array element will instead be enclosed in double quotes
+unless it is empty.  If <code>/QE</code> is used, all array elements will be
+double-quotes, even if they are empty. </p>
+
+<p>This command is not available in TCC/LE or in versions prior to v10. </p>
+
+
+<br><hr><!--endtopic-->
+
+<p><a name=safecharshelp></a><code>SAFECHARSHELP</code> — Opens
+this plugin’s help file.</p>
+
+<p>Syntax:<br>
+<code class=req>SAFECHARSHELP </code><span class=optname>topic</span></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>topic</span></td><td>the page to display</td></tr>
+</tbody></table>
+
+<p>The <code>SAFECHARSHELP</code> command will locate and open this
+plugin’s help file.  In most cases, the internal <code>HELP</code>
+command, and the F1 and Ctrl-F1 keys, will be more convenient.  The sole
+advantage to this command is that it can be used to open the help file to
+any desired topic, not only to the names of commands, functions, and
+variables. </p>
+
+
+<br><hr><!--endtopic-->
+
+<p><a name=safeecho></a><code>SAFEECHO</code> — Displays text
+to standard output, restoring any remapped “safe” characters to
+their original, possibly dangerous values.</p>
+
+<p>Syntax:<br>
+<code class=req>SAFEECHO </code><span class=optname>text</span></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>text</span></td><td>the string to display</td></tr>
+</tbody></table>
+
+<p>A carriage return and line feed will be written to the file after
+<span class=optname>text</span>.  The <span class=optname>text</span>
+may or may not be written in Unicode, depending on the value of the
+//UnicodeOutput option.</p>
+
+<p><span class=note>Note:</span>  <em>All</em> characters in the range
+U+FF00 through U+FF5F will be replaced with their normal, ASCII
+equivalents.</p>
+
+<p><span class=note>Note:</span>  When //UnicodeOutput=No (the default
+setting), this command offers no benefit over <code>ECHO</code>.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=safeechos></a><code>SAFEECHOS</code> — Displays text
+to standard output, restoring any remapped “safe” characters to
+their original, possibly dangerous values.  A carriage return and line feed
+will <em>not</em> be appended.</p>
+
+<p>Syntax:<br>
+<code class=req>SAFEECHOS </code><span class=optname>text</span></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>text</span></td><td>the string to display</td></tr>
+</tbody></table>
+
+<p>The <span class=optname>text</span> may or may not be written in
+Unicode, depending on the current value of //UnicodeOutput.</p>
+
+<p><span class=note>Note:</span>  <em>All</em> characters in the range
+U+FF00 through U+FF5F will be replaced with their normal, ASCII
+equivalents.</p>
+
+<p><span class=note>Note:</span>  When //UnicodeOutput=No (the default
+setting), this command offers no benefit over <code>ECHOS</code>.</p>
+
+
+<br><hr><!--endtopic-->
+
+<p><a name=unsafe></a><code>UNSAFE</code> — Enables, disables,
+saves, restores, or lists dangerous characters.</p>
+
+<p>Syntax:<br>
+<code class=req>UNSAFE </code><code>/D:</code><span class=optname>chars</span><code> /E:</code><span class=optname>chars</span><code> /R /S /Z</code></p>
+
+<table class=descript>
+<tbody><tr><td><code>/D:</code><span class=optname>chars</span></td><td>disable (treat as safe) the following characters</td></tr>
+<tr><td><code>/E:</code><span class=optname>chars</span></td><td>enable (treat as dangerous) the following characters</td></tr>
+<tr><td><code>/R</code></td><td>restore the list of dangerous characters from the registry</td></tr>
+<tr><td><code>/S</code></td><td>save the list of dangerous characters to the registry</td></tr>
+<tr><td><code>/Z</code></td><td>reset the list of dangerous characters to the plugin defaults</td></tr>
+</tbody></table>
+
+<p>This command allows you to customize the list of “dangerous”
+characters.  You can enable more characters, so the plugin will treat them
+as dangerous and remap them to Unicode alternates, or disable characters so
+they are not considered dangerous and will not be remapped.  Only characters
+in the range of 32 - 127 can be remapped.  You can also save your
+modified list of dangerous characters to the registry; it will then be
+reloaded automatically when the plugin starts. </p>
+
+<p>The <code>/D:</code><span class=optname>chars</span> and
+<code>/E:</code><span class=optname>chars</span> options disable and
+enable characters.  <span class=optname>chars</span> may be specified as:
+a single character; a decimal value from 32 to 127, or a hexadecimal value
+from 0x20 to 0x7F; a character range specified as two characters/values
+separated by a minus sign; or a list of two or more characters/ranges
+separated by commas or semicolons. </p>
+
+<p><code>/S</code> saves the current settings, making them the default
+when the plugin is loaded in the future.  This data is saved in the
+registry, in a key named HKEY_CURRENT_USER\SOFTWARE\JPPlugins\SafeChars.
+<code>/R</code> reloads the settings from the registry, as if the plugin
+were unloaded and reloaded.  <code>/Z</code> resets the dangerous
+characters to the plugin’s defaults. </p>
+
+<p>For example, to include the comma as a dangerous character: </p>
+
+<p class=example><code>unsafe /e:,<br>
+</code></p>
+
+<p>To include the comma and make this setting the default in the future: </p>
+
+<p class=example><code>unsafe /e:, /s<br>
+</code></p>
+
+<p>Most options can be combined (you cannot combine <code>/R</code> and
+<code>/Z</code>); combined options will be processed in a reasonable order.
+A <code>/R</code> or <code>/Z</code> is handled before any <code>/D</code>
+or <code>/E</code>; a <code>/S</code> is handled after all other options.
+If you do not specify any options at all, <code>UNSAFE</code> will display
+the current list of dangerous characters. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>Plugin Functions:</h4>
+
+<br>
+
+<p><a name=f_countsafe></a><code>@COUNTSAFE</code> — Returns the
+number of “safe” characters in a string. </p>
+
+<p>Syntax:<br>
+<code class=req>%@COUNTSAFE[</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>text</span>:</td><td>the string to examine</td></tr>
+</tbody></table>
+
+<p>This function counts the number of characters in the range U+FF00 through
+U+FF5F in the <span class=optname>text</span>.  Whether these were
+“dangerous” characters remapped by this plugin, or whether they
+were present to begin with, is unknown. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_countsafex></a><code>@COUNTSAFEX</code> — Attempts to
+expand an internal variable, function, or array element, and then returns the
+number of “safe” characters in the resulting string. </p>
+
+<p>Syntax:<br>
+<code class=req>%@COUNTSAFEX[</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>text</span>:</td><td>the variable, function, or array element to expand</td></tr>
+</tbody></table>
+
+<p>This function performs variable expansion on the variable, function, or
+array element named by <span class=optname>text</span>, and then counts the
+number of characters in the range U+FF00 through U+FF5F in the resulting
+string.  Whether these were “dangerous” characters remapped by this
+plugin, or whether they were present to begin with, is unknown. </p>
+
+<p><span class=note>Note:</span>  Do not type a percent sign before the
+variable or function name.  If you do, TCC’s parser will expand the
+argument before <code>@COUNTSAFEX</code> gets to see it. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_countunsafe></a><code>@COUNTUNSAFE</code> — Returns the
+number of “dangerous” characters in a string. </p>
+
+<p>Syntax:<br>
+<code class=req>%@COUNTUNSAFE[</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>text</span>:</td><td>the string to examine</td></tr>
+</tbody></table>
+
+<p>This function counts the number of “dangerous” characters, as
+defined by the <a href="E:\Utils\#unsafe"><code>UNSAFE</code></a> command, in the input
+<span class=optname>text</span>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_countunsafex></a><code>@COUNTUNSAFEX</code> — Attempts to
+expand an internal variable, function, or array element, and then returns the
+number of “dangerous” characters in the resulting string. </p>
+
+<p>Syntax:<br>
+<code class=req>%@COUNTUNSAFEX[</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>text</span>:</td><td>the variable, function, or array element to expand</td></tr>
+</tbody></table>
+
+<p>This function performs variable expansion on the variable, function, or
+array element named by <span class=optname>text</span>, and then counts the
+number of “dangerous” characters, as defined by the
+<a href="E:\Utils\#unsafe"><code>UNSAFE</code></a> command, in the resulting string. </p>
+
+<p><span class=note>Note:</span>  Do not type a percent sign before the
+variable or function name.  If you do, TCC’s parser will expand the
+argument before <code>@COUNTUNSAFEX</code> gets to see it. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_safecharsinfo></a><code>@SAFECHARSINFO</code> — Returns
+internal plugin info. </p>
+
+<p>Syntax:<br>
+<code class=req>%@SAFECHARSINFO[</code><span class=reqname>n</span><code>,</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+   <tr><td><span class=reqname>n</span></td><td>selects the plugin info to return:</td></tr>
+   <tr><td> </td><td>    0: the plugin version number; parts separated by periods</td></tr>
+   <tr><td> </td><td>    1: a 12-digit hex (<em>i.e.</em> 96-bit) bitmap of current “unsafe” characters</td></tr>
+   <tr><td> </td><td>    2: return <span class=optname>text</span> made safe according to the <a href="E:\Utils\#unsafe">current settings</a></td></tr>
+</table>
+
+<p>This function is intended for use by other plugins.  Most users will never
+need it; it is of little or no use in batch files or at the command line. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_safeclip></a><code>@SAFECLIP</code> — Returns a
+line from the clipboard, replacing any dangerous characters with
+“safe” equivalents.</p>
+
+<p>Syntax:<br>
+<code class=req>%@SAFECLIP[</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=reqname>n</span>:</td><td>line numbering starts at 0</td></tr>
+</tbody></table>
+
+<p>This function calls TCC’s built-in <code>@CLIP</code> function and
+massages whatever text it returns.  See the Take Command documentation for
+more information on <code>@CLIP</code>.</p>
+
+<p>If you attempt to read past the end of the clipboard,
+<code>@SAFECLIP</code> will return the value <code>**EOC**</code>.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_safeclipw></a><code>@SAFECLIPW</code> — Writes
+text to the clipboard, restoring any remapped “safe” characters
+to their original, possibly dangerous values.</p>
+
+<p>Syntax:<br>
+<code class=req>%@SAFECLIPW[</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>text</span>:</td><td>the string to save on the clipboard</td></tr>
+</tbody></table>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_safeenv></a><code>@SAFEENV</code> — Returns the
+value of an environment variable, replacing any dangerous characters with
+“safe” equivalents.</p>
+
+<p>Syntax:<br>
+<code class=req>%@SAFEENV[</code><span class=reqname>var</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=reqname>var</span>:</td><td>the name of an environment variable</td></tr>
+</tbody></table>
+
+<div class=example><code>input Type some text: %%text<br>
+set text=%@safeenv[text]<br>
+echo You typed "%text".<br>
+ </code></div>
+
+<p>This function is useful with commands such as <code>INPUT</code> or
+<code>DO</code> <span class=optname>var</span> <code>IN @</code><span class=optname>file</span>,
+which stash text directly in an environment variable without first passing
+it through the command parser.  <strong>Do not type a percent sign before the
+variable name.</strong>  If you do, TCC’s parser will expand the variable
+before <code>@SAFEENV</code> ever sees it. </p>
+
+<p><span class=note>Note:</span> This function only reads text from
+environment variables, not from internal variables, functions, or
+array elements.  For anything other than an environment variable, use
+<a href="E:\Utils\#f_safeexp"><code>@SAFEEXP</code></a> instead. </p>
+
+<p><span class=note>Note:</span> If you want to use this function in
+conjunction with the <code>FOR</code> command, be aware that <code>FOR</code>
+only stores its control variable in the environment if the variable name
+is more than one character long.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_safeexp></a><code>@SAFEEXP</code> — Attempts
+to expand an internal variable, function, or array element, and then remaps
+any dangerous characters to “safe” alternatives.</p>
+
+<p>Syntax:<br>
+<code class=req>%@SAFEEXP[</code><span class=reqname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=reqname>text</span>:</td><td>the variable, function, or array element to expand</td></tr>
+</tbody></table>
+
+<div class=example><code>echo The current command separator is
+%@safeexp[=]</code></div>
+
+<div class=example><code>echo %@safeexp[@ftype[%@assoc[.btm]]]</code></div>
+
+<p><span class=note>Note:</span>  Do not type a percent sign before the
+variable or function name.  If you do, TCC’s parser will expand the
+argument before <code>@SAFEEXP</code> gets to see it. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_safeline></a><code>@SAFELINE</code> — Reads the
+specified line from a file, mapping any dangerous characters to safe
+alternatives.</p>
+
+<p>Syntax:<br>
+<code class=req>%@SAFELINE[</code><span class=reqname>filename</span><code class=req>,</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=reqname>filename</span>:</td><td>the file to read; quote it if it contains spaces</td></tr>
+<tr><td><span class=reqname>n</span>:</td><td>line numbering starts at 0</td></tr>
+</tbody></table>
+
+<p>This function calls TCC’s built-in <code>@LINE</code> function and
+massages whatever text it returns.  See the Take Command documentation for
+more information on <code>@LINE</code>.</p>
+
+<p>If you attempt to read past the end of the file, <code>@SAFELINE</code>
+will return the value <code>**EOF**</code>.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_saferead></a><code>@SAFEREAD</code> — Reads text
+from a file, mapping any dangerous characters to safe alternatives.</p>
+
+<p>Syntax:<br>
+<code class=req>%@SAFEREAD[</code><span class=reqname>handle</span><code>,</code><span class=optname>length</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=reqname>handle</span>:</td><td>a file handle opened with <code>@FILEOPEN</code></td></tr>
+<tr><td><span class=optname>length</span>:</td><td>the number of bytes to read; if not specified, one line is read</td></tr>
+</tbody></table>
+
+<p>This function calls TCC’s built-in <code>@FILEREAD</code> function and
+massages whatever text it returns.  See the Take Command documentation for
+more information on <code>@FILEREAD</code>.</p>
+
+<p>If you attempt to read past the end of the file, <code>@SAFEREAD</code>
+will return the value <code>**EOF**</code>.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_safewrite></a><code>@SAFEWRITE</code> — Writes
+a line of text to a file, replacing any remapped “safe”
+characters with their original, possibly dangerous, values.</p>
+
+<p>Syntax:<br>
+<code class=req>%@SAFEWRITE[</code><span class=reqname>handle</span><code>,</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=reqname>handle</span>:</td><td>a file handle opened with <code>@FILEOPEN</code>, or <code>-</code> for stdout</td></tr>
+<tr><td><span class=optname>text</span>:</td><td>a line of text to write to the file</td></tr>
+</tbody></table>
+
+<p>A carriage return and line feed will be written to the file after
+<span class=optname>text</span>.  The <span class=optname>text</span>
+may or may not be written in Unicode, depending on the value of the
+//UnicodeOutput option.  If //UnicodeOutput=Yes and the output file is
+empty, a Byte Order Mark (BOM) will be written before the
+<span class=optname>text</span>.</p>
+
+<p>This function returns the number of characters written to the file, not
+counting any BOM.  If an error was detected, <code>-1</code> will be
+returned.</p>
+
+<p><span class=note>Note:</span>  <em>All</em> characters in the range
+U+FF00 through U+FF5F will be replaced with their normal, ASCII
+equivalents.  (If we’re going to mangle Japanese text files, let’s at least
+mangle them consistently….)</p>
+
+<p><span class=note>Note:</span>  When //UnicodeOutput=No (the default
+setting), this function is unnecessary.  <code>@FILEWRITE</code> or output
+redirection will work just as well.</p>
+
+<br><hr><!--endtopic-->
+
+<p><a name=f_unsafe></a><code>@UNSAFE</code> — Replaces “safe”
+characters in a string with potentially dangerous ones. </p>
+
+<p>Syntax:<br>
+<code class=req>%@UNSAFE[</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tbody><tr><td><span class=optname>text</span></td><td>Text, possibly containing “safe” characters</td></tr>
+</tbody></table>
+
+<p>I do not recommend the use of this function.  The returned value may contain
+ampersands, pipes, redirection operators, or who-knows-what.  If you decide
+that you must use it, I strongly recommend wrapping it in double quotes to
+limit the carnage. </p>
+
+<p class=example><code>set test="%@unsafe[%test]"<br>
+</code></p>
+
+<br>
+
+<p><span class=note>Note:</span>  <em>All</em> characters in the range U+FF00
+through U+FF5F will be remapped to ASCII equivalents. </p>
+
+<br><hr><!--endtopic-->
+
+<p><a name=f_unsafeesc></a><code>@UNSAFEESC</code> — Replaces “safe”
+characters in a string with potentially dangerous ones, and escapes them. </p>
+
+<p>Syntax:<br>
+<code class=req>%@UNSAFEESC[</code><span class=optname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+   <tbody><tr><td><span class=optname>text</span></td><td>Text, possibly containing “safe” characters</td></tr>
+</tbody></table>
+
+<p>Any characters <a href="E:\Utils\#unsafe">currently defined as unsafe</a> will be
+escaped.  Percent signs will be doubled; double-quote and backquote marks will
+be replaced with <code>%=q</code> and <code>%=k</code>; and any other unsafe
+characters will have a <code>%=</code> prefixed.  Any characters <em>not</em>
+currently deemed unsafe will not be escaped. </p>
+
+<p class=example><code>echo Line = %@unsafeesc[%line]<br>
+</code></p>
+
+<p><span class=note>Note:</span>  <em>All</em> characters in the range U+FF00
+through U+FF5F will be remapped to ASCII equivalents. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=intvars></a>Internal Variables:</h4>
+
+<p>These variables return the remapped, “safe” values for
+various characters.  They can be used to search for or replace the remapped
+characters in functions such as <code>@INDEX</code> and
+<code>@REPLACE</code>.  If the //UnicodeOutput option is set to NO, then
+these remapped characters can also be redirected to a file, and TCC’s
+built-in Unicode-to-ANSI translation will automagically replace them with
+the “dangerous” forms.</p>
+
+<table>
+<tbody><tr><td class=header>Variable</td><td class=header>Returns</td><td> </td></tr>
+<tr><td><code class=req>%_AMP</code></td><td>safe ampersand</td><td>&</td></tr>
+<tr><td><code class=req>%_BQ</code></td><td>safe backquote</td><td>`</td></tr>
+<tr><td><code class=req>%_CARET</code></td><td>safe caret</td><td>^</td></tr>
+<tr><td><code class=req>%_CLOSEBRK</code></td><td>close bracket</td><td>]</td></tr>
+<tr><td><code class=req>%_CLOSEPAT</code></td><td>close parenthesis</td><td>)</td></tr>
+<tr><td><code class=req>%_GT</code></td><td>safe greater-than sign</td><td>&gt;</td></tr>
+<tr><td><code class=req>%_LT</code></td><td>safe less-than sign</td><td>&lt;</td></tr>
+<tr><td><code class=req>%_OPENBRK</code></td><td>open bracket</td><td>[</td></tr>
+<tr><td><code class=req>%_OPENPAT</code></td><td>open parenthesis</td><td>(</td></tr>
+<tr><td><code class=req>%_PCT</code></td><td>safe percent sign</td><td>%</td></tr>
+<tr><td><code class=req>%_QUOTE</code></td><td>safe double quotes</td><td>"</td></tr>
+<tr><td><code class=req>%_VBAR</code></td><td>safe vertical bar</td><td>¦</td></tr>
+
+</tbody></table>
+<!--endtopic-->
+
+
+<h4><a name=limits></a>Size Limits:</h4>
+
+<p>All strings in this plugin are limited to 16,383 characters.  Attempting
+to pass or return a string longer than 16,383 characters may result in an
+error message, silent truncation, or possibly even a crash.</p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<div class=example><code>set /e /u noloadmsg=1</code></div>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<table style="margin-top: 1em; margin-left: 2px;">
+<thead>
+<tr><td>Version</td><td>Date</td><td>Changes</td>
+</thead>
+<tbody>
+<tr><td>1.3.0</td><td nowrap>2010-10-17</td><td>.CHM help file</td></tr>
+<tr><td>1.4.0</td><td nowrap>2011-01-03</td><td>Treat parentheses as
+    dangerous, because they affect command parsing and redirection;
+    added <a href="E:\Utils\#intvars"><code>_OPENPAT</code></a> and
+    <a href="E:\Utils\#intvars"><code>_CLOSEPAT</code></a>.  Treat square brackets
+    as dangerous; added <a href="E:\Utils\#intvars"><code>_OPENBRK</code></a>
+    and <a href="E:\Utils\#intvars"><code>_CLOSEBRK</code></a>.  Minor tweak to
+    <a href="E:\Utils\#f_safewrite"><code>@SAFEWRITE</code></a> to not require a
+    comma between args if the second argument is omitted. </td></tr>
+<tr><td>1.4.1</td><td nowrap>2011-02-26</td><td>Tweaks to the help
+    system; now it’s single-instance.  Added
+    <a href="E:\Utils\#safecharshelp"><code>SAFECHARSHELP</code></a>. </td></tr>
+<tr><td>1.4.2</td><td nowrap>2011-03-03</td><td>Further tweaks to
+    the help system. </td></tr>    
+<tr><td>1.4.3</td><td nowrap>2011-03-28</td><td>Don’t call
+    HtmlHelp() to close the help file on shutdown; this is insanely slow
+    for some reason. </td></tr>
+<tr><td>1.5.0</td><td nowrap>2011-06-17</td><td>Adds the
+    <a href="E:\Utils\#unsafe"><code>UNSAFE</code></a> command, which allows the
+    user to customize the list of “dangerous” characters. </td></tr>
+<tr><td>1.5.1</td><td nowrap>2011-07-29</td><td>Adds new function
+    <code>@UQUOTES</code>. </td></tr>
+<tr><td>1.5.2</td><td nowrap>2011-07-31</td><td>Tweaked
+    <code>@UQUOTES</code>.  Double quotes are now
+    converted according to surrounding characters, not just a simple
+    toggle. </td></tr>
+<tr><td>1.5.3</td><td nowrap>2011-08-05</td><td>Further tweaks to
+    <code>@UQUOTES</code>. </td></tr>
+<tr><td>1.5.4</td><td nowrap>2011-09-29</td><td>Don’t strip leading
+    whitespace from args to <a href="E:\Utils\#safeecho"><code>SAFEECHO</code></a> /
+    <a href="E:\Utils\#safeechos"><code>SAFEECHOS</code></a>. </td></tr>
+<tr><td>1.5.5</td><td nowrap>2011-10-08</td><td><code>@UQUOTES</code>
+    now converts double hyphens to em dashes; made a trivial change to
+    <a href="E:\Utils\#f_safeenv"><code>@SAFEENV</code></a> and
+    <a href="E:\Utils\#f_safeexp"><code>@SAFEEXP</code></a>.  Tweaked style sheets and
+    made other minor changes to the help. </td></tr>
+<tr><td>1.5.6</td><td nowrap>2011-10-27</td><td>Internal tweaks to the code,
+    and minor changes to the documentation style sheets.  No new features or bug fixes. </td></tr>
+<tr><td>1.5.7</td><td nowrap>2011-11-14</td><td>Minor tweak:
+    <code>@UQUOTES</code> now recognizes two-digit
+    year abbreviations. </td></tr>
+<tr><td>1.6.0</td><td nowrap>2012-01-19</td><td>Added <a href="E:\Utils\#safearray"><code>SAFEARRAY</code></a>
+    command to massage array elements en masse. </td></tr>
+<tr><td>1.6.1</td><td nowrap>2012-01-19</td><td>Added <a href="E:\Utils\#f_unsafe"><code>@UNSAFE</code></a>
+    function. </td></tr>
+<tr><td>1.6.2</td><td nowrap>2012-01-21</td><td>Added <a href="E:\Utils\#f_countsafe"><code>@COUNTSAFE</code></a>,
+    <a href="E:\Utils\#f_countsafex"><code>@COUNTSAFEX</code></a>, <a href="E:\Utils\#f_countunsafe"><code>@COUNTUNSAFE</code></a>,
+    and <a href="E:\Utils\#f_countunsafex"><code>@COUNTUNSAFEX</code></a>. </td></tr>
+<tr><td>1.6.3</td><td nowrap>2012-02-19</td><td>Only strip leading
+    whitespace from args to <a href="E:\Utils\#safeecho"><code>SAFEECHO</code></a> /
+    <a href="E:\Utils\#safeechos"><code>SAFEECHOS</code></a> when checking for
+    <code>/?</code></td></tr>
+<tr><td>1.6.4</td><td nowrap>2012-02-21</td><td>Close help window when
+    plugin is unloaded. </td></tr>
+<tr><td>1.6.5</td><td nowrap>2012-03-13</td><td>Minor tweaks to <code>@UQUOTES</code>,
+    and documented its control variables. </td></tr>
+<tr><td>1.6.6</td><td nowrap>2012-04-16</td><td>Adds a kludge to <code>@UQUOTES</code>
+    to support <a target=_blank href="http://en.wikipedia.org/wiki/%27okina">‘okinas</a>.</td></tr>
+<tr><td>1.7.0</td><td nowrap>2012-09-04</td><td>Adds <a href="E:\Utils\#f_safecharsinfo"><code>@SAFECHARSINFO</code></a>
+    function (for use by other plugins).</td></tr>
+<tr><td>1.7.1</td><td nowrap>2013-04-23</td><td>Updated the plugin’s web address.</td></tr>
+<tr><td>1.7.2</td><td nowrap>2014-02-19</td><td>Minor tweaks to the help system.</td></tr>
+<tr><td>1.8.0</td><td nowrap>2014-06-30</td><td>Added <a href="E:\Utils\#f_unsafeesc"><code>@UNSAFEESC</code></a> function.</td></tr>
+<tr><td>1.9.0</td><td nowrap>2014-10-29</td><td>Changes for TCC v17 compatibility.  De-documented
+    <code>@UQUOTES</code> — it’s also implemented in TextUtils, and I
+    plan to remove it from a future version of this plugin. </td></tr>
+<tr><td>1.9.1</td><td nowrap>2014-10-31</td><td>Bug fix:  CallInternal() adding an asterisk
+    when it shouldn’t. </td></tr>
+<tr><td>1.9.2</td><td nowrap>2016-03-09</td><td>Reworks the help system, for systems where the documented
+    <a target=_blank href="http://duckduckgo.com/?q=%5cHtmlHelp%20function%20site:msdn.microsoft.com">HtmlHelp()</a> API
+    is broken. </td></tr>
+<tr><td>1.9.3</td><td nowrap>2016-08-16</td><td>Fix for the plugin not loading in TCC v20. </td></tr>
+
+</tbody>
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This software is copyright © 2016, Charles Dye. </p>
+
+<p>The binaries and documentation for this plugin may be freely
+redistributed without restriction.  I make no guarantee and give no
+warranty for its operation.  If you find a problem, you can report it in the
+<a target=_blank href="http://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+
+<p>You can download the current version of the plugin from
+<a href="http://prospero.unm.edu/dl/safechars.zip">http://prospero.unm.edu/dl/safechars.zip</a>
+or <a href="E:\Utils\ftp:\\prospero.unm.edu\safechars.zip">ftp://prospero.unm.edu/safechars.zip</a>. </p>
+
+<!--endtopic-->
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+
+
+</body><!--saved from url=(0024)http://www.bauerapps.com--></html>

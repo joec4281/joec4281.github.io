@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>SaveConsole Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.5; background-color: #eee; padding: 0.5em 1em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 85%; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.5; border: 1px solid #ccc; border-radius: 8px; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#saveconsole">SAVECONSOLE</a></li>
+	<li><a href="E:\Utils\#variables">New Variables</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>SaveConsole plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.4.8.1     2024-06-06</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin implements a replacement for the internal <code>SAVECONSOLE</code>
+command. </p>
+
+<p>Why would you <em>want</em> to replace the interal <code>SAVECONSOLE</code>?
+Well, <code>SAVECONSOLE</code> works fine in text mode, but in HTML mode it has
+some issues: </p>
+
+<ul>
+	<li>It generates HTML that is... <em>peculiar</em>, let’s say.  Missing elements and unclosed
+		tags are among the more obvious issues. </li>
+	<li>It produces files that are much larger than they need to be. </li>
+	<li>It does strange things when it encounters an attribute word with any of the top eight bits set. </li>
+	<li>It’s very very slow.  On my system, <code>SAVECONSOLE /H</code> takes more than 30 seconds
+		to save a 7,500-line console dump. </li>
+	<li>And finally, the resulting file doesn’t even look nice in a web browser.  It renders,
+		but it ain’t pretty. </li>
+</ul>
+
+<p>This plugin provides a <a href="E:\Utils\#saveconsole"><code>SAVECONSOLE</code></a> which
+addresses these issues.  It’s much faster, and it produces smaller, syntactically
+valid HTML files which look decent in any modern browser.  There are also a few new
+features, including support for directory aliases and saving to the clipboard. </p>
+
+<br>
+<p>Note that this command will not work as intended under Windows Terminal.
+In Windows Terminal, <code>SAVECONSOLE</code> will only save the visible
+portion of the console window, not the contents of the scrollback buffer.
+This is because Windows Terminal is not fully compatible with the documented
+Windows console APIs.  TCC’s internal <code>SAVECONSOLE</code> command
+has the same issue.  I don’t see any workaround unless Microsoft
+chooses to improve Windows Terminal — don’t hold your
+breath. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>SaveConsole.dll</span> to
+some known location on your hard drive.  (If you are still using the 32-bit version
+of Take Command, take <span class=filename>SaveConsole-x86.dll</span> instead of
+<span class=filename>SaveConsole.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\saveconsole.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">command</a>:  <a href="E:\Utils\#saveconsole"><code>SAVECONSOLE</code></a></p>
+
+<p>New <a href="E:\Utils\#variables">variables</a>:  <a href="E:\Utils\#v_saveconfile"><code>_SAVECONFILE</code></a>,
+<a href="E:\Utils\#v_saveconmode"><code>_SAVECONMODE</code></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=saveconsole></a><code>SAVECONSOLE</code> — Save the console
+buffer to a text, HTML, or RTF file. </p>
+
+<p>Syntax:<br>
+<code class=req>SAVECONSOLE</code><code> /CP /CR /CRLF /BG:</code><span class=optname>color</span><code> /D /FS:</code><span class=optname>size</span><code> /H /L /LF /N:</code><span class=optname>flags</span><code> /O /Q /R /T /UTF</code><span class=optname>x</span><code> /V /W /X:</code><span class=optname>cssfile</span><code> /Y:</code><span class=optname>css</span><code> </code><span class=optname>filename</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#sc_opt_cp"><code>/CP</code></a></td><td>use the console palette (HTML only)</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_crlf"><code>/CR</code></a></td><td>Macintosh line ends</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_crlf"><code>/CRLF</code></a></td><td>Windows line ends</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_bg"><code>/BG:</code><span class=optname>color</span></a></td><td>specify a background color (HTML only)</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_d"><code>/D</code></a></td><td>do not save colors (HTML and RTF only)</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_fs"><code>/FS:</code><span class=optname>size</span></a></td><td>font size (HTML and RTF only)</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_h"><code>/H</code></a></td><td>save as HTML</td></tr>
+	<tr><td><code>/L</code></td><td>line numbers</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_crlf"><code>/LF</code></a></td><td>Unix line ends (default)</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_n"><code>/N:</code><span class=optname>flags</span></a></td><td>disable features</td></tr>
+	<!-- <tr><td><code>/NB</code></td><td>do not write a Byte Order Mark</td></tr> -->
+	<!-- <tr><td><code>/ND</code></td><td>disable the <a  href="#sc_dialog">&lsquo;Save As&rsquo; dialog</a></td></tr> -->
+	<tr><td><a href="E:\Utils\#sc_opt_o"><code>/O</code></a></td><td>open the output file when finished</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_q"><code>/Q</code></a></td><td>quietly</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_r"><code>/R</code></a></td><td>save as RTF</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_t"><code>/T</code></a></td><td>include a header line</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_u"><code>/UTF8</code></a></td><td>save as UTF-8 (the default)</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_u"><code>/UTF16</code></a></td><td>save as UTF-16</td></tr>
+	<tr><td><code>/V</code></td><td>save only the visible area of the console</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_w"><code>/W</code></a></td><td>full width (text only)</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_x"><code>/X:</code><span class=optname>cssfile</span></a></td><td>link to an external style sheet (HTML only)</td></tr>
+	<tr><td><a href="E:\Utils\#sc_opt_y"><code>/Y:</code><span class=optname>css</span></a></td><td>adds internal CSS for the PRE tag (HTML only)</td></tr>
+	<tr><td><span class=optname>filename</span></td><td>the file to create</td></tr>
+</table>
+
+
+<p>Directory aliases are supported, and you can use <code>CLIP:</code> to save
+to the clipboard.  If you do not specify a <span class=optname>filename</span>,
+you’ll get a <a href="E:\Utils\#sc_dialog">‘Save As’ dialog</a>. </p>
+
+<p>The default mode is to save as plain text, unless the <span class=optname>filename</span>
+ends in <code>.HTML</code>, <code>.HTM</code>,  or <code>.RTF</code>. </p>
+
+<br>
+<p><a name=sc_opt_crlf></a><code>/LF</code>, <code>/CR</code>, and <code>/CRLF</code>
+let you select line-end characters; the default is <code>/LF</code>. </p>
+
+<p><a name=sc_opt_bg></a><code>/BG:</code><span class=optname>color</span>
+allows you to choose a background color for the web page.  Note that this option uses
+<a target=_blank href="https://www.w3.org/wiki/CSS/Properties/color/keywords">W3C color names</a>,
+not the much smaller set of CGA colors supported by many TCC commands.  This option
+only affects HTML mode; it is ignored in text mode. </p>
+
+<p><a name=sc_opt_d></a><code>/D</code> prevents <code>SAVECONSOLE</code>
+from saving color information to an HTML or RTF file.  This will produce a
+smaller file.  <code>/D</code> has no effect when saving to a text file. </p>
+
+<p><a name=sc_opt_fs></a><code>/FS:</code><span class=optname>size</span>
+lets you specify the font size.  This option only affects HTML and RTF files.
+The allowed range is 6 to 48.  <code>/FS</code> has no effect when saving to
+a text file. </p>
+
+<p><a name=sc_opt_h></a><code>/H</code> saves the console buffer as HTML.
+The default is to save as plain text, unless the <span class=optname>filename</span>
+ends in <code>.HTML</code>, <code>.HTM</code>, or <code>.RTF</code>. </p>
+
+<br>
+<p><a name=sc_opt_n></a><code>/N:</code><span class=optname>flags</span>
+lets you disable features: </p>
+
+<table style="margin-left: 2em;">
+	<tr><td><code>B</code></td><td>do not write a Byte Order Mark</td></tr>
+	<tr><td><code>C</code></td><td>do not save colors (synonym for <code>/D</code>)</td></tr>
+	<tr><td><code>D</code></td><td>disable the <a href="E:\Utils\#sc_dialog">‘Save As’ dialog</a> (you must supply a filename)</td></tr>
+	<tr><td><code>H</code></td><td>disable the custom hook procedure for the dialog</td></tr>
+	<tr><td><code>I</code></td><td>do not create an RTF info block (only affects RTF files)</td></tr>
+	<tr><td><code>T</code></td><td>disable the ‘Save as type:’ control in the dialog</td></tr>
+</table>
+
+<p>Suboptions may be combined in any order, and the colon is optional. </p>
+<br>
+
+<p><a name=sc_opt_o></a><code>/O</code> automatically opens the output
+file in the default application after the save is complete.  (<code>/O</code>
+is ignored when saving to <code>CLIP:</code>.) </p>
+
+<p><a name=sc_opt_q></a><code>/Q</code> suppresses the final report. </p>
+
+<p><a name=sc_opt_r></a><code>/R</code> saves the console buffer as RTF.
+<em>Consider this mode experimental!</em>  It may be buggy as sin.  Note
+that RTF files must use ASCII; <code>/UTF8</code> and <code>/UTF16</code>
+are ignored. </p>
+
+<p><a name=sc_opt_t></a><code>/T</code> adds a header line with the
+console window’s title and the date and time to the top of the file. </p>
+
+<p><a name=sc_opt_u></a><code>/UTF8</code> and <code>UTF16</code> let
+you specify the output character encoding.  Note these limitations: </p>
+
+<ul>
+	<li>Writing to the CLIP: device always uses UTF-16. </li>
+	<li>RTF files always use ASCII. </li>
+	<li>You can use <code>/UTF16</code> to create UTF-16 HTML files.  But note that such files may
+		fail validation; UTF-16 is discouraged in HTML5. </li>
+</ul>
+
+<p>You can abbreviate these options to <code>/U8</code> and
+<code>/U16</code> if you wish. </p>
+
+<p><a name=sc_opt_w></a><code>/W</code> saves trailing spaces at the ends of
+lines.  I can’t imagine why you would want to do this; I only include this
+option for compatibility with TCC.  <code>/W</code> has no effect in HTML or
+RTF mode. </p>
+
+<p><a name=sc_opt_cp></a><code>/CP</code> attempts to read the console
+palette, and use its color definitions instead of my default colors.  
+<code>/CP</code> does not affect text files.  This option requires Windows
+Vista or later.  (It uses
+<a target=_blank href="https://duckduckgo.com/?q=%5cGetConsoleScreenBufferInfoEx%20site:learn.microsoft.com">GetConsoleScreenBufferInfoEx</a>,
+which does not exist in Windows XP.) </p>
+
+<br>
+<p><a name=sc_opt_x></a><code>/X:</code><span class=optname>cssfile</span>
+includes a link in the HTML file’s header to an external style sheet.
+Note that <code>SAVECONSOLE</code> does not create this file or verify its
+existence.  <code>/X</code> merely writes the appropriate reference to the
+output file; providing the <span class=optname>cssfile</span> is up to you.
+The filename is not canonicalized; it will be written to the output file
+as you entered it on the command line.  Quote the <span class=optname>cssfile</span>
+if it contains spaces (bad idea!) or forward slashes.  <code>/X</code> only
+affects HTML files. </p>
+
+<p>You can use <code>/X</code> to override the HTML file’s internal styles.
+For example, your <span class=optname>cssfile</span> might contain a line: </p>
+
+<p class=example><code>PRE    { border: 16px ridge #6cf; border-radius: 48px; }<br>
+</code></p>
+
+<p>… to give your console dump a groovy 1970s border. </p>
+
+<br>
+<p><a name=sc_opt_y></a><code>/Y:</code><span class=optname>css</span> lets
+you write CSS within the file’s header.  Any CSS you specify will replace
+all of my default styles for the PRE tag, except for the colors. </p>
+
+<br>
+<p><a name=sc_dialog></a>If you do not specify a <span class=optname>filename</span>,
+or if it names a directory, <code>SAVECONSOLE</code> will display a ‘Save As’
+dialog.  Navigate to the desired directory and type a filename for your output file,
+or else click on an existing file to overwrite it.  The file will be saved as plain text
+unless you specified either <a href="E:\Utils\#sc_opt_h"><code>/H</code></a> or
+<a href="E:\Utils\#sc_opt_r"><code>/R</code></a>.  You can change the save mode within the dialog
+using the ‘Save as type:’ control. </p>
+
+<p>You can disable the ‘Save As’ dialog with <code>/ND</code>.  You can disable
+the ‘Save as type:’ control with <code>/NT</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+
+
+<p><a name=v_saveconfile></a><code>_SAVECONFILE</code> — Returns the
+filename of the last <code>SAVECONSOLE</code>. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SAVECONFILE</code></p>
+
+<p>If the last save was successful, this variable returns either a fully-qualified
+filename or <code>CLIP:</code>.  If the last save failed, it returns
+<code>*ERROR*</code>.  If <a href="E:\Utils\#saveconsole"><code>SAVECONSOLE</code></a>
+doesn’t even try to save — <em>e.g.</em> because of a syntax error
+or because the user canceled — the previous value of this variable will
+not be changed. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_saveconmode></a><code>_SAVECONMODE</code> — Returns the last
+<code>SAVECONSOLE</code> save mode. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SAVECONMODE</code></p>
+
+<p>This function returns one of: </p>
+
+<ul>
+	<li>text</li>
+	<li>HTML</li>
+	<li>RTF</li>
+	<li>*ERROR*</li>
+</ul>
+
+<p>… or an empty string if <a href="E:\Utils\#saveconsole"><code>SAVECONSOLE</code></a>
+has not yet attempted to save the console.  This variable is updated at the same
+time as <a href="E:\Utils\#v_saveconfile"><code>_SAVECONFILE</code></a>, after any
+attempted or successful save.  It is not changed by syntax errors, syntax requests,
+or user cancellation. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table class=descript>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<tr><td>1.4.8.1</td><td nowrap>2024-06-06</td><td class=changes>Improved the <code>/N:</code> help text a bit. </td></tr>
+	<tr><td>1.4.8</td><td nowrap>2024-06-05</td><td class=changes>Now <a href="E:\Utils\#saveconsole"><code>SAVECONSOLE</code></a> uses
+		<a target=_blank href="https://duckduckgo.com/?q=%5cSetWindowSubclass%20site:learn.microsoft.com">SetWindowSubclass()</a>, 
+		<a target=_blank href="https://duckduckgo.com/?q=%5cRemoveWindowSubclass%20site:learn.microsoft.com">RemoveWindowSubclass()</a>, 
+		<a target=_blank href="https://duckduckgo.com/?q=%5cDefSubclassProc%20site:learn.microsoft.com">DefSubclassProc()</a>, 
+		<i>etc</i>. to subclass the combo-box control:  probably safer than hacking around with
+		<a target=_blank href="https://duckduckgo.com/?q=%5cGetWindowLongPtrW%20site:learn.microsoft.com">Get</a>/<a target=_blank href="https://duckduckgo.com/?q=%5cSetWindowLongPtrW%20site:learn.microsoft.com">SetWindowLongPtr()</a>. <br>
+		Added <code>/N:</code> to the help text. </td></tr>
+	<tr><td>1.4.7.3</td><td nowrap>2023-10-15</td><td class=changes>Updated ShowCmdHelp() to return all four components of the
+		plugin’s version number. </td></tr>
+	<tr><td>1.4.7.2</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.4.7</td><td nowrap>2023-09-07</td><td class=changes>Added help text for <code>SAVECONSOLE /N?</code>. </td></tr>
+	<tr><td>1.4.6.2</td><td nowrap>2023-07-24</td><td class=changes>Updated to the current version of <span class=filename>w3ccolors.cpp</span>. </td></tr>
+	<tr><td>1.4.6.1</td><td nowrap>2023-07-24</td><td class=changes>Updated to the current version of <span class=filename>ParseArgs.cpp</span>. </td></tr>
+	<tr><td>1.4.6</td><td nowrap>2023-06-13</td><td class=changes>Removed calls to QueryIsFile() to work around an issue
+		in TCC v30.00.20. </td></tr>
+	<tr><td>1.4.5.3</td><td nowrap>2023-05-23</td><td class=changes>Removed the trailing slash from the end of the <code>charset</code> tag. </td></tr>
+	<tr><td>1.4.5.2</td><td nowrap>2022-07-18</td><td class=changes>Spelling correction.  No changes to functionality. </td></tr>
+	<tr><td>1.4.5.1</td><td nowrap>2022-06-14</td><td class=changes>Made RTF support a compile-time option (#define SAVECON_RTF_SUPPORT
+		to enable). </td></tr>
+	<tr><td>1.4.5</td><td nowrap>2022-01-05</td><td class=changes>Fix for trailing spaces with a different background color
+		being lost.  Also, I’m syncing the <em>plugin</em> version number with the version in the command’s
+		<em>source file</em> — which is why this trivial change is marked by such a jump in the plugin version. </td></tr>
+	<tr><td>1.2.4</td><td nowrap>2021-11-24</td><td class=changes>No longer entitizes non-breaking spaces. </td></tr>
+	<tr><td>1.2.3</td><td nowrap>2021-11-01</td><td class=changes>Help text is now displayed via ShowCmdHelp().  Tweaked the
+		default background color a bit. </td></tr>
+	<tr><td>1.2.2</td><td nowrap>2021-10-23</td><td class=changes>Reduced the size of the UTF-8 translation buffer. </td></tr>
+	<tr><td>1.2.1</td><td nowrap>2021-10-16</td><td class=changes>Added <a href="E:\Utils\#sc_opt_n"><code>/NT</code></a>.  Now changing
+	the file extension in the <a href="E:\Utils\#sc_dialog">‘Save As’ dialog</a>’s edit control can automatically change the save
+	format.  Now <a href="E:\Utils\#v_saveconmode"><code>_SAVECONMODE</code></a> returns <code>*ERROR*</code> after a failed save.  Documented
+	<a href="E:\Utils\#sc_opt_n"><code>/NH</code></a> and <a href="E:\Utils\#sc_opt_n"><code>/NI</code></a>. </td></tr>
+	<tr><td>1.2.0.1</td><td nowrap>2021-07-13</td><td class=changes>Minor tweaks to the VerInfo resource.  No changes to the code. </td></tr>
+	<tr><td>1.2.0</td><td nowrap>2021-06-19</td><td class=changes>A <span class=filename>.htm</span> extension triggers <code>/H</code>
+		mode, the same as <span class=filename>.html</span>.  Enabled the <a href="E:\Utils\#v_saveconfile"><code>_SAVECONFILE</code></a>
+		and <a href="E:\Utils\#v_saveconmode"><code>_SAVECONMODE</code></a> variables. </td></tr>
+	<tr><td>1.1.1</td><td nowrap>2021-05-04</td><td class=changes>If you combine <a href="E:\Utils\#sc_opt_fs"><code>/FS:</code></a>
+		and <a href="E:\Utils\#sc_opt_y"><code>/Y:</code></a>, <code>/Y:</code> wins. </td></tr>
+	<tr><td>1.1.0</td><td nowrap>2020-12-02</td><td class=changes>Adds <a href="E:\Utils\#sc_opt_y"><code>/Y:</code></a> to embed CSS
+		style info in the HTML header. </td></tr>
+	<tr><td>1.0.0</td><td nowrap>2020-11-16</td><td class=changes>First release. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2024, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target=_blank href="http://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="http://charlesdye.net/dl/saveconsole.zip">http://charlesdye.net/dl/saveconsole.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

@@ -1,0 +1,1111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>BBufStuff Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	TABLE.ranges TH		{ text-align: center; font-size: 80%; font-weight: bold; }
+	TABLE.ranges TD		{ text-align: right; font-size: 80%; white-space: nowrap; }
+	TABLE.ranges TD.r1	{ text-align: center; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li>    <a href="E:\Utils\#variables">Variables</a></li>
+	<li><a href="E:\Utils\#reference">Reference Info</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>BBufStuff plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a></h1>
+<h3>beta version 0.70.3     2026-10-06</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin adds new functions to help work with binary buffers. 
+<a href="E:\Utils\#f_bpeekx"><code>@BPEEKX</code></a> and <a href="E:\Utils\#f_bpokex"><code>@BPOKEX</code></a>
+are like <code>@BPEEK</code> and <code>@BPOKE</code>, but with support for
+unusual word sizes and big-endian data.
+<a href="E:\Utils\#f_bsave"><code>@BSAVE</code></a> and <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a>
+provide a quick way to save and restore binary buffers to and from files. 
+<a href="E:\Utils\#f_bmemcpy"><code>@BMEMCPY</code></a> and <a href="E:\Utils\#f_bmemcmp"><code>@BMEMCMP</code></a>
+let you easily copy and compare series of bytes, without having to write
+batch-file loops.  <a href="E:\Utils\#f_bfill"><code>@BFILL</code></a> and
+<a href="E:\Utils\#f_brandfill"><code>@BRANDFILL</code></a> let you fill binary buffers,
+or part of a binary buffer, with repeated values or with random bytes, again
+without batch loops.  <a href="E:\Utils\#f_bfind"><code>@BFIND</code></a> searches for
+a series of numeric values in a binary buffer; <a href="E:\Utils\#f_bfindstr"><code>@BFINDSTR</code></a>
+searches for a string of characters. </p>
+
+<p>The <a href="E:\Utils\#bbdump"><code>BBDUMP</code></a> command gives you an easy
+but flexible way to display binary buffers to standard output as
+hexadecimal.  <a href="E:\Utils\#bblist"><code>BBLIST</code></a> lists currently
+allocated binary buffers. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>BBufStuff.dll</span> and
+<span class=filename>BBufStuff.chm</span> to some known location on your hard
+drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>BBufStuff-x86.dll</span> instead of
+<span class=filename>BBufStuff.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\bbufstuff.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+<!--endtopic-->
+
+
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Commands:</a></th></tr>
+	<tr><td><a href="E:\Utils\#bbdump"><code>BBDUMP</code></a></td><td><a href="E:\Utils\#bblist"><code>BBLIST</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#functions">Functions:</a></th></tr>
+	<tr><td><a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a></td><td><a href="E:\Utils\#f_bbhandle"><code>@BBHANDLE</code></a></td><td><a href="E:\Utils\#f_bbinfo"><code>@BBINFO</code></a></td><td><a href="E:\Utils\#f_bfill"><code>@BFILL</code></a></td><td><a href="E:\Utils\#f_bfind"><code>@BFIND</code></a></td></tr>
+	<tr><td><a href="E:\Utils\#f_bfindstr"><code>@BFINDSTR</code></a></td><td><a href="E:\Utils\#f_bfree"><code>@BFREE</code></a></td><td><a href="E:\Utils\#f_bfreeall"><code>@BFREEALL</code></a></td><td><a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td><td><a href="E:\Utils\#f_bmemcmp"><code>@BMEMCMP</code></a></td></tr>
+	<tr><td><a href="E:\Utils\#f_bmemcpy"><code>@BMEMCPY</code></a></td><td><a href="E:\Utils\#f_bmodval"><code>@MODVAL</code></a></td><td><a href="E:\Utils\#f_bpeekx"><code>@BPEEKX</code></a></td><td><a href="E:\Utils\#f_bpokex"><code>@BPOKEX</code></a></td><td><a href="E:\Utils\#f_brandfill"><code>@BRANDFILL</code></a></td></tr>
+	<tr><td><a href="E:\Utils\#f_bsave"><code>@BSAVE</code></a></td><td><a href="E:\Utils\#f_bsize"><code>@BSIZE</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#variables">Variables:</a></th></tr>
+	<tr><td><a href="E:\Utils\#v_bblasterr"><code>_BBLASTERR</code></a></td><td><a href="E:\Utils\#v_bloadsize"><code>_BLOADSIZE</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+<br>
+set bbuf=%@balloc[256]<br>
+set rv=%@brandfill[%bbuf]<br>
+bbdump /h %bbuf<br>
+</code></p>
+
+<br>
+<p>Some options take an argument.  These are shown with a colon between the option and its
+argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=bbdump></a><code>BBDUMP</code> — Dump a binary buffer to 
+standard output as hex. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>BBDUMP</code><code> /B /BE /C: /CP: /D /E: /F: /H /I /J /K: /LE /M: /ML: /N: /P /Q /UC /W /X /Z: </code><span class=reqname>handle…</span></p>
+
+<table class=descript>
+	<tr><td><code>/B</code>  <small>or</small>  <code>/1</code></td><td>dump bytes </td><td>✔</td></tr>
+	<tr><td><code>/BE</code></td><td>big-endian </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_c"><code>/C:</code><span class=optname>start</span></a></td><td>start address </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_cp"><code>/CP:</code><span class=optname>n</span></a></td><td>code page to use for non-Unicode text </td></tr>
+	<tr><td><code>/CR</code></td><td>use CR line ends</td><td></td></tr>
+	<tr><td><code>/CRLF</code></td><td>use CR/LF line ends</td><td>✔</td></tr>
+	<tr><td><code>/D</code>  <small>or</small>  <code>/4</code></td><td>dump doublewords (four-byte integers) </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_c"><code>/E:</code><span class=optname>end</span></a></td><td>end address </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_f"><code>/F:</code><span class=optname>n</span></a></td><td>numeric base for values </td><td>16</td></tr>
+	<tr><td><code>/H</code></td><td>display headers </td><td></td></tr>
+	<tr><td><code>/I</code></td><td>include a final summary line </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#highlight"><code>/J</code></a></td><td><a href="E:\Utils\#highlight">highlight</a> alternate lines </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_k"><code>/K:</code><span class=optname>n</span></a></td><td>bytes per line </td><td></td></tr>
+	<tr><td><code>/LE</code></td><td>little-endian </td><td>✔</td></tr>
+	<tr><td><code>/LF</code></td><td>use LF line ends</td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_c"><code>/M:</code><span class=optname>max</span></a></td><td>maximum number of bytes to display </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_ml"><code>/ML:</code><span class=optname>lines</span></a></td><td>maximum number of lines to dump</td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_n"><code>/N:</code><span class=optname>flags</span></a></td><td>disable features </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#paging"><code>/P</code></a></td><td><a href="E:\Utils\#paging">page output</a> </td><td></td></tr>
+	<tr><td><code>/Q</code>  <small>or</small>  <code>/8</code></td><td>dump quadwords (eight-byte integers)</td><td></td></tr>
+	<tr><td><code>/UC</code></td><td>uppercase hexadecimal addresses and values </td><td></td></tr>
+	<tr><td><code>/W</code>  <small>or</small>  <code>/2</code></td><td>dump words (two-byte integers) </td><td></td></tr>
+	<tr><td><code>/X</code></td><td>use <a target=_blank href="https://en.wikipedia.org/wiki/Control_Pictures">control pictures</a> for ASCII control characters </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_z"><code>/Z:</code><span class=optname>char</span></a></td><td>set the replacement character</td><td>0xB7</td></tr>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td><td></td></tr>
+	<!-- <tr><td><code>/</code></td><td> </td><td></td></tr> -->
+</table>
+
+<br>
+<p><a name=bbdump_opt_f></a><code>/F:</code><span class=optname>n</span>
+lets you specify the numeric base for displaying values.  Legal values are: </p>
+
+<table class=descript>
+	<tr><td><code>/F:O</code>  <small>or</small>  <code>/F:8</code></td><td>octal </td></tr>
+	<tr><td><code>/F:D</code>  <small>or</small>  <code>/F:10</code></td><td>decimal </td></tr>
+	<tr><td><code>/F:S</code>  <small>or</small>  <code>/F:+</code></td><td>signed decimal </td></tr>
+	<tr><td><code>/F:H</code>  <small>or</small>  <code>/F:16</code></td><td>hexadecimal (the default) </td></tr>
+	<!-- <tr><td><code> </code></td><td>or <code> </code></td><td> </td></tr> -->
+</table>
+
+<p>Addresses are always shown in hexadecimal. </p>
+
+<br>
+<p><a name=bbdump_opt_n></a><code>/N:</code><span class=optname>flags</span>
+disables features: </p>
+
+<table class=descript>
+	<tr><td><code>8</code></td><td>do not show dashes between bytes of UTF-8 characters </td></tr>
+	<tr><td><code>C</code></td><td>no <a href="E:\Utils\#highlight">highlight</a> </td></tr>
+	<tr><td><code>I</code></td><td>do not display the address field </td></tr>
+	<tr><td><code>L</code></td><td>omit the blank line at the end </td></tr>
+	<tr><td><code>T</code></td><td>do not display the text field (<i>i.e.</i> characters) </td></tr>
+	<tr><td><code>U</code></td><td>do not display non-ASCII characters in the text field </td></tr>
+	<!-- <tr><td><code> </code></td><td> </td></tr> -->
+</table>
+
+<br>
+<p><a name=bbdump_opt_c></a><code>/C:</code><span class=optname>start</span>,
+<code>/E:</code><span class=optname>end</span>, and
+<code>/M:</code><span class=optname>max</span> let you specify a start
+address, an end address, and a maximum number of bytes to dump.  You can
+enter these values as decimal, or hexadecimal with a leading <code>0x</code>.
+You may give none, one, or any combination of these options. </p>
+
+<p><code>/C:</code>, <code>/E:</code>, and <code>/M:</code> values are
+all in bytes by default.  You can append one of the following letters: </p>
+
+<table class=descript>
+	<tr><td><code>b</code></td><td>bytes </td></tr>
+	<tr><td><code>w</code></td><td>words </td></tr>
+	<tr><td><code>d</code></td><td>doublewords </td></tr>
+	<tr><td><code>q</code></td><td>quadwords </td></tr>
+	<tr><td><code>k</code></td><td>thousands of bytes </td></tr>
+	<tr><td><code>K</code></td><td>kilobytes (2<sup>10</sup> or 1,024 bytes) </td></tr>
+	<tr><td><code>m</code></td><td>millions of bytes </td></tr>
+	<tr><td><code>M</code></td><td>megabytes (2<sup>20</sup> or 1,048,576 bytes) </td></tr>
+	<tr><td><code>g</code></td><td>billions of bytes </td></tr>
+	<tr><td><code>G</code></td><td>gigabytes (2<sup>30</sup> or 1,073,741,824 bytes) </td></tr>
+	<!-- <tr><td><code> </code></td><td> </td></tr> -->
+</table>
+
+<p>Note that <code>k K m M g</code> and <code>G</code> are case-sensitive. </p>
+
+<p>If you don’t give any of these suffixes, the value is in bytes —
+even if you are displaying words or doublewords.  There are no alignment
+checks; you can dump misaligned data if you wish. </p>
+
+<p><code>/C:</code> and <code>/E:</code> allow you to pass a negative number to 
+specify the address as an offset from the end of the buffer, <i>e.g.</i> <code>/C:-1K</code>
+to dump only the last kilobyte of the buffer.  <code>/M:</code> does not allow 
+negative numbers. </p>
+
+<br>
+<p><a name=bbdump_opt_k></a><code>/K:</code><span class=optname>n</span>
+lets you specify the number of bytes to display per line.  If you don’t
+give any <code>/K:</code>, the command will pick its own value based on the
+console width (if output is to the console), or a default line width of
+100 characters if output is redirected.  Again, this value is in bytes,
+even if you are displaying data as words or doublewords.  The value
+<span class=optname>n</span> must be between 8 and 80, and a multiple of 8. </p>
+
+<p><code>/K:0</code> sets the line length based on the console width, even
+in cases where <code>BBDUMP</code> normally would not do so:  when output
+is redirected or piped, <i>e.g.</i> piping to <code>LIST</code>. </p>
+
+<br>
+<p><a name=bbdump_opt_ml></a><code>/ML:</code><span class=optname>lines</span>
+lets you set a maximum number of data lines to dump.  Any header or summary lines
+are not counted. </p>
+
+<br>
+<p><a name=bbdump_opt_cp></a><code>/CP:</code><span class=optname>n</span>
+specifies the code page to use for non-Unicode text.  If you do not specify any
+<code>/CP:</code><span class=optname>n</span>, the default behavior is to show
+only ASCII characters.  (Binary buffers, after all, are often used for things
+other than text….) </p>
+
+<br>
+<p><a name=bbdump_opt_z></a><code>/Z:</code><span class=optname>char</span>
+lets you specify the replacement character, which is shown in the text
+field in place of control characters.  The default is normally a middle dot
+·    You may give either a literal character or a character value.  All
+three of the following are equivalent: </p>
+
+<table class=descript>
+	<tr><td>•  <code>/Z:*</code></td><td>(literal character)</td></tr>
+	<tr><td>•  <code>/Z:42</code></td><td>(decimal value)</td></tr>
+	<tr><td>•  <code>/Z:0x2a</code></td><td>(hexadecimal value)</td></tr>
+</table>
+
+<p>Your replacement character may not be alphanumeric or a control
+character.  <code>/Z</code> by itself will use a space as the replacement
+character. </p>
+
+<p class=example><code>rem   Load and dump a file:<br>
+set bbuf=%@bload[build.txt]<br>
+bbdump /hh /i /x %bbuf<br>
+set rv=%@bfree[%bbuf] & unset bbuf<br>
+</code></p>
+
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=bblist></a><code>BBLIST</code> — List currently
+allocated binary buffers. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>BBLIST</code><code> /B /O:</code><span class=optname>keys</span><code> /P</code></p>
+
+<table class=descript>
+	<tr><td><code>/B</code></td><td>bare bones (handles only)</td></tr>
+	<tr><td><a href="E:\Utils\#bblist_opt_o"><code>/O:</code><span class=optname>keys</span></a></td><td><a href="E:\Utils\#bblist_opt_o">sort buffers</a></td></tr>
+	<tr><td><a href="E:\Utils\#paging"><code>/P</code></a></td><td><a href="E:\Utils\#paging">page output</a> </td><td></td></tr>
+</table>
+
+<p>While this plugin is loaded, it will track binary buffers being allocated and
+freed.  <code>BBLIST</code> will display the current list of binary buffers known
+to the plugin.  Binary buffers that are allocated or freed while this plugin is
+<em>not</em> loaded are not tracked and will not be listed. </p>
+
+<br>
+<p><a name=bblist_opt_o></a><code>/O:</code> can sort by several criteria.
+The available sort keys are: </p>
+
+<table class=descript>
+	<tr><td><code>A</code></td><td>sort by the buffer’s address (handle)</td></tr>
+	<tr><td><code>-A</code></td><td>reverse sort by buffer address</td></tr>
+	<tr><td><code>S</code></td><td>sort by buffer size</td></tr>
+	<tr><td><code>-S</code></td><td>reverse sort by buffer size</td></tr>
+	<tr><td><code>T</code></td><td>sort by creation time</td></tr>
+	<tr><td><code>-T</code></td><td>reverse sort by creation time</td></tr>
+</table>
+
+<p>These can be combined, <i>e.g.</i> <code>/O:ST</code> to sort by size first,
+then by creation time.  If you type <code>/O</code> by itself, <code>BBLIST</code>
+will sort by size first, then by creation time. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_balloc></a><code>@BALLOC</code> — Allocates a new binary
+buffer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BALLOC[</code><span class=reqname>size</span><code>,</code><span class=optname>comment</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>size</span></td><td>the size of the new buffer; required</td></tr>
+	<tr><td><span class=optname>comment</span></td><td>an optional description</td></tr>
+</table>
+
+<p><code>@BALLOC</code> returns a handle to the new buffer, which you will use
+in subsequent buffer operations. </p>
+
+<br>
+<p>This plugin replaces TCC’s internal <code>@BALLOC</code> function to
+add three new features: </p>
+
+<p>  • The handle it returns will be remembered
+for later use.  You can use <a href="E:\Utils\#bblist"><code>BBLIST</code></a> to list
+all currently allocated binary buffers, and <a href="E:\Utils\#f_bfreeall"><code>@BFREEALL</code></a>
+to free them all at once. </p>
+
+<p>  • The <span class=reqname>size</span> may optionally
+be followed by a letter to indicate scale.  Note that case is significant: </p>
+
+<table class=descript>
+	<tr><td><code>k</code></td><td>thousands of bytes</td></tr>
+	<tr><td><code>K</code></td><td>kilobytes (1,024 bytes)</td></tr>
+	<tr><td><code>m</code></td><td>millions of bytes</td></tr>
+	<tr><td><code>M</code></td><td>megabytes (1,048,576 bytes)</td></tr>
+	<tr><td><code>g</code></td><td>billions of bytes</td></tr>
+	<tr><td><code>G</code></td><td>gigabytes (1,073,741,824 bytes)</td></tr>
+</table>
+
+<p>  • You can supply a <span class=optname>comment</span>
+to associate with the new buffer.  <a href="E:\Utils\#bblist"><code>BBLIST</code></a>
+displays these comments, and <a href="E:\Utils\#f_bbinfo"><code>@BBINFO[</code><span class=reqname>handle</span><code>,7]</code></a>
+returns them. </p>
+
+<p class=example><code>rem   Allocate a 5-kilobyte buffer:<br>
+set bbuf=%@balloc[5K]<br>
+</code></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bfree"><code>@BFREE</code></a>,
+<a href="E:\Utils\#f_bfreeall"><code>@BFREEALL</code></a>. </p>
+
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bbhandle></a><code>@BBHANDLE</code> — Returns handles of
+known binary buffers. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BBHANDLE[</code><span class=optname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>n</span></td><td>which handle to return</td></tr>
+</table>
+
+<p>This function can be used to iterate through binary buffers known to this
+plugin.  Only buffers created by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> and
+<a href="E:\Utils\#f_bload"><code>@BLOAD</code></a> in <em>this</em> plugin, in the current
+shell, will be returned.  Buffers created by TCC’s internal <code>@BALLOC</code>
+function will not be returned. </p>
+
+<p><span class=optname>n</span> is a zero-based index.  If it’s negative
+or not given, <code>@BBHANDLE</code> returns the current count of known binary
+buffers.  If it’s greater than or equal to the current count,
+<code>@BBHANDLE</code> returns an empty string.  Otherwise, <code>@BBHANDLE</code>
+returns the <span class=optname>n</span><sup>th</sup> handle in the list, as
+provided by <code>@BALLOC</code> or <code>@BLOAD</code>. </p>
+
+<p class=example><code>for /l %i in ( 0, 1, %@dec[%@bbhandle[]] ) echo %i - %@bbhandle[%i]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bbinfo></a><code>@BBINFO</code> — Returns information about
+a binary buffer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BBINFO[</code><span class=reqname>handle</span><code>,</code><span class=optname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=optname>n</span></td><td>which info to return: </td></tr>
+	<tr><td></td><td>      <code>0</code>:  the buffer size in bytes</td></tr>
+	<tr><td></td><td>      <code>1</code>:  the buffer’s address (decimal)</td></tr>
+	<tr><td></td><td>      <code>2</code>:  the buffer’s address (hex)</td></tr>
+	<tr><td></td><td>      <code>3</code>:  the time the buffer was created (local)</td></tr>
+	<tr><td></td><td>      <code>4</code>:  the time the buffer was created (UTC)</td></tr>
+	<tr><td></td><td>      <code>5</code>:  the time the buffer was created (Unix)</td></tr>
+	<tr><td></td><td>      <code>7</code>:  buffer comment (empty string if none)</td></tr>
+	<!-- <tr><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>0</code>: </td></tr> -->
+</table>
+
+<p>If <code>@BBINFO</code> cannot retrieve the requested information, it will return
+a single dash <b><code>-</code></b>. </p>
+
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bfill></a><code>@BFILL</code> — Fills a binary buffer
+with a repeating value. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BFILL[</code><span class=reqname>handle</span><code>,</code><span class=optname>size</span><code>,</code><span class=optname>value</span><code>,</code><span class=optname>offset</span><code>,</code><span class=optname>count</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=optname>offset</span></td><td>the starting offset, in bytes, from the start of the buffer; defaults to <code>0</code></td></tr>
+	<tr><td><span class=optname>size</span></td><td>the size of the value to store: <code>1</code> a byte, <code>2</code> a word, <code>4</code> a doubleword, <code>8</code> a 64-bit integer; defaults to <code>1</code></td></tr>
+	<tr><td><span class=optname>value</span></td><td>the value to store</td></tr>
+	<tr><td><span class=optname>count</span></td><td>the maximum number of times to store the <span class=optname>value</span>; defaults to filling the entire buffer</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td>  </td><td>    <code>1</code>: big-endian</td></tr>
+</table>
+
+<p>The <span class=reqname>handle</span> is required; all other parameters are
+optional.  If you do not supply any of the other options, <code>@BFILL</code> will
+fill the entire buffer with zeros. </p>
+
+<p>If the <span class=optname>value</span> begins with either a <code>+</code> or
+<code>-</code> sign, it will be treated as a <em>signed</em> decimal integer.  If
+it begins with anything else, it’s unsigned.  Either way, the 
+<span class=optname>value</span> must fall within the <a href="E:\Utils\#ranges">range</a>
+specified by the <span class=optname>size</span> parameter. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bfind></a><code>@BFIND</code> — Searches for a series of
+values in a binary buffer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BFIND[</code><span class=reqname>handle</span><code>,</code><span class=optname>offset</span><code>,</code><span class=reqname>value1</span><code> </code><span class=optname>value2</span><code> </code><span class=optname>value3…</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=optname>offset</span></td><td>the starting offset, in bytes, from the start of the buffer; defaults to <code>0</code></td></tr>
+	<tr><td><span class=reqname>value1</span><code> </code><span class=optname>value2</span><code> </code><span class=optname>value3…</span></td><td>may be decimal or hexadecimal with a leading <code>0x</code></td></tr>
+</table>
+
+<p>Values may be separated with spaces, commas, or semicolons.  You must give
+at least one value to search for.  In addition to values, you can also include: </p>
+
+<table class=descript>
+	<tr><td><code>(B)</code> or <code>(1)</code></td><td>the following values are bytes (the default)</td></tr>
+	<tr><td><code>(W)</code> or <code>(2)</code></td><td>the following values are words</td></tr>
+	<tr><td><code>(D)</code> or <code>(4)</code></td><td>the following values are doublewords</td></tr>
+	<tr><td><code>(Q)</code> or <code>(8)</code></td><td>the following values are quadwords</td></tr>
+	<!-- <tr><td><code>(3)</code>, <code>(5)</code>, <code>(6)</code>, <code>(7)</code></td><td><a href="#ranges">oddball word sizes</a> are also supported</td></tr> -->
+</table>
+
+<p><code>@BFIND</code> returns the offset of the first match starting from
+<span class=optname>offset</span>, or <code>-1</code> if no match is found. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bfindstr"><code>@BFINDSTR</code></a>,
+which searches for a string of characters. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bfindstr></a><code>@BFINDSTR</code> — Searches for a
+string in a binary buffer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BFIND[</code><span class=reqname>handle</span><code>,</code><span class=optname>offset</span><code>,</code><span class=optname>encoding</span><code>,</code><span class=reqname>string</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=optname>offset</span></td><td>the starting offset, in bytes, from the start of the buffer; defaults to <code>0</code></td></tr>
+	<tr><td><span class=optname>encoding</span></td><td><code>ANSI</code> or <code>A</code>, <code>OEM</code> or <code>O</code>, <code>UTF8</code>, <code>UTF16</code>, or <code>CP</code><span class=optname>nnn</span>; defaults to <code>ANSI</code></td></tr>
+	<tr><td><span class=reqname>string</span></td><td>the text to search for</td></tr>
+</table>
+
+<p>This is a byte-for-byte search.  The string in the binary buffer must match
+the search string <em>exactly</em> — case, spacing, punctuation,
+everything. </p>
+
+<p><code>@BFINDSTR</code> returns the offset of the first match starting from
+<span class=optname>offset</span>, or <code>-1</code> if no match is found. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bfind"><code>@BFIND</code></a>, which
+searches for a series of numeric values. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bfree></a><code>@BFREE</code> — Releases a binary
+buffer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BFREE[</code><span class=reqname>handle</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+</table>
+
+<p><code>@BFREE</code> behaves the same as TCC’s internal <code>@BFREE</code>
+function, but it also tracks freed buffer handles.  If you try to <code>@BFREE</code>
+a buffer which has already been <code>@BFREE</code>d, you will get a “Bad
+buffer handle” error message.  (Re-freeing memory which has already been
+freed is a good way to cause a crash.) </p>
+
+<p><code>@BFREE</code> returns the size (in bytes) of the freed buffer. </p>
+
+<p class=example><code>rem   Free the buffer named in BBUF:<br>
+set rv=%@bfree[%bbuf,1]<br>
+</code></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a>,
+<a href="E:\Utils\#f_bload"><code>@BLOAD</code></a>, and <a href="E:\Utils\#f_bfreeall"><code>@BFREEALL</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bfreeall></a><code>@BFREEALL</code> — Releases all binary
+buffers. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BFREEALL[]</code></p>
+
+<p><code>@BFREEALL</code> does not take any arguments.  It returns the number
+of buffers freed. </p>
+
+<p><code>@BFREEALL</code> only knows about binary buffers created by
+<a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> and <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a>
+in this plugin.  Binary buffers that were allocated while this plugin was
+not loaded (<i>e.g.</i> by TCC’s internal <code>@BALLOC</code> function)
+are not tracked and will not be freed. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a>,
+<a href="E:\Utils\#f_bfree"><code>@BFREE</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bload></a><code>@BLOAD</code> — Loads data from a file
+into a binary buffer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BLOAD[</code><span class=reqname>filename</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>filename</span></td><td>the file to load into a binary buffer</td></tr>
+</table>
+
+<p>This function allocates a new binary buffer of the same size as the file,
+loads the named file into it, and returns the handle of the new buffer.
+The number of bytes loaded — <i>i.e.</i> the file size —
+is available through <a href="E:\Utils\#v_bloadsize"><code>_BLOADSIZE</code></a>. </p>
+
+<p>If any error occurs while allocating the buffer or reading the file,
+<code>@BLOAD</code> returns <code>0</code>; the Windows error code is in
+<a href="E:\Utils\#v_bblasterr"><code>_BBLASTERR</code></a>. </p>
+
+<p>The maximum file size that <code>@BLOAD</code> will load is eight megabytes
+in x86 TCC, or one gigabyte in x64 TCC. </p>
+
+<p>When you are finished with the buffer, free it with with
+<a href="E:\Utils\#f_bfree"><code>@BFREE</code></a>. </p>
+
+<p>(You could of course do the same thing with <code>@FILESIZE</code>,
+<code>@BALLOC</code>, <code>@FILEOPEN</code>, <code>@BREAD</code>, and
+<code>@FILECLOSE</code>.  This function just spares you the tedium.) </p>
+
+<p class=example><code>rem   Load a file into a buffer and display it:<br>
+set bbuf=%@bload[build.txt]<br>
+bbdump %bbuf<br>
+set rv=%@bfree[%bbuf]<br>
+</code></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bsave"><code>@BSAVE</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bmemcmp></a><code>@BMEMCMP</code> — Compares two series of
+bytes in binary buffers. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BMEMCMP[</code><span class=reqname>bbuf1</span><code>,</code><span class=optname>offset1</span><code>,</code><span class=optname>bbuf2</span><code>,</code><span class=optname>offset2</span><code>,</code><span class=optname>size</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>bbuf1</span></td><td>the handle to the binary buffer with the first series of bytes; required</td></tr>
+	<tr><td><span class=optname>offset1</span></td><td>the offset of the first series within <span class=reqname>bbuf1</span>; defaults to <code>0</code></td></tr>
+	<tr><td><span class=optname>bbuf2</span></td><td>the handle to the binary buffer with the second series of bytes; defaults to <span class=reqname>bbuf1</span></td></tr>
+	<tr><td><span class=optname>offset2</span></td><td>the offset of the second series within <span class=optname>bbuf2</span>; defaults to <code>0</code></td></tr>
+	<tr><td><span class=optname>size</span></td><td>the number of bytes to compare; defaults to all from <span class=optname>offset1</span> to the end of <span class=optname>buf1</span></td></tr>
+</table>
+
+<p><code>@BMEMCMP</code> compares two series of bytes.  Both series may be in the
+same buffer, or they can be in two different buffers. </p>
+
+<p><code>@BMEMCMP</code> returns <code>0</code> if the two blocks are identical,
+or nonzero if they differ. </p>
+
+<p>After parsing and validating its arguments, this function just calls
+<a target=_blank href="https://duckduckgo.com/?q=%5cmemcmp%20site:learn.microsoft.com">memcmp()</a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bmemcpy></a><code>@BMEMCPY</code> — Copies a series of
+bytes in binary buffers. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BMEMCPY[</code><span class=reqname>src_bbuf</span><code>,</code><span class=reqname>src_offset</span><code>,</code><span class=optname>dest_bbuf</span><code>,</code><span class=reqname>dest_offset</span><code>,</code><span class=reqname>size</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>src_bbuf</span></td><td>the handle of the binary buffer to copy <b>from</b></td></tr>
+	<tr><td><span class=reqname>src_offset</span></td><td>the location within the source buffer to copy from</td></tr>
+	<tr><td><span class=optname>dest_bbuf</span></td><td>the handle of the binary buffer to copy <b>to</b>; defaults to <span class=reqname>src_bbuf</span></td></tr>
+	<tr><td><span class=reqname>dest_offset</span></td><td>the location within the destination buffer to copy to</td></tr>
+	<tr><td><span class=reqname>size</span></td><td>the number of bytes to copy</td></tr>
+</table>
+
+<p><code>@BMEMCPY</code> copies a series of bytes.  It can copy within a single
+buffer, or from one buffer to another. </p>
+
+<p>After parsing and validating its arguments, this function just calls
+<a target=_blank href="https://duckduckgo.com/?q=%5cmemcpy%20site:learn.microsoft.com">memcpy()</a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bmodval></a><code>@BMODVAL</code> — Modifies a value in
+a binary buffer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BMODVAL[</code><span class=reqname>handle</span><code>,</code><span class=reqname>offset</span><code>,</code><span class=reqname>wordsize</span><code>,</code><span class=reqname>operation</span><code>,</code><span class=reqname>value</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=reqname>offset</span></td><td>the starting offset, in bytes, from the start of the buffer</td></tr>
+	<tr><td><span class=reqname>wordssize</span></td><td>the size of the value to return: <code>1</code> a byte, <code>2</code> a word, <code>4</code> a doubleword, <code>8</code> a 64-bit integer</td></tr>
+	<tr><td><span class=reqname>operation</span></td><td>one of:</td></tr>
+	<tr><td></td><td>    <code>AND</code> or <code>&</code>:  logical-ANDs the value in the buffer with <span class=reqname>value</span></td></tr>
+	<tr><td></td><td>    <code>OR</code> or <code>|</code>:  logical-ORs the value in the buffer with <span class=reqname>value</span></td></tr>
+	<tr><td></td><td>    <code>XOR</code>:  logical-XORs the value in the buffer with <span class=reqname>value</span></td></tr>
+	<tr><td></td><td>    <code>ADD</code> or <code>+</code>:  adds <span class=reqname>value</span> to the value in the buffer</td></tr>
+	<tr><td></td><td>    <code>SUBTRACT</code> or <code>-</code>:  subtracts <span class=reqname>value</span> from the value in the buffer</td></tr>
+	<tr><td></td><td>    <code>SHL</code> or <code>&lt;&lt;</code>:  shifts the value in the buffer left <span class=reqname>value</span> bits</td></tr>
+	<tr><td></td><td>    <code>SHR</code> or <code>&gt;&gt;</code>:  shifts the value in the buffer right <span class=reqname>value</span> bits</td></tr>
+	<!-- <tr><td></td><td>&nbsp;&nbsp;&nbsp; <code> </code> or <code> </code>: ... <span class="reqname">value</span></td></tr> -->
+	<tr><td><span class=optname>fmt</span></td><td>the format in which to return the value</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped:</td></tr>
+	<tr><td> </td><td>    <code>1</code>: big-endian</td></tr>
+</table>
+
+<p><code>@BMODVAL</code> reads a value from a binary buffer, performs the requested
+operation on it, writes the new value back to the binary buffer, and returns the
+new value in the specified format. </p>
+
+<p>If the <span class=reqname>value</span> begins with either a <code>+</code>
+or <code>-</code> sign, the <span class=reqname>value</span> is treated as a
+signed value; otherwise it’s unsigned.  Either way, the <span class=reqname>value</span>
+must fall within the <a href="E:\Utils\#ranges">range</a> specified by the
+<span class=optname>wordsize</span> parameter. </p>
+
+<p>The optional <span class=optname>fmt</span> parameter specifies the format for the returned value.  If you
+are ignoring <code>@BMODVAL</code>’s return value, then its format doesn’t matter. </p>
+
+<table class=descript>
+	<tr><td><code>0</code></td><td>unsigned decimal (the default)</td></tr>
+	<tr><td><code>1</code></td><td>signed decimal</td></tr>
+	<tr><td><code>2</code></td><td>hexadecimal with a leading <code>0x</code></td></tr>
+	<tr><td><code>3</code></td><td>hexadecimal without any prefix</td></tr>
+	<tr><td><code>4</code></td><td>octal</td></tr>
+</table>
+
+<br>
+<p>Operation-specific notes: </p>
+
+<ul>
+	<li><code>ADD</code> and <code>SUBTRACT</code> do not check for overflow/underflow.  If the
+		resulting value does not fit in the specified <span class=reqname>wordsize</span>, 
+		<code>@BMODVAL</code>’s behavior is undefined. </li>
+	<li>For <code>SHL</code> and <code>SHR</code>, <span class=reqname>value</span> is the
+		number of bits to shift.  It must not be greater than 8 * <span class=reqname>wordsize</span>,
+		or you’ll get an error message. </li>
+</ul>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bpeekx></a><code>@BPEEKX</code> — Like <code>@BPEEK</code>, but supports
+oddball word sizes and big-endian data. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>@BPEEKX[</code><span class=reqname>handle</span><code>,</code><span class=optname>offset</span><code>,</code><span class=reqname>wordsize</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=reqname>offset</span></td><td>the starting offset, in bytes, from the start of the buffer</td></tr>
+	<tr><td><span class=reqname>wordssize</span></td><td>the size of the value to return: <code>1</code> a byte, <code>2</code> a word, <code>4</code> a doubleword, <code>8</code> a 64-bit integer</td></tr>
+	<tr><td><span class=optname>fmt</span></td><td>the format in which to return the value</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped:</td></tr>
+	<tr><td> </td><td>    <code>1</code>: big-endian</td></tr>
+</table>
+
+<p>The optional <span class=optname>fmt</span> parameter specifies the format for the returned value: </p>
+
+<table class=descript>
+	<tr><td><code>0</code></td><td>unsigned decimal (the default)</td></tr>
+	<tr><td><code>1</code></td><td>signed decimal</td></tr>
+	<tr><td><code>2</code></td><td>hexadecimal with a leading <code>0x</code></td></tr>
+	<tr><td><code>3</code></td><td>hexadecimal without any prefix</td></tr>
+	<tr><td><code>4</code></td><td>octal</td></tr>
+</table>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bpokex"><code>@BPOKEX</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bpokex></a><code>@BPOKEX</code> — Like <code>@BPOKE</code>, but supports
+oddball word sizes and big-endian data. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>@BPOKEX[</code><span class=reqname>handle</span><code>,</code><span class=reqname>offset</span><code>,</code><span class=reqname>wordsize</span><code>,</code><span class=reqname>value</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=reqname>offset</span></td><td>the starting offset, in bytes, from the start of the buffer</td></tr>
+	<tr><td><span class=reqname>wordsize</span></td><td>the size of the value to store: <code>1</code> a byte, <code>2</code> a word, <code>4</code> a doubleword, <code>8</code> a 64-bit integer</td></tr>
+	<tr><td><span class=reqname>value</span></td><td>the value to store</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped:</td></tr>
+	<tr><td> </td><td>    <code>1</code>: big-endian</td></tr>
+</table>
+
+<p>If the <span class=reqname>value</span> begins with either a <code>+</code>
+or <code>-</code> sign, the <span class=reqname>value</span> is treated as a
+signed value; otherwise it’s unsigned.  Either way, the <span class=reqname>value</span>
+must fall within the <a href="E:\Utils\#ranges">range</a> specified by the
+<span class=optname>wordsize</span> parameter. </p>
+
+<p>Returns <code>0</code> for success. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bpeekx"><code>@BPEEKX</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_brandfill></a><code>@BRANDFILL</code> — Fills a binary buffer
+with random bytes. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BRANDFILL[</code><span class=reqname>handle</span><code>,</code><span class=optname>offset</span><code>,</code><span class=optname>count</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a binary buffer handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=optname>offset</span></td><td>the byte offset within the buffer to start filling; defaults to <code>0</code></td></tr>
+	<tr><td><span class=optname>count</span></td><td>the maximum number of bytes to write; defaults to the end of the buffer</td></tr>
+</table>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bsave></a><code>@BSAVE</code> — Saves data from a binary
+buffer to a file. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BSAVE[</code><span class=reqname>handle</span><code>,</code><span class=reqname>filename</span><code>,</code><span class=optname>start</span><code>,</code><span class=optname>len</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a binary buffer handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+	<tr><td><span class=reqname>filename</span></td><td>the file to save to; will be overwritten if it exists</td></tr>
+	<tr><td><span class=optname>start</span></td><td>the starting address within the buffer; defaults to <code>0</code></td></tr>
+	<tr><td><span class=optname>len</span></td><td>the maximum number of bytes to save; defaults to all through the end of the buffer</td></tr>
+</table>
+
+<p><code>@BSAVE</code> returns the number of bytes written to the file.  If
+any error occurs while saving the file, <code>@BSAVE</code> returns <code>0</code>;
+the Windows error code is in <a href="E:\Utils\#v_bblasterr"><code>_BBLASTERR</code></a>. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_bsize></a><code>@BSIZE</code> — Returns the size of a
+binary buffer. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@BSIZE[</code><span class=reqname>handle</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>handle</span></td><td>a binary buffer handle returned by <a href="E:\Utils\#f_balloc"><code>@BALLOC</code></a> or <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a></td></tr>
+</table>
+
+<p>Returns the size of a binary buffer in bytes.  If the <span class=reqname>handle</span>
+is not valid, or if it was freed by <a href="E:\Utils\#f_bfree"><code>@BFREE</code></a>,
+this function returns <code>-1</code>. </p>
+
+<p><code>@BSIZE</code> behaves the same as TCC’s internal <code>@BSIZE</code>
+function, but includes a check for <code>@BFREE</code>d buffers. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+
+
+<p><a name=v_bblasterr></a><code>_BBLASTERR</code> — Returns the last
+error code from <code>@BLOAD</code> or <code>@BSAVE</code>. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_BBLASTERR</code></p>
+
+<p>If the function call was successful, <code>_BBLASTERR</code> returns <code>0</code>.
+If it failed, this variable returns a <a target=_blank href="https://duckduckgo.com/?q=%5csystem%20error%20codes%20site:learn.microsoft.com">Windows error code</a>;
+pass this value to <code>@ERRTEXT</code> or <code>LOOKUPERRORS</code> for
+more information. </p>
+
+<p>In addition to the standard Windows error codes, this variable might also
+return: </p>
+
+<table class=descript>
+	<tr><td>490</td><td><code style="font-size:95%;">BBUF_ERROR_UNKNOWN</code></td><td>A Windows function failed, but I don’t know why. </td></tr>
+	<tr><td>491</td><td><code style="font-size:95%;">BBUF_ERROR_FILE_TOO_BIG</code></td><td>The maximum file size is 8 MB (x86) or 1GB (x64). </td></tr>
+	<tr><td>492</td><td><code style="font-size:95%;">BBUF_ERROR_FILE_IS_EMPTY</code></td><td>The file does not contain any data. </td></tr>
+	<tr><td>493</td><td><code style="font-size:95%;">BBUF_ERROR_UNEXPECTED_EOF</code></td><td><code>@BLOAD</code> was not able to read the entire file. </td></tr>
+</table>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a> and
+<a href="E:\Utils\#f_bsave"><code>@BSAVE</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_bloadsize></a><code>_BLOADSIZE</code> — Returns the number
+of bytes loaded by <code>@BLOAD</code>. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_BLOADSIZE</code></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_bload"><code>@BLOAD</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=reference></a>Reference Information:</h4>
+
+<br>
+
+<table>
+	<tr><td><a href="E:\Utils\#ranges">Word Size Ranges</a></td><td>Including the odd word sizes. </td></tr>
+	<tr><td><a href="E:\Utils\#paging">Paging Options</a></td><td>Supported in several commands. </td></tr>
+	<tr><td><a href="E:\Utils\#highlight">The Highlight Variable</a></td><td>Choose your colors. </td></tr>
+	<tr><td><a href="E:\Utils\#noloadmsg">Startup Message</a></td><td>And how to suppress it. </td></tr>
+	<tr><td><a href="E:\Utils\#changes">Changes</a></td><td>Slow march of progress, or just another bug hunt?</td></tr>
+	<tr><td><a href="E:\Utils\#licensing">Status and Licensing</a></td><td></td></tr>
+	<!-- <tr><td> </td><td> </td></tr> -->
+</table>
+
+
+<h4><a name=ranges></a>Word Size Ranges:</h4>
+
+<p><a href="E:\Utils\#f_bfill"><code>@BFILL</code></a>, <a href="E:\Utils\#f_bfind"><code>@BFIND</code></a>, 
+<a href="E:\Utils\#f_bmodval"><code>@BMODVAL</code></a>, and <a href="E:\Utils\#f_bpokex"><code>@BPOKEX</code></a>
+permit some odd word sizes for their values.  Here are the ranges for different word sizes,
+in a variety of different formats. </p>
+
+<br>
+<table class=ranges>
+	<tr><th>Bytes</th><th>Bits</th><th>Unsigned Decimal</th><th>Signed Decimal</th><th>Hexadecimal</th><th>Octal</th></tr>
+	<tr><td>1</td><td>8</td><td>255</td><td class=r1>-128 … 127</td><td>0xFF</td><td>0o377</td></tr>
+	<tr><td>2</td><td>16</td><td>65535</td><td class=r1>-32768 … 32767</td><td>0xFFFF</td><td>0o177777</td></tr>
+	<tr><td>3</td><td>24</td><td>16777215</td><td class=r1>-8388608 … 8388607</td><td>0xFFFFFF</td><td>0o77777777</td></tr>
+	<tr><td>4</td><td>32</td><td>4294967295</td><td class=r1>-2147483648 … 2147483647</td><td>0xFFFFFFFF</td><td>0o37777777777</td></tr>
+	<tr><td>5</td><td>40</td><td>1099511627775</td><td class=r1>-549755813888 … 549755813887</td><td>0xFFFFFFFFFF</td><td>0o17777777777777</td></tr>
+	<tr><td>6</td><td>48</td><td>281474976710655</td><td class=r1>-140737488355328 … 140737488355327</td><td>0xFFFFFFFFFFFF</td><td>0o7777777777777777</td></tr>
+	<tr><td>7</td><td>56</td><td>72057594037927935</td><td class=r1>-36028797018963968 … 36028797018963967</td><td>0xFFFFFFFFFFFFFF</td><td>0o3777777777777777777</td></tr>
+	<tr><td>8</td><td>64</td><td>18446744073709551615</td><td class=r1>-9223372036854775808 … 9223372036854775807</td><td>0xFFFFFFFFFFFFFFFF</td><td>0o1777777777777777777777</td></tr>
+</table>
+
+<br>
+<p>(The table above is very wide.  You may have to enlarge your browser window,
+or reduce the font size, to see the whole thing.  Sorry ’bout that.) </p>
+
+
+<h4><a name=paging></a>Paging Options:</h4>
+
+<p><a href="E:\Utils\#bbdump"><code>BBDUMP</code></a> and <a href="E:\Utils\#bblist"><code>BBLIST</code></a>
+both have a <code>/P</code> option to page output.  This option supports two suboptions: </p>
+
+<p class=descript><code>/P:</code><span class=optname>time</span><code>,</code><span class=optname>lines</span></p>
+
+<table class=descript>
+	<tr><td><span class=optname>time</span></td><td>time in seconds, or (with a trailing <code>M</code>) milliseconds</td></tr>
+	<tr><td><span class=optname>lines</span></td><td>number of lines to display before pausing</td></tr>
+</table>
+
+<p>Both <span class=optname>time</span> and <span class=optname>lines</span> are
+optional.  The colon is not required, but you must use the comma if you want to
+specify <span class=optname>lines</span>. </p>
+
+<p class=example><code>rem  Scroll every five seconds:<br>
+bbdump %bbuf /p:5<br>
+<br>
+rem  Display ten lines at a time:<br>
+bbdump %bbuf /p:,10<br>
+<br>
+rem  Display twenty lines at a time, and<br>
+rem    scroll every 2.5 seconds:<br>
+bbdump %bbuf /p:2500m,20<br>
+</code></p>
+
+<br>
+<p>At the “Press a key to continue” prompt, <em>most</em> keys will advance by
+another screenful (or <span class=optname>lines</span>).  But a few keys behave differently: </p>
+
+<table class=descript>
+	<tr><td><kbd>A</kbd> or <kbd>C</kbd></td><td>turns off paging, and scrolls continuously</td></tr>
+	<tr><td><kbd>Esc</kbd> or <span style="white-space:nowrap;"><kbd>Ctrl</kbd>-<kbd>C</kbd></span></td><td>aborts the current command</td></tr>
+	<tr><td><kbd>/</kbd></td><td>scrolls half a screen, or half of <span class=optname>lines</span></td></tr>
+	<tr><td><kbd>1</kbd> to <kbd>9</kbd></td><td>scrolls that many lines, <em>e.g.</em> <kbd>3</kbd> scrolls three lines</td></tr>
+</table>
+
+
+<h4><a name=highlight></a>Highlight Variable:</h4>
+
+<p><a href="E:\Utils\#bbdump"><code>BBDUMP</code></a> features highlighted output
+when use use <code>/H</code>, <code>/I</code>, or <code>/J</code>.  You can
+customize this feature by setting an environment variable <code>Highlight</code>: </p>
+
+<p class=example><code>rem  Disable highlight:<br>
+set highlight=none<br>
+<br>
+rem  Set the highlight foreground:<br>
+set highlight=bright cyan<br>
+<br>
+rem  Set both foreground and background:<br>
+set highlight=bri whi on blu<br>
+<br>
+rem  Numbers are also supported:<br>
+set highlight=46<br>
+</code></p>
+
+<p>If the <code>Highlight</code> environment variable is not defined, the plugin will
+check the registry for a value named <code>Highlight</code> of type <code>REG_SZ</code>.
+The plugin will search, in this order: </p>
+
+<table class=descript>
+	<tr><td>•  HKEY_CURRENT_USER\Software\JPPlugins\BBufStuff</td><td>(affects this plugin only)</td></tr>
+	<tr><td>•  HKEY_CURRENT_USER\Software\JPPlugins</td><td>(affects several of my plugins)</td></tr>
+</table>
+
+<p>You can also use <code>/NC</code> to disable highlighting. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table class=descript>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>0.70.3.0</td><td nowrap>2026-10-06</td><td class=changes>Updated <span class=filename>conlist.cpp</span>.
+			<a href="E:\Utils\#bbdump"><code>BBDUMP</code></a> now uses CL_ShowCmdHelp() to display help text. </td></tr>
+	<tr><td>0.70.2.1</td><td nowrap>2026-07-29</td><td class=changes>Fixed a bug in ParseSignedInt64() when 
+			passing a hexadecimal number. <br>
+			Removed TCC/LE from the first line of this help file. </td></tr>
+	<tr><td>0.70.2.0</td><td nowrap>2026-05-08</td><td class=changes>Added <a href="E:\Utils\#f_bsize"><code>@BSIZE</code></a> 
+			(the same as TCC’s, but with a check for <code>@BFREE</code>d buffers.) </td></tr>
+	<tr><td>0.70.1.0</td><td nowrap>2026-05-08</td><td class=changes>Added a hack to prevent re-freeing
+			binary buffers which have already been freed.  Removed the <span class=optname>flags</span>
+			argument to <a href="E:\Utils\#f_bfree"><code>@BFREE</code></a>. </td></tr>
+	<tr><td>0.70.0.0</td><td nowrap>2026-05-07</td><td class=changes>Added <a href="E:\Utils\#f_bbhandle"><code>@BBHANDLE</code></a>. </td></tr>
+	<tr><td>0.69.0.0</td><td nowrap>2026-05-06</td><td class=changes>Added support for binary buffer comments.  Many 
+			other changes and optimizations. </td></tr>
+	<tr><td>0.68.0.0</td><td nowrap>2026-05-06</td><td class=changes>Added <a href="E:\Utils\#f_bfind"><code>@BFIND</code></a> and 
+			<a href="E:\Utils\#f_bfindstr"><code>@BFINDSTR</code></a>. </td></tr>
+	<tr><td>0.67.0.0</td><td nowrap>2026-05-04</td><td class=changes>Added <a href="E:\Utils\#f_bbinfo"><code>@BBINFO</code></a>. <br>
+			<a href="E:\Utils\#bbdump"><code>BBDUMP</code></a>, <a href="E:\Utils\#bblist"><code>BBLIST</code></a>:  Handles
+			are formatted for display by BBufHandleToString(). </td></tr>
+	<tr><td>0.66.8.0</td><td nowrap>2026-04-24</td><td class=changes>Supports binary numbers
+			prefixed with <code>0B</code>. <br>
+			Added this Changes page, and reorganized the .CHM help file to put all
+			the miscellaneous help topics under <a href="E:\Utils\#reference">Reference 
+			Info</a>. </td></tr>
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>BBufStuff is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/bbufstuff.zip">https://charlesdye.net/dl/bbufstuff.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

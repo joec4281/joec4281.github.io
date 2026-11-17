@@ -1,0 +1,649 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>WindowInfo Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li><a href="E:\Utils\#searches">Windows Searches</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>WindowInfo plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.95.3     2025-03-26</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin adds a few new <a href="E:\Utils\#functions">functions</a> to find windows
+and return information about them.  I also include one new command to
+<a href="E:\Utils\#listwindows">list windows</a> using a user-defined format string. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>WindowInfo.dll</span> and
+<span class=filename>WindowInfo.chm</span> to some known location on your hard
+drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>WindowInfo-x86.dll</span> instead of
+<span class=filename>WindowInfo.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\windowinfo.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Commands:</a></th></tr>
+	<tr><td><a href="E:\Utils\#listwindows"><code>LISTWINDOWS</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#functions">Functions:</a></th></tr>
+	<tr><td><a href="E:\Utils\#f_hwndpid"><code>@HWNDPID</code></a></td><td><a href="E:\Utils\#f_pidhwnd"><code>@PIDHWND</code></a></td><td><a href="E:\Utils\#f_pidhwnds"><code>@PIDHWNDS</code></a></td><td><a href="E:\Utils\#f_titlehwnd"><code>@TITLEHWND</code></a></td><td><a href="E:\Utils\#f_winalpha"><code>@WINALPHA</code></a></td></tr>
+	<tr><td><a href="E:\Utils\#f_winmonitor"><code>@WINMONITOR</code></a></td><td><a href="E:\Utils\#f_winowner"><code>@WINOWNER</code></a></td><td><a href="E:\Utils\#f_winparent"><code>@WINPARENT</code></a></td><td><a href="E:\Utils\#f_winsnapped"><code>@WINSNAPPED</code></a></td><td><a href="E:\Utils\#f_winstyles"><code>@WINSTYLES</code></a></td></tr>
+	<tr><td><a href="E:\Utils\#f_winstylesex"><code>@WINSTYLESEX</code></a></td><td><a href="E:\Utils\#f_winvdesk"><code>@WINVDESK</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+listwindows /c:*console*<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=listwindows></a><code>LISTWINDOWS</code> — List windows, using a
+user-defined format string. </p>
+
+<p>Syntax:<br>
+<code class=req>LISTWINDOWS</code><code> /C:</code><span class=optname>class</span><code> /E:</code><span class=optname>prog</span><code> /F:"</code><span class=optname>fmt</span><code>" /I /L:</code><span class=optname>n</span><code> /O:</code><span class=optname>flags</span><code> /P /R /T:</code><span class=optname>title</span><code> /V /W:</code><span class=optname>win</span></p>
+
+<table class=descript>
+	<tr><td><code>/C:</code><span class=optname>class</span></td><td>filter top-level windows by class name (supports wildcards) </td></tr>
+	<tr><td><a href="E:\Utils\#listwin_opt_e"><code>/E:</code><span class=optname>prog</span></a></td><td>list windows created by the specified program (<a href="E:\Utils\#listwin_opt_e">name or PID</a>) </td></tr>
+	<tr><td><a href="E:\Utils\#fmtstring"><code>/F:"</code><span class=optname>fmt</span></a><code>"</code></td><td><a href="E:\Utils\#fmtstring">format string</a></td></tr>
+	<tr><td><code>/I</code></td><td>invisible windows only </td></tr>
+	<tr><td><code>/L:</code><span class=optname>n</span></td><td>line length </td></tr>
+	<tr><td><a href="E:\Utils\#listwin_opt_o"><code>/O:</code><span class=optname>flags</span></a></td><td><a href="E:\Utils\#listwin_opt_o">sort windows</a> </td></tr>
+	<tr><td><code>/P</code></td><td>page output </td></tr>
+	<tr><td><code>/R</code></td><td>list child windows recursively </td></tr>
+	<tr><td><code>/T:</code><span class=optname>class</span></td><td>filter top-level windows by title (supports wildcards) </td></tr>
+	<tr><td><code>/V</code></td><td>visible windows only </td></tr>
+	<tr><td><code>/W:</code><span class=optname>win</span></td><td>list child windows of the specified window (title or handle) </td></tr>
+	<!-- <tr><td><code>/</code></td><td> </td></tr> -->
+</table>
+
+<p>With <a href="E:\Utils\#listwin_opt_e"><code>/E:</code><span class=optname>prog</span></a>,
+this command lists all top-level windows created by the specified program.  With
+<code>/W:</code><span class=optname>win</span>, this command lists all child windows
+of the specified window.  With neither <code>/E:</code> nor <code>/W:</code>, it lists
+all top-level windows. </p>
+
+<p>If no <code> /F:"</code><span class=optname>fmt</span><code>"</code> is
+given, the default format string is
+<code style="white-space: nowrap;">"$08h:  $v  $-25c  \u201c$t\u201d"</code>
+to list each window’s handle, visibility, class name, and title. </p>
+
+
+<br>
+<p><a name=listwin_opt_e></a><code>/E:</code><span class=optname>prog</span> lists
+windows created by a specific program.  The <span class=optname>prog</span> may be
+either a process ID or a filename.  If it’s a process ID, you can enter it in
+decimal, or hexadecimal with a leading <code>0x</code>.  Only windows created by that
+one specific process will be listed. </p>
+
+<p>If it’s a filename, it much match exactly (no wildcards).  You can enter
+either a base name (<i>e.g.</i> <code>/E:tcc.exe</code> ) or a complete pathname
+(<i>e.g.</i> <code>/E:c:\bin\tcmd34\tcc.exe</code> ).  This syntax can
+match multiple processes — you might have multiple copies of the same
+program running at once.  If you try to combine a process ID with a filename, the
+process ID wins; the filename will be ignored. </p>
+
+
+<br>
+<p><a name=listwin_opt_o></a><code>/O:</code> can sort by several criteria.
+The available sort keys are: </p>
+
+<table class=descript>
+	<tr><td><code>C</code></td><td>sort by window class </td></tr>
+	<tr><td><code>P</code></td><td>sort by process ID </td></tr>
+	<tr><td><code>R</code></td><td>sort by thread ID </td></tr>
+	<tr><td><code>S</code></td><td>sort by styles word </td></tr>
+	<tr><td><code>T</code></td><td>sort by title </td></tr>
+	<tr><td><code>V</code></td><td>sort by visibility </td></tr>
+	<tr><td><code>W</code></td><td>sort by window handle </td></tr>
+	<tr><td><code>X</code></td><td>sort by extended styles word </td></tr>
+	<tr><td><code>-</code></td><td>reverses the following key </td></tr>
+</table>
+
+<p>These can be combined, <i>e.g.</i> <code>/O:CT</code> to sort by window
+class name first, then by title where two windows have the same class.  If
+you do not give any <code>/O:</code><span class=optname>flags</span>, the
+default is to sort by window handles.  To disable sorting altogether, you
+can use <code>/OU</code>. </p>
+
+
+<h4><a name=fmtstring></a>Format String:</h4>
+
+<p>These are the tokens supported in the format string: </p>
+
+<table class=descript>
+	<tr><th>Token:</th><th>Gives:</th></tr>
+	<tr><td><code>$c</code></td><td>the window’s class name</td></tr>
+	<tr><td><code>$h</code></td><td>the window handle</td></tr>
+	<tr><td><code>$p</code></td><td>the window owner’s pid</td></tr>
+	<tr><td><code>$s</code></td><td>the window’s styles word</td></tr>
+	<tr><td><code>$t</code></td><td>the window’s title</td></tr>
+	<tr><td><code>$v</code></td><td><code>V</code> for visible or <code>I</code> for not visible</td></tr>
+	<tr><td><code>$x</code></td><td>the window’s extended styles word</td></tr>
+	<tr><td><code>$H</code></td><td>the window’s height</td></tr>
+	<tr><td><code>$N</code></td><td>the name of the program which created the window</td></tr>
+	<tr><td><code>$O</code></td><td>the handle of the window’s owner window</td></tr>
+	<tr><td><code>$P</code></td><td>the handle of the window’s parent window</td></tr>
+	<tr><td><code>$V</code></td><td>the name of the window’s virtual desktop, if available</td></tr>
+	<tr><td><code>$W</code></td><td>the window’s width</td></tr>
+	<tr><td><code>$X</code></td><td>the window’s left edge</td></tr>
+	<tr><td><code>$Y</code></td><td>the window’s top edge</td></tr>
+	<tr><td><code>$$</code></td><td>dollar sign</td></tr>
+	<!-- <tr><td><code>$</code></td><td> </td></tr> -->
+</table>
+
+<p>You can use modifiers between the dollar sign and the letter to change
+how the value is displayed: </p>
+
+<table class=descript>
+	<tr><th>Modifier:</th><th>Changes the value:</th></tr>
+	<tr><td><code>-</code></td><td>left-aligns a field</td></tr>
+	<tr><td><code>0</code></td><td>zero-pads a numeric field</td></tr>
+	<tr><td><code>#</code></td><td>uses decimal instead of hex</td></tr>
+	<tr><td><code>!</code></td><td>forces uppercase</td></tr>
+	<tr><td><code>,</code></td><td>forces lowercase</td></tr>
+	<tr><td><span class=optname>width</span></td><td>set the field’s width (decimal only)</td></tr>
+	<!-- <tr><td><code>$</code></td><td> </td></tr> -->
+</table>
+
+<p>A few character escapes are also supported: </p>
+
+<table class=descript>
+	<tr><th>Escape:</th><th>Gives:</th></tr>
+	<tr><td><code>\e</code></td><td>ASCII escape</td></tr>
+	<tr><td><code>\k</code></td><td>backquote</td></tr>
+	<tr><td><code>\n</code></td><td>newline</td></tr>
+	<tr><td><code>\p</code></td><td>percent sign</td></tr>
+	<tr><td><code>\q</code></td><td>double quote</td></tr>
+	<tr><td><code>\r</code></td><td>carriage return</td></tr>
+	<tr><td><code>\t</code></td><td>tab</td></tr>
+	<tr><td><code>\\</code></td><td>backslash</td></tr>
+	<tr><td><code>\u</code><span class=optname>nnnn</span></td><td>Unicode character, up to U+FFFF</td></tr>
+	<tr><td><code>\U</code><span class=optname>nnnnnn</span></td><td>Unicode character, up to U+10FFFF</td></tr>
+	<!-- <tr><td><code>\</code></td><td> </td></tr> -->
+</table>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_hwndpid></a><code>@HWNDPID</code> — Returns the process ID of the
+process which created a given window. </p>
+
+<p>Syntax:<br>
+<code class=req>%@HWNDPID[</code><span class=reqname>hwnd</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>hwnd</span></td><td>the window’s handle; decimal or hex with a leading <code>0x</code></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return process ID in hexadecimal</td></tr>
+</table>
+
+<p>This function only takes a window handle, not a title.  It’s basically
+a wrapper around the Windows
+<a target=_blank href="https://duckduckgo.com/?q=%5cGetWindowThreadProcessId%20site:learn.microsoft.com">GetWindowThreadProcessId()</a>
+function. </p>
+
+<p>If the specified window does not exist, or on any other error, this function
+returns <code>0</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_pidhwnd></a><code>@PIDHWND</code> — Searches for
+a window created by the specified process, and returns its handle. </p>
+
+<p>Syntax:<br>
+<code class=req>%@PIDHWND[</code><span class=reqname>program</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>program</span></td><td>program name or process ID; wildcards are supported</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return handle in hexadecimal</td></tr>
+</table>
+
+<p>You can specify the <span class=reqname>program</span> as: </p>
+
+<ul>
+	<li>a filename with extension, <i>e.g.</i> <code>NOTEPAD.EXE</code></li>
+	<li>a base name, <i>e.g.</i> <code>NOTEPAD</code>; <code>.*</code> is assumed</li>
+	<li>a fully-qualified filename, <i>e.g.</i> <code>C:\WINDOWS\SYSTEM32\NOTEPAD.EXE</code></li>
+	<li>a process ID in decimal, <i>e.g.</i> <code>=5892</code></li>
+	<li>a process ID in hexadecimal, <i>e.g.</i> <code>=0x1704</code></li>
+</ul>
+
+<br>
+<p><code>@PIDHWND</code> returns the window handle (HWND) of a matching window.
+If no matching window is found, <code>@PIDHWND</code> returns <code>0</code>. </p>
+
+<p>Note that a process may have no windows, one window, or many windows.  The
+window that <code>@PIDHWND</code> chooses may not necessarily be the same one
+that you would pick.  To get a list of all top-level windows created by a
+process, use <a href="E:\Utils\#f_pidhwnds"><code>@PIDHWNDS</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_pidhwnds></a><code>@PIDHWNDS</code> — Returns a list of
+windows created by the specified process. </p>
+
+<p>Syntax:<br>
+<code class=req>%@PIDHWNDS[</code><span class=reqname>program</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>program</span></td><td>program name or process ID; wildcards are supported</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return handles in hexadecimal</td></tr>
+	<tr><td></td><td>    128: sort the list into ascending order</td></tr>
+</table>
+
+<p>You can specify the <span class=reqname>program</span> as: </p>
+
+<ul>
+	<li>a filename with extension, <i>e.g.</i> <code>NOTEPAD.EXE</code></li>
+	<li>a base name, <i>e.g.</i> <code>NOTEPAD</code>; <code>.*</code> is assumed</li>
+	<li>a fully-qualified filename, <i>e.g.</i> <code>C:\WINDOWS\SYSTEM32\NOTEPAD.EXE</code></li>
+	<li>a process ID in decimal, <i>e.g.</i> <code>=5892</code></li>
+	<li>a process ID in hexadecimal, <i>e.g.</i> <code>=0x1704</code></li>
+</ul>
+
+<p>Window handles will be returned as a space-separated list of decimal or
+hexadecimal numbers. </p>
+
+<p>If no matching process is found, or if no windows belong to that process,
+then <code>@PIDHWNDS</code> will return an empty string. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_titlehwnd></a><code>@TITLEHWND</code> — Searches for
+a window with a matching title, and returns its handle. </p>
+
+<p>Syntax:<br>
+<code class=req>%@TITLEHWND[</code><span class=reqname>title</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>title</span></td><td>wildcards are supported</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return handle in hexadecimal</td></tr>
+</table>
+
+<p><code>@TITLEHWND</code> returns the window handle (HWND) of a matching window.
+If no matching window is found, <code>@TITLEHWND</code> returns <code>0</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_winalpha></a><code>@WINALPHA</code> — Searches for a
+matching window, and returns its alpha transparency. </p>
+
+<p>Syntax:<br>
+<code class=req>%@WINALPHA[</code><span class=reqname>window</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#searches"><span class=reqname>window</span></a></td><td><a href="E:\Utils\#searches">window title, program name, PID, or HWND</a></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return alpha value in hexadecimal</td></tr>
+</table>
+
+<br>
+<p>The return value ranges from <code>0</code> (completely transparent; invisible)
+to <code>255</code> (completely opaque).  If the window is not using alpha
+transparency, the return value is <code>255</code>.  If no matching window
+is found, <code>@WINALPHA</code> will return <code>00</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_winmonitor></a><code>@WINMONITOR</code> — Searches for
+a matching window, and returns the monitor on which it appears. </p>
+
+<p>Syntax:<br>
+<code class=req>%@WINMONITOR[</code><span class=reqname>window</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#searches"><span class=reqname>window</span></a></td><td><a href="E:\Utils\#searches">window title, program name, PID, or HWND</a></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return a monitor name; otherwise it’s a monitor number</td></tr>
+</table>
+
+<br>
+<p><code>@WINMONITOR</code> returns a monitor index:  1 for the first monitor,
+2 for the second, and so on.  If no matching window was found, or if the window
+does not overlap any display monitor, <code>@WINMONITOR</code> returns
+<code>0</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_winowner></a><code>@WINOWNER</code> — Searches for
+a window, and returns its owner window’s handle. </p>
+
+<p>Syntax:<br>
+<code class=req>%@WINOWNER[</code><span class=reqname>window</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#searches"><span class=reqname>window</span></a></td><td><a href="E:\Utils\#searches">window title, program name, PID, or HWND</a></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return window handle in hexadecimal</td></tr>
+</table>
+
+<br>
+<p>If no matching window is found, the return value will be <code>0</code>. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_winparent"><code>@WINPARENT</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_winparent></a><code>@WINPARENT</code> — Searches for
+a window, and returns its parent window’s handle. </p>
+
+<p>Syntax:<br>
+<code class=req>%@WINPARENT[</code><span class=reqname>window</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#searches"><span class=reqname>window</span></a></td><td><a href="E:\Utils\#searches">window title, program name, PID, or HWND</a></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return window handle in hexadecimal</td></tr>
+</table>
+
+<br>
+<p>If no matching window is found, the return value will be <code>0</code>. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_winowner"><code>@WINOWNER</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_winsnapped></a><code>@WINSNAPPED</code> — Tests whether
+a window has been “snapped” to the edge. </p>
+
+<p>Syntax:<br>
+<code class=req>%@WINSNAPPED[</code><span class=reqname>window</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<br>
+<table class=descript>
+	<tr><td><a href="E:\Utils\#searches"><span class=reqname>window</span></a></td><td><a href="E:\Utils\#searches">window title, program name, PID, or HWND</a></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>(not used in this version) </td></tr>
+</table>
+
+<br>
+<p><code>@WINSNAPPED</code> returns nonzero if the window is snapped,
+<code>0</code> if it is not. </p>
+
+<p><a target=_blank href="https://support.microsoft.com/windows/snap-your-windows-885a9b1e-a983-a3b1-16cd-c531795e6241">Window
+snapping</a> is supported in Windows 10 and later.  Under earlier versions of
+Windows, <code>@WINSNAPPED</code> will always return <code>0</code>.  If no
+matching window is found, the return value is also <code>0</code>. </p>
+
+<p><code>@WINSNAPPED</code> gives you access to the Windows
+<a target=_blank href="https://duckduckgo.com/?q=%5cIsWindowArranged%20site:learn.microsoft.com">IsWindowArranged()</a>
+function. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_winstyles></a><code>@WINSTYLES</code> — Searches for
+a window, and returns its style bits. </p>
+
+<p>Syntax:<br>
+<code class=req>%@WINSTYLES[</code><span class=reqname>window</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#searches"><span class=reqname>window</span></a></td><td><a href="E:\Utils\#searches">window title, program name, PID, or HWND</a></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return styles value in hexadecimal</td></tr>
+</table>
+
+<br>
+<p>Window styles are documented <a target=_blank href="https://duckduckgo.com/?q=%5cWindow%20Styles%20site:learn.microsoft.com">here</a>.
+Note that some only apply to child windows (<i>e.g.</i> controls such as buttons).
+Others specify initial conditions for when the window was created, not the current
+state of the window. </p>
+
+
+<p>If no matching window is found, the return value will be <code>0</code>. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_winstylesex"><code>@WINSTYLESEX</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_winstylesex></a><code>@WINSTYLESEX</code> — Searches for
+a window, and returns its extended style bits. </p>
+
+<p>Syntax:<br>
+<code class=req>%@WINSTYLESEX[</code><span class=reqname>window</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#searches"><span class=reqname>window</span></a></td><td><a href="E:\Utils\#searches">window title, program name, PID, or HWND</a></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return extended styles value in hexadecimal</td></tr>
+</table>
+
+<br>
+<p>Extended window styles are documented <a target=_blank href="https://duckduckgo.com/?q=%5cExtended%20Window%20Styles%20site:learn.microsoft.com">here</a>.
+</p>
+
+<p>If no matching window is found, the return value will be <code>0</code>. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_winstyles"><code>@WINSTYLES</code></a>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_winvdesk></a><code>@WINVDESK</code> — Searches for
+a matching window, and returns the virtual desktop on which it appears. </p>
+
+<p>Syntax:<br>
+<code class=req>%@WINVDESK[</code><span class=reqname>window</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#searches"><span class=reqname>window</span></a></td><td><a href="E:\Utils\#searches">window title, program name, PID, or HWND</a></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped: </td></tr>
+	<tr><td></td><td>    1: return a GUID; otherwise it’s the virtual desktop’s name</td></tr>
+</table>
+
+<br>
+<p>Virtual Desktops require at least Windows 10.  Under earlier versions of
+Windows, <code>@WINVDESK</code> will always return 0. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=searches></a>Windows Searches:</h4>
+
+<p>Most of the functions in this plugin have a <span class=reqname>window</span>
+argument to search for a window.  You can specify the <span class=reqname>window</span>
+in a number of ways.  If you want to match against titles, quote this parameter.
+If you want to match against program names, do not quote it. </p>
+
+<table class=descript>
+	<tr><td>•  Search for a matching window title:</td><td><code>"*VISUAL*"</code></td></tr>
+	<tr><td>•  Search for a filename with an extension:</td><td><code>NOTEPAD.EXE</code></td></tr>
+	<tr><td>•  Search for a base name:</td><td><code>NOTEPAD</code>  (<code>.*</code> is assumed)</td></tr>
+	<tr><td>•  Search for a fully-qualified filename:</td><td><code>C:\WINDOWS\SYSTEM32\NOTEPAD.EXE</code></td></tr>
+	<tr><td>•  Search for a process ID in decimal:</td><td><code>=5892</code></td></tr>
+	<tr><td>•  Search for a process ID in hexadecimal:</td><td><code>=0x1704</code></td></tr>
+	<tr><td>•  Pass a window handle:</td><td><code>HWND==0x002D0B12</code>  (NB:  <em>two</em> equals signs)</td></tr>
+	<tr><td>•  Use TCC’s own display window:</td><td><code>**ME**</code></td></tr>
+	<tr><td>•  Use the current foreground window:</td><td><code>**FG**</code></td></tr>
+</table>
+
+<p>The first four support wildcards. </p>
+
+<br>
+<p>When you search by titles, the function will temporarily set TCC’s
+console window title to an empty string.  This step prevents accidental
+wildcard matches against the console window, Take Command’s window,
+or the Windows Terminal window. </p>
+
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>WindowInfo is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2025, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/windowinfo.zip">https://charlesdye.net/dl/windowinfo.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

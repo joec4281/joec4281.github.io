@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>EKeys Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.note				{ color: #600; font-weight: bold; }
+	.deadlink			{ color: #888; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TH					{ font-size: 110%; font-weight: normal; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#hotkeys">Using the Hotkeys</a></li>
+	<li><a href="E:\Utils\#ekey">EKEY command</a></li>
+	<li><a href="E:\Utils\#autoload">Autoload File</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>EKeys plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.51.0.4     2024-10-04</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin allows you to define custom hotkeys, which edit the
+space-delimited ‘word’ at the cursor.  It adds one new command,
+<a href="E:\Utils\#ekey"><code>EKEY</code></a>. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>EKeys.dll</span> to
+some known location on your hard drive.  (If you are still using the 32-bit
+version of Take Command, take <span class=filename>EKeys-x86.dll</span>
+instead of <span class=filename>EKeys.dll</span>.)  Load the plugin
+with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\ekeys.dll</code></p>
+
+<p>If you copy this file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<h4><a name=hotkeys></a>Using the Hotkeys:</h4>
+
+<p>While typing a command line, move the cursor to any word and press a hotkey
+(defined with the <a href="E:\Utils\#ekey"><code>EKEY</code></a> command).  The plugin
+will find the space-delimited word at the cursor, and replace it with the text
+defined for that particular hotkey.  A number sign in the hotkey text will be
+replaced with the original word from the command line. </p>
+
+<p>Depending on how you define it, a hotkey can: </p>
+
+<ul style="list-style: disc; padding-left: 2em;">
+	<li> replace the word at the cursor with predefined text</li>
+	<li> expand variables and functions in the replacement text</li>
+	<li> insert a command at the start of the command line</li>
+	<li> run the command line as if <kbd>Enter</kbd> had been pressed</li>
+	<li> change TCC’s <code>OPTION</code> settings on the fly</li>
+</ul>
+
+
+<h4><a name=ekey></a>EKEY Command:</h4>
+
+<p><code>EKEY</code> — Define, list, or remove hotkeys.</p>
+
+<p>Syntax:<br>
+<code class=req>EKEY</code><code> /B /C /D /E /I /L /O /Q /R:</code><span class=optname>file</span><code> /S:</code><span class=optname>file</span><code> /T /U /X /Z </code><span class=optname>hotkey</span><code>=</code><span class=optname>text</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#ek_sw_b"><code>/B</code></a></td><td>no error beep</td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_c"><code>/C</code></a></td><td>first word of <span class=optname>text</span> is a command</td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_d"><code>/D</code></a></td><td>delete the definition for <span class=optname>hotkey</span></td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_e"><code>/E</code></a></td><td>automatically execute the command line</td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_i"><code>/I</code></a></td><td>insert <span class=optname>text</span> at cursor position if cursor is not at a word</td></tr>
+	<tr><td><code>/L</code></td><td>list all supported hotkeys</td></tr>
+	<tr><td><code>/O</code></td><td>use with <code>/S:</code> to overwrite an existing file</td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_q"><code>/Q</code></a></td><td>quote resulting text if needed</td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_s"><code>/R:</code><span class=optname>file</span></a></td><td>read hotkey definitions from a file</td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_s"><code>/S:</code><span class=optname>file</span></a></td><td>save hotkey definitions to a file</td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_t"><code>/T</code></a></td><td>change a TCC option</td></tr>
+	<tr><td><code>/U</code></td><td>unquote the word at the cursor</td></tr>
+	<tr><td><a href="E:\Utils\#ek_sw_x"><code>/X</code></a></td><td>expand variables and functions in the modified word</td></tr>
+	<tr><td><code>/Z</code></td><td>quiet; suppresses many messages</td></tr>
+	<tr><td><span class=optname>hotkey</span></td><td>the hotkey to define, list, or delete</td></tr>
+	<tr><td><span class=optname>text</span></td><td>the replacement text when the hotkey is pressed</td></tr>
+</table>
+
+
+<br>
+<p>To define a hotkey, use the format <code>EKEY </code><span class=optname>hotkey</span><code>=</code><span class=optname>text</span> : </p>
+
+<p class=example><code>ekey alt-t=Test<br>
+</code></p>
+
+<p>Pressing <kbd>Alt</kbd>-<kbd>T</kbd> will replace the word at the cursor
+with the word “Test”.  If you don’t specify any
+<span class=optname>text</span>, then the hotkey will simply delete the word
+at the cursor: </p>
+
+<p class=example><code>ekey ctrl-bksp=<br>
+</code></p>
+
+<p>Now <kbd>Ctrl</kbd>-<kbd>Backspace</kbd> will delete the entire word at the
+cursor.  A more useful hotkey can incorporate the original word from the cursor
+into its replacement: </p>
+
+<p class=example><code>ekey alt-s=%%@search[#]<br>
+</code></p>
+
+<p><kbd>Alt</kbd>-<kbd>S</kbd> will wrap an <code>%@search[]</code> around the
+word at the cursor.  For example, if the cursor is on the word <code>chkdsk</code>,
+<kbd>Alt</kbd>-<kbd>S</kbd> will replace it with <code>%@search[chkdsk]</code>. </p>
+
+<br>
+<p>The number sign <code>#</code> symbolizes the word at the cursor.
+<strong>You will almost always want a <code>#</code> in your hotkey text.</strong>
+Unless you include the number sign, the word at the cursor will be discarded.</p>
+
+<br>
+<p><a name=ek_sw_x></a>You might want to expand a variable or function
+automatically when you press the hotkey.  To do this, specify <code>/X</code>
+when you define the hotkey: </p>
+
+<p class=example><code>ekey /x alt-s=%%@search[#]<br>
+</code></p>
+
+<p>The new definition replaces the old one.  Now, pressing <kbd>Alt</kbd>-<kbd>S</kbd>
+while the cursor is on <code>chkdsk</code> will replace it with
+<code>C:\WINDOWS\system32\chkdsk.exe</code>.  You can create a similar hotkey
+to do math at the command line: </p>
+
+<p class=example><code>ekey /x alt-==%%@eval[#]<br>
+</code></p>
+
+<p>If the cursor is on <code>1+2*3</code>, then <kbd>Alt</kbd>-<kbd>=</kbd>
+will replace it with the value <code>7</code>.  You could even type
+<code>912559=X</code> and press <kbd>Alt</kbd>-<kbd>=</kbd> to convert that
+number to hexadecimal — then press <kbd>Alt</kbd>-<kbd>=</kbd> a
+second time to convert it back to decimal! </p>
+
+<p><a name=ek_sw_b></a>The plugin will beep if there is any error while
+expanding variables and functions.  To suppress the error beep, use <code>/B</code>
+when defining the hotkey. </p>
+
+<br>
+<p><a name=ek_sw_i></a>An EKeys hotkey operates on the word at the cursor.
+If you press a hotkey when the cursor is not at a word, it won’t do
+anything.  You can modify this behavior with option <code>/I</code>.  If you
+press a hotkey defined with <code>/I</code> while the cursor is not at a word,
+the replacement <span class=optname>text</span> will be inserted at the cursor
+position; any <code>#</code> sign in the <span class=optname>text</span>
+will be omitted. </p>
+
+<p class=example><code>ekey /i /x alt-d=%%_isodate<br>
+ekey /i /x alt-t=%%_time<br>
+</code></p>
+
+<br>
+<p><a name=ek_sw_q></a>If you specify <code>/Q</code>, then the replacement text will automatically
+be quoted if it contains spaces, control characters, or any of
+<code>&,;&lt;&gt;=|</code></p>
+
+<br>
+<p><a name=ek_sw_c></a>You might also want to insert a word at the
+beginning of the command line.  If you specify <code>/C</code> when defining
+your hotkey, then the first word in the key’s <span class=optname>text</span>
+(up to the first unquoted space) will be prefixed to the command line: </p>
+
+<p class=example><code>ekey /c alt-b=bdebugger "%%@search[#]"<br>
+</code></p>
+
+<p>Press <kbd>Alt</kbd>-<kbd>B</kbd>, and the word at the cursor will be
+wrapped in the <code>"%@SEARCH[]"</code> function, and <code>BDEBUGGER</code>
+will be inserted at the start of the command line. </p>
+
+<br>
+<p><a name=ek_sw_e></a>If you specify <code>/E</code>, the resulting command
+line will be run automatically after text is replaced and variables are expanded,
+as if you had pressed <kbd>Enter</kbd>.  This is most likely to be useful with
+<code>/C</code>. </p>
+
+<br>
+<p>If you want to include a literal <code>#</code> character in the replacement
+text, there are two ways to do this.  You can double the number sign, <code>##</code>;
+or you can use <code>%@CHAR[65283]</code>, which the text-replacement routine
+will automatically change to a number sign.  (If you want to put a number sign
+immediately after the word from the command line, you must use the second method.) </p>
+
+<br>
+<p><a name=ek_sw_t></a>You can also define hotkeys to change TCC’s
+internal <code>OPTION</code> settings on-the-fly.  Use <code>/T</code> and set
+the hotkey <span class=optname>text</span> to the directive’s name and
+new value, separated by a space or equals sign.  For example: </p>
+
+<p class=example><code>ekey /t alt-a=appendtodir=yes<br>
+ekey /t ctrl-a=appendtodir=no<br>
+</code></p>
+
+<p>If the hotkey <span class=optname>text</span> contains only a directive
+name, with no space or equals sign, then the plugin will read the current value
+for that setting and toggle it — changing ‘Yes’ to
+‘No’, ‘On’ to ‘Off’, 0 to 1, nonzero numbers
+to 0, and so on.  (Of course, if that particular directive doesn’t happen
+to be of the on-or-off type, then the result will probably not be good.) </p>
+
+<p class=example><code>ekey /t alt-a=appendtodir<br>
+</code></p>
+
+<p>Now pressing <kbd>Alt</kbd>-<kbd>A</kbd> will toggle the internal setting
+which controls whether or not tab filename completion appends a backslash to
+directory names. </p>
+
+<p>Changing <code>CompleteHidden</code> will instead set both
+<code>CompleteHiddenDirs</code> and <code>CompleteHiddenFiles</code>. </p>
+
+<p><code>/T</code> hotkeys to change <code>OPTION</code> settings work a little
+differently:  the cursor does not need to be at a word, and the number sign has
+no special meaning. </p>
+
+<br>
+<p><a name=ek_sw_d></a>To remove a key definition, use the format <code>EKEY /D </code><span class=optname>hotkey</span> : </p>
+
+<p class=example><code>ekey /d alt-t<br>
+</code></p>
+
+<p>You can remove all key definitions at once with an alternate syntax: </p>
+
+<p class=example><code>ekey /d:*<br>
+</code></p>
+
+<br>
+<p>To list all defined hotkeys, just type <code>EKEY</code> with no options.
+To list the definition for a single key, type <code>EKEY </code><span class=optname>hotkey</span> : </p>
+
+<p class=example><code>ekey alt-s<br>
+</code></p>
+
+<br>
+<p><a name=ek_sw_s></a>You can save the current hotkey definitions to a file
+with <code>EKEY /S:</code><span class=optname>file</span> : </p>
+
+<p class=example><code>ekey /s:hotkeys.txt<br>
+</code></p>
+
+<p>The save file is just a UTF-8 encoded text file, which can be edited with
+any modern text editor.  You can reload the definitions later with
+<code>EKEY /R:</code><span class=optname>file</span>.  The filename may
+contain TCC directory aliases. </p>
+
+<p>The file <span class=filename>Examples.EK</span> contains most of the
+demo key definitions from this documentation. </p>
+
+
+<h4><a name=autoload></a>Autoload file:</h4>
+
+<p>When the plugin is loaded, it will look for a file named <span class=filename>Auto.EK</span>
+in the same directory where <span class=filename>EKeys.dll</span> is
+located.  If it finds this file, EKeys will try to read key definitions from it.
+If <span class=filename>Auto.EK</span> does not exist in the DLL’s
+directory, the plugin will try again in TCC.EXE’s directory. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>EKeys is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2025, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/ekeys.zip">https://charlesdye.net/dl/ekeys.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

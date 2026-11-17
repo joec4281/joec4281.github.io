@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>SoundVol Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#variables">Variables</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#props">Acknowledgments</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>SoundVol plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.1.1     2025-09-16</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin supplies a replacement <a href="E:\Utils\#v_volume"><code>_VOLUME</code></a>
+variable which will work under Windows Vista and later.  For bonus points,
+it also supplies a <a href="E:\Utils\#v_mute"><code>_MUTE</code></a> variable to
+return the mute state, and a <a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a>
+command to report or change the master volume and mute state. </p>
+
+<p>There is also a new <a href="E:\Utils\#defaudioout"><code>DEFAUDIOOUT</code></a>
+command to display or change the default audio output device, and a
+<a href="E:\Utils\#v_defaudioout"><code>_DEFAUDIOOUT</code></a> variable to return
+the name of the current default audio output device. </p>
+
+<p>(This is really just the sound volume features from my
+<a target=_blank href="https://charlesdye.net/plugins/uistuff.html">UIStuff
+plugin</a>, diked out and rolled into a separate little plugin.) </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>SoundVol.dll</span> to
+some known location on your hard drive.  (If you are still using the 32-bit
+version of Take Command, take <span class=filename>SoundVol-x86.dll</span>
+instead of <span class=filename>SoundVol.dll</span>.)  Load the .DLL file
+with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\soundvol.dll</code></p>
+
+<p>If you copy the .DLL file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, it will be loaded automatically
+when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">commands</a>:  <a href="E:\Utils\#defaudioout"><code>DEFAUDIOOUT</code></a>,
+<a href="E:\Utils\#soundvol"><code>SOUNDVOL</code></a></p>
+
+<p>New <a href="E:\Utils\#variables">variables</a>:  <a href="E:\Utils\#v_defaudioout"><code>_DEFAUDIOOUT</code></a>,
+<a href="E:\Utils\#v_mute"><code>_MUTE</code></a>, <a href="E:\Utils\#v_volume"><code>_VOLUME</code></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+soundvol /o 85<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=defaudioout></a><code>DEFAUDIOOUT</code> — Display or change
+the default audio output device. </p>
+
+<p>Syntax:<br>
+<code class=req>DEFAUDIOOUT </code><code> /B /Q </code><span class=optname>device</span></p>
+
+<table class=descript>
+	<tr><td><code>/B</code></td><td>beep after changing audio device</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><span class=optname>device</span></td><td>the device’s name, or its index 1 - <i>n</i></td></tr>
+</table>
+
+<p>If you do not specify a <span class=optname>device</span>,
+<code>DEFAUDIOOUT</code> will display a list of available audio outputs. </p>
+
+<p class=example><code>rem  Use my monitor for audio output:<br>
+defaudioout "dell u3415w*"<br>
+</code></p>
+
+<br>
+<p class=xref><span class=note>•  Note: </span>  This command
+requires Windows Vista or later; it will not work in Windows XP. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=soundvol></a><code>SOUNDVOL</code> — Display or change the
+master sound volume. </p>
+
+<p>Syntax:<br>
+<code class=req>SOUNDVOL </code><code>/B /M /O /Q /U </code><span class=optname>volume</span></p>
+
+<table class=descript>
+	<tr><td><code>/B</code></td><td>beep after changing settings</td></tr>
+	<tr><td><code>/M</code></td><td>mute the sound</td></tr>
+	<tr><td><code>/O</code></td><td>display the current settings on-screen</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><code>/U</code></td><td>unmute the sound</td></tr>
+	<tr><td><span class=optname>volume</span></td><td>new volume level, 0 — 100</td></tr>
+</table>
+
+<p>Unless <code>/Q</code> is specified, the current volume will be displayed. </p>
+
+<p class=example><code>rem  Crank it all the way up:<br>
+soundvol /u 100<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+
+
+<p><a name=v_defaudioout></a><code>_DEFAUDIOOUT</code> — Returns the name
+of the current default audio output device. </p>
+
+<p>Syntax:<br>
+<code class=req>%_DEFAUDIOOUT</code></p>
+
+<p>The returned name will probably contain spaces and maybe weirder stuff,
+so it might be a good idea to quote it. </p>
+
+<p class=example><code>rem  Save the current setting:<br>
+set oldaudioout="%_defaudioout"<br>
+<br>
+rem    ...and restore it later:<br>
+defaudioout %oldaudioout<br>
+</code></p>
+
+<br>
+<p class=xref><span class=note>•  Note: </span>  This variable
+requires Windows Vista or later; it will not work in Windows XP. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_mute></a><code>_MUTE</code> — Returns the master
+sound mute state. </p>
+
+<p>Syntax:<br>
+<code class=req>%_MUTE</code></p>
+
+<p>The value returned is <code>1</code> if the sound is muted, or <code>0</code>
+otherwise.  If the current volume level cannot be determined (<i>e.g.</i>
+there is no sound hardware installed), this variable will return
+<code>-1</code>. </p>
+
+<p class=example><code>rem  Check whether the audio is muted:<br>
+if %_mute == 1 echo The audio is muted.<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_volume></a><code>_VOLUME</code> — Returns the
+master sound volume level. </p>
+
+<p>Syntax:<br>
+<code class=req>%_VOLUME</code></p>
+
+<p>The value returned is in the range 0 through 100.  If the current volume
+level cannot be determined, this variable will return <code>-1</code>. </p>
+
+<p class=example><code>rem  Display the current master volume level:<br>
+echo The master sound volume is at %_volume.<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=props></a>Acknowledgments:</h4>
+
+<p>The Windows XP (and earlier) mixer API is the kind of Byzantine, bodged-together
+Rube Goldberg monstrosity that gives “<a target=_blank href="http://www.catb.org/jargon/html/C/crawling-horror.html">crawling horror</a>” a bad name.
+<a target=_blank href="https://www.qsl.net/i2phd/mixer/index.html">This page</a> (by Alberto
+di Bene?) was instrumental in saving my sanity. </p>
+
+<p>… And then Microsoft said “Let there be Vista.”  And lo,
+there was much confusion.  Setting the master volume using the old API doesn’t
+work in Vista and later.  The new interface is <em>much</em> simpler to use,
+and <a target=_blank href="https://www.codeproject.com/Tips/233484/Change-Master-Volume-in-Visual-Cplusplus">this page</a>
+(by Sayyeid Mostafa Hashemi) was extremely helpful to me in making it work.  Of
+course, the new Vista method won’t work in Windows XP and earlier; so this
+plugin must incorporate <em>two</em> utterly different routines to get and set
+the volume and mute state.  Isn’t Windows amazing? </p>
+
+<p>It seems that Microsoft doesn’t <i>want</i> us to change the default
+audio device programatically.  Why not?  I don’t know.  I don’t care.
+I have perfectly valid reasons for wanting to do this; maybe you do too.  To do
+the seemingly impossible I am using <span class=filename>IPolicyConfig.h</span>
+by EreTIk, which I found <a target=_blank href="https://github.com/tartakynov/audioswitch/tree/master">here</a>.
+Thank you, EreTIk, whoever you are. </p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table class=descript>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<tr><td>1.1.1</td><td nowrap>2025-09-16</td><td class=changes><a href="E:\Utils\#defaudioout"><code>DEFAUDIOOUT</code></a>:  Added 
+		<code>/B</code>. </td></tr>
+	<tr><td>1.1.0</td><td nowrap>2024-09-24</td><td class=changes>Added <a href="E:\Utils\#defaudioout"><code>DEFAUDIOOUT</code></a>
+		and <a href="E:\Utils\#v_defaudioout"><code>_DEFAUDIOOUT</code></a>. </td></tr>
+	<tr><td>1.0.0.2</td><td nowrap>2023-10-16</td><td class=changes>Tweaked ShowCmdHelp() to include
+		<code>VER_PATCH</code>. </td></tr>
+	<tr><td>1.0.0.1</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.0.0</td><td nowrap>2023-07-06</td><td class=changes>First release.  Updated <span class=filename>OsdCmd.cpp</span>; 
+		removed the need for <span class=filename>FindMyWindow.cpp</span> and made the .DLL files about 1½ K smaller. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2025, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/soundvol.zip">https://charlesdye.net/dl/soundvol.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

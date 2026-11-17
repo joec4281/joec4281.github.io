@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>Say Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#top">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#syntaxnote">Syntax Note</a></li>
+	<li><a href="E:\Utils\#commands">New commands:</a></li>
+	<li>    <a href="E:\Utils\#say">SAY</a></li>
+	<li>    <a href="E:\Utils\#voice">VOICE</a></li>
+	<li><a href="E:\Utils\#functions">New function</a></li>
+	<li><a href="E:\Utils\#variables">New variables</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=top></a>
+
+<h1>Say plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.2.2     2026-10-30</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+<p>This plugin provides a quick and intuitive interface to the Windows
+text-to-speech feature.  The plugin adds two new commands:
+<a href="E:\Utils\#say"><code>SAY</code></a>, which speaks the text on the command
+line or from a text file; and <a href="E:\Utils\#voice"><code>VOICE</code></a>, which
+lists available voices or selects the voice which <code>SAY</code> will use.
+A few utility <a href="E:\Utils\#variables">variables</a> and <a href="E:\Utils\#functions">functions</a>
+are also provided. </p>
+
+<p>Windows XP or later is required.</p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>Say.dll</span> to some
+known location on your hard drive.  (If you are using the 32-bit version of
+Take Command, take <span class=filename>Say-x86.dll</span> instead of
+<span class=filename>Say.dll</span>.)  Load the plugin with a
+<code>PLUGIN /L</code> command.  For example:</p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\say.dll</code></p>
+
+<p>If you copy <span class=filename>Say.dll</span> to a subdirectory
+named <span class=filename>PlugIns</span> within your Take Command
+program directory, the plugin will be loaded automatically by each new
+instance of TCC. </p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+say Today is %_date.<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">commands</a>:  <a href="E:\Utils\#say"><code>SAY</code></a>,
+<a href="E:\Utils\#voice"><code>VOICE</code></a></p>
+
+<p>New <a href="E:\Utils\#functions">function</a>:  <a href="E:\Utils\#f_voice"><code>@VOICE</code></a></p>
+
+<p>New <a href="E:\Utils\#variables">variables</a>:  <a href="E:\Utils\#v_numvoices"><code>_NUMVOICES</code></a>,
+<a href="E:\Utils\#v_voice"><code>_VOICE</code></a>, <a href="E:\Utils\#v_voicenum"><code>_VOICENUM</code></a></p>
+
+
+<h4><a name=commands></a>New Commands:</h4>
+<br>
+
+<p><a name=say></a><code>SAY</code> — Speak the specified
+text.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>SAY</code><code> /A /D /H /K /L /N /X </code><span class=optname>text…</span><code> @</code><span class=optname>filename…</span></p>
+
+<table class=descript>
+	<tr><td><code>/A</code></td><td>speak command-line text Asynchronously</td></tr>
+	<tr><td><code>/D</code></td><td>Disable SAPI XML tags in text (default)</td></tr>
+	<tr><td><code>/H</code></td><td>speak Help text</td></tr>
+	<tr><td><code>/K</code></td><td>restart voice; cancel any asynchronous speech</td></tr>
+	<tr><td><code>/L</code></td><td>Line breaks in text files are significant</td></tr>
+	<tr><td><code>/N</code></td><td>speak line Numbers in text files</td></tr>
+	<tr><td><code>/X</code></td><td>enable SAPI XML tags in text</td></tr>
+</table>
+
+<p>Put options before any text or filenames.  Text and files will be read
+in the same order they are listed on the command line.  Text can also be
+piped or redirected into <code>SAY</code>; redirected input will be read
+after any text or files specified on the command line.</p>
+
+<p>While <code>SAY</code> is reading text from a file, you can abort by
+pressing Ctrl-C or Ctrl-Break.  Be patient; it may be several seconds until
+the key is recognized.</p>
+
+<p>Normally, <code>SAY</code> will not return until all text has been read.
+You can use <code>/A</code> to speak text from the command line asynchronously
+and return immediately.  Note that this option only affects text on the
+command line; it has no effect on text read from a file, redirection or a
+pipe.  You can cancel the speech with <code>SAY /K</code>. </p>
+
+<p><code>SAY</code> is intended primarily for “readable” English
+text — sentences and paragraphs.  Most line breaks in text files
+will be ignored.  If you want to use <code>SAY</code> to read a line-oriented
+text file (piped output from a command, for example) you can use <code>/L</code>
+to indicate that line breaks are significant.  When <code>/L</code> is
+specified, <code>SAY</code> will pause to “take a breath” (and
+check for Ctrl-C) at the end of each line. </p>
+
+<p>Option <code>/N</code> causes the program to speak a “line number”
+before each line of text.  These line numbers do not correspond to the visual
+arrangement of text in the input file or stream.  They are, rather, a running
+count of the lines of text passed to the Windows speech engine.  They might be
+better called “sentence numbers” or “utterance numbers”
+if those phrases weren’t so clumsy. </p>
+
+<p>Options <code>/L</code> and <code>/N</code> only apply to text read from
+a file, redirection, or a pipe.  They don’t affect text specified on
+the command line.  Options <code>/X</code> and <code>/D</code> only affect
+text and filenames which follow them on the command line. </p>
+
+<p>To read text from the clipboard, you can use either the
+<code>@</code><span class=optname>file</span> syntax or input redirection:</p>
+
+<p class=example><code>say @clip:<br>
+<br>
+say &lt; clip:</code></p>
+
+<p style="padding-top: 1em;"><span class=note>• Note:  </span>If
+you want to pipe text into <code>SAY</code>, remember that piping creates a
+new shell.  If the plugin is not loaded in the new shell, you’ll get
+an “Unknown command” error.  To prevent this, you can: </p>
+
+<ul style="list-style: square; padding-left: 2em;">
+	<li>copy the <span class=filename>.DLL</span> file into your <span class=filename>PlugIns</span> directory, so it’s automatically loaded by the right-hand shell. </li>
+	<li>use an in-process pipe (registered versions TCC only). </li>
+	<li>redirect to and from a temporary file, instead of using a pipe.  Remember to delete the temp file when you’re done with it. </li>
+</ul>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=voice></a><code>VOICE</code> — List available voices,
+or select the voice for <code>SAY</code> to use. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>VOICE</code><code> /A /D /H </code><span class=optname>name</span></p>
+
+<table class=descript>
+	<tr><td><code>/A</code></td><td>read the list Aloud</td></tr>
+	<tr><td><code>/D</code></td><td>select the system Default voice</td></tr>
+	<tr><td><code>/H</code></td><td>speak the Help text</td></tr>
+</table>
+
+<p>If you do not give a voice <span class=optname>name</span> or
+<code>/D</code>, <code>VOICE</code> will list all available voices.  The
+<span class=optname>name</span> must follow any options on the command
+line. </p>
+
+<p>If <span class=optname>name</span> contains wildcards, the first matching
+voice found will be selected.  Alternatively, <span class=optname>name</span>
+can be a zero-based index number, as reported by <code>VOICE</code> without
+options, or returned by <a href="E:\Utils\#v_voicenum"><code>_VOICENUM</code></a>. </p>
+
+<p><code>VOICE</code> only affects this plugin’s <a href="E:\Utils\#say"><code>SAY</code></a>
+command.  It does not change the system default or affect any other program. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Function:</h4>
+<br>
+
+
+<p><a name=f_voice></a><code>@VOICE</code> — Returns the name of
+one voice. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@VOICE[</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n</span></td><td>integer index from 0 to <a href="E:\Utils\#v_numvoices"><code>%_NUMVOICES</code></a> - 1</td></tr>
+</table>
+
+<p>This function will return <code>-1</code> if <span class=reqname>n</span>
+is too high. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+<br>
+
+<p><a name=v_numvoices></a><code>_NUMVOICES</code> — Returns the
+number of voices available. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_NUMVOICES</code></p>
+
+<p>This variable will return <code>-1</code> if an error occurs. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_voice></a><code>_VOICE</code> — Returns the name of
+the current voice. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_VOICE</code></p>
+
+<p>This variable will return <code>(unknown)</code> if an error occurs. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_voicenum></a><code>_VOICENUM</code>   Returns the
+index of the current voice. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_VOICENUM</code></p>
+
+<p>This variable will return a number from 0 to <a href="E:\Utils\#v_numvoices"><code>_NUMVOICES</code></a> - 1, or -1 if any
+error occurs. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table style="margin-left: 2px;">
+	<tr><td>1.2.2.1</td><td nowrap>2026-10-30</td><td class=changes>Changed the way the help text is displayed in Windows Terminal and ConPTY tabs. </td></tr>
+	<tr><td>1.2.2.0</td><td nowrap>2026-06-09</td><td class=changes>Fixed an issue with the plugin crashing during cleanup in transient shells. </td></tr>
+	<tr><td>1.2.1.1</td><td nowrap>2024-10-03</td><td class=changes>Changed http:// to https:// in the <code>PLUGININFO</code> block. 
+		ParseInt() now supports octal with a leading <code>0o</code>. </td></tr>
+	<tr><td>1.2.1.0</td><td nowrap>2023-11-22</td><td class=changes>Added support for <code>@CLIP:</code>.  Do not show
+		“Plugin not loaded” messages in transient or pipe shells. </td></tr>
+	<tr><td>1.2.0.3</td><td nowrap>2023-10-15</td><td class=changes>Minor cosmetic tweaks to ShowCmdHelp(). </td></tr>
+	<tr><td>1.2.0.2</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.2.0.1</td><td nowrap>2021-08-14</td><td class=changes>Tweaks to the version info structure; no changes to the code. </td></tr>
+	<tr><td>1.2.0.0</td><td nowrap>2021-04-08</td><td class=changes>Added <a href="E:\Utils\#v_voicenum"><code>_VOICENUM</code></a>; <span class=filename>Say.dll</span> is now 64-bit; various tweaks and improvements to the code and HTML doc file. </td></tr>
+	<tr><td>1.1.0.0</td><td nowrap>2014-04-23</td><td class=changes>Added <a href="E:\Utils\#voice"><code>VOICE</code></a>, <a href="E:\Utils\#f_voice"><code>@VOICE</code></a>, <a href="E:\Utils\#v_numvoices">_NUMVOICES</a>, and <a href="E:\Utils\#v_voice"><code>_VOICE</code></a>; updated various internal features to match my other plugins. </td></tr>
+	<tr><td>1.0.8.0</td><td nowrap>2013-04-23</td><td class=changes>Updated to Visual Studio 2010; updated the plugin’s web address. </td></tr>
+	<tr><td>1.0.7.0</td><td nowrap>2011-11-28</td><td class=changes>Better handling of UTF-8 text files; now command-line text is ground through the same parser as text from files or stdin. </td></tr>
+	<tr><td>1.0.6.0</td><td nowrap>2011-04-28</td><td class=changes>Tweaks to sentence detection, handling of pilcrows and section marks. </td></tr>
+	<tr><td>1.0.5.0</td><td nowrap>2011-04-21</td><td class=changes>Minor improvement to sentence detection in @files; release file handle on ^C. </td></tr>
+	<tr><td>1.0.4.0</td><td nowrap>2011-04-21</td><td class=changes>Bug fix:  plugin name not displayed on error opening @file list. </td></tr>
+	<tr><td>1.0.3.0</td><td nowrap>2011-04-12</td><td class=changes>Fixed a problem with <code>/H</code> and <code>/K</code> in TCC 12.10. </td></tr>
+	<tr><td>1.0.2.0</td><td nowrap>2011-03-11</td><td class=changes><code>HELP</code> and F1 give a popup; spoken help is now available via <code>/H</code>.  Documented <code>/D</code> and <code>/K</code>. </td></tr>
+	<tr><td>1.0.1.0</td><td nowrap>2011-02-25</td><td class=changes>Fixed return codes. </td></tr>
+	<tr><td>1.0.0.0</td><td nowrap>2011-01-07</td><td class=changes>Initial release. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is Copyright © 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.
+Use it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/say.zip">https://charlesdye.net/dl/say.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

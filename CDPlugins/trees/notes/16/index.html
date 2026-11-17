@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>DNS Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#dns"><code>DNS</code> command</a></li>
+	<li>    <a href="E:\Utils\#rdns"><code>RDNS</code> command</a></li>
+	<li><a href="E:\Utils\#paging">Paging Options</a></li>
+	<li><a href="E:\Utils\#highlight">Highlight Variable</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>DNS plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.0.10     2026-10-12</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides a replacement for TCC’s internal
+<a href="E:\Utils\#dns"><code>DNS</code></a> command.  It also adds an
+<a href="E:\Utils\#rdns"><code>RDNS</code></a> command, because why not. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>Dns.dll</span> to some
+known location on your hard drive.  (If you are still using the 32-bit version
+of Take Command, take <span class=filename>Dns-x86.dll</span> instead of
+<span class=filename>Dns.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\dns.dll</code></p>
+
+<p>If you copy the .DLL file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, it will be loaded automatically
+when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Commands:</a></th></tr>
+	<tr><td><a href="E:\Utils\#dns"><code>DNS</code></a></td><td><a href="E:\Utils\#rdns"><code>RDNS</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+rdns 142.250.190.142<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=dns></a><code>DNS</code> — Display DNS records for a
+domain or host. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>DNS</code><code> /K /N:</code><span class=optname>flags</span><code> /P /S /W </code><span class=reqname>server</span><code> </code><span class=reqname>name…</span></p>
+
+<table class=descript>
+	<tr><td><code>/K</code></td><td>show the number of records returned</td></tr>
+	<tr><td><code>/N:</code><span class=optname>flags</span></td><td>disable features:</td></tr>
+	<tr><td></td><td>    <code>C</code> — <a href="E:\Utils\#highlight">disable highlight</a></td></tr>
+	<tr><td></td><td>    <code>H</code> — do not show headers</td></tr>
+	<tr><td></td><td>    <code>N</code> — do not show names in headers</td></tr>
+	<!-- <tr><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<code>S</code>&nbsp;&mdash; do not sort records</td></tr> -->
+	<tr><td><a href="E:\Utils\#paging"><code>/P</code></a></td><td><a href="E:\Utils\#paging">page output</a></td></tr>
+	<tr><td><code>/S</code></td><td>sort DNS records of the same type</td></tr>
+	<tr><td><code>/W</code></td><td>truncate long TXT strings</td></tr>
+	<tr><td><span class=reqname>server</span></td><td>the DNS server to query, or <code>*</code> for default</td></tr>
+	<tr><td><span class=reqname>name…</span></td><td>domain name or hostname to look up</td></tr>
+</table>
+
+<p>You must specify the server, and at least one name to look up.  If you
+specify <code>*</code> for the server, <code>DNS</code> will use your system’s
+default DNS servers.  You may specify more than one <span class=reqname>name</span>
+to look up. </p>
+
+<p><span class=note>• Note:</span>  All options except for
+<code>/NH</code> are new, and not compatible with TCC’s internal
+<code>DNS</code> command.  Giving more than one <span class=reqname>name</span>
+per call is also a new feature; to be compatible with TCC’s <code>DNS</code>,
+give only one <span class=reqname>name</span> per command. </p>
+
+<p class=example><code>dns * ipv6.google.com<br>
+</code></p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=rdns></a><code>RDNS</code> — Perform a reverse DNS
+lookup. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>RDNS</code><code> /A:</code><span class=optname>dnsaddr</span><code> </code><span class=reqname>ipaddr…</span></p>
+
+<table class=descript>
+	<tr><td><code>/A:</code><span class=optname>dnsaddr</span></td><td>DNS server address</td></tr>
+	<tr><td><span class=reqname>ipaddr</span></td><td>the IP address to look up</td></tr>
+</table>
+
+<p>You must give at least one <span class=reqname>ipaddr</span> to look up.
+If you do not specify a DNS server, RDNS will use your system’s default
+DNS servers. </p>
+
+<p class=example><code>rdns 152.19.134.47<br>
+</code></p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=paging></a>Paging Options:</h4>
+
+<p>The <a href="E:\Utils\#dns"><code>DNS</code></a> command has a <code>/P</code> option
+to page output.  This option supports two suboptions: </p>
+
+<p class=descript><code>/P:</code><span class=optname>time</span><code>,</code><span class=optname>lines</span></p>
+
+<table class=descript>
+	<tr><td><span class=optname>time</span></td><td>time in seconds, or (with a trailing <code>M</code>) milliseconds</td></tr>
+	<tr><td><span class=optname>lines</span></td><td>number of lines to display before pausing</td></tr>
+</table>
+
+<p>Both <span class=optname>time</span> and <span class=optname>lines</span> are
+optional.  The colon is not required, but you must use the comma if you want to
+specify <span class=optname>lines</span>. </p>
+
+<p class=example><code>rem  Scroll every ten seconds:<br>
+type /p:10 myfile.txt<br>
+<br>
+rem  Display ten lines at a time:<br>
+type /p:,10 myfile.txt<br>
+<br>
+rem  Display twenty lines at a time, and<br>
+rem    scroll every 2.5 seconds:<br>
+type /p:2500m,20<br>
+</code></p>
+
+<br>
+<p>At the “Press a key to continue” prompt, <em>most</em> keys will advance by
+another screenful (or <span class=optname>lines</span>).  But a few keys behave differently: </p>
+
+<table class=descript>
+	<tr><td><kbd>A</kbd> or <kbd>C</kbd></td><td>turns off paging, and scrolls continuously</td></tr>
+	<tr><td><kbd>Esc</kbd> or <span style="white-space:nowrap;"><kbd>Ctrl</kbd>-<kbd>C</kbd></span></td><td>aborts the current command</td></tr>
+	<tr><td><kbd>/</kbd></td><td>scrolls half a screen, or half of <span class=optname>lines</span></td></tr>
+	<tr><td><kbd>1</kbd> to <kbd>9</kbd></td><td>scrolls that many lines, <em>e.g.</em> <kbd>3</kbd> scrolls three lines</td></tr>
+</table>
+
+
+<h4><a name=highlight></a>Highlight Variable:</h4>
+
+<p>The <a href="E:\Utils\#dns"><code>DNS</code></a> command features highlighted output.  You can
+customize this feature by setting an environment variable <code>Highlight</code>: </p>
+
+<p class=example><code>rem  Disable highlight:<br>
+set highlight=none<br>
+<br>
+rem  Set the highlight foreground:<br>
+set highlight=bright cyan<br>
+<br>
+rem  Set both foreground and background:<br>
+set highlight=bri whi on blu<br>
+<br>
+rem  Numbers are also supported:<br>
+set highlight=46<br>
+</code></p>
+
+<br>
+<p>If the <code>Highlight</code> environment variable is not defined, the plugin will
+check the registry for a value named <code>Highlight</code> of type <code>REG_SZ</code>.
+The plugin will search, in this order: </p>
+
+<table class=descript>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins\DNS</code></td><td>(affects this plugin only)</td></tr>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins</code></td><td>(affects several of my plugins)</td></tr>
+</table>
+
+<p><code>DNS</code> also has a <code>/NC</code> option to disable highlighting. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>DNS is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/dns.zip">https://charlesdye.net/dl/dns.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

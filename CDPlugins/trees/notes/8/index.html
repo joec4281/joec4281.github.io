@@ -1,0 +1,692 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>HexDump Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#hexdump"><code>HEXDUMP</code></a> command</li>
+	<li><a href="E:\Utils\#refinfo">Reference Information</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>HexDump plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.96.11     2026-10-28</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin adds one new command, <a href="E:\Utils\#hexdump"><code>HEXDUMP</code></a>,
+which displays files or standard input to standard output as hexadecimal values.
+This can be useful to study what kind of data is being sent, say, to a pipe;
+to figure out how a file is encoded; or to snoop for strings in a binary
+file. </p>
+
+<p>There are a lot of hexdump utilities out there.  This one supports Take
+Command-style syntax:  <code>/A:</code> to select files by attributes,
+<code>/S</code> to search into subdirectories, <code>/P</code> to page
+output, and so on.  It also recognizes Unicode files including UTF-16 and
+UTF-8, and displays Unicode characters in its text field. </p>
+
+<p><code>HEXDUMP</code> is fairly flexible in that it can display data as
+bytes, words, or doublewords.  Multibyte values may be either little-endian
+or big-endian.  You can display values in hexadecimal, octal, or decimal.
+You can choose the number of bytes to display per line, or <code>HEXDUMP</code>
+can pick its own line length based on the console size.  You can suppress
+the address field with <code>/NI</code> and the text field with
+<code>/NT</code>. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>HexDump.dll</span> to
+some known location on your hard drive.  (If you are still using the 32-bit
+version of Take Command, take <span class=filename>HexDump-x86.dll</span>
+instead of <span class=filename>HexDump.dll</span>.)  Load the .DLL file
+with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\hexdump.dll</code></p>
+
+<p>If you copy the .DLL file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, it will be loaded automatically
+when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Command</a></th></tr>
+	<tr><td><a href="E:\Utils\#hexdump"><code>HEXDUMP</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+hexdump /h /x build.txt<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=hexdump></a><code>HEXDUMP</code> — Display files or
+standard input to standard output as hex. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>HEXDUMP</code><code> /A:</code><span class=optname>attr</span><code> /B /BE /C:</code><span class=optname>start</span><code> /CP:</code><span class=optname>n</span><code> /D /E:</code><span class=optname>end</span><code> /F:</code><span class=optname>n</span><code> /H /HH /I /J /K:</code><span class=optname>n</span><code> /LE /M:</code><span class=optname>max</span><code> /ML:</code><span class=optname>lines</span><code> /N:</code><span class=optname>flags</span><code> /P /Q /S /U /W /X /Z:</code><span class=optname>char</span><code> /[</code><span class=optname>range</span><code>] </code><span class=optname>filename…</span></p>
+
+<table class=descript>
+	<tr><td><code>/A:</code><span class=optname>attr</span></td><td>filter by attributes </td><td></td></tr>
+	<tr><td><code>/B</code>  <small>or</small>  <code>/1</code></td><td>dump bytes </td><td>✔</td></tr>
+	<tr><td><code>/BE</code></td><td>big-endian </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#hexdump_opt_c"><code>/C:</code><span class=optname>start</span></a></td><td><a href="E:\Utils\#hexdump_opt_c">start address</a></td><td></td></tr>
+	<tr><td><code>/CP:</code><span class=optname>n</span></td><td>code page to use for non-Unicode text </td><td></td></tr>
+	<tr><td><code>/CR</code></td><td>use CR line ends </td><td></td></tr>
+	<tr><td><code>/CRLF</code></td><td>use CR/LF line ends </td><td>✔</td></tr>
+	<tr><td><code>/D</code>  <small>or</small>  <code>/4</code></td><td>dump doublewords (four-byte integers) </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#hexdump_opt_c"><code>/E:</code><span class=optname>end</span></a></td><td><a href="E:\Utils\#hexdump_opt_c">end address</a></td><td></td></tr>
+	<tr><td><a href="E:\Utils\#hexdump_opt_f"><code>/F:</code><span class=optname>n</span></a></td><td><a href="E:\Utils\#hexdump_opt_f">numeric base for values</a></td><td>16</td></tr>
+	<tr><td><code>/H</code></td><td>display filenames </td><td></td></tr>
+	<tr><td><code>/HH</code></td><td>display filenames, sizes, and text encodings </td><td></td></tr>
+	<tr><td><code>/I</code></td><td>include a final summary line </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#highlight"><code>/J</code></a></td><td><a href="E:\Utils\#highlight">highlight</a> alternate lines </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#hexdump_opt_k"><code>/K:</code><span class=optname>n</span></a></td><td><a href="E:\Utils\#hexdump_opt_k">bytes per line</a></td><td></td></tr>
+	<tr><td><code>/LE</code></td><td>little-endian </td><td>✔</td></tr>
+	<tr><td><code>/LF</code></td><td>use LF line ends </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#hexdump_opt_c"><code>/M:</code><span class=optname>max</span></a></td><td><a href="E:\Utils\#hexdump_opt_c">maximum number of bytes to display</a></td><td></td></tr>
+	<tr><td><a href="E:\Utils\#bbdump_opt_ml"><code>/ML:</code><span class=optname>lines</span></a></td><td><a href="E:\Utils\#bbdump_opt_ml">maximum number of lines to dump</a></td><td></td></tr>
+	<tr><td><a href="E:\Utils\#hexdump_opt_n"><code>/N:</code><span class=optname>flags</span></a></td><td><a href="E:\Utils\#hexdump_opt_n">disable features</a></td><td></td></tr>
+	<tr><td><a href="E:\Utils\#paging"><code>/P</code></a></td><td><a href="E:\Utils\#paging">page output</a></td><td></td></tr>
+	<tr><td><code>/Q</code>  <small>or</small>  <code>/8</code></td><td>dump quadwords (eight-byte integers)</td><td></td></tr>
+	<tr><td><code>/S</code></td><td>search into subdirectories for matching files </td><td></td></tr>
+	<tr><td><a href="E:\Utils\#hexdump_opt_u"><code>/U</code></a></td><td><a href="E:\Utils\#hexdump_opt_u">Unixy mode</a></td><td></td></tr>
+	<tr><td><code>/UC</code></td><td>uppercase hexadecimal addresses and values </td><td></td></tr>
+	<tr><td><code>/W</code>  <small>or</small>  <code>/2</code></td><td>dump words (two-byte integers) </td><td></td></tr>
+	<tr><td><code>/X</code></td><td>use <a target=_blank href="https://en.wikipedia.org/wiki/Control_Pictures">control pictures</a> for ASCII control characters</td><td></td></tr>
+	<tr><td><a href="E:\Utils\#hexdump_opt_z"><code>/Z:</code><span class=optname>char</span></a></td><td><a href="E:\Utils\#hexdump_opt_z">set the replacement character</a></td><td>0xB7</td></tr>
+	<tr><td><a href="E:\Utils\#ranges"><code>/[</code><span class=optname>range</span><code>]</code></a></td><td>many <a href="E:\Utils\#ranges">range options</a> are supported</td></tr>
+	<!-- <tr><td><code>/</code></td><td> </td><td></td></tr> -->
+</table>
+
+<p>Filenames may be specified on the command line, or text may be redirected
+or piped into <code>HEXDUMP</code>.   Wildcards, directory aliases, and
+<code>CLIP:</code> are supported. </p>
+
+<p>If you do not specify any filenames, <code>HEXDUMP</code> will read from
+standard input.  If standard input is not redirected from a file or pipe,
+<code>HEXDUMP</code> will read from the keyboard; type <kbd>Ctrl</kbd>-<kbd>Z</kbd>
+and then <kbd>Enter</kbd> to finish. </p>
+
+<p>If you want to pipe to <code>HEXDUMP</code>, remember that pipes open a
+new shell.  You must either ensure that this plugin is loaded in the new
+shell, <i>e.g.</i> by <a href="E:\Utils\#install">copying its .DLL file to the PlugIns
+directory</a>; or else use an in-process pipe with the <code>|!</code>
+syntax. </p>
+
+<br>
+<p><a name=hexdump_opt_f></a><code>/F:</code><span class=optname>n</span>
+lets you specify the numeric base for displaying values.  Legal values are: </p>
+
+<table class=descript>
+	<tr><td><code>/F:O</code>  <small>or</small>  <code>/F:8</code></td><td>octal </td></tr>
+	<tr><td><code>/F:D</code>  <small>or</small>  <code>/F:10</code></td><td>decimal </td></tr>
+	<tr><td><code>/F:S</code>  <small>or</small>  <code>/F:+</code></td><td>signed decimal </td></tr>
+	<tr><td><code>/F:H</code>  <small>or</small>  <code>/F:16</code></td><td>hexadecimal (the default) </td></tr>
+	<!-- <tr><td><code> </code></td><td>or <code> </code></td><td> </td></tr> -->
+</table>
+
+<p>Addresses are always shown in hexadecimal. </p>
+
+<br>
+<p><a name=hexdump_opt_n></a><code>/N:</code><span class=optname>flags</span>
+disables features: </p>
+
+<table class=descript>
+	<tr><td><code>8</code></td><td>do not show dashes between bytes of UTF-8 characters </td></tr>
+	<tr><td><code>B</code></td><td>do not write a BOM (useful when redirecting to a Unicode file) </td></tr>
+	<tr><td><code>C</code></td><td>no <a href="E:\Utils\#highlight">highlight</a> </td></tr>
+	<tr><td><code>D</code></td><td>do not search into hidden directories (with <code>/S</code>) </td></tr>
+	<tr><td><code>F</code></td><td>suppress file-not-found error messages </td></tr>
+	<tr><td><code>I</code></td><td>do not display the address field </td></tr>
+	<tr><td><code>J</code></td><td>do not search into junctions (with <code>/S</code>) </td></tr>
+	<tr><td><code>L</code></td><td>do not add a blank line at the end of each file </td></tr>
+	<tr><td><code>Q</code></td><td>no fancy Unicode quotes in the header or summary lines </td></tr>
+	<tr><td><code>T</code></td><td>do not display the text field (<i>i.e.</i> characters) </td></tr>
+	<tr><td><code>U</code></td><td>do not display non-ASCII characters in the text field </td></tr>
+	<tr><td><code>Z</code></td><td>do not search into system directories (with <code>/S</code>) </td></tr>
+	<!-- <tr><td><code> </code></td><td> </td></tr> -->
+</table>
+
+<br>
+<p><a name=hexdump_opt_c></a><code>/C:</code><span class=optname>start</span>,
+<code>/E:</code><span class=optname>end</span>, and
+<code>/M:</code><span class=optname>max</span> let you specify a start
+address, an end address, and a maximum number of bytes to dump.  You can
+enter these values as decimal, or hexadecimal with a leading <code>0x</code>.
+You may give none, one, or any combination of these options. </p>
+
+<p><code>/C:</code>, <code>/E:</code>, and <code>/M:</code> values are
+all in bytes by default.  You can append one of the following letters: </p>
+
+<table class=descript>
+	<tr><td><code>b</code></td><td>bytes </td></tr>
+	<tr><td><code>w</code></td><td>words </td></tr>
+	<tr><td><code>d</code></td><td>doublewords </td></tr>
+	<tr><td><code>q</code></td><td>quadwords </td></tr>
+	<tr><td><code>k</code></td><td>thousands of bytes </td></tr>
+	<tr><td><code>K</code></td><td>kilobytes (2<sup>10</sup> or 1,024 bytes) </td></tr>
+	<tr><td><code>m</code></td><td>millions of bytes </td></tr>
+	<tr><td><code>M</code></td><td>megabytes (2<sup>20</sup> or 1,048,576 bytes) </td></tr>
+	<tr><td><code>g</code></td><td>billions of bytes </td></tr>
+	<tr><td><code>G</code></td><td>gigabytes (2<sup>30</sup> or 1,073,741,824 bytes) </td></tr>
+	<!-- <tr><td><code> </code></td><td> </td></tr> -->
+</table>
+
+<p>Note that <code>k K m M g</code> and <code>G</code> are case-sensitive. </p>
+
+<p>If you don’t give any of these suffixes, the value is in bytes —
+even if you are displaying words or doublewords.  There are no alignment
+checks; you can dump misaligned data if you wish. </p>
+
+<p><code>/C:</code> and <code>/E:</code> allow you to pass a negative number to 
+specify the address as an offset from the end of the file, <i>e.g.</i> <code>/C:-1K</code>
+to dump only the last kilobyte of the file.  <code>/M:</code> does not allow 
+negative numbers. </p>
+
+<br>
+<p><a name=hexdump_opt_k></a><code>/K:</code><span class=optname>n</span>
+lets you specify the number of bytes to display per line.  If you don’t
+give any <code>/K:</code>, the command will pick its own value based on the
+console width (if output is to the console), or a default line width of
+100 characters if output is redirected.  Again, this value is in bytes,
+even if you are displaying data as words or doublewords.  The value
+<span class=optname>n</span> must be between 8 and 80, and a multiple of 8. </p>
+
+<p><code>/K:0</code> sets the line length based on the console width, even
+in cases where <code>HEXDUMP</code> normally would not do so:  when output
+is redirected or piped, <i>e.g.</i> piping to <code>LIST</code>; or in
+<a href="E:\Utils\#hexdump_opt_u">Unixy mode</a>. </p>
+
+<br>
+<p><a name=bbdump_opt_ml></a><code>/ML:</code><span class=optname>n</span>
+lets you set a maximum number of data lines to dump.  Any header or summary lines
+are not counted. </p>
+
+<br>
+<p><a name=hexdump_opt_z></a><code>/Z:</code><span class=optname>char</span>
+lets you specify the replacement character, which is shown in the text
+field in place of control characters.  The default is normally a middle dot
+·    You may give either a literal character or a character value.  All
+three of the following are equivalent: </p>
+
+<table class=descript>
+	<tr><td>•  <code>/Z:*</code></td><td>(literal character)</td></tr>
+	<tr><td>•  <code>/Z:42</code></td><td>(decimal value)</td></tr>
+	<tr><td>•  <code>/Z:0x2a</code></td><td>(hexadecimal value)</td></tr>
+</table>
+
+<p>Your replacement character may not be alphanumeric or a control
+character.  <code>/Z</code> by itself will use a space as the replacement
+character. </p>
+
+<br>
+<p><a name=hexdump_opt_u></a><code>/U</code> selects Unixy mode:  the
+output format is adjusted to look more like <code>hexdump</code> utilities
+found on various flavors of Unix.  16 bytes of data are displayed per line,
+unless you set a diffent value with <a href="E:\Utils\#hexdump_opt_k"><code>/K:</code><span class=optname>n</span></a>.
+Multiple lines with the same data are replaced with a single asterisk.
+The default replacement character is a period, unless you set a different
+one with <a href="E:\Utils\#hexdump_opt_z"><code>/Z:</code><span class=optname>char</span></a>. </p>
+
+<p><code>/U</code> only makes a few cosmetic adjustments to
+<code>HEXDUMP</code>’s output format.  Its basic operation is
+unchanged, and the output may not be an exact match for any particular
+Unix utility. </p>
+
+<p class=example><code>rem   Dump the file Build.txt :<br>
+hexdump /hh /i /x build.txt<br>
+</code></p>
+
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=refinfo></a>Reference Information:</h4>
+
+<br>
+<table>
+	<tr><td><a href="E:\Utils\#sizelimit">Size Limit</a></td><td>There is one, but it varies. </td></tr>
+	<tr><td><a href="E:\Utils\#paging">Paging Options</a></td><td>To /P, or not to /P ?</td></tr>
+	<tr><td><a href="E:\Utils\#ranges">Range Options</a></td><td>Supported in <a href="E:\Utils\#hexdump"><code>HEXDUMP</code></a>. </td></tr>
+	<tr><td><a href="E:\Utils\#highlight">Highlight Variable</a></td><td>Choose your colors. </td></tr>
+	<tr><td><a href="E:\Utils\#noloadmsg">Startup Message</a></td><td>and how to suppress it</td></tr>
+	<tr><td><a href="E:\Utils\#changes">Changes</a></td><td>What’s new? </td></tr>
+	<tr><td><a href="E:\Utils\#licensing">Status and Licensing</a></td><td> </td></tr>
+</table>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=sizelimit></a>Size Limit</h4>
+
+<p><code>HEXDUMP</code> may fail on extremely large files (more than a
+gigabyte or two).  The exact upper limit will vary depending on your
+processor type and Windows edition.  X64 Windows will allow much larger
+files than X86 Windows. </p>
+
+
+<h4><a name=paging></a>Paging Options:</h4>
+
+<p><code>HEXDUMP</code> has a <code>/P</code> option to page
+output.  This option supports two suboptions: </p>
+
+<p class=descript><code>/P:</code><span class=optname>time</span><code>,</code><span class=optname>lines</span></p>
+
+<table class=descript>
+	<tr><td><span class=optname>time</span></td><td>time in seconds, or (with a trailing <code>M</code>) milliseconds</td></tr>
+	<tr><td><span class=optname>lines</span></td><td>number of lines to display before pausing</td></tr>
+</table>
+
+<p>Both <span class=optname>time</span> and <span class=optname>lines</span> are
+optional.  The colon is not required, but you must use the comma if you want to
+specify <span class=optname>lines</span>. </p>
+
+<p class=example><code>rem  Scroll every five seconds:<br>
+hexdump test.bin /p:5<br>
+<br>
+rem  Display ten lines at a time:<br>
+hexdump test.bin /p:,10<br>
+<br>
+rem  Display twenty lines at a time, and<br>
+rem    scroll every 2.5 seconds:<br>
+hexdump test.bin /p:2500m,20<br>
+</code></p>
+
+<br>
+<p>At the “Press a key to continue” prompt, <em>most</em> keys will advance by
+another screenful (or <span class=optname>lines</span>).  But a few keys behave differently: </p>
+
+<table class=descript>
+	<tr><td><kbd>A</kbd> or <kbd>C</kbd></td><td>turns off paging, and scrolls continuously</td></tr>
+	<tr><td><kbd>Esc</kbd> or <span style="white-space:nowrap;"><kbd>Ctrl</kbd>-<kbd>C</kbd></span></td><td>aborts the current command</td></tr>
+	<tr><td><kbd>/</kbd></td><td>scrolls half a screen, or half of <span class=optname>lines</span></td></tr>
+	<tr><td><kbd>1</kbd> to <kbd>9</kbd></td><td>scrolls that many lines, <em>e.g.</em> <kbd>3</kbd> scrolls three lines</td></tr>
+</table>
+
+
+<h4><a name=ranges></a>Ranges:</h4>
+
+<p>This plugin supports the following range syntax: </p>
+
+<br>
+<p>Size range:  <code class=req>/[S</code><span class=optname>smallest</span><code>,</code><span class=optname>largest</span><code class=req>]</code></p>
+
+<p class=descript>You may omit either <span class=optname>smallest</span> or
+<span class=optname>largest</span>.  You may qualify either with a trailing
+letter:  lowercase <code>k</code>, <code>m</code>, <code>g</code>, <em>etc.</em>
+to multiply by one thousand, one million, one billion, and so on; or
+uppercase <code>K</code>, <code>M</code>, <code>G</code>, <em>etc.</em> to
+multiply by 2<sup>10</sup>, 2<sup>20</sup>, 2<sup>30</sup>, and so on.  If
+<span class=optname>largest</span> begins with a <code>+</code> sign, it is
+an increment over <span class=optname>smallest</span>.  Use
+<code class=req>/![S</code><span class=optname>smallest</span><code>,</code><span class=optname>largest</span><code class=req>]</code>
+to invert the test and return only files <em>not</em> in the given size range. </p>
+
+<p>Date range:  <code class=req>/[D</code><span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span><code>:</code><span class=optname>earliest</span><code>,</code><span class=optname>latest</span><code class=req>]</code></p>
+
+<p class=descript>You may omit either <span class=optname>earliest</span> or
+<span class=optname>latest</span>; either defaults to the current date.
+The optional <span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span>
+argument selects the date stamp to check.  (If you want to check more than one
+date stamp, you must supply more than one date range option.)  The colon after
+the <span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span>
+is optional. </p>
+
+<p class=descript>Dates may be given in the local date format, or in
+<span class=optname>yyyy</span><code>-</code><span class=optname>mm</span><code>-</code><span class=optname>dd</span>
+format (with a four-digit year).  You may also specify a date as an offset
+preceded with a <code>+</code> or <code>-</code> sign; the offset is in days
+relative to today’s date (for <span class=optname>earliest</span>) or
+relative to <span class=optname>earliest</span> (in the case of
+<span class=optname>latest</span>).  If <span class=optname>earliest</span>
+turns out to be later than <span class=optname>latest</span> then the two
+are exchanged. </p>
+
+<p class=descript>You may also give a specific time on either date, preceded
+by an <code>@</code> sign.  The time may be in either 24-hour format, or 12-hour
+format with a trailing <code>A</code> or <code>P</code>. </p>
+
+<p class=descript>Use <code class=req>/![D</code><span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span><code>:</code><span class=optname>earliest</span><code>,</code><span class=optname>latest</span><code class=req>]</code>
+to invert the test and return only files <em>not</em> in the given date range. </p>
+
+<p>Time range:  <code class=req>/[T</code><span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span><code>:</code><span class=optname>earliest</span><code>,</code><span class=optname>latest</span><code class=req>]</code></p>
+
+<p class=descript>You may omit either <span class=optname>earliest</span> or
+<span class=optname>latest</span>.
+The optional <span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span>
+argument selects the time stamp to check.  (If you want to check more than one
+time stamp, you must supply more than one time range option.)  The colon after
+the <span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span>
+is optional.  Times may be in either 24-hour format, or 12-hour format with a
+trailing <code>A</code> or <code>P</code>. </p>
+
+<p class=descript>Use <code class=req>/![T</code><span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span><code>:</code><span class=optname>earliest</span><code>,</code><span class=optname>latest</span><code class=req>]</code>
+to invert the test and return only files <em>not</em> in the given time range. </p>
+
+<p>Exclusion range:  <code class=req>/[!</code><span class=reqname>wildspec</span><code class=req>]</code></p>
+
+<p class=descript>Filenames matching the <span class=reqname>wildspec</span> will be excluded.
+You can supply more than one <span class=reqname>wildspec</span> by separating
+them with (unquoted) spaces. </p>
+
+<p>Owner range:  <code class=req>/[O</code><span class=reqname>wildspec</span><code class=req>]</code></p>
+
+<p class=descript>Files whose owners (in <span class=optname>domain</span><code>\</code><span class=optname>user</span>
+format) do not match the <span class=reqname>wildspec</span> will be
+skipped.  Use <code class=req>/![O</code><span class=reqname>wildspec</span><code class=req>]</code>
+to invert the test and return only files which do not match the owner
+<span class=reqname>wildspec</span>. </p>
+
+<p>Description range:  <code class=req>/I</code><span class=reqname>wildspec</span> or (alternate syntax) <code class=req>/[I</code><span class=reqname>wildspec</span><code class=req>]</code></p>
+
+<p class=descript>If a file’s description does not match the <span class=reqname>wildspec</span>,
+it will be skipped.  Use <code class=req>/!I</code><span class=reqname>wildspec</span>
+to invert the test, returning only files which do not match the description
+<span class=reqname>wildspec</span>. </p>
+
+<p>Day-of-the-week range:  <code class=req>/[W</code><span class=bnf>[</span><span class=optname>acw</span><span class=bnf>]</span><code class=req>:</code><span class=reqname>days</span><code class=req>]</code></p>
+
+<p class=descript>You may specify multiple days separated by commas, <em>e.g.</em>
+<code>/[W:MON,WED,FRI]</code>.  You can also give a range, for example
+<code>/[W:TUE-FRI]</code>.  <code>WEEKENDS</code> is accepted as a synonym for
+<code>SAT,SUN</code>; <code>WEEKDAYS</code> is a synonym for <code>MON-FRI</code>.
+The colon in this syntax is required. </p>
+
+<p>You may supply multiple ranges.  A file must match all given ranges or it
+will be skipped. </p>
+
+
+<h4><a name=highlight></a>Highlight Variable:</h4>
+
+<p><a href="E:\Utils\#hexdump"><code>HEXDUMP</code></a> features highlighted output
+when you enable either filename headers with <code>/H</code> or highlighted
+alternate lines with <code>/J</code>.  You can customize this feature by
+setting an environment variable <code>Highlight</code>: </p>
+
+<p class=example><code>rem  Disable highlight:<br>
+set highlight=none<br>
+<br>
+rem  Set the highlight foreground:<br>
+set highlight=bright cyan<br>
+<br>
+rem  Set both foreground and background:<br>
+set highlight=bri whi on blu<br>
+<br>
+rem  Numbers are also supported:<br>
+set highlight=46<br>
+</code></p>
+
+<p>If the <code>Highlight</code> environment variable is not defined, the plugin will
+check the registry for a value named <code>Highlight</code> of type <code>REG_SZ</code>.
+The plugin will search, in this order: </p>
+
+<table class=descript>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins\HexDump</code></td><td>(affects this plugin only)</td></tr>
+	<tr><td>•  <code>HKEY_CURRENT_USER\Software\JPPlugins</code></td><td>(affects several of my plugins)</td></tr>
+</table>
+
+<p>You can also use <code>/NC</code> to disable highlighting. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table class=descript>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>0.96.11.0</td><td nowrap>2026-10-28</td><td class=changes>If opening a file fails with a “sharing violation” 
+			error, attempt to list processes using the file. </td></tr>
+	<tr><td>0.96.10.1</td><td nowrap>2026-10-12</td><td class=changes>Added a kludge to allow slashes in date ranges. </td></tr>
+	<tr><td>0.96.10.0</td><td nowrap>2026-10-06</td><td class=changes>Uses CL_ShowCmdHelp() to display 
+			help text.  Minor cosmetic tweaks to the help text. </td></tr>
+	<tr><td>0.96.9.5</td><td nowrap>2026-05-11</td><td class=changes>Preliminary support for streams. </td></tr>
+	<tr><td>0.96.9.4</td><td nowrap>2026-04-17</td><td class=changes>Fixed an issue with <code>/NU</code> disabling
+			EBCDIC translation. <br>
+			Updated versions of <span class=filename>conlist.cpp</span>, <span class=filename>FileHandler.cpp</span>, 
+			and <span class=filename>mmfiles.cpp</span>. </td></tr>
+	<tr><td>0.96.9.3</td><td nowrap>2026-01-28</td><td class=changes>Added support for binary numbers with 
+			a leading <code>0b</code>. </td></tr>
+	<tr><td>0.96.9.2</td><td nowrap>2025-09-18</td><td class=changes>Updated versions of <span class=filename>conlist.cpp</span> 
+			and <span class=filename>mmfiles.cpp</span>. </td></tr>
+	<tr><td>0.96.9.1</td><td nowrap>2025-08-21</td><td class=changes><code>/C:</code> <code>/E:</code> and 
+			<code>/M:</code> now can combine a multiplier with a word size, <i>e.g.</i> <code>/C:10KW</code> 
+			for 10 kilowords = 20,480 bytes. <br>
+			Additional sanity check/error message for EOF-relative start and end addresses. </td></tr>
+	<tr><td>0.96.9.0</td><td nowrap>2025-08-20</td><td class=changes><a href="E:\Utils\#hexdump_opt_c"><code>/C:</code></a> and 
+			<a href="E:\Utils\#hexdump_opt_c"><code>/E:</code></a> allow negative values to specify the starting/ending
+			address as an offset from the end of the file. </td></tr>
+	<tr><td>0.96.8.9</td><td nowrap>2025-08-06</td><td class=changes> VLFN display tweak:  If the 
+			filename has the <code>\\?\</code> prefix, don’t display the prefix in the filename
+			header. </td></tr>
+	<tr><td>0.96.8.8</td><td nowrap>2025-07-17</td><td class=changes>Returns ERROR_INVALID_PARAMETER if no
+			arguments are passed.  (Can’t happen?) </td></tr>
+	<tr><td>0.96.8.7</td><td nowrap>2025-07-07</td><td class=changes>Removes the hex file size from the final
+			summary line.  It only cluttered the line without adding any new info. </td></tr>
+	<tr><td>0.96.8.6</td><td nowrap>2025-07-02</td><td class=changes>Pluralizes byte/bytes in the final
+			summary line. <br>
+			If WordLen &gt; 1, shows the word size and word count instead of the hex file size in the final
+			summary. </td></tr>
+	<tr><td>0.96.8.5</td><td nowrap>2025-06-29</td><td class=changes>In the <code>/I</code> summary line, 
+			<code>CLIP:</code> and <code>-</code> were not being handled nicely; fixed. <br>
+			In the <code>/H</code> and <code>/HH</code> header line, use fancy Unicode quotes around the
+			filename of an actual file, as <code>/I</code> does. <br>
+			Removed hardcoded <code>\r\n</code> from header and summary lines; now they respect
+			<code>/NL</code> and <code>/CR</code>. <br>
+			Added <code>/NQ</code> to suppress the fancy Unicode quote marks. </td></tr>
+	<tr><td>0.96.8.4</td><td nowrap>2025-06-15</td><td class=changes>Added <code>/BOM</code> to display any
+			Byte Order Marks (anywhere in the file) as the generic currency symbol <b>¤</b>.  Fixed an
+			issue where an error in <code>/ML:</code> would exit without proper cleanup. </td></tr>
+	<tr><td>0.96.8.3</td><td nowrap>2025-06-13</td><td class=changes>Fixes to the handling of control pictures:
+			Use the user’s specified replacement character if no control picture is available; use the
+			correct control pic for DEL. </td></tr>
+	<tr><td>0.96.8.0</td><td nowrap>2025-06-07</td><td class=changes>Now MaxLines just adjusts EndAddress up
+			front.  Much simpler! </td></tr>
+	<tr><td>0.96.7.0</td><td nowrap>2025-06-06</td><td class=changes>Removed the redundant FirstLine variable. <br>
+			When MaxLines and Unixy mode are both set, fudge the end address so the final bytes-shown summary
+			will be correct. </td></tr>
+	<tr><td>0.96.6.0</td><td nowrap>2025-06-06</td><td class=changes>Added <code>/ML:</code> to set a maximum
+			number of lines to dump. </td></tr>
+	<tr><td>0.96.5.1</td><td nowrap>2025-05-07</td><td class=changes>Unixy mode also disables the UTF-8 dashes. </td></tr>
+	<tr><td>0.96.5</td><td nowrap>2025-05-07</td><td class=changes>When dumping a UTF-8 text file by bytes, show
+			dashes between bytes of a valid character.  Added <code>/N8</code> to disable. <br>
+			Added support for the <a target=_blank href="https://no-color.org"><code>NO_COLOR</code></a> environment
+			variable.  If <code>NO_COLOR</code> is defined and <code>HIGHLIGHT</code> is not, disable highlighting
+			as if <code>/D</code> had been specified. </td></tr>
+	<tr><td>0.96.4</td><td nowrap>2025-03-26</td><td class=changes>Highlight the summary line. <br>
+			Updated <span class=filename>conlist.cpp</span>, <span class=filename>mmfiles.cpp</span>. </td></tr>
+	<tr><td>0.96.3.1</td><td nowrap>2025-03-20</td><td class=changes>Fixed incorrect buffer length in
+			ShowFilenameHeader(). </td></tr>
+	<tr><td>0.96.3</td><td nowrap>2025-03-17</td><td class=changes>Added <code>/X</code> to use control pictures for
+			ASCII control characters. <br>
+			Fixed an issue which caused the text field to be lost if the final line overlapped the end of the buffer. <br>
+			Slightly simplified the ‘print word values’ loop. </td></tr>
+	<tr><td>0.96.2</td><td nowrap>2025-01-10</td><td class=changes>Added <code>/F?</code>.  Added
+			<code>/F:+</code> and <code>/F:-</code> as synonyms for <code>/F:S</code>. </td></tr>
+	<tr><td>0.96.1.1</td><td nowrap>2025-01-01</td><td class=changes>Uses <code>CL_ConsoleHandle()</code> 
+			from <span class=filename>conlist.cpp</span>, instead of duplicating this function.  Other 
+			trivial code tweaks. </td></tr>
+	<tr><td>0.96.1</td><td nowrap>2024-12-28</td><td class=changes>Rewrote and simplified parsing of
+			<code>/1 /2 /3</code> … <code>/8</code>. </td></tr>
+	<tr><td>0.96.0</td><td nowrap>2024-12-21</td><td class=changes>Added support for some oddball word sizes.
+			Added <code>/CR</code>, <code>/CRLF</code>, and <code>/LF</code> to select different end-of-line
+			characters.  Added <code>/UC</code> to uppercase hex addresses and values.  Removed the increasingly
+			Byzantine <code>HexDump_ValWidth()</code> and replaced it with a simple lookup table. </td></tr>
+	<tr><td>0.95.0</td><td nowrap>2024-11-08</td><td class=changes>Added <code>/Q</code> to dump quadwords. 
+			Added <a href="E:\Utils\#hexdump_opt_f"><code>/F:S</code></a> to display values as signed decimal. 
+			Simplified the data-dump code. </td></tr>
+	<tr><td>0.94.4.1</td><td nowrap>2024-11-06</td><td class=changes>Bug fix:  PLUGIN_BUFFER_MAX is 32K bytes, not
+			32K characters. </td></tr>
+	<tr><td>0.94.4</td><td nowrap>2024-09-19</td><td class=changes>More <code>/Z:</code> tweaks:  now the
+			replacement character may be specified by value. </td></tr>
+	<tr><td>0.94.3.1</td><td nowrap>2024-09-18</td><td class=changes>Tweaks to <code>/Z</code>:  skip over a colon
+			or equals sign; do not allow multiple characters. </td></tr>
+	<tr><td>0.94.3</td><td nowrap>2024-09-13</td><td class=changes>Added <code>/I</code> to include a final summary
+			line with the number of bytes displayed. </td></tr>
+	<tr><td>0.94.2</td><td nowrap>2024-09-09</td><td class=changes>Added <code>/NU</code> to not display non-ASCII
+			characters.  Modified <code>/Z</code> to allow the user to specify the replacement character.   If no
+			<code>/Z</code> was given and either Unixy or ASCII-only mode is in effect, then the replacement character
+			defaults to period instead of mid-dot. </td></tr>
+	<tr><td>0.94.1</td><td nowrap>2024-08-22</td><td class=changes>Bug fix:  the default HexWidth calculation
+			was not correctly accounting for the width of the address field; fixed. </td></tr>
+	<tr><td>0.94.0</td><td nowrap>2024-08-20</td><td class=changes>Added <code>/J</code> to highlight alternate
+			lines. </td></tr>
+	<tr><td>0.93.1</td><td nowrap>2024-08-19</td><td class=changes>Added <code>w W d D</code> to the size_t parser
+			for words and doublewords. <br>
+			Added <code>/$</code> for debug output. </td></tr>
+	<tr><td>0.93.0</td><td nowrap>2024-08-17</td><td class=changes>Wrote a separate parser for size_t arguments.
+			The numeric value may be suffixed with <code>b B k K m M g G</code> for bytes or decimal/binary
+			kilobytes, megabytes, etc. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>HexDump is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/hexdump.zip">https://charlesdye.net/dl/hexdump.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

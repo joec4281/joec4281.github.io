@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>CMath Plugin</title>
+
+<style type="text/css">
+   BODY                { color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+   H1                  { text-align: center; font-size: 150%; }
+   H2                  { text-align: center; font-size: 130%; }
+   H3                  { text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+   H4                  { font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+   H5                  { text-align: center; margin-top: 5px; margin-bottom: 0px; }
+   CODE                { font-family: Consolas, monospace; font-size: 110%; }
+   A                   { color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+   A:hover             { color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+   DIV.navbar          { position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+   DIV.navbar A        { color: #000; text-decoration: none; border-bottom: none; }
+   DIV.navbar A:hover  { color: #008; text-decoration: none; background-color: #fff; }
+   DIV.navbar UL       { list-style: none; padding-left: 5px; }
+   DIV.subnav          { position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+   DIV.subnav A        { color: #000; text-decoration: none; border-bottom: none; }
+   DIV.subnav A:hover  { color: #008; text-decoration: none; background-color: #fff; }
+   DIV.subnav UL       { list-style: none; padding-left: 5px; }
+   KBD                 { font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+   .content            { margin-left: 7px; margin-right: 12em; }
+   .optname            { font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+   .reqname            { font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+   .req                { font-weight: bold; }
+   .bnf                { color: #375; font-style: italic; }
+   .filename           { font-variant: small-caps; }
+   .descript           { margin-left: 2em; padding-bottom: 1em; }
+   .example            { display: inline-flex; margin-left: 1em; margin-top: 0.3em; margin-bottom: 0.3em; margin-right: auto; background-color: #eee; padding: 0.5em 1em; }
+   .note               { color: #600; font-weight: bold; }
+   .xref               { font-size: 95%; margin-top: 2em; }
+   TD                  { padding-right: 2em; vertical-align: top; }
+   TD.header           { text-decoration: underline; }
+   TH                  { font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; }
+   LI                  { margin-top: 2px; }
+
+   @media print {
+      BODY             { background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-weight: normal; }
+      A                { border-bottom: none; }
+      .navbar          { display: none; }
+      .content         { margin-left: 0; margin-right: 0; }
+      .example         { margin-left: 1em; margin-top: 0.3em; margin-bottom: 0.3em; }
+      .noprint         { display: none; }
+   }
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+   <li><a href="E:\Utils\#">Top</a></li>
+   <li><a href="E:\Utils\#purpose">Purpose</a></li>
+   <li><a href="E:\Utils\#install">Installation</a></li>
+   <li><a href="E:\Utils\#using">Using CMath</a></li>
+   <li><a href="E:\Utils\#highlight">The Highlight Variable</a></li>
+   <li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+   <li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+   <li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>CMath plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc-cmd-prompt.html">TCC</a> / <a target=_blank href="https://jpsoft.com/products/tcc-le.html">TCC/LE</a></h1>
+<h3>beta version 0.92.1     2021-04-25</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides an easy way to evaluate math expressions at the command line.
+Just type a colon, followed by the expression you want to evaluate, and press
+<kbd>Enter</kbd>. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>CMath.dll</span> to some known
+location on your hard drive.  (If you are using the 32-bit version of Take Command,
+take <span class=filename>CMath-x86.dll</span> instead of
+<span class=filename>CMath.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\cmath.dll</code></p>
+
+<p>If you copy the .DLL file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, CMath will be loaded
+automatically when TCC starts. </p>
+
+
+<h4><a name=using></a>Using CMath:</h4>
+
+<p>To evaluate a math expression, type a colon followed by the expression.  Then
+press <kbd>Enter</kbd>: </p>
+
+<p class=example><code>:1+2*3</code></p>
+
+<p>The answer, 7, will be displayed below your expression.  It will also
+be saved to the environment variable <code>ANS</code>.  You can use this
+variable in your next expression: </p>
+
+<p class=example><code>:ans*2</code></p>
+
+<p>Just remember that <code>ANS</code> changes every time you use CMath.
+After the second line, <code>ANS</code> will be 14, not 7. </p>
+
+<br>
+<p>CMath calls the same function that <code>@EVAL</code> uses internally.
+You can use any operator or function that is legal in <code>@EVAL</code>: </p>
+
+<p class=example><code>:log(100)</code></p>
+<br>
+
+<p class=example><code>set r=4<br>
+:pi*r**2<br></code></p>
+<br>
+
+
+<br>
+<p>You do not need to quote or escape special characters: </p>
+
+<p class=example><code>:(1+2)*3</code></p>
+<br>
+
+<p class=example><code>:1 &lt;&lt; 8</code></p>
+<br>
+
+<p class=example><code>:1024 &gt;&gt; 3</code></p>
+<br>
+
+<p class=example><code>:5 & 9</code></p>
+<br>
+
+<p class=example><code>:5 | 9</code></p>
+<br>
+
+<p class=example><code>:5 ^ 9</code></p>
+<br>
+
+
+<br>
+<p>The one special character which needs attention is the percent
+sign.  If you want to use a percent sign as the modulo operator,
+you will need to double it.  (But it’s probably easier just
+to type <code>MOD</code>.) </p>
+
+<p class=example><code>:100%%7</code></p>
+<br>
+
+<p class=example><code>:100 mod 7</code></p>
+<br>
+
+<br>
+<p>You do not need a percent sign before environment variables.  You
+<em>do</em> need a percent sign before internal variables and variable
+functions: </p>
+
+<p class=example><code>:%_pid =x</code></p>
+<br>
+
+<p class=example><code>:3 * %@dec[foo]</code></p>
+<br>
+
+
+<br>
+<p><code>@EVAL</code>’s built-in functions do not take a percent
+sign: </p>
+
+<p class=example><code>set n=52<br>
+set r=5<br>
+:fact(n) / fact(n-r) / fact(r)</code></p>
+<br>
+
+
+<h4><a name=highlight></a>The Highlight Variable:</h4>
+
+<p>The displayed answer will be highlighted.  You can customize this
+feature by setting an environment variable <code>Highlight</code>: </p>
+
+<p class=example><code>rem  Disable highlight:<br>
+set highlight=none<br>
+<br>
+rem  Set the highlight foreground:<br>
+set highlight=bright cyan<br>
+<br>
+rem  Set both foreground and background:<br>
+set highlight=bri whi on blu<br>
+<br>
+rem  Numbers are also supported:<br>
+set highlight=46</code></p>
+<br>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="http://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="http://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>CMath is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2021, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="http://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="http://prospero.unm.edu/dl/cmath.zip">http://prospero.unm.edu/dl/cmath.zip</a>
+or <a href="E:\Utils\ftp:\\prospero.unm.edu\cmath.zip">ftp://prospero.unm.edu/cmath.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>TimeTrials Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#tt"><code>TT</code> command</a></li>
+	<li>    <a href="E:\Utils\#v_trialrun"><code>_TRIALRUN</code> variable</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>TimeTrials plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.99.0     2026-08-31</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides one new command, <a href="E:\Utils\#tt"><code>TT</code></a>, for
+timing other commands.  <code>TT</code> runs a command several times, times it,
+and reports the total and average times. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>TimeTrials.dll</span> to some
+known location on your hard drive.  (If you are still using the 32-bit version
+of Take Command, take <span class=filename>TimeTrials-x86.dll</span> instead of
+<span class=filename>TimeTrials.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\timetrials.dll</code></p>
+
+<p>If you copy the <span class=filename>.dll</span> file to a subdirectory named 
+<span class=filename>PlugIns</span> within your Take Command program directory, 
+the plugin will be loaded automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Command:</a></th></tr>
+	<tr><td><a href="E:\Utils\#tt"><code>TT</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#variables">Variable:</a></th></tr>
+	<tr><td><a href="E:\Utils\#v_trialrun"><code>_TRIALRUN</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+tt `echo %@filesize[/s c:\windows\]`<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=tt></a><code>TT</code> — Run and time a command repeatedly. </p>
+
+<p>Syntax:<br>
+<code class=req>TT</code><code> /B /D:</code><span class=optname>m</span><code>,</code><span class=optname>n</span><code> /E /M /N:</code><span class=optname>n</span><code> /O:</code><span class=optname>flags</span><code> /Q /S /U:</code><span class=optname>n</span><code> </code><span class=reqname>command</span></p>
+
+<table class=descript>
+	<tr><td><code>/B</code></td><td>redirect stdout and stderr to the bit bucket</td></tr>
+	<tr><td><a href="E:\Utils\#tt_opt_d"><code>/D:</code><span class=optname>m</span><code>,</code><span class=optname>n</span></a></td><td><a href="E:\Utils\#tt_opt_d">drop the <span class=optname>m</span> slowest and <span class=optname>n</span> fastest runs</a></td></tr>
+	<tr><td><a href="E:\Utils\#tt_opt_e"><code>/E</code></a></td><td><a href="E:\Utils\#tt_opt_e">exclude runs with errors (nonzero exit codes)</a></td></tr>
+	<tr><td><code>/M</code></td><td>display times as milliseconds</td></tr>
+	<tr><td><code>/N:</code><span class=optname>n</span></td><td>set the number of runs; the default is 10</td></tr>
+	<tr><td><a href="E:\Utils\#tt_opt_o"><code>/O:</code><span class=optname>flags</span></a></td><td><a href="E:\Utils\#tt_opt_o">disable features</a></td></tr>
+	<tr><td><code>/Q</code></td><td>quietly; no “Run #<i>i</i> of <i>n</i>” lines</td></tr>
+	<tr><td><a href="E:\Utils\#tt_opt_s"><code>/S</code></a></td><td><a href="E:\Utils\#tt_opt_s">play a sound on completion</a></td></tr>
+	<tr><td><code>/U:</code><span class=optname>n</span></td><td>abort if the command returns exit code <span class=optname>n</span></td></tr>
+	<tr><td><span class=reqname>command</span></td><td>the command to time</td></tr>
+	<!-- <tr><td><code> </code></td><td> </td></tr> -->
+</table>
+
+
+<p>The <span class=reqname>command</span> is required.  Use <code>`</code>strong quotes<code>`</code>
+around the command if it contains special characters, or if you want to delay variable
+expansion until the command runs. </p>
+
+<p>Note that any options must come <em>before</em> the <span class=reqname>command</span>. </p>
+
+<br>
+<p class=example><code>tt `echo %@filesize[/s c:\windows\]`<br>
+</code></p>
+
+<p>In the example above, note that we are using strong quotes around the
+command to delay variable expansion.  Without the quotes, the <code>@FILESIZE</code>
+function would be expanded before <code>TT</code> starts.  We would just be
+timing how long <code>ECHO</code> takes to display a short string.  (Spoiler
+alert:  Not very long at all.) </p>
+
+<p>The real goal here is to time, not the <code>ECHO</code> command, but the
+<code>@FILESIZE</code> function as it grovels over the <span class=filename>C:\Windows</span>
+tree.  The strong quotes delay variable expansion until the <code>ECHO</code>
+command runs. </p>
+
+<br>
+<p><a name=tt_opt_d></a><code>/D:</code><span class=optname>m</span><code>,</code><span class=optname>n</span>
+tells <code>TT</code> to drop the <span class=optname>m</span> slowest and the
+<span class=optname>n</span> fastest runs.  Either <span class=optname>m</span>
+or <span class=optname>n</span> (but not both) may be omitted; omitted values
+default to zero. </p>
+
+<p><span class=optname>m</span> and <span class=optname>n</span> will be
+added to the number of runs specified with <code>/N:</code><span class=optname>n</span>.
+For example, </p>
+
+<p class=example><code>tt /n:20 /d:3,3 testprog.exe<br>
+</code></p>
+
+<p>… will run <span class=filename>TestProg.exe</span> 26 times,
+disregarding the three slowest and the three fastest runs, and average the
+remaining twenty. </p>
+
+<p><code>/D</code> by itself will drop the single slowest and the single
+fastest run, like <code>/D:1,1</code>. </p>
+
+<p><code>/DD</code> will drop the NumRuns/10 slowest and the NumRuns/10
+fastest runs, with a minumum of 1 and a maximum of 1000. </p>
+
+<br>
+<p><a name=tt_opt_e></a>If you specify <code>/E</code>, any run of the
+<span class=reqname>command</span> which give a nonzero exit code will not
+be included in the final average. </p>
+
+<br>
+<p><a name=tt_opt_o></a><code>/O:</code><span class=optname>flags</span>
+disables command features: </p>
+
+<table class=descript>
+	<tr><td><code>C</code></td><td>disables the highlight</td></tr>
+	<tr><td><code>F</code></td><td>do not grab focus at the start of each run</td></tr>
+	<tr><td><code>J</code></td><td>does not simulate mouse movements</td></tr>
+	<tr><td><code>R</code></td><td>skips the recap of runtimes and exit codes</td></tr>
+	<tr><td><code>T</code></td><td>do not update the console window’s title bar</td></tr>
+	<!-- <tr><td><code>.</code></td><td> </td></tr> -->
+</table>
+
+
+<br>
+<p><a name=tt_opt_s></a><code>/S</code> will play the system ”Asterisk”
+sound when the final run completes. </p>
+
+<p>You can also use <code>/S:</code><span class=optname>wavfile</span>
+to specify a custom <span class=filename>.wav</span> file to play.  There
+are a few limitations:  The complete filename must be less than 256 characters
+long (<a target=_blank href="https://learn.microsoft.com/en-us/previous-versions/dd743680(v=vs.85)">PlaySound()
+limitation</a>).  The filename must end in <span class=filename>.wav</span>,
+and the file must exist. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variable:</h4>
+
+
+<p><a name=v_trialrun></a><code>_TRIALRUN</code> — Returns the trial run number,
+1 to <i>n</i>.</p>
+
+<p>Syntax:<br>
+<code class=req>%_TRIALRUN</code></p>
+
+<p>This variable is only meaningful within a <a href="E:\Utils\#tt"><code>tt</code></a>
+loop. </p>
+
+<br>
+<p class=example><code>tt `delay /m %@eval[50 * %_trialrun]`<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>TimeTrials is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/timetrials.zip">https://charlesdye.net/dl/timetrials.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

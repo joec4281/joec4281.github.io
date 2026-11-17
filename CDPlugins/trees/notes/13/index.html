@@ -1,0 +1,827 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>Sundry Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li>    <a href="E:\Utils\#variables">Variables</a></li>
+	<li>    <a href="E:\Utils\#hotkeys">Hotkey</a></li>
+	<li><a href="E:\Utils\#escseq">Escape Sequences</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>Sundry plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.80.1     2026-10-09</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin adds a hodgepodge of unrelated features to TCC.  There is no
+connecting theme here; just odds and ends that don’t belong anywhere 
+else. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>Sundry.dll</span> and
+<span class=filename>Sundry.chm</span> to some known location on your hard
+drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>Sundry-x86.dll</span> instead of
+<span class=filename>Sundry.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\sundry.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Commands:</a></th></tr>
+	<tr><td><a href="E:\Utils\#arraydump"><code>ARRAYDUMP</code></a></td><td><a href="E:\Utils\#echoc"><code>ECHOC</code></a></td><td><a href="E:\Utils\#ha"><code>HA</code></a></td><td><a href="E:\Utils\#helpfor"><code>HELPFOR</code></a></td><td><a href="E:\Utils\#maze"><code>MAZE</code></a></td></tr>
+	<tr><td><a href="E:\Utils\#qfind"><code>QFIND</code></a></td></tr>
+	<tr><th colspan=5>Enhanced <a href="E:\Utils\#commands">Commands:</a></th></tr>
+	<tr><td><a href="E:\Utils\#time"><code>TIME</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#functions">Functions:</a></th></tr>
+	<tr><td><a href="E:\Utils\#f_dist"><code>@DIST</code></a></td><td><a href="E:\Utils\#f_ee"><code>@EE</code></a></td><td><a href="E:\Utils\#f_ffind"><code>@FFIND</code></a></td><td><a href="E:\Utils\#f_median"><code>@MEDIAN</code></a></td><td><a href="E:\Utils\#f_tri"><code>@TRI</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#variables">Variables:</a></th></tr>
+	<tr><td><a href="E:\Utils\#v_assettag"><code>_ASSETTAG</code></a></td><td><a href="E:\Utils\#v_daysecond"><code>_DAYSECOND</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#hotkeys">Hotkey:</a></th></tr>
+	<tr><td><a href="E:\Utils\#ctrl_q"><kbd>Ctrl</kbd>-<kbd>Q</kbd></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+arraydump test<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=arraydump></a><code>ARRAYDUMP</code> — Dump an array’s
+contents to stdout. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>ARRAYDUMP</code><code> /B:</code><span class=optname>n</span><code> /C:</code><span class=optname>n0</span><code>,</code><span class=optname>n1</span><code>,</code><span class=optname>n2…</span><code> /E:</code><span class=optname>n</span><code> /H /L /P /W:</code><span class=optname>n</span><code> </code><span class=reqname>arrayname</span></p>
+
+<table class=descript>
+	<tr><td><code>/B:</code><span class=optname>n</span></td><td>starting line number</td><td></td></tr>
+	<tr><td><a href="E:\Utils\#arraydump_opt_c"><code>/C:</code><span class=optname>n0</span><code>,</code><span class=optname>n1</span><code>,</code><span class=optname>n2…</span></a></td><td><a href="E:\Utils\#arraydump_opt_c">set column widths</a></td></tr>
+	<tr><td><code>/E:</code><span class=optname>n</span></td><td>ending line number</td></tr>
+	<tr><td><code>/H</code></td><td>header</td></tr>
+	<tr><td><code>/L</code></td><td>show line numbers</td></tr>
+	<tr><td><code>/P</code></td><td>page output</td></tr>
+	<tr><td><a href="E:\Utils\#arraydump_opt_w"><code>/W:</code><span class=optname>n</span></a></td><td><a href="E:\Utils\#arraydump_opt_w">set line length</a></td></tr>
+	<tr><td><span class=reqname>arrayname</span></td><td>Required.  One- and two-dimensional arrays are supported. </td></tr>
+</table>
+
+<p><code>ARRAYDUMP</code> displays values in an array.  It will not necessarily
+display all data.  Rather, it tries to arrange output in neat columns, and 
+truncates rows to fit your console window.  Think of this as a quick way
+to see what’s in there, without having to write a loop — or
+a loop within a loop. </p>
+
+<br>
+<p><a name=arraydump_opt_c></a><code>/C:</code><span class=optname>n0</span><code>,</code><span class=optname>n1</span><code>,</code><span class=optname>n2…</span>
+specifies your desired width for the first, second, third, <i>etc.</i> column.
+The maximum column width is 100 characters.  If you prefix a <code>-</code>
+sign, values in that column will be left-justified; otherwise they are
+right-justified.  If you type <code>*</code>, or if you do not supply a width,
+<code>ARRAYDUMP</code> make one up automatically. </p>
+
+<br>
+<p><a name=arraydump_opt_w></a><code>/W:</code><span class=optname>n</span>
+specifies your desired line length.  If you do not use <code>/W:</code>, the
+default is the console width if output is not redirected, or 100 if it is. </p>
+
+<br>
+<p>This command is not available in TCC/LE. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=echoc></a><code>ECHOC</code> — Expand escapes and display
+text. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>ECHOC </code><span class=optname>text</span></p>
+
+<table class=descript>
+	<tr><td><span class=optname>text</span></td><td>string to write to stdout</td></tr>
+</table>
+
+<p><a href="E:\Utils\#escseq">C-style character escapes</a> will be expanded, and the 
+resulting text written to stdout.  No end-of-line will be appended.  If you
+want an end-of-line, add <code>\r\n</code> to the end of the string. </p>
+
+<p>Note that you must double any backslashes you want to display.  If
+you want to show <i>e.g.</i> filenames with <code>ECHOC</code>, you
+can use <code>@REPLACE</code> to double any backslashes: </p>
+
+<p class=example><code>echoc Filename:  \e[4m %@replace[\,\\,%_cmdspec] \e[0m\r\n<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=ha></a><code>HA</code> — Highlight alternate lines of
+output text. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>HA</code><code> /B /CP:</code><span class=optname>n</span><code> /I /L /U /V</code></p>
+
+<table class=descript>
+	<tr><td><code>/B</code></td><td>bold (ANSI)</td></tr>
+	<tr><td><code>/CP:</code><span class=optname>n</span></td><td>input code page</td></tr>
+	<tr><td><code>/I</code></td><td>italics (ANSI)</td></tr>
+	<tr><td><code>/L</code></td><td>line numbers</td></tr>
+	<tr><td><code>/U</code></td><td>underline (ANSI)</td></tr>
+	<tr><td><code>/V</code></td><td>reverse video (ANSI)</td></tr>
+</table>
+
+<p><code>HA</code> reads lines from a pipe, and writes them to standard output
+with alternate lines highlighted.  Remember that pipe commands run in a new 
+shell!  To pipe to this command, you must ensure that this plugin is loaded 
+in the new shell, <i>e.g.</i> by copying the plugin <span class=filename>.DLL</span>
+file to TCC’s <span class=filename>PlugIns</span> directory. </p>
+
+<p>Using any of the ANSI modes (<code>/B /I /U /V</code>) overrides the
+default color-changing mode. </p>
+
+<p><code>HA</code>’s output is meant to go directly to the console.
+If you redirect <code>HA</code>’s output, you will probably get a
+text file full of ANSI gribble. </p>
+
+<p class=example><code>ping localhost | ha<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=helpfor></a><code>HELPFOR</code> — Locate and open a
+plugin’s help file. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>HELPFOR</code><code> /Q </code><span class=reqname>name</span></p>
+
+<table class=descript>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+	<tr><td><span class=reqname>name</span></td><td>the name of the plugin</td></tr>
+</table>
+
+<p><code>HELPFOR</code> searches directories in this order: </p>
+
+<ul>
+	<li>directory specified in a <span class=optname>name</span><code>HELP</code> environment variable (<span class=optname>name</span> is the plugin’s internal name)</li>
+	<li>directory specified in a <code>PLUGINHELP</code> environment variable</li>
+	<li>in the directory where the plugin <span class=filename>.dll</span> resides</li>
+	<li>in a <span class=filename>Help</span> directory within the plugin <span class=filename>.dll</span>’s directory</li>
+	<li>in the <span class=filename>tcc.exe</span> install directory</li>
+	<li>in a <span class=filename>Help</span> directory within <span class=filename>tcc.exe</span>’s directory</li>
+	<li>in <span class=filename>C:\Windows\Help</span></li>
+</ul>
+
+<p>Help files should have the same base name as the plugin’s internal name,
+and one of the following extensions: </p>
+
+<ul>
+	<li><span class=filename>.chm</span></li>
+	<li><span class=filename>.html</span> or <span class=filename>.htm</span></li>
+	<li><span class=filename>.txt</span></li>
+	<li><span class=filename>.doc</span> or <span class=filename>.docx</span></li>
+	<li><span class=filename>.pdf</span></li>
+</ul>
+
+<p>If <code>HELPFOR</code> cannot find a help file in any of the above locations,
+and if the plugin’s <code>PLUGININFO</code> block includes a valid-looking
+web address, then the web page will be opened as a last resort. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=maze></a><code>MAZE</code> — Generate a maze to stdout. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>MAZE</code><code> /L /M:</code><span class=optname>n</span><code> </code><span class=optname>width</span><code> </code><span class=optname>height</span></p>
+
+<table class=descript>
+	<tr><td><code>/L</code></td><td>labyrinth mode</td></tr>
+	<tr><td><code>/M:</code><span class=optname>n</span></td><td>generate multiple mazes</td></tr>
+</table>
+
+<p><span class=optname>Width</span> and <span class=optname>height</span>
+are both optional. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=qfind></a><code>QFIND</code> — Find matching files quickly. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>QFIND</code><code> /A:</code><span class=optname>attr</span><code> /D /F /K /LC /M /N:</code><span class=optname>flags</span><code> /Q:</code><span class=optname>n</span><code> /T /T:</code><span class=optname>acw</span><code> /U /UTC /W /Z </code><span class=optname>wildspec…</span></p>
+
+<table class=descript>
+	<tr><td><code>/A:</code><span class=optname>attr</span></td><td>filter by attributes</td><td><code>/A:-D</code></td></tr>
+	<tr><td><code>/D</code></td><td>show time stamp</td></tr>
+	<tr><td><code>/F</code></td><td>show fractional seconds; implies <code>/D</code></td></tr>
+	<tr><td><code>/K</code></td><td>trailing backslash for directory names</td></tr>
+	<tr><td><a href="E:\Utils\#qfind_opt_lc"><code>/LC</code></a></td><td><a href="E:\Utils\#qfind_opt_lc">localize file times correctly</a></td></tr>
+	<tr><td><code>/M</code></td><td>no summary</td></tr>
+	<tr><td><a href="E:\Utils\#qfind_opt_n"><code>/N:</code><span class=optname>flags</span></a></td><td><a href="E:\Utils\#qfind_opt_n">disable features</a></td></tr>
+	<tr><td><a href="E:\Utils\#qfind_opt_q"><code>/Q:</code><span class=optname>n</span></a></td><td><a href="E:\Utils\#qfind_opt_q">quote displayed filenames</a></td><td><code>/Q:0</code></td></tr>
+	<tr><td><code>/T</code></td><td>show attributes</td></tr>
+	<tr><td><a href="E:\Utils\#qfind_opt_t"><code>/T:</code><span class=optname>acw</span></a></td><td><a href="E:\Utils\#qfind_opt_t">which time stamp to use and display</a></td><td><code>/T:W</code></td></tr>
+	<tr><td><code>/U</code></td><td>show summary (default)</td></tr>
+	<tr><td><code>/UTC</code></td><td>display file times as UTC; implies <code>/D</code></td></tr>
+	<tr><td><code>/W</code></td><td>show day of the week; implies <code>/D</code></td></tr>
+	<tr><td><code>/Z</code></td><td>show file sizes</td></tr>
+	<tr><td><span class=optname>wildspec</span></td><td colspan=2>supports directory aliases and <a href="E:\Utils\#qfind_wildcards">wildcards</a></td></tr>
+</table>
+
+<p><code>QFIND</code> is a simple, but quick, file finder.  <code>QFIND</code> 
+essentially does the same job as <code>FFIND /A-D /S </code><span class=optname>wildspec</span>. 
+For large and deeply-nested directory trees, <code>QFIND</code> should be faster 
+than <code>DIR</code> or <code>FFIND</code> — and that is its only advantage. </p>
+
+<p>With no arguments, <code>QFIND</code> lists all files in the current directory
+and below. </p>
+
+<p>All searches are recursive; there is no <code>/S</code>.  <code>QFIND</code>
+supports a <a href="E:\Utils\#qfind_ranges">limited subset of ranges</a>. </p>
+
+<p><code>QFIND</code> does <em>not</em> support: </p>
+
+<ul>
+	<li>searching the contents of files</li>
+	<li>sorting</li>
+	<li>paging and prompting</li>
+	<li>flexible output formats</li>
+	<li>colored output</li>
+</ul>
+
+<p>If no matching files are found, there is no error message.  <code>QFIND</code>
+just doesn’t list any filenames. </p>
+
+<p><span class=note>•  Note: </span><code>QFIND</code> may not
+list files in the same order that <code>DIR</code> or <code>FFIND</code> would.
+This is by design, and not a bug. </p>
+
+<br>
+<p><a name=qfind_opt_lc></a><code>/LC</code> causes <code>QFIND</code> to
+localize file times correctly, taking Daylight Saving Time changes into account.
+This option affects both the <code>/D</code> time display, and any <a href="E:\Utils\#qfind_ranges">date
+or time ranges</a> in effect.  The default is to localize file times as TCC 
+and <span class=filename>cmd.exe</span> do. </p>
+
+<br>
+<p><a name=qfind_opt_n></a><code>/N:</code> disables features: </p>
+
+<table class=descript>
+	<tr><td><code>D</code></td><td>do not search into hidden directories</td></tr>
+	<tr><td><code>J</code></td><td>do not search into junctions</td></tr>
+	<tr><td><code>Z</code></td><td>do not search into system directories</td></tr>
+</table>
+
+<p>The default behavior without <code>/N:</code> is to search into all 
+subdirectories, regardless of their attributes.  Note that this is different
+from how <code>DIR /S</code> and <code>FFIND /S</code> work without
+<code> /A:</code>. </p>
+
+<br>
+<p><a name=qfind_opt_q></a><code>/Q:</code> controls quoting of filenames: </p>
+
+<table class=descript>
+	<tr><td><code>0</code></td><td>do not quote filenames</td></tr>
+	<tr><td><code>1</code></td><td>always quote filenames</td></tr>
+	<tr><td><code>2</code></td><td>quote filenames as needed</td></tr>
+</table>
+
+<br>
+<p><a name=qfind_opt_t></a><code>/T:</code><span class=optname>acw</span>
+selects which time stamp to use and display: </p>
+
+<table class=descript>
+	<tr><td><code>A</code></td><td>the last-access time</td></tr>
+	<tr><td><code>C</code></td><td>the creation time</td></tr>
+	<tr><td><code>W</code></td><td>the last-write time</td></tr>
+</table>
+
+<p>The default is <code>W</code>.  The selected time stamp is used both to 
+display (if <code>/D</code> is given), and for the <a href="E:\Utils\#qfind_ranges">date 
+and time ranges</a> (if  <code>/[D…]</code> or <code>/[T…]</code> 
+is given).  Note that you cannot display one time stamp and filter by another; 
+<code>/T:</code> controls both. </p>
+
+<br>
+<p class=example><code>rem   Find all SAPI.DLL files in C:\Windows :<br>
+qfind c:\windows\sapi.dll<br>
+</code></p>
+
+
+<h4><a name=qfind_wildcards></a>Wildcards:</h4>
+
+<p><code>QFIND</code> supports some advanced wildcard features, but the
+syntax is different from TCC’s.  Note that you must quote the filespec
+if you use any of these features! </p>
+
+<br>
+<p>A list of characters: </p>
+
+<p class=example><code>qfind "&lt;ace&gt;*"<br>
+</code></p>
+
+<p>… matches filenames beginning with an <code>A</code>, <code>C</code>,
+or <code>E</code>. </p>
+
+<p class=example><code>qfind "&lt;v-z&gt;*"<br>
+</code></p>
+
+<p>… matches filenames beginning with a <code>V</code>, <code>W</code>, 
+<code>X</code>, <code>Y</code>, or <code>Z</code>. </p>
+
+<br>
+<p>A reversed list: </p>
+
+<p class=example><code>qfind "&lt;!rst&gt;*"<br>
+</code></p>
+
+<p>… matches filenames beginning with any character <em>other</em> than
+an <code>R</code>, <code>S</code>, or <code>T</code>. </p>
+
+<br>
+<p>Named character classes: </p>
+
+<p class=example><code>qfind "&lt;[:upper:]&gt;*"<br>
+</code></p>
+
+<p>… matches any filename beginning with an uppercase letter. </p>
+
+<p class=example><code>qfind "*&lt;[:digit:]&gt;.*"<br>
+</code></p>
+
+<p>… matches any filename containing a digit followed by a period. </p>
+
+<p class=example><code>qfind "c:\*&lt;[:cntrl:]&gt;*"<br>
+</code></p>
+
+<p>… matches any filename on drive C:\ containing a control
+character — very unlikely, but not impossible! </p>
+
+<br>
+<p>Alternations: </p>
+
+<p class=example><code>qfind "*.bat|*.cmd|*.btm"<br>
+</code></p>
+
+<p>… matches filenames ending in <span class=filename>.bat</span>, 
+<span class=filename>.cmd</span>, or <span class=filename>.btm</span>. </p>
+
+<br>
+<p>Why the pain-in-the-ass less-than, greater-than, and pipe symbols?
+Because these characters are not legal in filenames, so the algorithm 
+‘knows’ that they are always wildcard characters and never 
+intended to match actual characters in filenames.  This simplifies (<i>i.e.</i> 
+speeds) wildcard matching. </p>
+
+
+<h4><a name=qfind_ranges></a>Ranges:</h4>
+
+<p><code>QFIND</code> supports a limited subset of TCC’s ranges.  Syntax
+is mostly similar to TCC. </p>
+
+<br>
+<table class=descript>
+	<tr><td>Size range:</td><td style="white-space: nowrap;"><code>/[S</code><span class=reqname>size1</span><code>,</code><span class=optname>size2</span><code>]</code></td><td>list only files within the range (inclusive)</td></tr>
+	<tr><td> </td><td style="white-space: nowrap;"><code>/[!S</code><span class=reqname>size1</span><code>,</code><span class=optname>size2</span><code>]</code></td><td>list only files <em>not</em> within the range</td></tr>
+</table>
+
+<p>You can only give one size range.  <span class=optname>Size2</span> is
+optional, and may be <code>+</code><span class=optname>offset</span> —
+added to <span class=reqname>size1</span>. </p>
+
+<br>
+<table class=descript>
+	<tr><td>Date range:</td><td style="white-space: nowrap;"><code>/[D</code><span class=optname>date1</span><code>,</code><span class=optname>date2</span><code>]</code></td><td>list only files in the given range (inclusive)</td></tr>
+	<tr><td> </td><td><code style="white-space: nowrap;">/![D</code><span class=optname>date1</span><code>,</code><span class=optname>date2</span><code>]</code></td><td>list only files <em>not</em> within the given range</td></tr>
+</table>
+
+<p>You can only give one date range.  The date range tests the time stamp 
+selected with <a href="E:\Utils\#qfind_opt_t"><code>/T:</code><span class=optname>acw</span></a>. 
+If you do not specify <span class=optname>date1</span>, it defaults to today’s
+date.  <span class=optname>Date2</span> defaults to the end of time.  Either
+date may be given as <code>-</code><span class=optname>offset</span> or 
+<code>+</code><span class=optname>offset</span> where <span class=optname>offset</span> 
+is days before or after today (in <span class=optname>date1</span>) or 
+<span class=optname>date1</span> (in <span class=optname>date2</span>). </p>
+
+<p>Note that date ranges do not support <code>A</code> <code>C</code> or 
+<code>W</code> to select the date stamp. </p>
+
+<br>
+<table class=descript>
+	<tr><td>Time range:</td><td style="white-space: nowrap;"><code>/[T</code><span class=reqname>time1</span><code>,</code><span class=optname>time2</span><code>]</code></td><td>list only files in the given range (inclusive)</td></tr>
+	<tr><td> </td><td style="white-space: nowrap;"><code>/![T</code><span class=reqname>time1</span><code>,</code><span class=optname>time2</span><code>]</code></td><td>list only files <em>not</em> within the given range</td></tr>
+</table>
+
+<p>You can only give one time range.  The time range tests the time stamp 
+selected with <a href="E:\Utils\#qfind_opt_t"><code>/T:</code><span class=optname>acw</span></a>. 
+<span class=reqname>Time1</span> is required; <span class=optname>time2</span> 
+defaults to the current time.  Either time may be given as <code>-</code><span class=optname>offset</span> 
+or <code>+</code><span class=optname>offset</span> where offset is minutes
+before or after the current time (in <span class=optname>time1</span>) or 
+<span class=reqname>time1</span> (in <span class=optname>time2</span>). </p>
+
+<p>Note that time ranges do not support <code>A</code> <code>C</code> or 
+<code>W</code> to select the time stamp. </p>
+
+<br>
+<table class=descript>
+	<tr><td>Exclusion range:</td><td style="white-space: nowrap;"><code>/[!</code><span class=optname>wild1</span><code> </code><span class=optname>wild2</span><code> </code><span class=optname>wild3…</span><code>]</code></td><td>exclude files which match any of these</td></tr>
+</table>
+
+<p>TCC’s syntax of ending an exclusion range with a backslash to
+prevent searching into matching subdirectories is not supported. </p>
+
+<p>Owner ranges and description ranges are not supported. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=time></a><code>TIME</code> — Display or set the current system time. </p>
+
+<br>
+<p>This plugin adds a <code>/C</code> option to TCC’s internal
+<code>TIME</code> command.  <code>TIME</code>’s operation is otherwise
+unchanged.  See the regular Take Command help for information on using 
+<code>TIME</code>. </p>
+
+<br>
+<p><code class=req>TIME /C</code> — Display time
+continuously. </p>
+
+<p>Press any key to exit the time display. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_dist></a><code>@DIST</code> — Returns the distance
+between two points. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DIST[</code><span class=reqname>x<sub>1</sub></span><code>,</code><span class=reqname>x<sub>2</sub></span><code class=req>]</code><br>
+<code class=req>%@DIST[</code><span class=reqname>x<sub>1</sub></span><code>,</code><span class=reqname>y<sub>1</sub></span><code>,</code><span class=reqname>x<sub>2</sub></span><code>,</code><span class=reqname>y<sub>2</sub></span><code class=req>]</code><br>
+<code class=req>%@DIST[</code><span class=reqname>x<sub>1</sub></span><code>,</code><span class=reqname>y<sub>1</sub></span><code>,</code><span class=reqname>z<sub>1</sub></span><code>,</code><span class=reqname>x<sub>2</sub></span><code>,</code><span class=reqname>y<sub>2</sub></span><code>,</code><span class=reqname>z<sub>2</sub></span><code class=req>]</code><br>
+</p>
+
+<table class=descript>
+	<tr><td><span class=reqname>x<sub>1</sub></span>, <span class=reqname>x<sub>2</sub></span></td><td>X coordinates of the first and second points</td></tr>
+	<tr><td><span class=reqname>y<sub>1</sub></span>, <span class=reqname>y<sub>2</sub></span></td><td>Y coordinates of the first and second points</td></tr>
+	<tr><td><span class=reqname>z<sub>1</sub></span>, <span class=reqname>z<sub>2</sub></span></td><td>Z coordinates of the first and second points</td></tr>
+</table>
+
+<p><code>@DIST</code> calculates the distance between two points in one, two, 
+or three dimensions.  It therefore expects two, four, or six arguments. </p>
+
+<p class=example><code>rem   Calculate the distance between points (6,1) and (10,-2) :<br>
+echo %@dist[6,1,10,-2]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_ee></a><code>@EE</code> — Expands TCC escape sequences
+in a string. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@EE[</code><span class=optname>string</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>string</span></td><td>text containing TCC escapes</td></tr>
+</table>
+
+<p>TCC escape sequences such as <code>^e</code>, <code>^q</code>, and
+<code>^r</code> will be expanded.  Use <code>@EE</code> if you need to
+expand escapes in a string, <i>e.g.</i> before passing it to a function
+that doesn’t understand escapes. </p>
+
+<p><code>@EE</code> uses an internal TCC function to expand escapes, so only
+those escapes which your version of TCC recognizes will be expanded.  For 
+example, <code>^g</code> will not be expanded in TCC/LE. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_ffind></a><code>@FFIND</code> — Returns the filename of
+the first matching file or subdirectory. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@FFIND[</code><code>/A:</code><span class=optname>attribs</span><code> /F /N:</code><span class=optname>flags</span><code> /S </code><span class=optname>wildspec</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><code>/A:</code><span class=optname>attribs</span></td><td>defaults to everything (files and directories)</td></tr>
+	<tr><td><code>/F</code></td><td>return full pathname</td></tr>
+	<tr><td><code>/N:</code><span class=optname>flags</span></td><td>disable:</td></tr>
+	<tr><td></td><td>   <code>D</code> - do not search into hidden directories</td></tr>
+	<tr><td></td><td>   <code>J</code> - do not search into junctions</td></tr>
+	<tr><td></td><td>   <code>Z</code> - do not search into system directories</td></tr>
+	<tr><td><code>/S</code></td><td>search into subdirectories; implies <code>/F</code></td></tr>
+	<tr><td><span class=optname>wildspec</span></td><td>wildcards and directory aliases are supported; defaults to <code>*</code></td></tr>
+</table>
+
+<p>This function only implements a tiny subset of the <code>FFIND</code>
+command’s features.  It only returns the first matching file it finds.
+There is no provision for returning multiple filenames, or for searching
+for strings inside files.  Ranges are not supported either. </p>
+
+<p>If no matching file is found, <code>@FFIND</code> returns an empty string. </p>
+
+<p class=example><code>set zipfile=%@ffind[/s /a:-d *.zip]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_median></a><code>@MEDIAN</code> — Returns the median of a
+list of values. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@MEDIAN[</code><span class=optname>v0</span><code>,</code><span class=optname>v1</span><code>,</code><span class=optname>v2…</span><code> </code><span class=optname>v<sub>n</sub></span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>v0</span>, <span class=optname>v1</span>, <i>etc.</i></td><td>a list of values</td></tr>
+</table>
+
+<p>You must provide at least one value.  Separate values with commas or spaces. 
+If any value contains a period, then all values will be treated as floating-point
+numbers.  Otherwise, all will be treated as 64-bit integers. </p>
+
+<p class=example><code>echo %@median[1,2,3,5,7,100]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_tri></a><code>@TRI</code> — Returns the <i>n</i><sup>th</sup>
+triangular number. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@TRI[</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>n</span></td><td>required; must be &lt; 6074001000</td></tr>
+</table>
+
+<p><code>@TRI</code> returns an unsigned 64-bit integer. </p>
+
+<p class=example><code>for /l %n in ( 0, 1, 20 ) echo %n - %@tri[%n]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+
+
+<p><a name=v_assettag></a><code>_ASSETTAG</code> — Returns
+the computer’s SMBIOS asset tag, if any. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_ASSETTAG</code></p>
+
+<p><code>_ASSETTAG</code> looks for the SMBIOS chassis asset tag first.  If
+it can’t find that, it tries for the baseboard asset tag next.  If
+neither one is found, or if any error occurs, <code>_ASSETTAG</code> returns
+an empty string. </p>
+
+<p>Most privately-owned computers will not have an asset tag set.  This
+variable will be useful mainly in corporate or institutional environments. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_daysecond></a><code>_DAYSECOND</code> — Returns the
+current time of day as seconds past midnight. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_DAYSECOND</code></p>
+
+<p>The return value ranges from <code>0</code> (midnight) through
+<code>86399</code> (11:59:59 P.M.) </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=hotkeys></a>New Hotkeys:</h4>
+
+
+<p><a name=ctrl_q></a><kbd>Ctrl</kbd>-<kbd>Q</kbd> — Quotes
+the word at the cursor. </p>
+
+<p>The word at the cursor will be wrapped in double quotes — unless 
+it already has quotes and does not need them, in which case the quotes will 
+be removed.  Any double quotes within the word will be moved to the outside. </p>
+
+<p>For example, if the cursor is on the string <code>"c:\Program Files"\*.exe</code>,
+pressing <kbd>Ctrl</kbd>-<kbd>Q</kbd> will change it to 
+<code>"c:\Program Files\*.exe"</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=escseq></a>Escape Sequences:</h4>
+
+<p><a href="E:\Utils\#echoc"><code>ECHOC</code></a> supports these escape sequences: </p>
+
+<table class=descript>
+	<tr><th>Code:</th><th>Expands to:</th><th>Example:</th></tr>
+	<tr><td><code>\<span class=optname>nnn</span></code></td><td>octal value, up to 777</td><td><code>\101</code> → A</td></tr>
+	<tr><td><code>\\</code></td><td>backslash (0x5c)</td><td></td></tr>
+	<tr><td><code>\a</code></td><td>ASCII <span style="font-size: 85%;">BEL</span> character (0x07)</td><td></td></tr>
+	<tr><td><code>\b</code></td><td>backspace</td><td></td></tr>
+	<tr><td><code>\c</code></td><td>comma</td><td></td></tr>
+	<tr><td><code>\e</code></td><td>ASCII <span style="font-size: 85%;">ESC</span> character (0x1b)</td><td></td></tr>
+	<tr><td><code>\f</code></td><td>form feed (0x0c)</td><td></td></tr>
+	<tr><td><code>\k</code></td><td>grave accent (0x60)</td><td></td></tr>
+	<tr><td><code>\n</code></td><td>line feed (0x0a)</td><td></td></tr>
+	<tr><td><code>\q</code></td><td>double quotes (0x22)</td><td></td></tr>
+	<tr><td><code>\r</code></td><td>carriage return (0x0d)</td><td></td></tr>
+	<tr><td><code>\s</code></td><td>space (0x20)</td><td></td></tr>
+	<tr><td><code>\t</code></td><td>tab (0x09)</td><td> </td></tr>
+	<tr><td><code>\u</code><span class=optname>nnnn</span></td><td>Unicode character, up to U+FFFF</td><td><code>\u03a3</code> → Σ</td></tr>
+	<tr><td><code>\U</code><span class=optname>nnnnnnnn</span></td><td>Unicode character, up to U+10FFFF</td><td><code>\U0001f63a</code> → 😺</td></tr>
+	<tr><td><code>\v</code></td><td>vertical tab (0x0b)</td><td></td></tr>
+	<tr><td><code>\x</code><span class=optname>nnnn</span></td><td>hexadecimal value, up to FFFF</td><td><code>\x0041</code> → A</td></tr>
+	<tr><td><code>\#</code><span class=optname>nnnnn</span></td><td>decimal value, up to 65535</td><td><code>\#65</code> → A</td></tr>
+</table>
+
+<p>Note that case is significant for the letter after the backslash.  All must be lowercase,
+except for <code>\U</code><span class=optname>xxxxxxxx</span>. </p>
+
+<p>Case is not significant in hexadecimal values.  <code>\u</code><span class=optname>xxxx</span>
+and <code>\x</code><span class=optname>xxxx</span> read up to four hexadecimal digits;
+<code>\U</code><span class=optname>xxxxxxxx</span> reads up to eight.  You may use fewer than four
+(or eight) digits <i>if</i> the following character is not a valid hex digit. </p>
+
+<p>Similarly, octal character escapes read up to three octal digits.  You may use fewer than
+three if the following character is not an octal digit.  Decimal escapes read up to five decimal
+digits; you may use fewer than five if the following character is not a digit. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>Sundry is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/sundry.zip">https://charlesdye.net/dl/sundry.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

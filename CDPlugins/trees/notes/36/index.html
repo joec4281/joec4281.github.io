@@ -1,0 +1,834 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>SMBStuff Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin-left: 1em; margin-top: 0.5em; margin-bottom: 1em; margin-right: auto; background-color: #eee; padding: 0.5em 1em; border-radius: 4px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin-left: 1em; margin-top: 0.3em; margin-bottom: 0.3em; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<!--  <li>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#commands">Commands</a></li>  -->
+	<li>    <a href="E:\Utils\#variables">Variables</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>SMBStuff plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc-cmd-prompt.html">TCC</a> / <a target=_blank href="https://jpsoft.com/products/tcc-le.html">TCC/LE</a></h1>
+<h3>beta version 0.26.3     2021-09-24</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides a way to retrieve system information via SMBIOS.  It
+requires Windows Vista or later; it will not work with earlier versions of
+Windows. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>SMBStuff.dll</span> to
+some known location on your hard drive.  (If you are still using the 32-bit
+version of Take Command, take <span class=filename>SMBStuff-x86.dll</span>
+instead of <span class=filename>SMBStuff.dll</span>.)  Load the plugin
+with a <code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\smbstuff.dll</code></p>
+
+<p>If you copy this file to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<h4><a name=features></a>Plugin Features:</h4>
+
+<!--  <p>New <a href="#commands">command</a>:  <a href="#remark"><code>REMARK</code></a></p>  -->
+
+<p>New <a href="E:\Utils\#variables">variables</a>:  <a href="E:\Utils\#v_smbassettag"><code>_SMBASSETTAG</code></a>,
+<a href="E:\Utils\#v_smbbbassettag"><code>_SMBBBASSETTAG</code></a>, <a href="E:\Utils\#v_smbbbmfg"><code>_SMBBBMFG</code></a>,
+<a href="E:\Utils\#v_smbbbproduct"><code>_SMBBBPRODUCT</code></a>, <a href="E:\Utils\#v_smbbbserial"><code>_SMBBBSERIAL</code></a>,
+<a href="E:\Utils\#v_smbbbversion"><code>_SMBBBVERSION</code></a>, <a href="E:\Utils\#v_smbbiosdate"><code>_SMBBIOSDATE</code></a>,
+<a href="E:\Utils\#v_smbbiosrev"><code>_SMBBIOSREV</code></a>, <a href="E:\Utils\#v_smbbiosvendor"><code>_SMBBIOSVENDOR</code></a>,
+<a href="E:\Utils\#v_smbbiosversion"><code>_SMBBIOSVERSION</code></a>, <a href="E:\Utils\#v_smbbox"><code>_SMBBOX</code></a>,
+<a href="E:\Utils\#v_smbchassis"><code>_SMBCHASSIS</code></a>, <a href="E:\Utils\#v_smbchassislock"><code>_SMBCHASSISLOCK</code></a>,
+<a href="E:\Utils\#v_smbchassistag"><code>_SMBCHASSISTAG</code></a>,
+<a href="E:\Utils\#v_smbchassistype"><code>_SMBCHASSISTYPE</code></a>, <a href="E:\Utils\#v_smbcpuclock"><code>_SMBCPUCLOCK</code></a>,
+<a href="E:\Utils\#v_smbcpumfg"><code>_SMBCPUMFG</code></a>, <a href="E:\Utils\#v_smbcpusocket"><code>_SMBCPUSOCKET</code></a>,
+<a href="E:\Utils\#v_smbcpuspeed"><code>_SMBCPUSPEED</code></a>, <a href="E:\Utils\#v_smbcpuversion"><code>_SMBCPUVERSION</code></a>,
+<a href="E:\Utils\#v_smbfamily"><code>_SMBFAMILY</code></a>, <a href="E:\Utils\#v_smbmfg"><code>_SMBMFG</code></a>,
+<a href="E:\Utils\#v_smbproduct"><code>_SMBPRODUCT</code></a>, <a href="E:\Utils\#v_smbserial"><code>_SMBSERIAL</code></a>,
+<a href="E:\Utils\#v_smbver"><code>_SMBVER</code></a>
+</p>
+
+<p>New <a href="E:\Utils\#functions">functions</a>:  <a href="E:\Utils\#f_randx"><code>@RANDX</code></a>,
+<a href="E:\Utils\#f_smbbyte"><code>@SMBBYTE</code></a>, <a href="E:\Utils\#f_smbdword"><code>@SMBDWORD</code></a>,
+<a href="E:\Utils\#f_smbqword"><code>@SMBQWORD</code></a>, <a href="E:\Utils\#f_smbstring"><code>@SMBSTRING</code></a>,
+<a href="E:\Utils\#f_smbword"><code>@SMBWORD</code></a>
+</p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+
+<!--
+<h4><a name="commands"></a>New Command:</h4>
+
+
+<p><a name="remark"></a><code>REMARK</code>&nbsp;&mdash; Display a trivial message.</p>
+
+<p>Syntax:<br>
+<code class="req">REMARK </code><span class="optname">text&hellip;</span></p>
+
+<table class="descript">
+<tr><td><span class="optname">text</span></td><td>any actual text arguments will in fact be ignored</td></tr>
+</table>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Mauris sapien
+nibh, volutpat vitae tristique ac, tristique non lectus.  Proin nisl enim,
+cursus vitae elementum sit amet, accumsan sed ante.  Quisque non erat quis
+magna molestie posuere quis vel elit.  Nullam interdum malesuada turpis non
+rutrum.  Ut sit amet blandit turpis.  Aliquam in dui ut quam pharetra
+porttitor et nec leo.  Aliquam facilisis gravida dignissim.  Vestibulum
+blandit tempor erat non dignissim.  Proin lacus erat, aliquam a blandit a,
+porta ultrices dui.  Nunc ornare, leo in faucibus semper, purus felis
+pretium sem, a mollis magna libero ut purus.  Aenean lacinia dapibus
+sagittis.  Donec iaculis vehicula vestibulum.  Aliquam condimentum semper
+purus eget ullamcorper.  Nunc mollis, turpis eget facilisis euismod, velit
+nisi facilisis nisi, volutpat tincidunt orci nisi nec velit.  Fusce est
+ipsum, tristique at fringilla a, fringilla et est. </p>
+
+<p class="example"><code>remark Any sufficiently advanced cell-phone
+technology is indistinguishable from schizophrenia.</code></p>
+
+<br><hr><!- -endtopic- ->
+-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+
+
+<p><a name=v_smbassettag></a><code>_SMBASSETTAG</code> — Returns
+the system asset tag string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBASSETTAG</code></p>
+
+<p>This variable combines <a href="E:\Utils\#v_smbchassistag"><code>_SMBCHASSISTAG</code></a>
+and <a href="E:\Utils\#v_smbbbassettag"><code>_SMBBBASSETTAG</code></a>.  It tries that
+chassis asset tag string first.  If it can’t find that, it tries the
+baseboard asset tag.  If neither one is found, <code>_SMBASSETTAG</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbassettag" ne "n/a" then<br>
+   echo Asset tag: %_smbassettag<br>
+else<br>
+   echo Asset tag not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbbassettag></a><code>_SMBBBASSETTAG</code> — Returns
+the baseboard asset tag string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBBASSETTAG</code></p>
+
+<p>If this string is not present, <code>_SMBBBASSETTAG</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbbassettag" ne "n/a" then<br>
+   echo Baseboard asset tag: %_smbbbassettag<br>
+else<br>
+   echo Baseboard asset tag not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbbmfg></a><code>_SMBBBMFG</code> — Returns
+the baseboard manufacturer string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBBMFG</code></p>
+
+<p>If this string is not present, <code>_SMBBBMFG</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbbmfg" ne "n/a" then<br>
+   echo Baseboard manufacturer: %_smbbbmfg<br>
+else<br>
+   echo Baseboard manufacturer not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbbproduct></a><code>_SMBBBPRODUCT</code> — Returns
+the baseboard product name string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBBPRODUCT</code></p>
+
+<p>If this string is not present, <code>_SMBBBPRODUCT</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbbproduct" ne "n/a" then<br>
+   echo Baseboard product name: %_smbbbproduct<br>
+else<br>
+   echo Baseboard product name not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbbserial></a><code>_SMBBBSERIAL</code> — Returns
+the baseboard serial number string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBBSERIAL</code></p>
+
+<p>The baseboard serial number is not necessarily the same as the computer’s
+serial number.  If this string is not present, <code>_SMBBBSERIAL</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbbserial" ne "n/a" then<br>
+   echo Baseboard serial number: %_smbbbserial<br>
+else<br>
+   echo Baseboard serial number not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbbversion></a><code>_SMBBBVERSION</code> — Returns
+the baseboard version string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBBVERSION</code></p>
+
+<p>If this string is not present, <code>_SMBBBVERSION</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbbversion" ne "n/a" then<br>
+   echo Baseboard version: %_smbbbversion<br>
+else<br>
+   echo Baseboard version not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbiosdate></a><code>_SMBBIOSDATE</code> — Returns
+the BIOS date string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBIOSDATE</code></p>
+
+<p>The date string should be either MM/DD/YYYY or MM/DD/YY; for the latter,
+assume the 1900s.  If this string is not present, <code>_SMBBIOSDATE</code>
+returns <code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbiosdate" ne "n/a" then<br>
+   echo BIOS date: %_smbbiosdate<br>
+else<br>
+   echo BIOS date string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbiosrev></a><code>_SMBBIOSREV</code> — Returns
+the BIOS revision level. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBIOSREV</code></p>
+
+<p>The BIOS revision will be returned as <span class=optname>x</span>.<span class=optname>y</span>,
+where <span class=optname>x</span> is the major part and <span class=optname>y</span>
+is the minor.  If this value is not present, <code>_SMBBIOSREV</code>
+returns <code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbiosrev" ne "n/a" then<br>
+   echo BIOS revision: %_smbbiosrev<br>
+else<br>
+   echo BIOS revision not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbiosvendor></a><code>_SMBBIOSVENDOR</code> — Returns
+the BIOS vendor string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBIOSVENDOR</code></p>
+
+<p>If this string is not present, <code>_SMBBIOSVENDOR</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbiosvendor" ne "n/a" then<br>
+   echo BIOS vendor: %_smbbiosvendor<br>
+else<br>
+   echo BIOS vendor string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbiosversion></a><code>_SMBBIOSVERSION</code> — Returns
+the BIOS version string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBIOSVERSION</code></p>
+
+<p>If this string is not present, <code>_SMBBIOSVERSION</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbbiosversion" ne "n/a" then<br>
+   echo BIOS version: %_smbbiosversion<br>
+else<br>
+   echo BIOS version string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbbox></a><code>_SMBBOX</code> — Returns
+a one-letter code for the chassis type. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBBOX</code></p>
+
+<p>If SMBIOS reports a chassis type of ‘Portable’,
+‘LapTop’, ‘Notebook’, ‘Hand Held’, or
+‘Sub Notebook’, <code>_SMBBOX</code> returns the letter
+<code>L</code>.  Otherwise, it returns <code>D</code>.  Note that there is
+no error return; if the function fails for any reason, <code>_SMBBOX</code>
+returns a <code>D</code>. </p>
+
+<p class=example><code>iff "%_smbbox" == "L" then<br>
+   echo Laptop or portable computer<br>
+else<br>
+   echo Not a laptop or portable<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbchassis></a><code>_SMBCHASSIS</code> — Returns
+the system chassis type byte. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCHASSIS</code></p>
+
+<p>If this information is not present, <code>_SMBCHASSIS</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbchassis" ne "n/a" then<br>
+   echo Chassis type: %_smbchassis<br>
+else<br>
+   echo Chassis type byte not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbchassislock></a><code>_SMBCHASSISLOCK</code> — Returns
+whether a chassis lock is present. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCHASSISLOCK</code></p>
+
+<p>This variable returns <code>Present</code>, <code>Not present</code>, or
+<code>N/A</code> if chassis lock information is not available. </p>
+
+<p class=example><code>iff "%_smbchassislock" ne "n/a" then<br>
+   echo Chassis lock: %_smbchassislock<br>
+else<br>
+   echo Chassis lock information not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbchassistag></a><code>_SMBCHASSISTAG</code> — Returns
+the chassis asset tag string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCHASSISTAG</code></p>
+
+<p>If this string is not present, <code>_SMBCHASSISTAG</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbchassistag" ne "n/a" then<br>
+   echo Chassis asset tag: %_smbchassistag<br>
+else<br>
+   echo Chassis asset tag not available<br>
+endiff<br>
+</code></p>
+
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbchassistype></a><code>_SMBCHASSISTYPE</code> — Returns
+a string description of the chassis type. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCHASSISTYPE</code></p>
+
+<p>Possible return values include: </p>
+
+<ul>
+	<li>Other</li>
+	<li>Unknown</li>
+	<li>Desktop</li>
+	<li>Low Profile Desktop</li>
+	<li>Pizza Box</li>
+	<li>Mini Tower</li>
+	<li>Tower</li>
+	<li>Portable</li>
+	<li>LapTop</li>
+	<li>Notebook</li>
+	<li>Hand Held</li>
+	<li>Docking Station</li>
+	<li>All in One</li>
+	<li>Sub Notebook</li>
+	<li>Space-saving</li>
+	<li>Lunch Box</li>
+	<li>Main Server Chassis</li>
+	<li>Expansion Chassis</li>
+	<li>SubChassis</li>
+	<li>Bus Expansion Chassis</li>
+	<li>Peripheral Chassis</li>
+	<li>RAID Chassis</li>
+	<li>Rack Mount Chassis</li>
+	<li>Sealed-case PC</li>
+	<li>Multi-system chassis</li>
+	<li>Compact PCI</li>
+	<li>Advanced TCA</li>
+	<li>Blade</li>
+	<li>Blade Enclosure</li>
+</ul>
+
+<p>If this information is not present, <code>_SMBCHASSISTYPE</code> returns
+<code>N/A</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbcpuclock></a><code>_SMBCPUCLOCK</code> — Returns
+the processor’s external clock speed in MHz. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCPUCLOCK</code></p>
+
+<p>If this information is not present, <code>_SMBCPUCLOCK</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbcpuclock" ne "n/a" then<br>
+   echo External CPU clock speed: %_smbcpuclock MHz<br>
+else<br>
+   echo External CPU clock speed not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbcpumfg></a><code>_SMBCPUMFG</code> — Returns
+the processor’s manufacturer string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCPUMFG</code></p>
+
+<p>If this string is not present, <code>_SMBCPUMFG</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbcpumfg" ne "n/a" then<br>
+   echo Processor manufacturer: %_smbcpumfg<br>
+else<br>
+   echo Processor manufacturer string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbcpusocket></a><code>_SMBCPUSOCKET</code> — Returns
+a string describing the processor socket. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCPUSOCKET</code></p>
+
+<p>If this string is not present, <code>_SMBCPUSOCKET</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbcpusocket" ne "n/a" then<br>
+   echo Processor socket: %_smbcpusocket<br>
+else<br>
+   echo Processor socket string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbcpuspeed></a><code>_SMBCPUSPEED</code> — Returns
+the processor speed at boot time, in MHz. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCPUSPEED</code></p>
+
+<p>If this information is not present, <code>_SMBCPUSPEED</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbcpuspeed" ne "n/a" then<br>
+   echo Processor speed: %_smbcpuspeed MHz<br>
+else<br>
+   echo Processor speed not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbcpuversion></a><code>_SMBCPUVERSION</code> — Returns
+a string describing the processor version. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBCPUVERSION</code></p>
+
+<p>If this string is not present, <code>_SMBCPUVERSION</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbcpuversion" ne "n/a" then<br>
+   echo Processor version: %_smbcpuversion<br>
+else<br>
+   echo Processor version string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbmfg></a><code>_SMBMFG</code> — Returns
+the system manufacturer string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBMFG</code></p>
+
+<p>If this string is not present, <code>_SMBMFG</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbmfg" ne "n/a" then<br>
+   echo Manufacturer: %_smbmfg<br>
+else<br>
+   echo Manufacturer string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbproduct></a><code>_SMBPRODUCT</code> — Returns
+the system product name string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBPRODUCT</code></p>
+
+<p>If this string is not present, <code>_SMBPRODUCT</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbproduct" ne "n/a" then<br>
+   echo Product name: %_smbproduct<br>
+else<br>
+   echo Product name string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbserial></a><code>_SMBSERIAL</code> — Returns
+the system serial number string. </p>
+
+<p>Syntax:<br>
+<code class=req>%_SMBSERIAL</code></p>
+
+<p>On Dell computers, this string generally matches the ‘service
+tag’.  If this string is not present, <code>_SMBSERIAL</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbserial" ne "n/a" then<br>
+   echo Serial number: %_smbproduct<br>
+else<br>
+   echo Serial number string not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_smbver></a><code>_SMBVER</code> — Returns
+the SMBIOS version number. </p>
+
+<p>The version will be returned as <span class=optname>x</span>.<span class=optname>y</span>,
+where <span class=optname>x</span> is the major part and <span class=optname>y</span>
+is the minor.  If this value is not present, <code>_SMBVER</code> returns
+<code>N/A</code>. </p>
+
+<p class=example><code>iff "%_smbver" ne "n/a" then<br>
+   echo SMBIOS version: %_smbver<br>
+else<br>
+   echo SMBIOS version not available<br>
+endiff<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_randx></a><code>@RANDX</code> — Returns a string of
+random hex digits. </p>
+
+<p>Syntax:<br>
+<code class=req>%@RANDX[</code><span class=optname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>n</span></td><td>the number of digits; defaults to 8</td></tr>
+</table>
+
+<p>This function has nothing to do with SMBIOS.  It’s provided as fallback
+means of generating ‘serial numbers’ if all else fails. </p>
+
+<p class=example><code>echo %@randx[5]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_smbbyte></a><code>@SMBBYTE</code> — Returns a byte
+value from an SMBIOS structure. </p>
+
+<p>Syntax:<br>
+<code class=req>%@SMBBYTE[</code><span class=reqname>type</span><code class=req>,</code><span class=reqname>offset</span><code class=req>,</code><span class=optname>handle</span><code class=req>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>type</span></td><td>the SMBIOS type number of the structure to find; 0 to 255</td></tr>
+	<tr><td><span class=reqname>offset</span></td><td>the offset of the byte within the fixed data area; 4 to 255</td></tr>
+	<tr><td><span class=optname>handle</span></td><td>the handle of the structure to find; optional, 0 to 0xffff</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>1 to return the value as hexadecimal</td></tr>
+</table>
+
+<p>If a matching structure cannot be found, or if the specified <span class=reqname>offset</span>
+is not within the fixed data area, this function returns <code>N/A</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_smbdword></a><code>@SMBDWORD</code> — Returns a
+double-word value from an SMBIOS structure. </p>
+
+<p>Syntax:<br>
+<code class=req>%@SMBDWORD[</code><span class=reqname>type</span><code class=req>,</code><span class=reqname>offset</span><code class=req>,</code><span class=optname>handle</span><code class=req>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>type</span></td><td>the SMBIOS type number of the structure to find; 0 to 255</td></tr>
+	<tr><td><span class=reqname>offset</span></td><td>the (byte) offset of the word within the fixed data area; 4 to 252</td></tr>
+	<tr><td><span class=optname>handle</span></td><td>the handle of the structure to find; optional, 0 to 0xffff</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>1 to return the value as hexadecimal</td></tr>
+</table>
+
+<p>If a matching structure cannot be found, or if the specified <span class=reqname>offset</span>
+is not within the fixed data area, this function returns <code>N/A</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_smbqword></a><code>@SMBQWORD</code> — Returns a
+quad-word value from an SMBIOS structure. </p>
+
+<p>Syntax:<br>
+<code class=req>%@SMBQWORD[</code><span class=reqname>type</span><code class=req>,</code><span class=reqname>offset</span><code class=req>,</code><span class=optname>handle</span><code class=req>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>type</span></td><td>the SMBIOS type number of the structure to find; 0 to 255</td></tr>
+	<tr><td><span class=reqname>offset</span></td><td>the (byte) offset of the word within the fixed data area; 4 to 248</td></tr>
+	<tr><td><span class=optname>handle</span></td><td>the handle of the structure to find; optional, 0 to 0xffff</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>1 to return the value as hexadecimal</td></tr>
+</table>
+
+<p>If a matching structure cannot be found, or if the specified <span class=reqname>offset</span>
+is not within the fixed data area, this function returns <code>N/A</code>. </p>
+
+<br><hr><!--endtopic-->
+
+<p><a name=f_smbstring></a><code>@SMBSTRING</code> — Returns a
+string value from an SMBIOS structure. </p>
+
+<p>Syntax:<br>
+<code class=req>%@SMBSTRING[</code><span class=reqname>type</span><code class=req>,</code><span class=reqname>offset</span><code class=req>,</code><span class=optname>handle</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>type</span></td><td>the SMBIOS type number of the structure to find; 0 to 255</td></tr>
+	<tr><td><span class=reqname>offset</span></td><td>the (byte) offset of the word within the fixed data area; 4 to 248</td></tr>
+	<tr><td><span class=optname>handle</span></td><td>the handle of the structure to find; optional, 0 to 0xffff</td></tr>
+</table>
+
+<p>This function returns <code>N/A</code> on any error. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_smbword></a><code>@SMBWORD</code> — Returns a
+quad-word value from an SMBIOS structure. </p>
+
+<p>Syntax:<br>
+<code class=req>%@SMBWORD[</code><span class=reqname>type</span><code class=req>,</code><span class=reqname>offset</span><code class=req>,</code><span class=optname>handle</span><code class=req>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>type</span></td><td>the SMBIOS type number of the structure to find; 0 to 255</td></tr>
+	<tr><td><span class=reqname>offset</span></td><td>the (byte) offset of the word within the fixed data area; 4 to 254</td></tr>
+	<tr><td><span class=optname>handle</span></td><td>the handle of the structure to find; optional, 0 to 0xffff</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>1 to return the value as hexadecimal</td></tr>
+</table>
+
+<p>If a matching structure cannot be found, or if the specified <span class=reqname>offset</span>
+is not within the fixed data area, this function returns <code>N/A</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="http://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="http://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>SMBStuff is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2021, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="http://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="http://prospero.unm.edu/dl/smbstuff.zip">http://prospero.unm.edu/dl/smbstuff.zip</a>
+or <a href="E:\Utils\ftp:\\prospero.unm.edu\smbstuff.zip">ftp://prospero.unm.edu/smbstuff.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

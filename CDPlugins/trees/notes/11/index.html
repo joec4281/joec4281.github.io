@@ -1,0 +1,731 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>MyWindow Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.smaller			{ font-size: 95%; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.rj					{ text-align: right; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TABLE.biglist		{ table-layout: fixed; margin-left: 1em; }
+	TABLE.biglist TH	{ text-align: center; text-decoration: none; font-size: 115%; padding-top: 1em; padding-bottom: 0.5em; }
+	TABLE.biglist TD	{ padding-right: 3em; }
+	TABLE.postable		{ border: none; margin: 2em auto 2em auto; border-spacing: 8px; }
+	TABLE.postable TD	{ border: 1px solid #dde; border-radius: 8px; padding: 1.2em 1em; background-color: #f0f0f8; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+		TABLE.postable		{ border: none; margin: 2em auto 2em auto; border-spacing: 8px; }
+		TABLE.postable TD	{ border: 1px solid gray; border-radius: 8px; padding: 1.2em 1em; background-color: #fff; text-align: center; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li>    <a href="E:\Utils\#variables">Variables</a></li>
+	<li><a href="E:\Utils\#traymgr">The Tray Manager</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>MyWindow plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>beta version 0.99.4     2026-10-23</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin reimplements the <a href="E:\Utils\#activate"><code>ACTIVATE</code></a>
+and <a href="E:\Utils\#window"><code>WINDOW</code></a> commands to better support
+Windows Terminal, Console2, and ConEmu; and to add a few new features. </p>
+
+<p>There is also one new function, <a href="E:\Utils\#f_mywindow"><code>@MYWINDOW</code></a>,
+which returns information about TCC’s window; and some new utility variables
+and functions to enumerate Windows 10 virtual desktops. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>MyWindow.dll</span> and
+<a href="E:\Utils\#traymgr"><span class=filename>CDTrayMgr.exe</span></a> to some
+known location on your hard drive.  (If you are still using the 32-bit version
+of Take Command, take <span class=filename>MyWindow-x86.dll</span> instead
+of <span class=filename>MyWindow.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\mywindow.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+	<tr><th colspan=5>New <a href="E:\Utils\#commands">Commands:</a></th></tr>
+	<tr><td><a href="E:\Utils\#activate"><code>ACTIVATE</code></a></td><td><a href="E:\Utils\#window"><code>WINDOW</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#functions">Functions:</a></th></tr>
+	<tr><td><a href="E:\Utils\#f_mywindow"><code>@MYWINDOW</code></a></td><td><a href="E:\Utils\#f_vdesk"><code>@VDESK</code></a></td></tr>
+	<tr><th colspan=5>New <a href="E:\Utils\#variables">Variables:</a></th></tr>
+	<tr><td><a href="E:\Utils\#v_contype"><code>_CONTYPE</code></a></td><td><a href="E:\Utils\#v_vdesk"><code>_VDESK</code></a></td><td><a href="E:\Utils\#v_vdesks"><code>_VDESKS</code></a></td><td><a href="E:\Utils\#v_wintermexe"><code>_WINTERMEXE</code></a></td><td><a href="E:\Utils\#v_wintermver"><code>_WINTERMVER</code></a></td></tr>
+	<!-- <tr><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td><td><a href="#"><code></code></a></td></tr> -->
+</table>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+window center<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=activate></a><code>ACTIVATE</code> — Activate a window,
+and optionally make changes to it. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>ACTIVATE</code><code> /P /R "</code><span class=reqname>title</span><code class=req>"</code><code> </code><span class=optname>verb</span><code> "</code><span class=optname>newtitle</span><code>"</code></p>
+
+<table class=descript>
+	<tr><td><code>/P</code></td><td>match the <code>"</code><span class=reqname>title</span><code>"</code> against program names</td></tr>
+	<tr><td><code>/R</code></td><td>return focus to the original foreground window when done</td></tr>
+	<tr><td><code class=req>"</code><span class=reqname>title</span><code class=req>"</code></td><td>the window to activate; required</td></tr>
+	<tr><td><span class=optname>verb</span></td><td>an action to alter the selected window; you may only give one</td></tr>
+	<tr><td><code>"</code><span class=optname>newtitle</span><code>"</code></td><td>a new title to rename the window</td></tr>
+</table>
+
+<p>You must specify a <span class=reqname>title</span>.  You can use wildcards;
+the first window found with a matching name will be activated.  Alternatively,
+you may use <code>=</code><span class=optname>pid</span> to search for a
+window belonging to the specified program id.  The <span class=optname>pid</span>
+may be in decimal, or hexadecimal with a leading <code>0x</code>. </p>
+
+<p>If you know the window’s handle, you can also specify that with the
+syntax <code>HWND==</code><span class=optname>hwnd</span>.  Note that there
+are <i>two</i> equals signs after the <code>HWND</code>.  The
+<span class=optname>hwnd</span> may be in decimal, or hexadecimal with a
+leading <code>0x</code>.  This syntax is not supported by TCC’s
+<code>ACTIVATE</code>. </p>
+
+<br>
+<p>The following verbs are supported; you may only use one at a time: </p>
+
+<table class=descript>
+	<tr><td><code>MIN</code></td><td></td><td>minimize the window (use <code>RESTORE</code> bring it back)</td></tr>
+	<tr><td><code>MAX</code></td><td></td><td>maximize the window (use <code>RESTORE</code> to return it to its previous size)</td></tr>
+	<tr><td><code>HIDE</code></td><td></td><td>hide the window (use <code>RESTORE</code> to make it visible again) </td></tr>
+	<tr><td><code>RESTORE</code></td><td></td><td>restore the window to its normal size and make it visible</td></tr>
+	<tr><td><code>CLOSE</code></td><td></td><td>close the window</td></tr>
+	<tr><td><code>DISABLE</code></td><td></td><td>disable mouse and keyboard input to the window (use <code>ENABLE</code> to fix it) </td></tr>
+	<tr><td><code>ENABLE</code></td><td></td><td>re-enable mouse and keyboard input to a window crippled by <code>DISABLE</code></td></tr>
+	<tr><td><code>TOPMOST</code></td><td></td><td>display the window above all non-topmost windows (use <code>NOTOPMOST</code> to fix it)</td></tr>
+	<tr><td><code>NOTOPMOST</code></td><td></td><td>make a <code>TOPMOST</code> window display normally again</td></tr>
+	<tr><td><code>TOP</code></td><td></td><td>move the window to the front</td></tr>
+	<tr><td><code>BOTTOM</code></td><td></td><td>move the window behind all other windows</td></tr>
+	<tr><td><a href="E:\Utils\#activate_pos"><code>POS=</code><span class=optname>x</span><code>,</code><span class=optname>y</span><code>,</code><span class=optname>w</span><code>,</code><span class=optname>h</span></a></td><td></td><td>move and resize the window</td></tr>
+	<tr><td><a href="E:\Utils\#activate_pos"><code>POS=</code><span class=optname>x</span><code>,</code><span class=optname>y</span></a></td><td><a href="E:\Utils\#activate_note2">†</a></td><td>move the window to the specified coordinates</td></tr>
+	<tr><td><a href="E:\Utils\#activate_pos"><code>SIZE=</code><span class=optname>w</span><code>,</code><span class=optname>h</span></a></td><td><a href="E:\Utils\#activate_note2">†</a></td><td>resize the window without moving it</td></tr>
+	<tr><td><code>ICON=</code><span class=optname>file</span></td><td></td><td>attempt to extract an icon from <span class=optname>file</span> and apply it to the window</td></tr>
+	<tr><td><code>TRANS=</code><span class=optname>n</span></td><td></td><td>set the window transparency; <span class=optname>n</span> is 0 (invisible) to 255 (opaque)</td></tr>
+	<tr><td><code>FLASH=</code><span class=optname>type</span><code>,</code><span class=optname>count</span></td><td></td><td>flash the window; args as per <a target=_blank href="https://duckduckgo.com/?q=%5cflashwinfo%20structure%20site:learn.microsoft.com">FLASHWINFO</a></td></tr>
+	<tr><td><a href="E:\Utils\#activate_tray"><code>TRAY</code></a></td><td></td><td>hide the window, and show its icon in the system tray (use <code>RESTORE</code> to undo)</td></tr>
+	<tr><td><code>CENTER</code></td><td></td><td>center the window in its current monitor</td></tr>
+	<tr><td><a href="E:\Utils\#activate_align"><code>ALIGN=</code><span class=optname>n</span><code>,</code><span class=optname>M</span></a></td><td><a href="E:\Utils\#activate_note2">†</a></td><td>align the window relative to a monitor’s edges</td></tr>
+	<tr><td><a href="E:\Utils\#activate_park"><code>PARK=</code><span class=optname>vhw</span><code>,</code><span class=optname>M</span></a></td><td><a href="E:\Utils\#activate_note2">†</a></td><td>move and resize the window to a monitor’s corner or edge</td></tr>
+	<tr><td><code>INFO</code></td><td><a href="E:\Utils\#activate_note2">†</a></td><td>do not activate the window, but display a bunch of information about it </td></tr>
+</table>
+
+<br>
+<p>You can use <code>"</code><span class=optname>newtitle</span><code>"</code>
+to rename the window.  The new title <em>must</em> be quoted; otherwise it will
+be interpreted as a verb. </p>
+
+<br>
+<p><a name=activate_pos></a>In the <code>POS</code> and <code>SIZE</code> verbs, the
+<span class=optname>x</span> and <span class=optname>y</span> arguments are signed integers;
+<span class=optname>w</span> and <span class=optname>h</span> are unsigned.  Any of these may
+be replaced with an asterisk to keep the current value.  For example, <code>POS=*,*,400,150</code>
+will resize the window to 400×150 pixels without changing its position. </p>
+
+<br>
+<p><a name=activate_tray></a><code>TRAY</code> mode will only work if
+(a) TCC is running elevated, and (b) <a href="E:\Utils\#traymgr"><span class=filename>CDTrayMgr.exe</span></a>
+is available.  You can put <span class=filename>CDTrayMgr.exe</span> in
+the plugin’s directory, in Take Command’s install directory, or
+in any directory in the search path. </p>
+
+<br>
+<p><a name=activate_align></a><code>ALIGN=</code><span class=optname>n</span><code>,</code><span class=optname>M</span>
+moves the window relative to a monitor.  <span class=optname>n</span> is required;
+possible values are: </p>
+
+<table class=postable>
+	<tr><td>7: top left</td><td>8: top center </td><td>9: top right</td></tr>
+	<tr><td>4: left center</td><td>5: center</td><td>6: right center</td></tr>
+	<tr><td>1: bottom left</td><td>2: bottom center</td><td>3: bottom right</td></tr>
+</table>
+
+<p>The monitor number <span class=optname>M</span> is optional.  If
+is zero or greater than the number of monitors, it defaults to the primary
+monitor.  If you do not specify a monitor number, the window will be
+aligned on whichever monitor it currently occupies. </p>
+
+<br>
+<p><a name=activate_park></a><code>PARK=</code><span class=optname>vhw</span><code>,</code><span class=optname>M</span>
+moves and resizes the window to a corner or edge of a monitor.  The
+<span class=optname>vhw</span> argument has three parts to specify the
+vertical and horizontal position, and the window’s new width: </p>
+
+<ul>
+	<li><span class=optname>v</span> is the vertical position:  <code>T</code> for the top half of the monitor, 
+		<code>B</code> for the bottom half, or nothing to fill the full height of the monitor. </li>
+	<li><span class=optname>h</span> is the horizontal position:  <code>L</code> for the left side, <code>R</code>
+		for the right side, or <code>M</code> for the middle.  This part is required. </li>
+	<li><span class=reqname>w</span> is the width:  <code>1/2</code> or just <code>/2</code> for half the width 
+		of the monitor; <code>1/3</code> or just <code>/3</code> for one-third; <code>2/3</code> for two-thirds;
+		or <code>1/4</code> or just <code>/4</code> for one-fourth of the monitor’s width.  If you do not 
+		give a width, the default is one-half the monitor’s width. </li>
+</ul>
+
+<p>The monitor number <span class=optname>M</span> is optional.  If
+is zero or greater than the number of monitors, it defaults to the primary
+monitor.  If you do not specify a monitor number, the window will be
+parked on whichever monitor it currently occupies. </p>
+
+<br>
+<p><span class=note>• Note:</span> This command has been completely
+reimplemented to better support Windows Terminal, Console2, and ConEmu. </p>
+
+<p><a name=activate_note2></a><span class=note>• Note:</span> The <code>SIZE</code>
+verb, the <code>POS</code> verb with only two arguments, and the <code>ALIGN</code>,
+<code>PARK</code>, and <code>INFO</code> verbs, are all incompatible with TCC’s 
+internal  <code>ACTIVATE</code> command.  To be compatible, use <code>POS</code> with
+ all four arguments, using <code>*</code> for any values you don’t
+want to change. </p>
+
+<p>The <code>HWND==</code><span class=optname>hwnd</span> syntax is also new,
+and is not compatible with TCC. </p>
+
+<p>The <code>/P</code> option also is not supported by TCC. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=window></a><code>WINDOW</code> — Control TCC’s
+display window. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>WINDOW </code><span class=optname>verb</span><code> "</code><span class=optname>newtitle</span><code>"</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>verb</span></td><td>an action to alter the window; you may only give one</td></tr>
+	<tr><td><code>"</code><span class=optname>newtitle</span><code>"</code></td><td>a new title to rename the window</td></tr>
+</table>
+
+<table class=descript>
+	<tr><td><code>MIN</code></td><td></td><td>minimize the window (use <code>RESTORE</code> bring it back)</td></tr>
+	<tr><td><code>MAX</code></td><td></td><td>maximize the window (use <code>RESTORE</code> to return it to its previous size)</td></tr>
+	<tr><td><code>HIDE</code></td><td></td><td>hide the window (use <code>RESTORE</code> to make it visible again) </td></tr>
+	<tr><td><code>RESTORE</code></td><td></td><td>restore the window to its normal size and make it visible</td></tr>
+	<tr><td><code>TOPMOST</code></td><td></td><td>display the window above all non-topmost windows (use <code>NOTOPMOST</code> to fix it)</td></tr>
+	<tr><td><code>NOTOPMOST</code></td><td></td><td>make a <code>TOPMOST</code> window display normally again</td></tr>
+	<tr><td><code>TOP</code></td><td></td><td>move the window to the front</td></tr>
+	<tr><td><code>BOTTOM</code></td><td></td><td>move the window behind all other windows</td></tr>
+	<tr><td><a href="E:\Utils\#window_pos"><code>POS=</code><span class=optname>x</span><code>,</code><span class=optname>y</span><code>,</code><span class=optname>w</span><code>,</code><span class=optname>h</span></a></td><td></td><td>move and resize the window</td></tr>
+	<tr><td><a href="E:\Utils\#window_pos"><code>POS=</code><span class=optname>x</span><code>,</code><span class=optname>y</span></a></td><td><a href="E:\Utils\#window_note2">†</a></td><td>move the window to the specified coordinates</td></tr>
+	<tr><td><a href="E:\Utils\#window_size"><code>SIZE=</code><span class=optname>r</span><code>,</code><span class=optname>c</span></a></td><td></td><td>resize the console screen buffer</td></tr>
+	<tr><td><code>ICON=</code><span class=optname>file</span></td><td></td><td>attempt to extract an icon from <span class=optname>file</span> and apply it to the window</td></tr>
+	<tr><td><code>TRANS=</code><span class=optname>n</span></td><td></td><td>set the window transparency; <span class=optname>n</span> is 0 (invisible) to 255 (opaque)</td></tr>
+	<tr><td><code>FLASH=</code><span class=optname>type</span><code>,</code><span class=optname>count</span></td><td></td><td>flash the window; args as per <a target=_blank href="https://duckduckgo.com/?q=%5cflashwinfo%20structure%20site:learn.microsoft.com">FLASHWINFO</a></td></tr>
+	<tr><td><a href="E:\Utils\#window_tray"><code>TRAY</code></a></td><td></td><td>hide the window, and show its icon in the system tray (use <code>RESTORE</code> to undo)</td></tr>
+	<tr><td><code>CENTER</code></td><td></td><td>center the window in its current monitor</td></tr>
+	<tr><td><a href="E:\Utils\#window_align"><code>ALIGN=</code><span class=optname>n</span><code>,</code><span class=optname>M</span></a></td><td><a href="E:\Utils\#window_note2">†</a></td><td>align the window relative to a monitor’s edges</td></tr>
+	<tr><td><a href="E:\Utils\#window_park"><code>PARK=</code><span class=optname>vhw</span><code>,</code><span class=optname>M</span></a></td><td><a href="E:\Utils\#window_note2">†</a></td><td>move and resize the window to a monitor’s corner or edge</td></tr>
+	<tr><td><code>DETACH</code></td><td></td><td>detach a Take Command tab to a standalone console window</td></tr>
+	<tr><td><a href="E:\Utils\#window_vdesktop"><code>VDESKTOP=</code><span class=optname>id</span></a></td><td></td><td>move TCC’s console window to a different virtual desktop</td></tr>
+	<tr><td><code>INFO</code></td><td><a href="E:\Utils\#window_note2">†</a></td><td>do not activate the window, but display a bunch of information about it </td></tr>
+	<tr><td><a href="E:\Utils\#window_vdesklist"><code>VDESKLIST</code></a></td><td><a href="E:\Utils\#window_note2">†</a></td><td>list virtual desktops; does not affect TCC’s window</td></tr>
+	<tr><td><a href="E:\Utils\#window_vdesklist"><code>TRAYLIST</code></a></td><td><a href="E:\Utils\#window_note2">†</a></td><td>list windows in the tray, <i>i.e.</i> windows managed by <a href="E:\Utils\#traymgr"><span class=filename>CDTrayMgr.exe</span></a>. </td></tr>
+</table>
+
+<br>
+<p>You can use <code>"</code><span class=optname>newtitle</span><code>"</code>
+to rename the window.  The new title <em>must</em> be quoted; otherwise it will
+be interpreted as a verb. </p>
+
+<br>
+<p><a name=window_pos></a>In the <code>POS</code> verb, the
+<span class=optname>x</span> and <span class=optname>y</span> arguments are signed integers;
+<span class=optname>w</span> and <span class=optname>h</span> are unsigned.  Any of these may
+be replaced with an asterisk to keep the current value.  For example, <code>POS=*,*,400,150</code>
+will resize the window to 400×150 pixels without changing its position. </p>
+
+<br>
+<p><a name=window_size></a>In the <code>SIZE</code> verb,
+<span class=optname>r</span> and <span class=optname>c</span> are the
+number of rows and columns for the console screen buffer — both
+unsigned integers.  You cannot make the buffer smaller than the visible viewport.
+<span class=optname>r</span> must also be between 5 and 9999 rows;
+<span class=optname>c</span> must be between 20 and 512 columns. </p>
+
+<br>
+<p><a name=window_tray></a><code>TRAY</code> mode will only work if
+(a) TCC is running elevated, and (b) <a href="E:\Utils\#traymgr"><span class=filename>CDTrayMgr.exe</span></a>
+is available.  You can put <span class=filename>CDTrayMgr.exe</span> in
+the plugin’s directory, in Take Command’s install directory, or
+in any directory in the search path. </p>
+
+<br>
+<p><a name=window_align></a><code>ALIGN=</code><span class=optname>n</span><code>,</code><span class=optname>M</span>
+moves the window relative to a monitor.  <span class=optname>n</span> is required;
+possible values are: </p>
+
+<table class=postable>
+	<tr><td>7: top left</td><td>8: top center </td><td>9: top right</td></tr>
+	<tr><td>4: left center</td><td>5: center</td><td>6: right center</td></tr>
+	<tr><td>1: bottom left</td><td>2: bottom center</td><td>3: bottom right</td></tr>
+</table>
+
+<p>The monitor number <span class=optname>M</span> is optional.  If
+is zero or greater than the number of monitors, it defaults to the primary
+monitor.  If you do not specify a monitor number, the window will be
+aligned on whichever monitor it currently occupies. </p>
+
+<br>
+<p><a name=window_park></a><code>PARK=</code><span class=optname>vhw</span><code>,</code><span class=optname>M</span>
+moves and resizes the window to a corner or edge of a monitor.  The
+<span class=optname>vhw</span> argument has three parts to specify the
+vertical and horizontal position, and the window’s new width: </p>
+
+<ul>
+	<li><span class=optname>v</span> is the vertical position:  <code>T</code> for the top half of the monitor, 
+		<code>B</code> for the bottom half, or nothing to fill the full height of the monitor. </li>
+	<li><span class=optname>h</span> is the horizontal position:  <code>L</code> for the left side, <code>R</code>
+		for the right side, or <code>M</code> for the middle.  This part is required. </li>
+	<li><span class=reqname>w</span> is the width:  <code>1/2</code> or just <code>/2</code> for half the width 
+		of the monitor; <code>1/3</code> or just <code>/3</code> for one-third; <code>2/3</code> for two-thirds;
+		or <code>1/4</code> or just <code>/4</code> for one-fourth of the monitor’s width.  If you do not 
+		give a width, the default is one-half the monitor’s width. </li>
+</ul>
+
+<p>The monitor number <span class=optname>M</span> is optional.  If
+is zero or greater than the number of monitors, it defaults to the primary
+monitor.  If you do not specify a monitor number, the window will be
+parked on whichever monitor it currently occupies. </p>
+
+<br>
+<p><a name=window_vdesktop></a><code>VDESKTOP=</code><span class=optname>id</span>
+has a very limited usefulness:  it can only move TCC’s own console
+window.  It cannot move Take Command’s window, or Windows Terminal’s
+window, or Console2’s window.  It cannot move another program’s
+console window, <i>e.g.</i> when TCC is a child process of the console
+window’s owner.  It can only move its <em>own</em> window.  Sorry.
+Microsoft’s documented <a target=_blank href="https://duckduckgo.com/?q=/IVirtualDesktopManager%20site:learn.microsoft.com">IVirtualDesktopManager</a>
+API is lame. </p>
+
+<p>The desktop <span class=optname>id</span> can be either a number 1 to
+<i>n</i> for the first, second, third, <i>etc.</i> virtual desktop; or else
+a name, <i>e.g.</i> <code>VDESKTOP="Desktop 2"</code>. </p>
+
+<p>Virtual desktops were introduced in Windows 10; this feature will not
+work in earlier versions of Windows. </p>
+
+<br>
+<p><a name=window_vdesklist></a>The <code>VDESKLIST</code> and <code>TRAYLIST</code>
+verbs are mostly for my own use in debugging.  I am documenting them on the
+chance that they might be useful to someone else.  <code>VDESKLIST</code> lists
+Windows 10 virtual desktops; <code>TRAYLIST</code> lists windows currently managed
+by <a href="E:\Utils\#traymgr"><span class=filename>CDTrayMgr.exe</span></a>.  Neither one
+does anything to TCC’s window.  They just dump info to standard output. </p>
+
+<br>
+<p><span class=note>• Note:</span> This command has been completely
+reimplemented to better support Windows Terminal, Console2, and ConEmu. </p>
+
+<p><a name=window_note2></a><span class=note>• Note:</span> The <code>POS</code>
+verb with only two arguments, and the <code>ALIGN</code>, <code>INFO</code>,
+<code>PARK</code>, <code>VDESKLIST</code>, and <code>TRAYLIST</code> verbs, are all
+incompatible with TCC’s internal <code>WINDOW</code> command.  To be compatible,
+use <code>POS</code> with all four arguments, using <code>*</code> for any value
+you don’t want to change. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Functions:</h4>
+
+
+<p><a name=f_mywindow></a><code>@MYWINDOW</code> — Returns
+information about TCC’s display window. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@MYWINDOW[</code><span class=optname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>n</span></td><td>which information to return: </td></tr>
+	<tr><td></td><td>    <code>0</code> - the window’s handle in hex with a leading <code>0x</code></td></tr>
+	<tr><td></td><td>    <code>1</code> - the window’s handle in hex, no leading <code>0x</code></td></tr>
+	<tr><td></td><td>    <code>2</code> - the window’s handle in decimal</td></tr>
+	<tr><td></td><td>    <code>3</code> - the display window type as an integer</td></tr>
+	<tr><td></td><td>    <code>4</code> - the display window type as a string</td></tr>
+	<tr><td></td><td>    <code>8</code> - the window’s current title</td></tr>
+	<tr><td></td><td>    <code>9</code> - the window’s class name</td></tr>
+	<tr><td></td><td>    <code>10</code> - the window’s position, as per <code>@WINPOS</code>:  <span class=optname>top</span><code>,</code><span class=optname>left</span><code>,</code><span class=optname>bottom</span><code>,</code><span class=optname>right</span> </td></tr>
+	<tr><td></td><td>    <code>11</code> - the window’s size, as per <code>@WINSIZE</code>:  <span class=optname>height</span><code>,</code><span class=optname>width</span> </td></tr>
+	<tr><td></td><td>    <code>12</code> - the window’s size and position, in <!--hpage window--><a href="E:\Utils\#window_pos"><code>POS=</code> args order</a>:  <span class=optname>left</span><code>,</code><span class=optname>top</span><code>,</code><span class=optname>width</span><code>,</code><span class=optname>height</span> </td></tr>
+	<tr><td></td><td>    <code>13</code> - the window’s current state, as per <code>@WINSTATE</code></td></tr>
+	<tr><td></td><td>    <code>14</code> - the window’s state, as a string</td></tr>
+	<tr><td></td><td>    <code>15</code> - nonzero if the window is currently <a href="E:\Utils\#traymgr">in the tray</a>, zero if not</td></tr>
+	<tr><td></td><td>    <code>16</code> - the monitor on which the window appears</td></tr>
+	<tr><td></td><td>    <code>17</code> - the process ID (PID) of the program that created the window (hex, with a leading <code>0x</code>)</td></tr>
+	<tr><td></td><td>    <code>18</code> - the thread ID of the thread that created the window (hex, with a leading <code>0x</code>)</td></tr>
+	<tr><td></td><td>    <code>19</code> - the filename of the program that created the window</td></tr>
+	<tr><td></td><td>    <code>20</code> - the name of the window’s virtual desktop</td></tr>
+	<tr><td></td><td>    <code>21</code> - the GUID of the window’s virtual desktop</td></tr>
+	<tr><td></td><td>    <code>22</code> - the handle of the tray manager’s window, or <code>0</code> if it is not loaded</td></tr>
+	<tr><td></td><td>    <code>23</code> - the class name of the console window (<code>ConsoleWindowClass</code> or <code>PseudoConsoleWindow</code>) </td></tr>
+	<!-- <tr><td></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<code> </code>&nbsp;- </td></tr> -->
+</table>
+
+<p>If <span class=optname>n</span> is not specified, it defaults to 0. </p>
+
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_vdesk></a><code>@VDESK</code> — Returns the name
+or GUID of a virtual desktop. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@VDESK[</code><span class=reqname>index</span><code>,</code><span class=optname>info</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>index</span></td><td>the number of the virtual desktop; 0-based </td></tr>
+	<tr><td><span class=optname>info</span></td><td>which info to return: </td></tr>
+	<tr><td></td><td>    <code>0</code> - the virtual desktop’s name (default) </td></tr>
+	<tr><td></td><td>    <code>1</code> - the virtual desktop’s GUID </td></tr>
+</table>
+
+<p>This feature requires Windows 10 or later.  If virtual desktops are not supported,
+if <span class=reqname>index</span> ≥ <a href="E:\Utils\#v_vdesks"><code>_VDESKS</code></a>,
+or if any error occurs, this function returns an empty string. </p>
+
+<p>If the specified virtual desktop does not have a name, <code>@VDESK</code> returns
+a default name of “<code>Desktop <i>n</i></code>”. </p>
+
+<br>
+<p class=example><code>for /l %i in ( 0, 1, %@dec[%_vdesks] ) echo %i:  %@vdesk[%i]  %@vdesk[%i,1]<br>
+</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>New Variables:</h4>
+
+
+<p><a name=v_contype></a><code>_CONTYPE</code> — Returns the console type
+(Console or ConPTY). </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_CONTYPE</code></p>
+
+<p>This variable returns either <code>Console</code> or <code>ConPTY</code>,
+depending on the console type. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_vdesk></a><code>_VDESK</code> — Returns the name of
+the current virtual desktop. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_VDESK</code></p>
+
+<p>This feature requires Windows 10 or later.  If virtual desktops are not supported
+or any other error occurs, <code>_VDESK</code> returns an empty string. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_vdesks></a><code>_VDESKS</code> — Returns the number
+of virtual desktops found. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_VDESKS</code></p>
+
+<p>This feature requires Windows 10 or later.  If virtual desktops are not supported
+or any other error occurs, <code>_VDESKS</code> returns <code>0</code>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_wintermexe></a><code>_WINTERMEXE</code> — Returns the
+filename used to start Windows Terminal. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_WINTERMEXE</code></p>
+
+<p>This feature requires Windows 10 or later.  If TCC is not running in 
+Windows Terminal, <code>_WINTERMEXE</code> returns an empty string. </p>
+
+<p class=smaller><span class=note>•  Note:</span>  I may change
+or remove this variable in a later version. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_wintermver></a><code>_WINTERMVER</code> — Returns the
+version of Windows Terminal. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%_WINTERMVER</code></p>
+
+<p>The version number will be returned as four values separated by periods. </p>
+
+<p>This feature requires Windows 10 or later.  If TCC is not running in 
+Windows Terminal, <code>_WINTERMVER</code> returns <code>0</code>. </p>
+
+<p class=smaller><span class=note>•  Note:</span>  I may change
+or remove this variable in a later version. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=traymgr></a>The Tray Manager:</h4>
+
+<p><span class=filename>CDTrayMgr.exe</span> is a separate program which
+manages icons in the system tray.  It’s only needed if you use the
+<code>TRAY</code> verb in <a href="E:\Utils\#activate"><code>ACTIVATE</code></a> or
+<a href="E:\Utils\#window"><code>WINDOW</code></a>.  The tray manager creates icons
+in the tray, monitors windows and automatically removes the icons for any
+which close, and receives messages from its tray icons.  When the user
+double-clicks on one of its tray icons, the tray manager restores the window
+and removes the icon.  <span class=filename>CDTrayMgr.exe</span> unloads
+itself automatically after ten minutes of disuse.  A single instance of
+<span class=filename>CDTrayMgr.exe</span> can be shared between multiple
+shells. </p>
+
+<p><span class=filename>CDTrayMgr.exe</span> needs to run elevated, so
+TCC must be running elevated for <code>TRAY</code> to work. </p>
+
+<p>You can put <span class=filename>CDTrayMgr.exe</span> in the plugin’s
+directory, in Take Command’s install directory, or in any directory in
+the search path. </p>
+
+<p><span class=filename>CDTrayMgr.exe</span>’s own <a target=_blank href="https://www.flaticon.com/free-icon/tray_7285121">tray icon</a>
+is by <a target=_blank href="https://www.flaticon.com/authors/popo2021">popo2021</a>.
+I found it at <a target=_blank href="https://flaticon.com/">https://flaticon.com</a>. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>0.99.4.0</td><td nowrap>2026-10-23</td><td class=changes>Changed the way the help text is displayed 
+			in ConPTY windows/tabs. </td></tr>
+	<tr><td>0.99.3.0</td><td nowrap>2026-04-07</td><td class=changes>Added <a href="E:\Utils\#f_mywindow"><code>@MYWINDOW[23]</code></a>,
+			which returns the class name of the console window.  Added <a href="E:\Utils\#v_contype"><code>_CONTYPE</code></a> which returns
+			the same info, but as “Console” or “ConPTY”. </td></tr>
+	<tr><td>0.99.2.2</td><td nowrap>2026-03-01</td><td class=changes>Fix for buggy error return in 
+			<a href="E:\Utils\#f_mywindow"><code>@MYWINDOW</code></a>. </td></tr>
+	<tr><td>0.99.2.1</td><td nowrap>2026-02-26</td><td class=changes>Tweaks for Take Command v36:  Check for TCC
+			running in a ConPTY tab. <br>
+			<a href="E:\Utils\#f_mywindow"><code>@MYWINDOW[8]</code></a>:  Replace any percent signs in the returned
+			string with fullwidth percents (to prevent recursive expansion if this function is called from the
+			command line, and the command is displayed in the title bar…). </td></tr>
+	<tr><td>0.99.2</td><td nowrap>2025-06-26</td><td class=changes>Adds a new <code>PARK</code> verb to move and resize a 
+			window to a monitor’s corner or edge, all in one swell foop. <br>
+			Changed _wcsupr_s() to CharUpperW() throughout. </tr>
+	<tr><td>0.99.1</td><td nowrap>2025-04-10</td><td class=changes>Calls _wintermver() directly, not via ExpandVariables(). </td></tr>
+	<tr><td>0.99.0</td><td nowrap>2025-04-09</td><td class=changes>Added <code>TRAYLIST</code> to dump windows managed by
+			<span class=filename>CDTrayMgr.exe</span>.  Documented <code>VDESKLIST</code>, which has been there for a
+			while now but never made it into the docs. <br>
+			Added <code><a href="E:\Utils\#f_mywindow">@MYWINDOW</a>[22]</code> to return <span class=filename>CDTrayMgr.exe</span>’s
+			window, or 0 if it isn’t found. <br>
+			<code>WINDOW INFO</code>:  Also show version information for the program file, if available. </td></tr>
+	<tr><td>0.98.9</td><td nowrap>2024-12-06</td><td class=changes>Adds <code>/M</code>, which attempts to center the mouse on
+			the window (undocumented, and may go bye-bye).  Adds <code><a href="E:\Utils\#activate">ACTIVATE</a> /P</code>, which tries to
+			match the “title” against program names. </td></tr>
+	<tr><td>0.98.8.3</td><td nowrap>2024-12-03</td><td class=changes>AW_FindWindowByTitleOrPid():  save the console
+			window’s title before a title search, and restore it afterwards. </td></tr>
+	<tr><td>0.98.8.2</td><td nowrap>2024-12-02</td><td class=changes><code>WINDOW TRANS=</code><span class=optname>n</span>: 
+			do not screw up color-key transparency. </td></tr>
+	<tr><td>0.98.8.1</td><td nowrap>2024-11-27</td><td class=changes>Changes to <a href="E:\Utils\#v_wintermver"><code>_WINTERMVER</code></a>. </td></tr>
+	<tr><td>0.98.8</td><td nowrap>2024-11-26</td><td class=changes>Bug fixes; minor code and feature improvements. </td></tr>
+	<tr><td>0.98.7.5</td><td nowrap>2024-11-25</td><td class=changes>Added support for window on all vdesktops. </td></tr>
+	<tr><td>0.98.7.4</td><td nowrap>2024-11-19</td><td class=changes>Adds <a href="E:\Utils\#v_wintermexe"><code>_WINTERMEXE</code></a>
+			and <a href="E:\Utils\#v_wintermver"><code>_WINTERMVER</code></a>, on a trial basis.  I may change or remove these
+			in a later version.  <code>_WINTERMVER</code> in particular is a vile, steaming crock of shit. </td></tr>
+	<tr><td>0.98.7.3</td><td nowrap>2024-11-13</td><td class=changes>Adds <code>WS_EX_NOACTIVATE</code> to the Horrible
+			window styles.  No changes to the code. </td></tr>
+	<tr><td>0.98.7.2</td><td nowrap>2024-11-08</td><td class=changes>Corrrected the value for <code>PLUGIN_BUFFER_MAX</code>
+			(it’s really 32K bytes, not 32K characters.)  As this define is not currently used anywhere in this
+			plugin, the change does not fix any actual bug. </td></tr>
+	<tr><td>0.98.7.1</td><td nowrap>2024-11-01</td><td class=changes>Added a perfectly Horrible workaround to get the current
+			VDesk guid on Windows 10 systems, where is it not available via the registry. <br>
+			Added <a href="E:\Utils\#f_mywindow"><code>@MYWINDOW[21]</code></a> to return the GUID of the window’s current
+			virtual desktop. </td></tr>
+	<tr><td>0.98.7</td><td nowrap>2024-10-22</td><td class=changes>Added <a href="E:\Utils\#v_vdesk"><code>_VDESK</code></a>, 
+			<a href="E:\Utils\#v_vdesks"><code>_VDESKS</code></a>, and <a href="E:\Utils\#f_vdesk"><code>@VDESK</code></a>. </td></tr>
+	<tr><td>0.98.6.1</td><td nowrap>2024-10-02</td><td class=changes>ParseInt() now supports octal with a leading <code>0o</code>. </td></tr>
+	<tr><td>0.98.6</td><td nowrap>2024-09-18</td><td class=changes>Added <!--hpage window--><a href="E:\Utils\#window_vdesktop"><code>WINDOW VDESKTOP</code></a>,
+			only for the very limited case of TCC’s own console window.  This will not work for Take Command,
+			Windows Terminal, Console2, <i>etc.</i> windows, or in cases where TCC does not own the console window,
+			<i>e.g.</i> when TCC is a child process of the console window’s owner. </td></tr>
+	<tr><td>0.98.5.1</td><td nowrap>2024-09-17</td><td class=changes><code>WINDOW INFO</code> / <code>ACTIVATE INFO</code>
+			now quotes the virtual desktop name. <br>
+			<code>ALIGN</code> with no monitor specified now aligns the window on whichever monitor it currently occupies. </td></tr>
+	<tr><td>0.98.5</td><td nowrap>2024-09-16</td><td class=changes><code>CENTER</code> now centers the window
+			on its current monitor (for compatibility with TCC v33). <br>
+			<code>WINDOW INFO</code> attempts to display the name of the window’s current virtual desktop, and
+			<code>@MYWINDOW[20]</code> tries to return it. </td></tr>
+	<tr><td>0.98.4.3</td><td nowrap>2024-08-01</td><td class=changes>Added an error message for the <code>VDESKTOP</code> option.
+			I don’t believe it is possible to make this option work reliably as documented; TCC’s does not work for me.
+			Microsoft’s documented IVirtualDesktopManager is flaccid by design, and the <i>un</i>documented API seems to
+			change with each new release of Windows. </td></tr>
+	<tr><td>0.98.4.1</td><td nowrap>2024-06-07</td><td class=changes>Added info on the parent/owner window’s position and
+			size to <code>WINDOW INFO</code>. </td></tr>
+	<tr><td>0.98.4</td><td nowrap>2024-06-07</td><td class=changes>Bug fix for AW_GetProcessFilename() :  compare Windows
+			major version against 10, not zero. <br>
+			Added <code>@MYWINDOW</code> modes 17, 18, 19 to return the window’s Process ID, thread ID, and process
+			filename. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>Consider this beta software.  It may well have
+<a target=_blank href="https://en.wikipedia.org/wiki/Software_bug">issues</a>.
+Try it at your own risk.  If you find a problem, you can report it in the
+<a target=_blank href="https://www.jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+<p>MyWindow is currently licensed only for testing purposes.  I may make
+binaries and source code available under some free license once I consider
+it ready for use. </p>
+
+<!--
+<p>This plugin is &copy; Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target="_blank" href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+-->
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of this plugin from
+<a href="https://charlesdye.net/dl/mywindow.zip">https://charlesdye.net/dl/mywindow.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

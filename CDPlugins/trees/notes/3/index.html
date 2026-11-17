@@ -1,0 +1,2821 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>ISO8601 Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	BLOCKQUOTE			{ font-size: 95%; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	.bqcite				{ font-size: 95%; padding-left: 5em; padding-right: 5em; text-align: right; }
+	TABLE.biglist		{ table-layout: fixed; width: 60em; margin-left: 1em; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TD.bigheader		{ font-size: 90%; font-weight: bold; padding-top: 1em; padding-bottom: 0.3em; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; }
+	LI					{ margin-top: 2px; }
+	.weekcolheader		{ text-decoration: underline; text-align: center; padding-left: 0.5em; padding-right: 0.5em; }
+	.oldyear			{ background-color: #ddddff; text-align: right; padding-left: 0.5em; padding-right: 0.5em; }
+	.oldyearThu			{ background-color: #ddddff; text-align: right; font-weight: bold; padding-left: 0.5em; padding-right: 0.5em; }
+	.newyear			{ background-color: #bbeecc; text-align: right; padding-left: 0.5em; padding-right: 0.5em; }
+	.newyearThu			{ background-color: #bbeecc; text-align: right; font-weight: bold; padding-left: 0.5em; padding-right: 0.5em; }
+
+	@media print {
+		BODY			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#commands">Commands</a></li>
+	<li>    <a href="E:\Utils\#functions">Functions</a></li>
+	<li>    <a href="E:\Utils\#variables">Variables</a></li>
+	<li><a href="E:\Utils\#reference">Reference Information</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>ISO8601 plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.7.6     2026-11-12</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin extends Take Command’s date-handling
+<a href="E:\Utils\#functions">functions</a> to support
+<a href="E:\Utils\#fmt">new date formats</a>, including ISO 8601 week-date and
+ordinal-date formats, MS-DOS and ANSI day numbers, and offsets from today’s
+date; <a href="E:\Utils\#daterange">a larger (8,399-year), consistently enforced
+date range</a>; and more consistent validity checking of input dates.  Most
+of Take Command’s internal date-handling functions have been
+re-implemented to support this new functionality, and many new functions
+have been added to make date-handling tasks easier.  A few
+ISO 8601-related <a href="E:\Utils\#variables">internal variables</a> have been
+re-implemented in order to make them available in older versions of 4NT and
+Take Command.  This plugin also features <a href="E:\Utils\#f_pickdate">a popup date
+picker</a> for use in interactive batch files.  The plugin also includes one
+new <a href="E:\Utils\#commands">command</a> which <a href="E:\Utils\#qcal">displays a simple
+calendar</a>, and another to <a href="E:\Utils\#longyears">enforce the use of
+four-digit years</a>. </p>
+
+<p>In addition, there are several new functions to handle basic time-related math
+such as <a href="E:\Utils\#f_timeplus">adding or subtracting times</a> from a specified
+start time, reporting the <a href="E:\Utils\#f_timediff">difference</a> between two
+times, converting local times <a href="E:\Utils\#f_utcdatetime">to</a> and
+<a href="E:\Utils\#f_localdatetime">from</a> UTC time, and converting hour/minute/second
+times <a href="E:\Utils\#f_timetodec">to</a> and <a href="E:\Utils\#f_dectotime">from</a> decimal
+days. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>ISO8601.dll</span>,
+<span class=filename>ISO8601.chm</span>, and
+<span class=filename>Holidays.ini</span> to some known location on your
+hard drive.  (If you are still using the 32-bit version of Take Command, take
+<span class=filename>ISO8601-x86.dll</span> instead of
+<span class=filename>ISO8601.dll</span>.)  All three files should go in
+the same place.  Load the plugin with a <code>PLUGIN /L</code> command,
+for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\iso8601.dll</code></p>
+
+<p>If you copy these files to a subdirectory named
+<span class=filename>PlugIns</span> within your Take Command program
+directory, the plugin will be loaded automatically when TCC starts. </p>
+
+<!--endtopic-->
+
+
+<h4><a name=features></a>Plugin Features:</h4>
+
+<table class=biglist>
+
+	<tr>
+		<td colspan=5 class=bigheader>New <a href="E:\Utils\#commands">commands</a>: </td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#iso8601help"><code>ISO8601HELP</code></a></td>
+		<td><a href="E:\Utils\#longyears"><code>LONGYEARS</code></a></td>
+		<td><a href="E:\Utils\#now"><code>NOW</code></a></td>
+		<td><a href="E:\Utils\#qcal"><code>QCAL</code></a></td>
+		<td></td>
+	</tr>
+
+	<tr>
+		<td colspan=5 class=bigheader>New <a href="E:\Utils\#functions">functions</a>: </td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_century"><code>@CENTURY</code></a></td>
+		<td><a href="E:\Utils\#f_dateplus"><code>@DATEPLUS</code></a></td>
+		<td><a href="E:\Utils\#f_days"><code>@DAYS</code></a></td>
+		<td><a href="E:\Utils\#f_dectotime"><code>@DECTOTIME</code></a></td>
+		<td><a href="E:\Utils\#f_dowis"><code>@DOWIS</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_easter"><code>@EASTER</code></a></td>
+		<td><a href="E:\Utils\#f_filestamp"><code>@FILESTAMP</code></a></td>
+		<td><a href="E:\Utils\#f_holiday"><code>@HOLIDAY</code></a></td>
+		<td><a href="E:\Utils\#f_inlieu"><code>@INLIEU</code></a></td>
+		<td><a href="E:\Utils\#f_inrange"><code>@INRANGE</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_isdate"><code>@ISDATE</code></a></td>
+		<td><a href="E:\Utils\#f_isholiday"><code>@ISHOLIDAY</code></a></td>
+		<td><a href="E:\Utils\#f_istime"><code>@ISTIME</code></a></td>
+		<td><a href="E:\Utils\#f_julian"><code>@JULIAN</code></a></td>
+		<td><a href="E:\Utils\#f_leap"><code>@LEAP</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_localdatetime"><code>@LOCALDATETIME</code></a></td>
+		<td><a href="E:\Utils\#f_monthlen"><code>@MONTHLEN</code></a></td>
+		<td><a href="E:\Utils\#f_monthname"><code>@MONTHNAME</code></a></td>
+		<td><a href="E:\Utils\#f_nextdate"><code>@NEXTDATE</code></a></td>
+		<td><a href="E:\Utils\#f_nextdow"><code>@NEXTDOW</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_ord"><code>@ORD</code></a></td>
+		<td><a href="E:\Utils\#f_pickdate"><code>@PICKDATE</code></a></td>
+		<td><a href="E:\Utils\#f_roman"><code>@ROMAN</code></a></td>
+		<td><a href="E:\Utils\#f_timediff"><code>@TIMEDIFF</code></a></td>
+		<td><a href="E:\Utils\#f_timefmt"><code>@TIMEFMT</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_timeparts"><code>@TIMEPARTS</code></a></td>
+		<td><a href="E:\Utils\#f_timeplus"><code>@TIMEPLUS</code></a></td>
+		<td><a href="E:\Utils\#f_timetodec"><code>@TIMETODEC</code></a></td>
+		<td><a href="E:\Utils\#f_useconds"><code>@USECONDS</code></a></td>
+		<td><a href="E:\Utils\#f_usweek"><code>@USWEEK</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_uxtodatetime"><code>@UXTODATETIME</code></a></td>
+		<td><a href="E:\Utils\#f_utcdatetime"><code>@UTCDATETIME</code></a></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+
+	<tr>
+		<td colspan=5 class=bigheader>Enhanced <a href="E:\Utils\#functions">functions</a>: </td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_agedate"><code>@AGEDATE</code></a></td>
+		<td><a href="E:\Utils\#f_date"><code>@DATE</code></a></td>
+		<td><a href="E:\Utils\#f_dateconv"><code>@DATECONV</code></a></td>
+		<td><a href="E:\Utils\#f_datefmt"><code>@DATEFMT</code></a></td>
+		<td><a href="E:\Utils\#f_day"><code>@DAY</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_dow"><code>@DOW</code></a></td>
+		<td><a href="E:\Utils\#f_dowf"><code>@DOWF</code></a></td>
+		<td><a href="E:\Utils\#f_dowi"><code>@DOWI</code></a></td>
+		<td><a href="E:\Utils\#f_doy"><code>@DOY</code></a></td>
+		<td><a href="E:\Utils\#f_idow"><code>@IDOW</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_idowf"><code>@IDOWF</code></a></td>
+		<td><a href="E:\Utils\#f_isodowi"><code>@ISODOWI</code></a></td>
+		<td><a href="E:\Utils\#f_isoweek"><code>@ISOWEEK</code></a></td>
+		<td><a href="E:\Utils\#f_isowyear"><code>@ISOWYEAR</code></a></td>
+		<td><a href="E:\Utils\#f_makeage"><code>@MAKEAGE</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#f_makedate"><code>@MAKEDATE</code></a></td>
+		<td><a href="E:\Utils\#f_month"><code>@MONTH</code></a></td>
+		<td><a href="E:\Utils\#f_year"><code>@YEAR</code></a></td>
+		<td></td>
+		<td></td>
+	</tr>
+
+	<tr>
+		<td colspan=5 class=bigheader><a href="E:\Utils\#variables">Internal variables</a>: </td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#v_isodowi"><code>_ISODOWI</code></a></td>
+		<td><a href="E:\Utils\#v_isordate"><code>_ISORDATE</code></a></td>
+		<td><a href="E:\Utils\#v_isowdate"><code>_ISOWDATE</code></a></td>
+		<td><a href="E:\Utils\#v_isoweek"><code>_ISOWEEK</code></a></td>
+		<td><a href="E:\Utils\#v_isowyear"><code>_ISOWYEAR</code></a></td>
+	</tr>
+
+	<tr>
+		<td><a href="E:\Utils\#v_t4"><code>_T4</code></a></td>
+		<td><a href="E:\Utils\#v_tomorrow"><code>_TOMORROW</code></a></td>
+		<td><a href="E:\Utils\#v_useconds"><code>_USECONDS</code></a></td>
+		<td><a href="E:\Utils\#v_yesterday"><code>_YESTERDAY</code></a></td>
+		<td></td>
+	</tr>
+
+</table>
+
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table class=descript>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted </td></tr>
+	<tr><td><span class=reqname>bold italics</span></td><td>a required argument; a value must be supplied </td></tr>
+	<tr><td><span class=optname>regular italics</span></td><td>an optional argument </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+qcal /3 /h<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>Commands:</h4>
+
+<br>
+
+<p><a name=iso8601help></a><code>ISO8601HELP</code> — Open
+this plugin’s help file.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>ISO8601HELP</code><code> /C /F /S /S:</code><span class=optname>text</span><code> /V </code><span class=optname>topic</span></p>
+
+<table class=descript>
+	<tr><td><code>/C</code></td><td>select the ‘Contents’ tab</td></tr>
+	<tr><td><code>/F</code></td><td>select the ‘Favorites’ tab</td></tr>
+	<tr><td><code>/S</code></td><td>select the ‘Search’ tab</td></tr>
+	<tr><td><code>/S:</code><span class=optname>text</span></td><td>select the ‘Search’ tab and search for <span class=optname>text</span></td></tr>
+	<tr><td><code>/V</code></td><td>show detailed plugin version info</td></tr>
+	<tr><td><span class=optname>topic</span></td><td>the page to display</td></tr>
+</table>
+
+<p>This <code>ISO8601HELP</code> command will locate and open this plugin’s
+help file.  In most cases, the internal <code>HELP</code> command, and the
+<kbd>F1</kbd> and <kbd>Ctrl</kbd>-<kbd>F1</kbd> keys, will be more convenient.
+The main advantage to this command is that it can be used to open the help file to
+any desired topic, not only to the names of commands, functions, and variables. </p>
+
+<p>Note that any <code>/C</code> <code>/F</code> or <code>/S</code> must
+precede the <span class=optname>topic</span> on the command line.  (This
+command has a very simple-minded parser.) </p>
+
+<p>• <span class=note>New</span>: This command does not exist
+in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=longyears></a><code>LONGYEARS</code> — Enforce the
+use of four-digit years in local date formats 0-3, and optionally in date
+entry.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>LONGYEARS</code><code> OFF </code><span class=bnf>|</span><code> ON </code><span class=bnf>|</span><code> STRICT</code></p>
+
+<p>This command affects the way years are returned or displayed in
+<a href="E:\Utils\#fmt">the local date formats, 0-3.</a>  When
+<code>LONGYEARS</code> is <code>OFF</code>, dates are returned with
+two-digit years.  When it is <code>ON</code>, dates are shown with full
+four-digit years, making date formats 0 through 3 functionally the same as
+formats 256 through 259.  <code>STRICT</code> works the same as
+<code>ON</code>, but also requires the use of four-digit years in input
+dates.</p>
+
+<p><code>LONGYEARS</code> defaults to <code>OFF</code> for compatibility
+with long-standing Take Command / 4NT behavior.  Type
+<code>LONGYEARS</code> with no parameters to see the current setting.</p>
+
+<p>• <span class=note>New</span>: This command does not exist
+in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=now></a><code>NOW</code> — Write the current date and time to stdout. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>NOW</code><code> /C /F:"</code><span class=optname>format</span><code>" /M /U </code><span class=optname>comment</span></p>
+
+<table class=descript>
+	<tr><td><code>/C</code></td><td>show continuously (not redirectable)</td></tr>
+	<tr><td><code>/F:"</code><!--hpage f_datefmt--><a href="E:\Utils\#tokens"><span class=optname>format</span></a><code>"</code></td><td>format string, as in <!--hpage f_datefmt--><a href="E:\Utils\#tokens"><code>@DATEFMT</code></a>; quote it and double all percent signs</td></tr>
+	<tr><td><code>/M</code></td><td>show milliseconds</td></tr>
+	<tr><td><code>/U</code> or <code>/UTC</code></td><td>Coordinated Universal Time</td></tr>
+	<tr><td><span class=optname>comment</span></td><td>text to include after the date and time</td></tr>
+	<!-- <tr><td><code>/</code></td><td> </td></tr> -->
+</table>
+
+<p><code>NOW</code> writes the current date and time, with an optional
+comment, to standard output.  It can be redirected to a log file.  If you
+do not specify a format string, the date will be in ISO 8601 format, with a
+24-hour time. </p>
+
+<p>With <code>/C</code>, <code>NOW</code> displays the current date and time
+to the screen, repeating until you press a key.  This mode cannot be
+redirected. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=qcal></a><code>QCAL</code> — Display a
+quick-and-dirty calendar.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>QCAL </code><span class=bnf>[</span><span class=optname>date</span><span class=bnf> | [</span><span class=optname>month</span><span class=bnf>] [</span><span class=optname>year</span><span class=bnf>]]</span><code> /3 /6 /C:</code><span class=optname>country</span><code> /D /E /H /H:</code><span class=optname>date</span><code>,</code><span class=optname>date…</span><code> /I /L /N /P /W:</code><span class=optname>dow</span><code> /Y</code></p>
+
+<table class=descript>
+<tr><td><code>/3</code></td><td>display a three-month calendar</td></tr>
+	<tr><td><code>/6</code></td><td>display a six-month calendar</td></tr>
+	<tr><td><code>/C:</code><span class=optname>country</span></td><td>specify a section in <a href="E:\Utils\#inifile">Holidays.ini</a>; implies <code>/H</code></td></tr>
+	<tr><td><code>/D</code></td><td>disable color</td></tr>
+	<tr><td><code>/E</code></td><td>display English names for months and days of the week</td></tr>
+	<tr><td><a href="E:\Utils\#qcal_sw_h"><code>/H</code></a></td><td>highlight annual holidays</td></tr>
+	<tr><td><a href="E:\Utils\#qcal_sw_h"><code>/H:</code><span class=optname>date</span><span class=bnf>…</span></a></td><td>highlight the specified holidays</td></tr>
+	<tr><td><a href="E:\Utils\#qcal_sw_i"><code>/I</code></a></td><td>display <a href="E:\Utils\#isoweeks">ISO week numbers</a></td></tr>
+	<tr><td><code>/L</code></td><td>list holiday names; use in combination with <code>/H</code> or <code>/C</code></td></tr>
+	<tr><td><code>/N</code></td><td>don’t highlight today’s date</td></tr>
+	<tr><td><code>/P</code></td><td>pause after each screenful</td></tr>
+	<tr><td><code>/W:</code><span class=optname>dow</span></td><td><a href="E:\Utils\#names">day of the week</a> in the left column (1 = Monday, 2 = Tuesday, etc.; or MON … SUN)</td></tr>
+	<tr><td><code>/Y</code></td><td>display a one-year calendar</td></tr>
+	<!-- <tr><td><code>/Z:</code><span class="optname">aabbccddee</span></td><td>set highlight colors</td></tr> -->
+</table>
+
+<p>You may specify any one of:  a full date, in
+<a href="E:\Utils\#infmt"> any input date format supported by this
+plugin</a>; a month (1 - 12, or JAN - DEC), and/or a four-digit
+year; or nothing, in which case <code>QCAL</code> will default to today’s
+date.  If only a year is specified, then <code>QCAL</code> will display a
+calendar for the entire year; otherwise, it will show a one-month calendar
+by default.  If a month is specified without a year, <code>QCAL</code> will
+assume the current year if the specified month is greater than or equal to
+the current month, or next year if the specified month is less than the
+current month.</p>
+
+<p>If you want to specify a date using its MS-DOS day number, prefix a
+<code>+</code> or <code>-</code> sign; otherwise <code>QCAL</code> may
+misinterpret it as a month or a year.</p>
+
+<p><a name=qcal_sw_i></a>If <code>/I</code> is specified, <code>QCAL</code>
+will automatically put Mondays on the left, unless directed otherwise with
+<code>/W:</code><span class=optname>dow</span>.  The
+<a href="E:\Utils\#isoweeks">week numbers shown</a> are for the
+leftmost valid date in each row — this is tolerably obvious
+when Mondays are on the left, but less intuitive in other arrangements.</p>
+
+<p><a name=qcal_sw_h></a><code>/H:</code><span class=optname>date</span><span class=bnf>…</span>
+allows you to specify a list of dates to highlight.  Dates may be entered
+in <a href="E:\Utils\#infmt">any supported format</a>; separate them with commas or
+semicolons.  You can use functions like
+<a href="E:\Utils\#f_holiday"><code>@HOLIDAY</code></a> or
+<a href="E:\Utils\#f_easter"><code>@EASTER</code></a> to compute the dates.  If
+<code>/H</code> is typed without any dates, QCAL will attempt to read a list of
+local annual holidays from <a href="E:\Utils\#inifile">Holidays.ini</a>; failing that, a
+<a href="E:\Utils\#defholidays">built-in list of common United States holidays</a>
+will be used by default.</p>
+
+<p>Note that <code>/H</code> and <code>/H:</code><span class=optname>date</span><span class=bnf>…</span>
+are basically two different options.  The first reads a default set of annual
+holidays from a list; the second highlights specific dates listed on the command
+line.  You can use either option alone, or combine them to highlight the default
+holidays <em>and</em> the dates specified on the command line.</p>
+
+<!--
+<p>Normally, <code>QCAL</code> uses default colors for highlighting dates
+of interest.  You can specify your own colors and override the defaults
+with <code>/Z:</code><span class="optname">aabbccddee</span>.  The argument
+is ten hexadecimal digits, specifying five colors (each color is two
+digits, background first.)  The five colors are: <span class="optname">aa</span>
+the highlight color, used to mark either today&rsquo;s date or the
+<span class="optname">date</span> on the command line;
+<span class="optname">bb</span> the Sunday highlight color, used if today&rsquo;s
+date or the command-line <span class="optname">date</span> happens to fall
+on a Sunday; <span class="optname">cc</span> the Sunday color, used to
+mark Sundays; <span class="optname">dd</span> the holidays color, used with
+<code>/H</code>; and finally <span class="optname">ee</span> to color the
+week numbers if <code>/I</code> is used. </p>
+-->
+
+<p><code>QCAL</code>’s output may be piped or redirected.</p>
+
+<p class=xref>See also:  <a href="E:\Utils\#defholidays">List of default holidays</a>. </p>
+
+<p>• <span class=note>New</span>: This command does not exist
+in Take Command.</p>
+<!--blank-->
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>Functions:</h4>
+
+<br>
+<p><a name=f_agedate></a><code>@AGEDATE</code> — Converts
+an NTFS file age into a date and time.  The returned date and time are
+separated with a comma.  The date may be returned in
+<a href="E:\Utils\#fmt">any output date format supported by this
+plugin.</a>  If no date format is specified, ISO 8601 yyyy-mm-dd format is
+used by default. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@AGEDATE[</code><span class=reqname>age</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>tfmt</span><code>,</code><span class=optname>opt</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>age</span></td><td>the number of 100-ns ticks since midnight, January 1, 1601 (Gregorian calendar)</td></tr>
+	<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the date</a></td></tr>
+	<tr><td><span class=optname>tfmt</span></td><td><a href="E:\Utils\#tfmt">the format in which to return the time</a>; defaults to 1408 (24-hour, with milliseconds)</td></tr>
+	<tr><td><span class=optname>opt</span></td><td>set to 1 to use <code>T</code> as the date-time separator character, instead of a comma</td></tr>
+</table>
+
+<p>The <span class=reqname>age</span> is the format used in NTFS file stamps,
+but it might be used for any event within the supported date range. </p>
+
+<p>The <span class=optname>tfmt</span> parameter may be 0 to return
+the time in 24-hour format, or 1 - 12 for a variety of 12-hour formats.
+Add 128 to include seconds in the output time; add 256 to include milliseconds. </p>
+
+<p>• <span class=note>Incompatibility</span>:  Unlike most of
+Take Command’s built-in date functions, the native <code>@AGEDATE</code>
+allows a very wide (but undocumented) range of dates.  My replacement
+<code>@AGEDATE</code> function supports
+<a href="E:\Utils\#daterange">the same range of dates</a> as all
+other functions in this plugin.  <a href="E:\Utils\#daterange">Ages
+corresponding to dates after the year 9999</a> will fail with an error
+message.</p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_makeage"><code>@MAKEAGE</code></a>,
+which performs the reverse function. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_century></a><code>@CENTURY</code> — Returns the
+century number for a date or for a year. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@CENTURY[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>date</span></td><td>a date, or a four-digit year; defaults to today’s date</td></tr>
+	<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+	<tr><td><span class=optname>flags</span></td><td><code>1</code> - append ordinal suffix, <code>2</code> - as a roman numeral</td></tr>
+</table>
+
+<p>This function uses the convention that centuries begin with years ending in 01.
+The year 2000 was the last year of the 20<sup>th</sup> century, and 2001 began
+the 21<sup>st</sup>. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_date></a><code>@DATE</code> — Converts the
+specified date into an MS-DOS day number, with 0 being January 1, 1980.  The
+date argument may be in <a href="E:\Utils\#infmt">any input date format supported by
+this plugin</a>, and must be a valid date
+<a href="E:\Utils\#daterange">within the supported range.</a>  If
+the date is before 1980, the value returned will be negative.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DATE[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to convert; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_makedate"><code>@MAKEDATE</code></a>,
+which performs the reverse function. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_dateconv></a><code>@DATECONV</code> — Converts
+a date from one format to another.  The date may be in <a href="E:\Utils\#infmt">any input
+date format supported by this plugin</a>, and it may be <a href="E:\Utils\#fmt">converted
+to any output format.</a>  It must be a valid date, and fall within
+<a href="E:\Utils\#daterange">the supported date range.</a>  If no output format is
+specified, it defaults to the local format.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DATECONV[</code><span class=reqname>date</span><code>,</code><span class=optname>infmt</span><code>,</code><span class=optname>outfmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>date</span></td><td>the date to convert</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous input dates</td></tr>
+<tr><td><span class=optname>outfmt</span></td><td><a href="E:\Utils\#fmt">the output date format</a> in which the date should be returned</td></tr>
+</table>
+
+<p>• <span class=note>Note</span>:  If you specify <span class=optname>infmt</span>
+but not <span class=optname>outfmt</span>, then <span class=optname>infmt</span>
+will be used for both roles:  to interpret ambiguous input dates and to
+specify the output format.</p>
+
+<p>• <span class=note>Note</span>:  This function does not
+exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_datefmt></a><code>@DATEFMT</code> — Writes a date and time
+using a format string. </p>
+
+<div class=subnav>
+<ul>
+	<li><a href="E:\Utils\#dateentry">Date and Time</a></li>
+	<li><a href="E:\Utils\#tokens">Tokens</a></li>
+	<li><a href="E:\Utils\#modifiers">Modifiers</a></li>
+	<li><a href="E:\Utils\#escapes">Escapes</a></li>
+</ul>
+</div>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DATEFMT[</code><span class=reqname>date</span> <span class=optname>time</span><code class=req>,</code><span class=reqname>format</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>date</span> <span class=optname>time</span></td><td>the date and time to format</td></tr>
+	<tr><td><a href="E:\Utils\#tokens"><span class=reqname>format</span></a></td><td><a href="E:\Utils\#tokens">string with format specifiers</a></td></tr>
+</table>
+
+<p>Enter the date in ISO 8601 format, and the time in 24-hour format.  Use
+an asterisk for the current date and time.  The time is optional.  If you
+specify a date without a time, the default time is midnight. </p>
+
+<p>The supported range of dates is 1601-01-01 through 9999-12-31. </p>
+
+<br><a name=dateentry></a>
+<table class=descript>
+	<tr><th colspan=2>Enter the date as:</th></tr>
+	<tr><td><span class=optname>yyyy</span><code>-</code><span class=optname>mm</span><code>-</code><span class=optname>dd</span></td><td>ISO 8601 format</td></tr>
+	<tr><td><span class=optname>yyyy</span><code>-W</code><span class=optname>ww</span><code>-</code><span class=optname>d</span></td><td>ISO 8601 week-day format</td></tr>
+	<tr><td><span class=optname>yyyy</span><code>-</code><span class=optname>nnn</span></td><td>ISO 8601 ordinal format</td></tr>
+	<tr><td><code>+0</code></td><td>today</td></tr>
+	<tr><td><code>+1</code></td><td>tomorrow</td></tr>
+	<tr><td><code>+2</code></td><td>the day after tomorrow</td></tr>
+	<tr><td><code>-1</code></td><td>yesterday</td></tr>
+	<tr><td><code>-2</code></td><td>the day before yesterday, <em>etc.</em></td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><th colspan=2>Enter the time as:</th></tr>
+	<tr><td><span class=optname>hh</span><code>:</code><span class=optname>mm</span><code>:</code><span class=optname>ss</span><code>.</code><span class=optname>ddd</span></td><td>24-hour format, using only the separators shown</td></tr>
+	<tr><td><span class=optname>hh</span><code>:</code><span class=optname>mm</span><code>:</code><span class=optname>ss</span></td><td>milliseconds are optional</td></tr>
+	<tr><td><span class=optname>hh</span><code>:</code><span class=optname>mm</span></td><td>seconds and milliseconds are optional</td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><th colspan=2>Optionally followed by:</th></tr>
+	<tr><td><code>Z</code></td><td>to indicate Coordinated Universal Time</td></tr>
+	<tr><td> </td><td>   (otherwise it’s local)</td></tr>
+	<tr><td> </td><td> </td></tr>
+	<tr><th colspan=2>Or else:</th></tr>
+	<tr><td><code>*</code></td><td>for the current date and time</td></tr>
+	<tr><td><code>**</code></td><td>for the current date and time UTC</td></tr>
+</table>
+
+
+<br>
+<p><a name=tokens></a>The <span class=reqname>format</span> string may include: </p>
+
+<table class=descript>
+	<tr class=topsticky><th>Token:</th><th><a href="E:\Utils\#note_hash">#</a></th><th><a href="E:\Utils\#note_roman">O</a></th><th>Expands to:</th><th>Example:</th></tr>
+	<tr><td><code>%A</code></td><td> </td><td> </td><td>local day-of-the-week name, full</td><td>Saturday</td></tr>
+	<tr><td><code>%a</code></td><td> </td><td> </td><td>local day-of-the-week name, abbreviated</td><td>Sat</td></tr>
+	<tr><td><code>%B</code></td><td> </td><td> </td><td>local month name, full</td><td>November</td></tr>
+	<tr><td><code>%b</code></td><td> </td><td> </td><td>local month name, abbreviated</td><td>Nov</td></tr>
+	<tr><td><code>%C</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>century (year / 100)</td><td>19</td></tr>
+	<tr><td><code>%c</code></td><td> </td><td> </td><td>local short date and time, as per Control Panel</td><td>11/5/1955 6:15:00 AM</td></tr>
+	<tr><td><code>%#c</code></td><td> </td><td> </td><td>local long date and time, as per Control Panel</td><td>Saturday, November 5, 1955 6:15:00 AM</td></tr>
+	<tr><td><code>%D</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>date in US format; same as %m/%d/%y</td><td>11/05/55</td></tr>
+	<tr><td><code>%d</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>day of the month (integer)</td><td>05</td></tr>
+	<tr><td><code>%e</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>day of the month (leading space if 1 digit)</td><td> 5</td></tr>
+	<tr><td><code>%F</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>date in ISO 8601 format, %Y-%m-%d</td><td>1955-11-05</td></tr>
+	<tr><td><code>%G</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>ISO 8601 week-numbering year <a href="E:\Utils\#note_1"><sup>1</sup></a></td><td>1955</td></tr>
+	<tr><td><code>%g</code></td><td> </td><td> </td><td>last two digits of ISO week-numbering year <a href="E:\Utils\#note_1"><sup>1</sup></a></td><td>55</td></tr>
+	<tr><td><code>%H</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>hour (24-hour format)</td><td>06</td></tr>
+	<tr><td><code>%h</code></td><td> </td><td> </td><td>local month name, abbreviated (same as %b)</td><td>Nov</td></tr>
+	<tr><td><code>%I</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>hour (12-hour format)</td><td>06</td></tr>
+	<tr><td><code>%J</code></td><td> </td><td> </td><td>day number (1 = January 1, 1601)</td><td>129604</td></tr>
+	<tr><td><code>%j</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>day of the year</td><td>309</td></tr>
+	<tr><td><code>%K</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>day of the week, 1 (Sunday) — 7 (Saturday)</td><td>7</td></tr>
+	<tr><td><code>%k</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>hour (24-hour format, leading space if 1 digit)</td><td> 6</td></tr>
+	<tr><td><code>%L</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>milliseconds</td><td>000</td></tr>
+	<tr><td><code>%l</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>hour (12-hour format, leading space if 1 digit)</td><td> 6</td></tr>
+	<tr><td><code>%M</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>minute (integer)</td><td>15</td></tr>
+	<tr><td><code>%m</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>month (integer)</td><td>11</td></tr>
+	<tr><td><code>%N</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>conventional century: (year + 99) / 100</td><td>20</td></tr>
+	<tr><td><code>%n</code></td><td> </td><td> </td><td>newline character</td><td> </td></tr>
+	<tr><td><code>%P</code></td><td> </td><td> </td><td>local AM or PM indicator (lowercase)</td><td>am</td></tr>
+	<tr><td><code>%p</code></td><td> </td><td> </td><td>local AM or PM indicator</td><td>AM</td></tr>
+	<tr><td><code>%Q</code></td><td> </td><td> </td><td>ISO year-day format; same as <code>%Y-%j</code></td><td>1955-309</td></tr>
+	<tr><td><code>%#Q</code></td><td> </td><td> </td><td>ISO week-day format; same as <code>%G-W%V-%u</code></td><td>1955-W44-6</td></tr>
+	<tr><td><code>%R</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>time in 24-hour format, without seconds</td><td>06:15</td></tr>
+	<tr><td><code>%r</code></td><td> </td><td> </td><td>time in 12-hour format</td><td>06:15:00 AM</td></tr>
+	<tr><td><code>%S</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>seconds (integer)</td><td>00</td></tr>
+	<tr><td><code>%s</code></td><td> </td><td> </td><td>seconds after the Unix epoch</td><td>-446726700</td></tr>
+	<tr><td><code>%T</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>time in 24-hour format</td><td>06:15:00</td></tr>
+	<tr><td><code>%t</code></td><td> </td><td> </td><td>tab character</td><td> </td></tr>
+	<tr><td><code>%U</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>Sunday-based week number <a href="E:\Utils\#note_2"><sup>2</sup></a></td><td>44</td></tr>
+	<tr><td><code>%u</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>ISO 8601 day of the week <a href="E:\Utils\#note_1"><sup>1</sup></a></td><td>6</td></tr>
+	<tr><td><code>%V</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td><a href="E:\Utils\#note_roman">✓</a></td><td>ISO 8601 week number <a href="E:\Utils\#note_1"><sup>1</sup></a></td><td>44</td></tr>
+	<tr><td><code>%v</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>date in VMS format; same as %e-%b-%Y</td><td> 5-Nov-1955</td></tr>
+	<tr><td><code>%W</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>Monday-based week number <a href="E:\Utils\#note_2"><sup>2</sup></a></td><td>44</td></tr>
+	<tr><td><code>%w</code></td><td> </td><td> </td><td>day of the week, 0 (Sunday) — 6 (Saturday)</td><td>6</td></tr>
+	<tr><td><code>%X</code></td><td> </td><td> </td><td>time in local format, as per Control Panel</td><td>6:15:00 AM</td></tr>
+	<tr><td><code>%#X</code></td><td> </td><td> </td><td>time in local 24-hour format</td><td>06:15:00</td></tr>
+	<tr><td><code>%x</code></td><td> </td><td> </td><td>date in local short format, as per Control Panel</td><td>11/5/1955</td></tr>
+	<tr><td><code>%#x</code></td><td> </td><td> </td><td>date in local long format, as per Control Panel</td><td>Saturday, November 5, 1955</td></tr>
+	<tr><td><code>%Y</code></td><td> </td><td><a href="E:\Utils\#note_roman">✓</a></td><td>year</td><td>1955</td></tr>
+	<tr><td><code>%y</code></td><td><a href="E:\Utils\#note_hash">✓</a></td><td> </td><td>year modulo 100</td><td>55</td></tr>
+	<tr><td><code>%Z</code></td><td> </td><td> </td><td>time zone name</td><td>Pacific Standard Time</td></tr>
+	<tr><td><code>%#Z</code></td><td> </td><td> </td><td>time zone one-letter code <a href="E:\Utils\#note_3"><sup>3</sup></a></td><td>U</td></tr>
+	<tr><td><code>%z</code></td><td> </td><td> </td><td>time zone offset from UTC, HHMM</td><td>-0800</td></tr>
+</table>
+
+
+<br>
+<p>Case <em>is</em> significant.  Note that you will need to double the percent signs
+to prevent variable expansion from eating them.  Other characters in <span class=reqname>format</span>
+will be included as-is. </p>
+
+<br>
+<p><a name=note_1></a><sup>1</sup>  These follow the ISO 8601 week-numbering scheme:
+every week begins on Monday, ends on Sunday, and belongs to the year in which
+the majority of its days fall.  Monday is day 1, Sunday is day 7. </p>
+
+<p><a name=note_2></a><sup>2</sup>  <code>%U</code> and <code>%W</code> count
+weeks beginning with Sunday (<code>%U</code>) or Monday (<code>%W</code>).  Week
+1 begins with the first Sunday (Monday) in the year.  If the year does not begin
+with a Sunday (Monday), then days before the first Sunday (Monday) return a
+week number of 0. </p>
+
+<p><a name=note_3></a><sup>3</sup>  <code>%#Z</code> returns a letter code
+for the time zone, ranging from <code>Y</code> for UTC-12 through <code>M</code>
+for UTC+12.  UTC returns <code>Z</code>.  If the current time zone is more than
+12 hours ahead of or behind UTC, or if it is not an even hour offset, this token
+returns <code>-</code>. </p>
+
+
+<br>
+<p><a name=modifiers></a>There are also several modifier characters which may be
+included in a token, between the percent sign and the letter: </p>
+
+<table class=descript>
+	<tr class=topsticky><th style="padding-right: 1em;">Mod:</th><th>Effect:</th><th>When returning:</th></tr>
+	<tr><td><a href="E:\Utils\#note_hash"><code>#</code></a></td><td>suppress leading zeros or spaces</td><td>numeric values</td></tr>
+	<tr><td><a href="E:\Utils\#note_roman"><code>O</code></a></td><td>roman numerals</td><td>numeric values limited to 1 — 9999</td></tr>
+	<tr><td><a href="E:\Utils\#note_ord"><code>?</code></a></td><td>append an English ordinal suffix</td><td>numeric values</td></tr>
+	<tr><td><a href="E:\Utils\#note_english"><code>E</code></a></td><td>English</td><td>names of months and days only</td></tr>
+	<tr><td><a href="E:\Utils\#note_recase"><code>!</code></a></td><td>force uppercase</td><td>strings containing letters</td></tr>
+	<tr><td><a href="E:\Utils\#note_recase"><code>,</code></a></td><td>force lowercase</td><td>strings containing letters</td></tr>
+	<tr><td><a href="E:\Utils\#note_altdigits"><code>~</code></a></td><td>use local digit forms</td><td>any value containing ASCII digits</td></tr>
+</table>
+
+
+<br>
+<p><a name=note_hash></a>If a token is marked with a ✓ in the second column,
+you can include a number sign between the percent sign and the letter to suppress leading
+zeros or spaces.  For example, <code>%H</code> may return the hour with a leading zero;
+<code>%#H</code> returns the hour with no leading zero. </p>
+
+<p>In a few cases, <em>e.g.</em> <code>%#c</code>, <code>%#X</code>, and <code>%#x</code>,
+the number sign does not suppress leading zeros but instead changes the meaning of the token.
+These special cases have separate lines in the <a href="E:\Utils\#tokens">list of tokens</a>
+above. </p>
+
+<br>
+<p><a name=note_roman></a>If a token is marked with a ✓ in the third column,
+you can add an uppercase letter <code>O</code> between the percent sign and the letter
+to return a value using Roman numerals.  This format only works with a few tokens:  those
+which return a numeric value always greater than zero and less than ten thousand.
+<code>%H</code> and <code>%k</code> are a special case, as the hour can be zero.  If
+the hour is 0 (midnight), then <code>%OH</code> and <code>%Ok</code> will return
+<code>XXIV</code>. </p>
+
+<br>
+<p><a name=note_ord></a>Occasionally you may want an ordinal number.
+Put a question mark between the percent sign and the letter to append an
+(English) ordinal suffix: </p>
+
+<table class=descript>
+	<tr><td><code>%B %d</code></td><td>March 08</td><td> </td></tr>
+	<tr><td><code>%B %?d</code></td><td>March 08th</td><td> </td></tr>
+	<tr><td><code>%B %#?d</code></td><td>March 8th</td><td>You can combine modifiers; </td></tr>
+	<tr><td><code>%B %?#d</code></td><td>March 8th</td><td>   the order is not significant. </td></tr>
+	<tr><td><code>%B %O?d</code></td><td>March VIIIth</td><td> </td></tr>
+</table>
+
+<br>
+<p><a name=note_english></a>You can get English names, rather than local names,
+for months and days with <code>E</code>.  This modifier only works with
+<code>%a</code>, <code>%A</code>, <code>%b</code>, <code>%h</code>, and
+<code>%B</code>. </p>
+
+<br>
+<p><a name=note_recase></a>If a token returns a string, you can also use an
+exclamation point to make the string all uppercase, or a comma to make it all
+lowercase: </p>
+
+<table class=descript>
+	<tr><td><code>%B</code></td><td>March</td></tr>
+	<tr><td><code>%!B</code></td><td>MARCH</td></tr>
+	<tr><td><code>%,B</code></td><td>march</td></tr>
+	<tr><td><code>%B %O,d</code></td><td>March viii</td></tr>
+</table>
+
+
+<br>
+<p><a name=note_altdigits></a>You can use the <code>~</code> modifier
+to replace ASCII digits with local digit forms.  This will only be useful
+if (A) your locale specifies alternate digits forms, and (B) your font
+includes the appropriate glyphs.  I’m not aware of any region in
+western Europe or the Americas where the first is true.  This feature
+might be useful with Arabic or Thai: </p>
+
+<p class=example><code>echo %@datefmt[*,%%#c]<br>
+الخميس، 8 مارس 2001 6:22:00 ص<br>
+<br>
+echo %@datefmt[*,%%#~c]<br>
+الخميس، ٨ مارس ٢٠٠١ ٦:٢٢:٠٠ ص<br>
+</code></p>
+
+
+<br>
+<p><a name=escapes></a>You can use backslash escapes to include special
+characters in the <span class=reqname>format</span> string: </p>
+
+<table class=descript>
+	<tr class=topsticky><th>Escape:</th><th>To insert:</th><th>Example:</th></tr>
+	<tr><td><code>\</code><span class=optname>nnn</span></td><td>octal character, up to 777</td><td><code>\101</code> → A</td></tr>
+	<tr><td><code>\x</code><span class=optname>hhhh</span></td><td>hexadecimal character, up to FFFF</td><td><code>\x41</code> → A</td></tr>
+	<tr><td><code>\a</code></td><td><code>\x07</code>  alert (bell)</td><td> </td></tr>
+	<tr><td><code>\b</code></td><td><code>\x08</code>  backspace</td><td> </td></tr>
+	<tr><td><code>\e</code></td><td><code>\x1b</code>  ASCII escape</td><td> </td></tr>
+	<tr><td><code>\f</code></td><td><code>\x0c</code>  form feed</td><td> </td></tr>
+	<tr><td><code>\n</code></td><td><code>\x0a</code>  newline</td><td> </td></tr>
+	<tr><td><code>\p</code></td><td><code>\x25</code>  percent sign</td><td> </td></tr>
+	<tr><td><code>\q</code></td><td><code>\x22</code>  double quote</td><td> </td></tr>
+	<tr><td><code>\r</code></td><td><code>\x0d</code>  carriage return</td><td> </td></tr>
+	<tr><td><code>\t</code></td><td><code>\x09</code>  tab</td><td> </td></tr>
+	<tr><td><code>\v</code></td><td><code>\x0b</code>  vertical tab</td><td> </td></tr>
+	<tr><td><code>\u</code><span class=optname>xxxx</span></td><td>Unicode character, up to U+FFFF</td><td><code>\u03a3</code> → Σ</td></tr>
+	<tr><td><code>\U</code><span class=optname>xxxxxxxx</span></td><td>Unicode character, up to U+10FFFF</td><td><code>\U1f63a</code> → 😺</td></tr>
+	<tr><td><code>\\</code></td><td><code>\x5c</code>  backslash</td><td> </td></tr>
+	<tr><td><code>\-</code></td><td>nothing (empty string)</td><td> </td></tr>
+	<tr><td><code>\</code><span class=optname>char</span></td><td>any other character:  use it literally</td><td> </td></tr>
+</table>
+
+<p>Case <em>is</em> significant.  Currently, the only valid uppercase escape
+is <code>\U</code>. </p>
+
+<!--blank-->
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_dateplus></a><code>@DATEPLUS</code> — Adds
+a number of days to the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DATEPLUS[</code><span class=reqname>date</span><code class=req>,</code><span class=reqname>offset</span><code>,</code><span class=optname>fmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>date</span></td><td>the starting date</td></tr>
+<tr><td><span class=reqname>offset</span></td><td>the number of days to add (or subtract, if negative)</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the resulting date</a>, and also to <a href="E:\Utils\#infmt">interpret ambiguous input dates</a>; defaults to 256</td></tr>
+</table>
+
+<p>The starting date may be in <a href="E:\Utils\#infmt">any input date format
+supported by this plugin</a>, and the resulting date may be reported
+<a href="E:\Utils\#fmt">in any output date format.</a>  Both the
+input date and the resulting date must fall within
+<a href="E:\Utils\#daterange">the supported date range.</a>  If no
+output format is specified, it defaults to the local date format with a
+four-digit year.</p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_day></a><code>@DAY</code> — Returns the day
+of the month (1 through 31) for the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DAY[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by
+this plugin</a>, and must be a valid date <a href="E:\Utils\#daterange">within the
+supported date range.</a></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_days></a><code>@DAYS</code> — Subtracts
+one date from another, and returns the difference in days. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DAYS[</code><span class=reqname>startdate</span><code class=req>,</code><span class=reqname>enddate</span><code>,</code><span class=optname>infmt</span><code>,</code><span class=optname>mode</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>startdate</span>, <span class=reqname>enddate</span></td><td>the dates to subtract</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+<tr><td><span class=optname>mode</span></td><td>0 for the difference, 1 for the size of the (inclusive) range; defaults to 0</td></tr>
+</table>
+
+<p>Both input dates may be in <a href="E:\Utils\#infmt">any input date format
+supported by this plugin.</a>  Both must be valid dates, and both must fall
+within <a href="E:\Utils\#daterange">the supported date range.</a></p>
+
+<p>When <span class=optname>mode</span> is 0 or not specified,
+<span class=reqname>startdate</span> is subtracted from
+<span class=reqname>enddate</span>.  If <span class=reqname>startdate</span>
+is later than <span class=reqname>enddate</span>, the result will be
+negative.  If both refer to the same date, the result will be zero.</p>
+
+<p>When <span class=optname>mode</span> is 1, the earlier date is
+subtracted from the later, and one added to the difference.  The result
+will always be positive; if <span class=reqname>startdate</span> and
+<span class=reqname>enddate</span> refer to the same date, the result
+will be 1.</p>
+
+<p>You can use this function to calculate the number of days until some
+future event by specifying <code>T</code> for the
+<span class=reqname>startdate</span>:</p>
+
+<p class=example><code>echo Only %@days[T,<a href="E:\Utils\#f_nextdate">%@nextdate</a>[12,25]] days until Christmas!<br>
+echo %@days[T,%@easter[*]] days until Easter.
+</code></p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_dectotime></a><code>@DECTOTIME</code> — Converts a
+decimal fraction of a day into hours, minutes, and seconds. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DECTOTIME[</code><span class=reqname>value</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>value</span></td><td>a decimal fraction of a day; 0 ≤ <span class=reqname>value</span> &lt; 1.0</td></tr>
+	<tr><td><span class=optname>tfmt</span></td><td><a href="E:\Utils\#tfmt">the format in which to return the time</a>; defaults to 128 (24-hour, with seconds)</td></tr>
+</table>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_timetodec"><code>@TIMETODEC</code></a>,
+which performs the opposite function. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_dow></a><code>@DOW</code> — Returns the
+abbreviated English name of the day of the week of the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DOW[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; defaults to today’s date if omitted</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format
+supported by this plugin</a>, and it must be a valid date
+<a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_dowf></a><code>@DOWF</code> — Returns the
+full English name of the day of the week of the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DOWF[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; defaults to today’s date if omitted</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format
+supported by this plugin</a>, and it must be a valid date
+<a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_dowi></a><code>@DOWI</code> — Returns the
+day of the week of the specified date as a number, 1 for Sunday through 7
+for Saturday. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DOWI[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; defaults to today’s date if omitted</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by
+this plugin</a>, and it must be a valid date <a href="E:\Utils\#daterange">within the
+supported range.</a></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_dowis></a><code>@DOWIS</code> — Returns 1 if the
+input date matches one of the specified days of the week, 0 if it doesn’t. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DOWIS[</code><span class=reqname>dowmask</span><code>,</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>dowmask</span></td><td>a <a href="E:\Utils\#names">list of days of the week</a> to test</td></tr>
+<tr><td><span class=optname>date</span></td><td>the date to examine; defaults to today’s date if omitted</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this plugin</a>,
+and it must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<p class=example><code>echo %@dowis[mon wed fri]<br>
+rem  (1 if today is a Monday, Wednesday, or Friday)<br>
+<br>
+echo %@dowis[weekend,07/04,1]<br>
+rem  (1 if the Fourth of July falls on a Saturday or Sunday this year)<br>
+</code></p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_doy></a><code>@DOY</code> — Returns the
+day of the year for the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@DOY[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>January 1 will return 1; December 31 will return 365 or 366.  The date may
+be in <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>, and it must be a valid date <a href="E:\Utils\#daterange">within the
+supported range.</a></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_easter></a><code>@EASTER</code> — Returns
+the date of Easter for the specified year. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@EASTER[</code><span class=optname>year</span><code>,</code><span class=optname>church</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>offset</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>year</span></td><td><a href="E:\Utils\#daterange">four digits, 1601 - 9999</a>; <code>*</code> next occurrence; if omitted, defaults to the current year</td></tr>
+<tr><td><span class=optname>church</span></td><td>0 = Western (Catholic, Protestant); 1 = Eastern Orthodox; defaults to 0</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the date</a>; defaults to 256</td></tr>
+<tr><td><span class=optname>offset</span></td><td>optional number of days to add to (or subtract from) Easter’s date; useful for other <a target=_blank href="https://en.wikipedia.org/wiki/Moveable_feast">moveable feasts</a></td></tr>
+</table>
+
+<p>The date may be returned in <a href="E:\Utils\#fmt">any output date format supported
+by this plugin.</a>  If no output format is specified, it defaults to the
+local date format with a four-digit year.</p>
+
+<p>If you specify an asterisk for the <span class=optname>year</span>,
+<code>@EASTER</code> will return the date of the next Easter <strong>after</strong>
+today’s date.  If you use an asterisk for <span class=optname>year</span>
+and specify an <span class=optname>offset</span>, <code>@EASTER</code>
+will return the next matching date <strong>after</strong> today’s date.</p>
+
+<p>For example:  When is the next Mardi Gras?  (It’s celebrated 47 days
+before Easter.)</p>
+
+<p class=example><code><a href="E:\Utils\#qcal">qcal</a> %@easter[*,,,-47]</code></p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_filestamp></a><code>@FILESTAMP</code> — Returns
+a file’s date and time stamps, in a consistent format and with correct
+localization.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@FILESTAMP[</code><span class=reqname>filename</span><code>,</code><span class=optname>flags</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>opt</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>filename</span></td><td>the file to examine.  It may not contain wildcards.  Quote it if it contains spaces, commas, or other significant characters.</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>indicate which time stamp to return, and how to interpret it:</td></tr>
+	<tr><td> </td><td>  <code>W</code>:  returns the last-write (modification) time stamp; the default</td></tr>
+	<tr><td> </td><td>  <code>C</code>:  returns the creation time stamp</td></tr>
+	<tr><td> </td><td>  <code>A</code>:  returns the last-access stamp; see note below</td></tr>
+	<tr><td> </td><td>  <code>L</code>:  returns the selected time stamp correctly localized; the default</td></tr>
+	<tr><td> </td><td>  <code>U</code>:  returns the selected time stamp in UTC time, not localized</td></tr>
+	<tr><td> </td><td>  <code>B</code>:  uses bad, broken, backward-compatible localization; see below</td></tr>
+	<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the date</a>; defaults to 4, ISO 8601 format</td></tr>
+	<tr><td><span class=optname>opt</span></td><td>set to 1 to use <code>T</code> as the date-time separator character, instead of an <code>@</code> sign</td></tr>
+</table>
+
+<p>This function returns a file’s date and time stamps together, in one
+call.  The date and time will be separated by an <code>@</code> sign.
+<code>@FILESTAMP</code> works like a combination of TCC’s internal
+<code>@FILEDATE</code> and <code>@FILETIME</code> functions, but with some
+differences that you should be aware of.  The most important difference is
+that this function <em>correctly</em> localizes time stamps of files on
+NTFS volumes.  It will return the same value for the same file, whether you
+call it in May or in December.  <code>@FILETIME</code>, along with
+<code>DIR</code> and Explorer, can return different values for the same
+file depending on when you examine it.  Specifically, <code>@FILETIME</code>
+<em>et al.</em> will return incorrect values if a timestamp on an NTFS 
+drive was set during Daylight Saving Time, but read during Standard Time,
+or vice versa.  In short, <code>@FILESTAMP</code> may return different
+times than <code>@FILETIME</code>, <code>DIR</code>, Explorer, and so on
+for NTFS files — this is a deliberate feature and not a bug!  If
+you want localized file times to match <code>DIR</code> and so on, specify
+the <code>B</code> flag, or just use <code>@FILETIME</code>. </p>
+
+<p>Since the date and time are read in one single operation, <code>@FILESTAMP</code>
+is also immune to the possible errors that may occur if some other process
+happens to access the target file between separate calls to <code>@FILEDATE</code>
+and <code>@FILETIME</code>. </p>
+
+<p>The <span class=optname>flags</span> may be in any order.  If you specify
+incompatible flags, <em>e.g.</em> <code>W</code> with <code>C</code> or
+<code>L</code> with <code>U</code>, the first one “wins”. </p>
+
+<p>If you use the <code>U</code> option, the time stamp will not be
+localized (and will therefore agree with <code>@FILETIME</code> given the
+same option.)  The returned time info will have the letter Z appended to
+indicate UTC time. </p>
+
+<p>File times will always be returned with seconds.  There is no option to
+suppress the seconds. </p>
+
+<p>The FAT filesystem, used on floppies and most flash sticks, records only
+the date and not the time of the last access.  If you specify the
+<code>A</code> flag for a file on a FAT drive, the last-access time will
+always be returned as 00:00:00.  If you specify both <code>A</code> and
+<code>U</code>, the date will be returned as UTC, but the time will be
+00:00:00Z.  This behavior differs from TCC’s, but I think it’s the more
+correct way of handling this situation. </p>
+
+<p>Wildcards are not permitted in the <span class=reqname>filename</span>.
+This also differs from <code>@FILEDATE</code> and <code>@FILETIME</code>.
+It would be easy enough to support wildcards, but if the filename contains
+wildcards, then you may be getting info on a different file than you
+<em>thought</em> you were checking; I prefer to require unambiguous
+filenames here. </p>
+
+<p>This function also supports a special output format which is not
+supported elsewhere in this plugin.  If <span class=optname>fmt</span>
+is 276, then it will return a packed date and time without an <code>@</code>
+sign, fourteen digits:  <code>YYYYMMDDhhmmss</code>.  (276 is 20 plus 256.)
+UTC timestamps will still include a <code>Z</code>. </p>
+
+<p>New in version 1.7.2:  <code>@FILESTAMP</code> supports internet files
+beginning with <code>ftp://</code>, <code>http://</code>, or <code>https://</code>.
+For internet files, options <code>W</code>, <code>C</code>, and <code>A</code>
+have no effect (there is only one time stamp to return), and times are always
+localized unless you specify <code>U</code>. </p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_holiday></a><code>@HOLIDAY</code> — Returns
+the date of a specific day of the week within a month (e.g., the second
+Monday in October.) </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@HOLIDAY[</code><span class=reqname>index</span><code class=req>,</code><span class=reqname>dow</span><code class=req>,</code><span class=reqname>month</span><code>,</code><span class=optname>year</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>offset</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>index</span></td><td>the position of the day-of-the-week within <span class=reqname>month</span>; 1 = first, 2 = second, 3 = third, 4 = fourth, 5 = final</td></tr>
+<tr><td><span class=reqname>dow</span></td><td><a href="E:\Utils\#names">the day of the week</a>: 1 = Monday, 2 = Tuesday, etc.; or MON … SUN</td></tr>
+<tr><td><span class=reqname>month</span></td><td><a href="E:\Utils\#names">the month</a> in which the holiday falls:  1 = January, 2 = February, etc., or JAN … DEC</td></tr>
+<tr><td><span class=optname>year</span></td><td><a href="E:\Utils\#daterange">four digits, 1601 - 9999</a>; <code>*</code> next occurrence; if omitted, defaults to the current year</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the date</a>; defaults to 256</td></tr>
+<tr><td><span class=optname>offset</span></td><td>optional number of days to add to (or subtract from) the resulting date; useful for e.g. Election Day</td></tr>
+</table>
+
+<p>The date may be returned in <a href="E:\Utils\#fmt">any output date format supported
+by this plugin.</a>  If no output format is specified, it defaults to the
+local date format with a four-digit year.</p>
+
+<p>For example, to see when Thanksgiving falls this year:  (Thanksgiving
+Day is the fourth Thursday in November.)</p>
+
+<p class=example><code><a href="E:\Utils\#qcal">qcal</a> %@holiday[4,thu,nov]</code></p>
+
+<p>If you specify an asterisk for the <span class=optname>year</span>,
+<code>@HOLIDAY</code> will return the next matching holiday <strong>after</strong>
+today’s date.</p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<table style="margin-top: 15px; margin-bottom: 10px;">
+<tr><td colspan=2 style="text-align: center; text-decoration: underline; padding-bottom: 8px;">A few U.S. federal holidays and other days:</td></tr>
+<tr><td>Martin Luther King, Jr. Day</td><td><code>%@holiday[3,mon,jan]</code></td></tr>
+<tr><td>Washington’s Birthday</td><td><code>%@holiday[3,mon,feb]</code></td></tr>
+<tr><td>Daylight Saving Time begins</td><td><code>%@holiday[2,sun,mar]</code></td></tr>
+<tr><td>Mother’s Day</td><td><code>%@holiday[2,sun,may]</code></td></tr>
+<tr><td>Memorial Day</td><td><code>%@holiday[5,mon,may]</code></td></tr>
+<tr><td>Father’s Day</td><td><code>%@holiday[3,sun,jun]</code></td></tr>
+<tr><td>Labor Day</td><td><code>%@holiday[1,mon,sep]</code></td></tr>
+<tr><td>Columbus Day</td><td><code>%@holiday[2,mon,oct]</code></td></tr>
+<tr><td>Daylight Saving Time ends</td><td><code>%@holiday[1,sun,nov]</code></td></tr>
+<tr><td>Election Day (even years only)</td><td><code>%@holiday[1,mon,nov,,,1]</code></td></tr>
+<tr><td>Thanksgiving Day</td><td><code>%@holiday[4,thu,nov]</code></td></tr>
+</table>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_idow></a><code>@IDOW</code> — Returns the
+abbreviated local name for the day of the week of the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@IDOW[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by
+this plugin</a>, and it must be a valid date <a href="E:\Utils\#daterange">within the
+supported range.</a></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_idowf></a><code>@IDOWF</code> — Returns the
+full local name for the day of the week of the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@IDOWF[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by
+this plugin</a>, and it must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_inlieu></a><code>@INLIEU</code> — Substitutes a
+weekday for a weekend date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@INLIEU[</code><span class=optname>date</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>mode</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>date</span></td><td>the date to check; defaults to today</td></tr>
+	<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the resulting date</a>, and also to <a href="E:\Utils\#infmt">interpret ambiguous input dates</a>; defaults to 256</td></tr>
+	<tr><td><span class=optname>mode</span></td><td>0 = nearest, 1 = previous Friday, 2 = following Monday, 3 = Sunday (only) to Monday; defaults to 0</td></tr>
+	<tr><td><span class=optname>flags</span></td><td>1:  return an empty string if no substitution is made; used internally by <a href="E:\Utils\#qcal"><code>QCAL</code></a></td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>; it must be a valid date <a href="E:\Utils\#daterange">within the supported range</a>.</p>
+
+<p>If the input <span class=optname>date</span> is a weekday, no
+substitution will be made.</p>
+
+<p>In mode 0 (the default), if the <span class=optname>date</span>
+falls on a Saturday, the previous Friday will be returned; if it is a Sunday,
+the following Monday will be returned.  In mode 1, either a Saturday or a
+Sunday input <span class=optname>date</span> will return the previous
+Friday; in mode 2, either a Saturday or a Sunday input <span class=optname>date</span>
+will return the following Monday.  In mode 3, Sundays will be remapped to
+the following Monday, but Saturdays are returned unchanged.</p>
+
+<p>As of version 1.3.10, <code>@INLIEU</code> adds two new modes to support
+some floating Chilean holidays: </p>
+
+<table class=descript>
+	<tr><td>4</td><td>if <span class=optname>date</span> is a Tuesday, Wednesday, or Thursday, return
+			the preceding Monday; if it’s a Friday, return the following Monday; otherwise,
+			return the original <span class=optname>date</span></td></tr>
+	<tr><td>5</td><td>if <span class=optname>date</span> is a Tuesday, return the preceding Friday;
+			if it’s a Wednesday, return the following Friday; otherwise just return
+			<span class=optname>date</span></td></tr>
+</table>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_inrange></a><code>@INRANGE</code> —
+Determines whether a date falls within a specified range. </p>
+
+<p class=iewrap>Syntax:<br><code class=req>%@INRANGE[</code><span class=reqname>date</span><code class=req>,</code><span class=reqname>startdate</span><code class=req>,</code><span class=reqname>enddate</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>date</span></td><td>the date to test</td></tr>
+<tr><td><span class=reqname>startdate</span>, <span class=reqname>enddate</span></td><td>define the range to compare <span class=reqname>date</span> against</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>This function takes three dates, which may be in <a href="E:\Utils\#infmt">any date
+format supported by this plugin.</a>  All three must be legal dates within
+<a href="E:\Utils\#daterange">the supported date range.</a></p>
+
+<p><span class=reqname>startdate</span> and <span class=reqname>enddate</span>
+may be in either order.  If <span class=reqname>date</span> is within
+the range defined by <span class=reqname>startdate</span> and
+<span class=reqname>enddate</span>, this function will return 0.  If
+<span class=reqname>date</span> falls before the range (<em>i.e.</em>
+less than both <span class=reqname>startdate</span> and
+<span class=reqname>enddate</span>), the result will be -1.  If
+<span class=reqname>date</span> falls after the defined range
+(<em>i.e.</em> greater than both), the function will return 1.</p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_isdate></a><code>@ISDATE</code> — Returns 1 if its argument
+is a valid date <a href="E:\Utils\#daterange">within the supported range</a>, 0 if not. </p>
+
+
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ISDATE[</code><span class=reqname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>date</span></td><td>the date to examine</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>.</p>
+
+<p>The <span class=reqname>date</span> argument is <em>not</em> optional.
+Unlike many of the functions in this plugin, <code>@ISDATE</code> will not
+assume today’s date if you omit it.</p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_isholiday></a><code>@ISHOLIDAY</code> — Returns 1
+if the specified date matches an annual holiday, 0 otherwise. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ISHOLIDAY[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code>,</code><span class=optname>country</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; defaults to today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+<tr><td><span class=optname>country</span></td><td>the section in <a href="E:\Utils\#inifile">Holidays.ini</a>; defaults to the user’s country</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this plugin</a>,
+and it must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<p><code>@ISHOLIDAY</code> will attempt to read a list of annual holidays
+from <a href="E:\Utils\#inifile">Holidays.ini</a>.  If Holidays.ini is not found, if
+no appropriate section is found in Holidays.ini, or if no holidays are
+defined within that section, then a <a href="E:\Utils\#defholidays">default list of
+United States annual holidays</a> is used.  For a list of those default
+holidays, see the <a href="E:\Utils\#defholidays"><code>QCAL</code></a> command.  For
+information on customizing the list, see <a href="E:\Utils\#inifile">Holidays.ini
+Format</a>.</p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_isodowi></a><code>@ISODOWI</code> — Returns
+the day of the week for the specified date as an integer, 1 for Monday
+through 7 for Sunday, per ISO 8601. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ISODOWI[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>, and it must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<p>• <span class=note>Note</span>:  This function does not
+exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_isoweek></a><code>@ISOWEEK</code> — Returns
+<a href="E:\Utils\#isoweeks">the ISO 8601 week number (1 through 53)</a> for
+the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ISOWEEK[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by
+this plugin</a>, and it must be a valid date <a href="E:\Utils\#daterange">within the
+supported range.</a></p>
+
+<p>This function can also be used to find the number of ISO weeks in a
+given year by passing December 28 as the date:</p>
+
+<p class=example><code>echo There are %@isoweek[%_year-12-28] ISO weeks in %_year.</code></p>
+
+<p>• <span class=note>Note</span>:  This function does not
+exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_isowyear></a><code>@ISOWYEAR</code> — Returns
+<a href="E:\Utils\#isoweeks">the ISO 8601 week-numbering year</a>
+(1601 through 9999) for the specified date, <em>i.e.</em> the year in
+which the closest Thursday falls. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ISOWYEAR[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>; it must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<p>• <span class=note>Note</span>:  This function does not
+exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_istime></a><code>@ISTIME</code> — Returns 1 if its
+argument is a valid time, 0 if it is not.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ISTIME[</code><span class=reqname>time</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>time</span></td><td>the time to check</td></tr>
+</table>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_julian></a><code>@JULIAN</code> — Converts the
+specified date into a day number, with 1 being January 1, 1601. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@JULIAN[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to convert; if omitted, uses today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date argument may be in <a href="E:\Utils\#infmt">any input date format supported
+by this plugin</a>, and must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a> </p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_leap></a><code>@LEAP</code> — Returns
+1 if the specified year is a leap year, 0 if common.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@LEAP[</code><span class=optname>year</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>year</span></td><td><a href="E:\Utils\#daterange"> four digits, 1601 to 9999</a>; defaults to the current year</td></tr>
+</table>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_localdatetime></a><code>@LOCALDATETIME</code> — Converts
+a UTC date and time to the local time zone. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@LOCALDATETIME[</code><span class=optname>date</span><code>,</code><span class=optname>time</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the UTC date to convert; defaults to today’s date</td></tr>
+<tr><td><span class=optname>time</span></td><td>the UTC time to convert; defaults to the current time</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the resulting date</a>, and also to <a href="E:\Utils\#infmt">interpret ambiguous input dates</a>; defaults to 256</td></tr>
+<tr><td><span class=optname>tfmt</span></td><td><a href="E:\Utils\#tfmt">the format in which to return the time</a>; defaults to 384 (24-hour, with seconds and milliseconds)</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>, and must be a valid date <a href="E:\Utils\#daterange">within the supported
+range.</a> </p>
+
+<p>The <span class=optname>time</span> may be entered in either 12-hour
+or 24-hour format.  <span class=optname>tfmt</span> may be 0 to return
+the time in 24-hour format, or 1 - 12 for a variety of different
+12-hour formats.  Add 128 to include seconds in the output time; add 256 to
+include milliseconds. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_utcdatetime"><code>@UTCDATETIME</code></a>,
+which performs the reverse operation. </p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This
+function does not exist in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_makeage></a><code>@MAKEAGE</code> — Converts
+a date and time into an NTFS file age. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@MAKEAGE[</code><span class=reqname>date</span><code>,</code><span class=optname>time</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>date</span></td><td>the date to convert</td></tr>
+<tr><td><span class=optname>time</span></td><td>the time on <span class=reqname>date</span>; if not specified, 00:00:00 is assumed</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by
+this plugin</a>; it must be a valid date <a href="E:\Utils\#daterange">within the
+supported range.</a> </p>
+
+<p>• <span class=note>Incompatibility</span>:  Unlike most of Take Command’s
+built-in date functions, the native <code>@MAKEAGE</code> allows a very
+wide (but undocumented) range of dates.  My replacement <code>@MAKEAGE</code>
+function supports <a href="E:\Utils\#daterange">the same range of
+dates</a> as all other functions in this plugin.  Dates after the year 9999
+will fail with an error message.</p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_agedate"><code>@AGEDATE</code></a>,
+which performs the reverse function. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_makedate></a><code>@MAKEDATE</code> — Converts
+an MS-DOS day number to a date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@MAKEDATE[</code><span class=reqname>n</span><code>,</code><span class=optname>fmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>n</span></td><td>the MS-DOS day number</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the date</a></td></tr>
+</table>
+
+<p>The day number must be in the range -138426 through +2929244, corresponding to
+<a href="E:\Utils\#daterange">dates from 1601-01-01 through 9999-12-31.</a>  If no
+output format is specified, the local format is assumed.</p>
+
+<p>The day number is the count of days since January 1, 1980.  Negative day
+numbers are allowed, and will return dates prior to 1980.</p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_date"><code>@DATE</code></a>,
+which performs the reverse function. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_month></a><code>@MONTH</code> — Returns the
+month number (1 through 12) for the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@MONTH[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; defaults to today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>, and must be a valid date <a href="E:\Utils\#daterange">within the supported
+range.</a></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_monthlen></a><code>@MONTHLEN</code> — Returns the
+number of days in a given month.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@MONTHLEN[</code><span class=optname>month</span><code>,</code><span class=optname>year</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>month</span></td><td><a href="E:\Utils\#names">1 through 12, or JAN … DEC</a>; if omitted, defaults to the current month</td></tr>
+<tr><td><span class=optname>year</span></td><td>can be either <a href="E:\Utils\#daterange">1601 through 9999</a>, <em>or</em> 1 for leap years, 0 for common</td></tr>
+</table>
+
+<p>The <span class=optname>year</span> parameter is only significant when
+<span class=optname>month</span> is 2.  If <span class=optname>year</span>
+is not specified, the default is the current year.</p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_monthname></a><code>@MONTHNAME</code> — Returns
+the name of a month.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@MONTHNAME[</code><span class=optname>month</span><code>,</code><span class=optname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>month</span></td><td><a href="E:\Utils\#names">1 through 12, or JAN … DEC</a>; if omitted, defaults to the current month</td></tr>
+<tr><td><span class=optname>n</span></td><td>is one of:</td></tr>
+<tr><td> </td><td>0: the full English name (the default)</td></tr>
+<tr><td> </td><td>1: the English name abbreviated to three letters</td></tr>
+<tr><td> </td><td>2: the full local name</td></tr>
+<tr><td> </td><td>3: the abbreviated local name</td></tr>
+</table>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_nextdate></a><code>@NEXTDATE</code> — Returns the
+next date matching a specified month and day. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@NEXTDATE[</code><span class=reqname>month</span><code class=req>,</code><span class=reqname>day</span><code>,</code><span class=optname>date</span><code>,</code><span class=optname>fmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>month</span></td><td><a href="E:\Utils\#names">1 through 12, or JAN … DEC</a></td></tr>
+<tr><td><span class=reqname>day</span></td><td>1 through 31</td></tr>
+<tr><td><span class=optname>date</span></td><td>the starting date, in <a href="E:\Utils\#infmt">any supported input format</a>; defaults to today’s date</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the resulting date</a>, and also to <a href="E:\Utils\#infmt">interpret ambiguous input dates</a>; defaults to 256</td></tr>
+</table>
+
+<p>The date may be returned in <a href="E:\Utils\#fmt">any output date format supported
+by this plugin.</a>  If no output format is specified, it defaults to the local
+date format with a four-digit year.</p>
+
+<p>This function is handy for dealing with annual events which may or may
+not have occurred already.  For example,</p>
+
+<p class=example><code><a href="E:\Utils\#qcal">qcal</a> %@nextdate[dec,25]</code></p>
+
+<p>will display the next Christmas <strong>after</strong> today’s date —
+this year’s or next year’s, depending.</p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_nextdow></a><code>@NEXTDOW</code> — Returns the
+next date matching a specified day (or days) of the week. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@NEXTDOW[</code><span class=reqname>dowmask</span><code>,</code><span class=optname>date</span><code>,</code><span class=optname>index</span><code>,</code><span class=optname>fmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>dowmask</span></td><td><a href="E:\Utils\#names">the day(s) of the week to find</a></td></tr>
+<tr><td><span class=optname>date</span></td><td>the starting date, in <a href="E:\Utils\#infmt">any supported input format</a>; defaults to today’s date</td></tr>
+<tr><td><span class=optname>index</span></td><td>which matching day-of-the-week to find; defaults to 1 (next after; see below)</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the resulting date</a>, and also to <a href="E:\Utils\#infmt">interpret ambiguous input dates</a>; defaults to 256</td></tr>
+</table>
+
+<p>The date may be returned in <a href="E:\Utils\#fmt">any output date format supported
+by this plugin.</a>  If no output format is specified, it defaults to the local
+date format with a four-digit year.</p>
+
+<p>When <span class=optname>index</span> is 1 (the default), this function
+returns the first matching date <strong>after</strong> today’s date (or the
+specified start date.)  If <span class=optname>index</span> is set to 0,
+then <code>@NEXTDOW</code> will return the first matching date <strong>on or
+after</strong> today.  If <span class=optname>index</span> is -1, then the
+last matching date <strong>before</strong> today’s date is returned.
+Higher (or lower) values for <span class=optname>index</span> will return
+later (or earlier) matching dates.</p>
+
+<p>For example:</p>
+
+<p class=example><code>echo Next Wednesday:         %@nextdow[wed]<br>
+echo Wednesday after next:   %@nextdow[wed,,2]<br>
+echo Next Monday or Tuesday: %@nextdow[mon tue]<br>
+echo First Monday after Christmas: %@nextdow[mon,%_year-12-25]<br>
+echo Last Friday before Christmas: %@nextdow[fri,%_year-12-25,-1]</code></p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_ord></a><code>@ORD</code> — Returns a number with
+an English ordinal suffix.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ORD[</code><span class=reqname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>n</span></td><td>a non-negative integer value</td></tr>
+</table>
+
+<p class=example><code>C:\&gt; for /l %n in (1,1,5) echo %@ord[%n]<br>
+1st<br>
+2nd<br>
+3rd<br>
+4th<br>
+5th</code></p>
+
+<p>Commas will be inserted for values over 999.</p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_pickdate></a><code>@PICKDATE</code> — Allows
+the user to select a date using a popup calendar control. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@PICKDATE[</code><span class=optname>title</span><code>,</code>​<span class=optname>initdate</span><code>,</code>​<span class=optname>fmt</span><code>,</code>​<span class=optname>startdate</span><code>,</code>​<span class=optname>enddate</span><code>,</code>​<span class=optname>flags</span><code>,</code>​<span class=optname>leftcol</span><code>,</code>​<span class=optname>dowmask</span><code>,</code>​<span class=optname>timeout</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>title</span></td><td>the caption for the popup.  To include commas in the title, double-quote it.</td></tr>
+<tr><td><span class=optname>initdate</span></td><td>the date selected by default when the dialog opens, in <a href="E:\Utils\#infmt">any supported input format</a>; defaults to today’s date</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the date</a>; defaults to 256</td></tr>
+<tr><td><span class=optname>startdate</span>, <span class=optname>enddate</span></td><td>the range of dates the user may select; see note below</td></tr>
+<tr><td><span class=optname>flags</span></td><td>bitmapped value controlling miscellaneous features:</td></tr>
+<tr><td> </td><td>  2: remove the Cancel button; disable Esc and Alt-F4</td></tr>
+<tr><td> </td><td>  4: restrict the date range to 1980 through 2099</td></tr>
+<tr><td> </td><td>  128: don’t highlight holidays</td></tr>
+<tr><td> </td><td>  256: don’t allow the user to select holidays</td></tr>
+<tr><td><span class=optname>leftcol</span></td><td><a href="E:\Utils\#names">day of the week</a> in the left column; 1 = Monday, 2 = Tuesday, etc., or MON … SUN; defaults to local layout</td></tr>
+<tr><td><span class=optname>dowmask</span></td><td><a href="E:\Utils\#names">list of days of the week</a> to disable</td></tr>
+<tr><td><span class=optname>timeout</span></td><td>number of seconds before the popup automatically closes; 0 or not specified disables the countdown</td></tr>
+</table>
+
+<p>The date may be returned in <a href="E:\Utils\#fmt">any output date format supported
+by this plugin.</a>  If no output format is specified, it defaults to the local
+date format with a four-digit year.</p>
+
+<p><span class=note>Note</span>:  The <span class=optname>startdate</span>
+and <span class=optname>enddate</span> parameters can be entered in any of
+<a href="E:\Utils\#infmt">the usual input formats</a>, with one exception.  A number
+preceded by a <code>+</code> or <code>-</code> sign will be interpreted as
+an offset relative to <span class=optname>initdate</span>, not as an
+MS-DOS day number.  In the unlikely event that you want to specify either
+<span class=optname>startdate</span> or <span class=optname>enddate</span>
+as a day number, either type it without a leading sign (e.g. <code>3766</code>),
+or else prefix the letter <code>D</code> (e.g. <code>D3766</code> or
+<code>D-74324</code>).</p>
+
+<p style="padding-top: 10px;">The date picker dialog allows the user to select a date using either
+the mouse or the keyboard.  To select a date using the mouse, first browse
+to the desired month using the buttons at the top, to the left and right of
+the calendar’s header line.  The inner pair of buttons display earlier or
+later months; the outer pair display earlier or later years.  Once the
+desired month is shown, select the desired date by clicking on it, then
+click OK to close the dialog; or double-click on a date to select it and
+close the dialog immediately.  (Note that it is possible to display months
+other than the one containing the selected date!  The status line near the
+bottom always shows the currently selected date.  Clicking on the status
+line will return the calendar display to the selected date.)</p>
+
+<p>To select a date with the keyboard, use the arrow keys, <kbd>PgUp</kbd>, and
+<kbd>PgDown</kbd> to move the highlighted box.  The left and right arrow keys move
+the selection one day backward or forward; up and down move it by one
+week; <kbd>PgUp</kbd> and <kbd>PgDown</kbd> move by months, and <kbd>Ctrl</kbd>-<kbd>PgUp</kbd>
+and <kbd>Ctrl</kbd>-<kbd>PgDown</kbd> move by years.  When the desired date is selected, press
+<kbd>Enter</kbd> or click on the OK button.</p>
+
+<p>Dates which are outside the specified range or otherwise disabled will
+appear in gray italics.  You cannot select disabled dates using either the
+mouse or the keyboard.  To cancel the dialog without selecting a date,
+click on Cancel or press <kbd>Esc</kbd>.</p>
+
+<p style="padding-top: 10px;">This function returns the user’s selected date in the specified format,
+or <code>*CANCEL*</code> if the user cancels the dialog.</p>
+
+<p style="padding-top: 10px;">For example:</p>
+<p class=example><code>set duedate=%@pickdate[Due Date,T+7,4,T,T+21,,,weekends]</code></p>
+<p>Displays the date selection popup, with a caption of “Due Date”.
+The default due date is one week from today; the permitted range is from
+today through three weeks from today, and weekends are not allowed.  The
+user’s selected date is returned in ISO 8601 format.</p>
+
+<p style="padding-top: 10px;">• <span class=note>Note</span>:
+Holidays are highlighted by default.  To disable this feature, add 128 to
+<span class=optname>flags</span>.  For a list of the default annual holidays,
+see the <a href="E:\Utils\#defholidays"><code>QCAL</code></a> command.  For information
+on customizing the holidays, see <a href="E:\Utils\#inifile">Holidays.ini Format</a>.</p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_roman></a><code>@ROMAN</code> — Converts an
+integer to a Roman numeral, or vice versa.</p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ROMAN[</code><span class=reqname>n</span><span class=bnf> | </span><span class=reqname>text</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=reqname>n</span></td><td>an integer in the range 1 … 4999<em>, or</em></td></tr>
+<tr><td><span class=reqname>text</span></td><td>a Roman numeral</td></tr>
+</table>
+
+<p>If the argument begins with a letter, it is assumed to be a Roman
+numeral, and <code>@ROMAN</code> will attempt to convert it into an integer
+(case is not significant.)  If the argument does <em>not</em> begin with a
+letter, it’s an integer to be converted to a Roman numeral.</p>
+
+<p class=example><code>C:\&gt; echo %@roman[%_year]<br>
+MMX<br>
+<br>
+C:\&gt; echo %@roman[cclix]<br>
+259</code></p>
+
+<p style="padding-top: 10px;">• <span class=note>Note</span>:
+This function does not check that input Roman numerals are well-formed or
+canonical.  If you pass it an ill-formed string such as VVVC or IXXM, it
+will return a (meaningless) integer rather than an error message;
+<em>purgamentum init, exit purgamentum.</em></p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_timediff></a><code>@TIMEDIFF</code> — Subtracts one
+time from another and returns the difference. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@TIMEDIFF[</code><span class=reqname>time1</span><code>,</code><span class=optname>time2</span><code>,</code><span class=optname>infmt</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code><br>
+<code class=req>%@TIMEDIFF[</code><span class=reqname>date1</span><code class=req>@</code><span class=reqname>time1</span><code>,</code><span class=optname>date2</span><code>@</code><span class=optname>time2</span><code>,</code><span class=optname>infmt</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>time1</span></td><td>the time to subtract from <span class=optname>time2</span></td></tr>
+	<tr><td><span class=reqname>date1</span><code class=req>@</code><span class=reqname>time1</span></td><td>you can also give a time on a specific date</td></tr>
+	<tr><td><span class=optname>time2</span></td><td>if not specified, defaults to the current time</td></tr>
+	<tr><td><span class=optname>date2</span><code>@</code><span class=optname>time2</span></td><td>you can also give a time on a specific date</td></tr>
+	<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+	<tr><td><span class=optname>tfmt</span></td><td>the format in which to return the time difference; defaults to 128 (24-hour with seconds)</td></tr>
+</table>
+
+<p>You can specify date-time pairs for the starting and ending times.  The date
+may be in <a href="E:\Utils\#infmt">any format supported by this plugin</a>.  Separate
+the date from the time with an <code>@</code> sign or the letter <code>T</code>. </p>
+
+<p>The <span class=optname>tfmt</span> parameter controls the display of the
+time difference.  It’s a subset of the usual <a href="E:\Utils\#tfmt">time display
+formats</a>; all of the 12-hour options are disabled because they make no sense
+here.  You can specify 0 to return only hours and minutes; add 128 to include
+seconds; add 256 to include milliseconds; or add 1024 or 2048 to left-pad the
+hours field with zeros or spaces, respectively.  You can also specify format
+15 to return the time difference as a fraction of a day. </p>
+
+<p>The difference between the two times will be reported as a positive value,
+regardless of whether <span class=reqname>time1</span> is before or after
+<span class=optname>time2</span>. </p>
+
+<p class=example><code>rem  How long until 8 o'clock Christmas morning?<br>
+echo %@timediff[<a href="E:\Utils\#f_nextdate">%@nextdate</a>[12,25]@8:00]<br>
+</code></p>
+
+<br>
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_timefmt></a><code>@TIMEFMT</code> — Formats a
+time for display. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@TIMEFMT[</code><span class=optname>time</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>time</span>:</td><td>the time to format; defaults to the current time</td></tr>
+<tr><td><span class=optname>tfmt</span>:</td><td><a href="E:\Utils\#tfmt">the format in which to display it</a></td></tr>
+</table>
+
+<p>The <span class=optname>time</span> may be entered in either 12-hour
+or 24-hour format.  <span class=optname>tfmt</span> may be 0 to return
+the time in 24-hour format, or 1 - 12 for a variety of different
+12-hour formats.  Add 128 to include seconds in the output, even if none
+were specified in <span class=optname>time</span>; add 256 to include
+milliseconds.  If you do not specify a <span class=optname>tfmt</span>,
+the default is 24-hour format, with seconds and milliseconds only if they
+were given in the input <span class=optname>time</span>. </p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This
+function does not exist in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_timeparts></a><code>@TIMEPARTS</code> — Parses a time
+and indicates which parts were specified. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@TIMEPARTS[</code><span class=reqname>time</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>time</span></td><td>the time to examine</td></tr>
+</table>
+
+<p>If the <span class=reqname>time</span> is not a valid time, the return
+value is <code>0</code>. </p>
+
+<p>If the specified <span class=reqname>time</span> is valid, then this
+function returns a bitmapped value: </p>
+
+<table class=descript>
+	<tr><td style="text-align: right;"><code>16</code></td><td>the time is in 12-hour (AM/PM) format</td></tr>
+	<tr><td style="text-align: right;"><code>8</code></td><td>the hour was specified</td></tr>
+	<tr><td style="text-align: right;"><code>4</code></td><td>the minute was specified</td></tr>
+	<tr><td style="text-align: right;"><code>2</code></td><td>seconds were specified</td></tr>
+	<tr><td style="text-align: right;"><code>1</code></td><td>fractional seconds were specified</td></tr>
+</table>
+
+<p>A valid time will always have the 8 bit set, and either 16 or 4 or both.
+In other words, a time must include the hour; minutes are required in 24-hour
+format, but optional in 12-hour format; seconds and fractional seconds are
+always optional. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_timeplus></a><code>@TIMEPLUS</code> — Adds an offset
+to a time. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@TIMEPLUS[</code><span class=optname>time</span><code>,</code><span class=optname>offset</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code><br>
+<code class=req>%@TIMEPLUS[</code><span class=optname>date</span><code>@</code><span class=optname>time</span><code>,</code><span class=optname>offset</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>time</span></td><td>the starting time; defaults to the current time</td></tr>
+	<tr><td><span class=optname>date</span><code>@</code><span class=optname>time</span></td><td>you can also give a time on a specific date</td></tr>
+	<tr><td><span class=optname>offset</span></td><td>the amount of time to add; defaults to zero</td></tr>
+	<tr><td><span class=optname>fmt</span></td><td>the date format used to <a href="E:\Utils\#fmt">return the resulting date</a>, and also to <a href="E:\Utils\#infmt">interpret ambiguous input dates</a>; defaults to 256</td></tr>
+	<tr><td><span class=optname>tfmt</span></td><td>the format in which to <a href="E:\Utils\#tfmt">return the resulting time</a>; defaults to 128 (24-hour with seconds)</td></tr>
+</table>
+
+<p>Specify the <span class=optname>offset</span> in hours, or as HH:MM or
+HH:MM:SS.  If the <span class=optname>offset</span> begins with minus sign, 
+it will be subtracted from the starting <span class=optname>time</span>. </p>
+
+<p>You can specify a date-time pair for the starting time.  The date may be in
+<a href="E:\Utils\#infmt">any format supported by this plugin</a>.  Separate the date
+from the time with an <code>@</code> sign or the letter <code>T</code>. </p>
+
+<p>• <span class=note>Note</span>: This function does not consider
+possible changes to or from Daylight Saving Time. </p>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_timetodec></a><code>@TIMETODEC</code> — Converts a
+time into a decimal fraction of a day. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@TIMETODEC[</code><span class=reqname>time</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>time</span></td><td>the time to convert</td></tr>
+</table>
+
+<p>• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_dectotime"><code>@DECTOTIME</code></a>,
+which performs the opposite function. </p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_useconds></a><code>@USECONDS</code> — Converts a
+date and time to seconds past the Unix epoch. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@USECONDS[</code><span class=optname>date</span><code>,</code><span class=optname>time</span><code>,</code><span class=optname>infmt</span><code>,</code><span class=optname>flags</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>date</span></td><td>defaults to today</td></tr>
+	<tr><td><span class=optname>time</span></td><td>defaults to now</td></tr>
+	<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+	<tr><td><span class=optname>flags</span></td><td><code>1</code>: input date and time are UTC, else local</td></tr>
+</table>
+
+<p>This function returns the number of seconds past 1970-01-01 00:00:00 UTC. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_uxtodatetime"><code>@UXTODATETIME</code></a> and
+<a href="E:\Utils\#v_useconds"><code>_USECONDS</code></a>. </p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_usweek></a><code>@USWEEK</code> — Returns a week
+number (1 to 53) for a given date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@USWEEK[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code>,</code><span class=optname>dow</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; defaults to today</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+<tr><td><span class=optname>dow</span></td><td>the first <a href="E:\Utils\#names">day of the week</a>; defaults to Sunday</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this plugin</a>,
+and must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<p>This function returns the week number for a given date, using a convention
+common in the United States.  All weeks begin on Sunday (or as specified
+in <span class=optname>dow</span>) and end on Saturday (or the sixth day
+following <span class=optname>dow</span>).  Week 1 is the week containing
+January 1, and ends on the first Saturday of the year.  Up to six days at
+the end of a year may fall in week 1 of the following year.</p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_isoweek"><code>@ISOWEEK</code></a>, which
+implements the <a href="E:\Utils\#isoweeks">ISO 8601 week-numbering standard</a>.</p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_utcdatetime></a><code>@UTCDATETIME</code> — Converts
+a local date and time to UTC. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@UTCDATETIME[</code><span class=optname>date</span><code>,</code><span class=optname>time</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the local date to convert; defaults to today’s date</td></tr>
+<tr><td><span class=optname>time</span></td><td>the local time to convert; defaults to the current time</td></tr>
+<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format used to return the resulting date</a>, and also to <a href="E:\Utils\#infmt">interpret ambiguous input dates</a>; defaults to 256</td></tr>
+<tr><td><span class=optname>tfmt</span></td><td><a href="E:\Utils\#tfmt">the format in which to return the time</a>; defaults to 384 (24-hour, with seconds and milliseconds)</td></tr>
+</table>
+
+<p>The date may be in <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>, and must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a> </p>
+
+<p>The <span class=optname>time</span> may be entered in either 12-hour
+or 24-hour format.  <span class=optname>tfmt</span> may be 0 to return
+the time in 24-hour format, or 1 - 12 for a variety of different
+12-hour formats.  Add 128 to include seconds in the output time; add 256 to
+include milliseconds. </p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_localdatetime"><code>@LOCALDATETIME</code></a>,
+which performs the reverse operation. </p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This
+function does not exist in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_uxtodatetime></a><code>@UXTODATETIME</code> — Converts a
+Unix time stamp to a date and time. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@UXTODATETIME[</code><span class=reqname>seconds</span><code>,</code><span class=optname>flags</span><code>,</code><span class=optname>fmt</span><code>,</code><span class=optname>tfmt</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=reqname>seconds</span></td><td>seconds past 1970-01-01 00:00:00 UTC</td></tr>
+	<tr><td><span class=optname>flags</span></td><td><code>1</code>: return date and time as UTC, else local</td></tr>
+	<tr><td><span class=optname>fmt</span></td><td><a href="E:\Utils\#fmt">the date format</a> used to return the date; defaults to 4 (ISO 8601 format)</td></tr>
+	<tr><td><span class=optname>tfmt</span></td><td><a href="E:\Utils\#tfmt">the time format</a> used to return the time; defaults to 1152 (24-hour with seconds and leading zeros)</td></tr>
+</table>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_useconds"><code>@USECONDS</code></a> and
+<a href="E:\Utils\#v_useconds"><code>_USECONDS</code></a>. </p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This function does not exist in Take
+Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=f_year></a><code>@YEAR</code> — Returns the
+year (1601 through 9999) for the specified date. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@YEAR[</code><span class=optname>date</span><code>,</code><span class=optname>infmt</span><code class=req>]</code></p>
+
+<table class=descript>
+<tr><td><span class=optname>date</span></td><td>the date to examine; defaults to today’s date</td></tr>
+<tr><td><span class=optname>infmt</span></td><td><a href="E:\Utils\#infmt">the input date format</a>, used to interpret ambiguous dates</td></tr>
+</table>
+
+<p>The date may be in  <a href="E:\Utils\#infmt">any input date format supported by this
+plugin</a>, and must be a valid date <a href="E:\Utils\#daterange">within the supported range.</a></p>
+
+<p>• <span class=note>Incompatibility</span>:  In 4NT /
+Take Command v10 and earlier, the native <code>@YEAR</code> function will
+return a two-digit year if the input date uses a two-digit year.  I don’t
+like this behavior, and choose not to replicate it.  My <code>@YEAR</code>
+will always return four digits.</p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=variables></a>Internal Variables:</h4>
+
+<br>
+<p><a name=v_isodowi></a><code class=req>%_ISODOWI</code> — Returns the
+current day of the week as an integer, 1 = Monday through
+7 = Sunday, per ISO 8601.</p>
+
+<p>• <span class=note>Note</span>:  This internal variable
+does not exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_isordate></a><code class=req>%_ISORDATE</code> — Returns
+today’s date in ISO 8601 yyyy-nnn ordinal-date format.</p>
+
+<p>• <span class=note>Note</span>:  This internal variable
+does not exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_isowdate></a><code class=req>%_ISOWDATE</code> — Returns
+today’s date in ISO 8601 yyyy-Www-d week-day format.</p>
+
+<p>• <span class=note>Note</span>:  This internal variable
+does not exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_isoweek></a><code class=req>%_ISOWEEK</code> — Returns
+<a href="E:\Utils\#isoweeks">the ISO 8601 week number (1 through 53)</a>
+for today’s date.</p>
+
+<p>• <span class=note>Note</span>:  This internal variable
+does not exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_isowyear></a><code class=req>%_ISOWYEAR</code> — Returns
+<a href="E:\Utils\#isoweeks">the ISO 8601 week-numbering year</a> for the current
+week, <em>i.e.</em> the year in which the nearest Thursday falls.</p>
+
+<p>• <span class=note>Note</span>:  This internal variable
+does not exist in 4NT / Take Command v10 and earlier.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_t4></a><code class=req>%_T4</code> — Returns the
+current local time as four digits, HHMM.</p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This
+variable does not exist in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_tomorrow></a><code class=req>%_TOMORROW</code> — Returns
+<a target=_blank href="https://duckduckgo.com/?q=%5cTomorrow%20(Annie)%201982%20site:youtube.com">tomorrow</a>’s
+date in ISO8601 format.</p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This
+variable does not exist in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_useconds></a><code class=req>%_USECONDS</code> — Returns the
+current time in Qeng Ho format. </p>
+
+<br>
+<blockquote>There were programs here that had been written five thousand years ago,
+before Humankind ever left Earth….  Take the Traders’ method of timekeeping.
+The frame corrections were incredibly complex — and down at the very bottom
+of it was a litle program that ran a counter.  Second by second, the Qeng Ho counted
+from the instant that a human had first set foot on Old Earth’s moon.  But if you
+looked at it still more closely… the starting instant was actually about fifteen
+million seconds later, the 0-second of one of Humankind’s first computer operating
+systems…. </blockquote>
+
+<p class=bqcite>— Vernor Vinge, <cite>A Deepness in the Sky</cite></p>
+
+<p class=xref>See also:  <a href="E:\Utils\#f_useconds"><code>@USECONDS</code></a> and
+<a href="E:\Utils\#f_uxtodatetime"><code>@UXTODATETIME</code></a>. </p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This
+variable does not exist in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=v_yesterday></a><code class=req>%_YESTERDAY</code> — Returns
+<a target=_blank href="https://duckduckgo.com/?q=%5cYesterday%20McCartney%20site:youtube.com">yesterday</a>’s
+date in ISO8601 format.</p>
+
+<p style="padding-top: 10px;">• <span class=note>New</span>: This
+variable does not exist in Take Command.</p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=reference></a>Reference Information:</h4>
+
+<br>
+<table class=descript>
+	<tr><td><a href="E:\Utils\#fmt">Output Date Formats</a></td><td>The various formats in which dates can be returned. </td></tr>
+	<tr><td><a href="E:\Utils\#infmt">Input Date Formats</a></td><td>Different ways that dates may be entered in functions and commands. </td></tr>
+	<tr><td><a href="E:\Utils\#daterange">Supported Date Range</a></td><td>The earliest and latest dates which this plugin can handle. </td></tr>
+	<tr><td><a href="E:\Utils\#names">Entering Day and Month Names</a></td><td>How to enter day names, month names, and day-of-the-week lists. </td></tr>
+	<tr><td><a href="E:\Utils\#isoweeks">ISO 8601 Week Numbering</a></td><td>A brief description. </td></tr>
+	<tr><td><a href="E:\Utils\#defholidays">Default Holidays</a></td><td>A list of common United States holidays. </td></tr>
+	<tr><td><a href="E:\Utils\#inifile">Holidays.ini Format</a></td><td>Customize the list of annual holidays. </td></tr>
+	<tr><td><a href="E:\Utils\#tfmt">Time Formats</a></td><td>Formats in which times can be returned. </td></tr>
+	<tr><td><a href="E:\Utils\#noloadmsg">Startup Message</a></td><td>Yes, you can disable it if you wish. </td></tr>
+	<tr><td><a href="E:\Utils\#missing">What’s Not Supported</a></td><td>Things you might reasonably expect to work. </td></tr>
+	<tr><td><a href="E:\Utils\#changes">Changes</a></td><td>What’s new in this update. </td></tr>
+	<tr><td><a href="E:\Utils\#licensing">Status and Licensing</a></td><td>Or you could read your mattress tag instead. </td></tr>
+</table>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=fmt></a>Output Date Formats:</h4>
+
+<br>
+<p>The <code><a href="E:\Utils\#f_agedate">@AGEDATE</a></code>,
+<code><a href="E:\Utils\#f_dateconv">@DATECONV</a></code>,
+<code><a href="E:\Utils\#f_dateplus">@DATEPLUS</a></code>,
+<code><a href="E:\Utils\#f_easter">@EASTER</a></code>,
+<code><a href="E:\Utils\#f_filestamp">@FILESTAMP</a></code>,
+<code><a href="E:\Utils\#f_holiday">@HOLIDAY</a></code>,
+<code><a href="E:\Utils\#f_inlieu">@INLIEU</a></code>,
+<code><a href="E:\Utils\#f_makedate">@MAKEDATE</a></code>,
+<code><a href="E:\Utils\#f_nextdate">@NEXTDATE</a></code>,
+<code><a href="E:\Utils\#f_nextdow">@NEXTDOW</a></code>, and
+<code><a href="E:\Utils\#f_pickdate">@PICKDATE</a></code> functions
+can return dates in any of these formats:</p>
+
+<table>
+	<tr><td style="text-decoration: underline;"><span class=optname>fmt</span></td><td style="text-decoration: underline;">Format</td><td style="text-decoration: underline;">Example</td></tr>
+	<tr><td>0</td><td>local date format</td><td>varies; 11/04/08 in the U.S.</td></tr>
+	<tr><td>1</td><td>mm/dd/yy</td><td>11/04/08</td></tr>
+	<tr><td>2</td><td>dd/mm/yy</td><td>04/11/08</td></tr>
+	<tr><td>3</td><td>yy/mm/dd</td><td>08/11/04</td></tr>
+	<tr><td>4</td><td>ISO 8601</td><td>2008-11-04</td></tr>
+	<tr><td>5</td><td>ISO 8601 week-day</td><td>2008-W45-2</td></tr>
+	<tr><td>6</td><td>ISO 8601 ordinal date</td><td>2008-309</td></tr>
+	<tr><td>16</td><td>MS-DOS day number</td><td>+10535</td></tr>
+	<tr><td>17</td><td>using English words</td><td>Tuesday, November 4, 2008</td></tr>
+	<tr><td>18</td><td>T format (offset from today’s date)</td><td>
+		
+		<noscript>
+			<div>T-175</div>
+		</noscript>
+	</td></tr>
+	<tr><td>19</td><td>ANSI day number</td><td>A+148962</td></tr>
+	<tr><td>20</td><td>ISO8601, packed</td><td>20081104</td></tr>
+	<tr><td>21</td><td>days since 1970-01-01</td><td>U+14187</td></tr>
+	<tr><td>32</td><td>Windows user locale “long date” format</td><td>varies; mardi 4 novembre 2008 in France</td></tr>
+	<!-- <tr><td>145</td><td>using localized words</td><td>varies; otrdiena, novembris 4, 2008 in Latvia</td></tr> -->
+	<tr><td>256</td><td>local date format, four-digit year</td><td>varies; 11/04/2008 in the U.S.</td></tr>
+	<tr><td>257</td><td>mm/dd/yyyy</td><td>11/04/2008</td></tr>
+	<tr><td>258</td><td>dd/mm/yyyy</td><td>04/11/2008</td></tr>
+	<tr><td>259</td><td>yyyy/mm/dd</td><td>2008/11/04</td></tr>
+</table>
+
+<p>Formats 0 through 3 return two-digit years, for compatibility with Take
+Command’s native behavior.  Where compatibility is not an issue, I
+recommend using formats 256-259 instead.  These formats are equivalent to
+0-3, but return four-digit years.  (A note in TakeCmd.h suggests that TCC
+supports similar formats internally; unfortunately, this capability
+doesn’t seem to be available to the user.)</p>
+
+<p>The <a href="E:\Utils\#longyears"><code>LONGYEARS</code></a>
+command can be used to display four-digit years in formats 0-3, making them
+functionally identical to formats 256-259.</p>
+
+<p>MS-DOS day numbers are based on January 1, 1980 as day 0; dates before
+1980 will have negative MS-DOS day numbers.  ANSI day numbers use January
+1, 1601 as day 1.</p>
+
+<p>Note that all of these output formats <em>except</em> for #17 and #32
+are also valid input formats.</p>
+
+
+<h4><a name=infmt></a>Input Date Formats:</h4>
+
+<br>
+<p>This plugin’s internal functions and commands can accept dates in any of
+these formats:</p>
+
+<table>
+	<tr><td style="text-decoration: underline;"><span class=optname>infmt</span></td><td style="text-decoration: underline;">Format</td><td style="text-decoration: underline;">Example</td><td style="text-decoration: underline;">Would Be Interpreted As</td></tr>
+	<tr><td>0</td><td>(according to system locale)</td><td>01/02/03</td><td>varies; January 2, 2003 in the U.S.</td></tr>
+
+	<tr><td> </td><td> </td><td>04/05</td><td style="padding-bottom: 0.5em;">varies;
+		
+		<noscript>
+			<div>April 5 of this year</div>
+		</noscript>
+	</td></tr>
+
+	<tr><td>1</td><td>mm/dd/yy <em>or</em> mm/dd/yyyy</td><td>01/02/03</td><td>January 2, 2003</td></tr>
+
+	<tr><td> </td><td>mm/dd</td><td>04/05</td><td style="padding-bottom: 0.5em;">
+		
+		<noscript>
+			<div>April 5 of this year</div>
+		</noscript>
+	</td></tr>
+
+	<tr><td>2</td><td>dd/mm/yy <em>or</em> dd/mm/yyyy</td><td>01/02/03</td><td>February 1, 2003</tr>
+
+	<tr><td> </td><td>dd/mm</td><td>04/05</td><td style="padding-bottom: 0.5em;">
+		
+		<noscript>
+			<div>May 4 of this year</div>
+		</noscript>
+	</td></tr>
+
+	<tr><td>3 or 4</td><td>yy/mm/dd <em>or</em> yyyy/mm/dd</td><td>01/02/03</td><td>February 3, 2001</td></tr>
+
+	<tr><td> </td><td>mm/dd</td><td>04/05</td><td style="padding-bottom: 0.5em;">
+		
+		<noscript>
+			<div>April 5 of this year</div>
+		</noscript>
+	</td></tr>
+
+	<tr><td>-</td><td>ISO 8601 format</td><td>1941-12-07</td><td>December 7, 1941</td></tr>
+	<tr><td>-</td><td>ISO 8601 week-day format</td><td>1969-W29-7</td><td>July 20, 1969</td></tr>
+	<tr><td>-</td><td>ISO 8601 ordinal format</td><td>1863-323</td><td>November 19, 1863</td></tr>
+	<tr><td>-</td><td>ISO 8601, packed</td><td>19120623</td><td>June 23, 1912</td></tr>
+	<tr><td>-</td><td>days since 1970-01-01</td><td>U+2701</td><td>May 25, 1977</td></tr>
+	<tr><td>-</td><td>MS-DOS day number</td><td>+3333</td><td>February 15, 1989</td></tr>	<!-- 4DOS released -->
+
+	<tr><td>-</td><td>T format (offset from today’s date)</td><td>T+21</td><td>
+		
+		<noscript>
+			<div>three weeks from today</div>
+		</noscript>
+	</td></tr>
+
+	<tr><td>-</td><td>ANSI day number</td><td>A+78169</td><td style="padding-bottom: 0.5em;">January 8, 1815</td></tr>
+
+</table>
+
+<br>
+<p>For compatibility with long-standing 4DOS/4NT/Take Command behavior,
+dates may be entered in local formats using two-digit years.  Years 80
+to 99 are interpreted as 1980 through 1999; 00 to 79 are interpreted as
+2000 through 2079.  Although two-digit years are legal and documented, I
+strongly recommend passing only four-digit years to avoid confusion.
+If you omit the year, the plugin will assume the current year.</p>
+
+<p>You can use the <a href="E:\Utils\#longyears"><code>LONGYEARS</code></a> command
+to require four-digit years in input dates.  When <a href="E:\Utils\#longyears"><code>LONGYEARS</code></a>
+is set to <code>STRICT</code>, dates entered using two-digit years (<em>e.g.</em>
+08/12/81) or without a year (<em>e.g.</em> 05/23) are illegal and will
+raise an error.</p>
+
+<p>Dates entered as mm/dd/yy, mm/dd/yyyy, dd/mm/yy, dd/mm/yyyy, yy/mm/dd,
+mm/dd, or dd/mm are all <strong>ambiguous</strong>:  the parser cannot know
+for certain which format was intended.  You can use an <span class=optname>infmt</span>
+parameter to tell the parser how to interpret them.  If no
+<span class=optname>infmt</span> is present, they will be interpreted
+according to your system’s locale settings.</p>
+
+<p>Dates in any of the ISO formats <strong>must</strong> be specified using four-digit
+years.  Two-digit years in ISO date formats will raise an error.  The ISO
+date formats are unambiguous; the parser can automatically determine the
+intended format, and any <span class=optname>infmt</span> parameter will be ignored.</p>
+
+<p>The local date formats (0-3) will accept the slash, minus sign, or
+period as a date separator.  The ISO date formats require a minus sign.
+MS-DOS day numbers may be positive or negative (or zero); they may have a leading
+plus or minus sign.  T-format dates may also be positive or negative; they
+may start with either <code>T+</code> or <code>T-</code>.  A lone
+<code>T</code> with no offset is also valid, and refers to today’s
+date.  You may also spell out <code>TODAY</code> in full, <em>e.g.</em>
+<code>TODAY-1</code> for yesterday’s date. </p>
+
+<p>MS-DOS day numbers are based on January 1, 1980 as day 0; dates before
+1980 will have negative MS-DOS day numbers.  ANSI day numbers use January
+1, 1601 as day 1.</p>
+
+
+<h4><a name=daterange></a>Supported Date Range:</h4>
+
+<p>Dates passed to any internal function or command in this plugin must be
+in the range of January 1, 1601 through December 31, 9999.  Any date
+outside this range will cause an error.  Invalid dates such as April 31,
+or February 29 of a common year, will also be detected and raise an
+error.</p>
+
+<table>
+<tr><td> </td><td style="text-decoration: underline;">Minimum</td><td style="text-decoration: underline;">Maximum</td></tr>
+<tr><td>ISO 8601</td><td>1601-01-01</td><td>9999-12-31</td></tr>
+<tr><td>   week-day</td><td>1601-W01-1</td><td>9999-W52-7</td></tr>
+<tr><td>   ordinal</td><td>1601-001</td><td>9999-366</td></tr>
+<tr><td>MS-DOS day number</td><td>-138426</td><td>+2929244</td></tr>
+<tr><td>ANSI day number</td><td>A+1</td><td>A+3067671</td></tr>
+<tr><td>
+</table>
+
+<p>Be aware that this plugin uses the Gregorian calendar only.  I have
+made no allowance for earlier or different calendars.  Many countries
+converted from the older Julian calendar at some point within this
+range, so this plugin may return info that disagrees with actual
+historical calendars.  For instance, dates prior to September of 1752 in
+the English-speaking world will almost certainly be “wrong”.</p>
+
+
+<h4><a name=names></a>Entering Days of the Week, Months, and Day-of-the-Week Lists:</h4>
+
+<p>Some of the functions in this plugin take days of the week or months as
+arguments.  Where you see a <span class=optname>dow</span> parameter, you
+should supply a day of the week.  Day names may be abbreviated to the first
+three letters of their English names:  <code>MON</code>, <code>TUE</code>,
+and so on.  If Windows is set up for a non-English locale, you can also use
+the local abbreviated day names as reported by the
+<a href="E:\Utils\#f_idow"><code>@IDOW</code></a> function.  Localized day names must
+match all characters returned by <a href="E:\Utils\#f_idow"><code>@IDOW</code></a>,
+including any accents or other diacriticals.  Finally, you may use numbers:
+1 for Monday, 2 for Tuesday, and so on.  (Sunday may be specified as either
+0 or 7.)</p>
+
+<p>A <span class=optname>month</span> parameter may be entered as an
+English month name (only the first three letters are significant):
+<code>JAN</code>, <code>FEB</code>, <code>MAR</code>, and so on.  In a
+non-English locale, you may instead use local abbreviated month names as
+reported by <code><a href="E:\Utils\#f_monthname">@MONTHNAME</a>[</code><span class=optname>n</span><code>,3]</code>.
+Localized month names must match all characters, including any accents or
+diacriticals.  You can also use numbers: 1 for January, 2 for February, and
+so on.</p>
+
+<p>A few of the functions in this plugin accept lists of days of the week.
+Wherever you see a <span class=optname>dowmask</span> parameter, you can
+enter:</p>
+
+<p>•   One or more days of the week, separated
+with spaces or semicolons: <code>MON WED FRI</code> for Mondays, Wednesdays,
+and Fridays<br>
+•   a range, two days separated by a dash:
+<code>TUE-FRI</code> for Tuesdays, Wednesdays, Thursdays, and Fridays<br>
+•   the word <code>WEEKDAYS</code> (equivalent to
+<code>MON-FRI</code>) or <code>WEEKENDS</code> (equivalent to <code>SAT-SUN</code>)</p>
+
+<p>If you type an exclamation point before the list, the meaning is inverted:
+<code>!TUE THU</code> means all days except for Tuesdays and Thursdays.  You
+can use local day names or digits in a <span class=optname>dowmask</span>
+if you wish.</p>
+
+
+<h4><a name=isoweeks></a>ISO 8601 Week Numbering:</h4>
+
+<p>Several of the functions in this plugin make use of ISO 8601 week
+numbers.  This system is unfamiliar to many people; here’s a brief
+summary of how it works.</p>
+
+<p>In the ISO 8601 standard, a “week” is defined as a seven-day
+period, always beginning on a Monday and always ending on a Sunday.  (This
+differs from the traditional week running from Sunday through Saturday.)
+The fourth and central day of any ISO week is therefore a Thursday.</p>
+
+<p>Because New Year’s Day does not always fall on a Monday, it’s possible
+for the year to change in mid-week.  In other words, an ISO week can begin
+in one year and end in another.  ISO 8601 defines a week as belonging to
+the year in which its Thursday falls.  Think of Thursday as the
+“anchor” of the ISO week: the entire week is tied to the year
+where Thursday drops anchor.</p>
+
+<p>ISO weeks are numbered starting with 1 (not zero.)  Week 1 of a year is
+the week containing the first Thursday of the year.  Week 2 is the week
+containing the second Thursday of the year, week 3 contains the third
+Thursday, and so on.  The last ISO week of a year is numbered 52 or 53,
+since some years contain 52 Thursdays and others have 53.</p>
+
+<p>As many as three days at the start of January may belong to the final
+week of the previous year; as many as three days at the end of December may
+belong to the first week of the following year.  For ISO week-numbering
+purposes, <strong>any date falls in the same week as the nearest
+Thursday.</strong></p>
+
+<p style="padding-top: 10px;">For example, consider Friday, December 31, 2010.  The closest Thursday
+is December 30; so December 31 falls in the last ISO week of 2010.  If we
+look at Sunday, January 2, 2011, we see that the nearest Thursday is still
+December 30, 2010; so January 2, 2011 is also in the final week of 2010.
+But for Monday, January 3, 2011, the closest Thursday is January
+6 — the first Thursday of the new year — so January 3,
+2011 falls in the first ISO week of 2011.</p>
+
+<table style="margin-left:auto; margin-right: auto;">
+<tr><td style="text-decoration: underline; text-align: center; padding-right: 0.5em;">Year</td><td style="text-decoration: underline; text-align: center; padding-right: 1em;">Week</td><td class=weekcolheader>Mon</td><td class=weekcolheader>Tue</td><td class=weekcolheader>Wed</td><td class=weekcolheader>Thu</td><td class=weekcolheader>Fri</td><td class=weekcolheader>Sat</td><td class=weekcolheader>Sun</td></tr>
+<tr><td style="text-align: center; padding-right: 0.5em;">2010</td><td style="text-align: center; padding-right: 1em;">50</td><td class=oldyear>Dec 13</td><td class=oldyear>Dec 14</td><td class=oldyear>Dec 15</td><td class=oldyearThu>Dec 16</td><td class=oldyear>Dec 17</td><td class=oldyear>Dec 18</td><td class=oldyear>Dec 19</td></tr>
+<tr><td style="text-align: center; padding-right: 0.5em;">2010</td><td style="text-align: center; padding-right: 1em;">51</td><td class=oldyear>Dec 20</td><td class=oldyear>Dec 21</td><td class=oldyear>Dec 22</td><td class=oldyearThu>Dec 23</td><td class=oldyear>Dec 24</td><td class=oldyear>Dec 25</td><td class=oldyear>Dec 26</td></tr>
+<tr><td style="text-align: center; padding-right: 0.5em;">2010</td><td style="text-align: center; padding-right: 1em;">52</td><td class=oldyear>Dec 27</td><td class=oldyear>Dec 28</td><td class=oldyear>Dec 29</td><td class=oldyearThu>Dec 30</td><td class=oldyear>Dec 31</td><td class=newyear>Jan 1</td><td class=newyear>Jan 2</td></tr>
+<tr><td style="text-align: center; padding-right: 0.5em;">2011</td><td style="text-align: center; padding-right: 1em;">01</td><td class=newyear>Jan 3</td><td class=newyear>Jan 4</td><td class=newyear>Jan 5</td><td class=newyearThu>Jan 6</td><td class=newyear>Jan 7</td><td class=newyear>Jan 8</td><td class=newyear>Jan 9</td></tr>
+<tr><td style="text-align: center; padding-right: 0.5em;">2011</td><td style="text-align: center; padding-right: 1em;">02</td><td class=newyear>Jan 10</td><td class=newyear>Jan 11</td><td class=newyear>Jan 12</td><td class=newyearThu>Jan 13</td><td class=newyear>Jan 14</td><td class=newyear>Jan 15</td><td class=newyear>Jan 16</td></tr>
+</table>
+
+<p>You can use <code><a href="E:\Utils\#qcal">QCAL</a> /I</code> to display ISO 8601
+week numbers.</p>
+
+
+<h4><a name=defholidays></a>Default Holidays:</h4>
+
+<br>
+<table class=descript>
+	<tr><td colspan=3 style="text-align: center; padding-bottom: 8px;">— Common United States Holidays —</td></tr>
+	<tr><td>New Year’s Day</td><td>Martin Luther King, Jr. Day</td><td>Washington’s Birthday</td></tr>
+	<tr><td>Easter (western)</td><td>Mother’s Day</td><td>Memorial Day</td></tr>
+	<tr><td>Father’s Day</td><td>Juneteenth</td><td>Independence Day</td></tr>
+	<tr><td>Labor Day</td><td>Columbus Day</td><td>Halloween</td></tr>
+	<tr><td>Election Day</td><td>Veterans Day</td><td>Thanksgiving</td></tr>
+	<tr><td>Christmas</td><td>New Year’s Eve</td><td> </td></tr>
+</table>
+
+<p>Future holidays are calculated as currently defined, e.g. by the 1968
+Uniform Monday Holiday Act.  Congress may change them in the future.  I
+have made some fairly arbitrary decisions on how to handle holidays in past
+years, for instance showing FDR’s week-early Thanksgivings for 1939 -
+1941 rather than the traditional date.  Actual historical and local
+observances may have differed; user beware.</p>
+
+
+<h4><a name=inifile></a>Holidays.ini Format:</h4>
+
+<p>The <code><a href="E:\Utils\#qcal">QCAL</a> /H</code> command and the
+<code><a href="E:\Utils\#f_pickdate">@PICKDATE</a></code> function highlight 
+holidays in a different color, and <code><a href="E:\Utils\#f_isholiday">@ISHOLIDAY</a></code>
+tests whether a specific date matches a holiday.  But what holidays does the
+plugin recognize?  <a href="E:\Utils\#defholidays">A list of common United States
+holidays</a> is supplied by default, but it may be desirable to change or
+replace this list.  You can define custom holidays by creating a text file
+named Holidays.ini in the same directory where ISO8601.DLL resides.</p>
+
+<p>Holidays.ini will have one or more sections, each defining annual
+holidays for a different country.  Each section is identified by a header
+line consisting of the English name of the country between square brackets,
+<em>e.g.</em> <code>[Latvia]</code> or <code>[United Kingdom]</code>.  The
+plugin will use the appropriate section for your locale.</p>
+
+<p>Each holiday is defined on a separate line within the appropriate section.
+Use an asterisk as a placeholder for the year.  When the calendar is
+displayed, asterisks will be replaced with the year.  Enter fixed dates in
+ISO 8601 format (with an asterisk in place of the year):  <code>*-07-04</code>
+for <a href="https://en.wikipedia.org/wiki/Independence_Day_%28United_States%29">the
+Fourth of July</a>, <code>*-05-05</code> for
+<a href="https://en.wikipedia.org/wiki/Cinco_de_Mayo">Cinco de Mayo</a>,
+<code>*-11-05</code> for <a href="https://en.wikipedia.org/wiki/Guy_Fawkes_Night">Guy
+Fawkes Night</a>.  You can also use variable functions:
+<code><a href="E:\Utils\#f_holiday">%@holiday</a>[2,1,6,*]</code> for the
+<a href="https://en.wikipedia.org/wiki/Public_holidays_in_Australia#Queen.27s_Birthday">second
+Monday in June</a>, or <code><a href="E:\Utils\#f_easter">%@easter</a>[*,,,-2]</code>
+for <a href="https://en.wikipedia.org/wiki/Good_Friday">Good Friday</a>.
+<em>Do not omit the percent sign —</em> it is required for
+variable expansion!</p>
+
+<p>Occasionally it is useful to restrict the years in which a holiday is
+observed.  You can define a year restriction at the start of the line; it must
+be typed in parentheses, before the holiday definition.  Two types of year
+restrictions are supported:  ranges and periods.  A year range sets a
+minimum or maximum year, or both; a periodic holiday occurs once every so
+many years.  Enter a year range as
+<code>(</code><span class=optname>start</span><code>-</code><span class=optname>end</span><code>)</code>,
+<em>e.g.</em> <code>(1868-1970)</code> to limit a holiday to the years
+1868 through 1970.  You may omit either the <span class=optname>start</span>
+or the <code>-</code><span class=optname>end</span>; don’t type the minus
+sign unless you specify an <span class=optname>end</span>.</p>
+
+<p>An annual period is entered as <code>(?</code><span class=optname>period</span><code>=</code><span class=optname>remainder</span><code>)</code>.
+This defines a holiday observed only when the year divided by the
+<span class=optname>period</span> leaves <span class=optname>remainder</span>.
+For example, <code>(?2=0)</code> restricts a holiday to even-numbered years,
+and <code>(?2=1)</code> to odd-numbered years.  Where <span class=optname>remainder</span>
+is zero, you may omit the <code>=0</code>; <code>(?4)</code> means
+“in years evenly divisible by four.”</p>
+
+<p>You can combine both types within one set of parentheses:
+<code>(1910-1935?2=1)</code> would select odd-numbered years between 1910
+and 1935.  As a practical example, since 1848 United States federal elections
+have been held the day after the first Monday of November in even-numbered
+years.  We could define this date in Holidays.ini using:</p>
+
+<p class=example><code>[United States]<br><br>
+(1848?2) <a href="E:\Utils\#f_holiday">%@holiday</a>[1,1,11,*,,1]   ; Election Day<br></code></p>
+
+<p>In Mexico, a new <a href="https://en.wikipedia.org/wiki/President_of_Mexico">Presidente</a>
+has taken office on the first of December every sixth year since 1934.  (1934
+divided by 6 leaves 2.)</p>
+
+<p class=example><code>[Mexico]<br><br>
+(1934?6=2) *-12-01   ; Transmisión del Poder Ejecutivo Federal<br></code></p>
+
+<p>Note that the semicolon introduces a comment:  the name of the holiday, displayed by
+<code>QCAL /L</code>. </p>
+
+
+<h4><a name=tfmt></a>Time Formats:</h4>
+
+<p>A few of the functions in this plugin can return times in different
+formats.  The <span class=optname>tfmt</span> parameter controls
+how times are returned.  The lower four bits of <span class=optname>tfmt</span>
+select between 24-hour time or a variety of different 12-hour formats.  If
+the lower four bits are all zero, then the time is returned in 24-hour
+format; if any is set, 12-hour format is used: </p>
+
+<table class=descript>
+	<tr><td><span class=optname>tfmt</span></td><td> </td><td style="width: 3em;"> </td><td><span class=optname>tfmt</span></td><td> </td></tr>
+	<tr><td>0</td><td>5:23</td><td> </td><td>7</td><td>5:23A.M.</td></tr>
+	<tr><td>1</td><td>5:23 AM</td><td> </td><td>8</td><td>5:23a.m.</td></tr>
+	<tr><td>2</td><td>5:23 am</td><td> </td><td>9</td><td>5:23 A</td></tr>
+	<tr><td>3</td><td>5:23 A.M.</td><td> </td><td>10</td><td>5:23 a</td></tr>
+	<tr><td>4</td><td>5:23 a.m.</td><td> </td><td>11</td><td>5:23A</td></tr>
+	<tr><td>5</td><td>5:23AM</td><td> </td><td>12</td><td>5:23a</td></tr>
+	<tr><td>6</td><td>5:23am</td><td> </td><td> </td><td> </td></tr>
+</table>
+
+<p>You can also add the following values to <span class=optname>tfmt</span>: </p>
+
+<table class=descript>
+	<tr><td style="text-align: right;">value</td><td>meaning</td></tr>
+	<tr><td style="text-align: right;">128</td><td>include seconds</td></tr>
+	<tr><td style="text-align: right;">256</td><td>include milliseconds</td></tr>
+	<tr><td style="text-align: right;">512</td><td>use local time and decimal separators, not hardcoded <code>:</code> and <code>.</code></td></tr>
+	<tr><td style="text-align: right;">1024</td><td>use leading zero in hours</td></tr>
+	<tr><td style="text-align: right;">2048</td><td>left-pad one-digit hours with a space</td></tr>
+	<tr><td style="text-align: right;">4096</td><td>omit time and decimal separators; use leading zero in hours</td></tr>
+	<tr><td style="text-align: right;">5120</td><td>omit time separators; use leading zero in hours</td></tr>
+</table>
+
+<p>There is also a special value 15, which reports a time as a decimal fraction
+of a day: </p>
+
+<table class=descript>
+	<tr><td><span class=optname>tfmt</span></td><td> </td></tr>
+	<tr><td>15</td><td>.22430556</td></tr>
+</table>
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=missing></a>What Is Not Supported:</h4>
+
+<p>The new date formats are not supported in date ranges in file-handling
+commands.  You can use
+<code><a href="E:\Utils\#f_dateconv">@DATECONV</a>[</code><span class=optname>newdate</span><code>,4]</code>
+within a date range to convert the new date formats into something TCC
+understands.</p>
+
+<p>The internal <code>@FILEDATE</code> function has not been replaced, as
+I have no foolproof way to get date stamp info for FTP files.  If needed,
+you can massage <code>@FILEDATE</code>’s output with
+<a href="E:\Utils\#f_dateconv"><code>@DATECONV</code></a>.</p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+
+<table style="margin-left: 2px;">
+<tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>1.7.6.0</td><td nowrap>2026-11-12</td><td class=changes>Commands are listed before functions in the plugin’s
+			feature list and in the help files. <br>
+			Changes to the way the help text is displayed in Windows Terminal and ConPTY tabs. 
+			Cosmetic tweaks to the help text. </td></tr>
+	<tr><td>1.7.5.0</td><td nowrap>2025-11-10</td><td class=changes>Added <a href="E:\Utils\#f_datefmt"><code>@DATEFMT</code></a> and
+		<a href="E:\Utils\#now"><code>NOW</code></a>.  Much cleanup of the help file. </td></tr>
+	<tr><td>1.7.4.3</td><td nowrap>2025-03-27</td><td class=changes>Updated <span class=filename>mmfiles.cpp</span> and
+		<span class=filename>NewHelp.cpp</span>. </td></tr>
+	<tr><td>1.7.4.2</td><td nowrap>2024-10-02</td><td class=changes>Changed http:// to https:// in the <code>PLUGININFO</code> block. </td></tr>
+	<tr><td>1.7.4.0</td><td nowrap>2024-04-18</td><td class=changes>Fixed some issues with <a href="E:\Utils\#qcal"><code>QCAL</code>’s</a> highlighting of holidays. </td></tr>
+	<tr><td>1.7.3.3</td><td nowrap>2024-04-03</td><td class=changes><span class=filename>NewHelp.cpp</span> v1.0.8.14, 
+		<span class=filename>mmfiles.cpp</span> v1.4.4.5, <span class=filename>codepages.cpp</span> v2.1.0.3.  Simplified the
+		‘Quick Links’ box in the .HTML file; all of the reference info has been collapsed into a
+		<a href="E:\Utils\#reference">single section</a>, the same as in the .CHM file. </td></tr>
+	<tr><td>1.7.3.2</td><td nowrap>2023-10-15</td><td class=changes>Tweaked ShowPluginVersion()’s output format
+		slightly. </td></tr>
+	<tr><td>1.7.3.1</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.7.3.0</td><td nowrap>2023-07-31</td><td class=changes>Updated to the current versions of <span class=filename>mmfiles.cpp</span>,
+		<span class=filename>codepages.cpp</span>, and <span class=filename>NewHelp.cpp</span>.  Documented the newer options to
+		<a href="E:\Utils\#iso8601help"><code>ISO8601HELP</code></a>. </td></tr>
+	<tr><td>1.7.2.2</td><td nowrap>2023-07-21</td><td class=changes>Updated to current versions of <span class=filename>ParseArgs.cpp</span> and <span class=filename>NewHelp.cpp</span>. </td></tr>
+	<tr><td>1.7.2.1</td><td nowrap>2023-06-13</td><td class=changes>Updated help system to avoid an issue in TCC 30.00.20. </td></tr>
+	<tr><td>1.7.2.0</td><td nowrap>2023-02-13</td><td class=changes>Updated <a href="E:\Utils\#f_filestamp"><code>@FILESTAMP</code></a> to support internet files. </td></tr>
+	<tr><td>1.7.1.1</td><td nowrap>2021-08-12</td><td class=changes>Tweaked the version info structure; no changes to the code. </td></tr>
+	<tr><td>1.7.1.0</td><td nowrap>2021-07-06</td><td class=changes>Added <a href="E:\Utils\#f_julian"><code>@JULIAN</code></a>. </td></tr>
+	<tr><td>1.7.0.0</td><td nowrap>2021-07-04</td><td class=changes>Changed the <span class=filename>.DLL</span> names; now <span class=filename>ISO8601.dll</span> is the 64-bit build.  Adds <a href="E:\Utils\#f_century"><code>@CENTURY</code></a>,
+		<a href="E:\Utils\#f_useconds"><code>@USECONDS</code></a>, <a href="E:\Utils\#f_uxtodatetime"><code>@UXTODATETIME</code></a>, and <a href="E:\Utils\#v_useconds"><code>_USECONDS</code></a>.  Added <code>/6</code> <code>/L</code> and <code>/N</code> to
+		<a href="E:\Utils\#qcal"><code>QCAL</code></a>.  Changed the default output format in <a href="E:\Utils\#f_timefmt"><code>@TIMEFMT</code></a>, <a href="E:\Utils\#f_localdatetime"><code>@LOCALDATETIME</code></a>, and
+		<a href="E:\Utils\#f_utcdatetime"><code>@UTCDATETIME</code></a>.  Added an option to prevent the user from selecting holidays in <a href="E:\Utils\#f_pickdate"><code>@PICKDATE</code></a>.  Added a flags arg to <a href="E:\Utils\#f_inlieu"><code>@INLIEU</code></a>.
+		Fixed an issue with <a href="E:\Utils\#f_pickdate"><code>@PICKDATE</code></a> not freeing holiday definitions.  Added Juneteenth to holidays.  Sundry bug fixes.  Much cleanup of the code and documentation. </td></tr>
+	<tr><td>1.6.5.0</td><td nowrap>2019-09-19</td><td class=changes>Bodged around an issue with <a href="E:\Utils\#qcal"><code>QCAL</code></a>’s colors bleeding in the Windows 10 console. </td></tr>
+	<tr><td>1.6.4.0</td><td nowrap>2017-12-06</td><td class=changes>Updates to the help system; fixed a cosmetic issue with <code><a href="E:\Utils\#iso8601help">ISO8601HELP</a> /?</code> </td></tr>
+	<tr><td>1.6.3.0</td><td nowrap>2017-11-13</td><td class=changes>Removed dependency on Evaluate() for compatibility with <a target=_blank href="https://jpsoft.com/products/tcc-rt-runtime.html">TCC-RT</a>. </td></tr>
+	<tr><td>1.6.2.0</td><td nowrap>2017-11-10</td><td class=changes>Bug fix:  <code><a href="E:\Utils\#qcal">QCAL</a> /H</code> delayed variable expansion clobbering settings. </td></tr>
+	<tr><td>1.6.1.0</td><td nowrap>2017-02-02</td><td class=changes>Minor tweak for TCC v21 compatibility.</td></tr>
+	<tr><td>1.6.0.0</td><td nowrap>2016-08-16</td><td class=changes>Add convenience variables <a href="E:\Utils\#v_tomorrow"><code>_TOMORROW</code></a> and <a href="E:\Utils\#v_yesterday"><code>_YESTERDAY</code></a>.</td></tr>
+	<tr><td>1.5.4.0</td><td nowrap>2016-03-09</td><td class=changes>Reworks the help system, for systems where the documented <a target=_blank href="https://duckduckgo.com/?q=%5cHtmlHelpW%20function%20site:learn.microsoft.com">HtmlHelp()</a> API is broken.</td></tr>
+	<tr><td>1.5.3.0</td><td nowrap>2015-04-28</td><td class=changes>Added <a href="E:\Utils\#v_t4">_T4</a>, for no better reason than that this was a convenient place to stick it.</td></tr>
+	<tr><td>1.5.2.0</td><td nowrap>2014-11-03</td><td class=changes>Bug fix:  CallInternal() calling Command() with nonzero nReserved parameter.</td></tr>
+	<tr><td>1.5.1.0</td><td nowrap>2014-10-31</td><td class=changes>Bug fix:  CallInternal() adding an asterisk when it shouldn’t.  Documented <code>TODAY</code> synonym for <a href="E:\Utils\#infmt"><code>T</code></a>.</td></tr>
+	<tr><td>1.5.0.0</td><td nowrap>2014-10-29</td><td class=changes>Changes for TCC v17 compatibility.</td></tr>
+	<tr><td>1.4.1.0</td><td nowrap>2014-05-21</td><td class=changes>Fixed the default time format in <a href="E:\Utils\#f_agedate">@AGEDATE</a> to match TCC’s.</td></tr>
+	<tr><td>1.4.0.0</td><td nowrap>2014-04-25</td><td class=changes>Rewrote the holiday handling code.  Tweaks to the help system.  Automatically unload QCAL when loading ISO8601 (and vice versa).</td></tr>
+	<tr><td>1.3.10.0</td><td nowrap>2013-10-14</td><td class=changes>Added Chile to <a href="E:\Utils\#inifile">Holidays.ini</a>, thanks to Miguel Farah.  Added two new modes to <a href="E:\Utils\#f_inlieu">@INLIEU</a> to support Chilean holidays.</td></tr>
+	<tr><td>1.3.9.0</td><td nowrap>2013-10-04</td><td class=changes>Added Poland and Hungary to <a href="E:\Utils\#inifile">Holidays.ini</a>; thanks to jbanaszczyk and Steve Fabian respectively.  Tweaked the code to allow for UTF-16 Holidays.ini.</td></tr>
+	<tr><td>1.3.8.0</td><td nowrap>2013-04-11</td><td class=changes>Updated the plugin’s web address</td></tr>
+	<tr><td>1.3.7.0</td><td nowrap>2012-08-21</td><td class=changes>Minor changes to make <a target=_blank href="http://users.skynet.be/mgueury/mozilla/" class=deadlink>HTML Validator</a> (dead link) happy</td></tr>
+	<tr><td>1.3.6.0</td><td nowrap>2012-06-15</td><td class=changes>Adds <a href="E:\Utils\#f_istime"><code>@ISTIME</code></a> and <a href="E:\Utils\#f_timeparts"><code>@TIMEPARTS</code></a></td></tr>
+	<tr><td>1.3.5.0</td><td nowrap>2012-06-13</td><td class=changes>Puts <a href="E:\Utils\#f_dateconv"><code>@DATECONV</code></a> back the way it was, for compatibility with TCC</td></tr>
+	<tr><td>1.3.4.0</td><td nowrap>2012-06-13</td><td class=changes><a href="E:\Utils\#f_dateconv"><code>@DATECONV</code></a> outputs four-digit years by default</td></tr>
+	<tr><td>1.3.3.0</td><td nowrap>2012-06-12</td><td class=changes>New option to <a href="E:\Utils\#f_agedate"><code>@AGEDATE</code></a> and <a href="E:\Utils\#f_filestamp"><code>@FILESTAMP</code></a> to return date/time pairs separated by a <code>T</code>, per ISO 8601; made the offset optional in <a href="E:\Utils\#f_timeplus"><code>@TIMEPLUS</code></a></td>
+	<tr><td>1.3.2.0</td><td nowrap>2012-06-08</td><td class=changes>Allow <code>T</code> as a date/time separator in <a href="E:\Utils\#f_timediff"><code>@TIMEDIFF</code></a> and <a href="E:\Utils\#f_timeplus"><code>@TIMEPLUS</code></a>.</td></tr>
+	<tr><td>1.3.1.0</td><td nowrap>2012-06-06</td><td class=changes>Tweaks to the display of <a href="E:\Utils\#tfmt">time format 15</a> when combined with a day offset; disabled 12-hour output time formats in <a href="E:\Utils\#f_timediff">@TIMEDIFF</a>; documented the expanded <a href="E:\Utils\#daterange">date range</a></td></tr>
+	<tr><td>1.3.0.0</td><td nowrap>2012-06-06</td><td class=changes>Added <a href="E:\Utils\#f_dectotime"><code>@DECTOTIME</code></a>, <a href="E:\Utils\#f_timediff"><code>@TIMEDIFF</code></a>, <a href="E:\Utils\#f_timeplus"><code>@TIMEPLUS</code></a>, <a href="E:\Utils\#f_timetodec"><code>@TIMETODEC</code></a>, <a href="E:\Utils\#tfmt">time format 15</a>; extended the <a href="E:\Utils\#daterange">valid date range</a> to the year 9999</td></tr>
+	<tr><td>1.2.4.0</td><td nowrap>2012-03-05</td><td class=changes>Converted to VS 2010; disallow negative values for <a href="E:\Utils\#f_ord"><code>@ORD</code></a>; close help on shutdown.</tr>
+	<tr><td>1.2.3.0</td><td nowrap>2011-06-29</td><td class=changes>Bug fix:  <a href="E:\Utils\#f_localdatetime"><code>@LOCALDATETIME</code></a>, <a href="E:\Utils\#f_timefmt"><code>@TIMEFMT</code></a>, and <a href="E:\Utils\#f_utcdatetime"><code>@UTCDATETIME</code></a> were dividing args at unquoted spaces.</td></tr>
+	<tr><td>1.2.2.0</td><td nowrap>2011-04-25</td><td class=changes>Bug fix:  <a href="E:\Utils\#f_makeage"><code>@MAKEAGE</code></a> wasn’t initializing variable before calling the reworked time parser.</td></tr>
+	<tr><td>1.2.1.0</td><td nowrap>2011-04-15</td><td class=changes>Added time-format bit 12 (Dave Cantor suggestion)</td></tr>
+	<tr><td>1.2.0.0</td><td nowrap>2011-04-14</td><td class=changes>Per a suggestion by Steve Fabian, reworked the time parser to accept 12-hour or 24-hour input.  Added <a href="E:\Utils\#f_timefmt"><code>@TIMEFMT</code></a>, <a href="E:\Utils\#f_localdatetime"><code>@LOCALDATETIME</code></a> and <a href="E:\Utils\#f_utcdatetime"><code>@UTCDATETIME</code></a> functions.  Tweaked <a href="E:\Utils\#f_agedate"><code>@AGEDATE</code></a> to output different <a href="E:\Utils\#tfmt">time formats</a>.</td></tr>
+	<tr><td>1.1.5.0</td><td nowrap>2011-03-28</td><td class=changes>Don’t call HtmlHelp() to close the help file on shutdown; this is insanely slow for some reason.</td></tr>
+	<tr><td>1.1.4.0</td><td nowrap>2011-03-03</td><td class=changes>Further tweaks to the help system</td></tr>
+	<tr><td>1.1.3.0</td><td nowrap>2011-02-26</td><td class=changes>Further tweaks to the help system</td></tr>
+	<tr><td>1.1.2.0</td><td nowrap>2011-02-09</td><td class=changes>Added <a href="E:\Utils\#iso8601help"><code>ISO8601HELP</code></a> command, <a href="E:\Utils\#fmt">date format 21</a>; tweaked online help to be sorta-kinda “single instance”</td></tr>
+	<tr><td>1.1.1.0</td><td nowrap>2010-12-27</td><td class=changes>Tweaked <a href="E:\Utils\#f_ord"><code>@ORD</code></a> function to allow an expression instead of just a number</td></tr>
+	<tr><td>1.1.0.0</td><td nowrap>2010-07-30</td><td class=changes>Added <a href="E:\Utils\#fmt">date format 20</a>, YYYYMMDD</td></tr>
+	<tr><td>1.0.0.0</td><td nowrap>2010-06-17</td><td class=changes>First release</td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.
+Be aware that this plugin definitely does alter the behavior of internal
+functions; use it at your own risk. </p>
+
+<p>If you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/iso8601.zip">https://charlesdye.net/dl/iso8601.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+<!--endtopic-->
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

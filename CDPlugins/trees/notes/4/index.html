@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>ConFont Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.topsticky>TH		{ position: sticky; top: 0; background-color: #fff; opacity: 1.0; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TD.header			{ text-decoration: underline; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#features">Plugin Features:</a></li>
+	<li>    <a href="E:\Utils\#font">FONT command</a></li>
+	<li>    <a href="E:\Utils\#f_font">@FONT function</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>ConFont plugin for TCC/LE</h1>
+<h3>Version 1.0.6     2026-11-06</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin implements the <a href="E:\Utils\#font"><code>FONT</code></a> command
+and the <a href="E:\Utils\#f_font"><code>@FONT</code></a> function in TCC/LE.  Windows
+Vista or later is required; it will not load under earlier versions. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>ConFont.dll</span> to some
+known location on your hard drive.  (If you are still using the 32-bit version
+of TCC/LE, take <span class=filename>ConFont-x86.dll</span> instead of
+<span class=filename>ConFont.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\confont.dll</code></p>
+
+<p>If you copy the .DLL file to a subdirectory named <span class=filename>PlugIns</span>
+within your TCC/LE program directory, ConFont will be loaded
+automatically when TCC/LE starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">command</a>:  <a href="E:\Utils\#font"><code>FONT</code></a></p>
+
+<p>New <a href="E:\Utils\#functions">function</a>:  <a href="E:\Utils\#f_font"><code>@FONT</code></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+font /nConsolas /y14<br>
+</code></p>
+
+<br>
+<p>Some options take an argument.  These are shown with a colon between the option and its
+argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Command:</h4>
+
+
+<p><a name=font></a><code>FONT</code> — Show or change the console font. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>FONT</code><code> /B /F: /L /N: /Q /W: /X: /Y:</code><span class=optname>n</span></p>
+
+<table class=descript>
+	<tr><td></td><td style="padding-bottom: 5px;">    Compatible options:</td></tr>
+	<tr><td><code>/F:</code><span class=optname>nop</span></td><td>do-nothing option for TCC compatibility; ignored</td></tr>
+	<tr><td><code>/N:</code><span class=optname>name</span></td><td>typeface name; quote it if it contains spaces or other problematic characters</td></tr>
+	<tr><td><code>/W:</code><span class=optname>n</span></td><td>font weight: <code>400</code> normal, <code>700</code> bold</td></tr>
+	<tr><td><code>/X:</code><span class=optname>n</span></td><td>character width in pixels</td></tr>
+	<tr><td><code>/Y:</code><span class=optname>n</span></td><td>character height in pixels</td></tr>
+	<tr><td> </td><td></td></tr>
+	<tr><td></td><td style="padding-bottom: 5px;">    New options — incompatible with TCC:</td></tr>
+	<tr><td><code>/B</code></td><td>bold; synonym for <code>/W:700</code></td></tr>
+	<tr><td><code>/L</code></td><td>list known console typefaces</td></tr>
+	<tr><td><code>/Q</code></td><td>quietly</td></tr>
+</table>
+
+<p>If no arguments are specified, <code>FONT</code> will display information
+about the current console font. </p>
+
+<p>In arguments which take a value, you can replace the colon with an equals
+sign, or omit it entirely. </p>
+
+<p>This command uses the
+<a target=_blank href="https://duckduckgo.com/?q=%5cSetCurrentConsoleFontEx%20site:learn.microsoft.com">SetCurrentConsoleFontEx()</a>
+API, which seems rather flakey, to put it mildly.  If no console font exactly
+matches your request, SetCurrentConsoleFontEx() will either pick a different
+font at random and report success, or else do nothing… and report
+success.  MSDN claims that this API can also report failure, but I have yet to
+see that happen.  SetCurrentConsoleFontEx() can also cough up an italic font
+from time to time. </p>
+
+<br>
+<p>This command will not work if TCC/LE is running in Windows Terminal (it will
+show an error message).  Windows Terminal is not entirely compatible with the
+Windows console API. <p>
+
+<p>Using any of the options listed under “New features” will break
+compatibility with TCC. </p>
+
+<p class=example><code>font /nConsolas /y14<br>
+</code></p>
+
+<p class=xref>See also:  the <a href="E:\Utils\#f_font"><code>@FONT</code></a> function. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Function:</h4>
+
+
+<p><a name=f_font></a><code>@FONT</code> — Returns information
+about the current console font. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@FONT[</code><span class=optname>n</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>n</span></td><td>which information to return:</td></tr>
+	<tr><td> </td><td>  <code>0</code>: the font name</td></tr>
+	<tr><td> </td><td>  <code>1</code>: the character width in pixels</td></tr>
+	<tr><td> </td><td>  <code>2</code>: the character height in pixels</td></tr>
+	<tr><td> </td><td>  <code>3</code>: the font weight:  <code>400</code> normal, <code>700</code> bold</td></tr>
+	<tr><td> </td><td>  <code>4</code>: the font family:  <code>48</code> Terminal, <code>54</code> a TrueType font</td></tr>
+	<tr><td> </td><td>  <code>5</code>: the font index (a completely useless number, so far as I can tell)</td></tr>
+	<tr><td> </td><td>  <code>128</code>: a descriptive string</td></tr>
+	<tr><td> </td><td>  <code>129</code>: returns <code>1</code> if the current console font supports Unicode, <code>0</code> if not</td></tr>
+</table>
+
+<p>This function calls
+<a target=_blank href="https://duckduckgo.com/?q=%5cGetCurrentConsoleFontEx%20site:learn.microsoft.com">GetCurrentConsoleFontEx</a>. </p>
+
+<p>Note that this function will cheerfully return nonsense if TCC/LE is running in
+Windows Terminal.  Windows Terminal is not entirely compatible with the Windows 
+console API. </p>
+
+<p class=xref>See also:  the <a href="E:\Utils\#font"><code>FONT</code></a> command. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table class=descript>
+	<tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+	<tr><td>1.0.6.3</td><td nowrap>2026-11-06</td><td class=changes>Changes to the way the help text is displayed 
+		in Windows Terminal and ConPTY tabs. </td></tr>
+	<tr><td>1.0.6.2</td><td nowrap>2026-04-27</td><td class=changes>Check for a pseudo-console window, 
+		not just Windows Terminal. </td></tr>
+	<tr><td>1.0.6.0</td><td nowrap>2025-08-27</td><td class=changes><code>FONT</code> displays an error message 
+		if it detects Windows Terminal.  (<code>@FONT</code> still cheerfully returns nonsense.) </td></tr>
+	<tr><td>1.0.5.1</td><td nowrap>2024-02-28</td><td class=changes>Moved the help texts and font-gathering structures
+		into <span class=filename>ConFont.cpp</span>. </td></tr>
+	<tr><td>1.0.5</td><td nowrap>2024-02-23</td><td class=changes>Split the code into <span class=filename>ConFontMain.cpp</span>
+		and <span class=filename>ConFont.cpp</span>, to allow easier sync with
+		LEMisc. </td></tr>
+	<tr><td>1.0.4</td><td nowrap>2024-02-23</td><td class=changes>Major changes to support the new Windows 10
+		“enhanced” console mode, which allows many more fonts (all monospaced modern fonts?) to
+		be used. </td></tr>
+	<tr><td>1.0.3</td><td nowrap>2024-02-12</td><td class=changes>
+		<a href="E:\Utils\#font"><code>FONT /L</code></a> now shows an asterisk next to the current font name,
+		if available.  Restored the (undocumented) <a href="E:\Utils\#f_font"><code>%@CONFONT[129]</code></a>
+		and documented it.  Removed the startup test for TCC/LE; now this plugin can be loaded in
+		the full TCC.EXE to replace the built-in <code>FONT</code> command if desired. </td></tr>
+	<tr><td>1.0.2</td><td nowrap>2023-11-22</td><td class=changes>The “Plugin not loaded” message is not
+		displayed in transient or pipe shells.  Updated the copyright message in the VerInfo block to reflect ConFont’s
+		no-longer-beta status. </td></tr>
+	<tr><td>1.0.1.1</td><td nowrap>2023-10-13</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.0.1</td><td nowrap>2021-07-31</td><td class=changes>Switched the filenames;
+		now <span class=filename>ConFont.dll</span> is the x64 build.  Tweaked the version info resource to include the
+		platform (x64 or x86). </td></tr>
+	<tr><td>1.0.0</td><td nowrap>2016-12-05</td><td class=changes>First release. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/confont.zip">https://charlesdye.net/dl/confont.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>

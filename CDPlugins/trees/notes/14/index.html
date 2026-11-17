@@ -1,0 +1,628 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!--saved from url=(0024)http://www.bauerapps.com--><html lang=en>
+<head>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<title>ProcTree Plugin</title>
+
+<style type="text/css">
+	BODY				{ color: #000; background-color: #fff; font-family: Verdana, Tahoma, sans-serif; font-weight: normal; }
+	H1					{ text-align: center; font-size: 150%; }
+	H2					{ text-align: center; font-size: 130%; }
+	H3					{ text-align: center; font-size: 110%; margin-top: 1px; margin-bottom: 1px; }
+	H4					{ font-size: 100%; text-decoration: underline; margin-top: 3em; margin-bottom: 0px; }
+	H5					{ text-align: center; margin-top: 5px; margin-bottom: 0px; }
+	CODE				{ font-family: Consolas, monospace; font-size: 110%; }
+	A					{ color: #000; text-decoration: none; border-bottom: 1px dotted #668; }
+	A:hover				{ color: #008; text-decoration: none; border-bottom: 1px solid #008; }
+	DIV.navbar			{ position: fixed; top: 7px; right: 7px; width: 13em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.navbar A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.navbar A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.navbar UL		{ list-style: none; padding-left: 5px; }
+	DIV.subnav			{ position: absolute; width: 10em; right: 16em; background-color: #dde; font-size: small; border-radius: 8px; padding: 4px; }
+	DIV.subnav A		{ color: #000; text-decoration: none; border-bottom: none; }
+	DIV.subnav A:hover	{ color: #008; text-decoration: none; background-color: #fff; }
+	DIV.subnav UL		{ list-style: none; padding-left: 5px; }
+	KBD					{ font-family: Verdana, Tahoma, sans-serif; font-size: small; white-space: nowrap; padding: 0 0.4em; border: 1px solid #bbb; background-color: #ddd; border-radius: 4px; }
+	.content			{ margin-left: 7px; margin-right: 12em; }
+	.optname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; text-decoration: none; }
+	.reqname			{ font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; color: #008; font-style: italic; font-weight: bold; text-decoration: none; }
+	.req				{ font-weight: bold; }
+	.bnf				{ color: #375; font-style: italic; }
+	.filename			{ font-variant: small-caps; white-space: nowrap; }
+	.descript			{ margin-left: 2em; padding-bottom: 1em; }
+	.example			{ display: inline-flex; margin: 1em auto 1em 1em; line-height: 1.8; background-color: #eee; padding: 0.5em 2em; border-radius: 8px; }
+	.note				{ color: #600; font-weight: bold; }
+	.xref				{ font-size: 95%; margin-top: 2em; }
+	.changes			{ font-size: 90%; }
+	.deadlink			{ color: #888; }
+	TD					{ padding-right: 2em; vertical-align: top; }
+	TH					{ font-size: 105%; font-weight: normal; text-decoration: underline; text-align: left; padding-right: 1em; padding-bottom: 0.5em; }
+	LI					{ margin-top: 2px; }
+
+	@media print {
+		BODY			{ background-color: #fff; font-family: "Palatino Linotype", Palatino, "Book Antiqua", Garamond, serif; font-size: 90%; font-weight: normal; }
+		A				{ border-bottom: none; }
+		.navbar			{ display: none; }
+		.content		{ margin-left: 0; margin-right: 0; }
+		.example		{ margin: 1em auto 1em 1em; line-height: 1.8; padding: 0.5em 2em; border: 1px solid #ccc; border-radius: 8px; }
+		.deadlink		{ color: #000; }
+		.noprint		{ display: none; }
+	}
+
+</style>
+</head>
+
+<body>
+
+<div class=navbar>
+<h5>— Quick Links —</h5>
+<ul>
+	<li><a href="E:\Utils\#">Top</a></li>
+	<li><a href="E:\Utils\#purpose">Purpose</a></li>
+	<li><a href="E:\Utils\#install">Installation</a></li>
+	<li><a href="E:\Utils\#proctree"><code>PROCTREE</code></a> command</li>
+	<li><a href="E:\Utils\#highlight">Highlight variable</a></li>
+	<li><a href="E:\Utils\#noloadmsg">Startup Message</a></li>
+	<li><a href="E:\Utils\#changes">Changes</a></li>
+	<li><a href="E:\Utils\#licensing">Status and Licensing</a></li>
+	<li><a href="E:\Utils\#download">Download</a></li>
+</ul>
+</div>
+
+
+<div class=content>
+<a name=overview></a>
+
+<h1>ProcTree plugin for <a target=_blank href="https://jpsoft.com/products/take-command.html">Take Command</a> / <a target=_blank href="https://jpsoft.com/products/tcc.html">TCC</a> / TCC/LE</h1>
+<h3>Version 1.1.5     2026-10-15</h3>
+<h3>Charles Dye</h3>
+
+
+<h4><a name=purpose></a>Purpose:</h4>
+
+<p>This plugin provides two commands and a function to display or return
+a process’s genealogy. </p>
+
+<p><a href="E:\Utils\#proctree"><code>PROCTREE</code></a> displays a tree-formatted
+list of descendants of a given process.  It’s like a cross between
+<code>TASKLIST</code> and <code>ENUMPROCESSES</code>. </p>
+
+<p><a href="E:\Utils\#ancestry"><code>ANCESTRY</code></a> is essentially the reverse:
+it displays a list of a process’s ancestors.  Since each process has
+only one parent, the output is not a tree but a simple list, from the earliest
+known ancestor to the specified process.  <a href="E:\Utils\#f_ancestry"><code>@ANCESTRY</code></a>
+is <code>ANCESTRY</code> as a function.  It returns a space-separated list
+of ancestral process IDs. </p>
+
+<br>
+<p><code>PROCTREE</code>, <code>ANCESTRY</code>, and <code>@ANCESTRY</code>
+all trace through child processes.  They require an unbroken line of descent
+to find descendants.  If program A starts program B, which starts program C
+and then exits, then <code>PROCTREE</code> <i>et al.</i> cannot make the
+connection between A and C.  The common link B no longer exists.  This
+situation is actually not uncommon in Windows.  An application might use a
+‘launcher’ program, which checks for available updates before
+starting the main program and exiting.  Or, an application might dispense
+with the separate launcher, check for its own updates, launch a new
+instance of itself, and exit.  If you find an ‘orphan’ program
+which is not listed in <code>PROCTREE</code>’s output, this kind of
+technique may be the reason. </p>
+
+
+<h4><a name=install></a>Installation:</h4>
+
+<p>To use this plugin, copy <span class=filename>ProcTree.dll</span> to some
+known location on your hard drive.  (If you are still using the 32-bit version of
+Take Command, take <span class=filename>ProcTree-x86.dll</span> instead of
+<span class=filename>ProcTree.dll</span>.)  Load the .DLL file with a
+<code>PLUGIN /L</code> command, for example: </p>
+
+<p class=example><code>plugin /l c:\bin\tcmd\test\proctree.dll</code></p>
+
+<p>If you copy these files to a subdirectory named <span class=filename>PlugIns</span>
+within your Take Command program directory, the plugin will be loaded
+automatically when TCC starts. </p>
+
+
+<!--endtopic-->
+<h4><a name=features></a>Plugin Features:</h4>
+
+<p>New <a href="E:\Utils\#commands">commands</a>:  <a href="E:\Utils\#ancestry"><code>ANCESTRY</code></a>,
+<a href="E:\Utils\#proctree"><code>PROCTREE</code></a></p>
+
+<p>New <a href="E:\Utils\#functions">function</a>:  <a href="E:\Utils\#f_ancestry"><code>@ANCESTRY</code></a></p>
+
+
+<h4><a name=syntaxnote></a>Syntax Note:</h4>
+
+<p>The syntax definitions in the following text use these conventions for
+clarity: </p>
+
+<table>
+	<tr><td><code class=req>BOLD CODE</code></td><td>indicates text which must be typed exactly as shown. </td></tr>
+	<tr><td><code>CODE</code></td><td>indicates optional text, which may be typed as shown or omitted. </td></tr>
+	<tr><td><span class=reqname>Bold italic</span></td><td>names a required argument; a value must be supplied. </td></tr>
+	<tr><td><span class=optname>Regular italic</span></td><td>names an optional argument. </td></tr>
+	<tr><td><span class=optname>ellipsis…</span></td><td>after an argument means that more than one may be given. </td></tr>
+</table>
+
+<br>
+<p>Examples are shown in a gray box: </p>
+
+<p class=example><code>rem   This is an example: <br>
+proctree windowsterminal<br>
+</code></p>
+
+<br>
+<p>Some command options take an argument.  These are shown with a colon between the
+option and its argument:  <code>/A:</code><span class=optname>arg</span> </p>
+
+<p>If you like, you may substitute an equals sign for the colon:  <code>/A=</code><span class=optname>arg</span> 
+This is handy if the <span class=optname>arg</span> is a filename, and you want to use tab completion to
+enter the filename. </p>
+
+<p>Or you can omit the colon:  <code>/A</code><span class=optname>arg</span> </p>
+
+<!--endtopic-->
+
+
+<h4><a name=commands></a>New Commands:</h4>
+
+
+<p><a name=ancestry></a><code>ANCESTRY</code> — List ancestors of
+a given process. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>ANCESTRY</code><code> /C /D /F /H:</code><span class=optname>wild</span><code> /I /K /L /M /N:</code><span class=optname>flags</span><code> /R /T:</code><span class=optname>flags</span><code> /W:</code><span class=optname>n</span><code> /X </code><span class=optname>process</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#anc_opt_c"><code>/C</code></a></td><td>show process priorities</td></tr>
+	<tr><td><code>/D</code></td><td>display PIDs in decimal</td></tr>
+	<tr><td><a href="E:\Utils\#anc_opt_f"><code>/F</code></a></td><td>show fully-qualified filenames</td></tr>
+	<tr><td><a href="E:\Utils\#anc_opt_h"><code>/H:</code><span class=optname>wild</span></a></td><td>highlight matching strings</td></tr>
+	<tr><td><a href="E:\Utils\#anc_opt_i"><code>/I</code></a></td><td>show additional info</td></tr>
+	<tr><td><code>/K</code></td><td>show thread counts</td></tr>
+	<tr><td><code>/L</code></td><td>show command lines</td></tr>
+	<tr><td><a href="E:\Utils\#anc_opt_m"><code>/M</code></a></td><td>show memory usage</td></tr>
+	<tr><td><a href="E:\Utils\#anc_opt_n"><code>/N:</code><span class=optname>flags</span></a></td><td>disable features:  <code>CDESWX</code></td></tr>
+	<tr><td><code>/R</code></td><td>reverse order</td></tr>
+	<tr><td><a href="E:\Utils\#anc_opt_t"><code>/T:</code><span class=optname>flags</span></a></td><td>show process creation times:  <code>DSMF</code></td></tr>
+	<tr><td><code>/W:</code><span class=optname>n</span></td><td>specify line width</td></tr>
+	<tr><td><code>/X</code></td><td>display PIDs in hexadecimal (the default)</td></tr>
+	<tr><td><a href="E:\Utils\#anc_process"><span class=optname>process</span></a></td><td>the process to start from (process ID or wildspec)</td></tr>
+</table>
+
+<br>
+<p><a name=anc_process></a>This command lists the ancestors —
+the parent, grandparent, <em>etc.</em> — of a process: </p>
+
+<ul>
+	<li>You can enter the process ID in decimal, or hexadecimal with a leading
+		<code>0x</code>. </li>
+	<li>You can use wildcards to match the program’s executable name
+		(the name only, not the path), or its window title or service name. </li>
+	<li>If you do not specify a starting process, the current shell will
+		be used by default. </li>
+</ul>
+
+<p>Unless you include <code>/R</code>, processes will be listed in chronological
+order — oldest to newest, parent before child.  The last process
+listed will be the one specified on the command line; “self” is
+considered the newest “ancestor”. </p>
+
+<br>
+<p><a name=anc_opt_c></a><code>/C</code> displays the current priority for
+each process, using a one- or two-letter abbreviation: </p>
+
+<table class=descript>
+	<tr><td><code>RT</code></td><td>Realtime priority (the highest)</td></tr>
+	<tr><td><code>HI</code></td><td>High priority</td></tr>
+	<tr><td><code>AN</code></td><td>Above normal</td></tr>
+	<tr><td><code>N</code></td><td>Normal priority</td></tr>
+	<tr><td><code>BN</code></td><td>Below normal</td></tr>
+	<tr><td><code>I</code></td><td>Idle (the lowest)</td></tr>
+	<tr><td><code>-</code></td><td>unknown or other</td></tr>
+</table>
+
+<br>
+<p><a name=anc_opt_f></a><code>/F</code> displays a fully-qualified filename
+for each process.  If <code>ANCESTRY</code> cannot get the filename for a
+process, it will fall back on showing a window title or service name instead. </p>
+
+<br>
+<p><a name=anc_opt_h></a><code>/H:</code><span class=optname>wild</span>
+displays process names, window titles, and services names which match the given
+wildcard spec in reverse video.  You can supply multiple <code>/H:</code> options
+to match more than one wildspec.  This option has no effect if output is redirected,
+or if you disable highlighting with <code>/NC</code>. </p>
+
+<br>
+<p><a name=anc_opt_i></a><code>/I</code> collects and displays additional
+information about each process.  If a process is elevated, <code>ANCESTRY</code>
+will show an up-arrow <code><b>↑</b></code> before its name.  If it’s
+a 32-bit process running under 64-bit Windows, a right guillemet <code><b>»</b></code>
+will appear before the name. </p>
+
+<p>If you’re still running Windows XP, <code>/I</code> will probably work
+only in elevated TCC sessions. </p>
+
+<br>
+<p><a name=anc_opt_m></a><code>/M</code> shows the amount of memory currently
+used by each process, in kilobytes, megabytes, or gigabytes as appropriate.
+Fractional units will be rounded to the nearest unit; <em>e.g.</em> 15.7 megabytes
+will be shown as ‘16M’. </p>
+
+<br>
+<p><a name=anc_opt_n></a><code>/N:</code><span class=optname>flags</span>
+disables various features.  The colon is optional, and you may combine flags
+in any order. </p>
+
+<ul>
+	<li><code>C</code>: no <a href="E:\Utils\#highlight">highlight</a></li>
+	<li><code>D</code>: do not show display names (service names, window titles, full filenames)</li>
+	<li><code>E</code>: use ASCII periods ‘...’ instead of Unicode ellipses ‘…’ when truncating long strings</li>
+	<li><code>S</code>: do not collect service names</li>
+	<li><code>W</code>: do not collect window titles</li>
+	<li><code>X</code>: do not hide extensions</li>
+</ul>
+
+<p><code>/NS</code> and <code>/NW</code> are debugging options which prevent
+<code>ANCESTRY</code> from gathering service names or window titles.  Using
+either one will affect wildcard searches; you can’t search for strings
+you don’t have.  If you don’t want window titles or services
+names to be displayed, <code>/ND</code> is the right way to suppress them. </p>
+
+<p>You can get help for this option by typing</p>
+
+<p class=example><code>ancestry /n?</code></p>
+
+<br>
+<p><a name=anc_opt_t></a><code>/T:</code><span class=optname>flags</span>
+displays the time each process was started.  The colon is optional.  You
+may include one or more optional flags:  <code>D</code> for dates, <code>S</code>
+for seconds, <code>M</code> for milliseconds, or <code>F</code> for all of the
+above. </p>
+
+<p>You can get help for this option by typing</p>
+
+<p class=example><code>ancestry /t?</code></p>
+
+<br><hr><!--endtopic-->
+
+
+<p><a name=proctree></a><code>PROCTREE</code> — List descendants of
+a given process. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>PROCTREE</code><code> /A /C /D /E /F /H:</code><span class=optname>wild</span><code> /I /K /L /M /N:</code><span class=optname>flags</span><code> /O:</code><span class=optname>keys</span><code> /P /SVC /TC /T:</code><span class=optname>flags</span><code> /U /WT /W:</code><span class=optname>n</span><code> /X /Z </code><span class=optname>root</span></p>
+
+<table class=descript>
+	<tr><td><a href="E:\Utils\#pt_opt_a"><code>/A</code></a></td><td>use ASCII characters</td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_c"><code>/C</code></a></td><td>show process priorities</td></tr>
+	<tr><td><code>/D</code></td><td>display PIDs in decimal</td></tr>
+	<tr><td><a href="E:\Utils\#pt_root"><code>/E</code></a></td><td>start from Explorer</td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_f"><code>/F</code></a></td><td>show fully-qualified filenames</td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_h"><code>/H:</code><span class=optname>wild</span></a></td><td>highlight matching strings</td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_i"><code>/I</code></a></td><td>show additional info</td></tr>
+	<tr><td><code>/K</code></td><td>show thread counts</td></tr>
+	<tr><td><code>/L</code></td><td>show command lines</td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_m"><code>/M</code></a></td><td>show memory usage</td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_n"><code>/N:</code><span class=optname>flags</span></a></td><td>disable features:  <code>CDESTWX</code></td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_o"><code>/O:</code><span class=optname>keys</span></a></td><td>sort sibling processes:  <code>-CDEKMNPTW</code></td></tr>
+	<tr><td><code>/P</code></td><td>page output</td></tr>
+	<tr><td><a href="E:\Utils\#pt_root"><code>/SVC</code></a></td><td>start from the services root</td></tr>
+	<tr><td><a href="E:\Utils\#pt_root"><code>/TC</code></a></td><td>start from Take Command</td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_t"><code>/T:</code><span class=optname>flags</span></a></td><td>show process creation times:  <code>DSMF</code></td></tr>
+	<tr><td><code>/U</code></td><td>include a final summary line</td></tr>
+	<tr><td><code>/WT</code></td><td>start from Windows Terminal</td></tr>
+	<tr><td><code>/W:</code><span class=optname>n</span></td><td>specify line width</td></tr>
+	<tr><td><code>/X</code></td><td>display PIDs in hexadecimal (the default)</td></tr>
+	<tr><td><a href="E:\Utils\#pt_opt_z"><code>/Z</code></a></td><td>show the parent of the root process</td></tr>
+	<tr><td><a href="E:\Utils\#pt_root"><span class=optname>root</span></a></td><td>the process to start from (process ID or wildspec)</td></tr>
+</table>
+
+
+<br>
+<p><a name=pt_root></a>This command lists the child processes —
+and grandchildren, great-grandchildren, <em>etc.</em> — of a starting
+or ‘root’ process.  There are several ways to specify the root process: </p>
+
+<ul>
+	<li>You can enter the process ID in decimal, or hexadecimal with a leading
+		<code>0x</code>. </li>
+	<li>You can use wildcards to match the program’s executable name
+		(the name only, not the path), or its title or service name. </li>
+	<li><code>/E</code> looks for the root Explorer process. </li>
+	<li><code>/TC</code> looks for Take Command.  This only works if you
+		<em>are</em> running in Take Command. </li>
+	<li><code>/WT</code> looks for Windows Terminal.  As with <code>/TC</code>,
+		this only works if you are running in Windows Terminal. </li>
+	<li><code>/SVC</code> looks for <span class=filename>services.exe</span>. </li>
+	<li>If you do not specify a starting process, the current shell will
+		be used by default. </li>
+</ul>
+
+<br>
+<p>If you specify a nonexistent process ID, <code>PROCTREE</code> will check
+whether any current processes claim that PID as a parent.  If the process no
+longer exists but one or more of its children do, then <code>PROCTREE</code>
+will create a ‘dummy’ process entry to use as the root of the
+process tree.  This dummy process is pure fiction; you cannot display any
+meaningful information about it.  It’s only there to allow you to list
+surviving children of a defunct process. </p>
+
+<br>
+<p><a name=pt_opt_a></a><code>/A</code> makes <code>PROCTREE</code> use
+ASCII characters instead of the fancy Unicode characters.  This option might be
+useful if you are redirecting or piping <code>PROCTREE</code>’s output.
+<code>/A</code> most obviously affects the line-drawing characters used to show
+the tree structure, but it has other effects too.  It replaces the symbols
+used by <a href="E:\Utils\#pt_opt_i"><code>/I</code></a> and the ellipses used to
+shorten long window titles and service names.  Note that even with <code>/A</code>,
+there may still be Unicode characters in process names, window titles, and
+so on. </p>
+
+<br>
+<p><a name=pt_opt_c></a><code>/C</code> displays the current priority for
+each process, using a one- or two-letter abbreviation: </p>
+
+<table class=descript>
+	<tr><td><code>RT</code></td><td>Realtime priority (the highest)</td></tr>
+	<tr><td><code>HI</code></td><td>High priority</td></tr>
+	<tr><td><code>AN</code></td><td>Above normal</td></tr>
+	<tr><td><code>N</code></td><td>Normal priority</td></tr>
+	<tr><td><code>BN</code></td><td>Below normal</td></tr>
+	<tr><td><code>I</code></td><td>Idle (the lowest)</td></tr>
+	<tr><td><code>-</code></td><td>unknown or other</td></tr>
+</table>
+
+<br>
+<p><a name=pt_opt_f></a><code>/F</code> displays a fully-qualified filename
+for each process.  If <code>PROCTREE</code> cannot get the filename for a
+process, it will fall back on showing a window title or service name instead. </p>
+
+<br>
+<p><a name=pt_opt_h></a><code>/H:</code><span class=optname>wild</span>
+displays process names, window titles, and services names which match the given
+wildcard spec in reverse video.  You can supply multiple <code>/H:</code> options
+to match more than one wildspec.  This option has no effect if output is redirected,
+or if you disable highlighting with <code>/NC</code>. </p>
+
+<br>
+<p><a name=pt_opt_i></a><code>/I</code> collects and displays additional
+information about each process.  If a process is elevated, <code>PROCTREE</code>
+will show an up-arrow <code><b>↑</b></code> before its name.  If it’s
+a 32-bit process running under 64-bit Windows, a right guillemet <code><b>»</b></code>
+will appear before the name. </p>
+
+<p>If you’re still running Windows XP, <code>/I</code> will probably work
+only in elevated TCC sessions. </p>
+
+<br>
+<p><a name=pt_opt_m></a><code>/M</code> shows the amount of memory currently
+used by each process, in kilobytes, megabytes, or gigabytes as appropriate.
+Fractional units will be rounded to the nearest unit; <em>e.g.</em> 15.7 megabytes
+will be shown as ‘16M’. </p>
+
+<br>
+<p><a name=pt_opt_n></a><code>/N:</code><span class=optname>flags</span>
+disables various features.  The colon is optional, and you may combine flags
+in any order. </p>
+
+<ul>
+	<li><code>C</code>: no <a href="E:\Utils\#highlight">highlight</a></li>
+	<li><code>D</code>: do not show display names (service names, window titles, full filenames)</li>
+	<li><code>E</code>: use ASCII periods ‘...’ instead of Unicode ellipses ‘…’ when truncating long strings</li>
+	<li><code>S</code>: do not collect service names</li>
+	<li><code>T</code>: do not display the tree graphic</li>
+	<li><code>W</code>: do not collect window titles</li>
+	<li><code>X</code>: do not hide extensions</li>
+</ul>
+
+<p><code>/NS</code> and <code>/NW</code> are debugging options which prevent
+<code>PROCTREE</code> from gathering service names or window titles.  Using
+either one will affect <a href="E:\Utils\#pt_opt_o"><code>/OD</code></a> and wildcard
+searches; you can’t search or sort on strings you don’t have.  If
+you don’t want window titles or services names to be displayed,
+<code>/ND</code> is the right way to suppress them. </p>
+
+<p>You can get help for this option by typing</p>
+
+<p class=example><code>proctree /n?</code></p>
+
+<br>
+<p><a name=pt_opt_o></a><code>/O:</code><span class=optname>keys</span>
+tells <code>PROCTREE</code> how to sort sibling processes, <em>i.e.</em>,
+processes with the same parent.  The colon is optional, and you may give
+more than one key. </p>
+
+<ul>
+	<li><code>C</code>: sorts by priority (ascending)</li>
+	<li><code>D</code>: sorts by display name (service name or window title)</li>
+	<li><code>E</code>: elevated processes first</li>
+	<li><code>K</code>: sorts by thread count (ascending)</li>
+	<li><code>M</code>: sorts by memory usage (ascending)</li>
+	<li><code>N</code>: sorts by executable name</li>
+	<li><code>P</code>: sorts by process ID (ascending)</li>
+	<li><code>T</code>: sorts by creation time (oldest first)</li>
+	<li><code>W</code>: 32-bit processes first</li>
+	<li><code>-</code>: reverses the following key</li>
+</ul>
+
+<p>Without <code>/O</code>, the default is to sort siblings into ascending
+order by process ID. </p>
+
+<p>You can get help for this option by typing</p>
+
+<p class=example><code>proctree /o?</code></p>
+
+<br>
+<p><a name=pt_opt_t></a><code>/T:</code><span class=optname>flags</span>
+displays the time each process was started.  The colon is optional.  You
+may include one or more optional flags:  <code>D</code> for dates, <code>S</code>
+for seconds, <code>M</code> for milliseconds, or <code>F</code> for all of the
+above. </p>
+
+<p>You can get help for this option by typing</p>
+
+<p class=example><code>proctree /t?</code></p>
+
+<br>
+<p><a name=pt_opt_z></a><code>/Z</code> displays the parent process ID
+for the root process only.  (It would be redundant for all the others,
+since the tree structure shows this information already.) </p>
+
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=functions></a>New Function:</h4>
+
+
+<p><a name=f_ancestry></a><code>@ANCESTRY</code> — Returns a list
+of ancestors of a given process. </p>
+
+<p class=iewrap>Syntax:<br>
+<code class=req>%@ANCESTRY[</code><span class=optname>pid</span><code>,</code><span class=optname>flags</span><code>,</code><span class=optname>sep</span><code class=req>]</code></p>
+
+<table class=descript>
+	<tr><td><span class=optname>pid</span></td><td>the process ID, in decimal or hexadecimal with a leading <code>0x</code></td></tr>
+	<tr><td><span class=optname>flags</span></td><td>bitmapped:</td></tr>
+	<tr><td></td><td>    0: return PIDs in hexadecimal (the default)</td></tr>
+	<tr><td></td><td>    1: return PIDs in hexadecimal, with no leading <code>0x</code></td></tr>
+	<tr><td></td><td>    2: return PIDs in decimal</td></tr>
+	<tr><td></td><td>    3: return executable names (note that, unlike process IDs, these may not be unique)</td></tr>
+	<tr><td></td><td>    64: return in reverse order (newest to oldest)</td></tr>
+	<tr><td></td><td>    128: force returned string to lowercase</td></tr>
+	<tr><td><span class=optname>sep</span></td><td>separator string</td></tr>
+</table>
+
+<p>If <span class=optname>pid</span> is not specified, it defaults to the
+current shell.  By default, processes will be listed in chronological order —
+oldest to newest, parent before child.  The last process ID returned will be
+the <span class=optname>pid</span> originally specified, or the current
+shell’s.  Process IDs will be separated by spaces unless a different
+<span class=optname>sep</span> string is given. </p>
+
+<p>On error (invalid <span class=optname>pid</span>?), this function
+returns an empty string. </p>
+
+<br><hr><!--endtopic-->
+
+
+<h4><a name=highlight></a>Highlight Variable:</h4>
+
+<p>The <a href="E:\Utils\#proctree"><code>PROCTREE</code></a> command highlights
+executable names when displaying to the console.  You can customize this
+feature by setting an environment variable <code>Highlight</code>: </p>
+
+<p class=example><code>rem  Disable highlight:<br>
+set highlight=none<br>
+<br>
+rem  Set the highlight foreground:<br>
+set highlight=bright cyan<br>
+<br>
+rem  Set both foreground and background:<br>
+set highlight=bri whi on blu<br>
+<br>
+rem  Numbers are also supported:<br>
+set highlight=46<br>
+</code></p>
+
+<p>If the <code>Highlight</code> environment variable is not defined, the plugin will
+check the registry for a value named <code>Highlight</code> of type <code>REG_SZ</code>.
+The plugin will search, in this order: </p>
+
+<ul>
+	<li><code>HKEY_CURRENT_USER\Software\JPPlugins\ProcTree</code></li>
+	<li><code>HKEY_CURRENT_USER\Software\JPPlugins</code></li>
+</ul>
+
+<br>
+<p>You can also use the <code>/NC</code> option to disable highlighting. </p>
+
+
+<h4><a name=noloadmsg></a>Startup Message:</h4>
+
+<p>This plugin displays an informational line when it initializes.  The
+message will be suppressed in transient or pipe shells.  You can disable it
+for all shells by defining an environment variable named <code>NOLOADMSG</code>,
+for example:</p>
+
+<p class=example><code>set /e /u noloadmsg=1</code></p>
+
+
+<h4><a name=changes></a>Changes:</h4>
+
+<br>
+<table>
+	<tr><th>Version:</th><th>Date:</th><th>Changes:</th></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+	<tr><td>1.1.5.1</td><td nowrap>2026-10-15</td><td class=changes>Updated versions of <span class=filename>conlist.cpp</span>
+			and <span class=filename>ParseArgs.cpp</span>.  Use CL_ShowCmdHelp() to display help text. 
+			Cosmetic tweaks to the help text. </td></tr>
+	<tr><td>1.1.5.0</td><td nowrap>2025-03-27</td><td class=changes>Added <code>/WT</code> to start the tree from 
+			Windows Terminal. </td></tr>
+	<tr><td>1.1.4.1</td><td nowrap>2025-03-26</td><td class=changes>Updated <span class=filename>conlist.cpp</span>. </td></tr>
+	<tr><td>1.1.4</td><td nowrap>2024-10-07</td><td class=changes>Updated to use <span class=filename>conlist.cpp</span> v1.1. </td></tr>
+	<tr><td>1.1.3.1</td><td nowrap>2024-09-27</td><td class=changes>In decimal mode, PIDs are now left-padded to
+			five characters.  ParseInt() now supports octal with a leading <code>0o</code>.  Changed “http://”
+			to “https://’ in the <code>PLUGININFO</code> block. </td></tr>
+	<tr><td>1.1.3</td><td nowrap>2024-07-02</td><td class=changes>Now <a href="E:\Utils\#ancestry"><code>ANCESTRY</code></a> pads
+			shorter executable names to make things line up neatly (most of the time).  Added an optional separator arg
+			to <a href="E:\Utils\#f_ancestry"><code>@ANCESTRY</code></a>. </td></tr>
+	<tr><td>1.1.2</td><td nowrap>2024-06-06</td><td class=changes>Added <code>/L</code> to display process command lines, 
+			as in <code>TASKLIST</code>. </td></tr>
+	<tr><td>1.1.1</td><td nowrap>2024-05-08</td><td class=changes>Rewrote <a href="E:\Utils\#ancestry"><code>ANCESTRY</code></a> to
+			recycle much of <a href="E:\Utils\#proctree"><code>PROCTREE</code></a>’s code.  Now many <code>PROCTREE</code>
+			options work in <code>ANCESTRY</code>. </td></tr>
+	<tr><td>1.1.0</td><td nowrap>2024-05-03</td><td class=changes>Added <a href="E:\Utils\#ancestry"><code>ANCESTRY</code></a>
+			and <a href="E:\Utils\#f_ancestry"><code>@ANCESTRY</code></a>.  Allow <code>.</code> as a synonym for <code>%_PID</code>. </td></tr>
+	<tr><td>1.0.5.2</td><td nowrap>2023-10-15</td><td class=changes>Tweaked ShowCmdHelp() to include
+			<code>VER_PATCH</code>. </td></tr>
+	<tr><td>1.0.5.1</td><td nowrap>2023-10-12</td><td class=changes>Updated the plugin’s web address. </td></tr>
+	<tr><td>1.0.5</td><td nowrap>2023-10-05</td><td class=changes><a href="E:\Utils\#pt_opt_h"><code>/H:</code></a>
+			highlights matching window titles / service names as well as process names.
+			<code>/HL:</code> is now a synonym for <code>/H:</code> </td></tr>
+	<tr><td>1.0.4.1</td><td nowrap>2023-10-04</td><td class=changes>Formatting change:
+			<a href="E:\Utils\#pt_opt_i"><code>/I</code></a> now uses
+			a right guillemet instead of an arrowhead to mark 32-bit processes.  Added and removed spaces in the
+			<code>/I</code> info to make things line up a bit better. </td></tr>
+	<tr><td>1.0.4</td><td nowrap>2023-10-04</td><td class=changes>Bug fix:  If a process’s alleged parent was
+			started after the process, then your daddy ain’t your daddy (but your daddy don’t know). </td></tr>
+	<tr><td>1.0.3</td><td nowrap>2022-04-01</td><td class=changes>Added <a href="E:\Utils\#pt_opt_h"><code>/H:</code></a>
+			to highlight matching process names. </td></tr>
+	<tr><td>1.0.2</td><td nowrap>2022-03-28</td><td class=changes>Updated the help text and the error messages for
+			<code>/N</code> <code>/O</code> <code>/T</code> to mention the existence of <code>/N?</code>
+			<code>/O?</code> <code>/T?</code> </td></tr>
+	<tr><td>1.0.1</td><td nowrap>2022-03-25</td><td class=changes>Replaced _DOSsify() with the more sophisticated
+			FixKernelPath(). </td></tr>
+	<tr><td>1.0.0</td><td nowrap>2022-03-25</td><td class=changes>Added <code>/N?</code> <code>/O?</code>
+			<code>/T?</code> to give more info on those three options.  Removed dependency on
+			QueryFullProcessImageNameW() in hopes of making the plugin work under Windows XP. </td></tr>
+	<!-- <tr><td> </td><td nowrap> </td><td class="changes"> </td></tr> -->
+</table>
+
+
+<h4><a name=licensing></a>Status and Licensing:</h4>
+
+<p>This plugin is © Copyright 2026, Charles Dye.  Unaltered copies of
+the binary and documentation files may be freely distributed without
+restriction.  I make no guarantee and give no warranty for its operation.  If
+you find a problem, you can report it in the
+<a target=_blank href="https://jpsoft.com/forums/forums/plugins.11/">JP Software
+support forum</a>. </p>
+
+
+<h4><a name=download></a>Download:</h4>
+<p>You can download the current version of the plugin from
+<a href="https://charlesdye.net/dl/proctree.zip">https://charlesdye.net/dl/proctree.zip</a>. </p>
+
+
+<p style="margin-bottom: 70%;" class=noprint><br></p>
+
+</div>
+</body>
+
+<!--saved from url=(0024)http://www.bauerapps.com--></html>
